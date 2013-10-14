@@ -19,7 +19,7 @@ void AddNodeCommand::execute(){
 	if(this->node != NULL){			
 		ERModel* erModel = this->presentation->getERModel();
 		//add to erModel
-		erModel->addComponent(this->node);		
+		erModel->addComponent(this->node);
 	}
 	else 	
 		this->doAddNode();

@@ -1,0 +1,149 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{771CF11D-00FF-41B6-ABCD-EEEDC5CF7642}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>My102598045_TEST</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>.\102598045_POSD;c:\gtest\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>c:\gtest\lib\gtestd.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\102598045_POSD\AddNodeCommand.cpp" />
+    <ClCompile Include="..\102598045_POSD\Attribute.cpp" />
+    <ClCompile Include="..\102598045_POSD\AttributeType.cpp" />
+    <ClCompile Include="..\102598045_POSD\Command.cpp" />
+    <ClCompile Include="..\102598045_POSD\CommandData.cpp" />
+    <ClCompile Include="..\102598045_POSD\CommandManager.cpp" />
+    <ClCompile Include="..\102598045_POSD\CommandMenu.cpp" />
+    <ClCompile Include="..\102598045_POSD\Component.cpp" />
+    <ClCompile Include="..\102598045_POSD\ComponentConnectionSize.cpp" />
+    <ClCompile Include="..\102598045_POSD\ComponentData.cpp" />
+    <ClCompile Include="..\102598045_POSD\ComponentException.cpp" />
+    <ClCompile Include="..\102598045_POSD\ComponentFactory.cpp" />
+    <ClCompile Include="..\102598045_POSD\ComponentType.cpp" />
+    <ClCompile Include="..\102598045_POSD\ComponentUtil.cpp" />
+    <ClCompile Include="..\102598045_POSD\ConnectedERReceiver.cpp" />
+    <ClCompile Include="..\102598045_POSD\ConnectedSelfException.cpp" />
+    <ClCompile Include="..\102598045_POSD\ConnectionData.cpp" />
+    <ClCompile Include="..\102598045_POSD\ConnectionReceiverManager.cpp" />
+    <ClCompile Include="..\102598045_POSD\ConnectNodeCommand.cpp" />
+    <ClCompile Include="..\102598045_POSD\Connector.cpp" />
+    <ClCompile Include="..\102598045_POSD\DeleteComponentCommand.cpp" />
+    <ClCompile Include="..\102598045_POSD\DisplayDiagramCommand.cpp" />
+    <ClCompile Include="..\102598045_POSD\DisplayTableCommand.cpp" />
+    <ClCompile Include="..\102598045_POSD\Document.cpp" />
+    <ClCompile Include="..\102598045_POSD\EmptyCollectionException.cpp" />
+    <ClCompile Include="..\102598045_POSD\Entity.cpp" />
+    <ClCompile Include="..\102598045_POSD\ERModel.cpp" />
+    <ClCompile Include="..\102598045_POSD\ERModelUtil.cpp" />
+    <ClCompile Include="..\102598045_POSD\Exception.cpp" />
+    <ClCompile Include="..\102598045_POSD\ExitCommand.cpp" />
+    <ClCompile Include="..\102598045_POSD\FileNotFoundException.cpp" />
+    <ClCompile Include="..\102598045_POSD\FindComponentCommand.cpp" />
+    <ClCompile Include="..\102598045_POSD\FindEntityCommand.cpp" />
+    <ClCompile Include="..\102598045_POSD\HasConnectedException.cpp" />
+    <ClCompile Include="..\102598045_POSD\IClonable.cpp" />
+    <ClCompile Include="..\102598045_POSD\InvalidConnectException.cpp" />
+    <ClCompile Include="..\102598045_POSD\InvalidNodeTypeException.cpp" />
+    <ClCompile Include="..\102598045_POSD\LoadFileCommand.cpp" />
+    <ClCompile Include="..\102598045_POSD\NoConnectionException.cpp" />
+    <ClCompile Include="..\102598045_POSD\Node.cpp" />
+    <ClCompile Include="..\102598045_POSD\NodeConnectionType.cpp" />
+    <ClCompile Include="..\102598045_POSD\NoSuchNodeException.cpp" />
+    <ClCompile Include="..\102598045_POSD\NullPointerException.cpp" />
+    <ClCompile Include="..\102598045_POSD\Presentation.cpp" />
+    <ClCompile Include="..\102598045_POSD\Receiver.cpp" />
+    <ClCompile Include="..\102598045_POSD\ReceiverManager.cpp" />
+    <ClCompile Include="..\102598045_POSD\RedoCommand.cpp" />
+    <ClCompile Include="..\102598045_POSD\RelationShip.cpp" />
+    <ClCompile Include="..\102598045_POSD\RelationType.cpp" />
+    <ClCompile Include="..\102598045_POSD\ReorderComponentsUtil.cpp" />
+    <ClCompile Include="..\102598045_POSD\SaveFileCommand.cpp" />
+    <ClCompile Include="..\102598045_POSD\SetCardinalityCommand.cpp" />
+    <ClCompile Include="..\102598045_POSD\SetNodeNameCommand.cpp" />
+    <ClCompile Include="..\102598045_POSD\SetPrimaryKeyCommand.cpp" />
+    <ClCompile Include="..\102598045_POSD\StringUtil.cpp" />
+    <ClCompile Include="..\102598045_POSD\Table.cpp" />
+    <ClCompile Include="..\102598045_POSD\TableManager.cpp" />
+    <ClCompile Include="..\102598045_POSD\TextUI.cpp" />
+    <ClCompile Include="..\102598045_POSD\UndoCommand.cpp" />
+    <ClCompile Include="..\102598045_POSD\UnexecutableCommand.cpp" />
+    <ClCompile Include="..\102598045_POSD\ValidConnectedReceiver.cpp" />
+    <ClCompile Include="ERModelTest.cpp" />
+    <ClCompile Include="MainTest.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="ERModelTest.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

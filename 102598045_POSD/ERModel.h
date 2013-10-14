@@ -6,11 +6,14 @@
 #include "RelationShip.h"
 #include "Connector.h"
 #include "TableManager.h"
+#include <gtest/gtest_prod.h> 
 
 typedef pair<string,Component*> ComponentPair;
 
 class ERModel{
-public:
+	friend class ERModelTest;
+	FRIEND_TEST(ERModelTest,clearComponentMap);
+public:	
 	ERModel();
 	~ERModel();
 
