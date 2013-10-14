@@ -11,7 +11,6 @@ public:
 	DeleteComponentCommand(Presentation* presentation);
 	~DeleteComponentCommand();
 
-	string getCommandInformation();
 	void setupCommand();
 
 	void execute();

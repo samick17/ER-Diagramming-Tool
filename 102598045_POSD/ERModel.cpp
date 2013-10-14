@@ -17,14 +17,19 @@ Component* ERModel::addNode(string componentType){
 	Component* node;
 	ComponentFactory componentFactory;
 			
-	node = componentFactory.createComponent(componentType);	
+	node = componentFactory.createComponent(componentType);
+	this->insertComponent(node);
 
 	return node;
 }
-
+//if doesn't contains such component, do nothing
 void ERModel::removeComponentByID(string id){
-	Component* find = this->getComponentByID(id);
-	this->eraseComponent(find);
+	try{
+		Component* find = this->getComponentByID(id);
+		this->eraseComponent(find);
+	}
+	catch(Exception&){
+	}
 }
 //@return: NodeConnectionType
 int ERModel::addConnection(Component* firstNode,Component* secondNode){
@@ -32,12 +37,11 @@ int ERModel::addConnection(Component* firstNode,Component* secondNode){
 
 	if(result == NodeConnectionType::ValidConnect || result == NodeConnectionType::ConnectEntityAndRelation){
 		Component* connector = this->addNode(ComponentType::TypeConnector);
-		this->insertComponent(connector);
 		ComponentUtil::connectWithEachOther(firstNode,secondNode,connector);
 	}
 	return result;
 }
-
+//if doesn't contains such component, throw exception
 Component* ERModel::getComponentByID(string id){
 	unordered_map<string,Component*>::const_iterator find;
 
@@ -108,19 +112,23 @@ vector<string> ERModel::getComponentKeyOrderVector() const
 {
 	return this->componentKeyOrderVector;
 }
-//insert component in componentMap
+//insert component in componentMap, if no such key
 void ERModel::insertComponent(Component* component){
 	if(component == NULL)
 		return;
-	this->componentMap.insert(ComponentPair(component->getID(),component));	
-	//in order to keep component order, use a vector to convert component key to vector
-	this->componentKeyOrderVector.push_back(component->getID());
+	if(this->componentMap.find(component->getID()) == this->componentMap.end()){
+		this->componentMap.insert(ComponentPair(component->getID(),component));	
+		//in order to keep component order, use a vector to convert component key to vector
+		this->componentKeyOrderVector.push_back(component->getID());
+	}
 }
-//erase component in componentMap
-void ERModel::eraseComponent(Component* component){
-	this->componentMap.erase(component->getID());	
-	//in order to keep component order, use a vector to convert component key to vector	
-	vector<string>::iterator index = find(this->componentKeyOrderVector.begin(),this->componentKeyOrderVector.end(),component->getID());
-	if (index != this->componentKeyOrderVector.end()) 
-    this->componentKeyOrderVector.erase(index);
+//erase component in componentMap, if contains key
+void ERModel::eraseComponent(Component* component){	
+	if(this->componentMap.find(component->getID()) != this->componentMap.end()){
+		this->componentMap.erase(component->getID());
+		//in order to keep component order, use a vector to convert component key to vector	
+		vector<string>::iterator index = find(this->componentKeyOrderVector.begin(),this->componentKeyOrderVector.end(),component->getID());
+		if (index != this->componentKeyOrderVector.end()) 
+			this->componentKeyOrderVector.erase(index);
+	}
 }

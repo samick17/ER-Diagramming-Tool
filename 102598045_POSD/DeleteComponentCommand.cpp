@@ -21,10 +21,6 @@ DeleteComponentCommand::~DeleteComponentCommand(){
 	this->clearConnectionDataMap();
 }
 
-string DeleteComponentCommand::getCommandInformation(){
-	return "";
-}
-
 void DeleteComponentCommand::setupCommand(){
 	//find node to be connect
 	FindComponentCommand findComponentCommand(this->presentation);

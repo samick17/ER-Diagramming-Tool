@@ -3,13 +3,14 @@
 #include "TextUI.h"
 
 Command::Command(Presentation* presentation) : presentation(presentation){
+	this->commandInformation = "";
 }
 
 Command::~Command(){
 }
 
 string Command::getCommandInformation(){
-	return "";
+	return this->commandInformation;
 }
 
 void Command::setupCommand(){

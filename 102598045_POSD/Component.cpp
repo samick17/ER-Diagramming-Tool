@@ -37,12 +37,12 @@ void Component::setName(string name){
 string Component::getClassName(){
 	return StringUtil::split(typeid(*this).name(),' ')[1];
 }
-
+//if no such connection in set, connect to target
 void Component::connectTo(Component* target){		
 	if(this->connectionSet.find(target) == this->connectionSet.end())
 		this->connectionSet.insert(target);
 }
-
+//if has such connection in set, disconnect to target
 void Component::disconnectTo(Component* target){	
 	if(this->connectionSet.find(target) != this->connectionSet.end())	
 		this->connectionSet.erase(target);	

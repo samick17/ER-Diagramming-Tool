@@ -8,6 +8,7 @@ using namespace std;
 
 AddNodeCommand::AddNodeCommand(Presentation* presentation) : UnexecutableCommand(presentation){		
 	this->node = NULL;
+	this->commandInformation = "What kind of node do you want to add?\n[A]Attribute [E]Entity [R]Relation";
 }
 
 AddNodeCommand::~AddNodeCommand(){		
@@ -16,24 +17,17 @@ AddNodeCommand::~AddNodeCommand(){
 		this->node = NULL;
 	}
 }
-
-string AddNodeCommand::getCommandInformation(){
-	return "What kind of node do you want to add?\n[A]Attribute [E]Entity [R]Relation";
-}
-
+//gather information for add node: get user input to add node, and set this node's name
 void AddNodeCommand::setupCommand(){
 	Component* node = this->getNodeToAdd();
 	//set Node Name
 	SetNodeNameCommand cmdSetNodeName(this->presentation,node);
 	cmdSetNodeName.execute();
 	this->node = node;
-	//insert this node to ERModel
-	ERModel* erModel = this->presentation->getERModel();
-	erModel->insertComponent(this->node);
 	//display All Compomnents
 	this->presentation->displayComponents();
 }
-
+//if ERModel doesn't contains this node, add this node to ERModel
 void AddNodeCommand::execute(){
 	ERModel* erModel = this->presentation->getERModel();
 
@@ -46,7 +40,7 @@ void AddNodeCommand::execute(){
 	
 	this->UnexecutableCommand::execute();
 }
-
+//
 void AddNodeCommand::unExecute(){
 	//remove node
 	ERModel* erModel = this->presentation->getERModel();

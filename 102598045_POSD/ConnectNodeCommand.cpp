@@ -19,10 +19,6 @@ ConnectNodeCommand::~ConnectNodeCommand(){
 	}
 }
 
-string ConnectNodeCommand::getCommandInformation(){
-	return "";
-}
-
 void ConnectNodeCommand::setupCommand(){
 	FindComponentCommand findComponentCommand(this->presentation);
 	//Find First Node

@@ -7,7 +7,6 @@ public:
 	ConnectNodeCommand(Presentation* presentation);
 	~ConnectNodeCommand();
 
-	string getCommandInformation();
 	void setupCommand();
 
 	void execute();

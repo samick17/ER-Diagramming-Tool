@@ -2,13 +2,10 @@
 
 UnexecutableCommand :: UnexecutableCommand(Presentation* presentation) : Command(presentation){	
 	this->executionFlag = false;
+	this->commandInformation = "";
 }
 
 UnexecutableCommand::~UnexecutableCommand(){
-}
-
-string UnexecutableCommand::getCommandInformation(){
-	return "";
 }
 
 void UnexecutableCommand::setupCommand(){
