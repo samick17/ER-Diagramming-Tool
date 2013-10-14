@@ -124,15 +124,23 @@ bool Presentation::displayStringWithComma(string strStart,set<string> stringSet,
 	return true;
 }
 
+void Presentation::displayCommandInfoAndSetUp(Command* command){
+	string commandInfo = command->getCommandInformation();
+	if(commandInfo!= "")
+		cout<<commandInfo<<endl;
+	command->setupCommand();
+}
+
 void Presentation::processCommand(string commandKey){
 	try{
 		CommandMenu commandMenu;
-		CommandData* commandData = commandMenu.getCommandDataByKey(commandKey);
-		
+		CommandData* commandData = commandMenu.getCommandDataByKey(commandKey);		
 		//get new Command Function From Command Data
 		NewCommandFunction newCommandFunction = commandData->getNewCommandFunction();
 		//new one Command for Command Manager to Execute
-		commandManager->execute(newCommandFunction(this));
+		Command* command = newCommandFunction(this);
+		this->displayCommandInfoAndSetUp(command);
+		this->commandManager->execute(command);
 	}
 	catch(NullPointerException){
 		cout<<"wrong command,please input correct command."<<endl;

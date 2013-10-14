@@ -48,7 +48,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>.\102598045_POSD;c:\gtest\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>c:\gtest\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
     </ClCompile>
@@ -137,10 +137,12 @@
     <ClCompile Include="..\102598045_POSD\UndoCommand.cpp" />
     <ClCompile Include="..\102598045_POSD\UnexecutableCommand.cpp" />
     <ClCompile Include="..\102598045_POSD\ValidConnectedReceiver.cpp" />
+    <ClCompile Include="DirectoryUtil.cpp" />
     <ClCompile Include="ERModelTest.cpp" />
     <ClCompile Include="MainTest.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="DirectoryUtil.h" />
     <ClInclude Include="ERModelTest.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

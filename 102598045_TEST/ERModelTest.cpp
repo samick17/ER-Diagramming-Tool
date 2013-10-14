@@ -1,4 +1,5 @@
 #include "ERModelTest.h"
+#include "DirectoryUtil.h"
 
 ERModelTest::ERModelTest(){
 }
@@ -6,10 +7,14 @@ ERModelTest::ERModelTest(){
 ERModelTest::~ERModelTest(){
 }
 
-void ERModelTest::SetUp(){
+void ERModelTest::SetUp(){	
+	string directory = DirectoryUtil::getCurrentWorkingDirectory()+"/testdata";
+	mkdir(directory.c_str());
 }
 
 void ERModelTest::TearDown(){
+	string directory = DirectoryUtil::getCurrentWorkingDirectory()+"/testdata";
+	rmdir(directory.c_str());	
 }
 
 TEST_F(ERModelTest,clearComponentMap){	

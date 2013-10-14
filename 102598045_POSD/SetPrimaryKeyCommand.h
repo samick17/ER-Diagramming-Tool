@@ -8,7 +8,7 @@ class SetPrimaryKeyCommand : public Command{
 public:
 	SetPrimaryKeyCommand(Presentation* presentation);
 	~SetPrimaryKeyCommand();
-
+	
 	void execute();
 	void unExecute();
 

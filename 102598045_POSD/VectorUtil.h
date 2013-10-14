@@ -24,8 +24,10 @@ static set<type> VectorUtil::convertVectorToSet(vector<type> typeVector){
 template<typename type>
 static void VectorUtil::deleteAllElementsInVector(vector<type*>& typeVector){
 	for each(type* typePointer in typeVector){
-		if(typePointer != NULL)
+		if(typePointer != NULL){
 			delete typePointer;
+			typePointer = NULL;
+		}
 	}
 	typeVector.clear();
 }

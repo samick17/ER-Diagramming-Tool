@@ -11,15 +11,17 @@ public:
 	DeleteComponentCommand(Presentation* presentation);
 	~DeleteComponentCommand();
 
+	string getCommandInformation();
+	void setupCommand();
+
 	void execute();
 	void unExecute();
 private:
-	bool connectorFlag;
 	Component* component;
 	set<Connector*> connectionSet;
 	hash_map<string,ConnectionData*> connectionDataMap;
+	void saveConnectionData(Connector* connector);
 	void clearConnectionDataMap();
-	void doDeleteComponent();	
 	void removeAndDisconnectComponents();
 	void reConnectComponents(ConnectionData* connectionData,Connector* connector);
 };

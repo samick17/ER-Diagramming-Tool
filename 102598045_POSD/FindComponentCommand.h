@@ -6,7 +6,7 @@ class FindComponentCommand : public Command{
 public:
 	FindComponentCommand(Presentation* presentation);
 	~FindComponentCommand();
-
+	
 	void setInfo(string info);
 
 	void execute();

@@ -7,6 +7,13 @@ UnexecutableCommand :: UnexecutableCommand(Presentation* presentation) : Command
 UnexecutableCommand::~UnexecutableCommand(){
 }
 
+string UnexecutableCommand::getCommandInformation(){
+	return "";
+}
+
+void UnexecutableCommand::setupCommand(){
+}
+
 bool UnexecutableCommand::isUnexecutable(){
 	return true;
 }

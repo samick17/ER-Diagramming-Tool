@@ -6,27 +6,52 @@
 
 DeleteComponentCommand :: DeleteComponentCommand(Presentation* presentation) : UnexecutableCommand(presentation){	
 	this->component = NULL;
-	this->connectorFlag = false;
 }
 
 DeleteComponentCommand::~DeleteComponentCommand(){
-	if(this->getExecutionFlag()){
-		//delete component	
-		if(this->component != NULL)
-			delete this->component;
+	if(this->getExecutionFlag()){		
 		//delete connectionSet
 		SetUtil::deleteAllElementsInSet(this->connectionSet);
+		//delete component	
+		if(this->component != NULL){
+			delete this->component;
+			this->component = NULL;
+		}
 	}
 	this->clearConnectionDataMap();
 }
 
+string DeleteComponentCommand::getCommandInformation(){
+	return "";
+}
+
+void DeleteComponentCommand::setupCommand(){
+	//find node to be connect
+	FindComponentCommand findComponentCommand(this->presentation);
+	findComponentCommand.setInfo("Please enter the component ID");
+	findComponentCommand.execute();	
+	
+	//save to variable - save deleted component
+	this->component = findComponentCommand.getComponent();
+	//save to variable - save connected connections
+	this->connectionSet = ERModelUtil::convertComponentSetToTypeSet<Connector>(this->component->getAllConnectors());		
+	
+	this->removeAndDisconnectComponents();
+
+	this->presentation->logMessage("The component '"+this->component->getID()+"' has been deleted. ",true);	
+}
+
 void DeleteComponentCommand :: execute(){
-	if(this->component != NULL){
+	ERModel* erModel = this->presentation->getERModel();
+
+	try{
+		erModel->getComponentByID(this->component->getID());
+
 		this->clearConnectionDataMap();
 		this->removeAndDisconnectComponents();
 	}
-	else 		
-		this->doDeleteComponent();
+	catch(Exception&){
+	}
 	
 	this->UnexecutableCommand::execute();
 }
@@ -35,12 +60,11 @@ void DeleteComponentCommand::unExecute(){
 	ERModel* erModel = this->presentation->getERModel();
 
 	//add deleted Component to ERModel
-	if(!this->connectorFlag)
-		erModel->addComponent(this->component);
+	erModel->insertComponent(this->component);
 
 	for each(Connector* connector in this->connectionSet){
 		//add connected Connector to ERModel
-		erModel->addComponent(connector);
+		erModel->insertComponent(connector);
 		//connect with each other
 		hash_map<string,ConnectionData*>::iterator connectionDataIterator;
 		if((connectionDataIterator = this->connectionDataMap.find(connector->getID())) != this->connectionDataMap.end())	
@@ -49,53 +73,37 @@ void DeleteComponentCommand::unExecute(){
 	this->UnexecutableCommand::unExecute();
 }
 
+void DeleteComponentCommand::saveConnectionData(Connector* connector){
+	Component* firstNode = connector->getFirstConnectedNode();
+	Component* secondNode = connector->getSecondConnectedNode();		
+
+	ConnectionData* connectionData = new ConnectionData(connector->getID(),firstNode->getID(),secondNode->getID());
+	this->connectionDataMap.insert(ConnectionDataPair(connectionData->getConnectorID(),connectionData));
+}
+
 void DeleteComponentCommand::clearConnectionDataMap(){
 	for each(ConnectionDataPair connectionDataPair in this->connectionDataMap){
-		if(connectionDataPair.second != NULL)
+		if(connectionDataPair.second != NULL){
 			delete connectionDataPair.second;
+			connectionDataPair.second = NULL;
+		}
 	}
 	this->connectionDataMap.clear();
-}
-//remove component from ERModel
-void DeleteComponentCommand::doDeleteComponent(){
-	ERModel* erModel = this->presentation->getERModel();
-
-	//find node to be connect
-	FindComponentCommand findComponentCommand(this->presentation);
-	findComponentCommand.setInfo("Please enter the component ID");
-	findComponentCommand.execute();
-	Component* find = findComponentCommand.getComponent();
-	
-	//save to variable - save deleted component
-	this->component = find;
-	//save to variable - save connected connections
-	this->connectionSet = ERModelUtil::convertComponentSetToTypeSet<Connector>(find->getAllConnectors());		
-	if(typeid(*this->component).name() == typeid(Connector).name()){
-		this->connectionSet.insert(static_cast<Connector*>(this->component));
-		this->connectorFlag = true;
-	}
-
-	this->removeAndDisconnectComponents();
-
-	this->presentation->logMessage("The component '"+find->getID()+"' has been deleted. ",true);	
 }
 //remove component from ERMol & disconnect it
 void DeleteComponentCommand::removeAndDisconnectComponents(){
 	ERModel* erModel = this->presentation->getERModel();	
 
-	//remove component from ERModel
-	if(!this->connectorFlag)
-		erModel->removeComponentByID(this->component->getID());
+	//remove component from ERModel	
+	if(typeid(*this->component).name() == typeid(Connector).name()){
+		Connector* connector = static_cast<Connector*>(this->component);
+		this->saveConnectionData(connector);		
+	}
+	erModel->removeComponentByID(this->component->getID());
 	
-	Component* firstNode;
-	Component* secondNode;
 	//save connectionData & remove connectionSet from ERModel
 	for each(Connector* connector in this->connectionSet){
-		firstNode = connector->getFirstConnectedNode();
-		secondNode = connector->getSecondConnectedNode();		
-
-		ConnectionData* connectionData = new ConnectionData(connector->getID(),firstNode->getID(),secondNode->getID());
-		this->connectionDataMap.insert(ConnectionDataPair(connectionData->getConnectorID(),connectionData));
+		saveConnectionData(connector);
 		erModel->removeComponentByID(connector->getID());
 	}
 	//break connections

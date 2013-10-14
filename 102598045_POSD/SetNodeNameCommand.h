@@ -5,7 +5,7 @@ class SetNodeNameCommand : public Command{
 public:
 	SetNodeNameCommand(Presentation* presentation,Component* node);
 	~SetNodeNameCommand();
-
+	
 	void execute();
 	void unExecute();
 private:

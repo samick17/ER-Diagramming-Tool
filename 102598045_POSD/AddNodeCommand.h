@@ -7,10 +7,12 @@ public:
 	AddNodeCommand(Presentation* presentation);
 	~AddNodeCommand();
 
+	string getCommandInformation();
+	void setupCommand();
+
 	void execute();
 	void unExecute();
 private:
 	Component* node;
-	void doAddNode();
 	Component* getNodeToAdd();
 };

@@ -15,8 +15,11 @@ public:
 	Command(Presentation* presentation);
 	virtual ~Command();
 	
-	virtual bool isUnexecutable();
+	virtual string getCommandInformation();
+	virtual void setupCommand();
 
+	virtual bool isUnexecutable();
+		
 	virtual void execute() = 0;	
 	virtual void unExecute() = 0;
 protected:

@@ -20,8 +20,10 @@ Table* TableManager::getTableByID(string id){
 }
 
 void TableManager::clearAll(){
-	for each(TablePair tablePair in this->tableMap)	
+	for each(TablePair tablePair in this->tableMap){
 		delete tablePair.second;
+		tablePair.second = NULL;
+	}
 	
 	this->tableMap.clear();
 }

@@ -11,18 +11,38 @@ AddNodeCommand::AddNodeCommand(Presentation* presentation) : UnexecutableCommand
 }
 
 AddNodeCommand::~AddNodeCommand(){		
-	if(!this->getExecutionFlag())
+	if(!this->getExecutionFlag()){
 		delete this->node;
+		this->node = NULL;
+	}
+}
+
+string AddNodeCommand::getCommandInformation(){
+	return "What kind of node do you want to add?\n[A]Attribute [E]Entity [R]Relation";
+}
+
+void AddNodeCommand::setupCommand(){
+	Component* node = this->getNodeToAdd();
+	//set Node Name
+	SetNodeNameCommand cmdSetNodeName(this->presentation,node);
+	cmdSetNodeName.execute();
+	this->node = node;
+	//insert this node to ERModel
+	ERModel* erModel = this->presentation->getERModel();
+	erModel->insertComponent(this->node);
+	//display All Compomnents
+	this->presentation->displayComponents();
 }
 
 void AddNodeCommand::execute(){
-	if(this->node != NULL){			
-		ERModel* erModel = this->presentation->getERModel();
-		//add to erModel
-		erModel->addComponent(this->node);
+	ERModel* erModel = this->presentation->getERModel();
+
+	try{
+		erModel->getComponentByID(this->node->getID());
 	}
-	else 	
-		this->doAddNode();
+	catch(Exception&){
+		erModel->insertComponent(this->node);
+	}
 	
 	this->UnexecutableCommand::execute();
 }
@@ -35,27 +55,14 @@ void AddNodeCommand::unExecute(){
 
 	this->UnexecutableCommand::unExecute();
 }
-
-void AddNodeCommand::doAddNode(){
-	this->presentation->logMessage("What kind of node do you want to add? ",true);
-	this->presentation->logMessage("[A]Attribute [E]Entity [R]Relation",true);
-	
-	Component* node = this->getNodeToAdd();
-
-	SetNodeNameCommand cmdSetNodeName(this->presentation,node);
-	cmdSetNodeName.execute();
-	this->node = node;
-
-	this->presentation->displayComponents();
-}
 //get input & return.if doesn't conatins such node,looping getinput
 Component* AddNodeCommand::getNodeToAdd(){
 	Component* node = NULL;
 	while(node == NULL){
 		try{
-			string input = this->presentation->getInput();	
+			string input = this->presentation->getInput();
 			ERModel* erModel = this->presentation->getERModel();
-			node = erModel->addNode(input);		
+			node = erModel->addNode(input);
 		}
 		catch(Exception& exception){
 			this->presentation->logMessage(exception.getMessage(),true);

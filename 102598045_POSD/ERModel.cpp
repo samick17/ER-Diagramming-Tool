@@ -17,16 +17,9 @@ Component* ERModel::addNode(string componentType){
 	Component* node;
 	ComponentFactory componentFactory;
 			
-	node = componentFactory.createComponent(componentType);
-	this->insertComponent(node);
+	node = componentFactory.createComponent(componentType);	
 
 	return node;
-}
-
-void ERModel::addComponent(Component* component){
-	if(component == NULL)
-		return;
-	this->insertComponent(component);
 }
 
 void ERModel::removeComponentByID(string id){
@@ -39,6 +32,7 @@ int ERModel::addConnection(Component* firstNode,Component* secondNode){
 
 	if(result == NodeConnectionType::ValidConnect || result == NodeConnectionType::ConnectEntityAndRelation){
 		Component* connector = this->addNode(ComponentType::TypeConnector);
+		this->insertComponent(connector);
 		ComponentUtil::connectWithEachOther(firstNode,secondNode,connector);
 	}
 	return result;
@@ -101,8 +95,10 @@ void ERModel::clearComponentMap(){
 	ComponentFactory componentFactory;
 	componentFactory.resetFactory();
 
-	for each (ComponentPair componentPair in this->componentMap)	
+	for each (ComponentPair componentPair in this->componentMap)	{
 		delete componentPair.second;
+		componentPair.second = NULL;
+	}
 	
 	this->componentMap.clear();
 	this->componentKeyOrderVector.clear();
@@ -114,6 +110,8 @@ vector<string> ERModel::getComponentKeyOrderVector() const
 }
 //insert component in componentMap
 void ERModel::insertComponent(Component* component){
+	if(component == NULL)
+		return;
 	this->componentMap.insert(ComponentPair(component->getID(),component));	
 	//in order to keep component order, use a vector to convert component key to vector
 	this->componentKeyOrderVector.push_back(component->getID());

@@ -15,16 +15,18 @@ Presentation* CommandManager::getPresentation(){
 	return this->presentation;
 }
 
-void CommandManager::execute(Command* command){
+void CommandManager::execute(Command* command){	
 	command->execute();	
 	//push stack & clear redo stack
-	if(command->isUnexecutable()){			
+	if(command->isUnexecutable()){
 		this->undoCommandsStack.push(command);
 		StackUtil::deleteAllElementsInStack<Command>(this->redoCommandsStack);
 	}
 	//delete command instance
-	else 	
+	else {
 		delete command;
+		command = NULL;
+	}
 }
 
 void CommandManager::redo(){

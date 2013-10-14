@@ -6,7 +6,7 @@ class FindEntityCommand : public FindComponentCommand{
 public:
 	FindEntityCommand(Presentation* presentation);
 	~FindEntityCommand();
-
+	
 	void execute();
 	void unExecute();
 };

@@ -13,7 +13,7 @@ class LoadFileCommand : public Command{
 public:
 	LoadFileCommand(Presentation* presentation);
 	~LoadFileCommand();
-
+	
 	void execute();
 	void unExecute();
 

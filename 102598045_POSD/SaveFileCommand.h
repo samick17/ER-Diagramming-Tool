@@ -11,7 +11,7 @@ class SaveFileCommand : public Command{
 public:
 	SaveFileCommand(Presentation* presentation);
 	~SaveFileCommand();
-
+	
 	void execute();
 	void unExecute();
 private:

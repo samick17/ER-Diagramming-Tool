@@ -55,6 +55,12 @@
     <Filter Include="Source Files\Constants">
       <UniqueIdentifier>{a9936d33-6ef4-4096-8975-01ef7c47c0f4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\TestingUtils">
+      <UniqueIdentifier>{94d964ff-6bc0-4384-aac4-4f1ef8611e97}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\TestingUtil">
+      <UniqueIdentifier>{a4dfb767-a3ac-4514-8e29-52eec1f962d3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ERModelTest.cpp">
@@ -246,10 +252,16 @@
     <ClCompile Include="..\102598045_POSD\AttributeType.cpp">
       <Filter>Source Files\Constants</Filter>
     </ClCompile>
+    <ClCompile Include="DirectoryUtil.cpp">
+      <Filter>Source Files\TestingUtil</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ERModelTest.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DirectoryUtil.h">
+      <Filter>Header Files\TestingUtils</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

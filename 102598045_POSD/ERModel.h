@@ -18,7 +18,7 @@ public:
 	~ERModel();
 
 	Component* addNode(string componentType);
-	void addComponent(Component* component);
+	void insertComponent(Component* component);
 	void removeComponentByID(string id);
 	int addConnection(Component* firstNode,Component* secondNode);
 	Component* getComponentByID(string id);
@@ -35,8 +35,7 @@ public:
 	vector<string> getComponentKeyOrderVector() const;
 private:
 	unordered_map<string,Component*> componentMap;
-	vector<string> componentKeyOrderVector;
-	void insertComponent(Component* component);
+	vector<string> componentKeyOrderVector;	
 	void eraseComponent(Component* component);
 	TableManager tableManager;
 };

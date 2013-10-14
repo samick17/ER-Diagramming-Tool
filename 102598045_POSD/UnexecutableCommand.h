@@ -7,6 +7,9 @@ public:
 	UnexecutableCommand(Presentation* presentation);
 	~UnexecutableCommand();
 
+	string getCommandInformation();
+	void setupCommand();
+
 	bool isUnexecutable();
 
 	void execute();
