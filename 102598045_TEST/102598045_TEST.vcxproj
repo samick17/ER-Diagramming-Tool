@@ -107,6 +107,7 @@
     <ClCompile Include="..\102598045_POSD\Exception.cpp" />
     <ClCompile Include="..\102598045_POSD\ExitCommand.cpp" />
     <ClCompile Include="..\102598045_POSD\FileNotFoundException.cpp" />
+    <ClCompile Include="..\102598045_POSD\FileParser.cpp" />
     <ClCompile Include="..\102598045_POSD\FindComponentCommand.cpp" />
     <ClCompile Include="..\102598045_POSD\FindEntityCommand.cpp" />
     <ClCompile Include="..\102598045_POSD\HasConnectedException.cpp" />

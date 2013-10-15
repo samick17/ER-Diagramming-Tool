@@ -97,6 +97,12 @@
     <Filter Include="Source Files\Constants">
       <UniqueIdentifier>{f530ebe5-a377-4312-b273-3680f6befb3e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Parser">
+      <UniqueIdentifier>{79289ae5-84bb-489e-8c7e-a776630953af}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Parser">
+      <UniqueIdentifier>{e2890393-b21e-49e1-b3af-58924d7d66a6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Attribute.h">
@@ -291,6 +297,9 @@
     <ClInclude Include="NullPointerException.h">
       <Filter>Header Files\Exception</Filter>
     </ClInclude>
+    <ClInclude Include="FileParser.h">
+      <Filter>Header Files\Parser</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Attribute.cpp">
@@ -478,6 +487,9 @@
     </ClCompile>
     <ClCompile Include="NullPointerException.cpp">
       <Filter>Source Files\Exception</Filter>
+    </ClCompile>
+    <ClCompile Include="FileParser.cpp">
+      <Filter>Source Files\Parser</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

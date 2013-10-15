@@ -61,6 +61,9 @@
     <Filter Include="Source Files\TestingUtil">
       <UniqueIdentifier>{a4dfb767-a3ac-4514-8e29-52eec1f962d3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Parser">
+      <UniqueIdentifier>{e321a1ec-f531-4e7f-b714-023e817cae9f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ERModelTest.cpp">
@@ -254,6 +257,9 @@
     </ClCompile>
     <ClCompile Include="DirectoryUtil.cpp">
       <Filter>Source Files\TestingUtil</Filter>
+    </ClCompile>
+    <ClCompile Include="..\102598045_POSD\FileParser.cpp">
+      <Filter>Source Files\Parser</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -44,8 +44,8 @@ void AddNodeCommand::execute(){
 void AddNodeCommand::unExecute(){
 	//remove node
 	ERModel* erModel = this->presentation->getERModel();
-	
-	erModel->removeComponentByID(this->node->getID());
+		
+	erModel->eraseComponent(this->node);
 
 	this->UnexecutableCommand::unExecute();
 }

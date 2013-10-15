@@ -61,7 +61,7 @@ void ConnectNodeCommand::unExecute(){
 	ComponentUtil::disconnectWithEachOther(this->firstNode,this->secondNode,this->connector);
 
 	ERModel* erModel = this->presentation->getERModel();
-	erModel->removeComponentByID(this->connector->getID());
+	erModel->eraseComponent(this->connector);
 
 	this->UnexecutableCommand::unExecute();
 }

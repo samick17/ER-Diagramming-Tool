@@ -22,17 +22,33 @@ Component* ERModel::addNode(string componentType){
 
 	return node;
 }
-//if doesn't contains such component, do nothing
-void ERModel::removeComponentByID(string id){
-	try{
-		Component* find = this->getComponentByID(id);
-		this->eraseComponent(find);
+//insert component in componentMap, if no such key
+void ERModel::insertComponent(Component* component){
+	if(component == NULL)
+		throw NullPointerException();
+	string componentID = component->getID();
+	if(this->componentMap.find(componentID) == this->componentMap.end()){
+		this->componentMap.insert(ComponentPair(componentID,component));	
+		//in order to keep component order, use a vector to convert component key to vector
+		this->componentKeyOrderVector.push_back(componentID);
 	}
-	catch(Exception&){
+}
+//erase component in componentMap, if contains key
+void ERModel::eraseComponent(Component* component){
+	if(component == NULL)
+		throw NullPointerException();
+	if(this->componentMap.find(component->getID()) != this->componentMap.end()){
+		this->componentMap.erase(component->getID());
+		//in order to keep component order, use a vector to convert component key to vector	
+		vector<string>::iterator index = find(this->componentKeyOrderVector.begin(),this->componentKeyOrderVector.end(),component->getID());
+		if (index != this->componentKeyOrderVector.end()) 
+			this->componentKeyOrderVector.erase(index);
 	}
 }
 //@return: NodeConnectionType
 int ERModel::addConnection(Component* firstNode,Component* secondNode){
+	if(firstNode == NULL || secondNode == NULL)
+		throw NullPointerException();
 	int result = firstNode->canConnectTo(secondNode);
 
 	if(result == NodeConnectionType::ValidConnect || result == NodeConnectionType::ConnectEntityAndRelation){
@@ -52,8 +68,10 @@ Component* ERModel::getComponentByID(string id){
 }
 //@return: firstNode & secondNode's connector
 Connector* ERModel::getNodesConnector(Component* firstNode,Component* secondNode){
-	Connector* connection = NULL;
+	if(firstNode == NULL || secondNode)
+		throw NullPointerException();
 
+	Connector* connection = NULL;
 	if(this->componentMap.find(firstNode->getID()) != this->componentMap.end() && 
 		this->componentMap.find(secondNode->getID()) != this->componentMap.end()){
 		set<Connector*> connections = this->getAllConnectors();
@@ -111,24 +129,4 @@ void ERModel::clearComponentMap(){
 vector<string> ERModel::getComponentKeyOrderVector() const
 {
 	return this->componentKeyOrderVector;
-}
-//insert component in componentMap, if no such key
-void ERModel::insertComponent(Component* component){
-	if(component == NULL)
-		return;
-	if(this->componentMap.find(component->getID()) == this->componentMap.end()){
-		this->componentMap.insert(ComponentPair(component->getID(),component));	
-		//in order to keep component order, use a vector to convert component key to vector
-		this->componentKeyOrderVector.push_back(component->getID());
-	}
-}
-//erase component in componentMap, if contains key
-void ERModel::eraseComponent(Component* component){	
-	if(this->componentMap.find(component->getID()) != this->componentMap.end()){
-		this->componentMap.erase(component->getID());
-		//in order to keep component order, use a vector to convert component key to vector	
-		vector<string>::iterator index = find(this->componentKeyOrderVector.begin(),this->componentKeyOrderVector.end(),component->getID());
-		if (index != this->componentKeyOrderVector.end()) 
-			this->componentKeyOrderVector.erase(index);
-	}
 }

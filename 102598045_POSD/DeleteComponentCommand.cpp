@@ -95,12 +95,12 @@ void DeleteComponentCommand::removeAndDisconnectComponents(){
 		Connector* connector = static_cast<Connector*>(this->component);
 		this->saveConnectionData(connector);		
 	}
-	erModel->removeComponentByID(this->component->getID());
+	erModel->eraseComponent(this->component);
 	
 	//save connectionData & remove connectionSet from ERModel
 	for each(Connector* connector in this->connectionSet){
 		saveConnectionData(connector);
-		erModel->removeComponentByID(connector->getID());
+		erModel->eraseComponent(connector);
 	}
 	//break connections
 	this->component->breakAllConnections();
