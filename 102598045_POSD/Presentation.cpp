@@ -58,12 +58,14 @@ void Presentation::displayTitle(string title){
 }
 
 void Presentation::displayTable(){
-	set<Table*> tableSet = ERModelUtil::checkSetSizeByType<Table>(erModel->getAllTables());
+	unordered_map<string,Table*> tableMap = erModel->getAllTables();
 
 	cout<<" +------------------------------------------------------------------"<<endl;
 	cout<<" |    Entity      |  Attributes"<<endl;
 	cout<<" +----------------+--------------------------------------------------"<<endl;
-	for each(Table* table in tableSet){
+	for each(TablePair tablePair in tableMap){
+		Table* table = tablePair.second;
+
 		string entityName = table->getEntityName();
 		int len = TABLE_WIDTH-entityName.size();
 
@@ -77,14 +79,14 @@ void Presentation::displayTable(){
 }
 
 void Presentation::displayComponents(){	
-	set<Component*> componentSet = ERModelUtil::checkSetSizeByType<Component>(erModel->getAllComponents());
+	set<Component*> componentSet = erModel->getAllComponents();
 	
 	this->displayTitle("Components");
 	this->displayComponentSet(componentSet);
 }
 
 void Presentation::displayConnections(){	
-	set<Connector*> connectorSet = ERModelUtil::checkSetSizeByType<Connector>(erModel->getAllConnectors());
+	set<Connector*> connectorSet = erModel->getAllConnectors();
 	//convert to vector ordered by id
 	vector<Connector*> connectorVector = ERModelUtil::convertComponentSetToOrderedVector<Connector>(erModel->getComponentKeyOrderVector(),connectorSet);
 	this->displayTitle("Connections");
@@ -100,14 +102,14 @@ void Presentation::displayConnections(){
 }
 
 void Presentation::displayEntities(){
-	set<Entity*> entitySet = ERModelUtil::checkSetSizeByType<Entity>(erModel->getAllEntities());
+	set<Entity*> entitySet = erModel->getAllEntities();
 
 	this->displayTitle("Entities");
 	this->displayComponentSet(ComponentUtil::toComponentSet<Entity>(entitySet));
 }
 
 void Presentation::displayEntityAttributes(Entity* entity){
-	set<Attribute*> attributeSet = ERModelUtil::checkSetSizeByType<Attribute>(entity->getConnectedAttributes());
+	set<Attribute*> attributeSet = entity->getConnectedAttributes();
 
 	cout<<"Attributes of the entity '"<<entity->getID()<<"'"<<endl;
 	this->displayComponentSet(ComponentUtil::toComponentSet<Attribute>(attributeSet));

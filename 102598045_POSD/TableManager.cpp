@@ -28,10 +28,6 @@ void TableManager::clearAll(){
 	this->tableMap.clear();
 }
 
-set<Table*> TableManager::getAllTables(){
-	set<Table*> tableSet;
-	for each(TablePair tablePair in this->tableMap)	
-		tableSet.insert(tablePair.second);
-	
-	return tableSet;
+unordered_map<string,Table*> TableManager::getAllTables(){
+	return this->tableMap;
 }

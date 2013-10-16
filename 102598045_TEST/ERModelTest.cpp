@@ -80,7 +80,7 @@ bool ERModelTest::hasConnected(Component* firstComponent,Component* secondCompon
 	return isFirstComponentConnectToSecond & isSecondComponentConnectToFirst;
 }
 
-TEST_F(ERModelTest,addNode){	
+TEST_F(ERModelTest,testAddNode){	
 	ASSERT_THROW(this->erModel.addNode("X"),InvalidNodeTypeException);	
 	ASSERT_THROW(this->erModel.addNode("Q"),InvalidNodeTypeException);
 	ASSERT_EQ(this->erModel.componentMap.size(),15);
@@ -102,7 +102,7 @@ TEST_F(ERModelTest,addNode){
 	ASSERT_EQ(this->erModel.componentMap.size(),19);
 }
 
-TEST_F(ERModelTest,insertComponent){
+TEST_F(ERModelTest,testInsertComponent){
 	ASSERT_THROW(this->erModel.insertComponent(NULL),NullPointerException);
 
 	Component* attribute = new Attribute(ComponentData("15","Age"));
@@ -125,7 +125,7 @@ TEST_F(ERModelTest,insertComponent){
 	ASSERT_EQ(this->erModel.componentMap.size(),19);		
 }
 
-TEST_F(ERModelTest,eraseComponent){
+TEST_F(ERModelTest,testEraseComponent){
 	ASSERT_THROW(this->erModel.eraseComponent(NULL),NullPointerException);
 
 	Component* component = this->erModel.getComponentByID("0");
@@ -135,7 +135,7 @@ TEST_F(ERModelTest,eraseComponent){
 	ASSERT_EQ(this->erModel.componentMap.size(),14);
 }
 
-TEST_F(ERModelTest,addConnection){	
+TEST_F(ERModelTest,testAddConnection){	
 	Component* entityNoteBook = this->erModel.addNode(ComponentType::TypeEntity);
 	Component* attributeNoteBookID = this->erModel.addNode(ComponentType::TypeAttribute);
 	Component* relationShipOwn = this->erModel.addNode(ComponentType::TypeRelationShip);
@@ -176,7 +176,7 @@ TEST_F(ERModelTest,addConnection){
 	ASSERT_EQ(hasConnected(relationShipWorkOn,attributeDepartmentName),false);
 }
 
-TEST_F(ERModelTest,getComponentByID){
+TEST_F(ERModelTest,testGetComponentByID){
 	ASSERT_THROW(this->erModel.getComponentByID("200"),NoSuchNodeException);
 	ASSERT_THROW(this->erModel.getComponentByID("15"),NoSuchNodeException);
 
@@ -191,7 +191,7 @@ TEST_F(ERModelTest,getComponentByID){
 	ASSERT_EQ(find->getType(),ComponentType::TypeConnector);
 }
 
-TEST_F(ERModelTest,getNodesConnector){
+TEST_F(ERModelTest,testGetNodesConnector){
 	Component* entityEngineer = this->erModel.componentMap.find("0")->second;
 	Component* attributeEmployeeID = this->erModel.componentMap.find("1")->second;
 	Component* connectorEngineer = this->erModel.componentMap.find("7")->second;
@@ -215,7 +215,7 @@ TEST_F(ERModelTest,getNodesConnector){
 	ASSERT_THROW(this->erModel.getNodesConnector(entityPC,attributeEmployeeID),NullPointerException);
 }
 
-TEST_F(ERModelTest,getAllComponents){
+TEST_F(ERModelTest,testGetAllComponents){
 	ASSERT_EQ(this->erModel.getAllComponents().size(),15);
 
 	for each(Component* component in this->erModel.getAllComponents()){
@@ -223,15 +223,15 @@ TEST_F(ERModelTest,getAllComponents){
 	}
 }
 
-TEST_F(ERModelTest,getAllConnectors){
+TEST_F(ERModelTest,testGetAllConnectors){
 	ASSERT_EQ(this->erModel.getAllConnectors().size(),7);
 
-	for each(Connector* connector in this->erModel.getAllConnectors()){
+	for each(Connector* connector in this->erModel.getAllConnectors()){		
 		ASSERT_NE(this->erModel.componentMap.find(connector->getID()),this->erModel.componentMap.end());
 	}
 }
 
-TEST_F(ERModelTest,getAllEntities){
+TEST_F(ERModelTest,testGetAllEntities){
 	ASSERT_EQ(this->erModel.getAllEntities().size(),2);
 
 	for each(Entity* entity in this->erModel.getAllEntities()){
@@ -239,19 +239,22 @@ TEST_F(ERModelTest,getAllEntities){
 	}
 }
 
-TEST_F(ERModelTest,getAllRelationShips){
+TEST_F(ERModelTest,testGetAllRelationShips){
 	ASSERT_EQ(this->erModel.getAllRelationShips().size(),1);
 
 	for each(RelationShip* relationShip in this->erModel.getAllRelationShips()){
 		ASSERT_NE(this->erModel.componentMap.find(relationShip->getID()),this->erModel.componentMap.end());
-	}	
+	}
 }
 
-TEST_F(ERModelTest,getAllTables){
+TEST_F(ERModelTest,testGetAllTables){
+
+	
+	
 	
 }
 
-TEST_F(ERModelTest,clearComponentMap){	
+TEST_F(ERModelTest,testClearComponentMap){	
 	ASSERT_EQ(this->erModel.componentMap.empty(),false);
 
 	this->erModel.clearComponentMap();

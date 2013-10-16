@@ -6,6 +6,7 @@
 #include "ComponentType.h"
 #include "StringUtil.h"
 #include "NoConnectionException.h"
+#include "EmptyCollectionException.h"
 
 Entity::Entity(ComponentData componentData) : Node(componentData){
 }
@@ -48,7 +49,13 @@ bool Entity::hasSizeToConnect(){
 }
 
 set<Attribute*> Entity::getConnectedAttributes(){
-	return ComponentUtil::getConnectedNodeSetByType<Attribute>(this->getAllConnectors());
+	set<Attribute*> connectedAttributeSet = ComponentUtil::getConnectedNodeSetByType<Attribute>(this->getAllConnectors());
+
+	if(connectedAttributeSet.empty()){
+		throw EmptyCollectionException(ComponentType::TypeRelationShip);
+	}
+
+	return connectedAttributeSet;
 }
 //get Attribute By ID, if doesn't has such attribute, throw exception
 Attribute* Entity::getAttributeByID(string id){

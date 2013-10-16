@@ -1,6 +1,6 @@
 #include "ERModelUtil.h"
 
-set<Table*> ERModelUtil::convertToTableSet(TableManager& tableManager,set<RelationShip*> relationShipSet){
+unordered_map<string,Table*> ERModelUtil::convertToTableMap(TableManager& tableManager,set<RelationShip*> relationShipSet){
 	tableManager.clearAll();
 
 	//get RelationShips & append Table of this relation type

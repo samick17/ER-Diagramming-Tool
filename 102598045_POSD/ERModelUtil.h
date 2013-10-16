@@ -2,7 +2,6 @@
 
 #include <set>
 #include <vector>
-#include <unordered_map>
 #include "Component.h"
 #include "StringUtil.h"
 #include "TableManager.h"
@@ -16,15 +15,12 @@ public:
 	static set<type*> convertComponentSetToTypeSet(set<Component*> componentSet);
 
 	template<typename type> 
-	static vector<type*> convertComponentVectorToTypeVector(vector<Component*> componentVector);	
-
-	template<typename type>
-	static set<type*> checkSetSizeByType(set<type*> typeSet);
+	static vector<type*> convertComponentVectorToTypeVector(vector<Component*> componentVector);
 
 	template <typename type>
 	static vector<type*> convertComponentSetToOrderedVector(vector<string> orderedVector,set<type*> typeSet);
 
-	static set<Table*> convertToTableSet(TableManager& tableManager,set<RelationShip*> relationShipSet);
+	static unordered_map<string,Table*> convertToTableMap(TableManager& tableManager,set<RelationShip*> relationShipSet);
 private:
 	static set<RelationShip*> getOneToOneRelationShips(set<RelationShip*> relationShipSet);
 	static void appendOneToOneTable(TableManager& tableManager,set<RelationShip*> relationShipSet);	
@@ -50,15 +46,6 @@ static vector<type*> ERModelUtil::convertComponentVectorToTypeVector(vector<Comp
 		}
 	}
 	return typeVector;
-}
-//check set is empty, if true throw exception
-template<typename type>
-static set<type*> ERModelUtil::checkSetSizeByType(set<type*> typeSet){
-	if(typeSet.empty()){
-		string typeName = StringUtil::split(typeid(type).name(),' ')[1];
-		throw EmptyCollectionException(typeName);
-	}
-	return typeSet;
 }
 //convert ComponentSet to OrderdVector, because 'set' will auto sort....
 template <typename type>

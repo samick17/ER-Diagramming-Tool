@@ -12,16 +12,16 @@ typedef pair<string,Component*> ComponentPair;
 
 class ERModel{
 	friend class ERModelTest;
-	FRIEND_TEST(ERModelTest,addNode);
-	FRIEND_TEST(ERModelTest,insertComponent);
-	FRIEND_TEST(ERModelTest,eraseComponent);	
-	FRIEND_TEST(ERModelTest,addConnection);
-	FRIEND_TEST(ERModelTest,getNodesConnector);
-	FRIEND_TEST(ERModelTest,getAllComponents);
-	FRIEND_TEST(ERModelTest,getAllConnectors);
-	FRIEND_TEST(ERModelTest,getAllEntities);
-	FRIEND_TEST(ERModelTest,getAllRelationShips);
-	FRIEND_TEST(ERModelTest,clearComponentMap);
+	FRIEND_TEST(ERModelTest,testAddNode);
+	FRIEND_TEST(ERModelTest,testInsertComponent);
+	FRIEND_TEST(ERModelTest,testEraseComponent);	
+	FRIEND_TEST(ERModelTest,testAddConnection);
+	FRIEND_TEST(ERModelTest,testGetNodesConnector);
+	FRIEND_TEST(ERModelTest,testGetAllComponents);
+	FRIEND_TEST(ERModelTest,testGetAllConnectors);
+	FRIEND_TEST(ERModelTest,testGetAllEntities);
+	FRIEND_TEST(ERModelTest,testGetAllRelationShips);
+	FRIEND_TEST(ERModelTest,testClearComponentMap);
 public:	
 	ERModel();
 	~ERModel();
@@ -37,7 +37,7 @@ public:
 	set<Connector*> getAllConnectors();
 	set<Entity*> getAllEntities();
 	set<RelationShip*> getAllRelationShips();
-	set<Table*> getAllTables();
+	unordered_map<string,Table*> getAllTables();
 
 	void clearComponentMap();
 

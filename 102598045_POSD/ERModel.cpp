@@ -40,9 +40,9 @@ void ERModel::eraseComponent(Component* component){
 	if(this->componentMap.find(component->getID()) != this->componentMap.end()){
 		this->componentMap.erase(component->getID());
 		//in order to keep component order, use a vector to convert component key to vector	
-		vector<string>::iterator index = find(this->componentKeyOrderVector.begin(),this->componentKeyOrderVector.end(),component->getID());
-		if (index != this->componentKeyOrderVector.end()) 
-			this->componentKeyOrderVector.erase(index);
+		vector<string>::iterator idIterator = find(this->componentKeyOrderVector.begin(),this->componentKeyOrderVector.end(),component->getID());
+		if (idIterator != this->componentKeyOrderVector.end()) 
+			this->componentKeyOrderVector.erase(idIterator);
 	}
 }
 //@return: NodeConnectionType
@@ -98,19 +98,37 @@ set<Component*> ERModel::getAllComponents(){
 }
 
 set<Connector*> ERModel::getAllConnectors(){
-	return ERModelUtil::convertComponentSetToTypeSet<Connector>(this->getAllComponents());
+	set<Connector*> connectorSet = ERModelUtil::convertComponentSetToTypeSet<Connector>(this->getAllComponents());
+
+	if(connectorSet.empty()){
+		throw EmptyCollectionException(ComponentType::TypeConnector);
+	}
+
+	return connectorSet;
 }
 
 set<Entity*> ERModel::getAllEntities(){
-	return ERModelUtil::convertComponentSetToTypeSet<Entity>(this->getAllComponents());
+	set<Entity*> entitySet = ERModelUtil::convertComponentSetToTypeSet<Entity>(this->getAllComponents());
+
+	if(entitySet.empty()){
+		throw EmptyCollectionException(ComponentType::TypeEntity);
+	}
+
+	return entitySet;
 }
 
 set<RelationShip*> ERModel::getAllRelationShips(){	
-	return ERModelUtil::convertComponentSetToTypeSet<RelationShip>(this->getAllComponents());
+	set<RelationShip*> relationShipSet = ERModelUtil::convertComponentSetToTypeSet<RelationShip>(this->getAllComponents());
+
+	if(relationShipSet.empty()){
+		throw EmptyCollectionException(ComponentType::TypeRelationShip);
+	}
+
+	return relationShipSet;
 }
 //get All Tables
-set<Table*> ERModel::getAllTables(){
-	return ERModelUtil::convertToTableSet(this->tableManager,this->getAllRelationShips());
+unordered_map<string,Table*> ERModel::getAllTables(){
+	return ERModelUtil::convertToTableMap(this->tableManager,this->getAllRelationShips());
 }
 //clear all components & delete it
 void ERModel::clearComponentMap(){
