@@ -3,6 +3,7 @@
 #include "Component.h"
 
 class Connector : public Component{
+	friend class ConnectorTest;
 public:
 	Connector(ComponentData componentData);
 	~Connector();

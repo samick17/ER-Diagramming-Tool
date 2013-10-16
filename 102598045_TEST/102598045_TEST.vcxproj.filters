@@ -261,6 +261,9 @@
     <ClCompile Include="..\102598045_POSD\FileParser.cpp">
       <Filter>Source Files\Parser</Filter>
     </ClCompile>
+    <ClCompile Include="ConnectorTest.cpp">
+      <Filter>Unit Testing Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ERModelTest.h">
@@ -268,6 +271,9 @@
     </ClInclude>
     <ClInclude Include="DirectoryUtil.h">
       <Filter>Header Files\TestingUtils</Filter>
+    </ClInclude>
+    <ClInclude Include="ConnectorTest.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

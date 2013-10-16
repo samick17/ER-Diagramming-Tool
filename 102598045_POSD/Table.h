@@ -6,6 +6,8 @@
 #include <string>
 
 class Table{
+	friend class ERModelTest;
+	FRIEND_TEST(ERModelTest,testGetAllTables);
 public:	
 	Table(Entity* entity);
 	~Table();

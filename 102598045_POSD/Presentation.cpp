@@ -115,15 +115,14 @@ void Presentation::displayEntityAttributes(Entity* entity){
 	this->displayComponentSet(ComponentUtil::toComponentSet<Attribute>(attributeSet));
 }
 
-bool Presentation::displayStringWithComma(string strStart,set<string> stringSet,string strEnd){
+void Presentation::displayStringWithComma(string strStart,set<string> stringSet,string strEnd){
 	if(stringSet.empty())
-		return false;
+		return;
 
 	cout<<strStart;
 	string stringWithComma = StringUtil::appendWithComma(stringSet);
 	cout<<stringWithComma;
-	cout<<strEnd;
-	return true;
+	cout<<strEnd;	
 }
 
 void Presentation::displayCommandInfoAndSetUp(Command* command){

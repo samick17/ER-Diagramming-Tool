@@ -32,7 +32,7 @@ public:
 	void displayConnections();
 	void displayEntities();
 	void displayEntityAttributes(Entity* entity);
-	bool displayStringWithComma(string strStart,set<string> stringSet,string strEnd);
+	void displayStringWithComma(string strStart,set<string> stringSet,string strEnd);
 
 	void displayCommandInfoAndSetUp(Command* command);
 	void processCommand(string commandKey);

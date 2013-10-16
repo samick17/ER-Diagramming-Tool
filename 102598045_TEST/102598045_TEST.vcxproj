@@ -140,11 +140,13 @@
     <ClCompile Include="..\102598045_POSD\UndoCommand.cpp" />
     <ClCompile Include="..\102598045_POSD\UnexecutableCommand.cpp" />
     <ClCompile Include="..\102598045_POSD\ValidConnectedReceiver.cpp" />
+    <ClCompile Include="ConnectorTest.cpp" />
     <ClCompile Include="DirectoryUtil.cpp" />
     <ClCompile Include="ERModelTest.cpp" />
     <ClCompile Include="MainTest.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ConnectorTest.h" />
     <ClInclude Include="DirectoryUtil.h" />
     <ClInclude Include="ERModelTest.h" />
   </ItemGroup>
