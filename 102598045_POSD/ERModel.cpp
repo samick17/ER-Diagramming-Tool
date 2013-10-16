@@ -68,7 +68,7 @@ Component* ERModel::getComponentByID(string id){
 }
 //@return: firstNode & secondNode's connector
 Connector* ERModel::getNodesConnector(Component* firstNode,Component* secondNode){
-	if(firstNode == NULL || secondNode)
+	if(firstNode == NULL || secondNode == NULL)
 		throw NullPointerException();
 
 	Connector* connection = NULL;

@@ -5,10 +5,13 @@
 #include "ComponentData.h"
 #include "IClonable.h"
 #include "NodeConnectionType.h"
+#include <gtest/gtest_prod.h> 
 
 using namespace std;
 
 class Component : public IClonable{
+	friend class ERModelTest;
+	FRIEND_TEST(ERModelTest,addConnection);
 public:
 	Component(ComponentData componentData);
 	virtual ~Component();

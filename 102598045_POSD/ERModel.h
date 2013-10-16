@@ -14,7 +14,8 @@ class ERModel{
 	friend class ERModelTest;
 	FRIEND_TEST(ERModelTest,addNode);
 	FRIEND_TEST(ERModelTest,insertComponent);
-	FRIEND_TEST(ERModelTest,eraseComponent);
+	FRIEND_TEST(ERModelTest,eraseComponent);	
+	FRIEND_TEST(ERModelTest,addConnection);
 	FRIEND_TEST(ERModelTest,clearComponentMap);
 	FRIEND_TEST(ERModelTest,removeComponentByID);	
 public:	
