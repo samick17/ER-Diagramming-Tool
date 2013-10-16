@@ -12,6 +12,8 @@ using namespace std;
 class Component : public IClonable{
 	friend class ERModelTest;
 	FRIEND_TEST(ERModelTest,addConnection);
+	friend class ConnectorTest;
+	FRIEND_TEST(ConnectorTest,testBreakAllConnections);
 public:
 	Component(ComponentData componentData);
 	virtual ~Component();
@@ -32,7 +34,7 @@ public:
 	virtual bool hasSizeToConnect();
 	bool hasConnectedTo(Component* target);
 
-	set<Component*> getAllConnectors();
+	set<Component*> getAllConnections();
 
 	virtual Component* clone() const = 0;
 protected:

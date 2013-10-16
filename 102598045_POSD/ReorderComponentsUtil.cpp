@@ -46,7 +46,7 @@ vector<Component*> ReorderComponentsUtil::cloneComponentSet(ERModel* erModel){
 //So we must reConnect to Component in cloned Component Vector
 void ReorderComponentsUtil::reConnectToComponentVector(vector<Component*> orderedComponentVector){	
 	for each(Component* component in orderedComponentVector){
-		for each(Component* connection in component->getAllConnectors()){			
+		for each(Component* connection in component->getAllConnections()){			
 			//find Same ID in Cloned Vector
 			Component* componentToConnect = ComponentUtil::getComponentByIDInVector(orderedComponentVector,connection->getID());
 			//Connect to component we just found

@@ -16,7 +16,7 @@ string Node::getType(){
 }
 //break all connection in this all connectors
 void Node::breakAllConnections(){
-	for each(Component* component in this->getAllConnectors())	
+	for each(Component* component in this->getAllConnections())	
 		component->breakAllConnections();	
 }
 

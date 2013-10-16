@@ -24,7 +24,7 @@ template<typename type>
 static set<type*> ComponentUtil::getConnectedNodeSetByType(set<Component*> connectionSet){
 	set<type*> typeSet;
 	for each(Component* connection in connectionSet){
-		for each(Component* connectedNode in connection->getAllConnectors()){
+		for each(Component* connectedNode in connection->getAllConnections()){
 			if(typeid(*connectedNode).name() == typeid(type).name())
 			{
 				typeSet.insert(static_cast<type*>(connectedNode));

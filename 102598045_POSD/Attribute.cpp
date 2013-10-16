@@ -26,7 +26,7 @@ int Attribute::canConnectTo(Component* target){
 }
 
 bool Attribute::hasSizeToConnect(){
-	return this->getAllConnectors().size() < ComponentConnectionSize::AttributeConnectionSize;
+	return this->getAllConnections().size() < ComponentConnectionSize::AttributeConnectionSize;
 }
 
 bool Attribute::isPrimaryKey(){

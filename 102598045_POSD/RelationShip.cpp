@@ -30,7 +30,7 @@ int RelationShip::canConnectTo(Component* target){
 }
 
 bool RelationShip::hasSizeToConnect(){
-	return this->getAllConnectors().size() < ComponentConnectionSize::RelationShipConnectionSize;
+	return this->getAllConnections().size() < ComponentConnectionSize::RelationShipConnectionSize;
 }
 
 bool RelationShip::isRelationType(string relationType){
@@ -39,7 +39,7 @@ bool RelationShip::isRelationType(string relationType){
 	}
 	bool isRType = true;
 	if(relationType == RelationType::OneToOne){
-		for each(Component* component in this->getAllConnectors())		
+		for each(Component* component in this->getAllConnections())		
 			isRType &= (component->getName() == RelationType::OneToOne);		
 	}
 	else 	
@@ -49,7 +49,7 @@ bool RelationShip::isRelationType(string relationType){
 }
 //get related Entity
 set<Entity*> RelationShip::getConnectedEntities(){		
-	return ComponentUtil::getConnectedNodeSetByType<Entity>(this->getAllConnectors());
+	return ComponentUtil::getConnectedNodeSetByType<Entity>(this->getAllConnections());
 }
 
 Component* RelationShip::clone() const

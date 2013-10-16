@@ -10,7 +10,7 @@ Connector::Connector(ComponentData componentData) : Component(componentData){
 
 Connector::~Connector(){
 }
-
+//format:id firstConnectedNode,secondConnectedNode
 string Connector::toString(){
 	string result = this->getID();
 	result += " ";
@@ -37,15 +37,25 @@ int Connector::canConnectTo(Component* target){
 }
 
 bool Connector::hasSizeToConnect(){
-	return this->getAllConnectors().size() < ComponentConnectionSize::ConnectorConnectionSize;
+	return this->getAllConnections().size() < ComponentConnectionSize::ConnectorConnectionSize;
 }
-
-Component* Connector::getFirstConnectedNode(){		
-	return (*this->getAllConnectors().begin());
+//first node's id will always less than second node
+Component* Connector::getFirstConnectedNode(){
+	Component* firstNode = *this->getAllConnections().begin();
+	Component* secondNode = *(++this->getAllConnections().begin());
+	if(strcmp(firstNode->getID().c_str(),secondNode->getID().c_str())>0){
+		return secondNode;
+	}
+	return firstNode;
 }
-
-Component* Connector::getSecondConnectedNode(){	
-	return *(++this->getAllConnectors().begin());
+//second node's id will always greater than first node
+Component* Connector::getSecondConnectedNode(){
+	Component* firstNode = *this->getAllConnections().begin();
+	Component* secondNode = *(++this->getAllConnections().begin());
+	if(strcmp(firstNode->getID().c_str(),secondNode->getID().c_str())>0){
+		return firstNode;
+	}
+	return secondNode;
 }
 
 bool Connector::isNodesConnection(Component* firstNode,Component* secondNode){	
@@ -53,10 +63,10 @@ bool Connector::isNodesConnection(Component* firstNode,Component* secondNode){
 		return false;
 
 	bool isConnection = false;
-	set<Component*> connections = this->getAllConnectors();
+	set<Component*> connections = this->getAllConnections();
 
-	isConnection = connections.find(firstNode) != connections.end();
-	isConnection &= (connections.find(secondNode) != connections.end());
+	isConnection = (connections.find(firstNode) != connections.end());
+	isConnection &= ((connections.find(secondNode) != connections.end()));
 
 	return isConnection;
 }

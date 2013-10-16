@@ -30,7 +30,7 @@ void DeleteComponentCommand::setupCommand(){
 	//save to variable - save deleted component
 	this->component = findComponentCommand.getComponent();
 	//save to variable - save connected connections
-	this->connectionSet = ERModelUtil::convertComponentSetToTypeSet<Connector>(this->component->getAllConnectors());		
+	this->connectionSet = ERModelUtil::convertComponentSetToTypeSet<Connector>(this->component->getAllConnections());		
 	
 	this->removeAndDisconnectComponents();
 

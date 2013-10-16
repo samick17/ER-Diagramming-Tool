@@ -64,6 +64,6 @@ bool Component::hasConnectedTo(Component* target){
 	return false;
 }
 
-set<Component*> Component::getAllConnectors(){
+set<Component*> Component::getAllConnections(){
 	return this->connectionSet;
 }

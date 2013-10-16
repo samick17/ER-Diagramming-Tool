@@ -49,7 +49,7 @@ bool Entity::hasSizeToConnect(){
 }
 
 set<Attribute*> Entity::getConnectedAttributes(){
-	set<Attribute*> connectedAttributeSet = ComponentUtil::getConnectedNodeSetByType<Attribute>(this->getAllConnectors());
+	set<Attribute*> connectedAttributeSet = ComponentUtil::getConnectedNodeSetByType<Attribute>(this->getAllConnections());
 
 	if(connectedAttributeSet.empty()){
 		throw EmptyCollectionException(ComponentType::TypeRelationShip);
