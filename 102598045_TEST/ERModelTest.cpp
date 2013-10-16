@@ -135,8 +135,7 @@ TEST_F(ERModelTest,eraseComponent){
 	ASSERT_EQ(this->erModel.componentMap.size(),14);
 }
 
-TEST_F(ERModelTest,addConnection){
-	
+TEST_F(ERModelTest,addConnection){	
 	Component* entityNoteBook = this->erModel.addNode(ComponentType::TypeEntity);
 	Component* attributeNoteBookID = this->erModel.addNode(ComponentType::TypeAttribute);
 	Component* relationShipOwn = this->erModel.addNode(ComponentType::TypeRelationShip);
@@ -146,8 +145,8 @@ TEST_F(ERModelTest,addConnection){
 
 	ASSERT_EQ(this->erModel.componentMap.size(),21);
 
-	ASSERT_THROW(this->erModel.addConnection(NULL,NULL),NullPointerException);
-	ASSERT_THROW(this->erModel.addConnection(NULL,NULL),NullPointerException);
+	ASSERT_THROW(this->erModel.addConnection(entityNoteBook,NULL),NullPointerException);
+	ASSERT_THROW(this->erModel.addConnection(NULL,relationShipOwn),NullPointerException);
 	ASSERT_THROW(this->erModel.addConnection(NULL,NULL),NullPointerException);
 	//entity connect to attribute
 	ASSERT_EQ(this->erModel.addConnection(entityNoteBook,attributeNoteBookID),NodeConnectionType::ValidConnect);
@@ -193,19 +192,59 @@ TEST_F(ERModelTest,getComponentByID){
 }
 
 TEST_F(ERModelTest,getNodesConnector){
+	Component* entityEngineer = this->erModel.componentMap.find("0")->second;
+	Component* attributeEmployeeID = this->erModel.componentMap.find("1")->second;
+	Component* connectorEngineer = this->erModel.componentMap.find("7")->second;
+	Component* entityPC = this->erModel.componentMap.find("4")->second;
+	Component* attributePC_ID = this->erModel.componentMap.find("5")->second;
+	Component* connectorPC = this->erModel.componentMap.find("9")->second;
 
+	ASSERT_THROW(this->erModel.getNodesConnector(entityEngineer,NULL),NullPointerException);
+	ASSERT_THROW(this->erModel.getNodesConnector(NULL,attributeEmployeeID),NullPointerException);
+	ASSERT_THROW(this->erModel.getNodesConnector(NULL,NULL),NullPointerException);
+
+	ASSERT_EQ(this->erModel.getNodesConnector(entityEngineer,attributeEmployeeID),connectorEngineer);
+	//revert argument order
+	ASSERT_EQ(this->erModel.getNodesConnector(attributeEmployeeID,entityEngineer),connectorEngineer);
+
+	ASSERT_EQ(this->erModel.getNodesConnector(entityPC,attributePC_ID),connectorPC);
+	//revert argument order
+	ASSERT_EQ(this->erModel.getNodesConnector(attributePC_ID,entityPC),connectorPC);
+
+	ASSERT_THROW(this->erModel.getNodesConnector(entityEngineer,attributePC_ID),NullPointerException);
+	ASSERT_THROW(this->erModel.getNodesConnector(entityPC,attributeEmployeeID),NullPointerException);
 }
 
 TEST_F(ERModelTest,getAllComponents){
+	ASSERT_EQ(this->erModel.getAllComponents().size(),15);
+
+	for each(Component* component in this->erModel.getAllComponents()){
+		ASSERT_NE(this->erModel.componentMap.find(component->getID()),this->erModel.componentMap.end());
+	}
 }
 
 TEST_F(ERModelTest,getAllConnectors){
+	ASSERT_EQ(this->erModel.getAllConnectors().size(),7);
+
+	for each(Connector* connector in this->erModel.getAllConnectors()){
+		ASSERT_NE(this->erModel.componentMap.find(connector->getID()),this->erModel.componentMap.end());
+	}
 }
 
 TEST_F(ERModelTest,getAllEntities){
+	ASSERT_EQ(this->erModel.getAllEntities().size(),2);
+
+	for each(Entity* entity in this->erModel.getAllEntities()){
+		ASSERT_NE(this->erModel.componentMap.find(entity->getID()),this->erModel.componentMap.end());
+	}
 }
 
 TEST_F(ERModelTest,getAllRelationShips){
+	ASSERT_EQ(this->erModel.getAllRelationShips().size(),1);
+
+	for each(RelationShip* relationShip in this->erModel.getAllRelationShips()){
+		ASSERT_NE(this->erModel.componentMap.find(relationShip->getID()),this->erModel.componentMap.end());
+	}	
 }
 
 TEST_F(ERModelTest,getAllTables){

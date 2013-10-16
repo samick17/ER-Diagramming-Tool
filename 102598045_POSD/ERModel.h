@@ -16,8 +16,12 @@ class ERModel{
 	FRIEND_TEST(ERModelTest,insertComponent);
 	FRIEND_TEST(ERModelTest,eraseComponent);	
 	FRIEND_TEST(ERModelTest,addConnection);
+	FRIEND_TEST(ERModelTest,getNodesConnector);
+	FRIEND_TEST(ERModelTest,getAllComponents);
+	FRIEND_TEST(ERModelTest,getAllConnectors);
+	FRIEND_TEST(ERModelTest,getAllEntities);
+	FRIEND_TEST(ERModelTest,getAllRelationShips);
 	FRIEND_TEST(ERModelTest,clearComponentMap);
-	FRIEND_TEST(ERModelTest,removeComponentByID);	
 public:	
 	ERModel();
 	~ERModel();
