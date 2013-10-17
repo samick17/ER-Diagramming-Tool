@@ -77,22 +77,27 @@
     <ClInclude Include="AddNodeCommand.h" />
     <ClInclude Include="AttributeType.h" />
     <ClInclude Include="Attribute.h" />
+    <ClInclude Include="CollectionException.h" />
+    <ClInclude Include="CollectionType.h" />
     <ClInclude Include="ComponentConnectionSize.h" />
     <ClInclude Include="ComponentException.h" />
     <ClInclude Include="ComponentType.h" />
     <ClInclude Include="ConnectedSelfException.h" />
     <ClInclude Include="ConnectionData.h" />
     <ClInclude Include="Document.h" />
+    <ClInclude Include="DuplicatedKeyException.h" />
     <ClInclude Include="EmptyCollectionException.h" />
     <ClInclude Include="Exception.h" />
     <ClInclude Include="FileNotFoundException.h" />
     <ClInclude Include="FileParser.h" />
     <ClInclude Include="HasConnectedException.h" />
+    <ClInclude Include="HashMap.h" />
     <ClInclude Include="IClonable.h" />
     <ClInclude Include="InvalidConnectException.h" />
     <ClInclude Include="InvalidNodeTypeException.h" />
     <ClInclude Include="NoConnectionException.h" />
     <ClInclude Include="NodeConnectionType.h" />
+    <ClInclude Include="NoSuchKeyException.h" />
     <ClInclude Include="NoSuchNodeException.h" />
     <ClInclude Include="NullPointerException.h" />
     <ClInclude Include="Presentation.h" />
@@ -141,7 +146,10 @@
     <ClInclude Include="VectorUtil.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="CollectionException.cpp" />
+    <ClCompile Include="CollectionType.cpp" />
     <ClCompile Include="ComponentConnectionSize.cpp" />
+    <ClCompile Include="DuplicatedKeyException.cpp" />
     <ClCompile Include="FileParser.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="AddNodeCommand.cpp" />
@@ -184,6 +192,7 @@
     <ClCompile Include="NoConnectionException.cpp" />
     <ClCompile Include="Node.cpp" />
     <ClCompile Include="NodeConnectionType.cpp" />
+    <ClCompile Include="NoSuchKeyException.cpp" />
     <ClCompile Include="NoSuchNodeException.cpp" />
     <ClCompile Include="NullPointerException.cpp" />
     <ClCompile Include="Presentation.cpp" />

@@ -103,6 +103,21 @@
     <Filter Include="Source Files\Parser">
       <UniqueIdentifier>{e2890393-b21e-49e1-b3af-58924d7d66a6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Collection">
+      <UniqueIdentifier>{bf2b0405-b9c1-4d07-9daf-912824eec77f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Exception\CollectionException">
+      <UniqueIdentifier>{86caf56c-5208-4814-85af-5af0a73dfd8a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Exception\IOException">
+      <UniqueIdentifier>{77918e26-e9af-4163-b887-e148a8eedfd0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Exception\CollectionException">
+      <UniqueIdentifier>{1f6f6c65-6849-4485-9017-a0e68f1ea43f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Exception\IOException">
+      <UniqueIdentifier>{cd8f2a70-ce91-4b93-8a2c-8e3bd9f5cf82}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Attribute.h">
@@ -276,29 +291,44 @@
     <ClInclude Include="InvalidConnectException.h">
       <Filter>Header Files\Exception\ComponentException</Filter>
     </ClInclude>
-    <ClInclude Include="FileNotFoundException.h">
-      <Filter>Header Files\Exception</Filter>
-    </ClInclude>
-    <ClInclude Include="NoSuchNodeException.h">
-      <Filter>Header Files\Exception</Filter>
-    </ClInclude>
-    <ClInclude Include="EmptyCollectionException.h">
-      <Filter>Header Files\Exception</Filter>
-    </ClInclude>
-    <ClInclude Include="InvalidNodeTypeException.h">
-      <Filter>Header Files\Exception</Filter>
-    </ClInclude>
     <ClInclude Include="NoConnectionException.h">
       <Filter>Header Files\Exception\ComponentException</Filter>
     </ClInclude>
     <ClInclude Include="ComponentConnectionSize.h">
       <Filter>Header Files\Constants</Filter>
     </ClInclude>
+    <ClInclude Include="FileParser.h">
+      <Filter>Header Files\Parser</Filter>
+    </ClInclude>
+    <ClInclude Include="HashMap.h">
+      <Filter>Header Files\Collection</Filter>
+    </ClInclude>
+    <ClInclude Include="CollectionException.h">
+      <Filter>Header Files\Exception\CollectionException</Filter>
+    </ClInclude>
+    <ClInclude Include="DuplicatedKeyException.h">
+      <Filter>Header Files\Exception\CollectionException</Filter>
+    </ClInclude>
+    <ClInclude Include="EmptyCollectionException.h">
+      <Filter>Header Files\Exception\CollectionException</Filter>
+    </ClInclude>
+    <ClInclude Include="NoSuchKeyException.h">
+      <Filter>Header Files\Exception\CollectionException</Filter>
+    </ClInclude>
+    <ClInclude Include="FileNotFoundException.h">
+      <Filter>Header Files\Exception\IOException</Filter>
+    </ClInclude>
+    <ClInclude Include="InvalidNodeTypeException.h">
+      <Filter>Header Files\Exception\ComponentException</Filter>
+    </ClInclude>
+    <ClInclude Include="NoSuchNodeException.h">
+      <Filter>Header Files\Exception\ComponentException</Filter>
+    </ClInclude>
     <ClInclude Include="NullPointerException.h">
       <Filter>Header Files\Exception</Filter>
     </ClInclude>
-    <ClInclude Include="FileParser.h">
-      <Filter>Header Files\Parser</Filter>
+    <ClInclude Include="CollectionType.h">
+      <Filter>Header Files\Constants</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -449,18 +479,6 @@
     <ClCompile Include="Exception.cpp">
       <Filter>Source Files\Exception</Filter>
     </ClCompile>
-    <ClCompile Include="EmptyCollectionException.cpp">
-      <Filter>Source Files\Exception</Filter>
-    </ClCompile>
-    <ClCompile Include="FileNotFoundException.cpp">
-      <Filter>Source Files\Exception</Filter>
-    </ClCompile>
-    <ClCompile Include="InvalidNodeTypeException.cpp">
-      <Filter>Source Files\Exception</Filter>
-    </ClCompile>
-    <ClCompile Include="NoSuchNodeException.cpp">
-      <Filter>Source Files\Exception</Filter>
-    </ClCompile>
     <ClCompile Include="ComponentException.cpp">
       <Filter>Source Files\Exception\ComponentException</Filter>
     </ClCompile>
@@ -490,6 +508,30 @@
     </ClCompile>
     <ClCompile Include="FileParser.cpp">
       <Filter>Source Files\Parser</Filter>
+    </ClCompile>
+    <ClCompile Include="FileNotFoundException.cpp">
+      <Filter>Source Files\Exception\IOException</Filter>
+    </ClCompile>
+    <ClCompile Include="EmptyCollectionException.cpp">
+      <Filter>Source Files\Exception\CollectionException</Filter>
+    </ClCompile>
+    <ClCompile Include="InvalidNodeTypeException.cpp">
+      <Filter>Source Files\Exception\ComponentException</Filter>
+    </ClCompile>
+    <ClCompile Include="NoSuchNodeException.cpp">
+      <Filter>Source Files\Exception\ComponentException</Filter>
+    </ClCompile>
+    <ClCompile Include="CollectionException.cpp">
+      <Filter>Source Files\Exception\CollectionException</Filter>
+    </ClCompile>
+    <ClCompile Include="DuplicatedKeyException.cpp">
+      <Filter>Source Files\Exception\CollectionException</Filter>
+    </ClCompile>
+    <ClCompile Include="NoSuchKeyException.cpp">
+      <Filter>Source Files\Exception\CollectionException</Filter>
+    </ClCompile>
+    <ClCompile Include="CollectionType.cpp">
+      <Filter>Source Files\Constants</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

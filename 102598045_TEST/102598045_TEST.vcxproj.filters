@@ -64,6 +64,15 @@
     <Filter Include="Source Files\Parser">
       <UniqueIdentifier>{e321a1ec-f531-4e7f-b714-023e817cae9f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Exception\CollectionException">
+      <UniqueIdentifier>{314afa39-ee48-4731-83a3-d89f7aa008d6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Exception\IOException">
+      <UniqueIdentifier>{902fe11d-75b6-46b4-a8fc-f4b21e287515}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Exception\ComponentException">
+      <UniqueIdentifier>{5bae5632-ce0c-4734-9ded-18dd60abd034}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ERModelTest.cpp">
@@ -159,37 +168,10 @@
     <ClCompile Include="..\102598045_POSD\ComponentData.cpp">
       <Filter>Source Files\Struct</Filter>
     </ClCompile>
-    <ClCompile Include="..\102598045_POSD\ConnectedSelfException.cpp">
-      <Filter>Source Files\Exception</Filter>
-    </ClCompile>
-    <ClCompile Include="..\102598045_POSD\EmptyCollectionException.cpp">
-      <Filter>Source Files\Exception</Filter>
-    </ClCompile>
     <ClCompile Include="..\102598045_POSD\Exception.cpp">
       <Filter>Source Files\Exception</Filter>
     </ClCompile>
-    <ClCompile Include="..\102598045_POSD\FileNotFoundException.cpp">
-      <Filter>Source Files\Exception</Filter>
-    </ClCompile>
-    <ClCompile Include="..\102598045_POSD\HasConnectedException.cpp">
-      <Filter>Source Files\Exception</Filter>
-    </ClCompile>
-    <ClCompile Include="..\102598045_POSD\InvalidConnectException.cpp">
-      <Filter>Source Files\Exception</Filter>
-    </ClCompile>
-    <ClCompile Include="..\102598045_POSD\InvalidNodeTypeException.cpp">
-      <Filter>Source Files\Exception</Filter>
-    </ClCompile>
-    <ClCompile Include="..\102598045_POSD\NoConnectionException.cpp">
-      <Filter>Source Files\Exception</Filter>
-    </ClCompile>
-    <ClCompile Include="..\102598045_POSD\ComponentException.cpp">
-      <Filter>Source Files\Exception</Filter>
-    </ClCompile>
     <ClCompile Include="..\102598045_POSD\NullPointerException.cpp">
-      <Filter>Source Files\Exception</Filter>
-    </ClCompile>
-    <ClCompile Include="..\102598045_POSD\NoSuchNodeException.cpp">
       <Filter>Source Files\Exception</Filter>
     </ClCompile>
     <ClCompile Include="..\102598045_POSD\ValidConnectedReceiver.cpp">
@@ -266,6 +248,45 @@
     </ClCompile>
     <ClCompile Include="CommandMenuTest.cpp">
       <Filter>Unit Testing Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\102598045_POSD\FileNotFoundException.cpp">
+      <Filter>Source Files\Exception\IOException</Filter>
+    </ClCompile>
+    <ClCompile Include="..\102598045_POSD\CollectionException.cpp">
+      <Filter>Source Files\Exception\CollectionException</Filter>
+    </ClCompile>
+    <ClCompile Include="..\102598045_POSD\DuplicatedKeyException.cpp">
+      <Filter>Source Files\Exception\CollectionException</Filter>
+    </ClCompile>
+    <ClCompile Include="..\102598045_POSD\EmptyCollectionException.cpp">
+      <Filter>Source Files\Exception\CollectionException</Filter>
+    </ClCompile>
+    <ClCompile Include="..\102598045_POSD\NoSuchKeyException.cpp">
+      <Filter>Source Files\Exception\CollectionException</Filter>
+    </ClCompile>
+    <ClCompile Include="..\102598045_POSD\ComponentException.cpp">
+      <Filter>Source Files\Exception\ComponentException</Filter>
+    </ClCompile>
+    <ClCompile Include="..\102598045_POSD\ConnectedSelfException.cpp">
+      <Filter>Source Files\Exception\ComponentException</Filter>
+    </ClCompile>
+    <ClCompile Include="..\102598045_POSD\HasConnectedException.cpp">
+      <Filter>Source Files\Exception\ComponentException</Filter>
+    </ClCompile>
+    <ClCompile Include="..\102598045_POSD\InvalidConnectException.cpp">
+      <Filter>Source Files\Exception\ComponentException</Filter>
+    </ClCompile>
+    <ClCompile Include="..\102598045_POSD\InvalidNodeTypeException.cpp">
+      <Filter>Source Files\Exception\ComponentException</Filter>
+    </ClCompile>
+    <ClCompile Include="..\102598045_POSD\NoConnectionException.cpp">
+      <Filter>Source Files\Exception\ComponentException</Filter>
+    </ClCompile>
+    <ClCompile Include="..\102598045_POSD\NoSuchNodeException.cpp">
+      <Filter>Source Files\Exception\ComponentException</Filter>
+    </ClCompile>
+    <ClCompile Include="..\102598045_POSD\CollectionType.cpp">
+      <Filter>Source Files\Constants</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

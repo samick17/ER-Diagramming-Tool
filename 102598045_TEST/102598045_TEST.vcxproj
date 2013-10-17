@@ -81,6 +81,8 @@
     <ClCompile Include="..\102598045_POSD\AddNodeCommand.cpp" />
     <ClCompile Include="..\102598045_POSD\Attribute.cpp" />
     <ClCompile Include="..\102598045_POSD\AttributeType.cpp" />
+    <ClCompile Include="..\102598045_POSD\CollectionException.cpp" />
+    <ClCompile Include="..\102598045_POSD\CollectionType.cpp" />
     <ClCompile Include="..\102598045_POSD\Command.cpp" />
     <ClCompile Include="..\102598045_POSD\CommandData.cpp" />
     <ClCompile Include="..\102598045_POSD\CommandManager.cpp" />
@@ -102,6 +104,7 @@
     <ClCompile Include="..\102598045_POSD\DisplayDiagramCommand.cpp" />
     <ClCompile Include="..\102598045_POSD\DisplayTableCommand.cpp" />
     <ClCompile Include="..\102598045_POSD\Document.cpp" />
+    <ClCompile Include="..\102598045_POSD\DuplicatedKeyException.cpp" />
     <ClCompile Include="..\102598045_POSD\EmptyCollectionException.cpp" />
     <ClCompile Include="..\102598045_POSD\Entity.cpp" />
     <ClCompile Include="..\102598045_POSD\ERModel.cpp" />
@@ -120,6 +123,7 @@
     <ClCompile Include="..\102598045_POSD\NoConnectionException.cpp" />
     <ClCompile Include="..\102598045_POSD\Node.cpp" />
     <ClCompile Include="..\102598045_POSD\NodeConnectionType.cpp" />
+    <ClCompile Include="..\102598045_POSD\NoSuchKeyException.cpp" />
     <ClCompile Include="..\102598045_POSD\NoSuchNodeException.cpp" />
     <ClCompile Include="..\102598045_POSD\NullPointerException.cpp" />
     <ClCompile Include="..\102598045_POSD\Presentation.cpp" />
