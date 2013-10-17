@@ -21,3 +21,10 @@ string ComponentData::getName(){
 void ComponentData::setName(string name){
 	this->name = name;
 }
+
+bool ComponentData::operator==(const ComponentData& componentData) const{
+	if(this->id == componentData.id && this->name == componentData.name){
+		return true;
+	}
+	return false;
+}

@@ -128,7 +128,11 @@ set<RelationShip*> ERModel::getAllRelationShips(){
 }
 //get All Tables
 unordered_map<string,Table*> ERModel::getAllTables(){
-	return ERModelUtil::convertToTableMap(this->tableManager,this->getAllRelationShips());
+	try{
+		return ERModelUtil::convertToTableMap(this->tableManager,this->getAllRelationShips());
+	}catch(Exception&){
+		throw EmptyCollectionException("Tables");
+	}
 }
 //clear all components & delete it
 void ERModel::clearComponentMap(){

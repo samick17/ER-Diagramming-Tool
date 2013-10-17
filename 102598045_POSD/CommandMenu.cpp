@@ -33,12 +33,12 @@ CommandMenu::CommandMenu(){
 }
 
 CommandMenu::~CommandMenu(){
-	for each(CommandDataPair commandDataPair in this->commandDataMap){
+	for each (CommandDataPair commandDataPair in this->commandDataMap)	{
 		delete commandDataPair.second;
-		commandDataPair.second = NULL;
 	}
 	
 	this->commandDataMap.clear();
+	this->commandDataKeyOrderVector.clear();
 }
 
 vector<CommandData*> CommandMenu::getCommandDataVector(){

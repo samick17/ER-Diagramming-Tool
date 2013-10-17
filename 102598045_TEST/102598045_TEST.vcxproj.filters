@@ -264,6 +264,9 @@
     <ClCompile Include="ConnectorTest.cpp">
       <Filter>Unit Testing Files</Filter>
     </ClCompile>
+    <ClCompile Include="CommandMenuTest.cpp">
+      <Filter>Unit Testing Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ERModelTest.h">
@@ -273,6 +276,9 @@
       <Filter>Header Files\TestingUtils</Filter>
     </ClInclude>
     <ClInclude Include="ConnectorTest.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CommandMenuTest.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -3,7 +3,6 @@
 #include "InvalidConnectException.h"
 
 void ConnectorTest::SetUp(){
-	this->erModel = ERModel();
 	Component* attribute = this->erModel.addNode(ComponentType::TypeAttribute);
 	Component* relation = this->erModel.addNode(ComponentType::TypeRelationShip);
 	Component* entity = this->erModel.addNode(ComponentType::TypeEntity);
@@ -79,9 +78,37 @@ TEST_F(ConnectorTest,testGetSecondConnectedNode){
 	ASSERT_EQ(entity,connectorEntityAndRelation->getSecondConnectedNode());
 }
 
-TEST_F(ConnectorTest,testIsNodesConnection){
+TEST_F(ConnectorTest,testIsNodesConnection){	
+	Component* attribute = this->erModel.getComponentByID("0");
+	Component* relation = this->erModel.getComponentByID("1");
+	Component* entity = this->erModel.getComponentByID("2");
 
+	ASSERT_EQ(false,this->connector->isNodesConnection(NULL,NULL));
+	ASSERT_EQ(false,this->connector->isNodesConnection(attribute,NULL));
+	ASSERT_EQ(false,this->connector->isNodesConnection(NULL,attribute));
+	ASSERT_EQ(false,this->connector->isNodesConnection(entity,NULL));
+	ASSERT_EQ(false,this->connector->isNodesConnection(NULL,entity));
+	ASSERT_EQ(false,this->connector->isNodesConnection(attribute,relation));
+	ASSERT_EQ(false,this->connector->isNodesConnection(relation,attribute));
+	ASSERT_EQ(false,this->connector->isNodesConnection(entity,relation));
+	ASSERT_EQ(false,this->connector->isNodesConnection(relation,entity));
+
+	ASSERT_EQ(true,this->connector->isNodesConnection(attribute,entity));
+	ASSERT_EQ(true,this->connector->isNodesConnection(entity,attribute));
 }
 
 TEST_F(ConnectorTest,testClone){
+	Connector* connectorCloned = static_cast<Connector*>(this->connector->clone());
+
+	ASSERT_EQ(this->connector->getID(),connectorCloned->getID());
+	ASSERT_EQ(this->connector->getName(),connectorCloned->getName());
+	ASSERT_EQ(this->connector->getType(),connectorCloned->getType());
+	ASSERT_EQ(this->connector->getAllConnections(),connectorCloned->getAllConnections());
+	ASSERT_EQ(this->connector->getClassName(),connectorCloned->getClassName());
+	ASSERT_EQ(this->connector->getFirstConnectedNode(),connectorCloned->getFirstConnectedNode());
+	ASSERT_EQ(this->connector->getSecondConnectedNode(),connectorCloned->getSecondConnectedNode());	
+	ASSERT_EQ(this->connector->connectionSet,connectorCloned->connectionSet);
+	ASSERT_EQ(this->connector->componentData,connectorCloned->componentData);
+
+	delete connectorCloned;
 }

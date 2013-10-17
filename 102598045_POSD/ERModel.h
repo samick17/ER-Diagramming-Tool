@@ -6,7 +6,6 @@
 #include "RelationShip.h"
 #include "Connector.h"
 #include "TableManager.h"
-#include <gtest/gtest_prod.h> 
 
 typedef pair<string,Component*> ComponentPair;
 
