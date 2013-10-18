@@ -5,7 +5,7 @@ FindEntityCommand :: FindEntityCommand(Presentation* presentation) : FindCompone
 
 FindEntityCommand::~FindEntityCommand(){
 }
-
+/**Non testable function**/
 void FindEntityCommand :: execute(){
 	FindComponentCommand::execute();
 	Component* find = getComponent();

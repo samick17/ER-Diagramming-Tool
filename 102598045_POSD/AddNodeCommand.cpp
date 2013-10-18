@@ -17,6 +17,7 @@ AddNodeCommand::~AddNodeCommand(){
 	}
 }
 //gather information for add node: get user input to add node, and set this node's name
+/**Non testable function**/
 void AddNodeCommand::setupCommand(){
 	Component* node = this->getNodeToAdd();
 	//set Node Name
@@ -49,6 +50,7 @@ void AddNodeCommand::unExecute(){
 	this->UnexecutableCommand::unExecute();
 }
 //get input & return.if doesn't conatins such node,looping getinput
+/**Non testable function**/
 Component* AddNodeCommand::getNodeToAdd(){
 	Component* node = NULL;
 	while(node == NULL){

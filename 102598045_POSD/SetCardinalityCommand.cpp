@@ -6,7 +6,7 @@ SetCardinalityCommand :: SetCardinalityCommand(Presentation* presentation,Compon
 
 SetCardinalityCommand::~SetCardinalityCommand(){
 }
-
+/**Non testable function**/
 void SetCardinalityCommand :: execute(){
 	ERModel* erModel = this->presentation->getERModel();
 	

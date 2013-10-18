@@ -5,7 +5,7 @@ ValidConnectedReceiver::ValidConnectedReceiver(int key,Presentation* presentatio
 
 ValidConnectedReceiver::~ValidConnectedReceiver(){
 }
-
+/**Non testable function**/
 void ValidConnectedReceiver::response(){
 	Presentation* presentation = this->getPresentation();
 

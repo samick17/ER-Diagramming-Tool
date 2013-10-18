@@ -17,7 +17,7 @@ ConnectNodeCommand::~ConnectNodeCommand(){
 		delete this->connector;
 	}
 }
-
+/**Non testable function**/
 void ConnectNodeCommand::setupCommand(){
 	FindComponentCommand findComponentCommand(this->presentation);
 	//Find First Node
@@ -44,7 +44,6 @@ void ConnectNodeCommand :: execute(){
 	
 	try{
 		erModel->getComponentByID(this->connector->getID());
-		this->presentation->logMessage("connect two succeed!",true);
 	}
 	catch(Exception&){
 		//connect two node, and add connector to ERModel

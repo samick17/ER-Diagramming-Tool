@@ -19,7 +19,7 @@ DeleteComponentCommand::~DeleteComponentCommand(){
 	}
 	this->clearConnectionDataMap();
 }
-
+/**Non testable function**/
 void DeleteComponentCommand::setupCommand(){
 	//find node to be connect
 	FindComponentCommand findComponentCommand(this->presentation);

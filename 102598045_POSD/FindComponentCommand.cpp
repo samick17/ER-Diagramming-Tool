@@ -14,7 +14,7 @@ FindComponentCommand::~FindComponentCommand(){
 void FindComponentCommand::setInfo(string info){
 	this->info = info;
 }
-
+/**Non testable function**/
 void FindComponentCommand :: execute(){
 	ERModel* erModel = this->presentation->getERModel();
 	//get All Components too check there has components to find

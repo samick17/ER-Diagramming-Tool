@@ -7,7 +7,7 @@ ConnectedERReceiver::ConnectedERReceiver(int key,Presentation* presentation,Comp
 
 ConnectedERReceiver::~ConnectedERReceiver(){
 }
-
+/**Non testable function**/
 void ConnectedERReceiver::response(){
 	Presentation* presentation = this->getPresentation();
 

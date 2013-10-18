@@ -5,7 +5,7 @@ SetNodeNameCommand::SetNodeNameCommand(Presentation* presentation,Component* nod
 
 SetNodeNameCommand::~SetNodeNameCommand(){	
 }
-
+/**Non testable function**/
 void SetNodeNameCommand::execute(){
 	this->presentation->logMessage("Enter the name of this node:",true);	
 	string input = this->presentation->getInput();

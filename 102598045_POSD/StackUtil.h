@@ -8,7 +8,7 @@ public:
 	static void deleteAllElementsInStack(stack<type*>& typesStack);
 
 	template<typename type>
-	static type* pop(stack<type*>& typeStack,string errmessage);
+	static type* pop(stack<type*>& typeStack);
 };
 //delete all elements in stack
 template<typename type>
@@ -23,7 +23,7 @@ static void StackUtil::deleteAllElementsInStack(stack<type*>& typesStack){
 }
 //pop and return object
 template<typename type>
-static type* StackUtil::pop(stack<type*>& typeStack,string errmessage){
+static type* StackUtil::pop(stack<type*>& typeStack){
 	if(typeStack.empty())
 		return NULL;
 	type* typePointer = typeStack.top();
