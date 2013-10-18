@@ -9,8 +9,6 @@ class TextUI;
 class Command;
 class Presentation;
 
-typedef pair<string,Command*> CommandPair;
-
 class CommandManager{
 public:
 	CommandManager(Presentation* presentation);

@@ -33,28 +33,21 @@ CommandMenu::CommandMenu(){
 }
 
 CommandMenu::~CommandMenu(){
-	for each (CommandDataPair commandDataPair in this->commandDataMap)
-		delete commandDataPair.second;
+	for each (CommandData* commandData in this->commandDataMap)
+		delete commandData;
 }
 
-vector<CommandData*> CommandMenu::getCommandDataVector(){
-	vector<CommandData*> commandDataVector;
-	for each(string key in commandDataKeyOrderVector)	
-		commandDataVector.push_back(this->commandDataMap.find(key)->second);
-	
-	return commandDataVector;
+HashMap<string,CommandData*> CommandMenu::getCommandDataMap(){	
+	return this->commandDataMap;
 }
 
-CommandData* CommandMenu::getCommandDataByKey(string key){
-	unordered_map<string,CommandData*>::iterator commandDataIterator;
-	if((commandDataIterator = this->commandDataMap.find(key)) != this->commandDataMap.end())	
-		return commandDataIterator->second;
-
+CommandData* CommandMenu::getCommandDataByKey(string key){	
+	if(this->commandDataMap.containsKey(key)){
+		return this->commandDataMap.get(key);
+	}
 	throw NullPointerException();
 }
 
 void CommandMenu::insertCommandData(CommandData* commandData){
-	this->commandDataMap.insert(CommandDataPair(commandData->getKey(),commandData));	
-	//in order to keep command order, use a vector to convert commandData key to vector
-	this->commandDataKeyOrderVector.push_back(commandData->getKey());
+	this->commandDataMap.put(commandData->getKey(),commandData);
 }

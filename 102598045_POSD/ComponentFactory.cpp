@@ -11,10 +11,10 @@ using namespace std;
 int ComponentFactory::count = 0;
 
 ComponentFactory::ComponentFactory(){	
-	this->newComponentMap.insert(NewComponentFuncPair(ComponentType::TypeConnector,newComponent<Connector>));
-	this->newComponentMap.insert(NewComponentFuncPair(ComponentType::TypeAttribute,newComponent<Attribute>));
-	this->newComponentMap.insert(NewComponentFuncPair(ComponentType::TypeEntity,newComponent<Entity>));
-	this->newComponentMap.insert(NewComponentFuncPair(ComponentType::TypeRelationShip,newComponent<RelationShip>));
+	this->newComponentMap.put(ComponentType::TypeConnector,newComponent<Connector>);
+	this->newComponentMap.put(ComponentType::TypeAttribute,newComponent<Attribute>);
+	this->newComponentMap.put(ComponentType::TypeEntity,newComponent<Entity>);
+	this->newComponentMap.put(ComponentType::TypeRelationShip,newComponent<RelationShip>);
 }
 
 ComponentFactory::~ComponentFactory(){
@@ -32,9 +32,9 @@ void ComponentFactory::resetFactory(){
 }
 //@return function pointer of new instance, if doesn't has such type, throw exception
 NewComponentFunc ComponentFactory::findNewComponentFunction(string type){
-	hash_map<string,NewComponentFunc>::iterator noewCompFuncIterator;
-	if((noewCompFuncIterator = newComponentMap.find(type)) != newComponentMap.end())	
-		return noewCompFuncIterator->second;
+	if(this->newComponentMap.containsKey(type)){
+		return this->newComponentMap.get(type);
+	}
 	
 	throw InvalidNodeTypeException();
 }

@@ -2,10 +2,8 @@
 
 #include "CommandData.h"
 #include "Presentation.h"
-#include <unordered_map>
-#include <vector>
+#include "HashMap.h"
 
-typedef pair<string,CommandData*> CommandDataPair;
 typedef CommandData (*getCommandDataByKeyFunc)();
 
 class CommandMenu{
@@ -13,11 +11,10 @@ public:
 	CommandMenu();
 	~CommandMenu();
 
-	vector<CommandData*> getCommandDataVector();
+	HashMap<string,CommandData*> getCommandDataMap();
 	CommandData* getCommandDataByKey(string key);
 private:
-	unordered_map<string,CommandData*> commandDataMap;
-	vector<string> commandDataKeyOrderVector;
+	HashMap<string,CommandData*> commandDataMap;
 	void insertCommandData(CommandData* commandData);
 
 	template <typename type>

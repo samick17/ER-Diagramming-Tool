@@ -1,14 +1,9 @@
 #pragma once
 
-#include <unordered_map>
-#include <set>
-#include <vector>
 #include "RelationShip.h"
 #include "Connector.h"
 #include "TableManager.h"
 #include "HashMap.h"
-
-typedef pair<string,Component*> ComponentPair;
 
 class ERModel{
 	friend class ERModelTest;

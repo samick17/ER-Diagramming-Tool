@@ -4,22 +4,21 @@ ReceiverManager::ReceiverManager(){
 }
 
 ReceiverManager::~ReceiverManager(){
-	for each(ReceiverPair receiverPair in this->receiverMap)	{
-		delete receiverPair.second;		
+	for each(Receiver* receiver in this->receiverMap)	{
+		delete receiver;
 	}
 }
 
 void ReceiverManager::insertReceiver(Receiver* receiver){
-	this->receiverMap.insert(ReceiverPair(receiver->getKey(),receiver));
+	this->receiverMap.put(receiver->getKey(),receiver);
 }
 
 void ReceiverManager::deleteReceiver(Receiver* receiver){
-	this->receiverMap.erase(receiver->getKey());
+	this->receiverMap.remove(receiver->getKey());
 	delete receiver;
 }
 
-void ReceiverManager::response(int key){	
-	hash_map<int,Receiver*>::iterator receiverIterator;
-	if((receiverIterator = this->receiverMap.find(key)) != this->receiverMap.end())	
-		receiverIterator->second->response();
+void ReceiverManager::response(int key){		
+	if(this->receiverMap.containsKey(key))
+		this->receiverMap.get(key)->response();
 }

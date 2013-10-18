@@ -1,7 +1,6 @@
 #include "ERModel.h"
 #include "ComponentFactory.h"
 #include "ERModelUtil.h"
-#include <algorithm>
 #include "NoSuchNodeException.h"
 #include "NullPointerException.h"
 #include "ComponentUtil.h"
@@ -49,14 +48,9 @@ int ERModel::addConnection(Component* firstNode,Component* secondNode){
 }
 //if doesn't contains such component, throw exception
 Component* ERModel::getComponentByID(string id){
-	unordered_map<string,Component*>::const_iterator find;
-
-	try{
+	if(this->componentMap.containsKey(id))
 		return this->componentMap.get(id);
-	}
-	catch(Exception&){
-		throw NoSuchNodeException(id);
-	}	
+	throw NoSuchNodeException(id);
 }
 //@return: firstNode & secondNode's connector
 Connector* ERModel::getNodesConnector(Component* firstNode,Component* secondNode){

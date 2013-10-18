@@ -15,7 +15,7 @@ public:
 	void execute();
 	void unExecute();
 private:
-	void writeAllComponentsToDoc(Document& doc,vector<Component*> componentVector);
-	void writeAllConnectorsToDoc(Document& doc,vector<Component*> componentVector);
-	void writeAllPrimaryKeyToDoc(Document& doc,vector<Component*> componentVector);
+	void writeAllComponentsToDoc(Document& doc,HashMap<string,Component*> componentVector);
+	void writeAllConnectorsToDoc(Document& doc,HashMap<string,Component*> componentVector);
+	void writeAllPrimaryKeyToDoc(Document& doc,HashMap<string,Component*> componentVector);
 };

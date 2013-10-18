@@ -8,10 +8,10 @@ public:
 	ReorderComponentsUtil();
 	~ReorderComponentsUtil();
 
-	vector<Component*> getReorderedComponentVector(ERModel* erModel);
+	HashMap<string,Component*> getReorderedComponentMap(ERModel* erModel);
 private:
-	vector<Component*> reorderedComponentVector;
-	vector<Component*> cloneComponentSet(ERModel* erModel);	
-	void reConnectToComponentVector(vector<Component*> orderedComponentVector);
-	void deueueAndInsertToVector(queue<Component*>& componentQueue,vector<Component*>& orderedComponentVector);
+	HashMap<string,Component*> orderedComponentMap;
+	HashMap<string,Component*> cloneComponentSet(ERModel* erModel);	
+	void reConnectToComponentVector(HashMap<string,Component*> orderedComponentMap);
+	void deueueAndInsertToVector(queue<Component*>& componentQueue,HashMap<string,Component*>& orderedComponentMap);
 };

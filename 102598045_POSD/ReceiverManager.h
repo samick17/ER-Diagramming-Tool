@@ -1,11 +1,9 @@
 #pragma once
 
 #include "Receiver.h"
-#include <hash_map>
+#include "HashMap.h"
 
 using namespace std;
-
-typedef pair<int,Receiver*> ReceiverPair;
 
 class ReceiverManager{
 public:
@@ -17,5 +15,5 @@ public:
 
 	void response(int key);
 private:
-	hash_map<int,Receiver*> receiverMap;
+	HashMap<int,Receiver*> receiverMap;
 };

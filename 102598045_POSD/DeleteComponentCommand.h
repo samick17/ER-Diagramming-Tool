@@ -4,8 +4,6 @@
 #include "ConnectionData.h"
 #include "HashMap.h"
 
-typedef pair<string,ConnectionData*> ConnectionDataPair;
-
 class DeleteComponentCommand : public UnexecutableCommand{
 public:
 	DeleteComponentCommand(Presentation* presentation);

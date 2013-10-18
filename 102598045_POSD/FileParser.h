@@ -4,7 +4,6 @@
 #include "Component.h"
 #include "ERModel.h"
 #include "ConnectionData.h"
-#include <hash_map>
 #include <queue>
 
 typedef pair<string,string> StringPair;

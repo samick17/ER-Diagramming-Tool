@@ -62,7 +62,7 @@ void DeleteComponentCommand::unExecute(){
 		erModel->insertComponent(connector);
 		//connect with each other
 		if(this->connectionDataMap.containsKey(connector->getID()))
-			reConnectComponents(this->connectionDataMap.get(connector->getID()),connector);			
+			reConnectComponents(this->connectionDataMap.get(connector->getID()),connector);
 	}
 	this->UnexecutableCommand::unExecute();
 }

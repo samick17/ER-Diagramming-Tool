@@ -42,7 +42,7 @@ void Presentation::displayMenu(){
 	cout<<" +------------------------------------------------------+"<<endl;
 	
 	CommandMenu commandMenu;
-	for each(CommandData* cmdData in commandMenu.getCommandDataVector()){
+	for each(CommandData* cmdData in commandMenu.getCommandDataMap()){
 		int len = COMMAND_KEY_WIDTH+cmdData->getInfo().size();
 		len = MENU_WIDTH-len;
 		cout<<"¢x"<<setw(COMMAND_KEY_WIDTH)<<left<<cmdData->getKey()+".";

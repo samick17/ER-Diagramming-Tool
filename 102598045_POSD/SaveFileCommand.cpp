@@ -19,7 +19,7 @@ void SaveFileCommand :: execute(){
 	ERModel* erModel = this->presentation->getERModel();
 	//reorder components id
 	ReorderComponentsUtil reorderComponentsUtil;
-	vector<Component*> componentVector = reorderComponentsUtil.getReorderedComponentVector(erModel);	
+	HashMap<string,Component*> componentVector = reorderComponentsUtil.getReorderedComponentMap(erModel);	
 
 	//write all
 	this->writeAllComponentsToDoc(doc,componentVector);
@@ -32,7 +32,7 @@ void SaveFileCommand :: execute(){
 void SaveFileCommand::unExecute(){
 }
 
-void SaveFileCommand::writeAllComponentsToDoc(Document& doc,vector<Component*> componentVector){
+void SaveFileCommand::writeAllComponentsToDoc(Document& doc,HashMap<string,Component*> componentVector){
 	for each(Component* component in componentVector){
 		string line = component->Component::toString();
 		doc.wirteLine(line);
@@ -40,8 +40,8 @@ void SaveFileCommand::writeAllComponentsToDoc(Document& doc,vector<Component*> c
 	doc.wirteLine("");
 }
 
-void SaveFileCommand::writeAllConnectorsToDoc(Document& doc,vector<Component*> componentVector){
-	vector<Connector*> connectorSet = ERModelUtil::convertComponentVectorToTypeVector<Connector>(componentVector);
+void SaveFileCommand::writeAllConnectorsToDoc(Document& doc,HashMap<string,Component*> componentVector){
+	HashMap<string,Connector*> connectorSet = ERModelUtil::convertComponentHashMapToTypeHashMap<Connector>(componentVector);
 	
 	for each(Connector* connector in connectorSet){		
 		string line = connector->toString();		
@@ -50,8 +50,8 @@ void SaveFileCommand::writeAllConnectorsToDoc(Document& doc,vector<Component*> c
 	doc.wirteLine("");
 }
 
-void SaveFileCommand::writeAllPrimaryKeyToDoc(Document& doc,vector<Component*> componentSet){
-	vector<Entity*> entitySet = ERModelUtil::convertComponentVectorToTypeVector<Entity>(componentSet);
+void SaveFileCommand::writeAllPrimaryKeyToDoc(Document& doc,HashMap<string,Component*> componentSet){
+	HashMap<string,Entity*> entitySet = ERModelUtil::convertComponentHashMapToTypeHashMap<Entity>(componentSet);
 
 	for each(Entity* entity in entitySet){
 		string line = entity->toString();		

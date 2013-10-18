@@ -1,11 +1,10 @@
 #pragma once
 
 #include "Component.h"
-#include <hash_map>
+#include "HashMap.h"
 #include "ComponentType.h"
 
 typedef Component* (*NewComponentFunc)(ComponentData);
-typedef pair<string,NewComponentFunc> NewComponentFuncPair;
 
 class ComponentFactory{
 public:
@@ -16,10 +15,13 @@ public:
 	void resetFactory();
 private:
 	static int count;
-	hash_map<string,NewComponentFunc> newComponentMap;	
+	HashMap<string,NewComponentFunc> newComponentMap;	
 	NewComponentFunc findNewComponentFunction(string componentType);
 	template <typename type>
-	static Component* newComponent(ComponentData componentData){
-		return new type(componentData);
-	}
+	static Component* newComponent(ComponentData componentData);
 };
+
+template <typename type>
+Component* ComponentFactory::newComponent(ComponentData componentData){
+	return new type(componentData);
+}
