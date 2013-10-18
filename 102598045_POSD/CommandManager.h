@@ -16,7 +16,7 @@ public:
 	
 	Presentation* getPresentation();
 
-	void execute(Command* command);
+	void execute(UnexecutableCommand* command);
 	void redo();
 	void undo();
 

@@ -3,8 +3,6 @@
 #include "HashMap.h"
 #include "Table.h"
 
-typedef pair<string,Table*> TablePair;
-
 class TableManager{
 public:
 	TableManager();

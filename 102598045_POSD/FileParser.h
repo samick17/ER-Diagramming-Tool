@@ -6,9 +6,9 @@
 #include "ConnectionData.h"
 #include <queue>
 
-typedef pair<string,string> StringPair;
-
 using namespace std;
+
+typedef pair<string,string> StringPair;
 
 class FileParser{
 public:

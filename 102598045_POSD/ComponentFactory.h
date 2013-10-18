@@ -4,7 +4,7 @@
 #include "HashMap.h"
 #include "ComponentType.h"
 
-typedef Component* (*NewComponentFunc)(ComponentData);
+typedef Component* (*NewComponentFunction)(ComponentData);
 
 class ComponentFactory{
 public:
@@ -15,8 +15,8 @@ public:
 	void resetFactory();
 private:
 	static int count;
-	HashMap<string,NewComponentFunc> newComponentMap;	
-	NewComponentFunc findNewComponentFunction(string componentType);
+	HashMap<string,NewComponentFunction> newComponentMap;	
+	NewComponentFunction findNewComponentFunction(string componentType);
 	template <typename type>
 	static Component* newComponent(ComponentData componentData);
 };

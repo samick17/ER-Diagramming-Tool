@@ -144,6 +144,7 @@
     <ClCompile Include="..\102598045_POSD\UndoCommand.cpp" />
     <ClCompile Include="..\102598045_POSD\UnexecutableCommand.cpp" />
     <ClCompile Include="..\102598045_POSD\ValidConnectedReceiver.cpp" />
+    <ClCompile Include="AttributeTest.cpp" />
     <ClCompile Include="CommandMenuTest.cpp" />
     <ClCompile Include="ComponentTest.cpp" />
     <ClCompile Include="ConnectorTest.cpp" />
@@ -152,6 +153,7 @@
     <ClCompile Include="MainTest.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AttributeTest.h" />
     <ClInclude Include="CommandMenuTest.h" />
     <ClInclude Include="ComponentTest.h" />
     <ClInclude Include="ConnectorTest.h" />

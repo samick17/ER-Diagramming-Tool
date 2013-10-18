@@ -21,8 +21,8 @@ ComponentFactory::~ComponentFactory(){
 }
 //@return component pointer, if doesn't has such type, throw exception
 Component* ComponentFactory::createComponent(string componentType){
-	NewComponentFunc newComponentFunction = findNewComponentFunction(componentType);
-	Component* component = newComponentFunction(ComponentData(StringUtil::intToString(count),""));
+	NewComponentFunction NewComponentFunctiontion = findNewComponentFunction(componentType);
+	Component* component = NewComponentFunctiontion(ComponentData(StringUtil::intToString(count),""));
 	ComponentFactory::count++;
 	return component;
 }
@@ -31,7 +31,7 @@ void ComponentFactory::resetFactory(){
 	ComponentFactory::count = 0;
 }
 //@return function pointer of new instance, if doesn't has such type, throw exception
-NewComponentFunc ComponentFactory::findNewComponentFunction(string type){
+NewComponentFunction ComponentFactory::findNewComponentFunction(string type){
 	if(this->newComponentMap.containsKey(type)){
 		return this->newComponentMap.get(type);
 	}

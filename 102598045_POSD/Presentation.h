@@ -34,7 +34,6 @@ public:
 	void displayEntityAttributes(Entity* entity);
 	void displayStringWithComma(string strStart,set<string> stringSet,string strEnd);
 
-	void displayCommandInfoAndSetUp(Command* command);
 	void processCommand(string commandKey);
 	void logMessage(string message,bool nextLine);
 
@@ -44,5 +43,6 @@ private:
 	bool alive;	
 	ERModel* erModel;
 	CommandManager* commandManager;
-	void displayComponentSet(HashMap<string,Component*> componentSet);
+	void displayComponentSet(HashMap<string,Component*> componentSet);	
+	void executeCommand(Command* command);
 };

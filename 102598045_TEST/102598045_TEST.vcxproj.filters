@@ -297,6 +297,9 @@
     <ClCompile Include="..\102598045_POSD\TableUtil.cpp">
       <Filter>Source Files\Utils</Filter>
     </ClCompile>
+    <ClCompile Include="AttributeTest.cpp">
+      <Filter>Unit Testing Files\ModelTest</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DirectoryUtil.h">
@@ -312,6 +315,9 @@
       <Filter>Header Files\ModelTest</Filter>
     </ClInclude>
     <ClInclude Include="ConnectorTest.h">
+      <Filter>Header Files\ModelTest</Filter>
+    </ClInclude>
+    <ClInclude Include="AttributeTest.h">
       <Filter>Header Files\ModelTest</Filter>
     </ClInclude>
   </ItemGroup>

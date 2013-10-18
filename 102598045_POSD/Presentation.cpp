@@ -123,29 +123,37 @@ void Presentation::displayStringWithComma(string strStart,set<string> stringSet,
 	cout<<strEnd;	
 }
 
-void Presentation::displayCommandInfoAndSetUp(Command* command){
-	string commandInfo = command->getCommandInformation();
-	if(commandInfo!= "")
-		cout<<commandInfo<<endl;
-	command->setupCommand();
-}
-
 void Presentation::processCommand(string commandKey){
-	try{
+	Command* command = NULL;
+	try {
 		CommandMenu commandMenu;
 		CommandData* commandData = commandMenu.getCommandDataByKey(commandKey);		
 		//get new Command Function From Command Data
 		NewCommandFunction newCommandFunction = commandData->getNewCommandFunction();
 		//new one Command for Command Manager to Execute
-		Command* command = newCommandFunction(this);
-		this->displayCommandInfoAndSetUp(command);
-		this->commandManager->execute(command);
+		command = newCommandFunction(this);
+		executeCommand(command);
 	}
 	catch(NullPointerException){
-		cout<<"wrong command,please input correct command."<<endl;
+		cout<<"wrong command,please input correct command."<<endl;		
 	}
 	catch(Exception& exception){
-		cout<<exception.getMessage()<<endl;
+		cout<<exception.getMessage()<<endl;		
+		delete command;
+	}	
+}
+
+void Presentation::executeCommand(Command* command){
+	//display command information & get user input
+	string commandInfo = command->getCommandInformation();
+	if(commandInfo!= "")
+		cout<<commandInfo<<endl;
+	command->setupCommand();
+	//execute
+	if(command->isUnexecutable())
+		this->commandManager->execute(static_cast<UnexecutableCommand*>(command));
+	else {		
+		command->execute();
 	}
 }
 

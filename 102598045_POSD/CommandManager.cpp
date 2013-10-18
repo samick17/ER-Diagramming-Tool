@@ -15,17 +15,10 @@ Presentation* CommandManager::getPresentation(){
 	return this->presentation;
 }
 
-void CommandManager::execute(Command* command){
-	command->execute();	
-	//push stack & clear redo stack
-	if(command->isUnexecutable()){
-		this->undoCommandsStack.push(static_cast<UnexecutableCommand*>(command));
-		StackUtil::deleteAllElementsInStack<UnexecutableCommand>(this->redoCommandsStack);
-	}
-	//delete command instance
-	else {
-		delete command;
-	}
+void CommandManager::execute(UnexecutableCommand* command){
+	command->execute();		
+	this->undoCommandsStack.push(static_cast<UnexecutableCommand*>(command));
+	StackUtil::deleteAllElementsInStack<UnexecutableCommand>(this->redoCommandsStack);	
 }
 
 void CommandManager::redo(){	

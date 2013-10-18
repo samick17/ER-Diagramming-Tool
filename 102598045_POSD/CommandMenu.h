@@ -4,8 +4,6 @@
 #include "Presentation.h"
 #include "HashMap.h"
 
-typedef CommandData (*getCommandDataByKeyFunc)();
-
 class CommandMenu{
 public:
 	CommandMenu();
