@@ -28,28 +28,30 @@ void CommandManager::execute(Command* command){
 	}
 }
 
-void CommandManager::redo(){
-	//pop from redo Stack
-	Command* command = StackUtil::pop(this->redoCommandsStack);
-
-	if(command == NULL)
+void CommandManager::redo(){	
+	try{
+		//pop from redo Stack	
+		Command* command = StackUtil::pop(this->redoCommandsStack);
+		//push to undo Stack
+		this->undoCommandsStack.push(command);
+		command->execute();
+	}
+	catch(Exception&){
 		throw Exception("Cannot redo!");
-
-	//push to undo Stack
-	this->undoCommandsStack.push(command);
-	command->execute();
+	}
 }
 
-void CommandManager::undo(){
-	//pop from undo Stack
-	Command* command = StackUtil::pop(this->undoCommandsStack);
-
-	if(command == NULL)
+void CommandManager::undo(){	
+	try{
+		//pop from undo Stack	
+		Command* command = StackUtil::pop(this->undoCommandsStack);
+		//push to redo Stack
+		this->redoCommandsStack.push(command);	
+		command->unExecute();
+	}
+	catch(Exception&){
 		throw Exception("Cannot undo!");
-	
-	//push to redo Stack
-	this->redoCommandsStack.push(command);	
-	command->unExecute();
+	}	
 }
 //pop all command Stack & delete it
 void CommandManager::popAllStack(){

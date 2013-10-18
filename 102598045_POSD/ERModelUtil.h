@@ -22,6 +22,7 @@ public:
 private:
 	static HashMap<string,RelationShip*> getOneToOneRelationShips(HashMap<string,RelationShip*> relationShipSet);
 	static void appendOneToOneTable(TableManager& tableManager,HashMap<string,RelationShip*> relationShipSet);	
+	static void insertAllForeignKeyToTable(TableManager& tableManager,RelationShip* relationShip);
 };
 //convert component hashmap to concrete type hashmap
 template<typename type> 

@@ -12,10 +12,11 @@ void TableManager::insertTable(Table* table){
 }
 
 Table* TableManager::getTableByID(string id){	
-	if(this->tableMap.containsKey(id))
+	/*if(this->tableMap.containsKey(id))
 		return this->tableMap.get(id);
 	
-	return NULL;
+	return NULL;*/
+	return this->tableMap.get(id);
 }
 
 void TableManager::clearAll(){

@@ -23,21 +23,15 @@ Component* ERModel::addNode(string componentType){
 }
 //insert component in componentMap, if no such key
 void ERModel::insertComponent(Component* component){
-	if(component == NULL)
-		throw NullPointerException();
 	string componentID = component->getID();
 	this->componentMap.put(component->getID(),component);
 }
 //erase component in componentMap, if contains key
 void ERModel::eraseComponent(Component* component){
-	if(component == NULL)
-		throw NullPointerException();
 	this->componentMap.remove(component->getID());
 }
 //@return: NodeConnectionType
 int ERModel::addConnection(Component* firstNode,Component* secondNode){
-	if(firstNode == NULL || secondNode == NULL)
-		throw NullPointerException();
 	int result = firstNode->canConnectTo(secondNode);
 
 	if(result == NodeConnectionType::ValidConnect || result == NodeConnectionType::ConnectEntityAndRelation){
@@ -54,9 +48,6 @@ Component* ERModel::getComponentByID(string id){
 }
 //@return: firstNode & secondNode's connector
 Connector* ERModel::getNodesConnector(Component* firstNode,Component* secondNode){
-	if(firstNode == NULL || secondNode == NULL)
-		throw NullPointerException();
-
 	Connector* connection = NULL;
 	if(this->componentMap.containsKey(firstNode->getID()) && 
 		this->componentMap.containsKey(secondNode->getID())){

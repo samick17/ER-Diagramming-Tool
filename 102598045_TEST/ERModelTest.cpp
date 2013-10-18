@@ -81,9 +81,6 @@ TEST_F(ERModelTest,testAddNode){
 }
 
 TEST_F(ERModelTest,testInsertComponent){
-	//insert null
-	ASSERT_THROW(this->erModel.insertComponent(NULL),NullPointerException);
-
 	Component* attribute = new Attribute(ComponentData("15","Age"));
 	this->erModel.insertComponent(attribute);
 	ASSERT_EQ(16,this->erModel.componentMap.size());
@@ -102,8 +99,6 @@ TEST_F(ERModelTest,testInsertComponent){
 }
 
 TEST_F(ERModelTest,testEraseComponent){
-	ASSERT_THROW(this->erModel.eraseComponent(NULL),NullPointerException);
-
 	Component* component = this->erModel.getComponentByID("0");
 	this->erModel.eraseComponent(component);
 	delete component;
@@ -121,9 +116,6 @@ TEST_F(ERModelTest,testAddConnection){
 
 	ASSERT_EQ(21,this->erModel.componentMap.size());
 
-	ASSERT_THROW(this->erModel.addConnection(entityNoteBook,NULL),NullPointerException);
-	ASSERT_THROW(this->erModel.addConnection(NULL,relationShipOwn),NullPointerException);
-	ASSERT_THROW(this->erModel.addConnection(NULL,NULL),NullPointerException);
 	//entity connect to attribute
 	ASSERT_EQ(NodeConnectionType::ValidConnect,this->erModel.addConnection(entityNoteBook,attributeNoteBookID));
 	ASSERT_THROW(this->erModel.addConnection(entityNoteBook,attributeNoteBookID),HasConnectedException);	
@@ -174,10 +166,6 @@ TEST_F(ERModelTest,testGetNodesConnector){
 	Component* entityPC = this->erModel.componentMap.get("4");
 	Component* attributePC_ID = this->erModel.componentMap.get("5");
 	Component* connectorPC = this->erModel.componentMap.get("9");
-
-	ASSERT_THROW(this->erModel.getNodesConnector(entityEngineer,NULL),NullPointerException);
-	ASSERT_THROW(this->erModel.getNodesConnector(NULL,attributeEmployeeID),NullPointerException);
-	ASSERT_THROW(this->erModel.getNodesConnector(NULL,NULL),NullPointerException);
 
 	ASSERT_EQ(connectorEngineer,this->erModel.getNodesConnector(entityEngineer,attributeEmployeeID));
 	//revert argument order

@@ -1,6 +1,8 @@
 #pragma once
 
 #include <stack>
+#include "EmptyCollectionException.h"
+#include "CollectionType.h"
 
 class StackUtil{
 public:
@@ -25,7 +27,7 @@ static void StackUtil::deleteAllElementsInStack(stack<type*>& typesStack){
 template<typename type>
 static type* StackUtil::pop(stack<type*>& typeStack){
 	if(typeStack.empty())
-		return NULL;
+		throw EmptyCollectionException(CollectionType::TypeStack);
 	type* typePointer = typeStack.top();
 	typeStack.pop();
 	return typePointer;
