@@ -11,7 +11,6 @@ public:
 	void setupCommand();
 
 	void execute();
-	void unExecute();
 private:
 	string filePath;
 };

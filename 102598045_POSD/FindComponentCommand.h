@@ -10,7 +10,6 @@ public:
 	void setInfo(string info);
 
 	void execute();
-	void unExecute();
 	Component* getComponent();
 protected:
 	Component* component;

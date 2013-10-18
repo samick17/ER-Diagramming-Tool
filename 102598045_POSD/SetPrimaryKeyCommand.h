@@ -10,7 +10,6 @@ public:
 	~SetPrimaryKeyCommand();
 	
 	void execute();
-	void unExecute();
 
 	vector<string> askPrimaryKeyAttributesID(Entity* entity);
 };

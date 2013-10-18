@@ -29,9 +29,6 @@ void SaveFileCommand :: execute(){
 	doc.saveFile();
 }
 
-void SaveFileCommand::unExecute(){
-}
-
 void SaveFileCommand::writeAllComponentsToDoc(Document& doc,HashMap<string,Component*> componentVector){
 	for each(Component* component in componentVector){
 		string line = component->Component::toString();

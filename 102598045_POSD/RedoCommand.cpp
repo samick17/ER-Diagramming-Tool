@@ -14,6 +14,3 @@ void RedoCommand :: execute(){
 	this->presentation->displayComponents();
 	this->presentation->displayConnections();	
 }
-
-void RedoCommand::unExecute(){
-}

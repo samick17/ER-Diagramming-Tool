@@ -20,8 +20,7 @@ public:
 
 	virtual bool isUnexecutable();
 		
-	virtual void execute() = 0;	
-	virtual void unExecute() = 0;
+	virtual void execute() = 0;
 protected:
 	Presentation* presentation;
 	string commandInformation;

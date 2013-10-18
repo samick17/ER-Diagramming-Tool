@@ -8,7 +8,6 @@ public:
 	~SetCardinalityCommand();
 	
 	void execute();
-	void unExecute();
 private:
 	Component* firstNode;
 	Component* secondNode;

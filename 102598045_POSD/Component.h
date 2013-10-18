@@ -14,7 +14,7 @@ class Component : public IClonable{
 	FRIEND_TEST(ERModelTest,addConnection);
 	friend class ConnectorTest;
 	FRIEND_TEST(ConnectorTest,testBreakAllConnections);
-	FRIEND_TEST(ConnectorTest,testClone);
+	FRIEND_TEST(ConnectorTest,testClone);	
 public:
 	Component(ComponentData componentData);
 	virtual ~Component();

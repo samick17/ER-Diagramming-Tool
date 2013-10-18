@@ -9,6 +9,3 @@ DisplayTableCommand::~DisplayTableCommand(){
 void DisplayTableCommand :: execute(){
 	this->presentation->displayTable();	
 }
-
-void DisplayTableCommand::unExecute(){
-}

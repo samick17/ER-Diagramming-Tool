@@ -25,6 +25,3 @@ void SetCardinalityCommand :: execute(){
 
 	this->presentation->logMessage("Its cardinality of the relationship is '"+relationName+"'.",true);
 }
-
-void SetCardinalityCommand::unExecute(){
-}

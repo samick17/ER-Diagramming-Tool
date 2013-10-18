@@ -8,5 +8,4 @@ public:
 	~UndoCommand();
 	
 	void execute();
-	void unExecute();
 };

@@ -8,5 +8,4 @@ public:
 	~ExitCommand();
 
 	void execute();
-	void unExecute();
 };

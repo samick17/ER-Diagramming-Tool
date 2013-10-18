@@ -8,5 +8,4 @@ public:
 	~DisplayDiagramCommand();
 
 	void execute();
-	void unExecute();
 };

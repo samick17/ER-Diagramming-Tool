@@ -14,6 +14,3 @@ void UndoCommand :: execute(){
 	this->presentation->displayComponents();
 	this->presentation->displayConnections();
 }
-
-void UndoCommand::unExecute(){
-}

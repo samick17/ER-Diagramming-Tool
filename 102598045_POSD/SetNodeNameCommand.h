@@ -7,7 +7,6 @@ public:
 	~SetNodeNameCommand();
 	
 	void execute();
-	void unExecute();
 private:
 	Component* node;
 };

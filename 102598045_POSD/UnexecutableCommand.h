@@ -12,7 +12,7 @@ public:
 	bool isUnexecutable();
 
 	void execute();
-	void unExecute();
+	virtual void unExecute();
 protected:
 	bool getExecutionFlag();
 private:

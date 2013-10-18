@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Command.h"
+#include "UnexecutableCommand.h"
 #include "Presentation.h"
 #include <stack>
 
@@ -22,7 +22,7 @@ public:
 
 	void popAllStack();
 private:
-	stack<Command*> redoCommandsStack;
-	stack<Command*> undoCommandsStack;
+	stack<UnexecutableCommand*> redoCommandsStack;
+	stack<UnexecutableCommand*> undoCommandsStack;
 	Presentation* presentation;
 };

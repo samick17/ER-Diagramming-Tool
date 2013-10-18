@@ -9,6 +9,3 @@ ExitCommand::~ExitCommand(){
 void ExitCommand :: execute(){
 	this->presentation->close();	
 }
-
-void ExitCommand::unExecute(){
-}

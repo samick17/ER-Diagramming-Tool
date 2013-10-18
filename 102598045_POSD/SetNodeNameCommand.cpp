@@ -18,6 +18,3 @@ void SetNodeNameCommand::execute(){
 	this->node->setName(input);	
 	this->presentation->logMessage("A node ["+this->node->getClassName()+"] has been added. ID: "+this->node->getID()+",Name: "+this->node->getName(),true);	
 }
-
-void SetNodeNameCommand::unExecute(){
-}

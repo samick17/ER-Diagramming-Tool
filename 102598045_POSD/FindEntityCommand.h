@@ -8,5 +8,4 @@ public:
 	~FindEntityCommand();
 	
 	void execute();
-	void unExecute();
 };

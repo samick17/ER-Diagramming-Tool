@@ -13,7 +13,6 @@ public:
 	~SaveFileCommand();
 	
 	void execute();
-	void unExecute();
 private:
 	void writeAllComponentsToDoc(Document& doc,HashMap<string,Component*> componentVector);
 	void writeAllConnectorsToDoc(Document& doc,HashMap<string,Component*> componentVector);

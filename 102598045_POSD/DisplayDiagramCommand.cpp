@@ -12,6 +12,3 @@ void DisplayDiagramCommand :: execute(){
 	this->presentation->logMessage("",true);
 	this->presentation->displayConnections();
 }
-
-void DisplayDiagramCommand::unExecute(){
-}

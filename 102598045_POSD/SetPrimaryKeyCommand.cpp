@@ -34,9 +34,6 @@ void SetPrimaryKeyCommand :: execute(){
 	this->presentation->displayStringWithComma("(",attributeIDSet,").");
 	this->presentation->logMessage("",true);
 }
-
-void SetPrimaryKeyCommand::unExecute(){
-}
 // @return :correct attribute,must has connected with selected entity
 vector<string> SetPrimaryKeyCommand::askPrimaryKeyAttributesID(Entity* entity){	
 	vector<string> attributeIDSet;

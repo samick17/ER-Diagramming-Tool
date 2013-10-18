@@ -8,5 +8,4 @@ public:
 	~RedoCommand();
 	
 	void execute();
-	void unExecute();
 };

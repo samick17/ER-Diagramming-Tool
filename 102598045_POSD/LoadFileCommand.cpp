@@ -28,6 +28,3 @@ void LoadFileCommand::execute(){
 	DisplayDiagramCommand displayDiagramCommand(this->presentation);
 	displayDiagramCommand.execute();
 }
-
-void LoadFileCommand::unExecute(){
-}

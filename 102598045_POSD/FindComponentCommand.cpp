@@ -36,9 +36,6 @@ void FindComponentCommand :: execute(){
 	this->component = find;
 }
 
-void FindComponentCommand::unExecute(){
-}
-
 Component* FindComponentCommand::getComponent(){
 	return this->component;
 }

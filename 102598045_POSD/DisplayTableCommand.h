@@ -8,5 +8,4 @@ public:
 	~DisplayTableCommand();
 
 	void execute();
-	void unExecute();
 };

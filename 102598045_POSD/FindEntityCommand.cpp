@@ -16,6 +16,3 @@ void FindEntityCommand :: execute(){
 	}
 	this->component = find;
 }
-
-void FindEntityCommand::unExecute(){
-}
