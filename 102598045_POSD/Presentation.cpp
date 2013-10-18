@@ -5,6 +5,7 @@
 #include <iomanip>
 #include "ComponentUtil.h"
 #include "ERModelUtil.h"
+#include "StringUtil.h"
 #include "CommandMenu.h"
 #include "CommandManager.h"
 #include "NullPointerException.h"

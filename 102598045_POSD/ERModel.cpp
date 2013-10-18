@@ -1,8 +1,10 @@
 #include "ERModel.h"
 #include "ComponentFactory.h"
 #include "ERModelUtil.h"
+#include "TableUtil.h"
 #include "NoSuchNodeException.h"
 #include "NullPointerException.h"
+#include "EmptyCollectionException.h"
 #include "ComponentUtil.h"
 
 ERModel::ERModel(){	
@@ -101,7 +103,7 @@ HashMap<string,RelationShip*> ERModel::getAllRelationShips(){
 //get All Tables
 HashMap<string,Table*> ERModel::getAllTables(){
 	try{
-		return ERModelUtil::convertToTableMap(this->tableManager,this->getAllRelationShips());
+		return TableUtil::convertToTableMap(this->tableManager,this->getAllEntities(),this->getAllRelationShips());
 	}catch(Exception&){
 		throw EmptyCollectionException("Table");
 	}

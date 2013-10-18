@@ -108,7 +108,6 @@
     <ClCompile Include="..\102598045_POSD\EmptyCollectionException.cpp" />
     <ClCompile Include="..\102598045_POSD\Entity.cpp" />
     <ClCompile Include="..\102598045_POSD\ERModel.cpp" />
-    <ClCompile Include="..\102598045_POSD\ERModelUtil.cpp" />
     <ClCompile Include="..\102598045_POSD\Exception.cpp" />
     <ClCompile Include="..\102598045_POSD\ExitCommand.cpp" />
     <ClCompile Include="..\102598045_POSD\FileNotFoundException.cpp" />
@@ -140,11 +139,13 @@
     <ClCompile Include="..\102598045_POSD\StringUtil.cpp" />
     <ClCompile Include="..\102598045_POSD\Table.cpp" />
     <ClCompile Include="..\102598045_POSD\TableManager.cpp" />
+    <ClCompile Include="..\102598045_POSD\TableUtil.cpp" />
     <ClCompile Include="..\102598045_POSD\TextUI.cpp" />
     <ClCompile Include="..\102598045_POSD\UndoCommand.cpp" />
     <ClCompile Include="..\102598045_POSD\UnexecutableCommand.cpp" />
     <ClCompile Include="..\102598045_POSD\ValidConnectedReceiver.cpp" />
     <ClCompile Include="CommandMenuTest.cpp" />
+    <ClCompile Include="ComponentTest.cpp" />
     <ClCompile Include="ConnectorTest.cpp" />
     <ClCompile Include="DirectoryUtil.cpp" />
     <ClCompile Include="ERModelTest.cpp" />
@@ -152,6 +153,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CommandMenuTest.h" />
+    <ClInclude Include="ComponentTest.h" />
     <ClInclude Include="ConnectorTest.h" />
     <ClInclude Include="DirectoryUtil.h" />
     <ClInclude Include="ERModelTest.h" />

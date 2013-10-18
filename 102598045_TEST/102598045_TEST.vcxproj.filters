@@ -73,11 +73,14 @@
     <Filter Include="Source Files\Exception\ComponentException">
       <UniqueIdentifier>{5bae5632-ce0c-4734-9ded-18dd60abd034}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\ModelTest">
+      <UniqueIdentifier>{db844d63-2a30-41e8-a46d-fa5e94927bda}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Unit Testing Files\ModelTest">
+      <UniqueIdentifier>{eb73bddb-dec2-4721-a1a0-2b130baaf6b6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="ERModelTest.cpp">
-      <Filter>Unit Testing Files</Filter>
-    </ClCompile>
     <ClCompile Include="MainTest.cpp">
       <Filter>Unit Testing Files</Filter>
     </ClCompile>
@@ -151,9 +154,6 @@
       <Filter>Source Files\Model</Filter>
     </ClCompile>
     <ClCompile Include="..\102598045_POSD\ComponentUtil.cpp">
-      <Filter>Source Files\Utils</Filter>
-    </ClCompile>
-    <ClCompile Include="..\102598045_POSD\ERModelUtil.cpp">
       <Filter>Source Files\Utils</Filter>
     </ClCompile>
     <ClCompile Include="..\102598045_POSD\CommandMenu.cpp">
@@ -243,9 +243,6 @@
     <ClCompile Include="..\102598045_POSD\FileParser.cpp">
       <Filter>Source Files\Parser</Filter>
     </ClCompile>
-    <ClCompile Include="ConnectorTest.cpp">
-      <Filter>Unit Testing Files</Filter>
-    </ClCompile>
     <ClCompile Include="CommandMenuTest.cpp">
       <Filter>Unit Testing Files</Filter>
     </ClCompile>
@@ -288,19 +285,34 @@
     <ClCompile Include="..\102598045_POSD\CollectionType.cpp">
       <Filter>Source Files\Constants</Filter>
     </ClCompile>
+    <ClCompile Include="ComponentTest.cpp">
+      <Filter>Unit Testing Files\ModelTest</Filter>
+    </ClCompile>
+    <ClCompile Include="ConnectorTest.cpp">
+      <Filter>Unit Testing Files\ModelTest</Filter>
+    </ClCompile>
+    <ClCompile Include="ERModelTest.cpp">
+      <Filter>Unit Testing Files\ModelTest</Filter>
+    </ClCompile>
+    <ClCompile Include="..\102598045_POSD\TableUtil.cpp">
+      <Filter>Source Files\Utils</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="ERModelTest.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="DirectoryUtil.h">
       <Filter>Header Files\TestingUtils</Filter>
     </ClInclude>
-    <ClInclude Include="ConnectorTest.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="CommandMenuTest.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ComponentTest.h">
+      <Filter>Header Files\ModelTest</Filter>
+    </ClInclude>
+    <ClInclude Include="ERModelTest.h">
+      <Filter>Header Files\ModelTest</Filter>
+    </ClInclude>
+    <ClInclude Include="ConnectorTest.h">
+      <Filter>Header Files\ModelTest</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

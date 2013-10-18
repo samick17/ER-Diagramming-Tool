@@ -1,37 +1,45 @@
-#include "ERModelUtil.h"
+#include "TableUtil.h"
 
-HashMap<string,Table*> ERModelUtil::convertToTableMap(TableManager& tableManager,HashMap<string,RelationShip*> relationShipSet){
+HashMap<string,Table*> TableUtil::convertToTableMap(TableManager& tableManager,HashMap<string,Entity*> entityMap,HashMap<string,RelationShip*> relationShipMap){
 	tableManager.clearAll();
 
-	//get RelationShips & append Table of this relation type
-	HashMap<string,RelationShip*> oneToOneRelationSet = getOneToOneRelationShips(relationShipSet);	
+	insertAllEntitiesToTable(tableManager,entityMap);
+
+	HashMap<string,RelationShip*> oneToOneRelationSet = getOneToOneRelationShips(relationShipMap);
 	appendOneToOneTable(tableManager,oneToOneRelationSet);
 
 	return tableManager.getAllTables();
 }
 
-HashMap<string,RelationShip*> ERModelUtil::getOneToOneRelationShips(HashMap<string,RelationShip*> relationShipSet){
+void TableUtil::insertAllEntitiesToTable(TableManager& tableManager,HashMap<string,Entity*> entityMap){
+	//get RelationShips & append Table of this relation type
+	for each(Entity* entity in entityMap){
+		Table* table = new Table(entity);
+		try{
+			table->insertAllAttributes(entity->getConnectedAttributes());
+		}
+		catch(Exception&){
+		}
+		tableManager.insertTable(table);			
+	}
+}
+
+HashMap<string,RelationShip*> TableUtil::getOneToOneRelationShips(HashMap<string,RelationShip*> relationShipMap){
 	HashMap<string,RelationShip*> oneToOneRelationShipsSet;
-	for each(RelationShip* relationShip in relationShipSet){
+	for each(RelationShip* relationShip in relationShipMap){
 		if(relationShip->isRelationType(RelationType::OneToOne))		
 			oneToOneRelationShipsSet.put(relationShip->getID(),relationShip);
 	}
 	return oneToOneRelationShipsSet;
 }
 //append all table to tableManager
-void ERModelUtil::appendOneToOneTable(TableManager& tableManager,HashMap<string,RelationShip*> oneToOneRelationSet){		
-	for each(RelationShip* relationShip in oneToOneRelationSet){
-		//convert entity to table
-		for each(Entity* entity in relationShip->getConnectedEntities()){
-			Table* table = new Table(entity);
-			table->insertAllAttributes(entity->getConnectedAttributes());
-			tableManager.insertTable(table);			
-		}
+void TableUtil::appendOneToOneTable(TableManager& tableManager,HashMap<string,RelationShip*> oneToOneRelationMap){		
+	for each(RelationShip* relationShip in oneToOneRelationMap){
 		insertAllForeignKeyToTable(tableManager,relationShip);
 	}
 }
 //insert All Foreign Key To Table
-void ERModelUtil::insertAllForeignKeyToTable(TableManager& tableManager,RelationShip* relationShip){
+void TableUtil::insertAllForeignKeyToTable(TableManager& tableManager,RelationShip* relationShip){
 	//convert relationship data & insert data to table
 	Entity* firstEntity = *relationShip->getConnectedEntities().begin();
 	Entity* secondEntity = *(--relationShip->getConnectedEntities().end());		

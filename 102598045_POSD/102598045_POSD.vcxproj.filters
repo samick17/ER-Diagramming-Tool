@@ -327,6 +327,9 @@
     <ClInclude Include="CollectionType.h">
       <Filter>Header Files\Constants</Filter>
     </ClInclude>
+    <ClInclude Include="TableUtil.h">
+      <Filter>Header Files\Utils</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Attribute.cpp">
@@ -464,9 +467,6 @@
     <ClCompile Include="Document.cpp">
       <Filter>Source Files\Document</Filter>
     </ClCompile>
-    <ClCompile Include="ERModelUtil.cpp">
-      <Filter>Source Files\Utils</Filter>
-    </ClCompile>
     <ClCompile Include="IClonable.cpp">
       <Filter>Source Files\Interface</Filter>
     </ClCompile>
@@ -529,6 +529,9 @@
     </ClCompile>
     <ClCompile Include="CollectionType.cpp">
       <Filter>Source Files\Constants</Filter>
+    </ClCompile>
+    <ClCompile Include="TableUtil.cpp">
+      <Filter>Source Files\Utils</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

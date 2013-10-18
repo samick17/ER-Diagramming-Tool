@@ -3,16 +3,15 @@
 #include "InvalidConnectException.h"
 
 void ConnectorTest::SetUp(){
-	Component* attribute = this->erModel.addNode(ComponentType::TypeAttribute);
-	Component* relation = this->erModel.addNode(ComponentType::TypeRelationShip);
-	Component* entity = this->erModel.addNode(ComponentType::TypeEntity);
+	this->attribute = this->erModel.addNode(ComponentType::TypeAttribute);
+	this->relationShip = this->erModel.addNode(ComponentType::TypeRelationShip);
+	this->entity = this->erModel.addNode(ComponentType::TypeEntity);
 
-	this->erModel.addConnection(attribute,entity);
-	this->connector = this->erModel.getNodesConnector(attribute,entity);
+	this->erModel.addConnection(this->attribute,this->entity);
+	this->connector = this->erModel.getNodesConnector(this->attribute,this->entity);
 }
 
 void ConnectorTest::TearDown(){
-	this->connector = NULL;
 }
 
 TEST_F(ConnectorTest,testToString){
@@ -38,14 +37,9 @@ TEST_F(ConnectorTest,testBreakAllConnections){
 }
 
 TEST_F(ConnectorTest,testCanConnectTo){
-
-	Component* attribute = this->erModel.getComponentByID("0");
-	Component* relation = this->erModel.getComponentByID("1");
-	Component* entity = this->erModel.getComponentByID("2");
-
-	ASSERT_THROW(this->connector->canConnectTo(attribute),InvalidConnectException);
-	ASSERT_THROW(this->connector->canConnectTo(relation),InvalidConnectException);
-	ASSERT_THROW(this->connector->canConnectTo(entity),InvalidConnectException);
+	ASSERT_THROW(this->connector->canConnectTo(this->attribute),InvalidConnectException);
+	ASSERT_THROW(this->connector->canConnectTo(this->relationShip),InvalidConnectException);
+	ASSERT_THROW(this->connector->canConnectTo(this->entity),InvalidConnectException);
 	ASSERT_THROW(this->connector->canConnectTo(this->connector),InvalidConnectException);
 }
 
@@ -55,45 +49,30 @@ TEST_F(ConnectorTest,testHasSizeToConnect){
 }
 
 TEST_F(ConnectorTest,testGetFirstConnectedNode){
-	Component* attribute = this->erModel.getComponentByID("0");
-	Component* relation = this->erModel.getComponentByID("1");
-	Component* entity = this->erModel.getComponentByID("2");
-	this->erModel.addConnection(entity,relation);
-	Connector* connectorEntityAndRelation = this->erModel.getNodesConnector(relation,entity);
+	this->erModel.addConnection(this->entity,this->relationShip);
+	Connector* connectorEntityAndRelation = this->erModel.getNodesConnector(this->relationShip,this->entity);
 	
-	ASSERT_EQ(attribute,this->connector->getFirstConnectedNode());
-	ASSERT_EQ(relation,connectorEntityAndRelation->getFirstConnectedNode());
+	ASSERT_EQ(this->attribute,this->connector->getFirstConnectedNode());
+	ASSERT_EQ(this->relationShip,connectorEntityAndRelation->getFirstConnectedNode());
 
 }
 
 TEST_F(ConnectorTest,testGetSecondConnectedNode){
-	Component* attribute = this->erModel.getComponentByID("0");
-	Component* relation = this->erModel.getComponentByID("1");
-	Component* entity = this->erModel.getComponentByID("2");
-	this->erModel.addConnection(entity,relation);
-	Connector* connectorEntityAndRelation = this->erModel.getNodesConnector(relation,entity);
+	this->erModel.addConnection(this->entity,this->relationShip);
+	Connector* connectorEntityAndRelation = this->erModel.getNodesConnector(this->relationShip,this->entity);
 
-	ASSERT_EQ(entity,this->connector->getSecondConnectedNode());
-	ASSERT_EQ(entity,connectorEntityAndRelation->getSecondConnectedNode());
+	ASSERT_EQ(this->entity,this->connector->getSecondConnectedNode());
+	ASSERT_EQ(this->entity,connectorEntityAndRelation->getSecondConnectedNode());
 }
 
-TEST_F(ConnectorTest,testIsNodesConnection){	
-	Component* attribute = this->erModel.getComponentByID("0");
-	Component* relation = this->erModel.getComponentByID("1");
-	Component* entity = this->erModel.getComponentByID("2");
+TEST_F(ConnectorTest,testIsNodesConnection){
+	ASSERT_EQ(false,this->connector->isNodesConnection(this->attribute,this->relationShip));
+	ASSERT_EQ(false,this->connector->isNodesConnection(this->relationShip,this->attribute));
+	ASSERT_EQ(false,this->connector->isNodesConnection(this->entity,this->relationShip));
+	ASSERT_EQ(false,this->connector->isNodesConnection(this->relationShip,this->entity));
 
-	ASSERT_EQ(false,this->connector->isNodesConnection(NULL,NULL));
-	ASSERT_EQ(false,this->connector->isNodesConnection(attribute,NULL));
-	ASSERT_EQ(false,this->connector->isNodesConnection(NULL,attribute));
-	ASSERT_EQ(false,this->connector->isNodesConnection(entity,NULL));
-	ASSERT_EQ(false,this->connector->isNodesConnection(NULL,entity));
-	ASSERT_EQ(false,this->connector->isNodesConnection(attribute,relation));
-	ASSERT_EQ(false,this->connector->isNodesConnection(relation,attribute));
-	ASSERT_EQ(false,this->connector->isNodesConnection(entity,relation));
-	ASSERT_EQ(false,this->connector->isNodesConnection(relation,entity));
-
-	ASSERT_EQ(true,this->connector->isNodesConnection(attribute,entity));
-	ASSERT_EQ(true,this->connector->isNodesConnection(entity,attribute));
+	ASSERT_EQ(true,this->connector->isNodesConnection(this->attribute,this->entity));
+	ASSERT_EQ(true,this->connector->isNodesConnection(this->entity,this->attribute));
 }
 
 TEST_F(ConnectorTest,testClone){

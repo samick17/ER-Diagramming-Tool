@@ -8,14 +8,13 @@ TableManager::~TableManager(){
 }
 
 void TableManager::insertTable(Table* table){
-	this->tableMap.put(table->getEntityID(),table);
+	try{
+		this->tableMap.put(table->getEntityID(),table);
+	}catch(Exception&){
+	}
 }
 
 Table* TableManager::getTableByID(string id){	
-	/*if(this->tableMap.containsKey(id))
-		return this->tableMap.get(id);
-	
-	return NULL;*/
 	return this->tableMap.get(id);
 }
 

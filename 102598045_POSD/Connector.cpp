@@ -62,8 +62,6 @@ Component* Connector::getSecondConnectedNode(){
 bool Connector::isNodesConnection(Component* firstNode,Component* secondNode){	
 	if(firstNode == secondNode)
 		return false;
-	if(firstNode == NULL || secondNode == NULL)
-		return false;
 
 	bool isConnection = false;
 	HashMap<string,Component*> connections = this->getAllConnections();

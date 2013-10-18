@@ -138,6 +138,7 @@
     <ClInclude Include="StringUtil.h" />
     <ClInclude Include="Table.h" />
     <ClInclude Include="TableManager.h" />
+    <ClInclude Include="TableUtil.h" />
     <ClInclude Include="TextUI.h" />
     <ClInclude Include="UndoCommand.h" />
     <ClInclude Include="UnexecutableCommand.h" />
@@ -177,7 +178,6 @@
     <ClCompile Include="EmptyCollectionException.cpp" />
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="ERModel.cpp" />
-    <ClCompile Include="ERModelUtil.cpp" />
     <ClCompile Include="Exception.cpp" />
     <ClCompile Include="ExitCommand.cpp" />
     <ClCompile Include="FileNotFoundException.cpp" />
@@ -208,6 +208,7 @@
     <ClCompile Include="StringUtil.cpp" />
     <ClCompile Include="Table.cpp" />
     <ClCompile Include="TableManager.cpp" />
+    <ClCompile Include="TableUtil.cpp" />
     <ClCompile Include="TextUI.cpp" />
     <ClCompile Include="UndoCommand.cpp" />
     <ClCompile Include="UnexecutableCommand.cpp" />

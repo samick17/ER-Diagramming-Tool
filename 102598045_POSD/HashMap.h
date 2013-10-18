@@ -33,8 +33,9 @@ template<typename Key,typename Value>
 Value HashMap<Key,Value>::put(Key key,Value value){
 	std::unordered_map<Key,Value>::iterator hashmapIterator = hashmap.find(key);	
 
+	//contains Key
 	if(hashmapIterator != hashmap.end())
-		throw DuplicatedKeyException(CollectionType::TypeHashMap);	
+		throw DuplicatedKeyException(CollectionType::TypeHashMap);
 
 	hashmap.insert(pair<Key,Value>(key,value));
 	valueVector.push_back(value);
