@@ -15,15 +15,15 @@ Entity::~Entity(){
 }
 //format: entityID pkID1,pkID2,....pkIDn
 string Entity::toString(){	
-	set<Attribute*> primaryKeyAttributeSet = this->getPrimaryKeyAttributes();
+	HashMap<string,Attribute*> primaryKeyAttributeHashMap = this->getPrimaryKeyAttributes();
 
-	if(primaryKeyAttributeSet.empty())
+	if(primaryKeyAttributeHashMap.empty())
 		return "";
 
 	string result = this->getID();
 	set<string> primaryKeyAttributeIDSet;
 
-	for each(Attribute* attribute in primaryKeyAttributeSet)	
+	for each(Attribute* attribute in primaryKeyAttributeHashMap)	
 		primaryKeyAttributeIDSet.insert(attribute->getID());	
 
 	result += " "+StringUtil::appendWithComma(primaryKeyAttributeIDSet);
@@ -48,20 +48,20 @@ bool Entity::hasSizeToConnect(){
 	return true;
 }
 
-set<Attribute*> Entity::getConnectedAttributes(){
-	set<Attribute*> connectedAttributeSet = ComponentUtil::getConnectedNodeSetByType<Attribute>(this->getAllConnections());
+HashMap<string,Attribute*> Entity::getConnectedAttributes(){
+	HashMap<string,Attribute*> connectedAttributeMap = ComponentUtil::getConnectedNodeHashMapByType<Attribute>(this->getAllConnections());
 
-	if(connectedAttributeSet.empty()){
-		throw EmptyCollectionException(ComponentType::TypeRelationShip);
+	if(connectedAttributeMap.empty()){		
+		throw EmptyCollectionException(ComponentType::TypeAttributeName);
 	}
 
-	return connectedAttributeSet;
+	return connectedAttributeMap;
 }
 //get Attribute By ID, if doesn't has such attribute, throw exception
 Attribute* Entity::getAttributeByID(string id){
-	set<Attribute*> attributeSet = this->getConnectedAttributes();
+	HashMap<string,Attribute*> attributeMap = this->getConnectedAttributes();
 
-	for each(Attribute* attribute in attributeSet){
+	for each(Attribute* attribute in attributeMap){
 		if(attribute->getID() == id)		
 			return attribute;		
 	}
@@ -69,13 +69,13 @@ Attribute* Entity::getAttributeByID(string id){
 	throw NoConnectionException(id,this->getID());
 }
 
-set<Attribute*> Entity::getPrimaryKeyAttributes(){
-	set<Attribute*> attributeSet;
+HashMap<string,Attribute*> Entity::getPrimaryKeyAttributes(){
+	HashMap<string,Attribute*> attributeMap;
 	for each(Attribute* attribute in this->getConnectedAttributes()){
 		if(attribute->isPrimaryKey())
-			attributeSet.insert(attribute);
+			attributeMap.put(attribute->getID(),attribute);
 	}
-	return attributeSet;
+	return attributeMap;
 }
 //set this primary key by primary key collection, if doesn't has such attribute, throw exception
 void Entity::setPrimaryKey(set<string> primaryKeyIDSet){

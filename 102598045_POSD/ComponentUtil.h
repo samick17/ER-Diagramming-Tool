@@ -10,10 +10,10 @@ class ComponentUtil{
 public:
 	//template cant be put in cpp file
 	template<typename type>
-	static set<type*> getConnectedNodeSetByType(set<Component*> connectionSet);
+	static HashMap<string,type*> getConnectedNodeHashMapByType(HashMap<string,Component*> connectionHashMap);
 	
 	template<typename type>
-	static set<Component*> toComponentSet(set<type*> typeSet);
+	static HashMap<string,Component*> toComponentHashMap(HashMap<string,type*> typeHashMap);
 	
 	static Component* getComponentByIDInVector(vector<Component*> componentVector,string id);
 	static void connectWithEachOther(Component* firstNode,Component* secondNode,Component* connector);
@@ -21,24 +21,25 @@ public:
 };
 //get component's connected node set by type
 template<typename type>
-static set<type*> ComponentUtil::getConnectedNodeSetByType(set<Component*> connectionSet){
-	set<type*> typeSet;
-	for each(Component* connection in connectionSet){
+static HashMap<string,type*> ComponentUtil::getConnectedNodeHashMapByType(HashMap<string,Component*> connectionHashMap){
+	HashMap<string,type*> typeHashMap;
+	for each(Component* connection in connectionHashMap){
 		for each(Component* connectedNode in connection->getAllConnections()){
 			if(typeid(*connectedNode).name() == typeid(type).name())
 			{
-				typeSet.insert(static_cast<type*>(connectedNode));
+				typeHashMap.put(connectedNode->getID(),static_cast<type*>(connectedNode));
 			}
 		}
 	}
-	return typeSet;
+	return typeHashMap;
 }
-//convert concrete type to component type
+
 template<typename type>
-static set<Component*> ComponentUtil::toComponentSet(set<type*> typeSet){
-	set<Component*> componentSet;
-	for each(type* typePointer in typeSet){			
-		componentSet.insert(typePointer);	
+static HashMap<string,Component*> ComponentUtil::toComponentHashMap(HashMap<string,type*> typeHashMap){
+	HashMap<string,Component*> componentHashMap;
+	for each(type* typePointer in typeHashMap){
+		Component* component = typePointer;
+		componentHashMap.put(component->getID(),component);	
 	}
-	return componentSet;
+	return componentHashMap;
 }

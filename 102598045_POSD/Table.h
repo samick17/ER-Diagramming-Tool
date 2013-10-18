@@ -4,6 +4,7 @@
 #include <hash_map>
 #include <set>
 #include <string>
+#include "HashMap.h"
 
 class Table{
 	friend class ERModelTest;
@@ -12,8 +13,8 @@ public:
 	Table(Entity* entity);
 	~Table();
 	
-	void insertAllAttributes(set<Attribute*> attributeSet);
-	void insertAllForeignKeyAttributes(set<Attribute*> attributeSet);
+	void insertAllAttributes(HashMap<string,Attribute*> attributeSet);
+	void insertAllForeignKeyAttributes(HashMap<string,Attribute*> attributeSet);
 
 	string getEntityID();
 	string getEntityName();
@@ -23,6 +24,6 @@ public:
 	set<string> getAllForeignKeyAttributesNameSet();
 private:
 	Entity* entity;
-	set<Attribute*> attributeSet;
-	set<Attribute*> foreignKeyAttributeSet;
+	HashMap<string,Attribute*> attributeSet;
+	HashMap<string,Attribute*> foreignKeyAttributeSet;
 };

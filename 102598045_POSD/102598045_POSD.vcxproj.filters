@@ -237,9 +237,6 @@
     <ClInclude Include="IClonable.h">
       <Filter>Header Files\Interface</Filter>
     </ClInclude>
-    <ClInclude Include="SetUtil.h">
-      <Filter>Header Files\Utils</Filter>
-    </ClInclude>
     <ClInclude Include="UnexecutableCommand.h">
       <Filter>Header Files\Command</Filter>
     </ClInclude>

@@ -2,7 +2,7 @@
 
 #include "UnexecutableCommand.h"
 #include "ConnectionData.h"
-#include <hash_map>
+#include "HashMap.h"
 
 typedef pair<string,ConnectionData*> ConnectionDataPair;
 
@@ -17,8 +17,8 @@ public:
 	void unExecute();
 private:
 	Component* component;
-	set<Connector*> connectionSet;
-	hash_map<string,ConnectionData*> connectionDataMap;
+	HashMap<string,Connector*> connectionSet;
+	HashMap<string,ConnectionData*> connectionDataMap;
 	void saveConnectionData(Connector* connector);
 	void clearConnectionDataMap();
 	void removeAndDisconnectComponents();

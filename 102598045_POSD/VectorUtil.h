@@ -26,7 +26,6 @@ static void VectorUtil::deleteAllElementsInVector(vector<type*>& typeVector){
 	for each(type* typePointer in typeVector){
 		if(typePointer != NULL){
 			delete typePointer;
-			typePointer = NULL;
 		}
 	}
 	typeVector.clear();

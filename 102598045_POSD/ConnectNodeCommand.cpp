@@ -15,7 +15,6 @@ ConnectNodeCommand :: ConnectNodeCommand(Presentation* presentation) : Unexecuta
 ConnectNodeCommand::~ConnectNodeCommand(){
 	if(!this->getExecutionFlag()){
 		delete this->connector;
-		this->connector = NULL;
 	}
 }
 

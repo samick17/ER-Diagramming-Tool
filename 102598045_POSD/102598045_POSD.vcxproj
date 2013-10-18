@@ -102,7 +102,6 @@
     <ClInclude Include="NullPointerException.h" />
     <ClInclude Include="Presentation.h" />
     <ClInclude Include="RelationType.h" />
-    <ClInclude Include="SetUtil.h" />
     <ClInclude Include="Command.h" />
     <ClInclude Include="CommandData.h" />
     <ClInclude Include="CommandManager.h" />

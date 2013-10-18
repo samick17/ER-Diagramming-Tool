@@ -1,25 +1,25 @@
 #include "ERModelUtil.h"
 
-unordered_map<string,Table*> ERModelUtil::convertToTableMap(TableManager& tableManager,set<RelationShip*> relationShipSet){
+HashMap<string,Table*> ERModelUtil::convertToTableMap(TableManager& tableManager,HashMap<string,RelationShip*> relationShipSet){
 	tableManager.clearAll();
 
 	//get RelationShips & append Table of this relation type
-	set<RelationShip*> oneToOneRelationSet = getOneToOneRelationShips(relationShipSet);	
+	HashMap<string,RelationShip*> oneToOneRelationSet = getOneToOneRelationShips(relationShipSet);	
 	appendOneToOneTable(tableManager,oneToOneRelationSet);
 
 	return tableManager.getAllTables();
 }
 
-set<RelationShip*> ERModelUtil::getOneToOneRelationShips(set<RelationShip*> relationShipSet){
-	set<RelationShip*> oneToOneRelationShipsSet;
+HashMap<string,RelationShip*> ERModelUtil::getOneToOneRelationShips(HashMap<string,RelationShip*> relationShipSet){
+	HashMap<string,RelationShip*> oneToOneRelationShipsSet;
 	for each(RelationShip* relationShip in relationShipSet){
 		if(relationShip->isRelationType(RelationType::OneToOne))		
-			oneToOneRelationShipsSet.insert(relationShip);
+			oneToOneRelationShipsSet.put(relationShip->getID(),relationShip);
 	}
 	return oneToOneRelationShipsSet;
 }
 //append all table to tableManager
-void ERModelUtil::appendOneToOneTable(TableManager& tableManager,set<RelationShip*> oneToOneRelationSet){	
+void ERModelUtil::appendOneToOneTable(TableManager& tableManager,HashMap<string,RelationShip*> oneToOneRelationSet){	
 	for each(RelationShip* relationShip in oneToOneRelationSet){
 		//convert entity to table
 		for each(Entity* entity in relationShip->getConnectedEntities()){
@@ -30,7 +30,7 @@ void ERModelUtil::appendOneToOneTable(TableManager& tableManager,set<RelationShi
 		//convert relationship data & insert data to table
 		Entity* firstEntity = *relationShip->getConnectedEntities().begin();
 		Entity* secondEntity = *(--relationShip->getConnectedEntities().end());
-		set<Attribute*> primaryKeyAttributeSet;
+		HashMap<string,Attribute*> primaryKeyAttributeSet;
 		Table* table = NULL;
 		//find pk set & find table to insert pk
 		if(!((primaryKeyAttributeSet = firstEntity->getPrimaryKeyAttributes()).empty()))

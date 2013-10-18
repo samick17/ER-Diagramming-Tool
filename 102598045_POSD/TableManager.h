@@ -1,6 +1,6 @@
 #pragma once
 
-#include <unordered_map>
+#include "HashMap.h"
 #include "Table.h"
 
 typedef pair<string,Table*> TablePair;
@@ -14,7 +14,7 @@ public:
 	Table* getTableByID(string id);
 	void clearAll();
 
-	unordered_map<string,Table*> getAllTables();
+	HashMap<string,Table*> getAllTables();
 private:
-	unordered_map<string,Table*> tableMap;
+	HashMap<string,Table*> tableMap;
 };

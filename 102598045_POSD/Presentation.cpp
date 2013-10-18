@@ -58,14 +58,12 @@ void Presentation::displayTitle(string title){
 }
 
 void Presentation::displayTable(){
-	unordered_map<string,Table*> tableMap = erModel->getAllTables();
+	HashMap<string,Table*> tableMap = erModel->getAllTables();
 
 	cout<<" +------------------------------------------------------------------"<<endl;
 	cout<<" |    Entity      |  Attributes"<<endl;
 	cout<<" +----------------+--------------------------------------------------"<<endl;
-	for each(TablePair tablePair in tableMap){
-		Table* table = tablePair.second;
-
+	for each(Table* table in tableMap){
 		string entityName = table->getEntityName();
 		int len = TABLE_WIDTH-entityName.size();
 
@@ -79,21 +77,20 @@ void Presentation::displayTable(){
 }
 
 void Presentation::displayComponents(){	
-	set<Component*> componentSet = erModel->getAllComponents();
+	HashMap<string,Component*> componentSet = erModel->getAllComponents();
 	
 	this->displayTitle("Components");
 	this->displayComponentSet(componentSet);
 }
 
 void Presentation::displayConnections(){	
-	set<Connector*> connectorSet = erModel->getAllConnectors();
-	//convert to vector ordered by id
-	vector<Connector*> connectorVector = ERModelUtil::convertComponentSetToOrderedVector<Connector>(erModel->getComponentKeyOrderVector(),connectorSet);
+	HashMap<string,Connector*> connectorSet = erModel->getAllConnectors();
+	//convert to vector ordered by id	
 	this->displayTitle("Connections");
 	cout<<" +----------------------------------------------"<<endl;
 	cout<<"    Connectors   |     Node1     |     Node2"<<endl;
 	cout<<" +---------------+---------------+--------------"<<endl;
-	for each (Connector* connector in connectorVector){	
+	for each (Connector* connector in connectorSet){	
 		cout<<"  "<<setw(COLUMN_WIDTH)<<connector->getID()<<"       ";
 		cout<<"|"<<setw(COLUMN_WIDTH)<<connector->getFirstConnectedNode()->getID()<<"       ";
 		cout<<"|"<<setw(COLUMN_WIDTH)<<connector->getSecondConnectedNode()->getID()<<endl;		
@@ -102,17 +99,17 @@ void Presentation::displayConnections(){
 }
 
 void Presentation::displayEntities(){
-	set<Entity*> entitySet = erModel->getAllEntities();
+	HashMap<string,Entity*> entitySet = erModel->getAllEntities();
 
 	this->displayTitle("Entities");
-	this->displayComponentSet(ComponentUtil::toComponentSet<Entity>(entitySet));
+	this->displayComponentSet(ComponentUtil::toComponentHashMap<Entity>(entitySet));
 }
 
 void Presentation::displayEntityAttributes(Entity* entity){
-	set<Attribute*> attributeSet = entity->getConnectedAttributes();
+	HashMap<string,Attribute*> attributeSet = entity->getConnectedAttributes();
 
 	cout<<"Attributes of the entity '"<<entity->getID()<<"'"<<endl;
-	this->displayComponentSet(ComponentUtil::toComponentSet<Attribute>(attributeSet));
+	this->displayComponentSet(ComponentUtil::toComponentHashMap<Attribute>(attributeSet));
 }
 
 void Presentation::displayStringWithComma(string strStart,set<string> stringSet,string strEnd){
@@ -165,12 +162,11 @@ CommandManager* Presentation::getCommandManager(){
 	return this->commandManager;
 }
 
-void Presentation::displayComponentSet(set<Component*> componentSet){
-	vector<Component*> componentVector = ERModelUtil::convertComponentSetToOrderedVector<Component>(erModel->getComponentKeyOrderVector(),componentSet);
+void Presentation::displayComponentSet(HashMap<string,Component*> componentSet){	
 	cout<<" +-----------------------------------------------------"<<endl;
 	cout<<"        Type      |       ID       |      Name"<<endl;
 	cout<<" +----------------+----------------+-------------------"<<endl;
-	for each (Component* component in componentVector){
+	for each (Component* component in componentSet){
 		cout<<setw(COLUMN_WIDTH)<<component->getType()<<"          ";	
 		cout<<"|"<<setw(COLUMN_WIDTH)<<component->getID()<<"        ";	
 		cout<<"|  "<<component->getName()<<endl;		

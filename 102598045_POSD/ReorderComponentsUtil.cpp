@@ -30,13 +30,11 @@ vector<Component*> ReorderComponentsUtil::getReorderedComponentVector(ERModel* e
 
 vector<Component*> ReorderComponentsUtil::cloneComponentSet(ERModel* erModel){	
 	//avoid function call leads to memory leak, clear all elems first	
-	VectorUtil::deleteAllElementsInVector(this->reorderedComponentVector);	
-	vector<Component*> componentVector;
+	VectorUtil::deleteAllElementsInVector(this->reorderedComponentVector);
 	try{
-		componentVector = ERModelUtil::convertComponentSetToOrderedVector<Component>(erModel->getComponentKeyOrderVector(),erModel->getAllComponents());
 		//clone set from erModel	
-		for each(Component* component in componentVector)	
-			this->reorderedComponentVector.push_back(component->clone());		
+		for each(Component* component in erModel->getAllComponents())
+			this->reorderedComponentVector.push_back(component->clone());
 	}
 	catch(Exception){
 	}
@@ -48,11 +46,11 @@ void ReorderComponentsUtil::reConnectToComponentVector(vector<Component*> ordere
 	for each(Component* component in orderedComponentVector){
 		for each(Component* connection in component->getAllConnections()){			
 			//find Same ID in Cloned Vector
-			Component* componentToConnect = ComponentUtil::getComponentByIDInVector(orderedComponentVector,connection->getID());
-			//Connect to component we just found
-			component->connectTo(componentToConnect);
+			Component* componentToConnect = ComponentUtil::getComponentByIDInVector(orderedComponentVector,connection->getID());			
 			//disconnect to old connection
 			component->disconnectTo(connection);
+			//Connect to component we just found
+			component->connectTo(componentToConnect);
 		}
 	}
 }

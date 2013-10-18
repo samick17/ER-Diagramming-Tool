@@ -1,6 +1,7 @@
 #include "SaveFileCommand.h"
 #include "ReorderComponentsUtil.h"
 #include "ERModelUtil.h"
+#include <iostream>
 
 SaveFileCommand :: SaveFileCommand(Presentation* presentation) : Command(presentation){	
 }
@@ -41,8 +42,8 @@ void SaveFileCommand::writeAllComponentsToDoc(Document& doc,vector<Component*> c
 
 void SaveFileCommand::writeAllConnectorsToDoc(Document& doc,vector<Component*> componentVector){
 	vector<Connector*> connectorSet = ERModelUtil::convertComponentVectorToTypeVector<Connector>(componentVector);
-
-	for each(Connector* connector in connectorSet){
+	
+	for each(Connector* connector in connectorSet){		
 		string line = connector->toString();		
 		doc.wirteLine(line);
 	}

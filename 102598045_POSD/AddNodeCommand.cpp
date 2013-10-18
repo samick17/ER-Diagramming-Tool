@@ -14,7 +14,6 @@ AddNodeCommand::AddNodeCommand(Presentation* presentation) : UnexecutableCommand
 AddNodeCommand::~AddNodeCommand(){		
 	if(!this->getExecutionFlag()){
 		delete this->node;
-		this->node = NULL;
 	}
 }
 //gather information for add node: get user input to add node, and set this node's name

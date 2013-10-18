@@ -44,5 +44,5 @@ private:
 	bool alive;	
 	ERModel* erModel;
 	CommandManager* commandManager;
-	void displayComponentSet(set<Component*> componentSet);
+	void displayComponentSet(HashMap<string,Component*> componentSet);
 };

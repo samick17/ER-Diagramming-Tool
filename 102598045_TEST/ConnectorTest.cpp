@@ -25,17 +25,16 @@ TEST_F(ConnectorTest,testGetType){
 
 TEST_F(ConnectorTest,testBreakAllConnections){
 	//assert connection size
-	ASSERT_EQ(2,this->connector->connectionSet.size());
+	ASSERT_EQ(2,this->connector->connectionMap.size());
 	Component* firstConnectedNode = this->connector->getFirstConnectedNode();
 	Component* secondConnectedNode = this->connector->getSecondConnectedNode();
 	//assert have connection
-	ASSERT_EQ(this->connector,*(firstConnectedNode->connectionSet.find(this->connector)));
-	ASSERT_EQ(this->connector,*(secondConnectedNode->connectionSet.find(this->connector)));
+	ASSERT_EQ(this->connector,firstConnectedNode->connectionMap.get(this->connector->getID()));
+	ASSERT_EQ(this->connector,secondConnectedNode->connectionMap.get(this->connector->getID()));
 	//assert break connection
 	this->connector->breakAllConnections();
-	ASSERT_EQ(firstConnectedNode->connectionSet.end(),firstConnectedNode->connectionSet.find(this->connector));
-	ASSERT_EQ(secondConnectedNode->connectionSet.end(),secondConnectedNode->connectionSet.find(this->connector));
-	ASSERT_EQ(0,this->connector->connectionSet.size());
+	
+	ASSERT_EQ(0,this->connector->connectionMap.size());
 }
 
 TEST_F(ConnectorTest,testCanConnectTo){
@@ -103,11 +102,7 @@ TEST_F(ConnectorTest,testClone){
 	ASSERT_EQ(this->connector->getID(),connectorCloned->getID());
 	ASSERT_EQ(this->connector->getName(),connectorCloned->getName());
 	ASSERT_EQ(this->connector->getType(),connectorCloned->getType());
-	ASSERT_EQ(this->connector->getAllConnections(),connectorCloned->getAllConnections());
-	ASSERT_EQ(this->connector->getClassName(),connectorCloned->getClassName());
-	ASSERT_EQ(this->connector->getFirstConnectedNode(),connectorCloned->getFirstConnectedNode());
-	ASSERT_EQ(this->connector->getSecondConnectedNode(),connectorCloned->getSecondConnectedNode());	
-	ASSERT_EQ(this->connector->connectionSet,connectorCloned->connectionSet);
+	//assert map
 	ASSERT_EQ(this->connector->componentData,connectorCloned->componentData);
 
 	delete connectorCloned;

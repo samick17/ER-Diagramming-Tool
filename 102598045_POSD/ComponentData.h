@@ -14,7 +14,7 @@ public:
 	string getName();
 	void setName(string name);
 
-	bool operator==(const ComponentData& componentData) const;
+	bool operator==(const ComponentData& componentDataToCompare) const;
 private:
 	string id;	
 	string name;

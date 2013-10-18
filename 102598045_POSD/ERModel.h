@@ -6,6 +6,7 @@
 #include "RelationShip.h"
 #include "Connector.h"
 #include "TableManager.h"
+#include "HashMap.h"
 
 typedef pair<string,Component*> ComponentPair;
 
@@ -32,17 +33,14 @@ public:
 	Component* getComponentByID(string id);
 	Connector* getNodesConnector(Component* firstNode,Component* secondNode);
 
-	set<Component*> getAllComponents();
-	set<Connector*> getAllConnectors();
-	set<Entity*> getAllEntities();
-	set<RelationShip*> getAllRelationShips();
-	unordered_map<string,Table*> getAllTables();
+	HashMap<string,Component*> getAllComponents();
+	HashMap<string,Connector*> getAllConnectors();
+	HashMap<string,Entity*> getAllEntities();
+	HashMap<string,RelationShip*> getAllRelationShips();
+	HashMap<string,Table*> getAllTables();
 
 	void clearComponentMap();
-
-	vector<string> getComponentKeyOrderVector() const;
 private:
-	unordered_map<string,Component*> componentMap;
-	vector<string> componentKeyOrderVector;	
+	HashMap<string,Component*> componentMap;
 	TableManager tableManager;
 };

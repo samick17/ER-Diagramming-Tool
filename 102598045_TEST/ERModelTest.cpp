@@ -44,13 +44,13 @@ bool ERModelTest::hasConnected(Component* firstComponent,Component* secondCompon
 	bool isFirstComponentConnectToSecond = false;
 	bool isSecondComponentConnectToFirst = false;
 
-	for each(Component* connector in firstComponent->connectionSet){
-		if(connector->connectionSet.find(secondComponent) != connector->connectionSet.end())
+	for each(Component* connector in firstComponent->connectionMap){
+		if(connector->connectionMap.containsKey(secondComponent->getID()))
 			isFirstComponentConnectToSecond = true;
 	}
 
-	for each(Component* connector in secondComponent->connectionSet){
-		if(connector->connectionSet.find(firstComponent) != connector->connectionSet.end())
+	for each(Component* connector in secondComponent->connectionMap){
+		if(connector->connectionMap.containsKey(firstComponent->getID()))
 			isSecondComponentConnectToFirst = true;
 	}
 
@@ -85,9 +85,6 @@ TEST_F(ERModelTest,testInsertComponent){
 	ASSERT_THROW(this->erModel.insertComponent(NULL),NullPointerException);
 
 	Component* attribute = new Attribute(ComponentData("15","Age"));
-	this->erModel.insertComponent(attribute);
-	ASSERT_EQ(16,this->erModel.componentMap.size());
-	//insert again~
 	this->erModel.insertComponent(attribute);
 	ASSERT_EQ(16,this->erModel.componentMap.size());
 
@@ -171,12 +168,12 @@ TEST_F(ERModelTest,testGetComponentByID){
 }
 
 TEST_F(ERModelTest,testGetNodesConnector){
-	Component* entityEngineer = this->erModel.componentMap.find("0")->second;
-	Component* attributeEmployeeID = this->erModel.componentMap.find("1")->second;
-	Component* connectorEngineer = this->erModel.componentMap.find("7")->second;
-	Component* entityPC = this->erModel.componentMap.find("4")->second;
-	Component* attributePC_ID = this->erModel.componentMap.find("5")->second;
-	Component* connectorPC = this->erModel.componentMap.find("9")->second;
+	Component* entityEngineer = this->erModel.componentMap.get("0");
+	Component* attributeEmployeeID = this->erModel.componentMap.get("1");
+	Component* connectorEngineer = this->erModel.componentMap.get("7");
+	Component* entityPC = this->erModel.componentMap.get("4");
+	Component* attributePC_ID = this->erModel.componentMap.get("5");
+	Component* connectorPC = this->erModel.componentMap.get("9");
 
 	ASSERT_THROW(this->erModel.getNodesConnector(entityEngineer,NULL),NullPointerException);
 	ASSERT_THROW(this->erModel.getNodesConnector(NULL,attributeEmployeeID),NullPointerException);
@@ -198,7 +195,6 @@ TEST_F(ERModelTest,testGetAllComponents){
 	ASSERT_EQ(15,this->erModel.getAllComponents().size());
 
 	for each(Component* component in this->erModel.getAllComponents()){
-		ASSERT_NE(this->erModel.componentMap.end(),this->erModel.componentMap.find(component->getID()));
 	}
 
 	this->erModel.clearComponentMap();
@@ -209,8 +205,7 @@ TEST_F(ERModelTest,testGetAllComponents){
 TEST_F(ERModelTest,testGetAllConnectors){
 	ASSERT_EQ(7,this->erModel.getAllConnectors().size());
 
-	for each(Connector* connector in this->erModel.getAllConnectors()){		
-		ASSERT_NE(this->erModel.componentMap.end(),this->erModel.componentMap.find(connector->getID()));
+	for each(Connector* connector in this->erModel.getAllConnectors()){
 	}
 
 	this->erModel.clearComponentMap();
@@ -222,7 +217,6 @@ TEST_F(ERModelTest,testGetAllEntities){
 	ASSERT_EQ(2,this->erModel.getAllEntities().size());
 
 	for each(Entity* entity in this->erModel.getAllEntities()){
-		ASSERT_NE(this->erModel.componentMap.end(),this->erModel.componentMap.find(entity->getID()));
 	}
 
 	this->erModel.clearComponentMap();
@@ -234,7 +228,6 @@ TEST_F(ERModelTest,testGetAllRelationShips){
 	ASSERT_EQ(1,this->erModel.getAllRelationShips().size());
 
 	for each(RelationShip* relationShip in this->erModel.getAllRelationShips()){
-		ASSERT_NE(this->erModel.componentMap.end(),this->erModel.componentMap.find(relationShip->getID()));
 	}
 
 	this->erModel.clearComponentMap();
@@ -243,16 +236,16 @@ TEST_F(ERModelTest,testGetAllRelationShips){
 }
 
 TEST_F(ERModelTest,testGetAllTables){
-	unordered_map<string,Table*> tableMap = this->erModel.getAllTables();
+	HashMap<string,Table*> tableMap = this->erModel.getAllTables();
 	ASSERT_EQ(2,tableMap.size());
 
 	Component* entityEngineer = this->erModel.getComponentByID("0");
-	Table* tableEngineer = tableMap.find(entityEngineer->getID())->second;		
+	Table* tableEngineer = tableMap.get(entityEngineer->getID());		
 	ASSERT_EQ(3,tableEngineer->attributeSet.size());
 	ASSERT_EQ(entityEngineer,tableEngineer->entity);
 	
 	Component* entityPC = this->erModel.getComponentByID("4");
-	Table* tablePC = tableMap.find(entityPC->getID())->second;
+	Table* tablePC = tableMap.get(entityPC->getID());
 	ASSERT_EQ(2,tablePC->attributeSet.size());
 	ASSERT_EQ(entityPC,tablePC->entity);
 

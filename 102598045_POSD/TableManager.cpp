@@ -8,26 +8,22 @@ TableManager::~TableManager(){
 }
 
 void TableManager::insertTable(Table* table){
-	this->tableMap.insert(TablePair(table->getEntityID(),table));
+	this->tableMap.put(table->getEntityID(),table);
 }
 
-Table* TableManager::getTableByID(string id){
-	hash_map<string,Table*>::iterator tableIterator;
-	if((tableIterator = this->tableMap.find(id)) != this->tableMap.end())	
-		return tableIterator->second;
+Table* TableManager::getTableByID(string id){	
+	if(this->tableMap.containsKey(id))
+		return this->tableMap.get(id);
 	
 	return NULL;
 }
 
 void TableManager::clearAll(){
-	for each(TablePair tablePair in this->tableMap){
-		delete tablePair.second;
-		tablePair.second = NULL;
-	}
-	
+	for each(Table* table in this->tableMap)
+		delete table;
 	this->tableMap.clear();
 }
 
-unordered_map<string,Table*> TableManager::getAllTables(){
+HashMap<string,Table*> TableManager::getAllTables(){
 	return this->tableMap;
 }

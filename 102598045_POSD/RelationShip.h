@@ -4,6 +4,7 @@
 #include "Node.h"
 #include "Entity.h"
 #include "RelationType.h"
+#include "HashMap.h"
 
 class RelationShip : public Node{
 public:
@@ -17,7 +18,7 @@ public:
 
 	bool isRelationType(string relationType);
 
-	set<Entity*> getConnectedEntities();
+	HashMap<string,Entity*> getConnectedEntities();
 
 	Component* clone() const;
 };

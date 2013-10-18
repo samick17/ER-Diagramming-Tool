@@ -38,14 +38,14 @@ string Component::getClassName(){
 	return StringUtil::split(typeid(*this).name(),' ')[1];
 }
 //if no such connection in set, connect to target
-void Component::connectTo(Component* target){		
-	if(this->connectionSet.find(target) == this->connectionSet.end())
-		this->connectionSet.insert(target);
+void Component::connectTo(Component* target){	
+	if(!this->connectionMap.containsKey(target->getID()))
+		this->connectionMap.put(target->getID(),target);
 }
 //if has such connection in set, disconnect to target
 void Component::disconnectTo(Component* target){	
-	if(this->connectionSet.find(target) != this->connectionSet.end())	
-		this->connectionSet.erase(target);	
+	if(this->connectionMap.containsKey(target->getID()))
+		this->connectionMap.remove(target->getID());
 }
 
 bool Component::hasSizeToConnect(){
@@ -56,14 +56,14 @@ bool Component::hasSizeToConnect(){
 bool Component::hasConnectedTo(Component* target){
 	if(this == target)
 		return false;
-	for each(Component* component in this->connectionSet){
-		set<Component*> compConnSet = component->connectionSet;
-		if (compConnSet.find(target) != compConnSet.end()) 		
+	for each(Component* component in this->connectionMap){
+		HashMap<string,Component*> compConnMap = component->connectionMap;
+		if(compConnMap.containsKey(target->getID()))
 			return true;		
 	}	
 	return false;
 }
 
-set<Component*> Component::getAllConnections(){
-	return this->connectionSet;
+HashMap<string,Component*> Component::getAllConnections(){
+	return this->connectionMap;
 }

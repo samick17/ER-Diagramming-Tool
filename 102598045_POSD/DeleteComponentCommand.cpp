@@ -1,7 +1,6 @@
 #include "DeleteComponentCommand.h"
 #include "FindComponentCommand.h"
 #include "ERModelUtil.h"
-#include "SetUtil.h"
 #include "ComponentUtil.h"
 
 DeleteComponentCommand :: DeleteComponentCommand(Presentation* presentation) : UnexecutableCommand(presentation){	
@@ -10,12 +9,12 @@ DeleteComponentCommand :: DeleteComponentCommand(Presentation* presentation) : U
 
 DeleteComponentCommand::~DeleteComponentCommand(){
 	if(this->getExecutionFlag()){		
-		//delete connectionSet
-		SetUtil::deleteAllElementsInSet(this->connectionSet);
+		//delete connectionSet		
+		for each(Connector* connector in this->connectionSet)
+			delete connector;
 		//delete component	
 		if(this->component != NULL){
 			delete this->component;
-			this->component = NULL;
 		}
 	}
 	this->clearConnectionDataMap();
@@ -30,7 +29,7 @@ void DeleteComponentCommand::setupCommand(){
 	//save to variable - save deleted component
 	this->component = findComponentCommand.getComponent();
 	//save to variable - save connected connections
-	this->connectionSet = ERModelUtil::convertComponentSetToTypeSet<Connector>(this->component->getAllConnections());		
+	this->connectionSet = ERModelUtil::convertComponentHashMapToTypeHashMap<Connector>(this->component->getAllConnections());		
 	
 	this->removeAndDisconnectComponents();
 
@@ -62,9 +61,8 @@ void DeleteComponentCommand::unExecute(){
 		//add connected Connector to ERModel
 		erModel->insertComponent(connector);
 		//connect with each other
-		hash_map<string,ConnectionData*>::iterator connectionDataIterator;
-		if((connectionDataIterator = this->connectionDataMap.find(connector->getID())) != this->connectionDataMap.end())	
-			reConnectComponents(connectionDataIterator->second,connector);		
+		if(this->connectionDataMap.containsKey(connector->getID()))
+			reConnectComponents(this->connectionDataMap.get(connector->getID()),connector);			
 	}
 	this->UnexecutableCommand::unExecute();
 }
@@ -74,16 +72,12 @@ void DeleteComponentCommand::saveConnectionData(Connector* connector){
 	Component* secondNode = connector->getSecondConnectedNode();		
 
 	ConnectionData* connectionData = new ConnectionData(connector->getID(),firstNode->getID(),secondNode->getID());
-	this->connectionDataMap.insert(ConnectionDataPair(connectionData->getConnectorID(),connectionData));
+	this->connectionDataMap.put(connectionData->getConnectorID(),connectionData);
 }
 
 void DeleteComponentCommand::clearConnectionDataMap(){
-	for each(ConnectionDataPair connectionDataPair in this->connectionDataMap){
-		if(connectionDataPair.second != NULL){
-			delete connectionDataPair.second;
-			connectionDataPair.second = NULL;
-		}
-	}
+	for each(ConnectionData* connectionData in this->connectionDataMap)
+		delete connectionData;
 	this->connectionDataMap.clear();
 }
 //remove component from ERMol & disconnect it

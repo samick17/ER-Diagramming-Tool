@@ -2,6 +2,7 @@
 
 #include <string>
 #include <set>
+#include "HashMap.h"
 #include "ComponentData.h"
 #include "IClonable.h"
 #include "NodeConnectionType.h"
@@ -35,11 +36,11 @@ public:
 	virtual bool hasSizeToConnect();
 	bool hasConnectedTo(Component* target);
 
-	set<Component*> getAllConnections();
+	HashMap<string,Component*> getAllConnections();
 
 	virtual Component* clone() const = 0;
 protected:
 	ComponentData componentData;
 private:	
-	set<Component*> connectionSet;
+	HashMap<string,Component*> connectionMap;
 };

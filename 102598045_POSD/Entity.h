@@ -1,7 +1,8 @@
 #pragma once
 
 #include "Attribute.h"
-#include <set>
+#include <vector>
+#include "HashMap.h"
 
 class Entity : public Node{
 public:
@@ -15,9 +16,9 @@ public:
 	int canConnectTo(Component* target);
 	bool hasSizeToConnect();
 
-	set<Attribute*> getConnectedAttributes();
+	HashMap<string,Attribute*> getConnectedAttributes();
 	Attribute* getAttributeByID(string id);
-	set<Attribute*> getPrimaryKeyAttributes();
+	HashMap<string,Attribute*> getPrimaryKeyAttributes();
 	void setPrimaryKey(set<string> primaryKeyIDSet);
 
 	Component* clone() const;

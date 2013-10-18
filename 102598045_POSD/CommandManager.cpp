@@ -25,7 +25,6 @@ void CommandManager::execute(Command* command){
 	//delete command instance
 	else {
 		delete command;
-		command = NULL;
 	}
 }
 

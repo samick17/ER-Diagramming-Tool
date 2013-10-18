@@ -2,6 +2,7 @@
 
 #include <set>
 #include <vector>
+#include "HashMap.h"
 #include "Component.h"
 #include "StringUtil.h"
 #include "TableManager.h"
@@ -12,29 +13,29 @@ class ERModelUtil{
 public:
 	//template cant be put in cpp file
 	template<typename type> 
-	static set<type*> convertComponentSetToTypeSet(set<Component*> componentSet);
-
+	static HashMap<string,type*> convertComponentHashMapToTypeHashMap(HashMap<string,Component*> componentHashMap);
+	
 	template<typename type> 
 	static vector<type*> convertComponentVectorToTypeVector(vector<Component*> componentVector);
 
 	template <typename type>
 	static vector<type*> convertComponentSetToOrderedVector(vector<string> orderedVector,set<type*> typeSet);
 
-	static unordered_map<string,Table*> convertToTableMap(TableManager& tableManager,set<RelationShip*> relationShipSet);
+	static HashMap<string,Table*> convertToTableMap(TableManager& tableManager,HashMap<string,RelationShip*> relationShipSet);
 private:
-	static set<RelationShip*> getOneToOneRelationShips(set<RelationShip*> relationShipSet);
-	static void appendOneToOneTable(TableManager& tableManager,set<RelationShip*> relationShipSet);	
+	static HashMap<string,RelationShip*> getOneToOneRelationShips(HashMap<string,RelationShip*> relationShipSet);
+	static void appendOneToOneTable(TableManager& tableManager,HashMap<string,RelationShip*> relationShipSet);	
 };
-//convert component set to concrete type set
+//convert component hashmap to concrete type hashmap
 template<typename type> 
-static set<type*> ERModelUtil::convertComponentSetToTypeSet(set<Component*> componentSet){
-	set<type*> typeSet;	
-	for each (Component* component in componentSet){	
+static HashMap<string,type*> ERModelUtil::convertComponentHashMapToTypeHashMap(HashMap<string,Component*> componentHashMap){
+	HashMap<string,type*> typeHashMap;
+	for each (Component* component in componentHashMap){	
 		if(typeid(*component).name() == typeid(type).name()){
-			typeSet.insert(static_cast<type*>(component));
+			typeHashMap.put(component->getID(),static_cast<type*>(component));
 		}
 	}
-	return typeSet;
+	return typeHashMap;
 }
 //convert component vector to concrete type vector
 template<typename type> 

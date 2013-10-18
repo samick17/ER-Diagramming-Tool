@@ -27,23 +27,13 @@ void ERModel::insertComponent(Component* component){
 	if(component == NULL)
 		throw NullPointerException();
 	string componentID = component->getID();
-	if(this->componentMap.find(componentID) == this->componentMap.end()){
-		this->componentMap.insert(ComponentPair(componentID,component));	
-		//in order to keep component order, use a vector to convert component key to vector
-		this->componentKeyOrderVector.push_back(componentID);
-	}
+	this->componentMap.put(component->getID(),component);
 }
 //erase component in componentMap, if contains key
 void ERModel::eraseComponent(Component* component){
 	if(component == NULL)
 		throw NullPointerException();
-	if(this->componentMap.find(component->getID()) != this->componentMap.end()){
-		this->componentMap.erase(component->getID());
-		//in order to keep component order, use a vector to convert component key to vector	
-		vector<string>::iterator idIterator = find(this->componentKeyOrderVector.begin(),this->componentKeyOrderVector.end(),component->getID());
-		if (idIterator != this->componentKeyOrderVector.end()) 
-			this->componentKeyOrderVector.erase(idIterator);
-	}
+	this->componentMap.remove(component->getID());
 }
 //@return: NodeConnectionType
 int ERModel::addConnection(Component* firstNode,Component* secondNode){
@@ -61,10 +51,12 @@ int ERModel::addConnection(Component* firstNode,Component* secondNode){
 Component* ERModel::getComponentByID(string id){
 	unordered_map<string,Component*>::const_iterator find;
 
-	if((find = this->componentMap.find(id)) != this->componentMap.end())	
-		return find->second;
-
-	throw NoSuchNodeException(id);
+	try{
+		return this->componentMap.get(id);
+	}
+	catch(Exception&){
+		throw NoSuchNodeException(id);
+	}	
 }
 //@return: firstNode & secondNode's connector
 Connector* ERModel::getNodesConnector(Component* firstNode,Component* secondNode){
@@ -72,9 +64,9 @@ Connector* ERModel::getNodesConnector(Component* firstNode,Component* secondNode
 		throw NullPointerException();
 
 	Connector* connection = NULL;
-	if(this->componentMap.find(firstNode->getID()) != this->componentMap.end() && 
-		this->componentMap.find(secondNode->getID()) != this->componentMap.end()){
-		set<Connector*> connections = this->getAllConnectors();
+	if(this->componentMap.containsKey(firstNode->getID()) && 
+		this->componentMap.containsKey(secondNode->getID())){
+		HashMap<string,Connector*> connections = this->getAllConnectors();
 		for each(Connector* connector in connections){
 			if(connector->isNodesConnection(firstNode,secondNode)){
 				connection = connector;
@@ -85,53 +77,48 @@ Connector* ERModel::getNodesConnector(Component* firstNode,Component* secondNode
 	throw NullPointerException();
 }
 
-set<Component*> ERModel::getAllComponents(){
+HashMap<string,Component*> ERModel::getAllComponents(){
 	if(this->componentMap.empty())
 		throw EmptyCollectionException(ComponentType::TypeComponent);
-
-	set<Component*> componentSet;
-
-	for each(ComponentPair componentPair in this->componentMap)	
-		componentSet.insert(componentPair.second);
 	
-	return componentSet;
+	return this->componentMap;
 }
 
-set<Connector*> ERModel::getAllConnectors(){
-	set<Connector*> connectorSet = ERModelUtil::convertComponentSetToTypeSet<Connector>(this->getAllComponents());
+HashMap<string,Connector*> ERModel::getAllConnectors(){
+	HashMap<string,Connector*> connectorMap = ERModelUtil::convertComponentHashMapToTypeHashMap<Connector>(this->componentMap);
 
-	if(connectorSet.empty()){
-		throw EmptyCollectionException(ComponentType::TypeConnector);
+	if(connectorMap.empty()){
+		throw EmptyCollectionException(ComponentType::TypeConnectorName);
 	}
 
-	return connectorSet;
+	return connectorMap;
 }
 
-set<Entity*> ERModel::getAllEntities(){
-	set<Entity*> entitySet = ERModelUtil::convertComponentSetToTypeSet<Entity>(this->getAllComponents());
+HashMap<string,Entity*> ERModel::getAllEntities(){
+	HashMap<string,Entity*> entitySet = ERModelUtil::convertComponentHashMapToTypeHashMap<Entity>(this->getAllComponents());
 
 	if(entitySet.empty()){
-		throw EmptyCollectionException(ComponentType::TypeEntity);
+		throw EmptyCollectionException(ComponentType::TypeEntityName);
 	}
 
 	return entitySet;
 }
 
-set<RelationShip*> ERModel::getAllRelationShips(){	
-	set<RelationShip*> relationShipSet = ERModelUtil::convertComponentSetToTypeSet<RelationShip>(this->getAllComponents());
+HashMap<string,RelationShip*> ERModel::getAllRelationShips(){	
+	HashMap<string,RelationShip*> relationShipSet = ERModelUtil::convertComponentHashMapToTypeHashMap<RelationShip>(this->getAllComponents());
 
 	if(relationShipSet.empty()){
-		throw EmptyCollectionException(ComponentType::TypeRelationShip);
+		throw EmptyCollectionException(ComponentType::TypeRelationShipName);
 	}
 
 	return relationShipSet;
 }
 //get All Tables
-unordered_map<string,Table*> ERModel::getAllTables(){
+HashMap<string,Table*> ERModel::getAllTables(){
 	try{
 		return ERModelUtil::convertToTableMap(this->tableManager,this->getAllRelationShips());
 	}catch(Exception&){
-		throw EmptyCollectionException("Tables");
+		throw EmptyCollectionException("Table");
 	}
 }
 //clear all components & delete it
@@ -139,16 +126,8 @@ void ERModel::clearComponentMap(){
 	ComponentFactory componentFactory;
 	componentFactory.resetFactory();
 
-	for each (ComponentPair componentPair in this->componentMap)	{
-		delete componentPair.second;
-		componentPair.second = NULL;
-	}
+	for each (Component* component in this->componentMap)
+		delete component;
 	
 	this->componentMap.clear();
-	this->componentKeyOrderVector.clear();
-}
-//get component ordered ID Vector
-vector<string> ERModel::getComponentKeyOrderVector() const
-{
-	return this->componentKeyOrderVector;
 }

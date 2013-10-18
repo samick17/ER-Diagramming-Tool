@@ -7,12 +7,16 @@ Table::Table(Entity* entity) : entity(entity){
 Table::~Table(){
 }
 //all entity attribute (pk and attributes)
-void Table::insertAllAttributes(set<Attribute*> attributeSet){
-	this->attributeSet.insert(attributeSet.begin(),attributeSet.end());	
+void Table::insertAllAttributes(HashMap<string,Attribute*> attributeSet){
+	for each(Attribute* attribute in attributeSet){
+		this->attributeSet.put(attribute->getID(),attribute);	
+	}	
 }
 //all foreign key attribute
-void Table::insertAllForeignKeyAttributes(set<Attribute*> attributeSet){
-	this->foreignKeyAttributeSet.insert(attributeSet.begin(),attributeSet.end());
+void Table::insertAllForeignKeyAttributes(HashMap<string,Attribute*> attributeSet){
+	for each(Attribute* attribute in attributeSet){
+		this->foreignKeyAttributeSet.put(attribute->getID(),attribute);	
+	}	
 }
 
 string Table::getEntityID(){

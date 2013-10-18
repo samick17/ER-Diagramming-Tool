@@ -15,6 +15,7 @@ string Connector::toString(){
 	string result = this->getID();
 	result += " ";
 	result += this->getFirstConnectedNode()->getID();
+	this->getFirstConnectedNode()->getName();
 	result += ",";
 	result += this->getSecondConnectedNode()->getID();
 
@@ -41,8 +42,8 @@ bool Connector::hasSizeToConnect(){
 }
 //first node's id will always less than second node
 Component* Connector::getFirstConnectedNode(){
-	Component* firstNode = *this->getAllConnections().begin();
-	Component* secondNode = *(++this->getAllConnections().begin());
+	Component* firstNode = this->getAllConnections().getValueByIndex(0);
+	Component* secondNode = this->getAllConnections().getValueByIndex(1);
 	if(strcmp(firstNode->getID().c_str(),secondNode->getID().c_str())>0){
 		return secondNode;
 	}
@@ -50,8 +51,8 @@ Component* Connector::getFirstConnectedNode(){
 }
 //second node's id will always greater than first node
 Component* Connector::getSecondConnectedNode(){
-	Component* firstNode = *this->getAllConnections().begin();
-	Component* secondNode = *(++this->getAllConnections().begin());
+	Component* firstNode = this->getAllConnections().getValueByIndex(0);
+	Component* secondNode = this->getAllConnections().getValueByIndex(1);
 	if(strcmp(firstNode->getID().c_str(),secondNode->getID().c_str())>0){
 		return firstNode;
 	}
@@ -61,12 +62,14 @@ Component* Connector::getSecondConnectedNode(){
 bool Connector::isNodesConnection(Component* firstNode,Component* secondNode){	
 	if(firstNode == secondNode)
 		return false;
+	if(firstNode == NULL || secondNode == NULL)
+		return false;
 
 	bool isConnection = false;
-	set<Component*> connections = this->getAllConnections();
+	HashMap<string,Component*> connections = this->getAllConnections();
 
-	isConnection = (connections.find(firstNode) != connections.end());
-	isConnection &= ((connections.find(secondNode) != connections.end()));
+	isConnection = connections.containsKey(firstNode->getID());
+	isConnection &= connections.containsKey(secondNode->getID());
 
 	return isConnection;
 }

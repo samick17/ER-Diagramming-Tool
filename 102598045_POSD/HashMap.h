@@ -13,12 +13,15 @@ public:
 	Value put(Key key,Value value);
 	Value get(Key key);
 	Value remove(Key key);
-	int size();
+	unsigned int size();
 	bool containsKey(Key key);
+	Key tryGetKey(Value value);
+	Value getValueByIndex(unsigned int index);
 	bool empty();
-
+	void clear();
 	
 	typedef typename std::vector<Value>::iterator iterator;
+	typedef typename std::vector<Value>::const_iterator const_iterator;
 	iterator begin();
 	iterator end();
 private:	
@@ -69,7 +72,7 @@ Value HashMap<Key,Value>::remove(Key key){
 }
 
 template<typename Key,typename Value>
-int HashMap<Key,Value>::size(){
+unsigned int HashMap<Key,Value>::size(){
 	return hashmap.size();
 }
 
@@ -83,8 +86,29 @@ bool HashMap<Key,Value>::containsKey(Key key){
 }
 
 template<typename Key,typename Value>
+Key HashMap<Key,Value>::tryGetKey(Value value){
+	std::unordered_map<Key,Value>::iterator hashmapIterator = find(hashmap.begin(),hashmap.end(),value);
+	if(hashmapIterator == hashmap.end())
+		throw CollectionException(CollectionType::TypeHashMap);
+	return hashmapIterator->first;	
+}
+
+template<typename Key,typename Value>
+Value HashMap<Key,Value>::getValueByIndex(unsigned int index){
+	if(index >= valueVector.size())
+		throw CollectionException(CollectionType::TypeHashMap);
+	return valueVector[index];
+}
+
+template<typename Key,typename Value>
 bool HashMap<Key,Value>::empty(){
 	return hashmap.empty();
+}
+
+template<typename Key,typename Value>
+void HashMap<Key,Value>::clear(){
+	hashmap.clear();
+	valueVector.clear();
 }
 
 template<typename Key,typename Value>
