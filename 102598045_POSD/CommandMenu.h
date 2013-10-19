@@ -5,6 +5,9 @@
 #include "HashMap.h"
 
 class CommandMenu{
+	friend class CommandMenuTest;
+	FRIEND_TEST(CommandMenuTest,testInsertCommandData);
+	FRIEND_TEST(CommandMenuTest,testNewCommand);
 public:
 	CommandMenu();
 	~CommandMenu();
