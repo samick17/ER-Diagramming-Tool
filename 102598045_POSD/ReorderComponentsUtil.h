@@ -10,8 +10,9 @@ public:
 
 	HashMap<string,Component*> getReorderedComponentMap(ERModel* erModel);
 private:
-	HashMap<string,Component*> orderedComponentMap;
+	HashMap<string,Component*> componentMap;
 	HashMap<string,Component*> cloneComponentSet(ERModel* erModel);	
-	void reConnectToComponentVector(HashMap<string,Component*> orderedComponentMap);
-	void deueueAndInsertToVector(queue<Component*>& componentQueue,HashMap<string,Component*>& orderedComponentMap);
+	void clearComponentMap();
+	void reConnectToComponentVector();
+	HashMap<string,Component*> dequeueAndInsertToVector(queue<Component*>& componentQueue);
 };

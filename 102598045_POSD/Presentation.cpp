@@ -132,7 +132,7 @@ void Presentation::processCommand(string commandKey){
 		NewCommandFunction newCommandFunction = commandData->getNewCommandFunction();
 		//new one Command for Command Manager to Execute
 		command = newCommandFunction(this);
-		executeCommand(command);
+		this->executeCommand(command);
 	}
 	catch(NullPointerException){
 		cout<<"wrong command,please input correct command."<<endl;		
@@ -140,7 +140,7 @@ void Presentation::processCommand(string commandKey){
 	catch(Exception& exception){
 		cout<<exception.getMessage()<<endl;		
 		delete command;
-	}	
+	}
 }
 
 void Presentation::executeCommand(Command* command){
@@ -154,6 +154,7 @@ void Presentation::executeCommand(Command* command){
 		this->commandManager->execute(static_cast<UnexecutableCommand*>(command));
 	else {		
 		command->execute();
+		delete command;
 	}
 }
 

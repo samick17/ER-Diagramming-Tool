@@ -13,9 +13,8 @@ DeleteComponentCommand::~DeleteComponentCommand(){
 		for each(Connector* connector in this->connectionSet)
 			delete connector;
 		//delete component	
-		if(this->component != NULL){
-			delete this->component;
-		}
+		if(this->component != NULL)
+			delete this->component;		
 	}
 	this->clearConnectionDataMap();
 }
@@ -56,6 +55,8 @@ void DeleteComponentCommand::unExecute(){
 
 	//add deleted Component to ERModel
 	erModel->insertComponent(this->component);
+	if(typeid(*this->component).name() == typeid(Connector).name())
+		reConnectComponents(this->connectionDataMap.get(component->getID()),static_cast<Connector*>(component));
 
 	for each(Connector* connector in this->connectionSet){
 		//add connected Connector to ERModel
@@ -84,11 +85,10 @@ void DeleteComponentCommand::clearConnectionDataMap(){
 void DeleteComponentCommand::removeAndDisconnectComponents(){
 	ERModel* erModel = this->presentation->getERModel();	
 
+	//if is connector,save to connection data
+	if(typeid(*this->component).name() == typeid(Connector).name())
+		this->saveConnectionData(static_cast<Connector*>(this->component));	
 	//remove component from ERModel	
-	if(typeid(*this->component).name() == typeid(Connector).name()){
-		Connector* connector = static_cast<Connector*>(this->component);
-		this->saveConnectionData(connector);		
-	}
 	erModel->eraseComponent(this->component);
 	
 	//save connectionData & remove connectionSet from ERModel
