@@ -11,5 +11,5 @@ public:
 	
 	void execute();
 
-	vector<string> askPrimaryKeyAttributesID(Entity* entity);
+	set<string> setEntityAttributesPrimaryKey(Entity* entity);
 };

@@ -21,18 +21,12 @@ TEST_F(AttributeTest,testCanConnectTo){
 	ASSERT_THROW(this->attribute->canConnectTo(this->relationShip),InvalidConnectException);
 	ASSERT_THROW(this->relationShip->canConnectTo(this->attribute),InvalidConnectException);
 	ASSERT_EQ(NodeConnectionType::ValidConnect,this->attribute->canConnectTo(this->entity));
-	ASSERT_EQ(NodeConnectionType::ValidConnect,this->entity->canConnectTo(this->attribute));
-	ASSERT_EQ(NodeConnectionType::ConnectEntityAndRelation,this->relationShip->canConnectTo(this->entity));
-	ASSERT_EQ(NodeConnectionType::ConnectEntityAndRelation,this->entity->canConnectTo(this->relationShip));
+	ASSERT_EQ(NodeConnectionType::ValidConnect,this->entity->canConnectTo(this->attribute));	
 	ASSERT_THROW(this->attribute->canConnectTo(this->attribute),ConnectedSelfException);	
 
 	this->erModel.addConnection(this->entity,this->attribute);
 	ASSERT_THROW(this->attribute->canConnectTo(this->entity),HasConnectedException);
-	ASSERT_THROW(this->entity->canConnectTo(this->attribute),HasConnectedException);
-
-	this->erModel.addConnection(this->entity,this->relationShip);
-	ASSERT_THROW(this->relationShip->canConnectTo(this->entity),HasConnectedException);
-	ASSERT_THROW(this->entity->canConnectTo(this->relationShip),HasConnectedException);
+	ASSERT_THROW(this->entity->canConnectTo(this->attribute),HasConnectedException);	
 }
 TEST_F(AttributeTest,testHasSizeToConnect){
 	ASSERT_EQ(true,this->attribute->hasSizeToConnect());

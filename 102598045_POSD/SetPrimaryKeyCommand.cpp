@@ -25,34 +25,28 @@ void SetPrimaryKeyCommand :: execute(){
 	Entity* entity = static_cast<Entity*>(node);	
 	this->presentation->displayEntityAttributes(entity);	
 
-	vector<string> attributeIDVector = askPrimaryKeyAttributesID(entity);
-	set<string> attributeIDSet = VectorUtil::convertVectorToSet<string>(attributeIDVector);
-	entity->setPrimaryKey(attributeIDSet);
-
+	this->presentation->logMessage("Enter the IDs of the attributes (use a comma to separate two attributes):",true);
+	set<string> attributeIDSet = setEntityAttributesPrimaryKey(entity);	
 	//display Set Primary Key Result
 	this->presentation->logMessage("The entity '"+entity->getID()+"' has the primary key ",false);
 	this->presentation->displayStringWithComma("(",attributeIDSet,").");
 	this->presentation->logMessage("",true);
 }
-// @return :correct attribute,must has connected with selected entity
-vector<string> SetPrimaryKeyCommand::askPrimaryKeyAttributesID(Entity* entity){	
-	vector<string> attributeIDSet;
-	this->presentation->logMessage("Enter the IDs of the attributes (use a comma to separate two attributes):",true);
 
+set<string> SetPrimaryKeyCommand::setEntityAttributesPrimaryKey(Entity* entity){
+	vector<string> attributeIDVector;
+	set<string> attributeIDSet;
 	while(true){
 		try{
 			string input = this->presentation->getInput();
-
-			attributeIDSet = StringUtil::split(input,',');
-			for each(string attributeID in attributeIDSet)
-			{
-				entity->getAttributeByID(attributeID);
-			}
+			attributeIDVector = StringUtil::split(input,',');
+			attributeIDSet = VectorUtil::convertVectorToSet<string>(attributeIDVector);
+			entity->setPrimaryKey(attributeIDSet);
 			break;
 		}
 		catch(Exception& exception){
 			this->presentation->logMessage(exception.getMessage(),true);
 		}
-	}	
-	return attributeIDSet;
+	}
+	return  attributeIDSet;
 }

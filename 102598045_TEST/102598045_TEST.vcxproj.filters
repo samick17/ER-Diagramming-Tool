@@ -300,6 +300,12 @@
     <ClCompile Include="AttributeTest.cpp">
       <Filter>Unit Testing Files\ModelTest</Filter>
     </ClCompile>
+    <ClCompile Include="EntityTest.cpp">
+      <Filter>Unit Testing Files\ModelTest</Filter>
+    </ClCompile>
+    <ClCompile Include="RelationShipTest.cpp">
+      <Filter>Unit Testing Files\ModelTest</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DirectoryUtil.h">
@@ -318,6 +324,12 @@
       <Filter>Header Files\ModelTest</Filter>
     </ClInclude>
     <ClInclude Include="AttributeTest.h">
+      <Filter>Header Files\ModelTest</Filter>
+    </ClInclude>
+    <ClInclude Include="EntityTest.h">
+      <Filter>Header Files\ModelTest</Filter>
+    </ClInclude>
+    <ClInclude Include="RelationShipTest.h">
       <Filter>Header Files\ModelTest</Filter>
     </ClInclude>
   </ItemGroup>

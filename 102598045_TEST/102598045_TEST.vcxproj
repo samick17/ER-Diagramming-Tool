@@ -149,8 +149,10 @@
     <ClCompile Include="ComponentTest.cpp" />
     <ClCompile Include="ConnectorTest.cpp" />
     <ClCompile Include="DirectoryUtil.cpp" />
+    <ClCompile Include="EntityTest.cpp" />
     <ClCompile Include="ERModelTest.cpp" />
     <ClCompile Include="MainTest.cpp" />
+    <ClCompile Include="RelationShipTest.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AttributeTest.h" />
@@ -158,7 +160,9 @@
     <ClInclude Include="ComponentTest.h" />
     <ClInclude Include="ConnectorTest.h" />
     <ClInclude Include="DirectoryUtil.h" />
+    <ClInclude Include="EntityTest.h" />
     <ClInclude Include="ERModelTest.h" />
+    <ClInclude Include="RelationShipTest.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
