@@ -14,7 +14,6 @@ public:
 	string getType();
 
 	int canConnectTo(Component* target);
-	bool hasSizeToConnect();
 
 	HashMap<string,Attribute*> getConnectedAttributes();
 	Attribute* getAttributeByID(string id);

@@ -37,10 +37,6 @@ void Attribute::setAsPrimaryKey(){
 	this->attributeType = AttributeType::PrimaryKey;
 }
 
-bool Attribute::isAttributeType(int attributeType){
-	return this->attributeType == attributeType;
-}
-
 Component* Attribute::clone() const
 { 
 	return new Attribute(*this); 

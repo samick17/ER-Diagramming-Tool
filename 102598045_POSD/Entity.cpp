@@ -44,10 +44,6 @@ int Entity::canConnectTo(Component* target){
 	return canConnect;
 }
 
-bool Entity::hasSizeToConnect(){
-	return true;
-}
-
 HashMap<string,Attribute*> Entity::getConnectedAttributes(){
 	HashMap<string,Attribute*> connectedAttributeMap = ComponentUtil::getConnectedNodeHashMapByType<Attribute>(this->getAllConnections());
 

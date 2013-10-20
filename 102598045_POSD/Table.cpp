@@ -30,7 +30,7 @@ string Table::getEntityName(){
 set<string> Table::getAllPrimaryKeyAttributesNameSet(){
 	set<string> nameSet;
 	for each(Attribute* attribute in this->attributeSet){
-		if(attribute->isAttributeType(AttributeType::PrimaryKey))
+		if(attribute->isPrimaryKey())
 			nameSet.insert(attribute->getName());
 	}
 	return nameSet;
@@ -39,7 +39,7 @@ set<string> Table::getAllPrimaryKeyAttributesNameSet(){
 set<string> Table::getAllDefaultKeyAttributesNameSet(){
 	set<string> nameSet;
 	for each(Attribute* attribute in this->attributeSet){
-		if(attribute->isAttributeType(AttributeType::Default))
+		if(!attribute->isPrimaryKey())
 			nameSet.insert(attribute->getName());
 	}
 	return nameSet;
