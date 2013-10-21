@@ -17,7 +17,7 @@ Presentation* CommandManager::getPresentation(){
 
 void CommandManager::execute(UnexecutableCommand* command){
 	command->execute();		
-	this->undoCommandsStack.push(static_cast<UnexecutableCommand*>(command));
+	this->undoCommandsStack.push(command);
 	StackUtil::deleteAllElementsInStack<UnexecutableCommand>(this->redoCommandsStack);	
 }
 

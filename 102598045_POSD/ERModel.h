@@ -17,6 +17,10 @@ class ERModel{
 	FRIEND_TEST(ERModelTest,testGetAllEntities);
 	FRIEND_TEST(ERModelTest,testGetAllRelationShips);
 	FRIEND_TEST(ERModelTest,testClearComponentMap);
+	friend class IntegrationTest;
+	FRIEND_TEST(IntegrationTest,testIsPrimaryExist);
+	FRIEND_TEST(IntegrationTest,testUndoDeleteComponent);
+	FRIEND_TEST(IntegrationTest,testRedoConnectComponent);
 public:	
 	ERModel();
 	~ERModel();

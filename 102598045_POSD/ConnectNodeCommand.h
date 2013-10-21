@@ -3,6 +3,8 @@
 #include "UnexecutableCommand.h"
 
 class ConnectNodeCommand : public UnexecutableCommand{
+	friend class IntegrationTest;
+	FRIEND_TEST(IntegrationTest,testRedoConnectComponent);
 public:
 	ConnectNodeCommand(Presentation* presentation);
 	~ConnectNodeCommand();
@@ -14,6 +16,6 @@ public:
 private:
 	Component* firstNode;
 	Component* secondNode;
-	Component* connector;	
+	Component* connector;
 	void backupConnector(Component* firstNode,Component* secondNode);
 };

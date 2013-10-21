@@ -22,8 +22,8 @@ void SetPrimaryKeyCommand :: execute(){
 	findEntityCommand.execute();
 
 	Component* node = findEntityCommand.getComponent();
-	Entity* entity = static_cast<Entity*>(node);	
-	this->presentation->displayEntityAttributes(entity);	
+	Entity* entity = static_cast<Entity*>(node);
+	this->presentation->displayEntityAttributes(entity);
 
 	this->presentation->logMessage("Enter the IDs of the attributes (use a comma to separate two attributes):",true);
 	set<string> attributeIDSet = setEntityAttributesPrimaryKey(entity);	

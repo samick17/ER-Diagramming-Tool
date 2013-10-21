@@ -5,7 +5,7 @@ DisplayTableCommand :: DisplayTableCommand(Presentation* presentation) : Command
 
 DisplayTableCommand::~DisplayTableCommand(){
 }
-
+/**Non testable function**/
 void DisplayTableCommand :: execute(){
 	this->presentation->displayTable();	
 }

@@ -8,12 +8,14 @@
 class Table{
 	friend class ERModelTest;
 	FRIEND_TEST(ERModelTest,testGetAllTables);
+	friend class IntegrationTest;
+	FRIEND_TEST(IntegrationTest,testIsPrimaryExist);
 public:	
 	Table(Entity* entity);
 	~Table();
 	
-	void insertAllAttributes(HashMap<string,Attribute*> attributeSet);
-	void insertAllForeignKeyAttributes(HashMap<string,Attribute*> attributeSet);
+	void insertAllAttributes(HashMap<string,Attribute*> attributeMap);
+	void insertAllForeignKeyAttributes(HashMap<string,Attribute*> attributeMap);
 
 	string getEntityID();
 	string getEntityName();
@@ -23,6 +25,6 @@ public:
 	set<string> getAllForeignKeyAttributesNameSet();
 private:
 	Entity* entity;
-	HashMap<string,Attribute*> attributeSet;
-	HashMap<string,Attribute*> foreignKeyAttributeSet;
+	HashMap<string,Attribute*> attributeMap;
+	HashMap<string,Attribute*> foreignKeyAttributeMap;
 };

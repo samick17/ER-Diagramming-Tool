@@ -14,6 +14,7 @@ FindComponentCommand::~FindComponentCommand(){
 void FindComponentCommand::setInfo(string info){
 	this->info = info;
 }
+
 /**Non testable function**/
 void FindComponentCommand :: execute(){
 	ERModel* erModel = this->presentation->getERModel();
@@ -27,11 +28,11 @@ void FindComponentCommand :: execute(){
 	while(find == NULL){
 		try{
 			input = this->presentation->getInput();
-			find = erModel->getComponentByID(input);	
+			find = erModel->getComponentByID(input);
 		}
 		catch(Exception& exception){
 			this->presentation->logMessage(exception.getMessage(),true);
-		}	
+		}
 	}
 	this->component = find;
 }

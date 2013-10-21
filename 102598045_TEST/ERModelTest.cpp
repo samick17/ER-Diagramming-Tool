@@ -8,37 +8,45 @@
 #include "EmptyCollectionException.h"
 #include "ComponentType.h"
 #include "FileParser.h"
+#include "EmptyCollectionException.h"
 
 void ERModelTest::SetUp(){
-	ASSERT_EQ(0,this->erModel.componentMap.size());
-	//set file directory
-	string directory = DirectoryUtil::getCurrentWorkingDirectory()+"/testdata";
-	_mkdir(directory.c_str());
-	//save file to directory
-	string filePath = directory+"/test_file1.erd";
-	Document doc(filePath);	
-	string fileData[] = {
-		"E, Engineer","A, Emp_ID","R, Has","A, Name","E, PC","A, PC_ID","A, Purchase_Date","C","C","C","C","C, 1","C, 1","A, Department","C",
-		"","7 0,1","8 0,3","9 4,5","10 4,6","11 0,2","12 2,4","14 0,13",
-		"","0 1,3","4 5"
-	};
-	for (int lineIndex = 0;lineIndex<sizeof(fileData)/sizeof(*fileData);lineIndex++)
-		doc.wirteLine(fileData[lineIndex]);
-	doc.saveFile();
-	//load file to model
-	FileParser fileParser;
-	fileParser.parseFileToModel(filePath,&this->erModel);
+	ASSERT_THROW(this->erModel.getAllComponents(),EmptyCollectionException);
+
+	Entity* entityEngineer = static_cast<Entity*>(this->erModel.addNode(ComponentType::TypeEntity));
+	Attribute* attributeEmp_ID = static_cast<Attribute*>(this->erModel.addNode(ComponentType::TypeAttribute));
+	RelationShip* relationShipHas = static_cast<RelationShip*>(this->erModel.addNode(ComponentType::TypeRelationShip));
+	Attribute* attributeName = static_cast<Attribute*>(this->erModel.addNode(ComponentType::TypeAttribute));
+	Entity* entityPC = static_cast<Entity*>(this->erModel.addNode(ComponentType::TypeEntity));
+	Attribute* attributePC_ID = static_cast<Attribute*>(this->erModel.addNode(ComponentType::TypeAttribute));
+	Attribute* attributePurchase_Date = static_cast<Attribute*>(this->erModel.addNode(ComponentType::TypeAttribute));
+		
+	this->erModel.addConnection(entityEngineer,attributeEmp_ID);
+	this->erModel.addConnection(entityEngineer,attributeName);
+	this->erModel.addConnection(entityPC,attributePC_ID);
+	this->erModel.addConnection(entityPC,attributePurchase_Date);
+	this->erModel.addConnection(entityEngineer,relationShipHas);
+	this->erModel.addConnection(relationShipHas,entityPC);
+	Attribute* attributeDepartment = static_cast<Attribute*>(this->erModel.addNode(ComponentType::TypeAttribute));	
+	this->erModel.addConnection(entityEngineer,attributeDepartment);
+	this->erModel.getComponentByID("11")->setName(RelationType::OneToOne);
+	this->erModel.getComponentByID("12")->setName(RelationType::OneToOne);	
+	attributeEmp_ID->setAsPrimaryKey();
+	attributeName->setAsPrimaryKey();	
+	attributePC_ID->setAsPrimaryKey();
+
+	entityEngineer->setName("Engineer");
+	attributeEmp_ID->setName("Emp_ID");
+	relationShipHas->setName("Has");
+	attributeName->setName("Name");
+	entityPC->setName("PC");
+	attributePC_ID->setName("PC_ID");
+	attributePurchase_Date->setName("Purchase_Date");
+	attributeDepartment->setName("Department");
 
 	ASSERT_EQ(15,this->erModel.componentMap.size());
 }
 
-void ERModelTest::TearDown(){	
-	//delete file
-	string directory = DirectoryUtil::getCurrentWorkingDirectory()+"/testdata";
-	string filePath = directory+"/test_file1.erd";
-	remove(filePath.c_str());
-	_rmdir(directory.c_str());	
-}
 //return firstComponent has connection to secondComponent & secondComponent has connection to firstComponent
 bool ERModelTest::hasConnected(Component* firstComponent,Component* secondComponent){
 	bool isFirstComponentConnectToSecond = false;
@@ -229,12 +237,12 @@ TEST_F(ERModelTest,testGetAllTables){
 
 	Component* entityEngineer = this->erModel.getComponentByID("0");
 	Table* tableEngineer = tableMap.get(entityEngineer->getID());		
-	ASSERT_EQ(3,tableEngineer->attributeSet.size());
+	ASSERT_EQ(3,tableEngineer->attributeMap.size());
 	ASSERT_EQ(entityEngineer,tableEngineer->entity);
 	
 	Component* entityPC = this->erModel.getComponentByID("4");
 	Table* tablePC = tableMap.get(entityPC->getID());
-	ASSERT_EQ(2,tablePC->attributeSet.size());
+	ASSERT_EQ(2,tablePC->attributeMap.size());
 	ASSERT_EQ(entityPC,tablePC->entity);
 
 	this->erModel.clearComponentMap();

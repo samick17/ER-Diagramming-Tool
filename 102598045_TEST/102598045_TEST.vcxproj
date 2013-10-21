@@ -52,12 +52,15 @@
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>c:\gtest\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
-      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>c:\gtest\lib\gtestd.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <SuppressStartupBanner>false</SuppressStartupBanner>
+      <OptimizeReferences>false</OptimizeReferences>
+      <Profile>true</Profile>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -151,6 +154,7 @@
     <ClCompile Include="DirectoryUtil.cpp" />
     <ClCompile Include="EntityTest.cpp" />
     <ClCompile Include="ERModelTest.cpp" />
+    <ClCompile Include="IntegrationTest.cpp" />
     <ClCompile Include="MainTest.cpp" />
     <ClCompile Include="RelationShipTest.cpp" />
   </ItemGroup>
@@ -162,6 +166,7 @@
     <ClInclude Include="DirectoryUtil.h" />
     <ClInclude Include="EntityTest.h" />
     <ClInclude Include="ERModelTest.h" />
+    <ClInclude Include="IntegrationTest.h" />
     <ClInclude Include="RelationShipTest.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

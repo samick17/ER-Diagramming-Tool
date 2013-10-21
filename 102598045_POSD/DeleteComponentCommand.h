@@ -5,6 +5,8 @@
 #include "HashMap.h"
 
 class DeleteComponentCommand : public UnexecutableCommand{
+	friend IntegrationTest;
+	FRIEND_TEST(IntegrationTest,testUndoDeleteComponent);
 public:
 	DeleteComponentCommand(Presentation* presentation);
 	~DeleteComponentCommand();

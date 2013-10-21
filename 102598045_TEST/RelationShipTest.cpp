@@ -27,6 +27,10 @@ TEST_F(RelationShipTest,CanConnectTo){
 	this->erModel.addConnection(this->entity,this->relationShip);
 	ASSERT_THROW(this->relationShip->canConnectTo(this->entity),HasConnectedException);
 	ASSERT_THROW(this->entity->canConnectTo(this->relationShip),HasConnectedException);
+	ASSERT_THROW(this->relationShip->canConnectTo(this->erModel.addNode(ComponentType::TypeRelationShip)),InvalidConnectException);
+	Component* entity2 = this->erModel.addNode(ComponentType::TypeEntity);
+	this->erModel.addConnection(entity2,this->relationShip);
+	ASSERT_THROW(this->relationShip->canConnectTo(this->erModel.addNode(ComponentType::TypeEntity)),InvalidConnectException);
 }
 
 TEST_F(RelationShipTest,testHasSizeToConnect){

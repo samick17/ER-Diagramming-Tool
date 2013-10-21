@@ -5,7 +5,7 @@ DisplayDiagramCommand :: DisplayDiagramCommand(Presentation* presentation) : Com
 
 DisplayDiagramCommand::~DisplayDiagramCommand(){
 }
-
+/**Non testable function**/
 void DisplayDiagramCommand :: execute(){
 	this->presentation->logMessage("The ER diagram is displayed as follows:",true);	
 	this->presentation->displayComponents();	

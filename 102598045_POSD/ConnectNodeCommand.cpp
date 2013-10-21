@@ -5,6 +5,7 @@
 #include "FindComponentCommand.h"
 #include "ComponentUtil.h"
 #include "Exception.h"
+#include "NullPointerException.h"
 
 using namespace std;
 
@@ -40,21 +41,26 @@ void ConnectNodeCommand::setupCommand(){
 }
 
 void ConnectNodeCommand :: execute(){
+	if(this->getExecutionFlag())
+		return;		
 	ERModel* erModel = this->presentation->getERModel();
 	
-	try{
-		erModel->getComponentByID(this->connector->getID());
-	}
-	catch(Exception&){
-		//connect two node, and add connector to ERModel
-		ComponentUtil::connectWithEachOther(this->firstNode,this->secondNode,this->connector);
-		erModel->insertComponent(this->connector);
-	}
-	
+	if(this->connector == NULL){
+		erModel->addConnection(firstNode,secondNode);
+		this->backupConnector(firstNode,secondNode);
+	}else 
+		try{
+			erModel->getComponentByID(this->connector->getID());
+		}catch(Exception&){
+			ComponentUtil::connectWithEachOther(this->firstNode,this->secondNode,this->connector);
+			erModel->insertComponent(this->connector);
+		}
 	this->UnexecutableCommand::execute();
 }
 
 void ConnectNodeCommand::unExecute(){
+	if(!this->getExecutionFlag())
+		return;
 	//disconnect node && remove connector from ERModel
 	ComponentUtil::disconnectWithEachOther(this->firstNode,this->secondNode,this->connector);
 

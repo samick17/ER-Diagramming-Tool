@@ -14,12 +14,11 @@ void LoadFileCommand::setupCommand(){
 	this->presentation->logMessage("Please input the file name: ",true);
 	this->filePath = this->presentation->getInput();
 }
-
+/**Non testable function**/
 void LoadFileCommand::execute(){
-	
 	ERModel* erModel = this->presentation->getERModel();
 	FileParser fileParser;	
-	fileParser.parseFileToModel(this->filePath,erModel);	
+	fileParser.parseFileToModel(this->filePath,erModel);
 
 	//load file succeed. pop all stack in commandManager
 	CommandManager* commandManager = this->presentation->getCommandManager();

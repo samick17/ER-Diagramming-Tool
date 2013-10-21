@@ -54,7 +54,6 @@ TEST_F(ConnectorTest,testGetFirstConnectedNode){
 	
 	ASSERT_EQ(this->attribute,this->connector->getFirstConnectedNode());
 	ASSERT_EQ(this->relationShip,connectorEntityAndRelation->getFirstConnectedNode());
-
 }
 
 TEST_F(ConnectorTest,testGetSecondConnectedNode){

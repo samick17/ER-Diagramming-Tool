@@ -26,7 +26,9 @@ TEST_F(AttributeTest,testCanConnectTo){
 
 	this->erModel.addConnection(this->entity,this->attribute);
 	ASSERT_THROW(this->attribute->canConnectTo(this->entity),HasConnectedException);
-	ASSERT_THROW(this->entity->canConnectTo(this->attribute),HasConnectedException);	
+	ASSERT_THROW(this->entity->canConnectTo(this->attribute),HasConnectedException);
+	ASSERT_THROW(this->attribute->canConnectTo(this->erModel.addNode(ComponentType::TypeAttribute)),InvalidConnectException);
+	ASSERT_THROW(this->attribute->canConnectTo(this->erModel.addNode(ComponentType::TypeEntity)),InvalidConnectException);
 }
 TEST_F(AttributeTest,testHasSizeToConnect){
 	ASSERT_EQ(true,this->attribute->hasSizeToConnect());

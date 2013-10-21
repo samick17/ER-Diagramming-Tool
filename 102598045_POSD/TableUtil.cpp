@@ -43,16 +43,16 @@ void TableUtil::insertAllForeignKeyToTable(TableManager& tableManager,RelationSh
 	//convert relationship data & insert data to table
 	Entity* firstEntity = *relationShip->getConnectedEntities().begin();
 	Entity* secondEntity = *(--relationShip->getConnectedEntities().end());		
-	HashMap<string,Attribute*> primaryKeyAttributeSet;
+	HashMap<string,Attribute*> primaryKeyAttributeMap;
 	//find pk set & find table to insert pk
 	try{
 		Table* table = NULL;
-		if(!((primaryKeyAttributeSet = firstEntity->getPrimaryKeyAttributes()).empty()))
+		if(!((primaryKeyAttributeMap = firstEntity->getPrimaryKeyAttributes()).empty()))
 			table = tableManager.getTableByID(secondEntity->getID());
-		else if(!((primaryKeyAttributeSet = secondEntity->getPrimaryKeyAttributes()).empty()))
+		else if(!((primaryKeyAttributeMap = secondEntity->getPrimaryKeyAttributes()).empty()))
 			table = tableManager.getTableByID(firstEntity->getID());
 		//insert all foreign key
-		table->insertAllForeignKeyAttributes(primaryKeyAttributeSet);		
+		table->insertAllForeignKeyAttributes(primaryKeyAttributeMap);
 	}catch(Exception&){
 	}
 }

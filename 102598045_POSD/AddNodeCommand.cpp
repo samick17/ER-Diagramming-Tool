@@ -29,22 +29,24 @@ void AddNodeCommand::setupCommand(){
 }
 //if ERModel doesn't contains this node, add this node to ERModel
 void AddNodeCommand::execute(){
+	if(this->getExecutionFlag())
+		return;		
 	ERModel* erModel = this->presentation->getERModel();
-
-	try{
+	try{		
 		erModel->getComponentByID(this->node->getID());
 	}
 	catch(Exception&){
 		erModel->insertComponent(this->node);
 	}
-	
+
 	this->UnexecutableCommand::execute();
 }
 //
 void AddNodeCommand::unExecute(){
+	if(!this->getExecutionFlag())
+		return;
 	//remove node
-	ERModel* erModel = this->presentation->getERModel();
-		
+	ERModel* erModel = this->presentation->getERModel();		
 	erModel->eraseComponent(this->node);
 
 	this->UnexecutableCommand::unExecute();

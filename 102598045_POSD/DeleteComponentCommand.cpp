@@ -28,7 +28,7 @@ void DeleteComponentCommand::setupCommand(){
 	//save to variable - save deleted component
 	this->component = findComponentCommand.getComponent();
 	//save to variable - save connected connections
-	this->connectionMap = ERModelUtil::convertComponentHashMapToTypeHashMap<Connector>(this->component->getAllConnections());		
+	//this->connectionMap = ERModelUtil::convertComponentHashMapToTypeHashMap<Connector>(this->component->getAllConnections());		
 	
 	this->removeAndDisconnectComponents();
 
@@ -36,6 +36,8 @@ void DeleteComponentCommand::setupCommand(){
 }
 
 void DeleteComponentCommand :: execute(){
+	if(this->getExecutionFlag())
+		return;
 	ERModel* erModel = this->presentation->getERModel();
 
 	try{
@@ -51,8 +53,9 @@ void DeleteComponentCommand :: execute(){
 }
 
 void DeleteComponentCommand::unExecute(){
+	if(!this->getExecutionFlag())
+		return;		
 	ERModel* erModel = this->presentation->getERModel();	
-	
 	//insert All connectors to ERModel at origin index
 	for (HashMap<string,Connector*>::reverse_iterator connectorIterator = this->connectionMap.rbegin(); connectorIterator!= this->connectionMap.rend(); connectorIterator++){
 		Connector* connector = *connectorIterator;		
@@ -72,7 +75,7 @@ void DeleteComponentCommand::unExecute(){
 
 void DeleteComponentCommand::saveConnectionData(Connector* connector){
 	Component* firstNode = connector->getFirstConnectedNode();
-	Component* secondNode = connector->getSecondConnectedNode();		
+	Component* secondNode = connector->getSecondConnectedNode();	
 
 	ConnectionData* connectionData = new ConnectionData(connector->getID(),firstNode->getID(),secondNode->getID());
 	this->connectionDataMap.put(connectionData->getConnectorID(),connectionData);
@@ -88,6 +91,7 @@ void DeleteComponentCommand::clearConnectionDataMap(){
 void DeleteComponentCommand::removeAndDisconnectComponents(){
 	ERModel* erModel = this->presentation->getERModel();	
 
+	this->connectionMap = ERModelUtil::convertComponentHashMapToTypeHashMap<Connector>(this->component->getAllConnections());
 	//if is connector,save to connection data
 	if(typeid(*this->component).name() == typeid(Connector).name())
 		this->saveConnectionData(static_cast<Connector*>(this->component));	
