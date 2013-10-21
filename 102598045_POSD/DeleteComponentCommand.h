@@ -15,8 +15,9 @@ public:
 	void unExecute();
 private:
 	Component* component;
-	HashMap<string,Connector*> connectionSet;
+	HashMap<string,Connector*> connectionMap;
 	HashMap<string,ConnectionData*> connectionDataMap;
+	HashMap<string,unsigned int> componentIndexMap;
 	void saveConnectionData(Connector* connector);
 	void clearConnectionDataMap();
 	void removeAndDisconnectComponents();

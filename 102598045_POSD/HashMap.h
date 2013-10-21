@@ -11,19 +11,23 @@ template<typename Key,typename Value>
 class HashMap{
 public:
 	Value put(Key key,Value value);
+	Value insertAt(Key key,Value value,unsigned int index);
 	Value get(Key key);
 	Value remove(Key key);
 	unsigned int size();
 	bool containsKey(Key key);
 	Key tryGetKey(Value value);
 	Value getValueByIndex(unsigned int index);
+	unsigned int getValueIndex(Value value);
 	bool empty();
 	void clear();
 	
 	typedef typename std::vector<Value>::iterator iterator;
-	typedef typename std::vector<Value>::const_iterator const_iterator;
+	typedef typename std::vector<Value>::reverse_iterator reverse_iterator;
 	iterator begin();
 	iterator end();
+	reverse_iterator rbegin();
+	reverse_iterator rend();
 private:	
 	std::unordered_map<Key,Value> hashmap;
 	std::vector<Value> valueVector;
@@ -37,8 +41,22 @@ Value HashMap<Key,Value>::put(Key key,Value value){
 	if(hashmapIterator != hashmap.end())
 		throw DuplicatedKeyException(CollectionType::TypeHashMap);
 
-	hashmap.insert(pair<Key,Value>(key,value));
+	hashmap.insert(pair<Key,Value>(key,value));	
 	valueVector.push_back(value);
+
+	return value;
+}
+
+template<typename Key,typename Value>
+Value HashMap<Key,Value>::insertAt(Key key,Value value,unsigned int index){
+	std::unordered_map<Key,Value>::iterator hashmapIterator = hashmap.find(key);
+
+	//contains Key
+	if(hashmapIterator != hashmap.end())
+		throw DuplicatedKeyException(CollectionType::TypeHashMap);
+
+	hashmap.insert(pair<Key,Value>(key,value));	
+	valueVector.insert(valueVector.begin()+index,value);
 
 	return value;
 }
@@ -102,6 +120,12 @@ Value HashMap<Key,Value>::getValueByIndex(unsigned int index){
 }
 
 template<typename Key,typename Value>
+unsigned int HashMap<Key,Value>::getValueIndex(Value value){
+	vector<Value>::iterator valueIterator = find(valueVector.begin(),valueVector.end(),value);
+	return std::distance(valueVector.begin(),valueIterator);
+}
+
+template<typename Key,typename Value>
 bool HashMap<Key,Value>::empty(){
 	return hashmap.empty();
 }
@@ -120,4 +144,13 @@ typename HashMap<Key,Value>::iterator HashMap<Key,Value>::begin(){
 template<typename Key,typename Value>
 typename HashMap<Key,Value>::iterator HashMap<Key,Value>::end(){
 	return valueVector.end();
+}
+template<typename Key,typename Value>
+typename HashMap<Key,Value>::reverse_iterator HashMap<Key,Value>::rbegin(){
+	return valueVector.rbegin();
+}
+
+template<typename Key,typename Value>
+typename HashMap<Key,Value>::reverse_iterator HashMap<Key,Value>::rend(){
+	return valueVector.rend();
 }

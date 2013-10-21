@@ -23,6 +23,7 @@ public:
 
 	Component* addNode(string componentType);
 	void insertComponent(Component* component);
+	void insertComponentAt(Component* component,unsigned int index);
 	void eraseComponent(Component* component);
 	int addConnection(Component* firstNode,Component* secondNode);
 	Component* getComponentByID(string id);
