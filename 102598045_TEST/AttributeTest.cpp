@@ -5,9 +5,22 @@
 #include "HasConnectedException.h"
 
 void AttributeTest::SetUp(){
-	this->attribute = static_cast<Attribute*>(this->erModel.addNode(ComponentType::TypeAttribute));
-	this->relationShip = this->erModel.addNode(ComponentType::TypeRelationShip);
-	this->entity = this->erModel.addNode(ComponentType::TypeEntity);
+	this->attribute = new Attribute(ComponentData("0","Name"));
+	this->relationShip = new RelationShip(ComponentData("1","Has"));
+	this->entity = new Entity(ComponentData("2","Engineer"));
+}
+
+void AttributeTest::TearDown(){
+	delete this->attribute;
+	delete this->relationShip;
+	delete this->entity;
+}
+
+void AttributeTest::connectWithEachOther(Node* firstNode,Node* secondNode,Connector* connector){
+	firstNode->connectTo(connector);
+	secondNode->connectTo(connector);
+	connector->connectTo(firstNode);
+	connector->connectTo(secondNode);
 }
 
 TEST_F(AttributeTest,testGetType){
@@ -19,15 +32,20 @@ TEST_F(AttributeTest,testCanConnectTo){
 	ASSERT_EQ(NodeConnectionType::ValidConnect,this->attribute->canConnectTo(this->entity));	
 	ASSERT_THROW(this->attribute->canConnectTo(this->attribute),ConnectedSelfException);	
 
-	this->erModel.addConnection(this->entity,this->attribute);
-	ASSERT_THROW(this->attribute->canConnectTo(this->entity),HasConnectedException);
-	ASSERT_THROW(this->attribute->canConnectTo(this->erModel.addNode(ComponentType::TypeAttribute)),InvalidConnectException);
-	ASSERT_THROW(this->attribute->canConnectTo(this->erModel.addNode(ComponentType::TypeEntity)),InvalidConnectException);
+	Connector* connector = new Connector(ComponentData("3",""));	
+	this->connectWithEachOther(this->attribute,this->entity,connector);
+
+	ASSERT_THROW(this->attribute->canConnectTo(this->entity),HasConnectedException);	
+	ASSERT_THROW(this->attribute->canConnectTo(&Attribute(ComponentData("",""))),InvalidConnectException);
+	ASSERT_THROW(this->attribute->canConnectTo(&Entity(ComponentData("",""))),InvalidConnectException);
+
+	delete connector;
 }
 TEST_F(AttributeTest,testHasSizeToConnect){
 	ASSERT_EQ(true,this->attribute->hasSizeToConnect());
 
-	this->erModel.addConnection(this->attribute,this->entity);
+	Connector* connector = new Connector(ComponentData("3",""));	
+	this->connectWithEachOther(this->attribute,this->entity,connector);
 	ASSERT_EQ(false,this->attribute->hasSizeToConnect());
 }
 

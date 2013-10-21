@@ -5,12 +5,22 @@
 #include "HasConnectedException.h"
 
 void RelationShipTest::SetUp(){
-	this->attribute = this->erModel.addNode(ComponentType::TypeAttribute);
-	this->relationShip = static_cast<RelationShip*>(this->erModel.addNode(ComponentType::TypeRelationShip));
-	this->entity = this->erModel.addNode(ComponentType::TypeEntity);
+	this->attribute = new Attribute(ComponentData("0","Name"));
+	this->relationShip = new RelationShip(ComponentData("1","Has"));
+	this->entity = new Entity(ComponentData("2","Engineer"));
 }
 
 void RelationShipTest::TearDown(){
+	delete this->attribute;
+	delete this->relationShip;
+	delete this->entity;
+}
+
+void RelationShipTest::connectWithEachOther(Node* firstNode,Node* secondNode,Connector* connector){
+	firstNode->connectTo(connector);
+	secondNode->connectTo(connector);
+	connector->connectTo(firstNode);
+	connector->connectTo(secondNode);
 }
 
 TEST_F(RelationShipTest,testGetType){
@@ -22,12 +32,17 @@ TEST_F(RelationShipTest,CanConnectTo){
 	ASSERT_EQ(NodeConnectionType::ConnectEntityAndRelation,this->relationShip->canConnectTo(this->entity));	
 	ASSERT_THROW(this->relationShip->canConnectTo(this->relationShip),ConnectedSelfException);
 
-	this->erModel.addConnection(this->entity,this->relationShip);
+	Connector connector = Connector(ComponentData("3",""));
+	connectWithEachOther(this->entity,this->relationShip,&connector);
 	ASSERT_THROW(this->relationShip->canConnectTo(this->entity),HasConnectedException);
-	ASSERT_THROW(this->relationShip->canConnectTo(this->erModel.addNode(ComponentType::TypeRelationShip)),InvalidConnectException);
-	Component* entity2 = this->erModel.addNode(ComponentType::TypeEntity);
-	this->erModel.addConnection(entity2,this->relationShip);
-	ASSERT_THROW(this->relationShip->canConnectTo(this->erModel.addNode(ComponentType::TypeEntity)),InvalidConnectException);
+	ASSERT_THROW(this->relationShip->canConnectTo(&RelationShip(ComponentData("4","WorkOn"))),InvalidConnectException);
+	//Component* entity2 = this->erModel.addNode(ComponentType::TypeEntity);
+	//this->erModel.addConnection(entity2,this->relationShip);
+	Entity entity2 = Entity(ComponentData("5","PC"));
+	Connector connector2 = Connector(ComponentData("6",""));
+	connectWithEachOther(&entity2,this->relationShip,&connector2);
+
+	ASSERT_THROW(this->relationShip->canConnectTo(&Entity(ComponentData("7","NoteBook"))),InvalidConnectException);
 }
 
 TEST_F(RelationShipTest,testHasSizeToConnect){
@@ -35,11 +50,13 @@ TEST_F(RelationShipTest,testHasSizeToConnect){
 	ASSERT_EQ(true,this->relationShip->hasSizeToConnect());
 	ASSERT_EQ(true,this->entity->hasSizeToConnect());
 
-	this->erModel.addConnection(this->relationShip,this->entity);
+	Connector connector1 = Connector(ComponentData("3",""));
+	connectWithEachOther(this->relationShip,this->entity,&connector1);
 	ASSERT_EQ(true,this->relationShip->hasSizeToConnect());
 
-	Component* entity2 = this->erModel.addNode(ComponentType::TypeEntity);
-	this->erModel.addConnection(this->relationShip,entity2);
+	Entity entity2 = Entity(ComponentData("4","NoteBook"));
+	Connector connector2 = Connector(ComponentData("5",""));
+	connectWithEachOther(this->relationShip,&entity2,&connector2);
 	ASSERT_EQ(false,this->relationShip->hasSizeToConnect());
 }
 
@@ -48,28 +65,28 @@ TEST_F(RelationShipTest,testIsRelationType){
 	
 	ASSERT_EQ(false,this->relationShip->isRelationType(RelationType::OneToOne));
 
-	this->erModel.addConnection(this->relationShip,this->entity);
-	Component* entity2 = this->erModel.addNode(ComponentType::TypeEntity);
-	this->erModel.addConnection(this->relationShip,entity2);
+	Connector connector1 = Connector(ComponentData("3",""));
+	connectWithEachOther(this->relationShip,this->entity,&connector1);
+	Entity entity2 = Entity(ComponentData("4","NoteBook"));
+	Connector connector2 = Connector(ComponentData("5",""));
+	connectWithEachOther(this->relationShip,&entity2,&connector2);
 	ASSERT_EQ(false,this->relationShip->isRelationType(RelationType::OneToOne));
-	Component* connector1 = this->erModel.getComponentByID("3");
-	Component* connector2 = this->erModel.getComponentByID("5");
-	connector1->setName(RelationType::OneToOne);
+	connector1.setName(RelationType::OneToOne);
 	ASSERT_EQ(false,this->relationShip->isRelationType(RelationType::OneToOne));
-	connector2->setName(RelationType::OneToOne);
+	connector2.setName(RelationType::OneToOne);
 	ASSERT_EQ(true,this->relationShip->isRelationType(RelationType::OneToOne));
 }
 
 TEST_F(RelationShipTest,testGetConnectedEntities){
 	ASSERT_EQ(0,this->relationShip->getConnectedEntities().size());
-	this->erModel.addConnection(this->relationShip,this->entity);
-	ASSERT_EQ(1,this->relationShip->getConnectedEntities().size());
-	Component* entity2 = this->erModel.addNode(ComponentType::TypeEntity);
-	this->erModel.addConnection(this->relationShip,entity2);
-	ASSERT_EQ(2,this->relationShip->getConnectedEntities().size());
+	Connector connector1 = Connector(ComponentData("3",""));
+	connectWithEachOther(this->relationShip,this->entity,&connector1);
 
-	Component* entity3 = this->erModel.addNode(ComponentType::TypeEntity);
-	ASSERT_THROW(this->erModel.addConnection(this->relationShip,entity3),InvalidConnectException);
+	ASSERT_EQ(1,this->relationShip->getConnectedEntities().size());
+	Entity entity2 = Entity(ComponentData("4","NoteBook"));
+	Connector connector2 = Connector(ComponentData("5",""));
+	connectWithEachOther(this->relationShip,&entity2,&connector2);
+	ASSERT_EQ(2,this->relationShip->getConnectedEntities().size());	
 }
 
 TEST_F(RelationShipTest,testClone){

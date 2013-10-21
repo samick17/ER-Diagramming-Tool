@@ -148,10 +148,13 @@ void Presentation::executeCommand(Command* command){
 	string commandInfo = command->getCommandInformation();
 	if(commandInfo!= "")
 		cout<<commandInfo<<endl;
-	command->setupCommand();
+	
 	//execute
-	if(command->isUnexecutable())
-		this->commandManager->execute(static_cast<UnexecutableCommand*>(command));
+	if(command->isUnexecutable()){
+		UnexecutableCommand* unexecutableCmd = static_cast<UnexecutableCommand*>(command);
+		unexecutableCmd->setupCommand();
+		this->commandManager->execute(unexecutableCmd);
+	}
 	else {		
 		command->execute();
 		delete command;

@@ -7,8 +7,7 @@ public:
 	UnexecutableCommand(Presentation* presentation);
 	~UnexecutableCommand();
 
-	void setupCommand();
-
+	virtual void setupCommand() = 0;
 	bool isUnexecutable();
 
 	void execute();

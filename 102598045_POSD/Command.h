@@ -16,7 +16,6 @@ public:
 	virtual ~Command();
 	
 	string getCommandInformation();
-	virtual void setupCommand();
 
 	virtual bool isUnexecutable();
 		

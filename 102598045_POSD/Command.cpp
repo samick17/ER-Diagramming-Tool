@@ -13,9 +13,6 @@ string Command::getCommandInformation(){
 	return this->commandInformation;
 }
 
-void Command::setupCommand(){
-}
-
 bool Command::isUnexecutable(){
 	return false;
 }
