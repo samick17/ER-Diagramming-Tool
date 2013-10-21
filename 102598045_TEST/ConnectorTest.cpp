@@ -8,10 +8,7 @@ void ConnectorTest::SetUp(){
 	this->entity = this->erModel.addNode(ComponentType::TypeEntity);
 
 	this->erModel.addConnection(this->attribute,this->entity);
-	this->connector = this->erModel.getNodesConnector(this->attribute,this->entity);
-}
-
-void ConnectorTest::TearDown(){
+	this->connector = this->erModel.getNodesConnector(this->attribute,this->entity);	
 }
 
 TEST_F(ConnectorTest,testToString){
@@ -80,7 +77,7 @@ TEST_F(ConnectorTest,testClone){
 	ASSERT_EQ(this->connector->getID(),connectorCloned->getID());
 	ASSERT_EQ(this->connector->getName(),connectorCloned->getName());
 	ASSERT_EQ(this->connector->getType(),connectorCloned->getType());
-	//assert map
+	//assert componentData
 	ASSERT_EQ(this->connector->componentData,connectorCloned->componentData);
 
 	delete connectorCloned;

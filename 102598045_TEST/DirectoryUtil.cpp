@@ -3,8 +3,8 @@
 
 //@return : current working directory
 string DirectoryUtil::getCurrentWorkingDirectory(){
-	char* a_cwd = _getcwd(NULL, 0);
-    string s_cwd(a_cwd);
-    free(a_cwd);
-    return s_cwd;
+	char* currentWorkingDirectoryCharArray = _getcwd(NULL, 0);
+    string currentWorkingDirectory(currentWorkingDirectoryCharArray);
+    free(currentWorkingDirectoryCharArray);
+    return currentWorkingDirectory;
 }

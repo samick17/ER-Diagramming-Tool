@@ -48,13 +48,14 @@ void ConnectNodeCommand :: execute(){
 	if(this->connector == NULL){
 		erModel->addConnection(firstNode,secondNode);
 		this->backupConnector(firstNode,secondNode);
-	}else 
+	}else {
 		try{
 			erModel->getComponentByID(this->connector->getID());
 		}catch(Exception&){
 			ComponentUtil::connectWithEachOther(this->firstNode,this->secondNode,this->connector);
 			erModel->insertComponent(this->connector);
 		}
+	}
 	this->UnexecutableCommand::execute();
 }
 

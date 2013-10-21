@@ -12,5 +12,4 @@ protected:
 	Component* relationShip;
 	Component* connector;
 	virtual void SetUp();
-	virtual void TearDown();
 };

@@ -19,14 +19,11 @@ TEST_F(RelationShipTest,testGetType){
 		
 TEST_F(RelationShipTest,CanConnectTo){
 	ASSERT_THROW(this->relationShip->canConnectTo(this->attribute),InvalidConnectException);
-	ASSERT_THROW(this->attribute->canConnectTo(this->relationShip),InvalidConnectException);
-	ASSERT_EQ(NodeConnectionType::ConnectEntityAndRelation,this->relationShip->canConnectTo(this->entity));
-	ASSERT_EQ(NodeConnectionType::ConnectEntityAndRelation,this->entity->canConnectTo(this->relationShip));
+	ASSERT_EQ(NodeConnectionType::ConnectEntityAndRelation,this->relationShip->canConnectTo(this->entity));	
 	ASSERT_THROW(this->relationShip->canConnectTo(this->relationShip),ConnectedSelfException);
 
 	this->erModel.addConnection(this->entity,this->relationShip);
 	ASSERT_THROW(this->relationShip->canConnectTo(this->entity),HasConnectedException);
-	ASSERT_THROW(this->entity->canConnectTo(this->relationShip),HasConnectedException);
 	ASSERT_THROW(this->relationShip->canConnectTo(this->erModel.addNode(ComponentType::TypeRelationShip)),InvalidConnectException);
 	Component* entity2 = this->erModel.addNode(ComponentType::TypeEntity);
 	this->erModel.addConnection(entity2,this->relationShip);
@@ -38,8 +35,6 @@ TEST_F(RelationShipTest,testHasSizeToConnect){
 	ASSERT_EQ(true,this->relationShip->hasSizeToConnect());
 	ASSERT_EQ(true,this->entity->hasSizeToConnect());
 
-	this->erModel.addConnection(this->attribute,this->entity);
-	ASSERT_EQ(false,this->attribute->hasSizeToConnect());
 	this->erModel.addConnection(this->relationShip,this->entity);
 	ASSERT_EQ(true,this->relationShip->hasSizeToConnect());
 
@@ -75,4 +70,16 @@ TEST_F(RelationShipTest,testGetConnectedEntities){
 
 	Component* entity3 = this->erModel.addNode(ComponentType::TypeEntity);
 	ASSERT_THROW(this->erModel.addConnection(this->relationShip,entity3),InvalidConnectException);
+}
+
+TEST_F(RelationShipTest,testClone){
+	RelationShip* relationShipCloned = static_cast<RelationShip*>(this->relationShip->clone());
+
+	ASSERT_EQ(this->relationShip->getID(),relationShipCloned->getID());
+	ASSERT_EQ(this->relationShip->getName(),relationShipCloned->getName());
+	ASSERT_EQ(this->relationShip->getType(),relationShipCloned->getType());
+	//assert componentData
+	ASSERT_EQ(this->relationShip->componentData,relationShipCloned->componentData);
+
+	delete relationShipCloned;
 }

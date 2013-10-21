@@ -16,8 +16,8 @@ string Node::getType(){
 }
 //break all connection in this all connectors
 void Node::breakAllConnections(){
-	for each(Component* component in this->getAllConnections())	
-		component->breakAllConnections();	
+	for each(Component* connector in this->getAllConnections())	
+		connector->breakAllConnections();
 }
 
 bool Node::hasSizeToConnect(){

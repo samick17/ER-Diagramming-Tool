@@ -17,6 +17,10 @@ class Component : public IClonable{
 	FRIEND_TEST(ConnectorTest,testClone);
 	friend class AttributeTest;
 	FRIEND_TEST(AttributeTest,testClone);
+	friend class EntityTest;
+	FRIEND_TEST(EntityTest,testClone);
+	friend class RelationShipTest;
+	FRIEND_TEST(RelationShipTest,testClone);
 public:
 	Component(ComponentData componentData);
 	virtual ~Component();

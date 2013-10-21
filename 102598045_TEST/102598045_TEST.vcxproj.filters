@@ -79,6 +79,27 @@
     <Filter Include="Unit Testing Files\ModelTest">
       <UniqueIdentifier>{eb73bddb-dec2-4721-a1a0-2b130baaf6b6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\MenuTest">
+      <UniqueIdentifier>{322efae3-27b3-43aa-aa4a-1716db609da1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\CommandTest">
+      <UniqueIdentifier>{3f906702-81c6-435a-af1f-db377fdf420a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\ManagerTest">
+      <UniqueIdentifier>{d47186ae-9564-4737-a501-7995e96d3b81}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\FactoryTest">
+      <UniqueIdentifier>{720e637f-6cef-4f4e-9994-00f9138c086f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\ParserTest">
+      <UniqueIdentifier>{aa65f19d-12e0-43ff-a87d-9eb46cae9aac}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\UtilTest">
+      <UniqueIdentifier>{3e72aa50-4817-46c5-9c3d-357d191ec998}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\CollectionTest">
+      <UniqueIdentifier>{4a7ff5e6-7d13-4cd6-97b1-d0fbb9697d6c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MainTest.cpp">
@@ -309,13 +330,13 @@
     <ClCompile Include="IntegrationTest.cpp">
       <Filter>Unit Testing Files</Filter>
     </ClCompile>
+    <ClCompile Include="NodeTest.cpp">
+      <Filter>Unit Testing Files\ModelTest</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DirectoryUtil.h">
       <Filter>Header Files\TestingUtils</Filter>
-    </ClInclude>
-    <ClInclude Include="CommandMenuTest.h">
-      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ComponentTest.h">
       <Filter>Header Files\ModelTest</Filter>
@@ -337,6 +358,15 @@
     </ClInclude>
     <ClInclude Include="IntegrationTest.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="NodeTest.h">
+      <Filter>Header Files\ModelTest</Filter>
+    </ClInclude>
+    <ClInclude Include="TableTest.h">
+      <Filter>Header Files\ModelTest</Filter>
+    </ClInclude>
+    <ClInclude Include="CommandMenuTest.h">
+      <Filter>Header Files\MenuTest</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -10,9 +10,6 @@ void ComponentTest::SetUp(){
 	this->connector = this->erModel.getNodesConnector(this->attribute,this->entity);
 }
 
-void ComponentTest::TearDown(){
-}
-
 TEST_F(ComponentTest,testToString){
 	ASSERT_EQ(ComponentType::TypeAttribute,this->attribute->Component::toString());
 	ASSERT_EQ(ComponentType::TypeRelationShip,this->relationShip->Component::toString());
@@ -30,7 +27,6 @@ TEST_F(ComponentTest,testToString){
 
 	this->connector->setName("1");
 	ASSERT_EQ(ComponentType::TypeConnector+", "+this->connector->getName(),this->connector->Component::toString());
-
 }
 
 TEST_F(ComponentTest,testGetClassName){

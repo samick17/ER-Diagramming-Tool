@@ -14,7 +14,7 @@ void IntegrationTest::SetUp(){
 	this->commandManager = new CommandManager(presentation);
 	ASSERT_THROW(this->erModel.getAllComponents(),EmptyCollectionException);
 	//set file directory
-	string directory = DirectoryUtil::getCurrentWorkingDirectory()+"/testdata";
+	string directory = DirectoryUtil::getCurrentWorkingDirectory()+"/Debug/testdata";
 	_mkdir(directory.c_str());
 	//save file to directory
 	string filePath = directory+"/test_file1.erd";
@@ -38,10 +38,11 @@ void IntegrationTest::SetUp(){
 
 void IntegrationTest::TearDown(){	
 	//delete file
-	string directory = DirectoryUtil::getCurrentWorkingDirectory()+"/testdata";
-	string filePath = directory+"/test_file1.erd";
+	string directory = DirectoryUtil::getCurrentWorkingDirectory()+"/Debug/testdata";
+	string filePath = directory+"/test_file1.erd";	
 	remove(filePath.c_str());
 	_rmdir(directory.c_str());
+	//delete pointer
 	delete this->presentation;
 	delete this->commandManager;
 }

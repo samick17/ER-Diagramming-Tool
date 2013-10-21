@@ -47,7 +47,7 @@ int Entity::canConnectTo(Component* target){
 HashMap<string,Attribute*> Entity::getConnectedAttributes(){
 	HashMap<string,Attribute*> connectedAttributeMap = ComponentUtil::getConnectedNodeHashMapByType<Attribute>(this->getAllConnections());
 
-	if(connectedAttributeMap.empty()){		
+	if(connectedAttributeMap.empty()){
 		throw EmptyCollectionException(ComponentType::TypeAttributeName);
 	}
 
