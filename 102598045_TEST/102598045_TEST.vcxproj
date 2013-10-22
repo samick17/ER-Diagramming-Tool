@@ -158,6 +158,7 @@
     <ClCompile Include="DirectoryUtil.cpp" />
     <ClCompile Include="EntityTest.cpp" />
     <ClCompile Include="ERModelTest.cpp" />
+    <ClCompile Include="FileParserTest.cpp" />
     <ClCompile Include="IntegrationTest.cpp" />
     <ClCompile Include="MainTest.cpp" />
     <ClCompile Include="NodeTest.cpp" />
@@ -174,9 +175,11 @@
     <ClInclude Include="DirectoryUtil.h" />
     <ClInclude Include="EntityTest.h" />
     <ClInclude Include="ERModelTest.h" />
+    <ClInclude Include="FileParserTest.h" />
     <ClInclude Include="IntegrationTest.h" />
     <ClInclude Include="NodeTest.h" />
     <ClInclude Include="RelationShipTest.h" />
+    <ClInclude Include="TableManagerTest.h" />
     <ClInclude Include="TableTest.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

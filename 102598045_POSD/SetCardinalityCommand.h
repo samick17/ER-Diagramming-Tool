@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Command.h"
+#include "HashMap.h"
 
 class SetCardinalityCommand : public Command{
 public:
@@ -9,6 +10,7 @@ public:
 	
 	void execute();
 private:
+	HashMap<string,string> cardinalityPairMap;
 	Component* firstNode;
 	Component* secondNode;
 };

@@ -106,15 +106,27 @@
     <Filter Include="Unit Testing Files\ManagerTest">
       <UniqueIdentifier>{a0878a1e-3ab2-4256-bf19-29042aa1cef2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Unit Testing Files\CollectionTest">
+      <UniqueIdentifier>{67218153-c83a-48a5-8a5c-c31396b8a82e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Unit Testing Files\CommandTest">
+      <UniqueIdentifier>{448e241f-d441-4e52-98ce-b9b3d3eef61f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Unit Testing Files\ParserTest">
+      <UniqueIdentifier>{b93af022-9a5a-476b-a24b-fb9758938594}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Unit Testing Files\UtilTest">
+      <UniqueIdentifier>{0ef8ca41-e458-4477-8141-2f4cb698b6ab}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Unit Testing Files\MenuTest">
+      <UniqueIdentifier>{ac94c765-7196-4229-a1f1-cb902ceaf772}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MainTest.cpp">
       <Filter>Unit Testing Files</Filter>
     </ClCompile>
     <ClCompile Include="..\102598045_POSD\DeleteComponentCommand.cpp">
-      <Filter>Source Files\Command</Filter>
-    </ClCompile>
-    <ClCompile Include="..\102598045_POSD\ConnectNodeCommand.cpp">
       <Filter>Source Files\Command</Filter>
     </ClCompile>
     <ClCompile Include="..\102598045_POSD\AddNodeCommand.cpp">
@@ -227,9 +239,6 @@
     </ClCompile>
     <ClCompile Include="..\102598045_POSD\FileParser.cpp">
       <Filter>Source Files\Parser</Filter>
-    </ClCompile>
-    <ClCompile Include="CommandMenuTest.cpp">
-      <Filter>Unit Testing Files</Filter>
     </ClCompile>
     <ClCompile Include="..\102598045_POSD\FileNotFoundException.cpp">
       <Filter>Source Files\Exception\IOException</Filter>
@@ -354,6 +363,15 @@
     <ClCompile Include="..\102598045_POSD\StringSymbol.cpp">
       <Filter>Source Files\Constants</Filter>
     </ClCompile>
+    <ClCompile Include="CommandMenuTest.cpp">
+      <Filter>Unit Testing Files\MenuTest</Filter>
+    </ClCompile>
+    <ClCompile Include="..\102598045_POSD\ConnectNodeCommand.cpp">
+      <Filter>Source Files\Command</Filter>
+    </ClCompile>
+    <ClCompile Include="FileParserTest.cpp">
+      <Filter>Unit Testing Files\ParserTest</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DirectoryUtil.h">
@@ -394,6 +412,12 @@
     </ClInclude>
     <ClInclude Include="CommandManagerTest.h">
       <Filter>Header Files\ManagerTest</Filter>
+    </ClInclude>
+    <ClInclude Include="TableManagerTest.h">
+      <Filter>Header Files\ManagerTest</Filter>
+    </ClInclude>
+    <ClInclude Include="FileParserTest.h">
+      <Filter>Header Files\ParserTest</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

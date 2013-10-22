@@ -1,7 +1,8 @@
 #include "SetCardinalityCommand.h"
 #include "StringUtil.h"
 
-SetCardinalityCommand :: SetCardinalityCommand(Presentation* presentation,Component* firstNode,Component* secondNode) : Command(presentation),firstNode(firstNode),secondNode(secondNode){	
+SetCardinalityCommand :: SetCardinalityCommand(Presentation* presentation,Component* firstNode,Component* secondNode) : Command(presentation),firstNode(firstNode),secondNode(secondNode){
+	cardinalityPairMap.put("0",RelationType::OneToOne);
 }
 
 SetCardinalityCommand::~SetCardinalityCommand(){
@@ -15,12 +16,12 @@ void SetCardinalityCommand :: execute(){
 	this->presentation->logMessage("The node '"+firstNode->getID()+"' has been connected to the node '"+secondNode->getID()+"'.",true);	
 	string input = this->presentation->getInput();
 
-	while(input != "0"){
+	while(!cardinalityPairMap.containsKey(input)){
 		this->presentation->logMessage("the cardinality you entered doesn't exist. Please entered a valid one again",true);		
 		input = this->presentation->getInput();
 	}
 	Connector* connection = erModel->getNodesConnector(firstNode,secondNode);
-	string relationName = RelationType::OneToOne;
+	string relationName = cardinalityPairMap.get(input);
 	connection->setName(relationName);
 
 	this->presentation->logMessage("Its cardinality of the relationship is '"+relationName+"'.",true);
