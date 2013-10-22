@@ -5,6 +5,7 @@
 #include "ConnectedSelfException.h"
 #include "HasConnectedException.h"
 #include "NoConnectionException.h"
+#include "StringSymbol.h"
 
 void EntityTest::SetUp(){
 	this->attribute = new Attribute(ComponentData("0","Name"));
@@ -19,7 +20,7 @@ void EntityTest::TearDown(){
 }
 
 TEST_F(EntityTest,testToString){
-	ASSERT_THROW(this->entity->toString(),EmptyCollectionException);
+	ASSERT_EQ(StringSymbol::Empty,this->entity->toString());
 
 	Connector connector1 = Connector(ComponentData("3",""));
 	connectWithEachOther(this->entity,this->attribute,&connector1);
@@ -57,7 +58,7 @@ TEST_F(EntityTest,testCanConnectTo){
 }
 
 TEST_F(EntityTest,testGetConnectedAttributes){
-	ASSERT_THROW(this->entity->getConnectedAttributes(),EmptyCollectionException);
+	ASSERT_EQ(0,this->entity->getConnectedAttributes().size());
 
 	Connector connector1 = Connector(ComponentData("3",""));
 	connectWithEachOther(this->entity,this->attribute,&connector1);
@@ -91,7 +92,7 @@ TEST_F(EntityTest,testGetPrimaryKeyAttributes){
 TEST_F(EntityTest,testSetPrimaryKey){
 	set<string> primaryKeyID;
 	primaryKeyID.insert("1");
-	ASSERT_THROW(this->entity->setPrimaryKey(primaryKeyID),EmptyCollectionException);
+	ASSERT_THROW(this->entity->setPrimaryKey(primaryKeyID),NoConnectionException);
 	Connector connector1 = Connector(ComponentData("3",""));
 	connectWithEachOther(this->entity,this->attribute,&connector1);
 

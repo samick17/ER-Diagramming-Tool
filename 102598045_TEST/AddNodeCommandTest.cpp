@@ -11,7 +11,7 @@ void AddNodeCommandTest::TearDown(){
 }
 
 TEST_F(AddNodeCommandTest,testAddNodeCommand){
-	ASSERT_THROW(this->erModel.getAllComponents(),EmptyCollectionException);
+	ASSERT_EQ(0,this->erModel.getAllComponents().size());
 
 	AddNodeCommand addNodeCommand1 = AddNodeCommand(this->presentation);	
 	Component* entity = new Entity(ComponentData("0","Account"));
@@ -20,7 +20,7 @@ TEST_F(AddNodeCommandTest,testAddNodeCommand){
 	addNodeCommand1.execute();
 	ASSERT_EQ(1,this->erModel.getAllComponents().size());
 	addNodeCommand1.unExecute();
-	ASSERT_THROW(this->erModel.getAllComponents(),EmptyCollectionException);
+	ASSERT_EQ(0,this->erModel.getAllComponents().size());
 	addNodeCommand1.execute();
 	ASSERT_EQ(1,this->erModel.getAllComponents().size());
 

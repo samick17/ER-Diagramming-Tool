@@ -11,7 +11,7 @@
 #include "EmptyCollectionException.h"
 
 void ERModelTest::SetUp(){
-	ASSERT_THROW(this->erModel.getAllComponents(),EmptyCollectionException);
+	ASSERT_EQ(0,this->erModel.getAllComponents().size());
 
 	Entity* entityEngineer = static_cast<Entity*>(this->erModel.addNode(ComponentType::TypeEntity));
 	Attribute* attributeEmp_ID = static_cast<Attribute*>(this->erModel.addNode(ComponentType::TypeAttribute));
@@ -195,7 +195,7 @@ TEST_F(ERModelTest,testGetAllComponents){
 
 	this->erModel.clearComponentMap();
 
-	ASSERT_THROW(this->erModel.getAllComponents(),EmptyCollectionException);
+	ASSERT_EQ(0,this->erModel.getAllComponents().size());
 }
 
 TEST_F(ERModelTest,testGetAllConnectors){
@@ -206,7 +206,7 @@ TEST_F(ERModelTest,testGetAllConnectors){
 
 	this->erModel.clearComponentMap();
 
-	ASSERT_THROW(this->erModel.getAllConnectors(),EmptyCollectionException);
+	ASSERT_EQ(0,this->erModel.getAllConnectors().size());
 }
 
 TEST_F(ERModelTest,testGetAllEntities){
@@ -217,7 +217,7 @@ TEST_F(ERModelTest,testGetAllEntities){
 
 	this->erModel.clearComponentMap();
 
-	ASSERT_THROW(this->erModel.getAllEntities(),EmptyCollectionException);
+	ASSERT_EQ(0,this->erModel.getAllEntities().size());
 }
 
 TEST_F(ERModelTest,testGetAllRelationShips){
@@ -228,7 +228,7 @@ TEST_F(ERModelTest,testGetAllRelationShips){
 
 	this->erModel.clearComponentMap();
 
-	ASSERT_THROW(this->erModel.getAllRelationShips(),EmptyCollectionException);
+	ASSERT_EQ(0,this->erModel.getAllRelationShips().size());
 }
 
 TEST_F(ERModelTest,testGetAllTables){
@@ -247,7 +247,7 @@ TEST_F(ERModelTest,testGetAllTables){
 
 	this->erModel.clearComponentMap();
 
-	ASSERT_THROW(this->erModel.getAllTables(),EmptyCollectionException);
+	ASSERT_EQ(0,this->erModel.getAllTables().size());
 
 }
 

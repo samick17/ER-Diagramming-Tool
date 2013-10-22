@@ -9,7 +9,9 @@
 #include "CommandMenu.h"
 #include "CommandManager.h"
 #include "NullPointerException.h"
+#include "EmptyCollectionException.h"
 #include "StringSymbol.h"
+#include "ComponentType.h"
 
 Presentation::Presentation(ERModel* erModel) : erModel(erModel){
 }
@@ -41,8 +43,7 @@ string Presentation::getInput(){
 
 void Presentation::displayMenu(){
 	this->displayTitle("Commands Menu");
-	cout<<" +------------------------------------------------------+"<<endl;
-	
+	cout<<" +------------------------------------------------------+"<<endl;	
 	CommandMenu commandMenu;
 	for each(CommandData* commandData in commandMenu.getCommandDataMap()){
 		int len = COMMAND_KEY_WIDTH+commandData->getInfo().size();
@@ -61,7 +62,9 @@ void Presentation::displayTitle(string title){
 
 void Presentation::displayTable(){
 	HashMap<string,Table*> tableMap = erModel->getAllTables();
-
+	if(tableMap.empty())
+		throw EmptyCollectionException("Tables");
+	
 	cout<<" +------------------------------------------------------------------"<<endl;
 	cout<<" |    Entity      |  Attributes"<<endl;
 	cout<<" +----------------+--------------------------------------------------"<<endl;
@@ -79,20 +82,23 @@ void Presentation::displayTable(){
 }
 
 void Presentation::displayComponents(){	
-	HashMap<string,Component*> componentSet = erModel->getAllComponents();
-	
+	HashMap<string,Component*> componentMap = erModel->getAllComponents();
+	if(componentMap.empty())
+		throw EmptyCollectionException(ComponentType::TypeComponent);
 	this->displayTitle("Components");
-	this->displayComponentSet(componentSet);
+	this->displayComponentSet(componentMap);
 }
 
 void Presentation::displayConnections(){	
-	HashMap<string,Connector*> connectorSet = erModel->getAllConnectors();
+	HashMap<string,Connector*> connectorMap = erModel->getAllConnectors();
+	if(connectorMap.empty())
+		throw EmptyCollectionException(ComponentType::TypeConnectorName);
 	//convert to vector ordered by id	
 	this->displayTitle("Connections");
 	cout<<" +----------------------------------------------"<<endl;
 	cout<<"    Connectors   |     Node1     |     Node2"<<endl;
 	cout<<" +---------------+---------------+--------------"<<endl;
-	for each (Connector* connector in connectorSet){	
+	for each (Connector* connector in connectorMap){	
 		cout<<"  "<<setw(COLUMN_WIDTH)<<connector->getID()<<"       ";
 		cout<<"|"<<setw(COLUMN_WIDTH)<<connector->getFirstConnectedNode()->getID()<<"       ";
 		cout<<"|"<<setw(COLUMN_WIDTH)<<connector->getSecondConnectedNode()->getID()<<endl;		
@@ -101,23 +107,24 @@ void Presentation::displayConnections(){
 }
 
 void Presentation::displayEntities(){
-	HashMap<string,Entity*> entitySet = erModel->getAllEntities();
-
+	HashMap<string,Entity*> entityMap = erModel->getAllEntities();
+	if(entityMap.empty())
+		throw EmptyCollectionException(ComponentType::TypeEntityName);
 	this->displayTitle("Entities");
-	this->displayComponentSet(ComponentUtil::toComponentHashMap<Entity>(entitySet));
+	this->displayComponentSet(ComponentUtil::toComponentHashMap<Entity>(entityMap));
 }
 
 void Presentation::displayEntityAttributes(Entity* entity){
-	HashMap<string,Attribute*> attributeSet = entity->getConnectedAttributes();
-
+	HashMap<string,Attribute*> attributeMap = entity->getConnectedAttributes();
+	if(attributeMap.empty())
+		throw EmptyCollectionException(ComponentType::TypeAttributeName);
 	cout<<"Attributes of the entity '"<<entity->getID()<<"'"<<endl;
-	this->displayComponentSet(ComponentUtil::toComponentHashMap<Attribute>(attributeSet));
+	this->displayComponentSet(ComponentUtil::toComponentHashMap<Attribute>(attributeMap));
 }
 
 void Presentation::displayStringWithComma(string strStart,set<string> stringSet,string strEnd){
 	if(stringSet.empty())
 		return;
-
 	cout<<strStart;
 	string stringWithComma = StringUtil::appendWithComma(stringSet);
 	cout<<stringWithComma;

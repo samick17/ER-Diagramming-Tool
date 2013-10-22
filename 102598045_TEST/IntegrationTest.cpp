@@ -12,7 +12,7 @@
 void IntegrationTest::SetUp(){	
 	this->presentation = new Presentation(&erModel);
 	this->commandManager = new CommandManager(presentation);
-	ASSERT_THROW(this->erModel.getAllComponents(),EmptyCollectionException);
+	ASSERT_EQ(0,this->erModel.getAllComponents().size());
 	//set file directory
 	string directory = DirectoryUtil::getCurrentWorkingDirectory()+"/Debug/testdata";
 	_mkdir(directory.c_str());

@@ -4,7 +4,6 @@
 #include "TableUtil.h"
 #include "NoSuchNodeException.h"
 #include "NullPointerException.h"
-#include "EmptyCollectionException.h"
 #include "ComponentUtil.h"
 
 ERModel::ERModel(){	
@@ -70,49 +69,29 @@ Connector* ERModel::getNodesConnector(Component* firstNode,Component* secondNode
 }
 
 HashMap<string,Component*> ERModel::getAllComponents(){
-	if(this->componentMap.empty())
-		throw EmptyCollectionException(ComponentType::TypeComponent);
-	
 	return this->componentMap;
 }
 
 HashMap<string,Connector*> ERModel::getAllConnectors(){
 	HashMap<string,Connector*> connectorMap = ERModelUtil::convertComponentHashMapToTypeHashMap<Connector>(this->componentMap);
-
-	if(connectorMap.empty()){
-		throw EmptyCollectionException(ComponentType::TypeConnectorName);
-	}
-
+	
 	return connectorMap;
 }
 
 HashMap<string,Entity*> ERModel::getAllEntities(){
 	HashMap<string,Entity*> entitySet = ERModelUtil::convertComponentHashMapToTypeHashMap<Entity>(this->getAllComponents());
 
-	if(entitySet.empty()){
-		throw EmptyCollectionException(ComponentType::TypeEntityName);
-	}
-
 	return entitySet;
 }
 
 HashMap<string,RelationShip*> ERModel::getAllRelationShips(){	
 	HashMap<string,RelationShip*> relationShipSet = ERModelUtil::convertComponentHashMapToTypeHashMap<RelationShip>(this->getAllComponents());
-
-	if(relationShipSet.empty()){
-		throw EmptyCollectionException(ComponentType::TypeRelationShipName);
-	}
-
+	
 	return relationShipSet;
 }
 //get All Tables
 HashMap<string,Table*> ERModel::getAllTables(){
-	try{
-		return TableUtil::convertToTableMap(this->tableManager,this->getAllEntities(),this->getAllRelationShips());
-	}
-	catch(Exception&){
-		throw EmptyCollectionException("Table");
-	}
+	return TableUtil::convertToTableMap(this->tableManager,this->getAllEntities(),this->getAllRelationShips());
 }
 //clear all components & delete it
 void ERModel::clearComponentMap(){

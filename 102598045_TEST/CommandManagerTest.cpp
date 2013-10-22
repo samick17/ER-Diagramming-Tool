@@ -17,7 +17,7 @@ void CommandManagerTest::TearDown(){
 }
 
 TEST_F(CommandManagerTest,testCommandManager){
-	ASSERT_THROW(this->erModel.getAllComponents(),EmptyCollectionException);
+	ASSERT_EQ(0,this->erModel.getAllComponents().size());
 	ASSERT_EQ(0,this->commandManager->undoCommandsStack.size());
 	//execute "Add a node", add relationShip
 	AddNodeCommand* addNodeCommand = new AddNodeCommand(this->presentation);

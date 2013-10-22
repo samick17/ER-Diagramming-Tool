@@ -48,10 +48,6 @@ int Entity::canConnectTo(Component* target){
 HashMap<string,Attribute*> Entity::getConnectedAttributes(){
 	HashMap<string,Attribute*> connectedAttributeMap = ComponentUtil::getConnectedNodeHashMapByType<Attribute>(this->getAllConnections());
 
-	if(connectedAttributeMap.empty()){
-		throw EmptyCollectionException(ComponentType::TypeAttributeName);
-	}
-
 	return connectedAttributeMap;
 }
 //get Attribute By ID, if doesn't has such attribute, throw exception
