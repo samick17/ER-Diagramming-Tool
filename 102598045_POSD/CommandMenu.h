@@ -14,7 +14,7 @@ public:
 
 	HashMap<string,CommandData*> getCommandDataMap();
 	CommandData* getCommandDataByKey(string key);
-private:
+private:	
 	HashMap<string,CommandData*> commandDataMap;
 	void insertCommandData(CommandData* commandData);
 

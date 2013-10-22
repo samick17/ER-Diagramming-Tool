@@ -3,6 +3,7 @@
 #include "SetNodeNameCommand.h"
 #include "ComponentType.h"
 #include "Exception.h"
+#include "InvalidNodeTypeException.h"
 
 using namespace std;
 
@@ -58,6 +59,8 @@ Component* AddNodeCommand::getNodeToAdd(){
 	while(node == NULL){
 		try{
 			string input = this->presentation->getInput();
+			if(input == ComponentType::TypeConnector)
+				throw InvalidNodeTypeException();
 			ERModel* erModel = this->presentation->getERModel();
 			node = erModel->addNode(input);
 		}

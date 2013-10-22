@@ -7,6 +7,11 @@
 typedef Component* (*NewComponentFunction)(ComponentData);
 
 class ComponentFactory{
+	friend class ComponentFactoryTest;
+	FRIEND_TEST(ComponentFactoryTest,testCreateComponent);
+	FRIEND_TEST(ComponentFactoryTest,testFindNewComponentFunction);
+	friend class CommandManagerTest;
+	FRIEND_TEST(CommandManagerTest,testCommandManager);
 public:
 	ComponentFactory();
 	~ComponentFactory();

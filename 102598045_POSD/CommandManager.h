@@ -10,6 +10,8 @@ class Command;
 class Presentation;
 
 class CommandManager{
+	friend class CommandManagerTest;
+	FRIEND_TEST(CommandManagerTest,testCommandManager);
 public:
 	CommandManager(Presentation* presentation);
 	~CommandManager();

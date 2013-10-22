@@ -12,24 +12,18 @@
 #include "ExitCommand.h"
 #include "NullPointerException.h"
 
-CommandMenu::CommandMenu(){
-	CommandData* commandData[11];
-	
-	commandData[0] = new CommandData("1","Load ER diagram file",newCommand<LoadFileCommand>);
-	commandData[1] = new CommandData("2","Save ER diagram file",newCommand<SaveFileCommand>);
-	commandData[2] = new CommandData("3","Add a node",newCommand<AddNodeCommand>);
-	commandData[3] = new CommandData("4","Connect two nodes",newCommand<ConnectNodeCommand>);
-	commandData[4] = new CommandData("5","Display the current diagram",newCommand<DisplayDiagramCommand>);
-	commandData[5] = new CommandData("6","Set a primary key",newCommand<SetPrimaryKeyCommand>);
-	commandData[6] = new CommandData("7","Display the table",newCommand<DisplayTableCommand>);
-	commandData[7] = new CommandData("8","Delete a component",newCommand<DeleteComponentCommand>);
-	commandData[8] = new CommandData("9","Undo",newCommand<UndoCommand>);
-	commandData[9] = new CommandData("10","Redo",newCommand<RedoCommand>);
-	commandData[10] = new CommandData("11","Exit",newCommand<ExitCommand>);
-
-	for each(CommandData* cmdData in commandData){
-		this->insertCommandData(cmdData);
-	}
+CommandMenu::CommandMenu(){	
+	this->insertCommandData(new CommandData("1","Load ER diagram file",newCommand<LoadFileCommand>));
+	this->insertCommandData(new CommandData("2","Save ER diagram file",newCommand<SaveFileCommand>));
+	this->insertCommandData(new CommandData("3","Add a node",newCommand<AddNodeCommand>));
+	this->insertCommandData(new CommandData("4","Connect two nodes",newCommand<ConnectNodeCommand>));
+	this->insertCommandData(new CommandData("5","Display the current diagram",newCommand<DisplayDiagramCommand>));
+	this->insertCommandData(new CommandData("6","Set a primary key",newCommand<SetPrimaryKeyCommand>));
+	this->insertCommandData(new CommandData("7","Display the table",newCommand<DisplayTableCommand>));
+	this->insertCommandData(new CommandData("8","Delete a component",newCommand<DeleteComponentCommand>));
+	this->insertCommandData(new CommandData("9","Undo",newCommand<UndoCommand>));
+	this->insertCommandData(new CommandData("10","Redo",newCommand<RedoCommand>));
+	this->insertCommandData( new CommandData("11","Exit",newCommand<ExitCommand>));
 }
 
 CommandMenu::~CommandMenu(){
