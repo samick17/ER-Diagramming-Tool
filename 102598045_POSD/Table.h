@@ -10,6 +10,9 @@ class Table{
 	FRIEND_TEST(ERModelTest,testGetAllTables);
 	friend class IntegrationTest;
 	FRIEND_TEST(IntegrationTest,testIsPrimaryExist);
+	friend class TableTest;
+	FRIEND_TEST(TableTest,testInsertAllAttributes);
+	FRIEND_TEST(TableTest,testInsertAllForeignKeyAttributes);
 public:	
 	Table(Entity* entity);
 	~Table();

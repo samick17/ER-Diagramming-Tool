@@ -7,25 +7,30 @@
 #include "NoConnectionException.h"
 
 void EntityTest::SetUp(){
-	this->attribute = this->erModel.addNode(ComponentType::TypeAttribute);
-	this->relationShip = this->erModel.addNode(ComponentType::TypeRelationShip);
-	this->entity = static_cast<Entity*>(this->erModel.addNode(ComponentType::TypeEntity));
+	this->attribute = new Attribute(ComponentData("0","Name"));
+	this->relationShip = new RelationShip(ComponentData("1","Has"));
+	this->entity = new Entity(ComponentData("2","Engineer"));
 }
 
 void EntityTest::TearDown(){
+	delete this->attribute;
+	delete this->relationShip;
+	delete this->entity;
 }
 
 TEST_F(EntityTest,testToString){
 	ASSERT_THROW(this->entity->toString(),EmptyCollectionException);
 
-	this->erModel.addConnection(this->entity,this->attribute);
-	(static_cast<Attribute*>(this->attribute))->setAsPrimaryKey();
+	Connector connector1 = Connector(ComponentData("3",""));
+	connectWithEachOther(this->entity,this->attribute,&connector1);
+	this->attribute->setAsPrimaryKey();
 
 	ASSERT_EQ("2 0",this->entity->toString());
 
-	Attribute* attribute2 = static_cast<Attribute*>(this->erModel.addNode(ComponentType::TypeAttribute));
-	this->erModel.addConnection(this->entity,attribute2);
-	attribute2->setAsPrimaryKey();
+	Attribute attribute2 = Attribute(ComponentData("4","ID"));
+	Connector connector2 = Connector(ComponentData("5",""));
+	connectWithEachOther(this->entity,&attribute2,&connector2);
+	attribute2.setAsPrimaryKey();
 
 	ASSERT_EQ("2 0,4",this->entity->toString());
 }
@@ -38,21 +43,24 @@ TEST_F(EntityTest,testCanConnectTo){
 	ASSERT_EQ(NodeConnectionType::ValidConnect,this->entity->canConnectTo(this->attribute));
 	ASSERT_EQ(NodeConnectionType::ConnectEntityAndRelation,this->entity->canConnectTo(this->relationShip));
 	
-	this->erModel.addConnection(this->entity,this->attribute);
-	this->erModel.addConnection(this->entity,this->relationShip);
+	Connector connector1 = Connector(ComponentData("3",""));
+	connectWithEachOther(this->entity,this->attribute,&connector1);
+	Connector connector2 = Connector(ComponentData("4",""));
+	connectWithEachOther(this->entity,this->relationShip,&connector2);
 
 	ASSERT_THROW(this->entity->canConnectTo(this->entity),ConnectedSelfException);
 	ASSERT_THROW(this->entity->canConnectTo(this->attribute),HasConnectedException);
 	ASSERT_THROW(this->entity->canConnectTo(this->relationShip),HasConnectedException);
-	ASSERT_THROW(this->entity->canConnectTo(this->erModel.addNode(ComponentType::TypeEntity)),InvalidConnectException);
-	ASSERT_EQ(NodeConnectionType::ValidConnect,this->entity->canConnectTo(this->erModel.addNode(ComponentType::TypeAttribute)));
-	ASSERT_EQ(NodeConnectionType::ConnectEntityAndRelation,this->entity->canConnectTo(this->erModel.addNode(ComponentType::TypeRelationShip)));
+	ASSERT_THROW(this->entity->canConnectTo(&Entity(ComponentData("5",""))),InvalidConnectException);
+	ASSERT_EQ(NodeConnectionType::ValidConnect,this->entity->canConnectTo(&Attribute(ComponentData("6",""))));
+	ASSERT_EQ(NodeConnectionType::ConnectEntityAndRelation,this->entity->canConnectTo(&RelationShip(ComponentData("7",""))));
 }
 
 TEST_F(EntityTest,testGetConnectedAttributes){
 	ASSERT_THROW(this->entity->getConnectedAttributes(),EmptyCollectionException);
 
-	this->erModel.addConnection(this->entity,this->attribute);
+	Connector connector1 = Connector(ComponentData("3",""));
+	connectWithEachOther(this->entity,this->attribute,&connector1);
 
 	ASSERT_EQ(1,this->entity->getConnectedAttributes().size());
 
@@ -60,13 +68,15 @@ TEST_F(EntityTest,testGetConnectedAttributes){
 }
 
 TEST_F(EntityTest,testGetAttributeByID){
-	this->erModel.addConnection(this->entity,this->attribute);
+	Connector connector1 = Connector(ComponentData("3",""));
+	connectWithEachOther(this->entity,this->attribute,&connector1);
 	ASSERT_THROW(this->entity->getAttributeByID("100"),NoConnectionException);
 	ASSERT_EQ(this->attribute,this->entity->getAttributeByID(this->attribute->getID()));
 }
 
 TEST_F(EntityTest,testGetPrimaryKeyAttributes){
-	this->erModel.addConnection(this->entity,this->attribute);
+	Connector connector1 = Connector(ComponentData("3",""));
+	connectWithEachOther(this->entity,this->attribute,&connector1);
 
 	ASSERT_EQ(0,this->entity->getPrimaryKeyAttributes().size());
 
@@ -82,7 +92,8 @@ TEST_F(EntityTest,testSetPrimaryKey){
 	set<string> primaryKeyID;
 	primaryKeyID.insert("1");
 	ASSERT_THROW(this->entity->setPrimaryKey(primaryKeyID),EmptyCollectionException);
-	this->erModel.addConnection(this->entity,this->attribute);
+	Connector connector1 = Connector(ComponentData("3",""));
+	connectWithEachOther(this->entity,this->attribute,&connector1);
 
 	ASSERT_EQ(false,(static_cast<Attribute*>(this->attribute)->isPrimaryKey()));
 
@@ -94,13 +105,11 @@ TEST_F(EntityTest,testSetPrimaryKey){
 }
 
 TEST_F(EntityTest,testClone){
-	Entity* entityCloned = static_cast<Entity*>(this->entity->clone());
+	Entity entityCloned = *static_cast<Entity*>(this->entity->clone());
 
-	ASSERT_EQ(this->entity->getID(),entityCloned->getID());
-	ASSERT_EQ(this->entity->getName(),entityCloned->getName());
-	ASSERT_EQ(this->entity->getType(),entityCloned->getType());
+	ASSERT_EQ(this->entity->getID(),entityCloned.getID());
+	ASSERT_EQ(this->entity->getName(),entityCloned.getName());
+	ASSERT_EQ(this->entity->getType(),entityCloned.getType());
 	//assert componentData
-	ASSERT_EQ(this->entity->componentData,entityCloned->componentData);
-
-	delete entityCloned;
+	ASSERT_EQ(this->entity->componentData,entityCloned.componentData);
 }

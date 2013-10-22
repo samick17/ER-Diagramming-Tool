@@ -1,5 +1,4 @@
 #include "CommandMenuTest.h"
-#include <iostream>
 #include "LoadFileCommand.h"
 #include "FindComponentCommand.h"
 #include "NullPointerException.h"
@@ -36,4 +35,5 @@ TEST_F(CommandMenuTest,testNewCommand){
 	Presentation presentation(&erModel);
 	Command* command = CommandMenu::newCommand<LoadFileCommand>(&presentation);
 	ASSERT_EQ(typeid(LoadFileCommand).name(),typeid(*command).name());
+	delete command;
 }

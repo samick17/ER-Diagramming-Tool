@@ -16,13 +16,6 @@ void RelationShipTest::TearDown(){
 	delete this->entity;
 }
 
-void RelationShipTest::connectWithEachOther(Node* firstNode,Node* secondNode,Connector* connector){
-	firstNode->connectTo(connector);
-	secondNode->connectTo(connector);
-	connector->connectTo(firstNode);
-	connector->connectTo(secondNode);
-}
-
 TEST_F(RelationShipTest,testGetType){
 	ASSERT_EQ(ComponentType::TypeRelationShip,this->relationShip->getType());
 }
@@ -32,12 +25,10 @@ TEST_F(RelationShipTest,CanConnectTo){
 	ASSERT_EQ(NodeConnectionType::ConnectEntityAndRelation,this->relationShip->canConnectTo(this->entity));	
 	ASSERT_THROW(this->relationShip->canConnectTo(this->relationShip),ConnectedSelfException);
 
-	Connector connector = Connector(ComponentData("3",""));
-	connectWithEachOther(this->entity,this->relationShip,&connector);
+	Connector connector1 = Connector(ComponentData("3",""));
+	connectWithEachOther(this->entity,this->relationShip,&connector1);
 	ASSERT_THROW(this->relationShip->canConnectTo(this->entity),HasConnectedException);
 	ASSERT_THROW(this->relationShip->canConnectTo(&RelationShip(ComponentData("4","WorkOn"))),InvalidConnectException);
-	//Component* entity2 = this->erModel.addNode(ComponentType::TypeEntity);
-	//this->erModel.addConnection(entity2,this->relationShip);
 	Entity entity2 = Entity(ComponentData("5","PC"));
 	Connector connector2 = Connector(ComponentData("6",""));
 	connectWithEachOther(&entity2,this->relationShip,&connector2);
@@ -90,13 +81,11 @@ TEST_F(RelationShipTest,testGetConnectedEntities){
 }
 
 TEST_F(RelationShipTest,testClone){
-	RelationShip* relationShipCloned = static_cast<RelationShip*>(this->relationShip->clone());
+	RelationShip relationShipCloned = *static_cast<RelationShip*>(this->relationShip->clone());
 
-	ASSERT_EQ(this->relationShip->getID(),relationShipCloned->getID());
-	ASSERT_EQ(this->relationShip->getName(),relationShipCloned->getName());
-	ASSERT_EQ(this->relationShip->getType(),relationShipCloned->getType());
+	ASSERT_EQ(this->relationShip->getID(),relationShipCloned.getID());
+	ASSERT_EQ(this->relationShip->getName(),relationShipCloned.getName());
+	ASSERT_EQ(this->relationShip->getType(),relationShipCloned.getType());
 	//assert componentData
-	ASSERT_EQ(this->relationShip->componentData,relationShipCloned->componentData);
-
-	delete relationShipCloned;
+	ASSERT_EQ(this->relationShip->componentData,relationShipCloned.componentData);
 }

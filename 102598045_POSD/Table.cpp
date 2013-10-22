@@ -14,7 +14,7 @@ void Table::insertAllAttributes(HashMap<string,Attribute*> attributeMap){
 }
 //all foreign key attribute
 void Table::insertAllForeignKeyAttributes(HashMap<string,Attribute*> foreignKeyAttributeMap){
-	for each(Attribute* attribute in attributeMap){
+	for each(Attribute* attribute in foreignKeyAttributeMap){
 		this->foreignKeyAttributeMap.put(attribute->getID(),attribute);	
 	}	
 }

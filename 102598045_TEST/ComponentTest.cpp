@@ -2,12 +2,26 @@
 #include "ComponentType.h"
 
 void ComponentTest::SetUp(){
-	this->attribute = this->erModel.addNode(ComponentType::TypeAttribute);
-	this->relationShip = this->erModel.addNode(ComponentType::TypeRelationShip);
-	this->entity = this->erModel.addNode(ComponentType::TypeEntity);
+	this->attribute = new Attribute(ComponentData("0",""));
+	this->relationShip = new RelationShip(ComponentData("1",""));
+	this->entity = new Entity(ComponentData("2",""));
 
-	this->erModel.addConnection(this->attribute,this->entity);
-	this->connector = this->erModel.getNodesConnector(this->attribute,this->entity);
+	this->connector = new Connector(ComponentData("3",""));
+	connectWithEachOther(this->attribute,this->entity,this->connector);
+}
+
+void ComponentTest::TearDown(){
+	delete this->attribute;
+	delete this->entity;
+	delete this->relationShip;
+	delete this->connector;
+}
+
+void ComponentTest::connectWithEachOther(Node* firstNode,Node* secondNode,Connector* connector){
+	firstNode->connectTo(connector);
+	secondNode->connectTo(connector);
+	connector->connectTo(firstNode);
+	connector->connectTo(secondNode);
 }
 
 TEST_F(ComponentTest,testToString){

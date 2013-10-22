@@ -149,6 +149,7 @@
     <ClCompile Include="..\102598045_POSD\ValidConnectedReceiver.cpp" />
     <ClCompile Include="AttributeTest.cpp" />
     <ClCompile Include="CommandMenuTest.cpp" />
+    <ClCompile Include="ComponentFactoryTest.cpp" />
     <ClCompile Include="ComponentTest.cpp" />
     <ClCompile Include="ConnectorTest.cpp" />
     <ClCompile Include="DirectoryUtil.cpp" />
@@ -158,10 +159,12 @@
     <ClCompile Include="MainTest.cpp" />
     <ClCompile Include="NodeTest.cpp" />
     <ClCompile Include="RelationShipTest.cpp" />
+    <ClCompile Include="TableTest.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AttributeTest.h" />
     <ClInclude Include="CommandMenuTest.h" />
+    <ClInclude Include="ComponentFactoryTest.h" />
     <ClInclude Include="ComponentTest.h" />
     <ClInclude Include="ConnectorTest.h" />
     <ClInclude Include="DirectoryUtil.h" />

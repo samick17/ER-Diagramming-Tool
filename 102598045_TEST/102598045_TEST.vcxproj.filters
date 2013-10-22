@@ -79,9 +79,6 @@
     <Filter Include="Unit Testing Files\ModelTest">
       <UniqueIdentifier>{eb73bddb-dec2-4721-a1a0-2b130baaf6b6}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\MenuTest">
-      <UniqueIdentifier>{322efae3-27b3-43aa-aa4a-1716db609da1}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\CommandTest">
       <UniqueIdentifier>{3f906702-81c6-435a-af1f-db377fdf420a}</UniqueIdentifier>
     </Filter>
@@ -100,6 +97,12 @@
     <Filter Include="Header Files\CollectionTest">
       <UniqueIdentifier>{4a7ff5e6-7d13-4cd6-97b1-d0fbb9697d6c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\MenuTest">
+      <UniqueIdentifier>{322efae3-27b3-43aa-aa4a-1716db609da1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Unit Testing Files\FactoryTest">
+      <UniqueIdentifier>{f5b4c11f-4829-4a7b-8141-5fc91c8820c1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MainTest.cpp">
@@ -111,43 +114,7 @@
     <ClCompile Include="..\102598045_POSD\ConnectNodeCommand.cpp">
       <Filter>Source Files\Command</Filter>
     </ClCompile>
-    <ClCompile Include="..\102598045_POSD\DisplayDiagramCommand.cpp">
-      <Filter>Source Files\Command</Filter>
-    </ClCompile>
-    <ClCompile Include="..\102598045_POSD\DisplayTableCommand.cpp">
-      <Filter>Source Files\Command</Filter>
-    </ClCompile>
     <ClCompile Include="..\102598045_POSD\AddNodeCommand.cpp">
-      <Filter>Source Files\Command</Filter>
-    </ClCompile>
-    <ClCompile Include="..\102598045_POSD\Command.cpp">
-      <Filter>Source Files\Command</Filter>
-    </ClCompile>
-    <ClCompile Include="..\102598045_POSD\UndoCommand.cpp">
-      <Filter>Source Files\Command</Filter>
-    </ClCompile>
-    <ClCompile Include="..\102598045_POSD\UnexecutableCommand.cpp">
-      <Filter>Source Files\Command</Filter>
-    </ClCompile>
-    <ClCompile Include="..\102598045_POSD\SetPrimaryKeyCommand.cpp">
-      <Filter>Source Files\Command</Filter>
-    </ClCompile>
-    <ClCompile Include="..\102598045_POSD\SetNodeNameCommand.cpp">
-      <Filter>Source Files\Command</Filter>
-    </ClCompile>
-    <ClCompile Include="..\102598045_POSD\SetCardinalityCommand.cpp">
-      <Filter>Source Files\Command</Filter>
-    </ClCompile>
-    <ClCompile Include="..\102598045_POSD\SaveFileCommand.cpp">
-      <Filter>Source Files\Command</Filter>
-    </ClCompile>
-    <ClCompile Include="..\102598045_POSD\RedoCommand.cpp">
-      <Filter>Source Files\Command</Filter>
-    </ClCompile>
-    <ClCompile Include="..\102598045_POSD\FindEntityCommand.cpp">
-      <Filter>Source Files\Command</Filter>
-    </ClCompile>
-    <ClCompile Include="..\102598045_POSD\FindComponentCommand.cpp">
       <Filter>Source Files\Command</Filter>
     </ClCompile>
     <ClCompile Include="..\102598045_POSD\Attribute.cpp">
@@ -206,12 +173,6 @@
     </ClCompile>
     <ClCompile Include="..\102598045_POSD\ReceiverManager.cpp">
       <Filter>Source Files\Manager</Filter>
-    </ClCompile>
-    <ClCompile Include="..\102598045_POSD\LoadFileCommand.cpp">
-      <Filter>Source Files\Command</Filter>
-    </ClCompile>
-    <ClCompile Include="..\102598045_POSD\ExitCommand.cpp">
-      <Filter>Source Files\Command</Filter>
     </ClCompile>
     <ClCompile Include="..\102598045_POSD\ConnectionData.cpp">
       <Filter>Source Files\Struct</Filter>
@@ -333,6 +294,54 @@
     <ClCompile Include="NodeTest.cpp">
       <Filter>Unit Testing Files\ModelTest</Filter>
     </ClCompile>
+    <ClCompile Include="TableTest.cpp">
+      <Filter>Unit Testing Files\ModelTest</Filter>
+    </ClCompile>
+    <ClCompile Include="..\102598045_POSD\UnexecutableCommand.cpp">
+      <Filter>Source Files\Command</Filter>
+    </ClCompile>
+    <ClCompile Include="..\102598045_POSD\SetNodeNameCommand.cpp">
+      <Filter>Source Files\Command</Filter>
+    </ClCompile>
+    <ClCompile Include="..\102598045_POSD\LoadFileCommand.cpp">
+      <Filter>Source Files\Command</Filter>
+    </ClCompile>
+    <ClCompile Include="..\102598045_POSD\SaveFileCommand.cpp">
+      <Filter>Source Files\Command</Filter>
+    </ClCompile>
+    <ClCompile Include="..\102598045_POSD\DisplayDiagramCommand.cpp">
+      <Filter>Source Files\Command</Filter>
+    </ClCompile>
+    <ClCompile Include="..\102598045_POSD\DisplayTableCommand.cpp">
+      <Filter>Source Files\Command</Filter>
+    </ClCompile>
+    <ClCompile Include="..\102598045_POSD\UndoCommand.cpp">
+      <Filter>Source Files\Command</Filter>
+    </ClCompile>
+    <ClCompile Include="..\102598045_POSD\RedoCommand.cpp">
+      <Filter>Source Files\Command</Filter>
+    </ClCompile>
+    <ClCompile Include="..\102598045_POSD\ExitCommand.cpp">
+      <Filter>Source Files\Command</Filter>
+    </ClCompile>
+    <ClCompile Include="..\102598045_POSD\SetCardinalityCommand.cpp">
+      <Filter>Source Files\Command</Filter>
+    </ClCompile>
+    <ClCompile Include="..\102598045_POSD\SetPrimaryKeyCommand.cpp">
+      <Filter>Source Files\Command</Filter>
+    </ClCompile>
+    <ClCompile Include="..\102598045_POSD\FindComponentCommand.cpp">
+      <Filter>Source Files\Command</Filter>
+    </ClCompile>
+    <ClCompile Include="..\102598045_POSD\FindEntityCommand.cpp">
+      <Filter>Source Files\Command</Filter>
+    </ClCompile>
+    <ClCompile Include="..\102598045_POSD\Command.cpp">
+      <Filter>Source Files\Command</Filter>
+    </ClCompile>
+    <ClCompile Include="ComponentFactoryTest.cpp">
+      <Filter>Unit Testing Files\FactoryTest</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DirectoryUtil.h">
@@ -367,6 +376,9 @@
     </ClInclude>
     <ClInclude Include="CommandMenuTest.h">
       <Filter>Header Files\MenuTest</Filter>
+    </ClInclude>
+    <ClInclude Include="ComponentFactoryTest.h">
+      <Filter>Header Files\FactoryTest</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

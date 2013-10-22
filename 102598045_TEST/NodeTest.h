@@ -1,16 +1,10 @@
 #pragma once
 
-#include "Attribute.h"
-#include "Entity.h"
-#include "RelationShip.h"
-#include "ERModel.h"
+#include "ComponentTest.h"
 #include <gtest/gtest.h>
 
-class NodeTest : public testing::Test{
+class NodeTest : public ComponentTest{
 protected:
-	ERModel erModel;
-	Attribute* attribute;
-	Entity* entity;
-	RelationShip* relationShip;
 	virtual void SetUp();
+	virtual void TearDown();
 };

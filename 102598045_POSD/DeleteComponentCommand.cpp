@@ -26,10 +26,7 @@ void DeleteComponentCommand::setupCommand(){
 	findComponentCommand.execute();	
 	
 	//save to variable - save deleted component
-	this->component = findComponentCommand.getComponent();
-	//save to variable - save connected connections
-	//this->connectionMap = ERModelUtil::convertComponentHashMapToTypeHashMap<Connector>(this->component->getAllConnections());		
-	
+	this->component = findComponentCommand.getComponent();	
 	this->removeAndDisconnectComponents();
 
 	this->presentation->logMessage("The component '"+this->component->getID()+"' has been deleted. ",true);	
@@ -90,7 +87,7 @@ void DeleteComponentCommand::clearConnectionDataMap(){
 //remove component from ERMol & disconnect it
 void DeleteComponentCommand::removeAndDisconnectComponents(){
 	ERModel* erModel = this->presentation->getERModel();	
-
+	//save to variable - save connected connections
 	this->connectionMap = ERModelUtil::convertComponentHashMapToTypeHashMap<Connector>(this->component->getAllConnections());
 	//if is connector,save to connection data
 	if(typeid(*this->component).name() == typeid(Connector).name())

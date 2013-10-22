@@ -10,12 +10,10 @@ LoadFileCommand :: LoadFileCommand(Presentation* presentation) : Command(present
 LoadFileCommand::~LoadFileCommand(){
 }
 
-void LoadFileCommand::setupCommand(){
-	this->presentation->logMessage("Please input the file name: ",true);
-	this->filePath = this->presentation->getInput();
-}
 /**Non testable function**/
 void LoadFileCommand::execute(){
+	this->presentation->logMessage("Please input the file name: ",true);
+	this->filePath = this->presentation->getInput();
 	ERModel* erModel = this->presentation->getERModel();
 	FileParser fileParser;	
 	fileParser.parseFileToModel(this->filePath,erModel);

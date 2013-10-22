@@ -6,9 +6,7 @@
 class LoadFileCommand : public Command{
 public:
 	LoadFileCommand(Presentation* presentation);
-	~LoadFileCommand();
-	
-	void setupCommand();
+	~LoadFileCommand();	
 
 	void execute();
 private:

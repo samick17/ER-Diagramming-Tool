@@ -1,15 +1,10 @@
 #pragma once
 
-#include "Connector.h"
-#include "ERModel.h"
+#include "ComponentTest.h"
 #include <gtest/gtest.h>
 
-class ConnectorTest : public testing::Test{
+class ConnectorTest : public ComponentTest{
 protected:
-	ERModel erModel;
-	Component* attribute;
-	Component* entity;
-	Component* relationShip;
-	Connector* connector;
 	virtual void SetUp();
+	virtual void TearDown();
 };

@@ -5,9 +5,15 @@
 #include "HasConnectedException.h"
 
 void NodeTest::SetUp(){
-	this->attribute = static_cast<Attribute*>(this->erModel.addNode(ComponentType::TypeAttribute));
-	this->relationShip = static_cast<RelationShip*>(this->erModel.addNode(ComponentType::TypeRelationShip));
-	this->entity = static_cast<Entity*>(this->erModel.addNode(ComponentType::TypeEntity));
+	this->attribute = new Attribute(ComponentData("0","Name"));
+	this->relationShip = new RelationShip(ComponentData("1","Has"));
+	this->entity = new Entity(ComponentData("2","Engineer"));
+}
+
+void NodeTest::TearDown(){
+	delete this->attribute;
+	delete this->relationShip;
+	delete this->entity;
 }
 
 TEST_F(NodeTest,testBreakAllConnections){
@@ -15,13 +21,17 @@ TEST_F(NodeTest,testBreakAllConnections){
 	ASSERT_EQ(0,this->relationShip->getAllConnections().size());
 	ASSERT_EQ(0,this->entity->getAllConnections().size());
 
-	this->erModel.addConnection(this->attribute,this->entity);
-	this->erModel.addConnection(this->relationShip,this->entity);
+	Connector connector1 = Connector(ComponentData("3",""));
+	connectWithEachOther(this->attribute,this->entity,&connector1);
+	Connector connector2 = Connector(ComponentData("4",""));
+	connectWithEachOther(this->relationShip,this->entity,&connector2);
 
-	Component* entity2 = this->erModel.addNode(ComponentType::TypeEntity);
-	Component* attribute2 = this->erModel.addNode(ComponentType::TypeAttribute);
-	this->erModel.addConnection(attribute2,this->entity);
-	this->erModel.addConnection(this->relationShip,entity2);
+	Entity entity2 = Entity(ComponentData("5",""));
+	Attribute attribute2 = Attribute(ComponentData("6",""));
+	Connector connector3 = Connector(ComponentData("7",""));
+	connectWithEachOther(&attribute2,this->entity,&connector3);
+	Connector connector4 = Connector(ComponentData("8",""));
+	connectWithEachOther(this->relationShip,&entity2,&connector4);
 
 	ASSERT_EQ(1,this->attribute->getAllConnections().size());
 	ASSERT_EQ(2,this->relationShip->getAllConnections().size());
@@ -42,26 +52,29 @@ TEST_F(NodeTest,testCanConnectTo){
 	ASSERT_THROW(this->entity->canConnectTo(this->entity),ConnectedSelfException);
 	ASSERT_THROW(this->relationShip->canConnectTo(this->relationShip),ConnectedSelfException);
 	//same type
-	ASSERT_THROW(this->attribute->canConnectTo(this->erModel.addNode(ComponentType::TypeAttribute)),InvalidConnectException);
-	ASSERT_THROW(this->entity->canConnectTo(this->erModel.addNode(ComponentType::TypeEntity)),InvalidConnectException);
-	ASSERT_THROW(this->relationShip->canConnectTo(this->erModel.addNode(ComponentType::TypeRelationShip)),InvalidConnectException);
+	ASSERT_THROW(this->attribute->canConnectTo(&Attribute(ComponentData("3",""))),InvalidConnectException);
+	ASSERT_THROW(this->entity->canConnectTo(&Entity(ComponentData("4",""))),InvalidConnectException);
+	ASSERT_THROW(this->relationShip->canConnectTo(&RelationShip(ComponentData("5",""))),InvalidConnectException);
 
-	this->erModel.addConnection(this->attribute,this->entity);
-	this->erModel.addConnection(this->relationShip,this->entity);
+	Connector connector1 = Connector(ComponentData("3",""));
+	connectWithEachOther(this->attribute,this->entity,&connector1);
+	Connector connector2 = Connector(ComponentData("4",""));
+	connectWithEachOther(this->relationShip,this->entity,&connector2);
 	//has connected
 	ASSERT_THROW(this->attribute->canConnectTo(this->entity),HasConnectedException);
 	ASSERT_THROW(this->entity->canConnectTo(this->attribute),HasConnectedException);
 	ASSERT_THROW(this->relationShip->canConnectTo(this->entity),HasConnectedException);
 	ASSERT_THROW(this->entity->canConnectTo(this->relationShip),HasConnectedException);
 
-	ASSERT_THROW(this->attribute->canConnectTo(this->erModel.addNode(ComponentType::TypeEntity)),InvalidConnectException);
+	ASSERT_THROW(this->attribute->canConnectTo(&Entity(ComponentData("6",""))),InvalidConnectException);
 
-	Component* entity2 = this->erModel.addNode(ComponentType::TypeEntity);
-	ASSERT_EQ(NodeConnectionType::ConnectEntityAndRelation,this->relationShip->canConnectTo(entity2));
+	Entity entity2 = Entity(ComponentData("7",""));
+	ASSERT_EQ(NodeConnectionType::ConnectEntityAndRelation,this->relationShip->canConnectTo(&entity2));
 
-	this->erModel.addConnection(entity2,this->relationShip);
-	ASSERT_THROW(this->relationShip->canConnectTo(this->erModel.addNode(ComponentType::TypeEntity)),InvalidConnectException);
+	Connector connector3 = Connector(ComponentData("8",""));
+	connectWithEachOther(&entity2,this->relationShip,&connector3);	
+	ASSERT_THROW(this->relationShip->canConnectTo(&Entity(ComponentData("9",""))),InvalidConnectException);
 
-	ASSERT_EQ(NodeConnectionType::ValidConnect,this->entity->canConnectTo(this->erModel.addNode(ComponentType::TypeAttribute)));
-	ASSERT_EQ(NodeConnectionType::ConnectEntityAndRelation,this->entity->canConnectTo(this->erModel.addNode(ComponentType::TypeRelationShip)));
+	ASSERT_EQ(NodeConnectionType::ValidConnect,this->entity->canConnectTo(&Attribute(ComponentData("10",""))));
+	ASSERT_EQ(NodeConnectionType::ConnectEntityAndRelation,this->entity->canConnectTo(&RelationShip(ComponentData("11",""))));
 }
