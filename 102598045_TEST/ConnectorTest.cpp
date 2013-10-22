@@ -1,6 +1,7 @@
 #include "ConnectorTest.h"
 #include "ComponentType.h"
 #include "InvalidConnectException.h"
+#include "ComponentUtil.h"
 
 void ConnectorTest::SetUp(){
 	this->attribute = new Attribute(ComponentData("0",""));
@@ -8,7 +9,7 @@ void ConnectorTest::SetUp(){
 	this->entity = new Entity(ComponentData("2",""));
 
 	this->connector = new Connector(ComponentData("3",""));
-	connectWithEachOther(this->attribute,this->entity,this->connector);
+	ComponentUtil::connectWithEachOther(this->attribute,this->entity,this->connector);
 }
 
 void ConnectorTest::TearDown(){
@@ -54,7 +55,7 @@ TEST_F(ConnectorTest,testHasSizeToConnect){
 
 TEST_F(ConnectorTest,testGetFirstConnectedNode){
 	Connector connectorEntityAndRelation = Connector(ComponentData("4",""));
-	this->connectWithEachOther(this->entity,this->relationShip,&connectorEntityAndRelation);
+	ComponentUtil::connectWithEachOther(this->entity,this->relationShip,&connectorEntityAndRelation);
 	
 	ASSERT_EQ(this->attribute,this->connector->getFirstConnectedNode());
 	ASSERT_EQ(this->relationShip,connectorEntityAndRelation.getFirstConnectedNode());
@@ -62,7 +63,7 @@ TEST_F(ConnectorTest,testGetFirstConnectedNode){
 
 TEST_F(ConnectorTest,testGetSecondConnectedNode){
 	Connector connectorEntityAndRelation = Connector(ComponentData("4",""));
-	this->connectWithEachOther(this->entity,this->relationShip,&connectorEntityAndRelation);
+	ComponentUtil::connectWithEachOther(this->entity,this->relationShip,&connectorEntityAndRelation);
 
 	ASSERT_EQ(this->entity,this->connector->getSecondConnectedNode());
 	ASSERT_EQ(this->entity,connectorEntityAndRelation.getSecondConnectedNode());

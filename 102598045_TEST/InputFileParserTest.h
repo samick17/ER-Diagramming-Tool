@@ -1,12 +1,12 @@
 #pragma once
 
-#include "FileParser.h"
+#include "InputFileParser.h"
 #include <gtest/gtest.h>
 
-class FileParserTest : public testing::Test{
+class InputFileParserTest : public testing::Test{
 protected:
 	ERModel erModel;
-	FileParser fileParser;
+	InputFileParser inputFileParser;
 	Document* document;
 	virtual void SetUp();
 	virtual void TearDown();

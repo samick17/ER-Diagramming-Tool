@@ -14,5 +14,4 @@ protected:
 	Connector* connector;
 	virtual void SetUp();
 	virtual void TearDown();
-	void connectWithEachOther(Node* firstNode,Node* secondNode,Connector* connector);
 };

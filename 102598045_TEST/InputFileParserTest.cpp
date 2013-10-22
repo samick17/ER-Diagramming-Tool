@@ -1,9 +1,9 @@
-#include "FileParserTest.h"
+#include "InputFileParserTest.h"
 #include "StringSymbol.h"
 #include "ComponentType.h"
 
-void FileParserTest::SetUp(){
-	this->fileParser.erModel = &erModel;
+void InputFileParserTest::SetUp(){
+	this->inputFileParser.erModel = &erModel;
 	this->document = new Document("TestDoc");
 	document->wirteLine("E, Engineer");
 	document->wirteLine("A, Emp_ID");
@@ -32,37 +32,37 @@ void FileParserTest::SetUp(){
 	document->wirteLine("0 1,3");
 	document->wirteLine("4 5");
 	document->wirteLine("");
-	ASSERT_EQ(true,this->fileParser.componentDataQueue.empty());
-	ASSERT_EQ(true,this->fileParser.connectionDataQueue.empty());
+	ASSERT_EQ(true,this->inputFileParser.componentDataQueue.empty());
+	ASSERT_EQ(true,this->inputFileParser.connectionDataQueue.empty());
 }
 
-void FileParserTest::TearDown(){
+void InputFileParserTest::TearDown(){
 	delete this->document;
 }
 
-TEST_F(FileParserTest,testLoadAllComponentsFromDoc){	
-	ASSERT_EQ(true,this->fileParser.componentDataQueue.empty());
-	this->fileParser.loadAllComponentsFromDoc(*this->document);
-	ASSERT_EQ(15,this->fileParser.componentDataQueue.size());
+TEST_F(InputFileParserTest,testLoadAllComponentsFromDoc){	
+	ASSERT_EQ(true,this->inputFileParser.componentDataQueue.empty());
+	this->inputFileParser.loadAllComponentsFromDoc(*this->document);
+	ASSERT_EQ(15,this->inputFileParser.componentDataQueue.size());
 }
 
-TEST_F(FileParserTest,testLoadAllConnectorsFromDoc){
+TEST_F(InputFileParserTest,testLoadAllConnectorsFromDoc){
 	this->document->readIndex = 16;
-	ASSERT_EQ(true,this->fileParser.connectionDataQueue.empty());
-	this->fileParser.loadAllConnectorsFromDoc(*this->document);
-	ASSERT_EQ(7,this->fileParser.connectionDataQueue.size());
+	ASSERT_EQ(true,this->inputFileParser.connectionDataQueue.empty());
+	this->inputFileParser.loadAllConnectorsFromDoc(*this->document);
+	ASSERT_EQ(7,this->inputFileParser.connectionDataQueue.size());
 }
 
-TEST_F(FileParserTest,testLoadAllPrimaryKeyAndSetUpFromDoc){	
-	this->fileParser.loadAllComponentsFromDoc(*this->document);
-	this->fileParser.loadAllConnectorsFromDoc(*this->document);
-	this->fileParser.addAllComponentToERModel();
+TEST_F(InputFileParserTest,testLoadAllPrimaryKeyAndSetUpFromDoc){	
+	this->inputFileParser.loadAllComponentsFromDoc(*this->document);
+	this->inputFileParser.loadAllConnectorsFromDoc(*this->document);
+	this->inputFileParser.addAllComponentToERModel();
 	Entity* entityEngineer = static_cast<Entity*>(this->erModel.getComponentByID("0"));
 	Entity* entityPC = static_cast<Entity*>(this->erModel.getComponentByID("4"));
 	ASSERT_EQ(0,entityEngineer->getPrimaryKeyAttributes().size());
 	ASSERT_EQ(0,entityPC->getPrimaryKeyAttributes().size());
 	//load all Primary Key
-	this->fileParser.loadAllPrimaryKeyAndSetUpFromDoc(*this->document);
+	this->inputFileParser.loadAllPrimaryKeyAndSetUpFromDoc(*this->document);
 	ASSERT_EQ(2,entityEngineer->getPrimaryKeyAttributes().size());
 	ASSERT_EQ(true,entityEngineer->getPrimaryKeyAttributes().get("1")->isPrimaryKey());
 	ASSERT_EQ(true,entityEngineer->getPrimaryKeyAttributes().get("3")->isPrimaryKey());
@@ -70,7 +70,7 @@ TEST_F(FileParserTest,testLoadAllPrimaryKeyAndSetUpFromDoc){
 	ASSERT_EQ(true,entityPC->getPrimaryKeyAttributes().get("5")->isPrimaryKey());
 }
 
-TEST_F(FileParserTest,testAddAllComponentToERModel){
+TEST_F(InputFileParserTest,testAddAllComponentToERModel){
 	queue<StringPair> componentDataQueue;
 	queue<ConnectionData> connectionDataQueue;
 
@@ -98,10 +98,10 @@ TEST_F(FileParserTest,testAddAllComponentToERModel){
 	connectionDataQueue.push(ConnectionData("13","9","12"));
 	connectionDataQueue.push(ConnectionData("14","7","9"));
 
-	this->fileParser.componentDataQueue = componentDataQueue;
-	this->fileParser.connectionDataQueue = connectionDataQueue;
+	this->inputFileParser.componentDataQueue = componentDataQueue;
+	this->inputFileParser.connectionDataQueue = connectionDataQueue;
 
-	this->fileParser.addAllComponentToERModel();
+	this->inputFileParser.addAllComponentToERModel();
 	ASSERT_EQ(15,this->erModel.getAllComponents().size());
 	ASSERT_EQ(2,this->erModel.getAllEntities().size());
 	ASSERT_EQ(1,this->erModel.getAllRelationShips().size());
@@ -144,7 +144,7 @@ TEST_F(FileParserTest,testAddAllComponentToERModel){
 	ASSERT_EQ("14",this->erModel.getComponentByID("14")->getID());
 }
 
-TEST_F(FileParserTest,testAddConnector){
+TEST_F(InputFileParserTest,testAddConnector){
 	this->erModel.addNode(ComponentType::TypeAttribute);
 	this->erModel.addNode(ComponentType::TypeRelationShip);
 	this->erModel.addNode(ComponentType::TypeEntity);
@@ -153,18 +153,18 @@ TEST_F(FileParserTest,testAddConnector){
 	this->erModel.addNode(ComponentType::TypeAttribute);
 	this->erModel.addNode(ComponentType::TypeConnector);
 
-	this->fileParser.addConnector(ConnectionData("0","2","3"),"");
-	this->fileParser.addConnector(ConnectionData("2","1","4"),"");
-	this->fileParser.addConnector(ConnectionData("5","2","6"),"");
+	this->inputFileParser.addConnector(ConnectionData("0","2","3"),"");
+	this->inputFileParser.addConnector(ConnectionData("2","1","4"),"");
+	this->inputFileParser.addConnector(ConnectionData("5","2","6"),"");
 }
 
-TEST_F(FileParserTest,testIsQueueArriveConnectionDataID){
-	ASSERT_EQ(false,this->fileParser.isQueueArriveConnectionDataID(0));
+TEST_F(InputFileParserTest,testIsQueueArriveConnectionDataID){
+	ASSERT_EQ(false,this->inputFileParser.isQueueArriveConnectionDataID(0));
 
-	this->fileParser.componentDataQueue.push(StringPair(ComponentType::TypeAttribute,"Name"));
-	ASSERT_EQ(false,this->fileParser.isQueueArriveConnectionDataID(10));
-	this->fileParser.connectionDataQueue.push(ConnectionData("5","0","1"));
-	ASSERT_EQ(true,this->fileParser.isQueueArriveConnectionDataID(5));
+	this->inputFileParser.componentDataQueue.push(StringPair(ComponentType::TypeAttribute,"Name"));
+	ASSERT_EQ(false,this->inputFileParser.isQueueArriveConnectionDataID(10));
+	this->inputFileParser.connectionDataQueue.push(ConnectionData("5","0","1"));
+	ASSERT_EQ(true,this->inputFileParser.isQueueArriveConnectionDataID(5));
 
-	ASSERT_EQ(false,this->fileParser.isQueueArriveConnectionDataID(18));
+	ASSERT_EQ(false,this->inputFileParser.isQueueArriveConnectionDataID(18));
 }

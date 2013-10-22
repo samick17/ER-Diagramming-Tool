@@ -240,9 +240,6 @@
     <ClInclude Include="UnexecutableCommand.h">
       <Filter>Header Files\Command</Filter>
     </ClInclude>
-    <ClInclude Include="VectorUtil.h">
-      <Filter>Header Files\Utils</Filter>
-    </ClInclude>
     <ClInclude Include="CommandData.h">
       <Filter>Header Files\Struct</Filter>
     </ClInclude>
@@ -294,9 +291,6 @@
     <ClInclude Include="ComponentConnectionSize.h">
       <Filter>Header Files\Constants</Filter>
     </ClInclude>
-    <ClInclude Include="FileParser.h">
-      <Filter>Header Files\Parser</Filter>
-    </ClInclude>
     <ClInclude Include="HashMap.h">
       <Filter>Header Files\Collection</Filter>
     </ClInclude>
@@ -335,6 +329,12 @@
     </ClInclude>
     <ClInclude Include="CharSymbol.h">
       <Filter>Header Files\Constants</Filter>
+    </ClInclude>
+    <ClInclude Include="InputFileParser.h">
+      <Filter>Header Files\Parser</Filter>
+    </ClInclude>
+    <ClInclude Include="OutputFileParser.h">
+      <Filter>Header Files\Parser</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -509,9 +509,6 @@
     <ClCompile Include="NullPointerException.cpp">
       <Filter>Source Files\Exception</Filter>
     </ClCompile>
-    <ClCompile Include="FileParser.cpp">
-      <Filter>Source Files\Parser</Filter>
-    </ClCompile>
     <ClCompile Include="FileNotFoundException.cpp">
       <Filter>Source Files\Exception\IOException</Filter>
     </ClCompile>
@@ -544,6 +541,12 @@
     </ClCompile>
     <ClCompile Include="CharSymbol.cpp">
       <Filter>Source Files\Constants</Filter>
+    </ClCompile>
+    <ClCompile Include="InputFileParser.cpp">
+      <Filter>Source Files\Parser</Filter>
+    </ClCompile>
+    <ClCompile Include="OutputFileParser.cpp">
+      <Filter>Source Files\Parser</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

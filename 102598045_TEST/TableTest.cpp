@@ -87,35 +87,29 @@ TEST_F(TableTest,testGetEntityName){
 }
 
 TEST_F(TableTest,testGetAllPrimaryKeyAttributesNameSet){
-	set<string> primaryKeySet = this->table->getAllPrimaryKeyAttributesNameSet();
+	vector<string> primaryKeySet = this->table->getAllPrimaryKeyAttributesNameVector();
 	ASSERT_EQ(2,primaryKeySet.size());
-	ASSERT_NE(primaryKeySet.end(),primaryKeySet.find(attributeMap.get("1")->getName()));
-	ASSERT_NE(primaryKeySet.end(),primaryKeySet.find(attributeMap.get("2")->getName()));
-	ASSERT_EQ(primaryKeySet.end(),primaryKeySet.find(attributeMap.get("3")->getName()));
+	ASSERT_EQ(attributeMap.get("1")->getName(),primaryKeySet[0]);
+	ASSERT_EQ(attributeMap.get("2")->getName(),primaryKeySet[1]);
 
-	ASSERT_NE(primaryKeySet.end(),primaryKeySet.find("Name"));
-	ASSERT_NE(primaryKeySet.end(),primaryKeySet.find("Emp_ID"));
-	ASSERT_EQ(primaryKeySet.end(),primaryKeySet.find("Age"));
+	ASSERT_EQ("Name",primaryKeySet[0]);
+	ASSERT_EQ("Emp_ID",primaryKeySet[1]);
 }
 
 TEST_F(TableTest,testGetAllDefaultKeyAttributesNameSet){
-	set<string> defaultKeySet = this->table->getAllDefaultKeyAttributesNameSet();
+	vector<string> defaultKeySet = this->table->getAllDefaultKeyAttributesNameVector();
 	ASSERT_EQ(1,defaultKeySet.size());
-	ASSERT_EQ(defaultKeySet.end(),defaultKeySet.find(attributeMap.get("1")->getName()));
-	ASSERT_EQ(defaultKeySet.end(),defaultKeySet.find(attributeMap.get("2")->getName()));
-	ASSERT_NE(defaultKeySet.end(),defaultKeySet.find(attributeMap.get("3")->getName()));
+	ASSERT_EQ(attributeMap.get("3")->getName(),defaultKeySet[0]);
 
-	ASSERT_EQ(defaultKeySet.end(),defaultKeySet.find("Name"));
-	ASSERT_EQ(defaultKeySet.end(),defaultKeySet.find("Emp_ID"));
-	ASSERT_NE(defaultKeySet.end(),defaultKeySet.find("Age"));
+	ASSERT_EQ("Age",defaultKeySet[0]);
 }
 
 TEST_F(TableTest,testGetAllForeignKeyAttributesNameSet){
-	set<string> foreignKeySet = this->table->getAllForeignKeyAttributesNameSet();
+	vector<string> foreignKeySet = this->table->getAllForeignKeyAttributesNameVector();
 	ASSERT_EQ(2,foreignKeySet.size());
-	ASSERT_NE(foreignKeySet.end(),foreignKeySet.find(foreignKeyAttributeMap.get("4")->getName()));
-	ASSERT_NE(foreignKeySet.end(),foreignKeySet.find(foreignKeyAttributeMap.get("5")->getName()));
+	ASSERT_EQ(foreignKeyAttributeMap.get("4")->getName(),foreignKeySet[0]);
+	ASSERT_EQ(foreignKeyAttributeMap.get("5")->getName(),foreignKeySet[1]);
 
-	ASSERT_NE(foreignKeySet.end(),foreignKeySet.find("PC_ID"));
-	ASSERT_NE(foreignKeySet.end(),foreignKeySet.find("Purchase_Date"));
+	ASSERT_EQ("PC_ID",foreignKeySet[0]);
+	ASSERT_EQ("Purchase_Date",foreignKeySet[1]);
 }

@@ -33,11 +33,11 @@ string &StringUtil::trim(std::string &str){
 	return trimStart(trimEnd(str));
 }
 //e.g. convert "a b c" to "a,b,c"
-string StringUtil::appendWithComma(set<string> stringSet){
+string StringUtil::appendWithComma(vector<string> stringVector){
 	string result;
-	for each(string str in stringSet){
+	for each(string str in stringVector){
 		result += str;	
-		if(str != *(--stringSet.end()))
+		if(str != *(--stringVector.end()))
 			result += StringSymbol::Comma;
 	}
 	return result;

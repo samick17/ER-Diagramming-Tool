@@ -1,7 +1,6 @@
 #pragma once
 
 #include <vector>
-#include <set>
 #include <string>
 #include <algorithm> 
 
@@ -14,5 +13,5 @@ public:
 	static string &trimStart(string &s);
 	static string &trimEnd(string &s);
 	static string &trim(string &s);	
-	static string appendWithComma(set<string> stringSet);
+	static string appendWithComma(vector<string> stringVector);
 };

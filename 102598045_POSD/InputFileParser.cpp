@@ -1,23 +1,21 @@
-#include "FileParser.h"
+#include "InputFileParser.h"
 #include "StringUtil.h"
-#include "VectorUtil.h"
 #include "StringSymbol.h"
 #include "CharSymbol.h"
 
-FileParser::FileParser(){
+InputFileParser::InputFileParser(){
 	this->erModel = NULL;
 }
 
-FileParser::~FileParser(){
+InputFileParser::~InputFileParser(){
 }
 
-void FileParser::parseFileToModel(string filePath,ERModel* erModel){
+void InputFileParser::parseFileToModel(string filePath,ERModel* erModel){
 	//load all file
 	Document doc(filePath);
 	doc.openFile();
 
 	this->erModel = erModel;
-
 	this->erModel->clearComponentMap();
 
 	//load all Nodes & Connectors
@@ -28,7 +26,7 @@ void FileParser::parseFileToModel(string filePath,ERModel* erModel){
 	this->loadAllPrimaryKeyAndSetUpFromDoc(doc);
 }
 
-void FileParser::loadAllComponentsFromDoc(Document& doc){	
+void InputFileParser::loadAllComponentsFromDoc(Document& doc){	
 	string line;
 	while(StringUtil::trim((line = doc.readLine())) != StringSymbol::Empty){
 		//load component data & push to componentDataQueue
@@ -44,7 +42,7 @@ void FileParser::loadAllComponentsFromDoc(Document& doc){
 	}
 }
 
-void FileParser::loadAllConnectorsFromDoc(Document& doc){
+void InputFileParser::loadAllConnectorsFromDoc(Document& doc){
 	string line;
 	while(StringUtil::trim((line = doc.readLine())) != StringSymbol::Empty){
 		//load connection data & push to connectionDataQueue
@@ -61,23 +59,21 @@ void FileParser::loadAllConnectorsFromDoc(Document& doc){
 	}
 }
 
-void FileParser::loadAllPrimaryKeyAndSetUpFromDoc(Document& doc){
+void InputFileParser::loadAllPrimaryKeyAndSetUpFromDoc(Document& doc){
 	string line;
 	while(StringUtil::trim((line = doc.readLine())) != StringSymbol::Empty){
 		vector<string> entitysPrimaryKeyVector = StringUtil::split(line,CharSymbol::Space);
 		string entityID = entitysPrimaryKeyVector[0];
 		string primaryKeyAttributeID = entitysPrimaryKeyVector[1];
 
-		vector<string> primaryKeyAttributeIDVector;		
-		primaryKeyAttributeIDVector = StringUtil::split(primaryKeyAttributeID,CharSymbol::Comma);
-		
 		//set primary key
 		Entity* entity = static_cast<Entity*>(this->erModel->getComponentByID(entityID));
-		entity->setPrimaryKey(VectorUtil::convertVectorToSet<string>(primaryKeyAttributeIDVector));
+		vector<string> primaryKeyAttributeIDVector = StringUtil::split(primaryKeyAttributeID,CharSymbol::Comma);
+		entity->setPrimaryKey(primaryKeyAttributeIDVector);
 	}
 }
 
-void FileParser::addAllComponentToERModel(){	
+void InputFileParser::addAllComponentToERModel(){	
 	int index = 0;
 	//add all component in queue
 	while(!this->componentDataQueue.empty()){
@@ -96,7 +92,7 @@ void FileParser::addAllComponentToERModel(){
 	}
 }
 //convert connectionData & add connector to ERModel
-void FileParser::addConnector(ConnectionData connectionData,string connectionName){
+void InputFileParser::addConnector(ConnectionData connectionData,string connectionName){
 	Component* firstNode = this->erModel->getComponentByID(connectionData.getConnectedFirstNodeID());
 	Component* secondNode = erModel->getComponentByID(connectionData.getConnectedSecondNodeID());
 	
@@ -109,7 +105,7 @@ void FileParser::addConnector(ConnectionData connectionData,string connectionNam
 *if ComponentDataQueue.front's ID equals ConnectionDataQueue.front's ID:
 *	return true;//means to add connector
 */
-bool FileParser::isQueueArriveConnectionDataID(int id){
+bool InputFileParser::isQueueArriveConnectionDataID(int id){
 	if(this->componentDataQueue.empty())
 		return false;
 	if(this->connectionDataQueue.empty())

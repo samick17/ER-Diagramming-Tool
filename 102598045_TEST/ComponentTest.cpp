@@ -1,5 +1,6 @@
 #include "ComponentTest.h"
 #include "ComponentType.h"
+#include "ComponentUtil.h"
 
 void ComponentTest::SetUp(){
 	this->attribute = new Attribute(ComponentData("0",""));
@@ -7,7 +8,7 @@ void ComponentTest::SetUp(){
 	this->entity = new Entity(ComponentData("2",""));
 
 	this->connector = new Connector(ComponentData("3",""));
-	connectWithEachOther(this->attribute,this->entity,this->connector);
+	ComponentUtil::connectWithEachOther(this->attribute,this->entity,this->connector);
 }
 
 void ComponentTest::TearDown(){
@@ -15,13 +16,6 @@ void ComponentTest::TearDown(){
 	delete this->entity;
 	delete this->relationShip;
 	delete this->connector;
-}
-
-void ComponentTest::connectWithEachOther(Node* firstNode,Node* secondNode,Connector* connector){
-	firstNode->connectTo(connector);
-	secondNode->connectTo(connector);
-	connector->connectTo(firstNode);
-	connector->connectTo(secondNode);
 }
 
 TEST_F(ComponentTest,testToString){

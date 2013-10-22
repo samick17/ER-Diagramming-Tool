@@ -34,16 +34,17 @@ bool RelationShip::hasSizeToConnect(){
 }
 
 bool RelationShip::isRelationType(string relationType){
-	if(this->hasSizeToConnect()){
+	if(this->hasSizeToConnect())
 		return false;
-	}
+	
 	bool isRType = true;
 	if(relationType == RelationType::OneToOne){
 		for each(Component* component in this->getAllConnections())		
 			isRType &= (component->getName() == RelationType::OneToOne);		
 	}
-	else 	
+	else{
 		isRType = false;
+	}
 	
 	return isRType;
 }

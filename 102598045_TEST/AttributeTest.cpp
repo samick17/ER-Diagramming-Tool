@@ -3,6 +3,7 @@
 #include "InvalidConnectException.h"
 #include "ConnectedSelfException.h"
 #include "HasConnectedException.h"
+#include "ComponentUtil.h"
 
 void AttributeTest::SetUp(){	
 	this->attribute = new Attribute(ComponentData("0","Name"));
@@ -26,7 +27,7 @@ TEST_F(AttributeTest,testCanConnectTo){
 	ASSERT_THROW(this->attribute->canConnectTo(this->attribute),ConnectedSelfException);	
 
 	Connector connector = Connector(ComponentData("3",""));	
-	this->connectWithEachOther(this->attribute,this->entity,&connector);
+	ComponentUtil::connectWithEachOther(this->attribute,this->entity,&connector);
 
 	ASSERT_THROW(this->attribute->canConnectTo(this->entity),HasConnectedException);	
 	ASSERT_THROW(this->attribute->canConnectTo(&Attribute(ComponentData("",""))),InvalidConnectException);
@@ -36,7 +37,7 @@ TEST_F(AttributeTest,testHasSizeToConnect){
 	ASSERT_EQ(true,this->attribute->hasSizeToConnect());
 
 	Connector connector = Connector(ComponentData("3",""));	
-	this->connectWithEachOther(this->attribute,this->entity,&connector);
+	ComponentUtil::connectWithEachOther(this->attribute,this->entity,&connector);
 	ASSERT_EQ(false,this->attribute->hasSizeToConnect());
 }
 

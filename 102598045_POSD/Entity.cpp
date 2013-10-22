@@ -22,12 +22,12 @@ string Entity::toString(){
 		return StringSymbol::Empty;
 
 	string result = this->getID();
-	set<string> primaryKeyAttributeIDSet;
+	vector<string> primaryKeyAttributeIDVector;
 
 	for each(Attribute* attribute in primaryKeyAttributeHashMap)	
-		primaryKeyAttributeIDSet.insert(attribute->getID());	
+		primaryKeyAttributeIDVector.push_back(attribute->getID());	
 
-	result += StringSymbol::Space+StringUtil::appendWithComma(primaryKeyAttributeIDSet);
+	result += StringSymbol::Space+StringUtil::appendWithComma(primaryKeyAttributeIDVector);
 
 	return result;
 }
@@ -71,8 +71,8 @@ HashMap<string,Attribute*> Entity::getPrimaryKeyAttributes(){
 	return attributeMap;
 }
 //set this primary key by primary key collection, if doesn't has such attribute, throw exception
-void Entity::setPrimaryKey(set<string> primaryKeyIDSet){
-	for each (string attributeID in primaryKeyIDSet){
+void Entity::setPrimaryKey(vector<string> primaryKeyIDVector){
+	for each (string attributeID in primaryKeyIDVector){
 		Attribute* attribute = this->getAttributeByID(attributeID);			
 		attribute->setAsPrimaryKey();		
 	}

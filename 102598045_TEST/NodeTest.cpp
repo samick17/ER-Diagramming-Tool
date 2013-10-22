@@ -3,6 +3,7 @@
 #include "ConnectedSelfException.h"
 #include "InvalidConnectException.h"
 #include "HasConnectedException.h"
+#include "ComponentUtil.h"
 
 void NodeTest::SetUp(){
 	this->attribute = new Attribute(ComponentData("0","Name"));
@@ -22,16 +23,16 @@ TEST_F(NodeTest,testBreakAllConnections){
 	ASSERT_EQ(0,this->entity->getAllConnections().size());
 
 	Connector connector1 = Connector(ComponentData("3",""));
-	connectWithEachOther(this->attribute,this->entity,&connector1);
+	ComponentUtil::connectWithEachOther(this->attribute,this->entity,&connector1);
 	Connector connector2 = Connector(ComponentData("4",""));
-	connectWithEachOther(this->relationShip,this->entity,&connector2);
+	ComponentUtil::connectWithEachOther(this->relationShip,this->entity,&connector2);
 
 	Entity entity2 = Entity(ComponentData("5",""));
 	Attribute attribute2 = Attribute(ComponentData("6",""));
 	Connector connector3 = Connector(ComponentData("7",""));
-	connectWithEachOther(&attribute2,this->entity,&connector3);
+	ComponentUtil::connectWithEachOther(&attribute2,this->entity,&connector3);
 	Connector connector4 = Connector(ComponentData("8",""));
-	connectWithEachOther(this->relationShip,&entity2,&connector4);
+	ComponentUtil::connectWithEachOther(this->relationShip,&entity2,&connector4);
 
 	ASSERT_EQ(1,this->attribute->getAllConnections().size());
 	ASSERT_EQ(2,this->relationShip->getAllConnections().size());
@@ -57,9 +58,9 @@ TEST_F(NodeTest,testCanConnectTo){
 	ASSERT_THROW(this->relationShip->canConnectTo(&RelationShip(ComponentData("5",""))),InvalidConnectException);
 
 	Connector connector1 = Connector(ComponentData("3",""));
-	connectWithEachOther(this->attribute,this->entity,&connector1);
+	ComponentUtil::connectWithEachOther(this->attribute,this->entity,&connector1);
 	Connector connector2 = Connector(ComponentData("4",""));
-	connectWithEachOther(this->relationShip,this->entity,&connector2);
+	ComponentUtil::connectWithEachOther(this->relationShip,this->entity,&connector2);
 	//has connected
 	ASSERT_THROW(this->attribute->canConnectTo(this->entity),HasConnectedException);
 	ASSERT_THROW(this->entity->canConnectTo(this->attribute),HasConnectedException);
@@ -72,7 +73,7 @@ TEST_F(NodeTest,testCanConnectTo){
 	ASSERT_EQ(NodeConnectionType::ConnectEntityAndRelation,this->relationShip->canConnectTo(&entity2));
 
 	Connector connector3 = Connector(ComponentData("8",""));
-	connectWithEachOther(&entity2,this->relationShip,&connector3);	
+	ComponentUtil::connectWithEachOther(&entity2,this->relationShip,&connector3);	
 	ASSERT_THROW(this->relationShip->canConnectTo(&Entity(ComponentData("9",""))),InvalidConnectException);
 
 	ASSERT_EQ(NodeConnectionType::ValidConnect,this->entity->canConnectTo(&Attribute(ComponentData("10",""))));

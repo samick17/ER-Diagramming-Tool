@@ -10,17 +10,17 @@ using namespace std;
 
 typedef pair<string,string> StringPair;
 
-class FileParser{
-	friend class FileParserTest;
-	FRIEND_TEST(FileParserTest,testLoadAllComponentsFromDoc);
-	FRIEND_TEST(FileParserTest,testLoadAllConnectorsFromDoc);
-	FRIEND_TEST(FileParserTest,testLoadAllPrimaryKeyAndSetUpFromDoc);
-	FRIEND_TEST(FileParserTest,testAddAllComponentToERModel);
-	FRIEND_TEST(FileParserTest,testAddConnector);
-	FRIEND_TEST(FileParserTest,testIsQueueArriveConnectionDataID);
+class InputFileParser{
+	friend class InputFileParserTest;
+	FRIEND_TEST(InputFileParserTest,testLoadAllComponentsFromDoc);
+	FRIEND_TEST(InputFileParserTest,testLoadAllConnectorsFromDoc);
+	FRIEND_TEST(InputFileParserTest,testLoadAllPrimaryKeyAndSetUpFromDoc);
+	FRIEND_TEST(InputFileParserTest,testAddAllComponentToERModel);
+	FRIEND_TEST(InputFileParserTest,testAddConnector);
+	FRIEND_TEST(InputFileParserTest,testIsQueueArriveConnectionDataID);
 public:
-	FileParser();
-	~FileParser();
+	InputFileParser();
+	~InputFileParser();
 
 	void parseFileToModel(string filePath,ERModel* erModel);
 private:

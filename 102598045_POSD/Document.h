@@ -8,9 +8,13 @@
 using namespace std;
 
 class Document{
-	friend class FileParserTest;
-	FRIEND_TEST(FileParserTest,testLoadAllConnectorsFromDoc);
-	FRIEND_TEST(FileParserTest,testLoadAllPrimaryKeyAndSetUpFromDoc);
+	friend class InputFileParserTest;
+	FRIEND_TEST(InputFileParserTest,testLoadAllConnectorsFromDoc);
+	FRIEND_TEST(InputFileParserTest,testLoadAllPrimaryKeyAndSetUpFromDoc);
+	friend class OutputFileParserTest;
+	FRIEND_TEST(OutputFileParserTest,testWriteAllComponentsToDoc);
+	FRIEND_TEST(OutputFileParserTest,testWriteAllConnectorsToDoc);
+	FRIEND_TEST(OutputFileParserTest,testWriteAllPrimaryKeyToDoc);
 public:
 	Document(string filePath);
 	~Document();

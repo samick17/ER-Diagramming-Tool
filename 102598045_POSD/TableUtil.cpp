@@ -4,10 +4,10 @@ HashMap<string,Table*> TableUtil::convertToTableMap(TableManager& tableManager,H
 	tableManager.clearAll();
 
 	insertAllEntitiesToTable(tableManager,entityMap);
-
-	HashMap<string,RelationShip*> oneToOneRelationSet = getOneToOneRelationShips(relationShipMap);
-	appendOneToOneTable(tableManager,oneToOneRelationSet);
-
+	HashMap<string,RelationShip*> oneToOneRelationMap = getOneToOneRelationShips(relationShipMap);
+	for each(RelationShip* relationShip in oneToOneRelationMap){
+		insertAllForeignKeyToTable(tableManager,relationShip);
+	}
 	return tableManager.getAllTables();
 }
 
@@ -25,35 +25,25 @@ void TableUtil::insertAllEntitiesToTable(TableManager& tableManager,HashMap<stri
 }
 
 HashMap<string,RelationShip*> TableUtil::getOneToOneRelationShips(HashMap<string,RelationShip*> relationShipMap){
-	HashMap<string,RelationShip*> oneToOneRelationShipsSet;
+	HashMap<string,RelationShip*> oneToOneRelationShipsMap;
 	for each(RelationShip* relationShip in relationShipMap){
 		if(relationShip->isRelationType(RelationType::OneToOne))		
-			oneToOneRelationShipsSet.put(relationShip->getID(),relationShip);
+			oneToOneRelationShipsMap.put(relationShip->getID(),relationShip);
 	}
-	return oneToOneRelationShipsSet;
-}
-//append all table to tableManager
-void TableUtil::appendOneToOneTable(TableManager& tableManager,HashMap<string,RelationShip*> oneToOneRelationMap){		
-	for each(RelationShip* relationShip in oneToOneRelationMap){
-		insertAllForeignKeyToTable(tableManager,relationShip);
-	}
+	return oneToOneRelationShipsMap;
 }
 //insert All Foreign Key To Table
-void TableUtil::insertAllForeignKeyToTable(TableManager& tableManager,RelationShip* relationShip){
+void TableUtil::insertAllForeignKeyToTable(TableManager& tableManager,RelationShip* ontToOneRelationShip){
 	//convert relationship data & insert data to table
-	Entity* firstEntity = *relationShip->getConnectedEntities().begin();
-	Entity* secondEntity = *(--relationShip->getConnectedEntities().end());		
+	Entity* firstEntity = *ontToOneRelationShip->getConnectedEntities().begin();
+	Entity* secondEntity = *(--ontToOneRelationShip->getConnectedEntities().end());		
 	HashMap<string,Attribute*> primaryKeyAttributeMap;
 	//find pk set & find table to insert pk
-	try{
-		Table* table = NULL;
-		if(!((primaryKeyAttributeMap = firstEntity->getPrimaryKeyAttributes()).empty()))
-			table = tableManager.getTableByID(secondEntity->getID());
-		else if(!((primaryKeyAttributeMap = secondEntity->getPrimaryKeyAttributes()).empty()))
-			table = tableManager.getTableByID(firstEntity->getID());
-		//insert all foreign key
-		table->insertAllForeignKeyAttributes(primaryKeyAttributeMap);
-	}
-	catch(Exception&){
-	}
+	Table* table = NULL;
+	if(!((primaryKeyAttributeMap = firstEntity->getPrimaryKeyAttributes()).empty()))
+		table = tableManager.getTableByID(secondEntity->getID());
+	else if(!((primaryKeyAttributeMap = secondEntity->getPrimaryKeyAttributes()).empty()))
+		table = tableManager.getTableByID(firstEntity->getID());
+	//insert all foreign key
+	table->insertAllForeignKeyAttributes(primaryKeyAttributeMap);
 }

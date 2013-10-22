@@ -89,12 +89,13 @@
     <ClInclude Include="ConnectedSelfException.h" />
     <ClInclude Include="ConnectionData.h" />
     <ClInclude Include="Document.h" />
+    <ClInclude Include="OutputFileParser.h" />
     <ClInclude Include="StringSymbol.h" />
     <ClInclude Include="DuplicatedKeyException.h" />
     <ClInclude Include="EmptyCollectionException.h" />
     <ClInclude Include="Exception.h" />
     <ClInclude Include="FileNotFoundException.h" />
-    <ClInclude Include="FileParser.h" />
+    <ClInclude Include="InputFileParser.h" />
     <ClInclude Include="HasConnectedException.h" />
     <ClInclude Include="HashMap.h" />
     <ClInclude Include="IClonable.h" />
@@ -148,16 +149,16 @@
     <ClInclude Include="UndoCommand.h" />
     <ClInclude Include="UnexecutableCommand.h" />
     <ClInclude Include="ValidConnectedReceiver.h" />
-    <ClInclude Include="VectorUtil.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CharSymbol.cpp" />
     <ClCompile Include="CollectionException.cpp" />
     <ClCompile Include="CollectionType.cpp" />
     <ClCompile Include="ComponentConnectionSize.cpp" />
+    <ClCompile Include="InputFileParser.cpp" />
+    <ClCompile Include="OutputFileParser.cpp" />
     <ClCompile Include="StringSymbol.cpp" />
     <ClCompile Include="DuplicatedKeyException.cpp" />
-    <ClCompile Include="FileParser.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="AddNodeCommand.cpp" />
     <ClCompile Include="Attribute.cpp" />

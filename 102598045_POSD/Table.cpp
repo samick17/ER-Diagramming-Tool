@@ -27,27 +27,27 @@ string Table::getEntityName(){
 	return this->entity->getName();
 }
 
-set<string> Table::getAllPrimaryKeyAttributesNameSet(){
-	set<string> nameSet;
+vector<string> Table::getAllPrimaryKeyAttributesNameVector(){
+	vector<string> nameVector;
 	for each(Attribute* attribute in this->attributeMap){
 		if(attribute->isPrimaryKey())
-			nameSet.insert(attribute->getName());
+			nameVector.push_back(attribute->getName());
 	}
-	return nameSet;
+	return nameVector;
 }
 
-set<string> Table::getAllDefaultKeyAttributesNameSet(){
-	set<string> nameSet;
+vector<string> Table::getAllDefaultKeyAttributesNameVector(){
+	vector<string> nameVector;
 	for each(Attribute* attribute in this->attributeMap){
 		if(!attribute->isPrimaryKey())
-			nameSet.insert(attribute->getName());
+			nameVector.push_back(attribute->getName());
 	}
-	return nameSet;
+	return nameVector;
 }
 
-set<string> Table::getAllForeignKeyAttributesNameSet(){
-	set<string> nameSet;
+vector<string> Table::getAllForeignKeyAttributesNameVector(){
+	vector<string> nameVector;
 	for each(Attribute* attribute in this->foreignKeyAttributeMap)		
-			nameSet.insert(attribute->getName());	
-	return nameSet;
+			nameVector.push_back(attribute->getName());	
+	return nameVector;
 }

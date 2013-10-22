@@ -237,9 +237,6 @@
     <ClCompile Include="DirectoryUtil.cpp">
       <Filter>Source Files\TestingUtil</Filter>
     </ClCompile>
-    <ClCompile Include="..\102598045_POSD\FileParser.cpp">
-      <Filter>Source Files\Parser</Filter>
-    </ClCompile>
     <ClCompile Include="..\102598045_POSD\FileNotFoundException.cpp">
       <Filter>Source Files\Exception\IOException</Filter>
     </ClCompile>
@@ -369,9 +366,6 @@
     <ClCompile Include="..\102598045_POSD\ConnectNodeCommand.cpp">
       <Filter>Source Files\Command</Filter>
     </ClCompile>
-    <ClCompile Include="FileParserTest.cpp">
-      <Filter>Unit Testing Files\ParserTest</Filter>
-    </ClCompile>
     <ClCompile Include="HashMapTest.cpp">
       <Filter>Unit Testing Files\CollectionTest</Filter>
     </ClCompile>
@@ -397,6 +391,27 @@
       <Filter>Unit Testing Files\UtilTest</Filter>
     </ClCompile>
     <ClCompile Include="ReorderComponentsUtilTest.cpp">
+      <Filter>Unit Testing Files\UtilTest</Filter>
+    </ClCompile>
+    <ClCompile Include="..\102598045_POSD\InputFileParser.cpp">
+      <Filter>Source Files\Parser</Filter>
+    </ClCompile>
+    <ClCompile Include="InputFileParserTest.cpp">
+      <Filter>Unit Testing Files\ParserTest</Filter>
+    </ClCompile>
+    <ClCompile Include="..\102598045_POSD\OutputFileParser.cpp">
+      <Filter>Source Files\Parser</Filter>
+    </ClCompile>
+    <ClCompile Include="OutputFileParserTest.cpp">
+      <Filter>Unit Testing Files\ParserTest</Filter>
+    </ClCompile>
+    <ClCompile Include="ReceiverManagerTest.cpp">
+      <Filter>Unit Testing Files\ManagerTest</Filter>
+    </ClCompile>
+    <ClCompile Include="StackUtilTest.cpp">
+      <Filter>Unit Testing Files\UtilTest</Filter>
+    </ClCompile>
+    <ClCompile Include="ERModelUtilTest.cpp">
       <Filter>Unit Testing Files\UtilTest</Filter>
     </ClCompile>
   </ItemGroup>
@@ -443,9 +458,6 @@
     <ClInclude Include="TableManagerTest.h">
       <Filter>Header Files\ManagerTest</Filter>
     </ClInclude>
-    <ClInclude Include="FileParserTest.h">
-      <Filter>Header Files\ParserTest</Filter>
-    </ClInclude>
     <ClInclude Include="HashMapTest.h">
       <Filter>Header Files\CollectionTest</Filter>
     </ClInclude>
@@ -468,6 +480,21 @@
       <Filter>Header Files\UtilTest</Filter>
     </ClInclude>
     <ClInclude Include="ReorderComponentsUtilTest.h">
+      <Filter>Header Files\UtilTest</Filter>
+    </ClInclude>
+    <ClInclude Include="InputFileParserTest.h">
+      <Filter>Header Files\ParserTest</Filter>
+    </ClInclude>
+    <ClInclude Include="OutputFileParserTest.h">
+      <Filter>Header Files\ParserTest</Filter>
+    </ClInclude>
+    <ClInclude Include="ReceiverManagerTest.h">
+      <Filter>Header Files\ManagerTest</Filter>
+    </ClInclude>
+    <ClInclude Include="ERModelUtilTest.h">
+      <Filter>Header Files\UtilTest</Filter>
+    </ClInclude>
+    <ClInclude Include="StackUtilTest.h">
       <Filter>Header Files\UtilTest</Filter>
     </ClInclude>
   </ItemGroup>

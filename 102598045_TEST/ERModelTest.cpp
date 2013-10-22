@@ -7,7 +7,7 @@
 #include "InvalidConnectException.h"
 #include "EmptyCollectionException.h"
 #include "ComponentType.h"
-#include "FileParser.h"
+#include "InputFileParser.h"
 #include "EmptyCollectionException.h"
 
 void ERModelTest::SetUp(){

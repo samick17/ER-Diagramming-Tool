@@ -1,5 +1,4 @@
 #include "ReorderComponentsUtil.h"
-#include "VectorUtil.h"
 #include "StringUtil.h"
 #include "ERModelUtil.h"
 #include "ComponentUtil.h"

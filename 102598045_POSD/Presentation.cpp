@@ -73,9 +73,9 @@ void Presentation::displayTable(){
 		int len = TABLE_WIDTH-entityName.size();
 
 		cout<<"   "<<entityName<<setw(len)<<"|";		
-		this->displayStringWithComma(" PK(",table->getAllPrimaryKeyAttributesNameSet(),")");		
-		this->displayStringWithComma(StringSymbol::Space,table->getAllDefaultKeyAttributesNameSet(),StringSymbol::Empty);		
-		this->displayStringWithComma(" FK(",table->getAllForeignKeyAttributesNameSet(),")");	
+		this->displayStringWithComma(" PK(",table->getAllPrimaryKeyAttributesNameVector(),")");		
+		this->displayStringWithComma(StringSymbol::Space,table->getAllDefaultKeyAttributesNameVector(),StringSymbol::Empty);		
+		this->displayStringWithComma(" FK(",table->getAllForeignKeyAttributesNameVector(),")");	
 		cout<<endl;
 	}
 	cout<<" +------------------------------------------------------------------"<<endl;
@@ -122,11 +122,11 @@ void Presentation::displayEntityAttributes(Entity* entity){
 	this->displayComponentSet(ComponentUtil::toComponentHashMap<Attribute>(attributeMap));
 }
 
-void Presentation::displayStringWithComma(string strStart,set<string> stringSet,string strEnd){
-	if(stringSet.empty())
+void Presentation::displayStringWithComma(string strStart,vector<string> stringVector,string strEnd){
+	if(stringVector.empty())
 		return;
 	cout<<strStart;
-	string stringWithComma = StringUtil::appendWithComma(stringSet);
+	string stringWithComma = StringUtil::appendWithComma(stringVector);
 	cout<<stringWithComma;
 	cout<<strEnd;	
 }
@@ -183,11 +183,11 @@ CommandManager* Presentation::getCommandManager(){
 	return this->commandManager;
 }
 
-void Presentation::displayComponentSet(HashMap<string,Component*> componentSet){	
+void Presentation::displayComponentSet(HashMap<string,Component*> componentMap){	
 	cout<<" +-----------------------------------------------------"<<endl;
 	cout<<"        Type      |       ID       |      Name"<<endl;
 	cout<<" +----------------+----------------+-------------------"<<endl;
-	for each (Component* component in componentSet){
+	for each (Component* component in componentMap){
 		cout<<setw(COLUMN_WIDTH)<<component->getType()<<"          ";	
 		cout<<"|"<<setw(COLUMN_WIDTH)<<component->getID()<<"        ";	
 		cout<<"|  "<<component->getName()<<endl;		

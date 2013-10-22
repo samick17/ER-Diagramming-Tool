@@ -1,6 +1,5 @@
 #pragma once
 
-#include <set>
 #include "ERModel.h"
 #include "Component.h"
 
@@ -32,7 +31,7 @@ public:
 	void displayConnections();
 	void displayEntities();
 	void displayEntityAttributes(Entity* entity);
-	void displayStringWithComma(string strStart,set<string> stringSet,string strEnd);
+	void displayStringWithComma(string strStart,vector<string> stringVector,string strEnd);
 
 	void processCommand(string commandKey);
 	void logMessage(string message,bool nextLine);
@@ -43,6 +42,6 @@ private:
 	bool alive;	
 	ERModel* erModel;
 	CommandManager* commandManager;
-	void displayComponentSet(HashMap<string,Component*> componentSet);	
+	void displayComponentSet(HashMap<string,Component*> componentMap);	
 	void executeCommand(Command* command);
 };

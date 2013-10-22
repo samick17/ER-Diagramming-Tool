@@ -46,7 +46,7 @@ void Document::saveFile(){
 }
 //write line to buffer
 void Document::wirteLine(string line){
-	this->rwBuffer.push_back(line+"\n");
+	this->rwBuffer.push_back(line+StringSymbol::NextLine);
 }
 //read line from buffer and return
 string Document::readLine(){

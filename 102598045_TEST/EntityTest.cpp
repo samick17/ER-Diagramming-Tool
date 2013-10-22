@@ -6,6 +6,7 @@
 #include "HasConnectedException.h"
 #include "NoConnectionException.h"
 #include "StringSymbol.h"
+#include "ComponentUtil.h"
 
 void EntityTest::SetUp(){
 	this->attribute = new Attribute(ComponentData("0","Name"));
@@ -23,14 +24,14 @@ TEST_F(EntityTest,testToString){
 	ASSERT_EQ(StringSymbol::Empty,this->entity->toString());
 
 	Connector connector1 = Connector(ComponentData("3",""));
-	connectWithEachOther(this->entity,this->attribute,&connector1);
+	ComponentUtil::connectWithEachOther(this->entity,this->attribute,&connector1);
 	this->attribute->setAsPrimaryKey();
 
 	ASSERT_EQ("2 0",this->entity->toString());
 
 	Attribute attribute2 = Attribute(ComponentData("4","ID"));
 	Connector connector2 = Connector(ComponentData("5",""));
-	connectWithEachOther(this->entity,&attribute2,&connector2);
+	ComponentUtil::connectWithEachOther(this->entity,&attribute2,&connector2);
 	attribute2.setAsPrimaryKey();
 
 	ASSERT_EQ("2 0,4",this->entity->toString());
@@ -45,9 +46,9 @@ TEST_F(EntityTest,testCanConnectTo){
 	ASSERT_EQ(NodeConnectionType::ConnectEntityAndRelation,this->entity->canConnectTo(this->relationShip));
 	
 	Connector connector1 = Connector(ComponentData("3",""));
-	connectWithEachOther(this->entity,this->attribute,&connector1);
+	ComponentUtil::connectWithEachOther(this->entity,this->attribute,&connector1);
 	Connector connector2 = Connector(ComponentData("4",""));
-	connectWithEachOther(this->entity,this->relationShip,&connector2);
+	ComponentUtil::connectWithEachOther(this->entity,this->relationShip,&connector2);
 
 	ASSERT_THROW(this->entity->canConnectTo(this->entity),ConnectedSelfException);
 	ASSERT_THROW(this->entity->canConnectTo(this->attribute),HasConnectedException);
@@ -61,7 +62,7 @@ TEST_F(EntityTest,testGetConnectedAttributes){
 	ASSERT_EQ(0,this->entity->getConnectedAttributes().size());
 
 	Connector connector1 = Connector(ComponentData("3",""));
-	connectWithEachOther(this->entity,this->attribute,&connector1);
+	ComponentUtil::connectWithEachOther(this->entity,this->attribute,&connector1);
 
 	ASSERT_EQ(1,this->entity->getConnectedAttributes().size());
 
@@ -70,19 +71,19 @@ TEST_F(EntityTest,testGetConnectedAttributes){
 
 TEST_F(EntityTest,testGetAttributeByID){
 	Connector connector1 = Connector(ComponentData("3",""));
-	connectWithEachOther(this->entity,this->attribute,&connector1);
+	ComponentUtil::connectWithEachOther(this->entity,this->attribute,&connector1);
 	ASSERT_THROW(this->entity->getAttributeByID("100"),NoConnectionException);
 	ASSERT_EQ(this->attribute,this->entity->getAttributeByID(this->attribute->getID()));
 }
 
 TEST_F(EntityTest,testGetPrimaryKeyAttributes){
 	Connector connector1 = Connector(ComponentData("3",""));
-	connectWithEachOther(this->entity,this->attribute,&connector1);
+	ComponentUtil::connectWithEachOther(this->entity,this->attribute,&connector1);
 
 	ASSERT_EQ(0,this->entity->getPrimaryKeyAttributes().size());
 
-	set<string> primaryKeyID;
-	primaryKeyID.insert("0");
+	vector<string> primaryKeyID;
+	primaryKeyID.push_back("0");
 	this->entity->setPrimaryKey(primaryKeyID);
 
 	ASSERT_EQ(1,this->entity->getPrimaryKeyAttributes().size());
@@ -90,17 +91,17 @@ TEST_F(EntityTest,testGetPrimaryKeyAttributes){
 }
 
 TEST_F(EntityTest,testSetPrimaryKey){
-	set<string> primaryKeyID;
-	primaryKeyID.insert("1");
+	vector<string> primaryKeyID;
+	primaryKeyID.push_back("1");
 	ASSERT_THROW(this->entity->setPrimaryKey(primaryKeyID),NoConnectionException);
 	Connector connector1 = Connector(ComponentData("3",""));
-	connectWithEachOther(this->entity,this->attribute,&connector1);
+	ComponentUtil::connectWithEachOther(this->entity,this->attribute,&connector1);
 
 	ASSERT_EQ(false,(static_cast<Attribute*>(this->attribute)->isPrimaryKey()));
 
 	ASSERT_THROW(this->entity->setPrimaryKey(primaryKeyID),NoConnectionException);
 	primaryKeyID.clear();
-	primaryKeyID.insert("0");
+	primaryKeyID.push_back("0");
 	this->entity->setPrimaryKey(primaryKeyID);
 	ASSERT_EQ(true,(static_cast<Attribute*>(this->attribute)->isPrimaryKey()));	
 }

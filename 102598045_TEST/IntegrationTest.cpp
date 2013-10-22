@@ -1,7 +1,7 @@
 #include "IntegrationTest.h"
 #include "DirectoryUtil.h"
 #include "Document.h"
-#include "FileParser.h"
+#include "InputFileParser.h"
 #include "FileNotFoundException.h"
 #include "EmptyCollectionException.h"
 #include "NoSuchKeyException.h"
@@ -30,8 +30,8 @@ void IntegrationTest::SetUp(){
 		doc.wirteLine(fileData[lineIndex]);
 	doc.saveFile();
 	//load file to model
-	FileParser fileParser;
-	fileParser.parseFileToModel(filePath,&this->erModel);
+	InputFileParser inputFileParser;
+	inputFileParser.parseFileToModel(filePath,&this->erModel);
 	//Assert Diagram is loaded correctly
 	assertLoadFileCorrectly();
 }
@@ -102,8 +102,8 @@ void IntegrationTest::assertLoadFileCorrectly(){
 TEST_F(IntegrationTest,testLoadFileNotExist){
 	string directory = DirectoryUtil::getCurrentWorkingDirectory()+"/testdata";
 	string filePath = directory+"/file_not_exist.erd";
-	FileParser fileParser;
-	ASSERT_THROW(fileParser.parseFileToModel(filePath,&this->erModel),FileNotFoundException);
+	InputFileParser inputFileParser;
+	ASSERT_THROW(inputFileParser.parseFileToModel(filePath,&this->erModel),FileNotFoundException);
 }
 
 TEST_F(IntegrationTest,testIsPrimaryExist){

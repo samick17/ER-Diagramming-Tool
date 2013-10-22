@@ -3,7 +3,6 @@
 #include "Entity.h"
 #include "Attribute.h"
 #include "StringUtil.h"
-#include "VectorUtil.h"
 #include "FindEntityCommand.h"
 #include "Exception.h"
 #include "StringSymbol.h"
@@ -27,27 +26,25 @@ void SetPrimaryKeyCommand :: execute(){
 	this->presentation->displayEntityAttributes(entity);
 
 	this->presentation->logMessage("Enter the IDs of the attributes (use a comma to separate two attributes):",true);
-	set<string> attributeIDSet = setEntityAttributesPrimaryKey(entity);	
+	vector<string> attributeIDVector = setEntityAttributesPrimaryKey(entity);	
 	//display Set Primary Key Result
 	this->presentation->logMessage("The entity '"+entity->getID()+"' has the primary key ",false);
-	this->presentation->displayStringWithComma("(",attributeIDSet,").");
+	this->presentation->displayStringWithComma("(",attributeIDVector,").");
 	this->presentation->logMessage(StringSymbol::Empty,true);
 }
 
-set<string> SetPrimaryKeyCommand::setEntityAttributesPrimaryKey(Entity* entity){
-	vector<string> attributeIDVector;
-	set<string> attributeIDSet;
+vector<string> SetPrimaryKeyCommand::setEntityAttributesPrimaryKey(Entity* entity){
+	vector<string> attributeIDVector;	
 	while(true){
 		try{
 			string input = this->presentation->getInput();
 			attributeIDVector = StringUtil::split(input,',');
-			attributeIDSet = VectorUtil::convertVectorToSet<string>(attributeIDVector);
-			entity->setPrimaryKey(attributeIDSet);
+			entity->setPrimaryKey(attributeIDVector);
 			break;
 		}
 		catch(Exception& exception){
 			this->presentation->logMessage(exception.getMessage(),true);
 		}
 	}
-	return  attributeIDSet;
+	return  attributeIDVector;
 }

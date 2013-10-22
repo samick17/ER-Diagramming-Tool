@@ -79,15 +79,15 @@ HashMap<string,Connector*> ERModel::getAllConnectors(){
 }
 
 HashMap<string,Entity*> ERModel::getAllEntities(){
-	HashMap<string,Entity*> entitySet = ERModelUtil::convertComponentHashMapToTypeHashMap<Entity>(this->getAllComponents());
+	HashMap<string,Entity*> entityMap = ERModelUtil::convertComponentHashMapToTypeHashMap<Entity>(this->getAllComponents());
 
-	return entitySet;
+	return entityMap;
 }
 
 HashMap<string,RelationShip*> ERModel::getAllRelationShips(){	
-	HashMap<string,RelationShip*> relationShipSet = ERModelUtil::convertComponentHashMapToTypeHashMap<RelationShip>(this->getAllComponents());
+	HashMap<string,RelationShip*> relationShipMap = ERModelUtil::convertComponentHashMapToTypeHashMap<RelationShip>(this->getAllComponents());
 	
-	return relationShipSet;
+	return relationShipMap;
 }
 //get All Tables
 HashMap<string,Table*> ERModel::getAllTables(){

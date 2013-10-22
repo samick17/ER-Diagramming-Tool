@@ -2,7 +2,7 @@
 
 #include "Command.h"
 #include "Entity.h"
-#include <set>
+#include <vector>
 
 class SetPrimaryKeyCommand : public Command{
 public:
@@ -11,5 +11,5 @@ public:
 	
 	void execute();
 
-	set<string> setEntityAttributesPrimaryKey(Entity* entity);
+	vector<string> setEntityAttributesPrimaryKey(Entity* entity);
 };
