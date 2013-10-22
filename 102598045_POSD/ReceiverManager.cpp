@@ -4,9 +4,8 @@ ReceiverManager::ReceiverManager(){
 }
 
 ReceiverManager::~ReceiverManager(){
-	for each(Receiver* receiver in this->receiverMap)	{
-		delete receiver;
-	}
+	for each(Receiver* receiver in this->receiverMap)
+		delete receiver;	
 }
 
 void ReceiverManager::insertReceiver(Receiver* receiver){

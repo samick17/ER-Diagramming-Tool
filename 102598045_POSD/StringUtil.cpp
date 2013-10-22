@@ -19,17 +19,17 @@ vector<string> StringUtil::split(const string &str,char delim){
     return elements;
 }
 //trim start
-string &StringUtil::trimStart(std::string &str){
+string &StringUtil::trimStart(string &str){
 	str.erase(str.begin(),find_if(str.begin(),str.end(),not1(ptr_fun<int,int>(isspace))));
 	return str;
 }
 //trim end
-string &StringUtil::trimEnd(std::string &str){
+string &StringUtil::trimEnd(string &str){
 	str.erase(find_if(str.rbegin(),str.rend(),not1(ptr_fun<int,int>(isspace))).base(),str.end());
 	return str;
 }
 //trim start & end
-string &StringUtil::trim(std::string &str){
+string &StringUtil::trim(string &str){
 	return trimStart(trimEnd(str));
 }
 //e.g. convert "a b c" to "a,b,c"

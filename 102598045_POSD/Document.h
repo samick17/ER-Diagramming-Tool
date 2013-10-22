@@ -15,6 +15,8 @@ class Document{
 	FRIEND_TEST(OutputFileParserTest,testWriteAllComponentsToDoc);
 	FRIEND_TEST(OutputFileParserTest,testWriteAllConnectorsToDoc);
 	FRIEND_TEST(OutputFileParserTest,testWriteAllPrimaryKeyToDoc);
+	friend class DocumentTest;	
+	FRIEND_TEST(DocumentTest,testDocument);
 public:
 	Document(string filePath);
 	~Document();

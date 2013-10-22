@@ -23,8 +23,7 @@ static HashMap<string,type*> ComponentUtil::getConnectedNodeHashMapByType(HashMa
 	HashMap<string,type*> typeHashMap;
 	for each(Component* connection in connectionHashMap){
 		for each(Component* connectedNode in connection->getAllConnections()){
-			if(typeid(*connectedNode).name() == typeid(type).name())
-			{
+			if(typeid(*connectedNode).name() == typeid(type).name()){
 				typeHashMap.put(connectedNode->getID(),static_cast<type*>(connectedNode));
 			}
 		}

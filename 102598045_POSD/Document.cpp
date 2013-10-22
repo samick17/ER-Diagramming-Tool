@@ -1,7 +1,9 @@
 #include "Document.h"
 #include <algorithm>
 #include "FileNotFoundException.h"
+#include "CharSymbol.h"
 #include "StringSymbol.h"
+#include "StringUtil.h"
 
 Document::Document(string filePath) : filePath(filePath){		
 	readIndex = 0;
@@ -18,11 +20,8 @@ Document::~Document(){
 void Document::openFile(){
 	this->inputStream = ifstream(this->filePath);
 	//doesn't has such file on path
-	if(!this->inputStream.good())	
-	{
-		throw FileNotFoundException();
-	}	
-
+	if(!this->inputStream.good())
+		throw FileNotFoundException();	
 	if(this->inputStream.is_open()){
 		string line;
 		while(getline(this->inputStream,line))		
@@ -51,8 +50,8 @@ void Document::wirteLine(string line){
 //read line from buffer and return
 string Document::readLine(){
 	string line = StringSymbol::Empty;
-	if(readIndex < this->rwBuffer.size()){
-		line = *(this->rwBuffer.begin()+readIndex);
+	if(readIndex < this->rwBuffer.size()){		
+		line = *(this->rwBuffer.begin()+readIndex);			
 		readIndex++;
 	}
 	return line;

@@ -6,6 +6,9 @@
 using namespace std;
 
 class ReceiverManager{
+	friend class ReceiverManagerTest;
+	FRIEND_TEST(ReceiverManagerTest,testInsertReceiver);
+	FRIEND_TEST(ReceiverManagerTest,testDeleteReceiver);
 public:
 	ReceiverManager();
 	virtual ~ReceiverManager();

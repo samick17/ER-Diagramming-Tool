@@ -10,8 +10,8 @@ class StringUtil{
 public:
 	static string intToString(int number);
 	static vector<string> split(const string &str,char delim);
-	static string &trimStart(string &s);
-	static string &trimEnd(string &s);
-	static string &trim(string &s);	
+	static string &trimStart(string &str);
+	static string &trimEnd(string &str);
+	static string &trim(string &str);	
 	static string appendWithComma(vector<string> stringVector);
 };
