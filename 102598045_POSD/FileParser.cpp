@@ -84,6 +84,7 @@ void FileParser::addAllComponentToERModel(){
 		StringPair componentData = this->componentDataQueue.front();
 		if(isQueueArriveConnectionDataID(index)){
 			ConnectionData connectionData = this->connectionDataQueue.front();
+			this->connectionDataQueue.pop();
 			this->addConnector(connectionData,componentData.second);
 		}
 		else {
@@ -101,8 +102,7 @@ void FileParser::addConnector(ConnectionData connectionData,string connectionNam
 	
 	this->erModel->addConnection(firstNode,secondNode);
 	Component* connector = this->erModel->getComponentByID(connectionData.getConnectorID());
-	connector->setName(connectionName);
-	this->connectionDataQueue.pop();
+	connector->setName(connectionName);	
 }
 /*
 *compare ComponentDataQueue & ConnectionDataQueue

@@ -3,10 +3,14 @@
 #include <string>
 #include <fstream>
 #include <vector>
+#include <gtest/gtest_prod.h>
 
 using namespace std;
 
 class Document{
+	friend class FileParserTest;
+	FRIEND_TEST(FileParserTest,testLoadAllConnectorsFromDoc);
+	FRIEND_TEST(FileParserTest,testLoadAllPrimaryKeyAndSetUpFromDoc);
 public:
 	Document(string filePath);
 	~Document();

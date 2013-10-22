@@ -13,6 +13,11 @@ typedef pair<string,string> StringPair;
 class FileParser{
 	friend class FileParserTest;
 	FRIEND_TEST(FileParserTest,testLoadAllComponentsFromDoc);
+	FRIEND_TEST(FileParserTest,testLoadAllConnectorsFromDoc);
+	FRIEND_TEST(FileParserTest,testLoadAllPrimaryKeyAndSetUpFromDoc);
+	FRIEND_TEST(FileParserTest,testAddAllComponentToERModel);
+	FRIEND_TEST(FileParserTest,testAddConnector);
+	FRIEND_TEST(FileParserTest,testIsQueueArriveConnectionDataID);
 public:
 	FileParser();
 	~FileParser();
