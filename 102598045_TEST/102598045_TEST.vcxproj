@@ -161,6 +161,7 @@
     <ClCompile Include="ConnectorTest.cpp" />
     <ClCompile Include="DeleteComponentCommandTest.cpp" />
     <ClCompile Include="DirectoryUtil.cpp" />
+    <ClCompile Include="DocumentTest.cpp" />
     <ClCompile Include="EntityTest.cpp" />
     <ClCompile Include="ERModelTest.cpp" />
     <ClCompile Include="ERModelUtilTest.cpp" />
@@ -191,6 +192,7 @@
     <ClInclude Include="ConnectorTest.h" />
     <ClInclude Include="DeleteComponentCommandTest.h" />
     <ClInclude Include="DirectoryUtil.h" />
+    <ClInclude Include="DocumentTest.h" />
     <ClInclude Include="EntityTest.h" />
     <ClInclude Include="ERModelTest.h" />
     <ClInclude Include="ERModelUtilTest.h" />

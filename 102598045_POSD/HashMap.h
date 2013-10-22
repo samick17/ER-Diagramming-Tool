@@ -16,7 +16,6 @@ public:
 	Value remove(Key key);
 	unsigned int size();
 	bool containsKey(Key key);
-	Key tryGetKey(Value value);
 	Value getValueByIndex(unsigned int index);
 	unsigned int getValueIndex(Value value);
 	bool empty();
@@ -102,14 +101,6 @@ bool HashMap<Key,Value>::containsKey(Key key){
 	if(hashmapIterator == hashmap.end())
 		return false;
 	return true;
-}
-
-template<typename Key,typename Value>
-Key HashMap<Key,Value>::tryGetKey(Value value){
-	std::unordered_map<Key,Value>::iterator hashmapIterator = find(hashmap.begin(),hashmap.end(),value);
-	if(hashmapIterator == hashmap.end())
-		throw CollectionException(CollectionType::TypeHashMap);
-	return hashmapIterator->first;	
 }
 
 template<typename Key,typename Value>

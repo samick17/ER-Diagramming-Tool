@@ -414,6 +414,9 @@
     <ClCompile Include="ERModelUtilTest.cpp">
       <Filter>Unit Testing Files\UtilTest</Filter>
     </ClCompile>
+    <ClCompile Include="DocumentTest.cpp">
+      <Filter>Unit Testing Files\ParserTest</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DirectoryUtil.h">
@@ -496,6 +499,9 @@
     </ClInclude>
     <ClInclude Include="StackUtilTest.h">
       <Filter>Header Files\UtilTest</Filter>
+    </ClInclude>
+    <ClInclude Include="DocumentTest.h">
+      <Filter>Header Files\ParserTest</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

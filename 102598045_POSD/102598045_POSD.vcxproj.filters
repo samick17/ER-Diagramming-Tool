@@ -39,18 +39,12 @@
     <Filter Include="Header Files\Interface">
       <UniqueIdentifier>{4378f70d-4eca-46af-a5fd-4a8170f54b00}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Document">
-      <UniqueIdentifier>{ff77b537-6879-40e7-9d01-80c3c4bacf91}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Resource Files">
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
     <Filter Include="Source Files\Command">
       <UniqueIdentifier>{bf99d474-edc1-40e9-8fe8-a4b4acc3203c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Document">
-      <UniqueIdentifier>{20599f5b-6a50-454c-b5f1-f8f8266d2d5b}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\Factory">
       <UniqueIdentifier>{0c4faee9-d3d9-4045-9792-2ec14d80fb23}</UniqueIdentifier>
@@ -264,9 +258,6 @@
     <ClInclude Include="AttributeType.h">
       <Filter>Header Files\Constants</Filter>
     </ClInclude>
-    <ClInclude Include="Document.h">
-      <Filter>Header Files\Document</Filter>
-    </ClInclude>
     <ClInclude Include="Presentation.h">
       <Filter>Header Files\View</Filter>
     </ClInclude>
@@ -334,6 +325,9 @@
       <Filter>Header Files\Parser</Filter>
     </ClInclude>
     <ClInclude Include="OutputFileParser.h">
+      <Filter>Header Files\Parser</Filter>
+    </ClInclude>
+    <ClInclude Include="Document.h">
       <Filter>Header Files\Parser</Filter>
     </ClInclude>
   </ItemGroup>
@@ -470,9 +464,6 @@
     <ClCompile Include="AttributeType.cpp">
       <Filter>Source Files\Constants</Filter>
     </ClCompile>
-    <ClCompile Include="Document.cpp">
-      <Filter>Source Files\Document</Filter>
-    </ClCompile>
     <ClCompile Include="IClonable.cpp">
       <Filter>Source Files\Interface</Filter>
     </ClCompile>
@@ -546,6 +537,9 @@
       <Filter>Source Files\Parser</Filter>
     </ClCompile>
     <ClCompile Include="OutputFileParser.cpp">
+      <Filter>Source Files\Parser</Filter>
+    </ClCompile>
+    <ClCompile Include="Document.cpp">
       <Filter>Source Files\Parser</Filter>
     </ClCompile>
   </ItemGroup>
