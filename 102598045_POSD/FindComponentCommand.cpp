@@ -2,10 +2,11 @@
 #include "EmptyCollectionException.h"
 #include "ComponentType.h"
 #include "Exception.h"
+#include "StringSymbol.h"
 
 FindComponentCommand :: FindComponentCommand(Presentation* presentation) : Command(presentation){	
 	this->component = NULL;
-	this->info = "";
+	this->info = StringSymbol::Empty;
 }
 
 FindComponentCommand::~FindComponentCommand(){
@@ -23,7 +24,7 @@ void FindComponentCommand :: execute(){
 
 	string input;
 	Component* find = NULL;
-	if(this->info != "")
+	if(this->info != StringSymbol::Empty)
 		this->presentation->logMessage(this->info,true);
 	while(find == NULL){
 		try{

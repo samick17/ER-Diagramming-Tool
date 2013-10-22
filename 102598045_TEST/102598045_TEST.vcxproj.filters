@@ -348,6 +348,12 @@
     <ClCompile Include="CommandManagerTest.cpp">
       <Filter>Unit Testing Files\ManagerTest</Filter>
     </ClCompile>
+    <ClCompile Include="..\102598045_POSD\CharSymbol.cpp">
+      <Filter>Source Files\Constants</Filter>
+    </ClCompile>
+    <ClCompile Include="..\102598045_POSD\StringSymbol.cpp">
+      <Filter>Source Files\Constants</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DirectoryUtil.h">

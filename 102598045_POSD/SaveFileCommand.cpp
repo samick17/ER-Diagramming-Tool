@@ -1,6 +1,7 @@
 #include "SaveFileCommand.h"
 #include "ReorderComponentsUtil.h"
 #include "ERModelUtil.h"
+#include "StringSymbol.h"
 #include <iostream>
 
 SaveFileCommand :: SaveFileCommand(Presentation* presentation) : Command(presentation){	
@@ -34,7 +35,7 @@ void SaveFileCommand::writeAllComponentsToDoc(Document& doc,HashMap<string,Compo
 		string line = component->Component::toString();
 		doc.wirteLine(line);
 	}
-	doc.wirteLine("");
+	doc.wirteLine(StringSymbol::Empty);
 }
 
 void SaveFileCommand::writeAllConnectorsToDoc(Document& doc,HashMap<string,Component*> componentVector){
@@ -44,7 +45,7 @@ void SaveFileCommand::writeAllConnectorsToDoc(Document& doc,HashMap<string,Compo
 		string line = connector->toString();		
 		doc.wirteLine(line);
 	}
-	doc.wirteLine("");
+	doc.wirteLine(StringSymbol::Empty);
 }
 
 void SaveFileCommand::writeAllPrimaryKeyToDoc(Document& doc,HashMap<string,Component*> componentSet){

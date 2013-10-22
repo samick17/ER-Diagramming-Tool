@@ -1,6 +1,8 @@
 #include "Component.h"
 #include "StringUtil.h"
 #include "ComponentType.h"
+#include "CharSymbol.h"
+#include "StringSymbol.h"
 
 Component::Component(ComponentData componentData) : componentData(componentData){
 }
@@ -10,7 +12,10 @@ Component::~Component(){
 
 string Component::toString(){
 	string name = this->getName();
-	string result = this->getType()+(name==""?"":", " +name);
+	string type = this->getType();
+	if(name == StringSymbol::Empty)
+		return type;
+	string result = type+StringSymbol::Comma+StringSymbol::Space +name;
 	return result;
 }
 
@@ -35,7 +40,7 @@ void Component::setName(string name){
 }
 
 string Component::getClassName(){
-	return StringUtil::split(typeid(*this).name(),' ')[1];
+	return StringUtil::split(typeid(*this).name(),CharSymbol::Space)[1];
 }
 //if no such connection in set, connect to target
 void Component::connectTo(Component* target){	

@@ -6,6 +6,7 @@
 #include "VectorUtil.h"
 #include "FindEntityCommand.h"
 #include "Exception.h"
+#include "StringSymbol.h"
 
 SetPrimaryKeyCommand :: SetPrimaryKeyCommand(Presentation* presentation) : Command(presentation){
 }
@@ -30,7 +31,7 @@ void SetPrimaryKeyCommand :: execute(){
 	//display Set Primary Key Result
 	this->presentation->logMessage("The entity '"+entity->getID()+"' has the primary key ",false);
 	this->presentation->displayStringWithComma("(",attributeIDSet,").");
-	this->presentation->logMessage("",true);
+	this->presentation->logMessage(StringSymbol::Empty,true);
 }
 
 set<string> SetPrimaryKeyCommand::setEntityAttributesPrimaryKey(Entity* entity){

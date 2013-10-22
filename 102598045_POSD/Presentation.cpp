@@ -9,6 +9,7 @@
 #include "CommandMenu.h"
 #include "CommandManager.h"
 #include "NullPointerException.h"
+#include "StringSymbol.h"
 
 Presentation::Presentation(ERModel* erModel) : erModel(erModel){
 }
@@ -70,7 +71,7 @@ void Presentation::displayTable(){
 
 		cout<<"   "<<entityName<<setw(len)<<"|";		
 		this->displayStringWithComma(" PK(",table->getAllPrimaryKeyAttributesNameSet(),")");		
-		this->displayStringWithComma(" ",table->getAllDefaultKeyAttributesNameSet(),"");		
+		this->displayStringWithComma(StringSymbol::Space,table->getAllDefaultKeyAttributesNameSet(),StringSymbol::Empty);		
 		this->displayStringWithComma(" FK(",table->getAllForeignKeyAttributesNameSet(),")");	
 		cout<<endl;
 	}
@@ -146,7 +147,7 @@ void Presentation::processCommand(string commandKey){
 void Presentation::executeCommand(Command* command){
 	//display command information & get user input
 	string commandInfo = command->getCommandInformation();
-	if(commandInfo!= "")
+	if(commandInfo!= StringSymbol::Empty)
 		cout<<commandInfo<<endl;
 	
 	//execute

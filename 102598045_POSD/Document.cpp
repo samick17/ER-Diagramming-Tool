@@ -1,6 +1,7 @@
 #include "Document.h"
 #include <algorithm>
 #include "FileNotFoundException.h"
+#include "StringSymbol.h"
 
 Document::Document(string filePath) : filePath(filePath){		
 	readIndex = 0;
@@ -49,7 +50,7 @@ void Document::wirteLine(string line){
 }
 //read line from buffer and return
 string Document::readLine(){
-	string line = "";
+	string line = StringSymbol::Empty;
 	if(readIndex < this->rwBuffer.size()){
 		line = *(this->rwBuffer.begin()+readIndex);
 		readIndex++;

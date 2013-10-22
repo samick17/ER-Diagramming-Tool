@@ -1,6 +1,8 @@
 #include "FileParser.h"
 #include "StringUtil.h"
 #include "VectorUtil.h"
+#include "StringSymbol.h"
+#include "CharSymbol.h"
 
 FileParser::FileParser(){
 	this->erModel = NULL;
@@ -28,11 +30,11 @@ void FileParser::parseFileToModel(string filePath,ERModel* erModel){
 
 void FileParser::loadAllComponentsFromDoc(Document& doc){	
 	string line;
-	while((line = doc.readLine()) != ""){
+	while((line = doc.readLine()) != StringSymbol::Empty){
 		//load component data & push to componentDataQueue
-		vector<string> componentDataVector = StringUtil::split(line,',');
+		vector<string> componentDataVector = StringUtil::split(line,CharSymbol::Comma);
 		string type = StringUtil::trim(componentDataVector[0]);
-		string name = "";
+		string name = StringSymbol::Empty;
 
 		//load component name
 		if(componentDataVector.size() > 1)		
@@ -44,10 +46,10 @@ void FileParser::loadAllComponentsFromDoc(Document& doc){
 
 void FileParser::loadAllConnectorsFromDoc(Document& doc){
 	string line;
-	while((line = doc.readLine()) != ""){
+	while((line = doc.readLine()) != StringSymbol::Empty){
 		//load connection data & push to connectionDataQueue
-		vector<string> connectorDataVector = StringUtil::split(line,' ');
-		vector<string> connectorNodeIDVector = StringUtil::split(connectorDataVector[1],',');
+		vector<string> connectorDataVector = StringUtil::split(line,CharSymbol::Space);
+		vector<string> connectorNodeIDVector = StringUtil::split(connectorDataVector[1],CharSymbol::Comma);
 
 		string connectorID = StringUtil::trim(connectorDataVector[0]);
 		string firstNodeID = StringUtil::trim(connectorNodeIDVector[0]);
@@ -61,13 +63,13 @@ void FileParser::loadAllConnectorsFromDoc(Document& doc){
 
 void FileParser::loadAllPrimaryKeyAndSetUpFromDoc(Document& doc){
 	string line;
-	while((line = doc.readLine()) != ""){
-		vector<string> entitysPrimaryKeyVector = StringUtil::split(line,' ');
+	while((line = doc.readLine()) != StringSymbol::Empty){
+		vector<string> entitysPrimaryKeyVector = StringUtil::split(line,CharSymbol::Space);
 		string entityID = entitysPrimaryKeyVector[0];
 		string primaryKeyAttributeID = entitysPrimaryKeyVector[1];
 
 		vector<string> primaryKeyAttributeIDVector;		
-		primaryKeyAttributeIDVector = StringUtil::split(primaryKeyAttributeID,',');
+		primaryKeyAttributeIDVector = StringUtil::split(primaryKeyAttributeID,CharSymbol::Comma);
 		
 		//set primary key
 		Entity* entity = static_cast<Entity*>(this->erModel->getComponentByID(entityID));

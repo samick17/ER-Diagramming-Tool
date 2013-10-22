@@ -1,9 +1,10 @@
 #include "Command.h"
 #include "ERModel.h"
 #include "TextUI.h"
+#include "StringSymbol.h"
 
 Command::Command(Presentation* presentation) : presentation(presentation){
-	this->commandInformation = "";
+	this->commandInformation = StringSymbol::Empty;
 }
 
 Command::~Command(){

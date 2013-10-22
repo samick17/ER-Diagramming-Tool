@@ -84,6 +84,7 @@
     <ClCompile Include="..\102598045_POSD\AddNodeCommand.cpp" />
     <ClCompile Include="..\102598045_POSD\Attribute.cpp" />
     <ClCompile Include="..\102598045_POSD\AttributeType.cpp" />
+    <ClCompile Include="..\102598045_POSD\CharSymbol.cpp" />
     <ClCompile Include="..\102598045_POSD\CollectionException.cpp" />
     <ClCompile Include="..\102598045_POSD\CollectionType.cpp" />
     <ClCompile Include="..\102598045_POSD\Command.cpp" />
@@ -139,6 +140,7 @@
     <ClCompile Include="..\102598045_POSD\SetCardinalityCommand.cpp" />
     <ClCompile Include="..\102598045_POSD\SetNodeNameCommand.cpp" />
     <ClCompile Include="..\102598045_POSD\SetPrimaryKeyCommand.cpp" />
+    <ClCompile Include="..\102598045_POSD\StringSymbol.cpp" />
     <ClCompile Include="..\102598045_POSD\StringUtil.cpp" />
     <ClCompile Include="..\102598045_POSD\Table.cpp" />
     <ClCompile Include="..\102598045_POSD\TableManager.cpp" />

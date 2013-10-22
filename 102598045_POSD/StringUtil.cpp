@@ -1,5 +1,6 @@
 #include "StringUtil.h"
 #include <sstream>
+#include "StringSymbol.h"
 
 //convert int to string
 string StringUtil::intToString(int number){
@@ -43,7 +44,7 @@ string StringUtil::appendWithComma(set<string> stringSet){
 	for each(string str in stringSet){
 		result += str;	
 		if(str != *(--stringSet.end()))
-			result += ",";
+			result += StringSymbol::Comma;
 	}
 	return result;
 }

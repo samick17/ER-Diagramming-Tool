@@ -7,6 +7,7 @@
 #include "StringUtil.h"
 #include "NoConnectionException.h"
 #include "EmptyCollectionException.h"
+#include "StringSymbol.h"
 
 Entity::Entity(ComponentData componentData) : Node(componentData){
 }
@@ -18,7 +19,7 @@ string Entity::toString(){
 	HashMap<string,Attribute*> primaryKeyAttributeHashMap = this->getPrimaryKeyAttributes();
 
 	if(primaryKeyAttributeHashMap.empty())
-		return "";
+		return StringSymbol::Empty;
 
 	string result = this->getID();
 	set<string> primaryKeyAttributeIDSet;
@@ -26,7 +27,7 @@ string Entity::toString(){
 	for each(Attribute* attribute in primaryKeyAttributeHashMap)	
 		primaryKeyAttributeIDSet.insert(attribute->getID());	
 
-	result += " "+StringUtil::appendWithComma(primaryKeyAttributeIDSet);
+	result += StringSymbol::Space+StringUtil::appendWithComma(primaryKeyAttributeIDSet);
 
 	return result;
 }

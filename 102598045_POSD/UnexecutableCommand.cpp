@@ -1,8 +1,9 @@
 #include "UnexecutableCommand.h"
+#include "StringSymbol.h"
 
 UnexecutableCommand :: UnexecutableCommand(Presentation* presentation) : Command(presentation){	
 	this->executionFlag = false;
-	this->commandInformation = "";
+	this->commandInformation = StringSymbol::Empty;
 }
 
 UnexecutableCommand::~UnexecutableCommand(){

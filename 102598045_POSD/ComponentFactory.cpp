@@ -5,6 +5,7 @@
 #include "Connector.h"
 #include "StringUtil.h"
 #include "InvalidNodeTypeException.h"
+#include "StringSymbol.h"
 
 using namespace std;
 
@@ -22,7 +23,7 @@ ComponentFactory::~ComponentFactory(){
 //@return component pointer, if doesn't has such type, throw exception
 Component* ComponentFactory::createComponent(string componentType){
 	NewComponentFunction NewComponentFunctiontion = findNewComponentFunction(componentType);
-	Component* component = NewComponentFunctiontion(ComponentData(StringUtil::intToString(count),""));
+	Component* component = NewComponentFunctiontion(ComponentData(StringUtil::intToString(count),StringSymbol::Empty));
 	ComponentFactory::count++;
 	return component;
 }

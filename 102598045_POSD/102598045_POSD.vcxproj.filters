@@ -330,6 +330,12 @@
     <ClInclude Include="TableUtil.h">
       <Filter>Header Files\Utils</Filter>
     </ClInclude>
+    <ClInclude Include="StringSymbol.h">
+      <Filter>Header Files\Constants</Filter>
+    </ClInclude>
+    <ClInclude Include="CharSymbol.h">
+      <Filter>Header Files\Constants</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Attribute.cpp">
@@ -532,6 +538,12 @@
     </ClCompile>
     <ClCompile Include="TableUtil.cpp">
       <Filter>Source Files\Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="StringSymbol.cpp">
+      <Filter>Source Files\Constants</Filter>
+    </ClCompile>
+    <ClCompile Include="CharSymbol.cpp">
+      <Filter>Source Files\Constants</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

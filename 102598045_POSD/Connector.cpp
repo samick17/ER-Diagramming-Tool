@@ -4,6 +4,7 @@
 #include "InvalidConnectException.h"
 #include "ComponentUtil.h"
 #include "ComponentConnectionSize.h"
+#include "StringSymbol.h"
 
 Connector::Connector(ComponentData componentData) : Component(componentData){
 }
@@ -13,10 +14,10 @@ Connector::~Connector(){
 //format:id firstConnectedNode,secondConnectedNode
 string Connector::toString(){
 	string result = this->getID();
-	result += " ";
+	result += StringSymbol::Space;
 	result += this->getFirstConnectedNode()->getID();
 	this->getFirstConnectedNode()->getName();
-	result += ",";
+	result += StringSymbol::Comma;
 	result += this->getSecondConnectedNode()->getID();
 
 	return result;
