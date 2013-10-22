@@ -44,11 +44,11 @@ void Presentation::displayMenu(){
 	cout<<" +------------------------------------------------------+"<<endl;
 	
 	CommandMenu commandMenu;
-	for each(CommandData* cmdData in commandMenu.getCommandDataMap()){
-		int len = COMMAND_KEY_WIDTH+cmdData->getInfo().size();
+	for each(CommandData* commandData in commandMenu.getCommandDataMap()){
+		int len = COMMAND_KEY_WIDTH+commandData->getInfo().size();
 		len = MENU_WIDTH-len;
-		cout<<"¢x"<<setw(COMMAND_KEY_WIDTH)<<left<<cmdData->getKey()+".";
-		cout<<right<<cmdData->getInfo()<<setw(len)<<"¢x"<<endl;
+		cout<<"¢x"<<setw(COMMAND_KEY_WIDTH)<<left<<commandData->getKey()+".";
+		cout<<right<<commandData->getInfo()<<setw(len)<<"¢x"<<endl;
 	}
 	cout<<" +------------------------------------------------------+"<<endl;	
 }
@@ -152,9 +152,9 @@ void Presentation::executeCommand(Command* command){
 	
 	//execute
 	if(command->isUnexecutable()){
-		UnexecutableCommand* unexecutableCmd = static_cast<UnexecutableCommand*>(command);
-		unexecutableCmd->setupCommand();
-		this->commandManager->execute(unexecutableCmd);
+		UnexecutableCommand* unexecutableCommand = static_cast<UnexecutableCommand*>(command);
+		unexecutableCommand->setupCommand();
+		this->commandManager->execute(unexecutableCommand);
 	}
 	else {		
 		command->execute();

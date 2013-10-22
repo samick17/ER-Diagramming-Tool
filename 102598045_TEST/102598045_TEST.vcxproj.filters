@@ -372,6 +372,33 @@
     <ClCompile Include="FileParserTest.cpp">
       <Filter>Unit Testing Files\ParserTest</Filter>
     </ClCompile>
+    <ClCompile Include="HashMapTest.cpp">
+      <Filter>Unit Testing Files\CollectionTest</Filter>
+    </ClCompile>
+    <ClCompile Include="AddNodeCommandTest.cpp">
+      <Filter>Unit Testing Files\CommandTest</Filter>
+    </ClCompile>
+    <ClCompile Include="ConnectNodeCommandTest.cpp">
+      <Filter>Unit Testing Files\CommandTest</Filter>
+    </ClCompile>
+    <ClCompile Include="DeleteComponentCommandTest.cpp">
+      <Filter>Unit Testing Files\CommandTest</Filter>
+    </ClCompile>
+    <ClCompile Include="TableManagerTest.cpp">
+      <Filter>Unit Testing Files\ManagerTest</Filter>
+    </ClCompile>
+    <ClCompile Include="StringUtilTest.cpp">
+      <Filter>Unit Testing Files\UtilTest</Filter>
+    </ClCompile>
+    <ClCompile Include="TableUtilTest.cpp">
+      <Filter>Unit Testing Files\UtilTest</Filter>
+    </ClCompile>
+    <ClCompile Include="ComponentUtilTest.cpp">
+      <Filter>Unit Testing Files\UtilTest</Filter>
+    </ClCompile>
+    <ClCompile Include="ReorderComponentsUtilTest.cpp">
+      <Filter>Unit Testing Files\UtilTest</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DirectoryUtil.h">
@@ -418,6 +445,30 @@
     </ClInclude>
     <ClInclude Include="FileParserTest.h">
       <Filter>Header Files\ParserTest</Filter>
+    </ClInclude>
+    <ClInclude Include="HashMapTest.h">
+      <Filter>Header Files\CollectionTest</Filter>
+    </ClInclude>
+    <ClInclude Include="AddNodeCommandTest.h">
+      <Filter>Header Files\CommandTest</Filter>
+    </ClInclude>
+    <ClInclude Include="ConnectNodeCommandTest.h">
+      <Filter>Header Files\CommandTest</Filter>
+    </ClInclude>
+    <ClInclude Include="DeleteComponentCommandTest.h">
+      <Filter>Header Files\CommandTest</Filter>
+    </ClInclude>
+    <ClInclude Include="StringUtilTest.h">
+      <Filter>Header Files\UtilTest</Filter>
+    </ClInclude>
+    <ClInclude Include="TableUtilTest.h">
+      <Filter>Header Files\UtilTest</Filter>
+    </ClInclude>
+    <ClInclude Include="ComponentUtilTest.h">
+      <Filter>Header Files\UtilTest</Filter>
+    </ClInclude>
+    <ClInclude Include="ReorderComponentsUtilTest.h">
+      <Filter>Header Files\UtilTest</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

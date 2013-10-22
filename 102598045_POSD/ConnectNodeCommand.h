@@ -7,6 +7,8 @@ class ConnectNodeCommand : public UnexecutableCommand{
 	FRIEND_TEST(IntegrationTest,testRedoConnectComponent);
 	friend class CommandManagerTest;
 	FRIEND_TEST(CommandManagerTest,testCommandManager);
+	friend class ConnectNodeCommandTest;
+	FRIEND_TEST(ConnectNodeCommandTest,testConnectNodeCommand);
 public:
 	ConnectNodeCommand(Presentation* presentation);
 	~ConnectNodeCommand();

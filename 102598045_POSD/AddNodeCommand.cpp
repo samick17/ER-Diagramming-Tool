@@ -22,8 +22,8 @@ AddNodeCommand::~AddNodeCommand(){
 void AddNodeCommand::setupCommand(){
 	Component* node = this->getNodeToAdd();
 	//set Node Name
-	SetNodeNameCommand cmdSetNodeName(this->presentation,node);
-	cmdSetNodeName.execute();
+	SetNodeNameCommand setNodeNameCommand(this->presentation,node);
+	setNodeNameCommand.execute();
 	this->node = node;
 	//display All Compomnents
 	this->presentation->displayComponents();

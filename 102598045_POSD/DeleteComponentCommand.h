@@ -9,6 +9,8 @@ class DeleteComponentCommand : public UnexecutableCommand{
 	FRIEND_TEST(IntegrationTest,testUndoDeleteComponent);
 	friend class CommandManagerTest;
 	FRIEND_TEST(CommandManagerTest,testCommandManager);
+	friend class DeleteComponentCommandTest;
+	FRIEND_TEST(DeleteComponentCommandTest,testDeleteComponentCommand);
 public:
 	DeleteComponentCommand(Presentation* presentation);
 	~DeleteComponentCommand();

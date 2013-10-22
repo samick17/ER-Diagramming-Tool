@@ -11,6 +11,8 @@ using namespace std;
 typedef pair<string,string> StringPair;
 
 class FileParser{
+	friend class FileParserTest;
+	FRIEND_TEST(FileParserTest,testLoadAllComponentsFromDoc);
 public:
 	FileParser();
 	~FileParser();
@@ -27,5 +29,5 @@ private:
 	void loadAllPrimaryKeyAndSetUpFromDoc(Document& document);
 	void addAllComponentToERModel();
 	void addConnector(ConnectionData connectionData,string connectionName);
-	bool isQueueArriveConnectionDataID(int index);
+	bool isQueueArriveConnectionDataID(int id);
 };

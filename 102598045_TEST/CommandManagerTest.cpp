@@ -49,9 +49,9 @@ TEST_F(CommandManagerTest,testCommandManager){
 	ASSERT_EQ(0,this->commandManager->redoCommandsStack.size());
 
 	//execute "Delete component" ,delete entity
-	DeleteComponentCommand* deleteEntityCmd = new DeleteComponentCommand(this->presentation);
-	deleteEntityCmd->component = entityTest;
-	this->commandManager->execute(deleteEntityCmd);
+	DeleteComponentCommand* deleteEntityCommand = new DeleteComponentCommand(this->presentation);
+	deleteEntityCommand->component = entityTest;
+	this->commandManager->execute(deleteEntityCommand);
 	ASSERT_EQ(2,this->erModel.getAllComponents().size());
 	ASSERT_EQ(3,this->commandManager->undoCommandsStack.size());
 	ASSERT_EQ(0,this->commandManager->redoCommandsStack.size());
@@ -61,9 +61,9 @@ TEST_F(CommandManagerTest,testCommandManager){
 	ASSERT_EQ(2,this->commandManager->undoCommandsStack.size());
 	ASSERT_EQ(1,this->commandManager->redoCommandsStack.size());
 
-	DeleteComponentCommand* deleteConnectorCmd = new DeleteComponentCommand(this->presentation);
-	deleteConnectorCmd->component = this->erModel.getComponentByID("3");
-	this->commandManager->execute(deleteConnectorCmd);
+	DeleteComponentCommand* deleteConnectorCommand = new DeleteComponentCommand(this->presentation);
+	deleteConnectorCommand->component = this->erModel.getComponentByID("3");
+	this->commandManager->execute(deleteConnectorCommand);
 	ASSERT_EQ(3,this->erModel.getAllComponents().size());
 	ASSERT_EQ(3,this->commandManager->undoCommandsStack.size());
 	ASSERT_EQ(0,this->commandManager->redoCommandsStack.size());

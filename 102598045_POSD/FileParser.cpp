@@ -30,7 +30,7 @@ void FileParser::parseFileToModel(string filePath,ERModel* erModel){
 
 void FileParser::loadAllComponentsFromDoc(Document& doc){	
 	string line;
-	while((line = doc.readLine()) != StringSymbol::Empty){
+	while(StringUtil::trim((line = doc.readLine())) != StringSymbol::Empty){
 		//load component data & push to componentDataQueue
 		vector<string> componentDataVector = StringUtil::split(line,CharSymbol::Comma);
 		string type = StringUtil::trim(componentDataVector[0]);
@@ -46,7 +46,7 @@ void FileParser::loadAllComponentsFromDoc(Document& doc){
 
 void FileParser::loadAllConnectorsFromDoc(Document& doc){
 	string line;
-	while((line = doc.readLine()) != StringSymbol::Empty){
+	while(StringUtil::trim((line = doc.readLine())) != StringSymbol::Empty){
 		//load connection data & push to connectionDataQueue
 		vector<string> connectorDataVector = StringUtil::split(line,CharSymbol::Space);
 		vector<string> connectorNodeIDVector = StringUtil::split(connectorDataVector[1],CharSymbol::Comma);
@@ -63,7 +63,7 @@ void FileParser::loadAllConnectorsFromDoc(Document& doc){
 
 void FileParser::loadAllPrimaryKeyAndSetUpFromDoc(Document& doc){
 	string line;
-	while((line = doc.readLine()) != StringSymbol::Empty){
+	while(StringUtil::trim((line = doc.readLine())) != StringSymbol::Empty){
 		vector<string> entitysPrimaryKeyVector = StringUtil::split(line,CharSymbol::Space);
 		string entityID = entitysPrimaryKeyVector[0];
 		string primaryKeyAttributeID = entitysPrimaryKeyVector[1];
@@ -109,12 +109,12 @@ void FileParser::addConnector(ConnectionData connectionData,string connectionNam
 *if ComponentDataQueue.front's ID equals ConnectionDataQueue.front's ID:
 *	return true;//means to add connector
 */
-bool FileParser::isQueueArriveConnectionDataID(int index){
+bool FileParser::isQueueArriveConnectionDataID(int id){
 	if(this->componentDataQueue.empty())
 		return false;
 	if(this->connectionDataQueue.empty())
 		return false;
-	if(StringUtil::intToString(index) == this->connectionDataQueue.front().getConnectorID())
+	if(StringUtil::intToString(id) == this->connectionDataQueue.front().getConnectorID())
 		return true;
 
 	return false;
