@@ -15,7 +15,6 @@ public:
 	template<typename type>
 	static HashMap<string,Component*> toComponentHashMap(HashMap<string,type*> typeHashMap);
 	
-	static Component* getComponentByIDInVector(vector<Component*> componentVector,string id);
 	static void connectWithEachOther(Component* firstNode,Component* secondNode,Component* connector);
 	static void disconnectWithEachOther(Component* firstNode,Component* secondNode,Component* connector);
 };

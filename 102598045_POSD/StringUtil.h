@@ -4,9 +4,6 @@
 #include <set>
 #include <string>
 #include <algorithm> 
-#include <functional> 
-#include <cctype>
-#include <locale>
 
 using namespace std;
 
@@ -18,6 +15,4 @@ public:
 	static string &trimEnd(string &s);
 	static string &trim(string &s);	
 	static string appendWithComma(set<string> stringSet);
-private:
-	static vector<string> &split(const string &str,char delim,vector<string> &elems);
 };

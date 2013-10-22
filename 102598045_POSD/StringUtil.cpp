@@ -11,17 +11,11 @@ string StringUtil::intToString(int number){
 }
 //split string with char
 vector<string> StringUtil::split(const string &str,char delim){
-    vector<string> elements;
-    split(str,delim,elements);
-    return elements;
-}
-//sub function call for split a string with char
-vector<string> &StringUtil::split(const string &str,char delim,vector<string> &elements){
-    stringstream strStream(str);
+    vector<string> elements;  
+	stringstream strStream(str);
     string line;
-    while (getline(strStream,line,delim)) 	
+    while (getline(strStream,line,delim))
 		elements.push_back(line);
-    
     return elements;
 }
 //trim start

@@ -10,7 +10,8 @@ TableManager::~TableManager(){
 void TableManager::insertTable(Table* table){
 	try{
 		this->tableMap.put(table->getEntityID(),table);
-	}catch(Exception&){
+	}
+	catch(Exception&){
 	}
 }
 

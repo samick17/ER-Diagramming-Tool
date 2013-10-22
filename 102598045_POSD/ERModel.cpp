@@ -109,7 +109,8 @@ HashMap<string,RelationShip*> ERModel::getAllRelationShips(){
 HashMap<string,Table*> ERModel::getAllTables(){
 	try{
 		return TableUtil::convertToTableMap(this->tableManager,this->getAllEntities(),this->getAllRelationShips());
-	}catch(Exception&){
+	}
+	catch(Exception&){
 		throw EmptyCollectionException("Table");
 	}
 }

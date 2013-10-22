@@ -53,6 +53,7 @@ void TableUtil::insertAllForeignKeyToTable(TableManager& tableManager,RelationSh
 			table = tableManager.getTableByID(firstEntity->getID());
 		//insert all foreign key
 		table->insertAllForeignKeyAttributes(primaryKeyAttributeMap);
-	}catch(Exception&){
+	}
+	catch(Exception&){
 	}
 }

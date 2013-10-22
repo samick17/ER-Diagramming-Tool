@@ -51,7 +51,8 @@ void ConnectNodeCommand :: execute(){
 	}else {
 		try{
 			erModel->getComponentByID(this->connector->getID());
-		}catch(Exception&){
+		}
+		catch(Exception&){
 			ComponentUtil::connectWithEachOther(this->firstNode,this->secondNode,this->connector);
 			erModel->insertComponent(this->connector);
 		}

@@ -1,14 +1,6 @@
 #include "ComponentUtil.h"
 #include "NoSuchNodeException.h"
 
-Component* ComponentUtil::getComponentByIDInVector(vector<Component*> componentVector,string id){
-	for each(Component* component in componentVector){
-		if(component->getID() == id)
-			return component;
-	}
-	throw NoSuchNodeException(id);
-}
-
 void ComponentUtil::connectWithEachOther(Component* firstNode,Component* secondNode,Component* connector)
 {
 	firstNode->connectTo(connector);
