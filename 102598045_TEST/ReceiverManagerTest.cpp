@@ -20,7 +20,8 @@ TEST_F(ReceiverManagerTest,testInsertReceiver){
 	Component* relationShip = this->erModel.addNode(ComponentType::TypeRelationShip);
 	Component* entity = this->erModel.addNode(ComponentType::TypeEntity);	
 	Receiver* receiver = new ConnectedERReceiver(2,this->presentation,entity,relationShip);
-	this->receiverManager.insertReceiver(receiver);
+	//insert & assert size
+	this->receiverManager.insertReceiver(receiver);	
 	ASSERT_EQ(2,this->receiverManager.receiverMap.size());
 	ASSERT_EQ(receiver,this->receiverManager.receiverMap.get(2));
 }

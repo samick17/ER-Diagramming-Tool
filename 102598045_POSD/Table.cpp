@@ -1,5 +1,6 @@
 #include "Table.h"
 #include "ComponentUtil.h"
+#include "StringUtil.h"
 
 Table::Table(Entity* entity) : entity(entity){
 }

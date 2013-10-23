@@ -43,7 +43,6 @@ TEST_F(DocumentTest,testDocument){
 	ASSERT_EQ("testXXXXXXX",this->document->readLine());
 	ASSERT_EQ("Hello~~",this->document->readLine());
 	ASSERT_EQ("_)*(@&*^@$",this->document->readLine());
-
 	//test open not existed file
 	filepath = DirectoryUtil::getCurrentWorkingDirectory()+"/Debug/*(&#(*!S!).*!*(!W";
 	this->document->filePath = filepath;

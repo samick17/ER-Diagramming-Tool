@@ -41,7 +41,7 @@ TEST_F(RelationShipTest,testHasSizeToConnect){
 	ASSERT_EQ(true,this->attribute->hasSizeToConnect());
 	ASSERT_EQ(true,this->relationShip->hasSizeToConnect());
 	ASSERT_EQ(true,this->entity->hasSizeToConnect());
-
+	//connect and assert has size to connect
 	Connector connector1 = Connector(ComponentData("3",""));
 	ComponentUtil::connectWithEachOther(this->relationShip,this->entity,&connector1);
 	ASSERT_EQ(true,this->relationShip->hasSizeToConnect());
@@ -56,7 +56,7 @@ TEST_F(RelationShipTest,testIsRelationType){
 	ASSERT_EQ(false,this->relationShip->isRelationType("X"));
 	
 	ASSERT_EQ(false,this->relationShip->isRelationType(RelationType::OneToOne));
-
+	//assert is correct relation type
 	Connector connector1 = Connector(ComponentData("3",""));
 	ComponentUtil::connectWithEachOther(this->relationShip,this->entity,&connector1);
 	Entity entity2 = Entity(ComponentData("4","NoteBook"));

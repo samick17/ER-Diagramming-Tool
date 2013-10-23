@@ -33,8 +33,6 @@ void DeleteComponentCommand::setupCommand(){
 }
 
 void DeleteComponentCommand::execute(){
-	if(this->getExecutionFlag())
-		return;
 	ERModel* erModel = this->presentation->getERModel();
 
 	if(erModel->getAllComponents().containsKey(this->component->getID())){
@@ -48,8 +46,6 @@ void DeleteComponentCommand::execute(){
 }
 
 void DeleteComponentCommand::unExecute(){
-	if(!this->getExecutionFlag())
-		return;	
 	ERModel* erModel = this->presentation->getERModel();	
 	//insert All connectors to ERModel at origin index
 	for(HashMap<string,Connector*>::reverse_iterator connectorIterator = this->connectionMap.rbegin(); connectorIterator!= this->connectionMap.rend(); connectorIterator++){

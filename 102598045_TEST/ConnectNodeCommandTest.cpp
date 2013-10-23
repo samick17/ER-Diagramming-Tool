@@ -7,14 +7,14 @@ void ConnectNodeCommandTest::SetUp(){
 	this->erModel.addNode(ComponentType::TypeEntity);
 	this->erModel.addNode(ComponentType::TypeAttribute);
 	this->erModel.addNode(ComponentType::TypeRelationShip);
+	ASSERT_EQ(3,this->erModel.getAllComponents().size());
 }
 
 void ConnectNodeCommandTest::TearDown(){
 	delete this->presentation;
 }
 
-TEST_F(ConnectNodeCommandTest,testConnectNodeCommand){
-	ASSERT_EQ(3,this->erModel.getAllComponents().size());
+TEST_F(ConnectNodeCommandTest,testConnectNodeCommand){	
 	ConnectNodeCommand connectNodeCommand1 = ConnectNodeCommand(this->presentation);
 	connectNodeCommand1.firstNode = this->erModel.getComponentByID("0");
 	connectNodeCommand1.secondNode = this->erModel.getComponentByID("1");

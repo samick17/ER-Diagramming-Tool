@@ -35,25 +35,21 @@ private:
 template<typename Key,typename Value>
 Value HashMap<Key,Value>::put(Key key,Value value){
 	std::unordered_map<Key,Value>::iterator hashmapIterator = hashmap.find(key);	
-
 	//contains Key
 	if(hashmapIterator != hashmap.end())
 		throw DuplicatedKeyException(CollectionType::TypeHashMap);
-
 	hashmap.insert(pair<Key,Value>(key,value));	
 	valueVector.push_back(value);
 
 	return value;
 }
-
+//Insert Value at index
 template<typename Key,typename Value>
 Value HashMap<Key,Value>::insertAt(Key key,Value value,unsigned int index){
 	std::unordered_map<Key,Value>::iterator hashmapIterator = hashmap.find(key);
-
 	//contains Key
 	if(hashmapIterator != hashmap.end())
 		throw DuplicatedKeyException(CollectionType::TypeHashMap);
-
 	hashmap.insert(pair<Key,Value>(key,value));	
 	valueVector.insert(valueVector.begin()+index,value);
 
@@ -62,24 +58,20 @@ Value HashMap<Key,Value>::insertAt(Key key,Value value,unsigned int index){
 
 template<typename Key,typename Value>
 Value HashMap<Key,Value>::get(Key key){
-	std::unordered_map<Key,Value>::iterator hashmapIterator = hashmap.find(key);
-	
+	std::unordered_map<Key,Value>::iterator hashmapIterator = hashmap.find(key);	
 	//no such key
-	if(hashmapIterator == hashmap.end()){
-		throw NoSuchKeyException(CollectionType::TypeHashMap);
-	}
+	if(hashmapIterator == hashmap.end())
+		throw NoSuchKeyException(CollectionType::TypeHashMap);	
 	Value value = hashmapIterator->second;
 	return value;
 }
 
 template<typename Key,typename Value>
 Value HashMap<Key,Value>::remove(Key key){
-	std::unordered_map<Key,Value>::iterator hashmapIterator = hashmap.find(key);
-	
+	std::unordered_map<Key,Value>::iterator hashmapIterator = hashmap.find(key);	
 	//no such key
 	if(hashmapIterator == hashmap.end())
 		throw NoSuchKeyException(CollectionType::TypeHashMap);	
-
 	Value value = hashmapIterator->second;
 	hashmap.erase(hashmapIterator);
 
@@ -96,8 +88,7 @@ unsigned int HashMap<Key,Value>::size(){
 
 template<typename Key,typename Value>
 bool HashMap<Key,Value>::containsKey(Key key){
-	std::unordered_map<Key,Value>::iterator hashmapIterator = hashmap.find(key);
-	
+	std::unordered_map<Key,Value>::iterator hashmapIterator = hashmap.find(key);	
 	if(hashmapIterator == hashmap.end())
 		return false;
 	return true;
@@ -109,7 +100,7 @@ Value HashMap<Key,Value>::getValueByIndex(unsigned int index){
 		throw CollectionException(CollectionType::TypeHashMap);
 	return valueVector[index];
 }
-
+//get Value's index in hashmap
 template<typename Key,typename Value>
 unsigned int HashMap<Key,Value>::getValueIndex(Value value){
 	vector<Value>::iterator valueIterator = find(valueVector.begin(),valueVector.end(),value);

@@ -24,7 +24,7 @@ TEST_F(CommandManagerTest,testCommandManager){
 	Component* relationShip = new RelationShip(ComponentData("0","name"));
 	addNodeCommand->node = relationShip;
 	this->commandManager->execute(addNodeCommand);
-
+	//assert size
 	ASSERT_EQ(1,this->erModel.getAllComponents().size());
 	ASSERT_EQ(1,this->commandManager->undoCommandsStack.size());
 	ASSERT_EQ(0,this->commandManager->redoCommandsStack.size());
@@ -37,17 +37,16 @@ TEST_F(CommandManagerTest,testCommandManager){
 	ASSERT_EQ(2,this->erModel.getAllComponents().size());
 	entityTest->setName("Test");
 
-	Component* attributeTest_Attr = this->erModel.addNode(ComponentType::TypeAttribute);
+	Component* attributeTestAttr = this->erModel.addNode(ComponentType::TypeAttribute);
 	ASSERT_EQ(3,this->erModel.getAllComponents().size());
-	attributeTest_Attr->setName("Test Attr");
+	attributeTestAttr->setName("Test Attr");
 	connectNodeCommand->firstNode = entityTest;
-	connectNodeCommand->secondNode = attributeTest_Attr;
+	connectNodeCommand->secondNode = attributeTestAttr;
 	this->commandManager->execute(connectNodeCommand);
-
+	//assert size
 	ASSERT_EQ(4,this->erModel.getAllComponents().size());
 	ASSERT_EQ(2,this->commandManager->undoCommandsStack.size());
 	ASSERT_EQ(0,this->commandManager->redoCommandsStack.size());
-
 	//execute "Delete component" ,delete entity
 	DeleteComponentCommand* deleteEntityCommand = new DeleteComponentCommand(this->presentation);
 	deleteEntityCommand->component = entityTest;
@@ -55,12 +54,12 @@ TEST_F(CommandManagerTest,testCommandManager){
 	ASSERT_EQ(2,this->erModel.getAllComponents().size());
 	ASSERT_EQ(3,this->commandManager->undoCommandsStack.size());
 	ASSERT_EQ(0,this->commandManager->redoCommandsStack.size());
-
+	//undo & assert size
 	this->commandManager->undo();
 	ASSERT_EQ(4,this->erModel.getAllComponents().size());
 	ASSERT_EQ(2,this->commandManager->undoCommandsStack.size());
 	ASSERT_EQ(1,this->commandManager->redoCommandsStack.size());
-
+	//execute delete command & assert size
 	DeleteComponentCommand* deleteConnectorCommand = new DeleteComponentCommand(this->presentation);
 	deleteConnectorCommand->component = this->erModel.getComponentByID("3");
 	this->commandManager->execute(deleteConnectorCommand);

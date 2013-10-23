@@ -8,6 +8,7 @@ TableManager::~TableManager(){
 }
 
 void TableManager::insertTable(Table* table){
+	//avoid duplicate table key, use try catch to put table
 	try{
 		this->tableMap.put(table->getEntityID(),table);
 	}

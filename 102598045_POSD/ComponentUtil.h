@@ -21,16 +21,13 @@ public:
 template<typename Type>
 static HashMap<string,Type*> ComponentUtil::getConnectedNodeHashMapByType(HashMap<string,Component*> connectionHashMap){
 	HashMap<string,Type*> typeHashMap;
-	for each(Component* connection in connectionHashMap){
-		for each(Component* connectedNode in connection->getAllConnections()){
-			if(typeid(*connectedNode).name() == typeid(Type).name()){
-				typeHashMap.put(connectedNode->getID(),static_cast<Type*>(connectedNode));
-			}
-		}
-	}
+	for each(Component* connection in connectionHashMap)
+		for each(Component* connectedNode in connection->getAllConnections())
+			if(typeid(*connectedNode).name() == typeid(Type).name())
+				typeHashMap.put(connectedNode->getID(),static_cast<Type*>(connectedNode));	
 	return typeHashMap;
 }
-
+//convert all concrete component to base class
 template<typename Type>
 static HashMap<string,Component*> ComponentUtil::toComponentHashMap(HashMap<string,Type*> typeHashMap){
 	HashMap<string,Component*> componentHashMap;

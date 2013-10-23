@@ -109,8 +109,8 @@ TEST_F(InputFileParserTest,testAddAllComponentToERModel){
 
 	ASSERT_EQ(3,this->erModel.getAllEntities().get("1")->getConnectedAttributes().size());
 	ASSERT_EQ(2,this->erModel.getAllEntities().get("9")->getConnectedAttributes().size());
-
-	//ASSERT ALL Components
+	//assert all components
+	//assert name
 	ASSERT_EQ("Name",this->erModel.getComponentByID("0")->getName());
 	ASSERT_EQ("Character",this->erModel.getComponentByID("1")->getName());
 	ASSERT_EQ("",this->erModel.getComponentByID("2")->getName());
@@ -126,7 +126,7 @@ TEST_F(InputFileParserTest,testAddAllComponentToERModel){
 	ASSERT_EQ("Item_ID",this->erModel.getComponentByID("12")->getName());
 	ASSERT_EQ("",this->erModel.getComponentByID("13")->getName());
 	ASSERT_EQ("",this->erModel.getComponentByID("14")->getName());
-
+	//assert id
 	ASSERT_EQ("0",this->erModel.getComponentByID("0")->getID());
 	ASSERT_EQ("1",this->erModel.getComponentByID("1")->getID());
 	ASSERT_EQ("2",this->erModel.getComponentByID("2")->getID());
@@ -165,6 +165,6 @@ TEST_F(InputFileParserTest,testIsQueueArriveConnectionDataID){
 	ASSERT_EQ(false,this->inputFileParser.isQueueArriveConnectionDataID(10));
 	this->inputFileParser.connectionDataQueue.push(ConnectionData("5","0","1"));
 	ASSERT_EQ(true,this->inputFileParser.isQueueArriveConnectionDataID(5));
-
+	//assert fail
 	ASSERT_EQ(false,this->inputFileParser.isQueueArriveConnectionDataID(18));
 }

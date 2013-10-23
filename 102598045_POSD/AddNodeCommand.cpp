@@ -30,8 +30,6 @@ void AddNodeCommand::setupCommand(){
 }
 //if ERModel doesn't contains this node, add this node to ERModel
 void AddNodeCommand::execute(){
-	if(this->getExecutionFlag())
-		return;		
 	ERModel* erModel = this->presentation->getERModel();
 	try{		
 		erModel->getComponentByID(this->node->getID());
@@ -44,8 +42,6 @@ void AddNodeCommand::execute(){
 }
 //
 void AddNodeCommand::unExecute(){
-	if(!this->getExecutionFlag())
-		return;
 	//remove node
 	ERModel* erModel = this->presentation->getERModel();		
 	erModel->eraseComponent(this->node);

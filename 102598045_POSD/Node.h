@@ -10,9 +10,8 @@ public:
 	string getType();
 
 	void breakAllConnections();
-	bool hasSizeToConnect();
-
 	int canConnectTo(Component* target);
+	bool hasSizeToConnect();	
 
 	Component* clone() const = 0;
 };

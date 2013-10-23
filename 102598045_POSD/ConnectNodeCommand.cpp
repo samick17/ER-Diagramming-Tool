@@ -41,8 +41,6 @@ void ConnectNodeCommand::setupCommand(){
 }
 
 void ConnectNodeCommand::execute(){
-	if(this->getExecutionFlag())
-		return;		
 	ERModel* erModel = this->presentation->getERModel();
 	
 	if(this->connector == NULL){
@@ -61,8 +59,6 @@ void ConnectNodeCommand::execute(){
 }
 
 void ConnectNodeCommand::unExecute(){
-	if(!this->getExecutionFlag())
-		return;
 	//disconnect node && remove connector from ERModel
 	ComponentUtil::disconnectWithEachOther(this->firstNode,this->secondNode,this->connector);
 

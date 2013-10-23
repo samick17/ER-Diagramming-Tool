@@ -36,4 +36,5 @@ TEST_F(StackUtilTest,testPop){
 	ASSERT_EQ(1,this->integerStack.size());
 	ASSERT_EQ(1,*StackUtil::pop<int>(this->integerStack));	
 	ASSERT_EQ(0,this->integerStack.size());
+	ASSERT_THROW(StackUtil::pop<int>(this->integerStack),EmptyCollectionException);
 }

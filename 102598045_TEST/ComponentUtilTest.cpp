@@ -44,6 +44,13 @@ TEST_F(ComponentUtilTest,testGetConnectedNodeHashMapByType){
 
 
 TEST_F(ComponentUtilTest,testToComponentHashMap){
+	HashMap<string,Connector*> connectorMap;
+	connectorMap.put(this->connector1->getID(),this->connector1);
+	connectorMap.put(this->connector2->getID(),this->connector2);
+	HashMap<string,Component*> componentMap = ComponentUtil::toComponentHashMap<Connector>(connectorMap);
+	ASSERT_EQ(2,componentMap.size());
+	ASSERT_EQ(this->connector1,componentMap.get(this->connector1->getID()));
+	ASSERT_EQ(this->connector2,componentMap.get(this->connector2->getID()));
 }
 
 TEST_F(ComponentUtilTest,testConnectWithEachOther){
