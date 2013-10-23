@@ -54,10 +54,9 @@ HashMap<string,Attribute*> Entity::getConnectedAttributes(){
 Attribute* Entity::getAttributeByID(string id){
 	HashMap<string,Attribute*> attributeMap = this->getConnectedAttributes();
 
-	for each(Attribute* attribute in attributeMap){
+	for each(Attribute* attribute in attributeMap)
 		if(attribute->getID() == id)		
-			return attribute;		
-	}
+			return attribute;			
 
 	throw NoConnectionException(id,this->getID());
 }

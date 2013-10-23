@@ -83,7 +83,7 @@ void InputFileParser::addAllComponentToERModel(){
 			this->connectionDataQueue.pop();
 			this->addConnector(connectionData,componentData.second);
 		}
-		else {
+		else{
 			Component* component = this->erModel->addNode(componentData.first);
 			component->setName(componentData.second);
 		}

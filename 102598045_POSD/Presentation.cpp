@@ -163,7 +163,7 @@ void Presentation::executeCommand(Command* command){
 		unexecutableCommand->setupCommand();
 		this->commandManager->execute(unexecutableCommand);
 	}
-	else {		
+	else{		
 		command->execute();
 		delete command;
 	}
