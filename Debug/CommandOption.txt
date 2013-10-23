@@ -1,4 +1,0 @@
-102598045_TEST.exe
-/coverage
-/exclude:std::*
-/exclude:filter_demo_namespace::*
