@@ -28,7 +28,7 @@ void IntegrationTest::SetUp(){
 		"",
 		"0 1,3","4 5"
 	};
-	for (int lineIndex = 0;lineIndex<sizeof(fileData)/sizeof(*fileData);lineIndex++)
+	for(int lineIndex = 0;lineIndex<sizeof(fileData)/sizeof(*fileData);lineIndex++)
 		doc.wirteLine(fileData[lineIndex]);
 	doc.saveFile();
 	//load file to model

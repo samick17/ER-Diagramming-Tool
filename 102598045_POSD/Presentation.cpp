@@ -98,7 +98,7 @@ void Presentation::displayConnections(){
 	cout<<" +----------------------------------------------"<<endl;
 	cout<<"    Connectors   |     Node1     |     Node2"<<endl;
 	cout<<" +---------------+---------------+--------------"<<endl;
-	for each (Connector* connector in connectorMap){	
+	for each(Connector* connector in connectorMap){	
 		cout<<"  "<<setw(COLUMN_WIDTH)<<connector->getID()<<"       ";
 		cout<<"|"<<setw(COLUMN_WIDTH)<<connector->getFirstConnectedNode()->getID()<<"       ";
 		cout<<"|"<<setw(COLUMN_WIDTH)<<connector->getSecondConnectedNode()->getID()<<endl;		
@@ -187,7 +187,7 @@ void Presentation::displayComponentSet(HashMap<string,Component*> componentMap){
 	cout<<" +-----------------------------------------------------"<<endl;
 	cout<<"        Type      |       ID       |      Name"<<endl;
 	cout<<" +----------------+----------------+-------------------"<<endl;
-	for each (Component* component in componentMap){
+	for each(Component* component in componentMap){
 		cout<<setw(COLUMN_WIDTH)<<component->getType()<<"          ";	
 		cout<<"|"<<setw(COLUMN_WIDTH)<<component->getID()<<"        ";	
 		cout<<"|  "<<component->getName()<<endl;		

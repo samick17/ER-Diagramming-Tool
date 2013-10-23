@@ -98,7 +98,7 @@ void ERModel::clearComponentMap(){
 	ComponentFactory componentFactory;
 	componentFactory.resetFactory();
 
-	for each (Component* component in this->componentMap)
+	for each(Component* component in this->componentMap)
 		delete component;
 	
 	this->componentMap.clear();

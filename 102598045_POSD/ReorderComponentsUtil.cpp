@@ -24,7 +24,7 @@ HashMap<string,Component*> ReorderComponentsUtil::getReorderedComponentMap(ERMod
 }
 
 void ReorderComponentsUtil::clearComponentMap(){
-	for each (Component* component in this->componentMap){
+	for each(Component* component in this->componentMap){
 		delete component;
 	}
 	this->componentMap.clear();

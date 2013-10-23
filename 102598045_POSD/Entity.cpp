@@ -72,7 +72,7 @@ HashMap<string,Attribute*> Entity::getPrimaryKeyAttributes(){
 }
 //set this primary key by primary key collection, if doesn't has such attribute, throw exception
 void Entity::setPrimaryKey(vector<string> primaryKeyIDVector){
-	for each (string attributeID in primaryKeyIDVector){
+	for each(string attributeID in primaryKeyIDVector){
 		Attribute* attribute = this->getAttributeByID(attributeID);			
 		attribute->setAsPrimaryKey();		
 	}

@@ -27,7 +27,7 @@ CommandMenu::CommandMenu(){
 }
 
 CommandMenu::~CommandMenu(){
-	for each (CommandData* commandData in this->commandDataMap)
+	for each(CommandData* commandData in this->commandDataMap)
 		delete commandData;
 }
 

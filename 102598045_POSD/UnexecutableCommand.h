@@ -15,5 +15,5 @@ public:
 protected:
 	bool getExecutionFlag();
 private:
-	bool executionFlag;//true execute, false unexecute
+	bool executionFlag;
 };
