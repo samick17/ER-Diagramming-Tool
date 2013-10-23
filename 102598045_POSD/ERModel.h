@@ -21,6 +21,7 @@ class ERModel{
 	FRIEND_TEST(IntegrationTest,testIsPrimaryExist);
 	FRIEND_TEST(IntegrationTest,testUndoDeleteComponent);
 	FRIEND_TEST(IntegrationTest,testRedoConnectComponent);
+	FRIEND_TEST(IntegrationTest,testCommonUsage);
 public:	
 	ERModel();
 	~ERModel();

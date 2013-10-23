@@ -65,7 +65,7 @@ void Presentation::displayTable(){
 	if(tableMap.empty())
 		throw EmptyCollectionException("Tables");
 	
-	cout<<" +------------------------------------------------------------------"<<endl;
+	cout<<" +----------------+--------------------------------------------------"<<endl;
 	cout<<" |    Entity      |  Attributes"<<endl;
 	cout<<" +----------------+--------------------------------------------------"<<endl;
 	for each(Table* table in tableMap){
@@ -78,7 +78,7 @@ void Presentation::displayTable(){
 		this->displayStringWithComma(" FK(",table->getAllForeignKeyAttributesNameVector(),")");	
 		cout<<endl;
 	}
-	cout<<" +------------------------------------------------------------------"<<endl;
+	cout<<" +----------------+--------------------------------------------------"<<endl;
 }
 
 void Presentation::displayComponents(){	

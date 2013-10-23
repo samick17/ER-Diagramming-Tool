@@ -4,7 +4,9 @@
 #include "InputFileParser.h"
 #include "FileNotFoundException.h"
 #include "EmptyCollectionException.h"
+#include "NoSuchNodeException.h"
 #include "NoSuchKeyException.h"
+#include "NullPointerException.h"
 #include "ComponentType.h"
 #include "DeleteComponentCommand.h"
 #include "ConnectNodeCommand.h"
@@ -107,31 +109,15 @@ TEST_F(IntegrationTest,testLoadFileNotExist){
 }
 
 TEST_F(IntegrationTest,testIsPrimaryExist){
-	//Assert Table
-	HashMap<string,Table*> tableMap = this->erModel.getAllTables();
+	//Display Table
+	this->presentation->displayTable();
+
 	Attribute* attributeEmp_ID = static_cast<Attribute*>(this->erModel.componentMap.get("1"));
 	Attribute* attributeName = static_cast<Attribute*>(this->erModel.componentMap.get("3"));
 	Attribute* attributePC_ID = static_cast<Attribute*>(this->erModel.componentMap.get("5"));
 	Attribute* attributePurchase_Date = static_cast<Attribute*>(this->erModel.componentMap.get("6"));
 	Attribute* attributeDepartment = static_cast<Attribute*>(this->erModel.componentMap.get("13"));
-
-	ASSERT_EQ(2,tableMap.size());
-	ASSERT_EQ(true,tableMap.containsKey("0"));
-	ASSERT_EQ(true,tableMap.containsKey("4"));
-	Table* tableEngineer = tableMap.get("0");
-	Table* tablePC = tableMap.get("4");
-
-	ASSERT_EQ(3,tableEngineer->attributeMap.size());
-	ASSERT_EQ(0,tableEngineer->foreignKeyAttributeMap.size());
-	ASSERT_EQ(true,tableEngineer->attributeMap.containsKey(attributeEmp_ID->getID()));
-	ASSERT_EQ(true,tableEngineer->attributeMap.containsKey(attributeName->getID()));
-	ASSERT_EQ(true,tableEngineer->attributeMap.containsKey(attributeDepartment->getID()));
-
-	ASSERT_EQ(2,tablePC->attributeMap.size());	
-	ASSERT_EQ(2,tablePC->foreignKeyAttributeMap.size());
-	ASSERT_EQ(true,tablePC->attributeMap.containsKey(attributePC_ID->getID()));
-	ASSERT_EQ(true,tablePC->attributeMap.containsKey(attributePurchase_Date->getID()));		
-
+		
 	//Assert primary key
 	ASSERT_EQ(true,attributeEmp_ID->isPrimaryKey());
 	ASSERT_EQ(true,attributeName->isPrimaryKey());
@@ -220,5 +206,122 @@ TEST_F(IntegrationTest,testRedoConnectComponent){
 }
 
 TEST_F(IntegrationTest,testCommonUsage){
+	//Add entity "Work Diary" & set name as "Work Diary" , ASSERT
+	Entity* entityWorkDiary = static_cast<Entity*>(this->erModel.addNode(ComponentType::TypeEntity));
+	entityWorkDiary->setName("Work Diary");
+	ASSERT_EQ(entityWorkDiary,this->erModel.componentMap.get(entityWorkDiary->getID()));
+	ASSERT_EQ(16,this->erModel.componentMap.size());
+	//Add relationShip "Write" & set name as "Write" , ASSERT
+	Component* relationShipWrite = this->erModel.addNode(ComponentType::TypeRelationShip);
+	relationShipWrite->setName("Write");
+	ASSERT_EQ(relationShipWrite,this->erModel.componentMap.get(relationShipWrite->getID()));
+	ASSERT_EQ(17,this->erModel.componentMap.size());
+	//connect node0 & node16
+	Component* node0 = this->erModel.componentMap.get("0");
+	Component* node16 = this->erModel.componentMap.get("16");
+	this->erModel.addConnection(node0,node16);
+	//set cardinality as 1
+	Connector* connectorNode0AndNode6 = this->erModel.getNodesConnector(node0,node16);
+	ASSERT_EQ(18,this->erModel.componentMap.size());
+	connectorNode0AndNode6->setName(RelationType::OneToOne);
+	//ASSERT 0 & 16 has connected	
+	ASSERT_EQ(true,node0->hasConnectedTo(node16));
+	ASSERT_EQ(true,node16->hasConnectedTo(node0));
+	//connect node15 & node16
+	Component* node15 = this->erModel.componentMap.get("15");
+	this->erModel.addConnection(node15,node16);
+	//ASSERT 15 & 16 has connected
+	ASSERT_EQ(19,this->erModel.componentMap.size());
+	ASSERT_EQ(true,node15->hasConnectedTo(node16));
+	ASSERT_EQ(true,node16->hasConnectedTo(node15));
+	//Add attribute "Content" & set name as "Content" , ASSERT
+	Component* attributeContent = this->erModel.addNode(ComponentType::TypeAttribute);
+	ASSERT_EQ(20,this->erModel.componentMap.size());
+	attributeContent->setName("Content");	
+	ASSERT_EQ(attributeContent,this->erModel.componentMap.get(attributeContent->getID()));
+	
+	//Add attribute "WD_ID" & set name as "WD_ID" , ASSERT
+	Component* attributeWD_ID = this->erModel.addNode(ComponentType::TypeAttribute);
+	ASSERT_EQ(21,this->erModel.componentMap.size());
+	attributeWD_ID->setName("WD_ID");
+	ASSERT_EQ(attributeWD_ID,this->erModel.componentMap.get(attributeWD_ID->getID()));	
+	//Add attribute "WD_date" & set name as "WD_date" , ASSERT
+	Component* attributeWD_date = this->erModel.addNode(ComponentType::TypeAttribute);
+	ASSERT_EQ(22,this->erModel.componentMap.size());
+	attributeWD_date->setName("WD_date");
+	ASSERT_EQ(attributeWD_date,this->erModel.componentMap.get(attributeWD_date->getID()));	
+	//connect node15 & node19 , ASSERT
+	Component* node19 = this->erModel.componentMap.get("19");
+	this->erModel.addConnection(node15,node19);
+	ASSERT_EQ(23,this->erModel.componentMap.size());
+	ASSERT_EQ(true,node15->hasConnectedTo(node19));
+	ASSERT_EQ(true,node19->hasConnectedTo(node15));
+	//connect node15 & node20 , ASSERT
+	Component* node20 = this->erModel.componentMap.get("20");
+	this->erModel.addConnection(node15,node20);
+	ASSERT_EQ(24,this->erModel.componentMap.size());
+	ASSERT_EQ(true,node15->hasConnectedTo(node20));
+	ASSERT_EQ(true,node20->hasConnectedTo(node15));
+	////connect node15 & node21 , ASSERT
+	Component* node21 = this->erModel.componentMap.get("21");
+	this->erModel.addConnection(node15,node21);
+	ASSERT_EQ(25,this->erModel.componentMap.size());
+	ASSERT_EQ(true,node15->hasConnectedTo(node21));
+	ASSERT_EQ(true,node21->hasConnectedTo(node15));
+	//Set Work Diary primary key "WD_ID" , ASSERT
+	vector<string> workdiaryPrimaryKey;
+	workdiaryPrimaryKey.push_back(attributeWD_ID->getID());
+	entityWorkDiary->setPrimaryKey(workdiaryPrimaryKey);
+	ASSERT_EQ(1,entityWorkDiary->getPrimaryKeyAttributes().size());
+	ASSERT_EQ(attributeWD_ID,entityWorkDiary->getPrimaryKeyAttributes().get(attributeWD_ID->getID()));
+	//Display Table
+	this->presentation->displayTable();
+	//Assert "Work Diary" exists
+	ASSERT_EQ(entityWorkDiary,this->erModel.getComponentByID(entityWorkDiary->getID()));
+	//Assert "Work Diary" primary key is "WD_ID"
+	ASSERT_EQ(attributeWD_ID,entityWorkDiary->getPrimaryKeyAttributes().get(attributeWD_ID->getID()));
+	
+	DeleteComponentCommand* deleteComponentCommand_deleteWorkDiary = new DeleteComponentCommand(this->presentation);
+	deleteComponentCommand_deleteWorkDiary->component = entityWorkDiary;
+	this->commandManager->execute(deleteComponentCommand_deleteWorkDiary);
 
+	//Assert there is no such node "Work Diary"
+	ASSERT_THROW(this->erModel.getComponentByID(entityWorkDiary->getID()),NoSuchNodeException);
+	//ASSERT there is no connection between node 15 and 16
+	ASSERT_THROW(this->erModel.getNodesConnector(entityWorkDiary,node16),NullPointerException);
+	ASSERT_EQ(false,entityWorkDiary->hasConnectedTo(node16));
+	ASSERT_EQ(false,node16->hasConnectedTo(entityWorkDiary));
+	//ASSERT there is no connection between node 15 and 19
+	ASSERT_THROW(this->erModel.getNodesConnector(entityWorkDiary,node19),NullPointerException);
+	ASSERT_EQ(false,entityWorkDiary->hasConnectedTo(node19));
+	ASSERT_EQ(false,node19->hasConnectedTo(entityWorkDiary));
+	//ASSERT there is no connection between node 15 and 20
+	ASSERT_THROW(this->erModel.getNodesConnector(entityWorkDiary,node20),NullPointerException);
+	ASSERT_EQ(false,entityWorkDiary->hasConnectedTo(node20));
+	ASSERT_EQ(false,node20->hasConnectedTo(entityWorkDiary));
+	//ASSERT there is no connection between node 15 and 21
+	ASSERT_THROW(this->erModel.getNodesConnector(entityWorkDiary,node21),NullPointerException);
+	ASSERT_EQ(false,entityWorkDiary->hasConnectedTo(node21));
+	ASSERT_EQ(false,node21->hasConnectedTo(entityWorkDiary));
+	//Display Table
+	this->presentation->displayTable();	
+	//Assert there is no such node "Work Diary"
+	ASSERT_THROW(this->erModel.getComponentByID(entityWorkDiary->getID()),NoSuchNodeException);
+	//Assert Engineer's primary key is "Name" and "Emp_ID"
+	Entity* entityEngineer = static_cast<Entity*>(this->erModel.getComponentByID("0"));
+	ASSERT_EQ(this->erModel.getComponentByID("1"),entityEngineer->getPrimaryKeyAttributes().get("1"));
+	ASSERT_EQ(this->erModel.getComponentByID("3"),entityEngineer->getPrimaryKeyAttributes().get("3"));
+	//Undo
+	this->commandManager->undo();
+	//Display Table
+	this->presentation->displayTable();
+	//Assert "Work Diary" primary key is "WD_ID"
+	ASSERT_EQ(attributeWD_ID,entityWorkDiary->getPrimaryKeyAttributes().get(attributeWD_ID->getID()));
+	//Redo
+	this->commandManager->redo();
+	//Assert there is no such node "Work Diary"
+	ASSERT_THROW(this->erModel.getComponentByID(entityWorkDiary->getID()),NoSuchNodeException);
+	//Assert Engineer's primary key is "Name" and "Emp_ID"	
+	ASSERT_EQ(this->erModel.getComponentByID("1"),entityEngineer->getPrimaryKeyAttributes().get("1"));
+	ASSERT_EQ(this->erModel.getComponentByID("3"),entityEngineer->getPrimaryKeyAttributes().get("3"));
 }
