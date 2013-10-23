@@ -10,9 +10,8 @@ ReorderComponentsUtil::~ReorderComponentsUtil(){
 	this->clearComponentMap();
 }
 
-HashMap<string,Component*> ReorderComponentsUtil::getReorderedComponentMap(ERModel* erModel){
-	
-	this->cloneComponentSet(erModel);
+HashMap<string,Component*> ReorderComponentsUtil::getReorderedComponentMap(ERModel* erModel){	
+	this->cloneComponentMap(erModel);
 	//re-connect to the component, because of the cloned component use origin pointer	
 	this->reConnectToComponentVector();
 	//enQueue all components & clear component vector
@@ -31,7 +30,7 @@ void ReorderComponentsUtil::clearComponentMap(){
 	this->componentMap.clear();
 }
 
-HashMap<string,Component*> ReorderComponentsUtil::cloneComponentSet(ERModel* erModel){	
+HashMap<string,Component*> ReorderComponentsUtil::cloneComponentMap(ERModel* erModel){	
 	//avoid function call leads to memory leak, clear all elems first	
 	this->clearComponentMap();
 	try{

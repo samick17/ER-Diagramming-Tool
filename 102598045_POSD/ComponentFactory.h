@@ -22,11 +22,11 @@ private:
 	static int count;
 	HashMap<string,NewComponentFunction> newComponentMap;	
 	NewComponentFunction findNewComponentFunction(string componentType);
-	template <typename type>
+	template <typename Type>
 	static Component* newComponent(ComponentData componentData);
 };
 
-template <typename type>
+template <typename Type>
 Component* ComponentFactory::newComponent(ComponentData componentData){
-	return new type(componentData);
+	return new Type(componentData);
 }

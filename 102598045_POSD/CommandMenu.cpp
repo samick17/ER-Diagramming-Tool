@@ -23,7 +23,7 @@ CommandMenu::CommandMenu(){
 	this->insertCommandData(new CommandData("8","Delete a component",newCommand<DeleteComponentCommand>));
 	this->insertCommandData(new CommandData("9","Undo",newCommand<UndoCommand>));
 	this->insertCommandData(new CommandData("10","Redo",newCommand<RedoCommand>));
-	this->insertCommandData( new CommandData("11","Exit",newCommand<ExitCommand>));
+	this->insertCommandData(new CommandData("11","Exit",newCommand<ExitCommand>));
 }
 
 CommandMenu::~CommandMenu(){

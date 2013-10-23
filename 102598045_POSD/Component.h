@@ -33,8 +33,8 @@ public:
 	string getName();
 	void setName(string);
 	string getClassName();
-	/*template<class T>
-	bool isType();*/
+	template<class T>
+	bool isType();
 
 	void connectTo(Component* target);	
 	void disconnectTo(Component* target);
@@ -51,8 +51,8 @@ protected:
 private:	
 	HashMap<string,Component*> connectionMap;
 };
-/*
+
 template<class T>
 bool Component::isType(){
 	return typeid(*this).name() == typeid(T).name();
-}*/
+}

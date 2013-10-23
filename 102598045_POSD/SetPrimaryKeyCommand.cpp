@@ -6,6 +6,7 @@
 #include "FindEntityCommand.h"
 #include "Exception.h"
 #include "StringSymbol.h"
+#include "CharSymbol.h"
 
 SetPrimaryKeyCommand :: SetPrimaryKeyCommand(Presentation* presentation) : Command(presentation){
 }
@@ -38,7 +39,7 @@ vector<string> SetPrimaryKeyCommand::setEntityAttributesPrimaryKey(Entity* entit
 	while(true){
 		try{
 			string input = this->presentation->getInput();
-			attributeIDVector = StringUtil::split(input,',');
+			attributeIDVector = StringUtil::split(input,CharSymbol::Comma);
 			entity->setPrimaryKey(attributeIDVector);
 			break;
 		}

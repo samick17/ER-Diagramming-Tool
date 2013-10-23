@@ -18,11 +18,11 @@ private:
 	HashMap<string,CommandData*> commandDataMap;
 	void insertCommandData(CommandData* commandData);
 
-	template <typename type>
+	template <typename Type>
 	static Command* newCommand(Presentation* presentation);
 };
 
-template <typename type>
+template <typename Type>
 static Command* CommandMenu::newCommand(Presentation* presentation){
-	return new type(presentation);
+	return new Type(presentation);
 }

@@ -7,16 +7,16 @@
 class ERModelUtil{
 public:
 	//template cant be put in cpp file
-	template<typename type> 
-	static HashMap<string,type*> convertComponentHashMapToTypeHashMap(HashMap<string,Component*> componentHashMap);	
+	template<typename Type> 
+	static HashMap<string,Type*> convertComponentHashMapToTypeHashMap(HashMap<string,Component*> componentHashMap);	
 };
 //convert component hashmap to concrete type hashmap
-template<typename type> 
-static HashMap<string,type*> ERModelUtil::convertComponentHashMapToTypeHashMap(HashMap<string,Component*> componentHashMap){
-	HashMap<string,type*> typeHashMap;
+template<typename Type> 
+static HashMap<string,Type*> ERModelUtil::convertComponentHashMapToTypeHashMap(HashMap<string,Component*> componentHashMap){
+	HashMap<string,Type*> typeHashMap;
 	for each (Component* component in componentHashMap){	
-		if(typeid(*component).name() == typeid(type).name()){
-			typeHashMap.put(component->getID(),static_cast<type*>(component));
+		if(typeid(*component).name() == typeid(Type).name()){
+			typeHashMap.put(component->getID(),static_cast<Type*>(component));
 		}
 	}
 	return typeHashMap;
