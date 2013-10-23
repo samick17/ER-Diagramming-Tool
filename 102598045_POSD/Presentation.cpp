@@ -133,7 +133,7 @@ void Presentation::displayStringWithComma(string strStart,vector<string> stringV
 
 void Presentation::processCommand(string commandKey){
 	Command* command = NULL;
-	try {
+	try{
 		CommandMenu commandMenu;
 		CommandData* commandData = commandMenu.getCommandDataByKey(commandKey);		
 		//get new Command Function From Command Data

@@ -1,7 +1,7 @@
 #include "UnexecutableCommand.h"
 #include "StringSymbol.h"
 
-UnexecutableCommand :: UnexecutableCommand(Presentation* presentation) : Command(presentation){	
+UnexecutableCommand::UnexecutableCommand(Presentation* presentation) : Command(presentation){	
 	this->executionFlag = false;
 	this->commandInformation = StringSymbol::Empty;
 }
@@ -16,7 +16,7 @@ bool UnexecutableCommand::isUnexecutable(){
 	return true;
 }
 
-void UnexecutableCommand :: execute(){
+void UnexecutableCommand::execute(){
 	this->executionFlag = true;
 }
 

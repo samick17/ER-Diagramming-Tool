@@ -4,7 +4,7 @@
 #include "Exception.h"
 #include "StringSymbol.h"
 
-FindComponentCommand :: FindComponentCommand(Presentation* presentation) : Command(presentation){	
+FindComponentCommand::FindComponentCommand(Presentation* presentation) : Command(presentation){	
 	this->component = NULL;
 	this->info = StringSymbol::Empty;
 }
@@ -17,7 +17,7 @@ void FindComponentCommand::setInfo(string info){
 }
 
 /**Non testable function**/
-void FindComponentCommand :: execute(){
+void FindComponentCommand::execute(){
 	ERModel* erModel = this->presentation->getERModel();
 	//get All Components too check there has components to find
 	erModel->getAllComponents();

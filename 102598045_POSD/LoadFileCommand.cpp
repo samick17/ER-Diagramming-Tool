@@ -4,7 +4,7 @@
 #include "DisplayDiagramCommand.h"
 #include "InputFileParser.h"
 
-LoadFileCommand :: LoadFileCommand(Presentation* presentation) : Command(presentation){	
+LoadFileCommand::LoadFileCommand(Presentation* presentation) : Command(presentation){	
 }
 
 LoadFileCommand::~LoadFileCommand(){

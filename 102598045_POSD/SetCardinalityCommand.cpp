@@ -1,14 +1,14 @@
 #include "SetCardinalityCommand.h"
 #include "StringUtil.h"
 
-SetCardinalityCommand :: SetCardinalityCommand(Presentation* presentation,Component* firstNode,Component* secondNode) : Command(presentation),firstNode(firstNode),secondNode(secondNode){
+SetCardinalityCommand::SetCardinalityCommand(Presentation* presentation,Component* firstNode,Component* secondNode) : Command(presentation),firstNode(firstNode),secondNode(secondNode){
 	cardinalityPairMap.put("0",RelationType::OneToOne);
 }
 
 SetCardinalityCommand::~SetCardinalityCommand(){
 }
 /**Non testable function**/
-void SetCardinalityCommand :: execute(){
+void SetCardinalityCommand::execute(){
 	ERModel* erModel = this->presentation->getERModel();
 	
 	this->presentation->logMessage("Enter the type of the cardinality: ",true);

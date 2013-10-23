@@ -8,13 +8,13 @@
 #include "StringSymbol.h"
 #include "CharSymbol.h"
 
-SetPrimaryKeyCommand :: SetPrimaryKeyCommand(Presentation* presentation) : Command(presentation){
+SetPrimaryKeyCommand::SetPrimaryKeyCommand(Presentation* presentation) : Command(presentation){
 }
 
 SetPrimaryKeyCommand::~SetPrimaryKeyCommand(){
 }
 
-void SetPrimaryKeyCommand :: execute(){
+void SetPrimaryKeyCommand::execute(){
 	ERModel* erModel = this->presentation->getERModel();		
 	this->presentation->displayEntities();
 

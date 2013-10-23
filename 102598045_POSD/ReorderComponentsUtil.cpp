@@ -62,8 +62,7 @@ void ReorderComponentsUtil::reConnectToComponentVector(){
 }
 //dequeue all component & insert to component vector
 //re set component id
-HashMap<string,Component*> ReorderComponentsUtil::dequeueAndInsertToVector(queue<Component*>& componentQueue)
-{
+HashMap<string,Component*> ReorderComponentsUtil::dequeueAndInsertToVector(queue<Component*>& componentQueue){
 	HashMap<string,Component*> orderedComponentMap;
 	int newID = 0;
 	while(!componentQueue.empty()){

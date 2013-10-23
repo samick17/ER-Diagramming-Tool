@@ -24,6 +24,7 @@ void DeleteComponentCommandTest::SetUp(){
 	this->erModel.addConnection(entity2,attribute6);
 	this->erModel.addConnection(entity2,attribute7);
 	this->erModel.addConnection(entity2,relationShip);
+	ASSERT_EQ(19,this->erModel.getAllComponents().size());
 }
 
 void DeleteComponentCommandTest::TearDown(){
@@ -100,4 +101,53 @@ TEST_F(DeleteComponentCommandTest,testDeleteComponentCommand){
 	deleteComponnentCommand4.unExecute();
 	ASSERT_EQ(19,this->erModel.getAllComponents().size());
 	ASSERT_EQ(2,deleteComponnentCommand4.component->getAllConnections().size());
+}
+
+TEST_F(DeleteComponentCommandTest,testSaveConnectionData){
+	DeleteComponentCommand deleteComponnentCommand = DeleteComponentCommand(this->presentation);
+	for each(Connector* connector in this->erModel.getAllConnectors()){
+		deleteComponnentCommand.saveConnectionData(connector);
+		ConnectionData* connectionData = deleteComponnentCommand.connectionDataMap.get(connector->getID());
+		ASSERT_EQ(connectionData->getConnectedFirstNodeID(),connector->getFirstConnectedNode()->getID());
+		ASSERT_EQ(connectionData->getConnectedSecondNodeID(),connector->getSecondConnectedNode()->getID());
+	}
+}
+
+TEST_F(DeleteComponentCommandTest,testClearConnectionDataMap){
+	DeleteComponentCommand deleteComponnentCommand = DeleteComponentCommand(this->presentation);
+	HashMap<string,Connector*> connectorMap = this->erModel.getAllConnectors();
+	for each(Connector* connector in connectorMap){
+		deleteComponnentCommand.saveConnectionData(connector);
+		ConnectionData* connectionData = deleteComponnentCommand.connectionDataMap.get(connector->getID());
+		ASSERT_EQ(connectionData->getConnectedFirstNodeID(),connector->getFirstConnectedNode()->getID());
+		ASSERT_EQ(connectionData->getConnectedSecondNodeID(),connector->getSecondConnectedNode()->getID());
+	}
+	ASSERT_EQ(connectorMap.size(),deleteComponnentCommand.connectionDataMap.size());
+
+	deleteComponnentCommand.clearConnectionDataMap();
+
+	ASSERT_EQ(0,deleteComponnentCommand.connectionDataMap.size());
+}
+
+TEST_F(DeleteComponentCommandTest,testRemoveAndDisconnectComponents){
+	DeleteComponentCommand deleteComponnentCommand = DeleteComponentCommand(this->presentation);
+
+	deleteComponnentCommand.component = this->erModel.getComponentByID("0");
+
+	ASSERT_EQ(19,this->erModel.getAllComponents().size());
+	deleteComponnentCommand.removeAndDisconnectComponents();
+	deleteComponnentCommand.UnexecutableCommand::execute();
+	ASSERT_EQ(14,this->erModel.getAllComponents().size());	
+}
+
+TEST_F(DeleteComponentCommandTest,testReConnectComponents){
+	DeleteComponentCommand deleteComponnentCommand = DeleteComponentCommand(this->presentation);
+
+	ConnectionData connectionData = ConnectionData("0","1","4");
+	Connector* connector = this->erModel.getAllConnectors().get("4");
+	ASSERT_EQ(2,connector->getAllConnections().size());
+	connector->breakAllConnections();
+	ASSERT_EQ(0,connector->getAllConnections().size());
+	deleteComponnentCommand.reConnectComponents(&connectionData,connector);
+	ASSERT_EQ(2,connector->getAllConnections().size());
 }

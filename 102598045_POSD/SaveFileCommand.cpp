@@ -4,13 +4,13 @@
 #include "StringSymbol.h"
 #include "OutputFileParser.h"
 
-SaveFileCommand :: SaveFileCommand(Presentation* presentation) : Command(presentation){	
+SaveFileCommand::SaveFileCommand(Presentation* presentation) : Command(presentation){	
 }
 
 SaveFileCommand::~SaveFileCommand(){
 }
 
-void SaveFileCommand :: execute(){	
+void SaveFileCommand::execute(){	
 	this->presentation->logMessage("Please input the file name: ",true);
 	
 	string filePath = this->presentation->getInput();

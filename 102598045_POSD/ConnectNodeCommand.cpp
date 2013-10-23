@@ -9,7 +9,7 @@
 
 using namespace std;
 
-ConnectNodeCommand :: ConnectNodeCommand(Presentation* presentation) : UnexecutableCommand(presentation){	
+ConnectNodeCommand::ConnectNodeCommand(Presentation* presentation) : UnexecutableCommand(presentation){	
 	this->connector = NULL;
 }
 
@@ -40,7 +40,7 @@ void ConnectNodeCommand::setupCommand(){
 	connectionReceiverManager.response(nodeConnectionType);
 }
 
-void ConnectNodeCommand :: execute(){
+void ConnectNodeCommand::execute(){
 	if(this->getExecutionFlag())
 		return;		
 	ERModel* erModel = this->presentation->getERModel();

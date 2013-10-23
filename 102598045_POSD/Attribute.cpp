@@ -37,7 +37,6 @@ void Attribute::setAsPrimaryKey(){
 	this->attributeType = AttributeType::PrimaryKey;
 }
 
-Component* Attribute::clone() const
-{ 
+Component* Attribute::clone() const{ 
 	return new Attribute(*this); 
 }

@@ -3,7 +3,7 @@
 #include "ERModelUtil.h"
 #include "ComponentUtil.h"
 
-DeleteComponentCommand :: DeleteComponentCommand(Presentation* presentation) : UnexecutableCommand(presentation){	
+DeleteComponentCommand::DeleteComponentCommand(Presentation* presentation) : UnexecutableCommand(presentation){	
 	this->component = NULL;
 }
 
@@ -32,26 +32,24 @@ void DeleteComponentCommand::setupCommand(){
 	this->presentation->logMessage("The component '"+this->component->getID()+"' has been deleted. ",true);	
 }
 
-void DeleteComponentCommand :: execute(){
+void DeleteComponentCommand::execute(){
 	if(this->getExecutionFlag())
 		return;
 	ERModel* erModel = this->presentation->getERModel();
 
-	try{
+	if(erModel->getAllComponents().containsKey(this->component->getID())){
 		erModel->getComponentByID(this->component->getID());
 
 		this->clearConnectionDataMap();
 		this->removeAndDisconnectComponents();
-	}
-	catch(Exception&){
-	}
+	}	
 	
 	this->UnexecutableCommand::execute();
 }
 
 void DeleteComponentCommand::unExecute(){
 	if(!this->getExecutionFlag())
-		return;		
+		return;	
 	ERModel* erModel = this->presentation->getERModel();	
 	//insert All connectors to ERModel at origin index
 	for(HashMap<string,Connector*>::reverse_iterator connectorIterator = this->connectionMap.rbegin(); connectorIterator!= this->connectionMap.rend(); connectorIterator++){
@@ -72,7 +70,7 @@ void DeleteComponentCommand::unExecute(){
 
 void DeleteComponentCommand::saveConnectionData(Connector* connector){
 	Component* firstNode = connector->getFirstConnectedNode();
-	Component* secondNode = connector->getSecondConnectedNode();	
+	Component* secondNode = connector->getSecondConnectedNode();
 
 	ConnectionData* connectionData = new ConnectionData(connector->getID(),firstNode->getID(),secondNode->getID());
 	this->connectionDataMap.put(connectionData->getConnectorID(),connectionData);
@@ -94,7 +92,7 @@ void DeleteComponentCommand::removeAndDisconnectComponents(){
 		this->saveConnectionData(static_cast<Connector*>(this->component));	
 	//save index & remove component from ERModel
 	componentIndexMap.put(this->component->getID(),erModel->getAllComponents().getValueIndex(this->component));
-	erModel->eraseComponent(this->component);	
+	erModel->eraseComponent(this->component);
 	
 	//save connectionData & remove connectionSet from ERModel
 	for each(Connector* connector in this->connectionMap){
@@ -107,8 +105,7 @@ void DeleteComponentCommand::removeAndDisconnectComponents(){
 	this->component->breakAllConnections();
 }
 //undo - reconnect this component & related connector
-void DeleteComponentCommand::reConnectComponents(ConnectionData* connectionData,Connector* connector)
-{
+void DeleteComponentCommand::reConnectComponents(ConnectionData* connectionData,Connector* connector){
 	ERModel* erModel = this->presentation->getERModel();
 	Component* firstNode = erModel->getComponentByID(connectionData->getConnectedFirstNodeID());
 	Component* secondNode = erModel->getComponentByID(connectionData->getConnectedSecondNodeID());

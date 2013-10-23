@@ -9,6 +9,7 @@ class ConnectNodeCommand : public UnexecutableCommand{
 	FRIEND_TEST(CommandManagerTest,testCommandManager);
 	friend class ConnectNodeCommandTest;
 	FRIEND_TEST(ConnectNodeCommandTest,testConnectNodeCommand);
+	FRIEND_TEST(ConnectNodeCommandTest,testBackupConnector);
 public:
 	ConnectNodeCommand(Presentation* presentation);
 	~ConnectNodeCommand();

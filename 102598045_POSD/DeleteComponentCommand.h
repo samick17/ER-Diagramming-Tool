@@ -11,7 +11,11 @@ class DeleteComponentCommand : public UnexecutableCommand{
 	friend class CommandManagerTest;
 	FRIEND_TEST(CommandManagerTest,testCommandManager);
 	friend class DeleteComponentCommandTest;
-	FRIEND_TEST(DeleteComponentCommandTest,testDeleteComponentCommand);
+	FRIEND_TEST(DeleteComponentCommandTest,testDeleteComponentCommand);	
+	FRIEND_TEST(DeleteComponentCommandTest,testSaveConnectionData);
+	FRIEND_TEST(DeleteComponentCommandTest,testClearConnectionDataMap);
+	FRIEND_TEST(DeleteComponentCommandTest,testRemoveAndDisconnectComponents);	
+	FRIEND_TEST(DeleteComponentCommandTest,testReConnectComponents);
 public:
 	DeleteComponentCommand(Presentation* presentation);
 	~DeleteComponentCommand();

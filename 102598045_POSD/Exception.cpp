@@ -3,8 +3,7 @@
 Exception::Exception(){
 }
 
-Exception::Exception(string message) : message(message)
-{
+Exception::Exception(string message) : message(message){
 }
 
 Exception::~Exception(){

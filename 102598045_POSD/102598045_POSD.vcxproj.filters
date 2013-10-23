@@ -112,6 +112,9 @@
     <Filter Include="Source Files\Exception\IOException">
       <UniqueIdentifier>{cd8f2a70-ce91-4b93-8a2c-8e3bd9f5cf82}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Command\UnexecutableCommand">
+      <UniqueIdentifier>{bac53c1d-ea42-4638-b25a-a013321d175b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Attribute.h">
@@ -350,13 +353,7 @@
     <ClCompile Include="RelationShip.cpp">
       <Filter>Source Files\Model</Filter>
     </ClCompile>
-    <ClCompile Include="AddNodeCommand.cpp">
-      <Filter>Source Files\Command</Filter>
-    </ClCompile>
     <ClCompile Include="Command.cpp">
-      <Filter>Source Files\Command</Filter>
-    </ClCompile>
-    <ClCompile Include="ConnectNodeCommand.cpp">
       <Filter>Source Files\Command</Filter>
     </ClCompile>
     <ClCompile Include="DisplayDiagramCommand.cpp">
@@ -428,9 +425,6 @@
     <ClCompile Include="FindEntityCommand.cpp">
       <Filter>Source Files\Command</Filter>
     </ClCompile>
-    <ClCompile Include="DeleteComponentCommand.cpp">
-      <Filter>Source Files\Command</Filter>
-    </ClCompile>
     <ClCompile Include="RedoCommand.cpp">
       <Filter>Source Files\Command</Filter>
     </ClCompile>
@@ -439,9 +433,6 @@
     </ClCompile>
     <ClCompile Include="ReorderComponentsUtil.cpp">
       <Filter>Source Files\Utils</Filter>
-    </ClCompile>
-    <ClCompile Include="UnexecutableCommand.cpp">
-      <Filter>Source Files\Command</Filter>
     </ClCompile>
     <ClCompile Include="CommandData.cpp">
       <Filter>Source Files\Struct</Filter>
@@ -541,6 +532,18 @@
     </ClCompile>
     <ClCompile Include="Document.cpp">
       <Filter>Source Files\Parser</Filter>
+    </ClCompile>
+    <ClCompile Include="AddNodeCommand.cpp">
+      <Filter>Source Files\Command\UnexecutableCommand</Filter>
+    </ClCompile>
+    <ClCompile Include="ConnectNodeCommand.cpp">
+      <Filter>Source Files\Command\UnexecutableCommand</Filter>
+    </ClCompile>
+    <ClCompile Include="DeleteComponentCommand.cpp">
+      <Filter>Source Files\Command\UnexecutableCommand</Filter>
+    </ClCompile>
+    <ClCompile Include="UnexecutableCommand.cpp">
+      <Filter>Source Files\Command\UnexecutableCommand</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -73,7 +73,6 @@ bool Connector::isNodesConnection(Component* firstNode,Component* secondNode){
 	return isConnection;
 }
 
-Component* Connector::clone() const
-{ 
+Component* Connector::clone() const{ 
 	return new Connector(*this); 
 }

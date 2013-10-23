@@ -1,12 +1,12 @@
 #include "FindEntityCommand.h"
 
-FindEntityCommand :: FindEntityCommand(Presentation* presentation) : FindComponentCommand(presentation){	
+FindEntityCommand::FindEntityCommand(Presentation* presentation) : FindComponentCommand(presentation){	
 }
 
 FindEntityCommand::~FindEntityCommand(){
 }
 /**Non testable function**/
-void FindEntityCommand :: execute(){
+void FindEntityCommand::execute(){
 	FindComponentCommand::execute();
 	Component* find = getComponent();
 	while(typeid(*find).name() != typeid(Entity).name()){

@@ -78,7 +78,6 @@ void Entity::setPrimaryKey(vector<string> primaryKeyIDVector){
 	}
 }
 
-Component* Entity::clone() const
-{ 
+Component* Entity::clone() const{ 
 	return new Entity(*this); 
 }
