@@ -7,5 +7,5 @@ ExitCommand::~ExitCommand(){
 }
 
 void ExitCommand::execute(){
-	this->presentation->close();	
+	this->presentation->close();
 }

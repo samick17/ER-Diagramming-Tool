@@ -11,17 +11,6 @@ Connector::Connector(ComponentData componentData) : Component(componentData){
 
 Connector::~Connector(){
 }
-//format:id firstConnectedNode,secondConnectedNode
-string Connector::toString(){
-	string result = this->getID();
-	result += StringSymbol::Space;
-	result += this->getFirstConnectedNode()->getID();
-	this->getFirstConnectedNode()->getName();
-	result += StringSymbol::Comma;
-	result += this->getSecondConnectedNode()->getID();
-
-	return result;
-}
 
 string Connector::getType(){
 	return ComponentType::TypeConnector;
@@ -71,8 +60,4 @@ bool Connector::isNodesConnection(Component* firstNode,Component* secondNode){
 	isConnection &= connections.containsKey(secondNode->getID());
 
 	return isConnection;
-}
-
-Component* Connector::clone() const{ 
-	return new Connector(*this); 
 }

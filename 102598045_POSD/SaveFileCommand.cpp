@@ -17,6 +17,6 @@ void SaveFileCommand::execute(){
 	
 	ERModel* erModel = this->presentation->getERModel();	
 
-	OutputFileParser outputFileParser;
-	outputFileParser.parseModelToFile(filePath,erModel);
+	OutputFileParser outputFileParser = OutputFileParser(erModel->getAllComponents());
+	outputFileParser.parseModelToFile(filePath);
 }

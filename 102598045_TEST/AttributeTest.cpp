@@ -52,14 +52,3 @@ TEST_F(AttributeTest,testSetAsPrimaryKey){
 	this->attribute->setAsPrimaryKey();
 	ASSERT_EQ(true,this->attribute->isPrimaryKey());
 }
-
-TEST_F(AttributeTest,testClone){
-	Attribute attributeCloned = *static_cast<Attribute*>(this->attribute->clone());
-
-	ASSERT_EQ(this->attribute->getID(),attributeCloned.getID());
-	ASSERT_EQ(this->attribute->getName(),attributeCloned.getName());
-	ASSERT_EQ(this->attribute->getType(),attributeCloned.getType());
-	//assert componentData
-	ASSERT_EQ(this->attribute->componentData,attributeCloned.componentData);
-
-}

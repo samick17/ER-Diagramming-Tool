@@ -16,8 +16,6 @@ public:
 
 	bool isPrimaryKey();
 	void setAsPrimaryKey();
-
-	 Component* clone() const;
 private:
 	int attributeType;
 };

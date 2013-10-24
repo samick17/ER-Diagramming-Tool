@@ -7,9 +7,7 @@ class Connector : public Component{
 public:
 	Connector(ComponentData componentData);
 	~Connector();
-
-	string toString();
-
+	
 	string getType();
 
 	void breakAllConnections();
@@ -19,6 +17,4 @@ public:
 	Component* getFirstConnectedNode();
 	Component* getSecondConnectedNode();
 	bool isNodesConnection(Component* firstNode,Component* secondNode);
-
-	Component* clone() const;
 };

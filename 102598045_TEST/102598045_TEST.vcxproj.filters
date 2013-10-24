@@ -31,9 +31,6 @@
     <Filter Include="Source Files\Menu">
       <UniqueIdentifier>{1c214ea1-5e8c-423e-a938-a5d75f568acf}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Interface">
-      <UniqueIdentifier>{94191e46-de50-4c43-96d1-e3fb9a35622c}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\Exception">
       <UniqueIdentifier>{bb8fb4dc-5202-4170-85c9-2776722ed5c4}</UniqueIdentifier>
     </Filter>
@@ -164,9 +161,6 @@
     </ClCompile>
     <ClCompile Include="..\102598045_POSD\CommandManager.cpp">
       <Filter>Source Files\Manager</Filter>
-    </ClCompile>
-    <ClCompile Include="..\102598045_POSD\IClonable.cpp">
-      <Filter>Source Files\Interface</Filter>
     </ClCompile>
     <ClCompile Include="..\102598045_POSD\ComponentData.cpp">
       <Filter>Source Files\Struct</Filter>

@@ -14,23 +14,6 @@ Entity::Entity(ComponentData componentData) : Node(componentData){
 
 Entity::~Entity(){
 }
-//format: entityID pkID1,pkID2,....pkIDn
-string Entity::toString(){	
-	HashMap<string,Attribute*> primaryKeyAttributeHashMap = this->getPrimaryKeyAttributes();
-
-	if(primaryKeyAttributeHashMap.empty())
-		return StringSymbol::Empty;
-
-	string result = this->getID();
-	vector<string> primaryKeyAttributeIDVector;
-
-	for each(Attribute* attribute in primaryKeyAttributeHashMap)	
-		primaryKeyAttributeIDVector.push_back(attribute->getID());	
-
-	result += StringSymbol::Space+StringUtil::appendWithComma(primaryKeyAttributeIDVector);
-
-	return result;
-}
 
 string Entity::getType(){
 	return ComponentType::TypeEntity;
@@ -75,8 +58,4 @@ void Entity::setPrimaryKey(vector<string> primaryKeyIDVector){
 		Attribute* attribute = this->getAttributeByID(attributeID);			
 		attribute->setAsPrimaryKey();		
 	}
-}
-
-Component* Entity::clone() const{ 
-	return new Entity(*this); 
 }

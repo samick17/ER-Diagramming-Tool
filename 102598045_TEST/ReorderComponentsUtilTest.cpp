@@ -19,44 +19,6 @@ void ReorderComponentsUtilTest::SetUp(){
 void ReorderComponentsUtilTest::TearDown(){
 }
 
-TEST_F(ReorderComponentsUtilTest,testGetReorderedComponentMap){
-	HashMap<string,Component*> orderedIDComponentMap = this->reorderComponentUtil.getReorderedComponentMap(&this->erModel);
-	unsigned int index = 0;
-	for each(Component* component in orderedIDComponentMap){
-		ASSERT_EQ(StringUtil::intToString(index),component->getID());
-		index++;
-	}
-}
-
-TEST_F(ReorderComponentsUtilTest,testCloneComponentSet){	
-	HashMap<string,Component*> componentMapCloned = this->reorderComponentUtil.cloneComponentMap(&this->erModel);
-	ASSERT_EQ(this->erModel.getAllComponents().size(),componentMapCloned.size());
-	for (unsigned int index = 0;index<componentMapCloned.size();index++){
-		ASSERT_EQ(this->erModel.getAllComponents().getValueByIndex(index)->getID(),componentMapCloned.getValueByIndex(index)->getID());
-		ASSERT_EQ(this->erModel.getAllComponents().getValueByIndex(index)->getName(),componentMapCloned.getValueByIndex(index)->getName());
-	}
-}
-
-TEST_F(ReorderComponentsUtilTest,testClearComponentMap){
-	ASSERT_EQ(0,this->reorderComponentUtil.componentMap.size());
-	this->reorderComponentUtil.cloneComponentMap(&this->erModel);
-	ASSERT_EQ(7,this->reorderComponentUtil.componentMap.size());
-	this->reorderComponentUtil.clearComponentMap();
-	ASSERT_EQ(0,this->reorderComponentUtil.componentMap.size());
-}
-
-TEST_F(ReorderComponentsUtilTest,testReorderClonedComponents){
-	this->reorderComponentUtil.cloneComponentMap(&this->erModel);
-	this->reorderComponentUtil.reConnectToComponentVector();
+TEST_F(ReorderComponentsUtilTest,testGetReorderedComponentIDMap){
 	
-	queue<Component*> componentQueue;
-	for each(Component* component in this->reorderComponentUtil.componentMap)
-		componentQueue.push(component);
-	HashMap<string,Component*> orderedIDComponentMap = this->reorderComponentUtil.dequeueAndInsertToVector(componentQueue);
-	
-	unsigned int index = 0;
-	for each(Component* component in orderedIDComponentMap){
-		ASSERT_EQ(StringUtil::intToString(index),component->getID());
-		index++;
-	}
 }

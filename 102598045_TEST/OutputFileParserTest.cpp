@@ -75,6 +75,8 @@ void OutputFileParserTest::SetUp(){
 	this->componentMap.put(connector11->getID(),connector11);
 	this->componentMap.put(connector12->getID(),connector12);
 	this->componentMap.put(connector13->getID(),connector13);
+
+	this->outputFileParser = new OutputFileParser(this->componentMap);
 }
 
 void OutputFileParserTest::TearDown(){
@@ -82,35 +84,36 @@ void OutputFileParserTest::TearDown(){
 	for each(Component* component in this->componentMap)
 		delete component;	
 	this->componentMap.clear();
+	delete this->outputFileParser;
 }
 
 TEST_F(OutputFileParserTest,testWriteAllComponentsToDoc){	
-	this->outputFileParser.writeAllComponentsToDoc(*this->document,this->componentMap);
+	this->outputFileParser->writeAllComponentsToDoc(*this->document,this->componentMap);
 	ASSERT_EQ(28,this->document->rwBuffer.size());
 
 	unsigned int index = 0;
 	for each(Component* component in this->componentMap){		
-		ASSERT_EQ(component->Component::toString()+StringSymbol::NextLine,this->document->readLine());
-		ASSERT_EQ(component->Component::toString()+StringSymbol::NextLine,this->document->rwBuffer[index]);
+		ASSERT_EQ(this->outputFileParser->serializeComponentToString(component)+StringSymbol::NextLine,this->document->readLine());
+		ASSERT_EQ(this->outputFileParser->serializeComponentToString(component)+StringSymbol::NextLine,this->document->rwBuffer[index]);
 		index++;
 	}
 }
 
 TEST_F(OutputFileParserTest,testWriteAllConnectorsToDoc){
-	this->outputFileParser.writeAllConnectorsToDoc(*this->document,this->componentMap);
+	this->outputFileParser->writeAllConnectorsToDoc(*this->document,this->componentMap);
 	ASSERT_EQ(14,this->document->rwBuffer.size());
 
 	HashMap<string,Connector*> connectorMap = ERModelUtil::convertComponentHashMapToTypeHashMap<Connector>(this->componentMap);
 	unsigned int index = 0;
 	for each(Connector* connector in connectorMap){
-		ASSERT_EQ(connector->toString()+StringSymbol::NextLine,this->document->readLine());
-		ASSERT_EQ(connector->toString()+StringSymbol::NextLine,this->document->rwBuffer[index]);
+		ASSERT_EQ(this->outputFileParser->serializeConnectorToString(connector)+StringSymbol::NextLine,this->document->readLine());
+		ASSERT_EQ(this->outputFileParser->serializeConnectorToString(connector)+StringSymbol::NextLine,this->document->rwBuffer[index]);
 		index++;
 	}
 }
 
 TEST_F(OutputFileParserTest,testWriteAllPrimaryKeyToDoc){
-	this->outputFileParser.writeAllPrimaryKeyToDoc(*this->document,this->componentMap);
+	this->outputFileParser->writeAllPrimaryKeyToDoc(*this->document,this->componentMap);
 	ASSERT_EQ(1,this->document->rwBuffer.size());
 
 	Entity* entityCharacter = static_cast<Entity*>(this->componentMap.get("0"));
@@ -124,16 +127,25 @@ TEST_F(OutputFileParserTest,testWriteAllPrimaryKeyToDoc){
 	delete this->document;
 	this->document = new Document("testDoc");
 
-	this->outputFileParser.writeAllPrimaryKeyToDoc(*this->document,this->componentMap);
+	this->outputFileParser->writeAllPrimaryKeyToDoc(*this->document,this->componentMap);
 	ASSERT_EQ(2,this->document->rwBuffer.size());
 
 	HashMap<string,Entity*> entityMap = ERModelUtil::convertComponentHashMapToTypeHashMap<Entity>(this->componentMap);
 	unsigned int index = 0;
 	for each(Entity* entity in entityMap){
-		if(entity->toString() == StringSymbol::Empty)
+		if(this->outputFileParser->serializeEntityToString(entity) == StringSymbol::Empty)
 			continue;
-		ASSERT_EQ(entity->toString()+StringSymbol::NextLine,this->document->readLine());
-		ASSERT_EQ(entity->toString()+StringSymbol::NextLine,this->document->rwBuffer[index]);
+		ASSERT_EQ(this->outputFileParser->serializeEntityToString(entity)+StringSymbol::NextLine,this->document->readLine());
+		ASSERT_EQ(this->outputFileParser->serializeEntityToString(entity)+StringSymbol::NextLine,this->document->rwBuffer[index]);
 		index++;
 	}
+}
+
+TEST_F(OutputFileParserTest,testSerializeComponentToString){
+}
+
+TEST_F(OutputFileParserTest,testSerializeEntityToString){
+}
+
+TEST_F(OutputFileParserTest,testSerializeConnectorToString){
 }

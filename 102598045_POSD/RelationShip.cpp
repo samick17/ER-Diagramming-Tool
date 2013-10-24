@@ -52,7 +52,3 @@ bool RelationShip::isRelationType(string relationType){
 HashMap<string,Entity*> RelationShip::getConnectedEntities(){		
 	return ComponentUtil::getConnectedNodeHashMapByType<Entity>(this->getAllConnections());
 }
-
-Component* RelationShip::clone() const{ 
-	return new RelationShip(*this); 
-}

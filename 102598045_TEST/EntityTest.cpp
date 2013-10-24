@@ -20,23 +20,6 @@ void EntityTest::TearDown(){
 	delete this->entity;
 }
 
-TEST_F(EntityTest,testToString){
-	ASSERT_EQ(StringSymbol::Empty,this->entity->toString());
-
-	Connector connector1 = Connector(ComponentData("3",""));
-	ComponentUtil::connectWithEachOther(this->entity,this->attribute,&connector1);
-	this->attribute->setAsPrimaryKey();
-
-	ASSERT_EQ("2 0",this->entity->toString());
-
-	Attribute attribute2 = Attribute(ComponentData("4","ID"));
-	Connector connector2 = Connector(ComponentData("5",""));
-	ComponentUtil::connectWithEachOther(this->entity,&attribute2,&connector2);
-	attribute2.setAsPrimaryKey();
-
-	ASSERT_EQ("2 0,4",this->entity->toString());
-}
-
 TEST_F(EntityTest,testGetType){
 	ASSERT_EQ(ComponentType::TypeEntity,this->entity->getType());
 }
@@ -104,14 +87,4 @@ TEST_F(EntityTest,testSetPrimaryKey){
 	primaryKeyID.push_back("0");
 	this->entity->setPrimaryKey(primaryKeyID);
 	ASSERT_EQ(true,(static_cast<Attribute*>(this->attribute)->isPrimaryKey()));	
-}
-
-TEST_F(EntityTest,testClone){
-	Entity entityCloned = *static_cast<Entity*>(this->entity->clone());
-
-	ASSERT_EQ(this->entity->getID(),entityCloned.getID());
-	ASSERT_EQ(this->entity->getName(),entityCloned.getName());
-	ASSERT_EQ(this->entity->getType(),entityCloned.getType());
-	//assert componentData
-	ASSERT_EQ(this->entity->componentData,entityCloned.componentData);
 }

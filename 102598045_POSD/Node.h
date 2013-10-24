@@ -11,7 +11,5 @@ public:
 
 	void breakAllConnections();
 	int canConnectTo(Component* target);
-	bool hasSizeToConnect();	
-
-	Component* clone() const = 0;
+	bool hasSizeToConnect();
 };

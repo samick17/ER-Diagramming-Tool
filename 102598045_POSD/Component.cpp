@@ -10,15 +10,6 @@ Component::Component(ComponentData componentData) : componentData(componentData)
 Component::~Component(){
 }
 
-string Component::toString(){
-	string name = this->getName();
-	string type = this->getType();
-	if(name == StringSymbol::Empty)
-		return type;
-	string result = type+StringSymbol::Comma+StringSymbol::Space +name;
-	return result;
-}
-
 string Component::getID(){
 	return this->componentData.getID();
 }

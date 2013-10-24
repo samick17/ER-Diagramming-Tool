@@ -19,10 +19,6 @@ void ConnectorTest::TearDown(){
 	delete this->connector;
 }
 
-TEST_F(ConnectorTest,testToString){
-	ASSERT_EQ("3 0,2",this->connector->toString());
-}
-
 TEST_F(ConnectorTest,testGetType){
 	ASSERT_EQ(ComponentType::TypeConnector,this->connector->getType());
 }
@@ -77,14 +73,4 @@ TEST_F(ConnectorTest,testIsNodesConnection){
 
 	ASSERT_EQ(true,this->connector->isNodesConnection(this->attribute,this->entity));
 	ASSERT_EQ(true,this->connector->isNodesConnection(this->entity,this->attribute));
-}
-
-TEST_F(ConnectorTest,testClone){
-	Connector connectorCloned = *static_cast<Connector*>(this->connector->clone());
-
-	ASSERT_EQ(this->connector->getID(),connectorCloned.getID());
-	ASSERT_EQ(this->connector->getName(),connectorCloned.getName());
-	ASSERT_EQ(this->connector->getType(),connectorCloned.getType());
-	//assert componentData
-	ASSERT_EQ(this->connector->componentData,connectorCloned.componentData);
 }

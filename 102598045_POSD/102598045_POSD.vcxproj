@@ -98,7 +98,6 @@
     <ClInclude Include="InputFileParser.h" />
     <ClInclude Include="HasConnectedException.h" />
     <ClInclude Include="HashMap.h" />
-    <ClInclude Include="IClonable.h" />
     <ClInclude Include="InvalidConnectException.h" />
     <ClInclude Include="InvalidNodeTypeException.h" />
     <ClInclude Include="NoConnectionException.h" />
@@ -192,7 +191,6 @@
     <ClCompile Include="FindComponentCommand.cpp" />
     <ClCompile Include="FindEntityCommand.cpp" />
     <ClCompile Include="HasConnectedException.cpp" />
-    <ClCompile Include="IClonable.cpp" />
     <ClCompile Include="InvalidConnectException.cpp" />
     <ClCompile Include="InvalidNodeTypeException.cpp" />
     <ClCompile Include="LoadFileCommand.cpp" />

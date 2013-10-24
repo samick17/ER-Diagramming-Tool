@@ -36,9 +36,6 @@
     <Filter Include="Header Files\Struct">
       <UniqueIdentifier>{c3735787-cf1b-45ad-b1f0-f6252b71bcf0}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Interface">
-      <UniqueIdentifier>{4378f70d-4eca-46af-a5fd-4a8170f54b00}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Resource Files">
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
@@ -69,9 +66,6 @@
     </Filter>
     <Filter Include="Source Files\View">
       <UniqueIdentifier>{0e1c930a-c993-4a92-910d-c96cccc990cd}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Interface">
-      <UniqueIdentifier>{75f2fa14-1aa9-4c89-b713-d4004eebd57e}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\Exception">
       <UniqueIdentifier>{56a9e2f5-1e75-41d6-8222-6dcfebdf4df4}</UniqueIdentifier>
@@ -230,9 +224,6 @@
     </ClInclude>
     <ClInclude Include="ReorderComponentsUtil.h">
       <Filter>Header Files\Utils</Filter>
-    </ClInclude>
-    <ClInclude Include="IClonable.h">
-      <Filter>Header Files\Interface</Filter>
     </ClInclude>
     <ClInclude Include="UnexecutableCommand.h">
       <Filter>Header Files\Command</Filter>
@@ -454,9 +445,6 @@
     </ClCompile>
     <ClCompile Include="AttributeType.cpp">
       <Filter>Source Files\Constants</Filter>
-    </ClCompile>
-    <ClCompile Include="IClonable.cpp">
-      <Filter>Source Files\Interface</Filter>
     </ClCompile>
     <ClCompile Include="Presentation.cpp">
       <Filter>Source Files\View</Filter>

@@ -80,13 +80,3 @@ TEST_F(RelationShipTest,testGetConnectedEntities){
 	ComponentUtil::connectWithEachOther(this->relationShip,&entity2,&connector2);
 	ASSERT_EQ(2,this->relationShip->getConnectedEntities().size());	
 }
-
-TEST_F(RelationShipTest,testClone){
-	RelationShip relationShipCloned = *static_cast<RelationShip*>(this->relationShip->clone());
-
-	ASSERT_EQ(this->relationShip->getID(),relationShipCloned.getID());
-	ASSERT_EQ(this->relationShip->getName(),relationShipCloned.getName());
-	ASSERT_EQ(this->relationShip->getType(),relationShipCloned.getType());
-	//assert componentData
-	ASSERT_EQ(this->relationShip->componentData,relationShipCloned.componentData);
-}
