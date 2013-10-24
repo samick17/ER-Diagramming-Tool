@@ -9,6 +9,9 @@ class OutputFileParser{
 	FRIEND_TEST(OutputFileParserTest,testWriteAllComponentsToDoc);
 	FRIEND_TEST(OutputFileParserTest,testWriteAllConnectorsToDoc);
 	FRIEND_TEST(OutputFileParserTest,testWriteAllPrimaryKeyToDoc);
+	FRIEND_TEST(OutputFileParserTest,testSerializeComponentToString);
+	FRIEND_TEST(OutputFileParserTest,testSerializeEntityToString);
+	FRIEND_TEST(OutputFileParserTest,testSerializeConnectorToString);
 public:
 	OutputFileParser(HashMap<string,Component*> componentMap);
 	~OutputFileParser();

@@ -8,6 +8,7 @@ protected:
 	OutputFileParser* outputFileParser;
 	Document* document;
 	HashMap<string,Component*> componentMap;
+	void insertComponentMap(Component* component);
 	virtual void SetUp();
 	virtual void TearDown();
 };

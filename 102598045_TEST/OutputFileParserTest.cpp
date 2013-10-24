@@ -48,33 +48,33 @@ void OutputFileParserTest::SetUp(){
 	ComponentUtil::connectWithEachOther(entityAccount,relationShipHas2,connector12);
 	ComponentUtil::connectWithEachOther(entityAddress,relationShipHas2,connector13);
 
-	this->componentMap.put(entityCharacter->getID(),entityCharacter);
-	this->componentMap.put(attributeChar_ID->getID(),attributeChar_ID);
-	this->componentMap.put(attributeJob->getID(),attributeJob);
-	this->componentMap.put(attributeLevel->getID(),attributeLevel);
-	this->componentMap.put(connector1->getID(),connector1);
-	this->componentMap.put(connector2->getID(),connector2);
-	this->componentMap.put(connector3->getID(),connector3);
-	this->componentMap.put(entityAccount->getID(),entityAccount);
-	this->componentMap.put(relationShipHas1->getID(),relationShipHas1);
-	this->componentMap.put(connector4->getID(),connector4);
-	this->componentMap.put(connector5->getID(),connector5);
-	this->componentMap.put(attributeAccount_ID->getID(),attributeAccount_ID);
-	this->componentMap.put(attributePassword->getID(),attributePassword);
-	this->componentMap.put(attributeSSC_Number->getID(),attributeSSC_Number);
-	this->componentMap.put(connector6->getID(),connector6);
-	this->componentMap.put(connector7->getID(),connector7);
-	this->componentMap.put(connector8->getID(),connector8);
-	this->componentMap.put(entityAddress->getID(),entityAddress);
-	this->componentMap.put(attributeCountry->getID(),attributeCountry);
-	this->componentMap.put(attributeCity->getID(),attributeCity);
-	this->componentMap.put(attributePostNumber->getID(),attributePostNumber);
-	this->componentMap.put(relationShipHas2->getID(),relationShipHas2);
-	this->componentMap.put(connector9->getID(),connector9);
-	this->componentMap.put(connector10->getID(),connector10);
-	this->componentMap.put(connector11->getID(),connector11);
-	this->componentMap.put(connector12->getID(),connector12);
-	this->componentMap.put(connector13->getID(),connector13);
+	this->insertComponentMap(entityCharacter);
+	this->insertComponentMap(attributeChar_ID);
+	this->insertComponentMap(attributeJob);
+	this->insertComponentMap(attributeLevel);
+	this->insertComponentMap(connector1);
+	this->insertComponentMap(connector2);
+	this->insertComponentMap(connector3);
+	this->insertComponentMap(entityAccount);
+	this->insertComponentMap(relationShipHas1);
+	this->insertComponentMap(connector4);
+	this->insertComponentMap(connector5);
+	this->insertComponentMap(attributeAccount_ID);
+	this->insertComponentMap(attributePassword);
+	this->insertComponentMap(attributeSSC_Number);
+	this->insertComponentMap(connector6);
+	this->insertComponentMap(connector7);
+	this->insertComponentMap(connector8);
+	this->insertComponentMap(entityAddress);
+	this->insertComponentMap(attributeCountry);
+	this->insertComponentMap(attributeCity);
+	this->insertComponentMap(attributePostNumber);
+	this->insertComponentMap(relationShipHas2);
+	this->insertComponentMap(connector9);
+	this->insertComponentMap(connector10);
+	this->insertComponentMap(connector11);
+	this->insertComponentMap(connector12);
+	this->insertComponentMap(connector13);
 
 	this->outputFileParser = new OutputFileParser(this->componentMap);
 }
@@ -85,6 +85,10 @@ void OutputFileParserTest::TearDown(){
 		delete component;	
 	this->componentMap.clear();
 	delete this->outputFileParser;
+}
+
+void OutputFileParserTest::insertComponentMap(Component* component){
+	this->componentMap.put(component->getID(),component);
 }
 
 TEST_F(OutputFileParserTest,testWriteAllComponentsToDoc){	
@@ -142,10 +146,31 @@ TEST_F(OutputFileParserTest,testWriteAllPrimaryKeyToDoc){
 }
 
 TEST_F(OutputFileParserTest,testSerializeComponentToString){
+	ASSERT_EQ("E, Character",this->outputFileParser->serializeComponentToString(this->componentMap.get("0")));
+	ASSERT_EQ("A, Level",this->outputFileParser->serializeComponentToString(this->componentMap.get("3")));
+	ASSERT_EQ("C",this->outputFileParser->serializeComponentToString(this->componentMap.get("10")));
+	ASSERT_EQ("R, Has",this->outputFileParser->serializeComponentToString(this->componentMap.get("21")));
+	ASSERT_EQ("C",this->outputFileParser->serializeComponentToString(this->componentMap.get("25")));
 }
 
 TEST_F(OutputFileParserTest,testSerializeEntityToString){
+	ASSERT_EQ("",this->outputFileParser->serializeEntityToString(static_cast<Entity*>(this->componentMap.get("0"))));
+	ASSERT_EQ("",this->outputFileParser->serializeEntityToString(static_cast<Entity*>(this->componentMap.get("7"))));
+	ASSERT_EQ("",this->outputFileParser->serializeEntityToString(static_cast<Entity*>(this->componentMap.get("17"))));
 }
 
 TEST_F(OutputFileParserTest,testSerializeConnectorToString){
+	ASSERT_EQ("4 0,1",this->outputFileParser->serializeConnectorToString(static_cast<Connector*>(this->componentMap.get("4"))));
+	ASSERT_EQ("5 0,2",this->outputFileParser->serializeConnectorToString(static_cast<Connector*>(this->componentMap.get("5"))));
+	ASSERT_EQ("6 0,3",this->outputFileParser->serializeConnectorToString(static_cast<Connector*>(this->componentMap.get("6"))));
+	ASSERT_EQ("9 0,8",this->outputFileParser->serializeConnectorToString(static_cast<Connector*>(this->componentMap.get("9"))));
+	ASSERT_EQ("10 7,8",this->outputFileParser->serializeConnectorToString(static_cast<Connector*>(this->componentMap.get("10"))));
+	ASSERT_EQ("14 11,7",this->outputFileParser->serializeConnectorToString(static_cast<Connector*>(this->componentMap.get("14"))));
+	ASSERT_EQ("15 12,7",this->outputFileParser->serializeConnectorToString(static_cast<Connector*>(this->componentMap.get("15"))));
+	ASSERT_EQ("16 13,7",this->outputFileParser->serializeConnectorToString(static_cast<Connector*>(this->componentMap.get("16"))));
+	ASSERT_EQ("22 17,18",this->outputFileParser->serializeConnectorToString(static_cast<Connector*>(this->componentMap.get("22"))));
+	ASSERT_EQ("23 17,19",this->outputFileParser->serializeConnectorToString(static_cast<Connector*>(this->componentMap.get("23"))));
+	ASSERT_EQ("24 17,20",this->outputFileParser->serializeConnectorToString(static_cast<Connector*>(this->componentMap.get("24"))));
+	ASSERT_EQ("25 21,7",this->outputFileParser->serializeConnectorToString(static_cast<Connector*>(this->componentMap.get("25"))));
+	ASSERT_EQ("26 17,21",this->outputFileParser->serializeConnectorToString(static_cast<Connector*>(this->componentMap.get("26"))));
 }
