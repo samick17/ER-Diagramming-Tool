@@ -19,7 +19,6 @@ public:
 
 	ERModel* getERModel();
 
-	bool isAlive();
 	void close();
 
 	string getInput();

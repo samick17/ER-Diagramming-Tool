@@ -411,6 +411,9 @@
     <ClCompile Include="DocumentTest.cpp">
       <Filter>Unit Testing Files\ParserTest</Filter>
     </ClCompile>
+    <ClCompile Include="..\102598045_POSD\ApplicationSetting.cpp">
+      <Filter>Source Files\Constants</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DirectoryUtil.h">

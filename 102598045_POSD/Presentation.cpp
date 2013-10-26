@@ -23,13 +23,11 @@ ERModel* Presentation::getERModel(){
 	return this->erModel;
 }
 
-bool Presentation::isAlive(){
-	return this->alive;
-}
 //if alive == false,program will close
 void Presentation::close(){
 	this->alive = false;
 	cout<<"GooBye!"<<endl;
+	exit(0);
 }
 
 string Presentation::getInput(){

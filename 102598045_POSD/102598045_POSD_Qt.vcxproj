@@ -13,6 +13,7 @@
   <PropertyGroup Label="Globals">
     <ProjectGuid>{D2BA8F08-32CF-4AC8-9039-A34A149734B5}</ProjectGuid>
     <Keyword>Qt4VSv1.0</Keyword>
+    <ProjectName>102598045_POSD</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -35,7 +36,7 @@
     <_ProjectFileVersion>10.0.30319.1</_ProjectFileVersion>
     <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(SolutionDir)$(Platform)\$(Configuration)\</OutDir>
     <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(SolutionDir)$(Platform)\$(Configuration)\</OutDir>
-    <IncludePath Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">c:\gtest\include;../102598045_POSD;$(VCInstallDir)include;$(VCInstallDir)atlmfc\include;$(WindowsSdkDir)include;$(FrameworkSDKDir)\include;</IncludePath>
+    <IncludePath Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">C:\gtest\include;$(VCInstallDir)include;$(VCInstallDir)atlmfc\include;$(WindowsSdkDir)include;$(FrameworkSDKDir)\include;</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -43,7 +44,7 @@
       <Optimization>Disabled</Optimization>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
-      <AdditionalIncludeDirectories>$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(QTDIR)\include;C:\gtest\include;.\GeneratedFiles\$(ConfigurationName);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <TreatWChar_tAsBuiltInType>false</TreatWChar_tAsBuiltInType>
     </ClCompile>
     <Link>
@@ -114,7 +115,6 @@
     <ClCompile Include="..\102598045_POSD\InvalidConnectException.cpp" />
     <ClCompile Include="..\102598045_POSD\InvalidNodeTypeException.cpp" />
     <ClCompile Include="..\102598045_POSD\LoadFileCommand.cpp" />
-    <ClCompile Include="..\102598045_POSD\Main.cpp" />
     <ClCompile Include="..\102598045_POSD\NoConnectionException.cpp" />
     <ClCompile Include="..\102598045_POSD\Node.cpp" />
     <ClCompile Include="..\102598045_POSD\NodeConnectionType.cpp" />
@@ -142,6 +142,7 @@
     <ClCompile Include="..\102598045_POSD\UndoCommand.cpp" />
     <ClCompile Include="..\102598045_POSD\UnexecutableCommand.cpp" />
     <ClCompile Include="..\102598045_POSD\ValidConnectedReceiver.cpp" />
+    <ClCompile Include="ApplicationSetting.cpp" />
     <ClCompile Include="GeneratedFiles\Debug\moc_GraphicalUI.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
@@ -149,21 +150,94 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="GraphicalUI.cpp" />
+    <ClCompile Include="GUILayout.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="TextUIProcess.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AddNodeCommand.h" />
+    <ClInclude Include="ApplicationSetting.h" />
+    <ClInclude Include="Attribute.h" />
+    <ClInclude Include="AttributeType.h" />
+    <ClInclude Include="CharSymbol.h" />
+    <ClInclude Include="CollectionException.h" />
+    <ClInclude Include="CollectionType.h" />
+    <ClInclude Include="Command.h" />
+    <ClInclude Include="CommandData.h" />
+    <ClInclude Include="CommandManager.h" />
+    <ClInclude Include="CommandMenu.h" />
+    <ClInclude Include="Component.h" />
+    <ClInclude Include="ComponentConnectionSize.h" />
+    <ClInclude Include="ComponentData.h" />
+    <ClInclude Include="ComponentException.h" />
+    <ClInclude Include="ComponentFactory.h" />
+    <ClInclude Include="ComponentType.h" />
+    <ClInclude Include="ComponentUtil.h" />
+    <ClInclude Include="ConnectedERReceiver.h" />
+    <ClInclude Include="ConnectedSelfException.h" />
+    <ClInclude Include="ConnectionData.h" />
+    <ClInclude Include="ConnectionReceiverManager.h" />
+    <ClInclude Include="ConnectNodeCommand.h" />
+    <ClInclude Include="Connector.h" />
+    <ClInclude Include="DeleteComponentCommand.h" />
+    <ClInclude Include="DisplayDiagramCommand.h" />
+    <ClInclude Include="DisplayTableCommand.h" />
+    <ClInclude Include="Document.h" />
+    <ClInclude Include="DuplicatedKeyException.h" />
+    <ClInclude Include="EmptyCollectionException.h" />
+    <ClInclude Include="Entity.h" />
+    <ClInclude Include="ERModel.h" />
+    <ClInclude Include="ERModelUtil.h" />
+    <ClInclude Include="Exception.h" />
+    <ClInclude Include="ExitCommand.h" />
+    <ClInclude Include="FileNotFoundException.h" />
+    <ClInclude Include="FindComponentCommand.h" />
+    <ClInclude Include="FindEntityCommand.h" />
     <ClInclude Include="GUILayout.h" />
+    <ClInclude Include="UndoCommand.h" />
+    <ClInclude Include="UnexecutableCommand.h" />
+    <ClInclude Include="ValidConnectedReceiver.h" />
     <CustomBuild Include="GraphicalUI.h">
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath);$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Moc%27ing GraphicalUI.h...</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DQT_DLL -DQT_CORE_LIB -DQT_GUI_LIB "-I$(QTDIR)\include" "-I.\GeneratedFiles\$(ConfigurationName)\."</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DQT_DLL -DQT_CORE_LIB -DQT_GUI_LIB  "-I$(QTDIR)\include" "-IC:\gtest\include" "-I.\GeneratedFiles\$(ConfigurationName)\."</Command>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath);$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
       <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Moc%27ing GraphicalUI.h...</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DQT_DLL -DQT_NO_DEBUG -DNDEBUG -DQT_CORE_LIB -DQT_GUI_LIB "-I." "-I$(QTDIR)\include" "-I.\GeneratedFiles\$(ConfigurationName)\." "-I$(QTDIR)\include\QtCore" "-I$(QTDIR)\include\QtGui"</Command>
     </CustomBuild>
+    <ClInclude Include="HasConnectedException.h" />
+    <ClInclude Include="HashMap.h" />
+    <ClInclude Include="InputFileParser.h" />
+    <ClInclude Include="InvalidConnectException.h" />
+    <ClInclude Include="InvalidNodeTypeException.h" />
+    <ClInclude Include="LoadFileCommand.h" />
+    <ClInclude Include="NoConnectionException.h" />
+    <ClInclude Include="Node.h" />
+    <ClInclude Include="NodeConnectionType.h" />
+    <ClInclude Include="NoSuchKeyException.h" />
+    <ClInclude Include="NoSuchNodeException.h" />
+    <ClInclude Include="NullPointerException.h" />
+    <ClInclude Include="OutputFileParser.h" />
+    <ClInclude Include="Presentation.h" />
+    <ClInclude Include="Receiver.h" />
+    <ClInclude Include="ReceiverManager.h" />
+    <ClInclude Include="RedoCommand.h" />
+    <ClInclude Include="RelationShip.h" />
+    <ClInclude Include="RelationType.h" />
+    <ClInclude Include="ReorderComponentsUtil.h" />
+    <ClInclude Include="SaveFileCommand.h" />
+    <ClInclude Include="SetCardinalityCommand.h" />
+    <ClInclude Include="SetNodeNameCommand.h" />
+    <ClInclude Include="SetPrimaryKeyCommand.h" />
+    <ClInclude Include="StackUtil.h" />
+    <ClInclude Include="StringSymbol.h" />
+    <ClInclude Include="StringUtil.h" />
+    <ClInclude Include="Table.h" />
+    <ClInclude Include="TableManager.h" />
+    <ClInclude Include="TableUtil.h" />
+    <ClInclude Include="TextUI.h" />
     <ClInclude Include="TextUIProcess.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

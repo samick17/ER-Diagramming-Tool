@@ -6,9 +6,7 @@ class TextUI{
 public:	
 	TextUI(Presentation* presentation);
 	~TextUI();
-
-	bool isAlive();
-
+	
 	void displayMenu();
 	void processCommand();
 private:

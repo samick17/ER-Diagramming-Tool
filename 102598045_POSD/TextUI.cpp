@@ -1,14 +1,13 @@
 #include "TextUI.h"
 #include <iostream>
+#include "ApplicationSetting.h"
 
 TextUI::TextUI(Presentation* presentation) : presentation(presentation){
+	string title = "Title "+ApplicationSetting::Title;
+	system(title.c_str());
 }
 
 TextUI::~TextUI(){	
-}
-
-bool TextUI::isAlive(){
-	return this->presentation->isAlive();
 }
 
 void TextUI::displayMenu(){
