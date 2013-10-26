@@ -12,7 +12,7 @@ AddNodeCommand::AddNodeCommand(Presentation* presentation) : UnexecutableCommand
 	this->commandInformation = "What kind of node do you want to add?\n[A]Attribute [E]Entity [R]Relation";
 }
 
-AddNodeCommand::~AddNodeCommand(){		
+AddNodeCommand::~AddNodeCommand(){
 	if(!this->getExecutionFlag()){
 		delete this->node;
 	}

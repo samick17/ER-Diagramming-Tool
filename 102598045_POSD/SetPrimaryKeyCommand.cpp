@@ -7,6 +7,7 @@
 #include "Exception.h"
 #include "StringSymbol.h"
 #include "CharSymbol.h"
+#include "StringUtil.h"
 
 SetPrimaryKeyCommand::SetPrimaryKeyCommand(Presentation* presentation) : Command(presentation){
 }
@@ -29,8 +30,8 @@ void SetPrimaryKeyCommand::execute(){
 	this->presentation->logMessage("Enter the IDs of the attributes (use a comma to separate two attributes):",true);
 	vector<string> attributeIDVector = setEntityAttributesPrimaryKey(entity);	
 	//display Set Primary Key Result
-	this->presentation->logMessage("The entity '"+entity->getID()+"' has the primary key ",false);
-	this->presentation->displayStringWithComma("(",attributeIDVector,").");
+	this->presentation->logMessage("The entity '"+entity->getID()+"' has the primary key ",false);	
+	this->presentation->logMessage("("+StringUtil::appendWithComma(attributeIDVector)+").",false);
 	this->presentation->logMessage(StringSymbol::Empty,true);
 }
 

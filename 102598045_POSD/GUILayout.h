@@ -1,15 +1,19 @@
 #pragma once
 
-#include <QtGui/QMainWindow>
-#include <string>
+#include <QMenuBar>
+
+class GraphicalUI;
 
 using namespace std;
 
 class GUILayout{
 public:
-	GUILayout();
+	GUILayout(GraphicalUI* graphicalUI);
 	~GUILayout();
-    void setupUI(QMainWindow *mainWindow);
+    void initialGUILayout();
 private:
-	void setTitle(QMainWindow *mainWindow);
+	GraphicalUI* graphicalUI;
+	QMenuBar menuBar;
+	void setTitle();
+	void initialMenuBar();
 };

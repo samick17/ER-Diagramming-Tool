@@ -12,6 +12,8 @@
 #include "EmptyCollectionException.h"
 #include "StringSymbol.h"
 #include "ComponentType.h"
+#include "TextUI.h"
+#include "InputFileParser.h"
 
 Presentation::Presentation(ERModel* erModel) : erModel(erModel){
 }
@@ -39,94 +41,40 @@ string Presentation::getInput(){
 	return input;
 }
 
-void Presentation::displayMenu(){
-	this->displayTitle("Commands Menu");
-	cout<<" +------------------------------------------------------+"<<endl;	
-	CommandMenu commandMenu;
-	for each(CommandData* commandData in commandMenu.getCommandDataMap()){
-		int length = COMMAND_KEY_WIDTH+commandData->getInfo().size();
-		length = MENU_WIDTH-length;
-		cout<<"¢x"<<setw(COMMAND_KEY_WIDTH)<<left<<commandData->getKey()+".";
-		cout<<right<<commandData->getInfo()<<setw(length)<<"¢x"<<endl;
-	}
-	cout<<" +------------------------------------------------------+"<<endl;	
-}
-
-void Presentation::displayTitle(string title){	
-	cout<<"  +----------------------------+"<<endl;
-	cout<<" ¢x    "<<title<<setw(TITLE_WIDTH-title.size())<<"¢x"<<endl;
-	cout<<"  +----------------------------+"<<endl;
-}
-
 void Presentation::displayTable(){
 	HashMap<string,Table*> tableMap = erModel->getAllTables();
 	if(tableMap.empty())
 		throw EmptyCollectionException("Tables");
-	
-	cout<<" +----------------+--------------------------------------------------"<<endl;
-	cout<<" |    Entity      |  Attributes"<<endl;
-	cout<<" +----------------+--------------------------------------------------"<<endl;
-	for each(Table* table in tableMap){
-		string entityName = table->getEntityName();
-		int len = TABLE_WIDTH-entityName.size();
-
-		cout<<"   "<<entityName<<setw(len)<<"|";		
-		this->displayStringWithComma(" PK(",table->getAllPrimaryKeyAttributesNameVector(),")");		
-		this->displayStringWithComma(StringSymbol::Space,table->getAllDefaultKeyAttributesNameVector(),StringSymbol::Empty);		
-		this->displayStringWithComma(" FK(",table->getAllForeignKeyAttributesNameVector(),")");	
-		cout<<endl;
-	}
-	cout<<" +----------------+--------------------------------------------------"<<endl;
+	this->textUI->displayTable(tableMap);
 }
 
 void Presentation::displayComponents(){	
 	HashMap<string,Component*> componentMap = erModel->getAllComponents();
 	if(componentMap.empty())
 		throw EmptyCollectionException(ComponentType::TypeComponent);
-	this->displayTitle("Components");
-	this->displayComponentSet(componentMap);
+	this->textUI->displayComponents(componentMap);
 }
 
 void Presentation::displayConnections(){	
 	HashMap<string,Connector*> connectorMap = erModel->getAllConnectors();
 	if(connectorMap.empty())
 		throw EmptyCollectionException(ComponentType::TypeConnectorName);
-	//convert to vector ordered by id	
-	this->displayTitle("Connections");
-	cout<<" +----------------------------------------------"<<endl;
-	cout<<"    Connectors   |     Node1     |     Node2"<<endl;
-	cout<<" +---------------+---------------+--------------"<<endl;
-	for each(Connector* connector in connectorMap){	
-		cout<<"  "<<setw(COLUMN_WIDTH)<<connector->getID()<<"       ";
-		cout<<"|"<<setw(COLUMN_WIDTH)<<connector->getFirstConnectedNode()->getID()<<"       ";
-		cout<<"|"<<setw(COLUMN_WIDTH)<<connector->getSecondConnectedNode()->getID()<<endl;		
-	}
-	cout<<" +----------------------------------------------"<<endl;
+	
+	this->textUI->displayConnections(connectorMap);
 }
 
 void Presentation::displayEntities(){
 	HashMap<string,Entity*> entityMap = erModel->getAllEntities();
 	if(entityMap.empty())
 		throw EmptyCollectionException(ComponentType::TypeEntityName);
-	this->displayTitle("Entities");
-	this->displayComponentSet(ComponentUtil::toComponentHashMap<Entity>(entityMap));
+	this->textUI->displayEntities(ComponentUtil::toComponentHashMap<Entity>(entityMap));
 }
 
 void Presentation::displayEntityAttributes(Entity* entity){
 	HashMap<string,Attribute*> attributeMap = entity->getConnectedAttributes();
 	if(attributeMap.empty())
 		throw EmptyCollectionException(ComponentType::TypeAttributeName);
-	cout<<"Attributes of the entity '"<<entity->getID()<<"'"<<endl;
-	this->displayComponentSet(ComponentUtil::toComponentHashMap<Attribute>(attributeMap));
-}
-
-void Presentation::displayStringWithComma(string strStart,vector<string> stringVector,string strEnd){
-	if(stringVector.empty())
-		return;
-	cout<<strStart;
-	string stringWithComma = StringUtil::appendWithComma(stringVector);
-	cout<<stringWithComma;
-	cout<<strEnd;	
+	this->textUI->displayEntityAttributes(entity,ComponentUtil::toComponentHashMap<Attribute>(attributeMap));
 }
 
 void Presentation::processCommand(string commandKey){
@@ -141,10 +89,10 @@ void Presentation::processCommand(string commandKey){
 		this->executeCommand(command);
 	}
 	catch(NullPointerException){
-		cout<<"wrong command,please input correct command."<<endl;		
+		this->textUI->alertException("wrong command,please input correct command.");
 	}
 	catch(Exception& exception){
-		cout<<exception.getMessage()<<endl;		
+		this->textUI->alertException(exception.getMessage());
 		delete command;
 	}
 }
@@ -153,8 +101,7 @@ void Presentation::executeCommand(Command* command){
 	//display command information & get user input
 	string commandInfo = command->getCommandInformation();
 	if(commandInfo!= StringSymbol::Empty)
-		cout<<commandInfo<<endl;
-	
+		cout<<commandInfo<<endl;	
 	//execute
 	if(command->isUnexecutable()){
 		UnexecutableCommand* unexecutableCommand = static_cast<UnexecutableCommand*>(command);
@@ -177,18 +124,10 @@ void Presentation::setCommandManager(CommandManager* commandManager){
 	this->commandManager = commandManager;
 }
 
-CommandManager* Presentation::getCommandManager(){
-	return this->commandManager;
+void Presentation::setTextUI(TextUI* textUI){
+	this->textUI = textUI;
 }
 
-void Presentation::displayComponentSet(HashMap<string,Component*> componentMap){	
-	cout<<" +-----------------------------------------------------"<<endl;
-	cout<<"        Type      |       ID       |      Name"<<endl;
-	cout<<" +----------------+----------------+-------------------"<<endl;
-	for each(Component* component in componentMap){
-		cout<<setw(COLUMN_WIDTH)<<component->getType()<<"          ";	
-		cout<<"|"<<setw(COLUMN_WIDTH)<<component->getID()<<"        ";	
-		cout<<"|  "<<component->getName()<<endl;		
-	}
-	cout<<" +-----------------------------------------------------"<<endl;
+CommandManager* Presentation::getCommandManager(){
+	return this->commandManager;
 }

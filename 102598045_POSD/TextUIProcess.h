@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Qt\qthread.h>
+#include <QThread>
 #include <string>
 #include "TextUI.h"
 

@@ -1,20 +1,24 @@
 #include "GUILayout.h"
-#include <QtGui/QApplication.h>
+#include "GraphicalUI.h"
 #include "ApplicationSetting.h"
+#include "FileMenuItem.h"
 
-GUILayout::GUILayout(){
+GUILayout::GUILayout(GraphicalUI* graphicalUI) : graphicalUI(graphicalUI){
+	setTitle();	
+	this->initialMenuBar();
+	this->graphicalUI->resize(ApplicationSetting::DefaultWidth,ApplicationSetting::DefaultHeight);
+    QMetaObject::connectSlotsByName(graphicalUI);
 }
 
 GUILayout::~GUILayout(){
 }
 
-void GUILayout::setupUI(QMainWindow *mainWindow){
-	setTitle(mainWindow);
-	mainWindow->resize(600, 400);
-    QMetaObject::connectSlotsByName(mainWindow);
+void GUILayout::setTitle(){
+	QString title = QString(ApplicationSetting::Title.c_str());
+	this->graphicalUI->setWindowTitle(title);
 }
 
-void GUILayout::setTitle(QMainWindow *mainWindow){
-	QString title = QString(ApplicationSetting::Title.c_str());
-	mainWindow->setWindowTitle(title);
+void GUILayout::initialMenuBar(){
+	this->menuBar.addMenu(new FileMenuItem(this->graphicalUI));
+	this->graphicalUI->setMenuBar(&this->menuBar);	
 }

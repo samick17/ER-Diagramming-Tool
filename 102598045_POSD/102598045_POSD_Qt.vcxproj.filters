@@ -134,6 +134,24 @@
     <Filter Include="Source Files\Exception\IOException">
       <UniqueIdentifier>{3f695053-8cc2-4f76-b89b-cde7502279fb}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\View\TextUI">
+      <UniqueIdentifier>{e885d042-611d-47a7-9af6-ada92ef872cd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\View\GUI">
+      <UniqueIdentifier>{ab2d53e0-7a67-40df-9a68-b75931024646}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\View\TextUI">
+      <UniqueIdentifier>{c00980f6-1697-48ec-874c-84799d2cdf50}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\View\GUI">
+      <UniqueIdentifier>{0c296417-9ccc-4819-b2c9-a0efb5761e02}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\View\GUI\GUIWidget">
+      <UniqueIdentifier>{59cf8c24-363d-4586-b188-154cb7d1248f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\View\GUI\GUIWidget">
+      <UniqueIdentifier>{880638e6-bf55-4eb7-8c81-2e8208c0f71e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -250,12 +268,6 @@
     <ClCompile Include="..\102598045_POSD\LoadFileCommand.cpp">
       <Filter>Source Files\Command</Filter>
     </ClCompile>
-    <ClCompile Include="GraphicalUI.cpp">
-      <Filter>Source Files\View</Filter>
-    </ClCompile>
-    <ClCompile Include="..\102598045_POSD\TextUI.cpp">
-      <Filter>Source Files\View</Filter>
-    </ClCompile>
     <ClCompile Include="..\102598045_POSD\ExitCommand.cpp">
       <Filter>Source Files\Command</Filter>
     </ClCompile>
@@ -355,11 +367,26 @@
     <ClCompile Include="..\102598045_POSD\NoSuchKeyException.cpp">
       <Filter>Source Files\Exception\CollectionException</Filter>
     </ClCompile>
-    <ClCompile Include="GUILayout.cpp">
-      <Filter>Source Files\View</Filter>
-    </ClCompile>
     <ClCompile Include="ApplicationSetting.cpp">
       <Filter>Source Files\Constants</Filter>
+    </ClCompile>
+    <ClCompile Include="..\102598045_POSD\TextUI.cpp">
+      <Filter>Source Files\View\TextUI</Filter>
+    </ClCompile>
+    <ClCompile Include="GUILayout.cpp">
+      <Filter>Source Files\View\GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="GraphicalUI.cpp">
+      <Filter>Source Files\View\GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="FileMenuItem.cpp">
+      <Filter>Source Files\View\GUI\GUIWidget</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_Presentation.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_Presentation.cpp">
+      <Filter>Generated Files\Release</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -501,12 +528,6 @@
     <ClInclude Include="OutputFileParser.h">
       <Filter>Header Files\Parser</Filter>
     </ClInclude>
-    <ClInclude Include="GUILayout.h">
-      <Filter>Header Files\View</Filter>
-    </ClInclude>
-    <ClInclude Include="TextUI.h">
-      <Filter>Header Files\View</Filter>
-    </ClInclude>
     <ClInclude Include="HashMap.h">
       <Filter>Header Files\Collection</Filter>
     </ClInclude>
@@ -524,9 +545,6 @@
     </ClInclude>
     <ClInclude Include="ReorderComponentsUtil.h">
       <Filter>Header Files\Util</Filter>
-    </ClInclude>
-    <ClInclude Include="Presentation.h">
-      <Filter>Header Files\View</Filter>
     </ClInclude>
     <ClInclude Include="CommandMenu.h">
       <Filter>Header Files\Menu</Filter>
@@ -585,9 +603,21 @@
     <ClInclude Include="ApplicationSetting.h">
       <Filter>Header Files\Constants</Filter>
     </ClInclude>
+    <ClInclude Include="TextUI.h">
+      <Filter>Header Files\View\TextUI</Filter>
+    </ClInclude>
+    <ClInclude Include="GUILayout.h">
+      <Filter>Header Files\View\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="FileMenuItem.h">
+      <Filter>Header Files\View\GUI\GUIWidget</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="GraphicalUI.h">
+      <Filter>Header Files\View\GUI</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Presentation.h">
       <Filter>Header Files\View</Filter>
     </CustomBuild>
   </ItemGroup>

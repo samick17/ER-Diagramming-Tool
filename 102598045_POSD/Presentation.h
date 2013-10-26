@@ -2,6 +2,7 @@
 
 #include "ERModel.h"
 #include "Component.h"
+#include <QObject>
 
 #define TITLE_WIDTH			26
 #define MENU_WIDTH			56
@@ -11,36 +12,36 @@
 
 class CommandManager;
 class Command;
+class TextUI;
 
-class Presentation{
+class Presentation : public QObject{
+	Q_OBJECT
+public slots:
+	void close();
 public:	
 	Presentation(ERModel* erModel);
 	~Presentation();
 
 	ERModel* getERModel();
 
-	void close();
-
 	string getInput();
 
-	void displayMenu();
-	void displayTitle(string title);	
 	void displayTable();
 	void displayComponents();
 	void displayConnections();
 	void displayEntities();
 	void displayEntityAttributes(Entity* entity);
-	void displayStringWithComma(string strStart,vector<string> stringVector,string strEnd);
 
 	void processCommand(string commandKey);
 	void logMessage(string message,bool nextLine);
 
 	void setCommandManager(CommandManager* commandManager);
+	void setTextUI(TextUI* textUI);
 	CommandManager* getCommandManager();
 private:	
 	bool alive;	
 	ERModel* erModel;
 	CommandManager* commandManager;
-	void displayComponentSet(HashMap<string,Component*> componentMap);	
+	TextUI* textUI;
 	void executeCommand(Command* command);
 };

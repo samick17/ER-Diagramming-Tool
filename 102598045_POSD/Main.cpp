@@ -3,7 +3,7 @@
 #include "ERModel.h"
 #include "CommandManager.h"
 #include "TextUI.h"
-#include <QtGui/QApplication>
+#include <QApplication>
 
 int main(int argc, char *argv[]){
 	QApplication  app(argc, argv);
@@ -13,11 +13,13 @@ int main(int argc, char *argv[]){
 	CommandManager commandManager(&presentation);
 	presentation.setCommandManager(&commandManager);
 	TextUI textUI(&presentation);
+	presentation.setTextUI(&textUI);
 
 	TextUIProcess textUIProcess(&textUI);
 	textUIProcess.start();
 
 	GraphicalUI gui(&presentation);
 	gui.show();	
+	
 	return app.exec();
 }
