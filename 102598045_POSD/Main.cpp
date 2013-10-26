@@ -8,7 +8,7 @@ int _tmain(int argc,_TCHAR* argv[]){
 	Presentation presentation(&erModel);
 	CommandManager commandManager(&presentation);
 	presentation.setCommandManager(&commandManager);
-	TextUI textUI = TextUI(&presentation);
+	TextUI textUI(&presentation);
 	
 	while(textUI.isAlive()){
 		textUI.displayMenu();

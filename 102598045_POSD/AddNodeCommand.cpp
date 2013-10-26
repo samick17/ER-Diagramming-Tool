@@ -40,7 +40,7 @@ void AddNodeCommand::execute(){
 
 	this->UnexecutableCommand::execute();
 }
-//
+
 void AddNodeCommand::unExecute(){
 	//remove node
 	ERModel* erModel = this->presentation->getERModel();		

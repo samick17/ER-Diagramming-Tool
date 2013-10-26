@@ -35,6 +35,8 @@ void OutputFileParser::writeAllConnectorsToDoc(Document& doc,HashMap<string,Comp
 	
 	for each(Connector* connector in connectorSet){
 		string line = this->serializeConnectorToString(connector);
+		if(line == StringSymbol::Empty)
+			continue;
 		doc.wirteLine(line);
 	}
 	doc.wirteLine(StringSymbol::Empty);

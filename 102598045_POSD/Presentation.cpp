@@ -46,10 +46,10 @@ void Presentation::displayMenu(){
 	cout<<" +------------------------------------------------------+"<<endl;	
 	CommandMenu commandMenu;
 	for each(CommandData* commandData in commandMenu.getCommandDataMap()){
-		int len = COMMAND_KEY_WIDTH+commandData->getInfo().size();
-		len = MENU_WIDTH-len;
+		int length = COMMAND_KEY_WIDTH+commandData->getInfo().size();
+		length = MENU_WIDTH-length;
 		cout<<"¢x"<<setw(COMMAND_KEY_WIDTH)<<left<<commandData->getKey()+".";
-		cout<<right<<commandData->getInfo()<<setw(len)<<"¢x"<<endl;
+		cout<<right<<commandData->getInfo()<<setw(length)<<"¢x"<<endl;
 	}
 	cout<<" +------------------------------------------------------+"<<endl;	
 }

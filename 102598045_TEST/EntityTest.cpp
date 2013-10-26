@@ -28,9 +28,9 @@ TEST_F(EntityTest,testCanConnectTo){
 	ASSERT_EQ(NodeConnectionType::ValidConnect,this->entity->canConnectTo(this->attribute));
 	ASSERT_EQ(NodeConnectionType::ConnectEntityAndRelation,this->entity->canConnectTo(this->relationShip));
 	
-	Connector connector1 = Connector(ComponentData("3",""));
+	Connector connector1(ComponentData("3",""));
 	ComponentUtil::connectWithEachOther(this->entity,this->attribute,&connector1);
-	Connector connector2 = Connector(ComponentData("4",""));
+	Connector connector2(ComponentData("4",""));
 	ComponentUtil::connectWithEachOther(this->entity,this->relationShip,&connector2);
 
 	ASSERT_THROW(this->entity->canConnectTo(this->entity),ConnectedSelfException);
@@ -44,7 +44,7 @@ TEST_F(EntityTest,testCanConnectTo){
 TEST_F(EntityTest,testGetConnectedAttributes){
 	ASSERT_EQ(0,this->entity->getConnectedAttributes().size());
 
-	Connector connector1 = Connector(ComponentData("3",""));
+	Connector connector1(ComponentData("3",""));
 	ComponentUtil::connectWithEachOther(this->entity,this->attribute,&connector1);
 
 	ASSERT_EQ(1,this->entity->getConnectedAttributes().size());
@@ -53,14 +53,14 @@ TEST_F(EntityTest,testGetConnectedAttributes){
 }
 
 TEST_F(EntityTest,testGetAttributeByID){
-	Connector connector1 = Connector(ComponentData("3",""));
+	Connector connector1(ComponentData("3",""));
 	ComponentUtil::connectWithEachOther(this->entity,this->attribute,&connector1);
 	ASSERT_THROW(this->entity->getAttributeByID("100"),NoConnectionException);
 	ASSERT_EQ(this->attribute,this->entity->getAttributeByID(this->attribute->getID()));
 }
 
 TEST_F(EntityTest,testGetPrimaryKeyAttributes){
-	Connector connector1 = Connector(ComponentData("3",""));
+	Connector connector1(ComponentData("3",""));
 	ComponentUtil::connectWithEachOther(this->entity,this->attribute,&connector1);
 
 	ASSERT_EQ(0,this->entity->getPrimaryKeyAttributes().size());
@@ -77,7 +77,7 @@ TEST_F(EntityTest,testSetPrimaryKey){
 	vector<string> primaryKeyID;
 	primaryKeyID.push_back("1");
 	ASSERT_THROW(this->entity->setPrimaryKey(primaryKeyID),NoConnectionException);
-	Connector connector1 = Connector(ComponentData("3",""));
+	Connector connector1(ComponentData("3",""));
 	ComponentUtil::connectWithEachOther(this->entity,this->attribute,&connector1);
 
 	ASSERT_EQ(false,(static_cast<Attribute*>(this->attribute)->isPrimaryKey()));

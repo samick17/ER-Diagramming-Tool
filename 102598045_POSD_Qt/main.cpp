@@ -1,21 +1,15 @@
-#include "MyThread.h"
-#include "GUIView.h"
+#include "TextUIProcess.h"
+#include "GraphicalUI.h"
 #include <QtGui/QApplication>
-#include <iostream>
 
-int main(int argc, char *argv[])
-{
-	MyThread thread1 = MyThread();
+int main(int argc, char *argv[]){
+	TextUIProcess textUIProcess;
 
-	thread1.start();
+	textUIProcess.start();
 
-	QApplication  a(argc, argv);
+	QApplication  app(argc, argv);
 	
-	GUIView guiView;
-	guiView.show();	
-	return a.exec();
-	
-	/*QCoreApplication a(argc, argv);
-	a.exec();
-	return 0;*/
+	GraphicalUI gui;
+	gui.show();	
+	return app.exec();	
 }

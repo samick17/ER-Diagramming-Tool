@@ -50,7 +50,7 @@ TEST_F(ConnectorTest,testHasSizeToConnect){
 }
 
 TEST_F(ConnectorTest,testGetFirstConnectedNode){
-	Connector connectorEntityAndRelation = Connector(ComponentData("4",""));
+	Connector connectorEntityAndRelation(ComponentData("4",""));
 	ComponentUtil::connectWithEachOther(this->entity,this->relationShip,&connectorEntityAndRelation);
 	
 	ASSERT_EQ(this->attribute,this->connector->getFirstConnectedNode());
@@ -58,7 +58,7 @@ TEST_F(ConnectorTest,testGetFirstConnectedNode){
 }
 
 TEST_F(ConnectorTest,testGetSecondConnectedNode){
-	Connector connectorEntityAndRelation = Connector(ComponentData("4",""));
+	Connector connectorEntityAndRelation(ComponentData("4",""));
 	ComponentUtil::connectWithEachOther(this->entity,this->relationShip,&connectorEntityAndRelation);
 
 	ASSERT_EQ(this->entity,this->connector->getSecondConnectedNode());

@@ -1,21 +1,21 @@
-#include "MyThread.h"
+#include "TextUIProcess.h"
 #include "ERModel.h"
 #include "Presentation.h"
 #include "CommandManager.h"
 #include "TextUI.h"
 
-MyThread::MyThread(){
+TextUIProcess::TextUIProcess(){
 }
 
-MyThread::~MyThread(){
+TextUIProcess::~TextUIProcess(){
 }
 
-void MyThread::run(){
+void TextUIProcess::run(){
 	ERModel erModel;	
 	Presentation presentation(&erModel);
 	CommandManager commandManager(&presentation);
 	presentation.setCommandManager(&commandManager);
-	TextUI textUI = TextUI(&presentation);
+	TextUI textUI(&presentation);
 	
 	while(textUI.isAlive()){
 		textUI.displayMenu();

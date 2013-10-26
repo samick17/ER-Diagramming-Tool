@@ -5,10 +5,10 @@
 
 using namespace std;
 
-class MyThread : public QThread{
+class TextUIProcess : public QThread{
 public:
-	MyThread();
-	~MyThread();
+	TextUIProcess();
+	~TextUIProcess();
 
 protected:
 	void run();

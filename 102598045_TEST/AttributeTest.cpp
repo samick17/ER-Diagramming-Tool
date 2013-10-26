@@ -26,7 +26,7 @@ TEST_F(AttributeTest,testCanConnectTo){
 	ASSERT_EQ(NodeConnectionType::ValidConnect,this->attribute->canConnectTo(this->entity));	
 	ASSERT_THROW(this->attribute->canConnectTo(this->attribute),ConnectedSelfException);	
 
-	Connector connector = Connector(ComponentData("3",""));	
+	Connector connector(ComponentData("3",""));	
 	ComponentUtil::connectWithEachOther(this->attribute,this->entity,&connector);
 
 	ASSERT_THROW(this->attribute->canConnectTo(this->entity),HasConnectedException);	
@@ -36,7 +36,7 @@ TEST_F(AttributeTest,testCanConnectTo){
 TEST_F(AttributeTest,testHasSizeToConnect){
 	ASSERT_EQ(true,this->attribute->hasSizeToConnect());
 
-	Connector connector = Connector(ComponentData("3",""));	
+	Connector connector(ComponentData("3",""));	
 	ComponentUtil::connectWithEachOther(this->attribute,this->entity,&connector);
 	ASSERT_EQ(false,this->attribute->hasSizeToConnect());
 }
