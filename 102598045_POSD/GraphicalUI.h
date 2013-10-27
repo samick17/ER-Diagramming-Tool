@@ -1,8 +1,9 @@
 #pragma once
 
 #include <QMainWindow>
-#include <QFileDialog>
-#include "GUILayout.h"
+#include <QMenuBar>
+#include <QToolBar>
+#include "FileMenuItem.h"
 
 class Presentation;
 
@@ -12,13 +13,19 @@ class GraphicalUI : public QMainWindow{
 	Q_OBJECT
 public slots:
 	void openFile();
+	void close();
 public:
-	GraphicalUI(Presentation* presentation,QWidget *parent = 0, WFlags flags = 0);
+	GraphicalUI(Presentation* presentation);
 	~GraphicalUI();
 
+	void initialGUILayout();
 	Presentation* getPresentation();	
 private:
 	Presentation* presentation;
-	GUILayout* guiLayout;	
-	QFileDialog qFileDialog;
+	FileMenuItem* fileMenuItem;
+	QMenuBar menuBar;
+	QToolBar toolBar;
+	void setTitle();
+	void initialMenuBar();
+	void initialToolBar();
 };

@@ -118,16 +118,13 @@
     <Filter Include="Unit Testing Files\MenuTest">
       <UniqueIdentifier>{ac94c765-7196-4229-a1f1-cb902ceaf772}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Command\UnexecutableCommand">
+      <UniqueIdentifier>{0b8170e1-59c0-49e6-9886-abf609491b9c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MainTest.cpp">
       <Filter>Unit Testing Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\102598045_POSD\DeleteComponentCommand.cpp">
-      <Filter>Source Files\Command</Filter>
-    </ClCompile>
-    <ClCompile Include="..\102598045_POSD\AddNodeCommand.cpp">
-      <Filter>Source Files\Command</Filter>
     </ClCompile>
     <ClCompile Include="..\102598045_POSD\Attribute.cpp">
       <Filter>Source Files\Model</Filter>
@@ -300,13 +297,7 @@
     <ClCompile Include="TableTest.cpp">
       <Filter>Unit Testing Files\ModelTest</Filter>
     </ClCompile>
-    <ClCompile Include="..\102598045_POSD\UnexecutableCommand.cpp">
-      <Filter>Source Files\Command</Filter>
-    </ClCompile>
     <ClCompile Include="..\102598045_POSD\SetNodeNameCommand.cpp">
-      <Filter>Source Files\Command</Filter>
-    </ClCompile>
-    <ClCompile Include="..\102598045_POSD\LoadFileCommand.cpp">
       <Filter>Source Files\Command</Filter>
     </ClCompile>
     <ClCompile Include="..\102598045_POSD\SaveFileCommand.cpp">
@@ -356,9 +347,6 @@
     </ClCompile>
     <ClCompile Include="CommandMenuTest.cpp">
       <Filter>Unit Testing Files\MenuTest</Filter>
-    </ClCompile>
-    <ClCompile Include="..\102598045_POSD\ConnectNodeCommand.cpp">
-      <Filter>Source Files\Command</Filter>
     </ClCompile>
     <ClCompile Include="HashMapTest.cpp">
       <Filter>Unit Testing Files\CollectionTest</Filter>
@@ -413,6 +401,21 @@
     </ClCompile>
     <ClCompile Include="..\102598045_POSD\ApplicationSetting.cpp">
       <Filter>Source Files\Constants</Filter>
+    </ClCompile>
+    <ClCompile Include="..\102598045_POSD\OpenFileCommand.cpp">
+      <Filter>Source Files\Command</Filter>
+    </ClCompile>
+    <ClCompile Include="..\102598045_POSD\AddNodeCommand.cpp">
+      <Filter>Source Files\Command\UnexecutableCommand</Filter>
+    </ClCompile>
+    <ClCompile Include="..\102598045_POSD\ConnectNodeCommand.cpp">
+      <Filter>Source Files\Command\UnexecutableCommand</Filter>
+    </ClCompile>
+    <ClCompile Include="..\102598045_POSD\DeleteComponentCommand.cpp">
+      <Filter>Source Files\Command\UnexecutableCommand</Filter>
+    </ClCompile>
+    <ClCompile Include="..\102598045_POSD\UnexecutableCommand.cpp">
+      <Filter>Source Files\Command\UnexecutableCommand</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

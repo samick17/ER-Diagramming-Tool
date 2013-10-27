@@ -8,7 +8,4 @@ class FileMenuItem : public QMenu{
 public:
 	FileMenuItem(GraphicalUI* graphicalUI);
 	~FileMenuItem();
-private:
-	QAction* openFileAction;
-	QAction* exitAction;
 };

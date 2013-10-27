@@ -3,10 +3,10 @@
 #include "Command.h"
 #include <string>
 
-class LoadFileCommand : public Command{
+class OpenFileCommand : public Command{
 public:
-	LoadFileCommand(Presentation* presentation);
-	~LoadFileCommand();	
+	OpenFileCommand(Presentation* presentation);
+	~OpenFileCommand();	
 
 	void execute();
 private:

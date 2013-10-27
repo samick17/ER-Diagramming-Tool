@@ -1,5 +1,5 @@
 #include "CommandMenuTest.h"
-#include "LoadFileCommand.h"
+#include "OpenFileCommand.h"
 #include "FindComponentCommand.h"
 #include "NullPointerException.h"
 #include "ERModel.h"
@@ -23,8 +23,8 @@ TEST_F(CommandMenuTest,testGetCommandDataByKey){
 
 TEST_F(CommandMenuTest,testInsertCommandData){
 	ASSERT_EQ(11,this->commandMenu.commandDataMap.size());
-	CommandData* loadFileCommandData = new CommandData("1","Load ER diagram file",CommandMenu::newCommand<LoadFileCommand>);
-	ASSERT_THROW(this->commandMenu.insertCommandData(loadFileCommandData),DuplicatedKeyException);	
+	CommandData* openFileCommandData = new CommandData("1","Load ER diagram file",CommandMenu::newCommand<OpenFileCommand>);
+	ASSERT_THROW(this->commandMenu.insertCommandData(openFileCommandData),DuplicatedKeyException);	
 	CommandData* findComponentCommand = new CommandData("13","Find Component",CommandMenu::newCommand<FindComponentCommand>);
 	this->commandMenu.insertCommandData(findComponentCommand);
 	ASSERT_EQ(12,this->commandMenu.commandDataMap.size());	
@@ -33,7 +33,7 @@ TEST_F(CommandMenuTest,testInsertCommandData){
 TEST_F(CommandMenuTest,testNewCommand){
 	ERModel erModel;
 	Presentation presentation(&erModel);
-	Command* command = CommandMenu::newCommand<LoadFileCommand>(&presentation);
-	ASSERT_EQ(typeid(LoadFileCommand).name(),typeid(*command).name());
+	Command* command = CommandMenu::newCommand<OpenFileCommand>(&presentation);
+	ASSERT_EQ(typeid(OpenFileCommand).name(),typeid(*command).name());
 	delete command;
 }

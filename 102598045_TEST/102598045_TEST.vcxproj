@@ -122,13 +122,13 @@
     <ClCompile Include="..\102598045_POSD\HasConnectedException.cpp" />
     <ClCompile Include="..\102598045_POSD\InvalidConnectException.cpp" />
     <ClCompile Include="..\102598045_POSD\InvalidNodeTypeException.cpp" />
-    <ClCompile Include="..\102598045_POSD\LoadFileCommand.cpp" />
     <ClCompile Include="..\102598045_POSD\NoConnectionException.cpp" />
     <ClCompile Include="..\102598045_POSD\Node.cpp" />
     <ClCompile Include="..\102598045_POSD\NodeConnectionType.cpp" />
     <ClCompile Include="..\102598045_POSD\NoSuchKeyException.cpp" />
     <ClCompile Include="..\102598045_POSD\NoSuchNodeException.cpp" />
     <ClCompile Include="..\102598045_POSD\NullPointerException.cpp" />
+    <ClCompile Include="..\102598045_POSD\OpenFileCommand.cpp" />
     <ClCompile Include="..\102598045_POSD\OutputFileParser.cpp" />
     <ClCompile Include="..\102598045_POSD\Presentation.cpp" />
     <ClCompile Include="..\102598045_POSD\Receiver.cpp" />

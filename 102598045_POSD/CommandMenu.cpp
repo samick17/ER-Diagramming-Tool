@@ -1,5 +1,5 @@
 #include "CommandMenu.h"
-#include "LoadFileCommand.h"
+#include "OpenFileCommand.h"
 #include "SaveFileCommand.h"
 #include "AddNodeCommand.h"
 #include "ConnectNodeCommand.h"
@@ -13,7 +13,7 @@
 #include "NullPointerException.h"
 
 CommandMenu::CommandMenu(){	
-	this->insertCommandData(new CommandData("1","Load ER diagram file",newCommand<LoadFileCommand>));
+	this->insertCommandData(new CommandData("1","Load ER diagram file",newCommand<OpenFileCommand>));
 	this->insertCommandData(new CommandData("2","Save ER diagram file",newCommand<SaveFileCommand>));
 	this->insertCommandData(new CommandData("3","Add a node",newCommand<AddNodeCommand>));
 	this->insertCommandData(new CommandData("4","Connect two nodes",newCommand<ConnectNodeCommand>));

@@ -2,7 +2,6 @@
 
 #include "ERModel.h"
 #include "Component.h"
-#include <QObject>
 
 #define TITLE_WIDTH			26
 #define MENU_WIDTH			56
@@ -14,10 +13,7 @@ class CommandManager;
 class Command;
 class TextUI;
 
-class Presentation : public QObject{
-	Q_OBJECT
-public slots:
-	void close();
+class Presentation {
 public:	
 	Presentation(ERModel* erModel);
 	~Presentation();
@@ -25,7 +21,12 @@ public:
 	ERModel* getERModel();
 
 	string getInput();
+	void close();
 
+	void openFile(string filePath);
+	void saveFile(string filePath);
+
+	void displayDiagram();
 	void displayTable();
 	void displayComponents();
 	void displayConnections();

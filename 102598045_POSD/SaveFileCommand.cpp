@@ -11,12 +11,7 @@ SaveFileCommand::~SaveFileCommand(){
 }
 
 void SaveFileCommand::execute(){	
-	this->presentation->logMessage("Please input the file name: ",true);
-	
-	string filePath = this->presentation->getInput();
-	
-	ERModel* erModel = this->presentation->getERModel();	
-
-	OutputFileParser outputFileParser = OutputFileParser(erModel->getAllComponents());
-	outputFileParser.parseModelToFile(filePath);
+	this->presentation->logMessage("Please input the file name: ",true);	
+	string filePath = this->presentation->getInput();	
+	this->presentation->saveFile(filePath);
 }

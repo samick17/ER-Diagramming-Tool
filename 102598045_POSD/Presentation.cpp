@@ -14,6 +14,7 @@
 #include "ComponentType.h"
 #include "TextUI.h"
 #include "InputFileParser.h"
+#include "OutputFileParser.h"
 
 Presentation::Presentation(ERModel* erModel) : erModel(erModel){
 }
@@ -41,6 +42,24 @@ string Presentation::getInput(){
 	return input;
 }
 
+void Presentation::openFile(string filePath){
+	InputFileParser inputFileParser;
+	inputFileParser.parseFileToModel(filePath,erModel);
+	//load file succeed. pop all stack in commandManager
+	this->commandManager->popAllStack();
+	this->displayDiagram();
+}
+
+void Presentation::saveFile(string filePath){
+	OutputFileParser outputFileParser = OutputFileParser(this->erModel->getAllComponents());
+	outputFileParser.parseModelToFile(filePath);
+}
+
+void Presentation::displayDiagram(){
+	//display current diagram
+	this->textUI->displayDiagram();
+}
+
 void Presentation::displayTable(){
 	HashMap<string,Table*> tableMap = erModel->getAllTables();
 	if(tableMap.empty())
@@ -58,8 +77,7 @@ void Presentation::displayComponents(){
 void Presentation::displayConnections(){	
 	HashMap<string,Connector*> connectorMap = erModel->getAllConnectors();
 	if(connectorMap.empty())
-		throw EmptyCollectionException(ComponentType::TypeConnectorName);
-	
+		throw EmptyCollectionException(ComponentType::TypeConnectorName);	
 	this->textUI->displayConnections(connectorMap);
 }
 
@@ -108,7 +126,7 @@ void Presentation::executeCommand(Command* command){
 		unexecutableCommand->setupCommand();
 		this->commandManager->execute(unexecutableCommand);
 	}
-	else{		
+	else{
 		command->execute();
 		delete command;
 	}

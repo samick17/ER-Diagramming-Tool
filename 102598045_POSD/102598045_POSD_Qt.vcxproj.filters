@@ -32,9 +32,6 @@
     <Filter Include="Source Files\Model">
       <UniqueIdentifier>{a9a1cf6a-d3b1-4fbd-bd83-3ccee8a1c475}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Command">
-      <UniqueIdentifier>{62ffcf58-8aad-42b2-a11f-30c949609b70}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\View">
       <UniqueIdentifier>{0ff4e313-c8af-4561-8004-f302108f7977}</UniqueIdentifier>
     </Filter>
@@ -43,9 +40,6 @@
     </Filter>
     <Filter Include="Source Files\Struct">
       <UniqueIdentifier>{9c55a8d8-fc7e-4185-ac02-19c4d5fb1cef}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Command\UnexecutableCommand">
-      <UniqueIdentifier>{a1f53fea-00e9-433f-934e-fe754e4f9d58}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\Exception">
       <UniqueIdentifier>{00fa0a6a-259b-4f7d-b1b6-f0e4284e2508}</UniqueIdentifier>
@@ -151,6 +145,12 @@
     </Filter>
     <Filter Include="Header Files\View\GUI\GUIWidget">
       <UniqueIdentifier>{880638e6-bf55-4eb7-8c81-2e8208c0f71e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Command">
+      <UniqueIdentifier>{62ffcf58-8aad-42b2-a11f-30c949609b70}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Command\UnexecutableCommand">
+      <UniqueIdentifier>{a1f53fea-00e9-433f-934e-fe754e4f9d58}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -265,14 +265,8 @@
     <ClCompile Include="..\102598045_POSD\FindEntityCommand.cpp">
       <Filter>Source Files\Command</Filter>
     </ClCompile>
-    <ClCompile Include="..\102598045_POSD\LoadFileCommand.cpp">
-      <Filter>Source Files\Command</Filter>
-    </ClCompile>
     <ClCompile Include="..\102598045_POSD\ExitCommand.cpp">
       <Filter>Source Files\Command</Filter>
-    </ClCompile>
-    <ClCompile Include="..\102598045_POSD\Presentation.cpp">
-      <Filter>Source Files\View</Filter>
     </ClCompile>
     <ClCompile Include="..\102598045_POSD\TableUtil.cpp">
       <Filter>Source Files\Util</Filter>
@@ -373,20 +367,23 @@
     <ClCompile Include="..\102598045_POSD\TextUI.cpp">
       <Filter>Source Files\View\TextUI</Filter>
     </ClCompile>
-    <ClCompile Include="GUILayout.cpp">
-      <Filter>Source Files\View\GUI</Filter>
-    </ClCompile>
     <ClCompile Include="GraphicalUI.cpp">
       <Filter>Source Files\View\GUI</Filter>
     </ClCompile>
     <ClCompile Include="FileMenuItem.cpp">
       <Filter>Source Files\View\GUI\GUIWidget</Filter>
     </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_Presentation.cpp">
-      <Filter>Generated Files\Debug</Filter>
+    <ClCompile Include="..\102598045_POSD\Presentation.cpp">
+      <Filter>Source Files\View</Filter>
     </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_Presentation.cpp">
-      <Filter>Generated Files\Release</Filter>
+    <ClCompile Include="OpenFileCommand.cpp">
+      <Filter>Source Files\Command</Filter>
+    </ClCompile>
+    <ClCompile Include="ActionID.cpp">
+      <Filter>Source Files\Constants</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\qrc_Resources.cpp">
+      <Filter>Generated Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -510,9 +507,6 @@
     <ClInclude Include="ExitCommand.h">
       <Filter>Header Files\Command</Filter>
     </ClInclude>
-    <ClInclude Include="LoadFileCommand.h">
-      <Filter>Header Files\Command</Filter>
-    </ClInclude>
     <ClInclude Include="SetCardinalityCommand.h">
       <Filter>Header Files\Command</Filter>
     </ClInclude>
@@ -606,11 +600,14 @@
     <ClInclude Include="TextUI.h">
       <Filter>Header Files\View\TextUI</Filter>
     </ClInclude>
-    <ClInclude Include="GUILayout.h">
-      <Filter>Header Files\View\GUI</Filter>
-    </ClInclude>
     <ClInclude Include="FileMenuItem.h">
       <Filter>Header Files\View\GUI\GUIWidget</Filter>
+    </ClInclude>
+    <ClInclude Include="OpenFileCommand.h">
+      <Filter>Header Files\Command</Filter>
+    </ClInclude>
+    <ClInclude Include="ActionID.h">
+      <Filter>Header Files\Constants</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -620,5 +617,16 @@
     <CustomBuild Include="Presentation.h">
       <Filter>Header Files\View</Filter>
     </CustomBuild>
+    <CustomBuild Include="Resources.qrc">
+      <Filter>Resource Files</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\exit.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Resources\open.png">
+      <Filter>Resource Files</Filter>
+    </None>
   </ItemGroup>
 </Project>

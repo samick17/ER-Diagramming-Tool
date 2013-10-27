@@ -5,16 +5,16 @@
 FileMenuItem::FileMenuItem(GraphicalUI* graphicalUI){
 	this->setTitle(QString("File"));
 	
-	this->openFileAction = new QAction("&Open...",this);
-    this->openFileAction->setShortcut(tr("Ctrl+O"));
+	QAction* openFileAction = new QAction(QIcon(":/res/Resources/open.png"),"&Open...",this);
+    openFileAction->setShortcut(QKeySequence("Ctrl+O"));
 	connect(openFileAction, SIGNAL(triggered()), graphicalUI, SLOT(openFile()));
 
-	this->exitAction = new QAction("&Exit",this);	
-	this->exitAction->setShortcut(tr("Alt+F4"));
-	connect(exitAction, SIGNAL(triggered()), graphicalUI->getPresentation(), SLOT(close()));
+	QAction* exitAction = new QAction(QIcon(":/res/Resources/exit.png"),"&Exit",this);	
+	exitAction->setShortcut(QKeySequence("Alt+F4"));
+	connect(exitAction, SIGNAL(triggered()), graphicalUI, SLOT(close()));
 
-	this->addAction(this->openFileAction);
-	this->addAction(this->exitAction);
+	this->addAction(openFileAction);
+	this->addAction(exitAction);
 }
 
 FileMenuItem::~FileMenuItem(){

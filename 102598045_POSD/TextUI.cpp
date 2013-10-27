@@ -78,6 +78,13 @@ void TextUI::displayEntityAttributes(Entity* entity,HashMap<string,Component*> a
 	this->displayComponentMap(attributesMap);
 }
 
+void TextUI::displayDiagram(){
+	cout<<"The ER diagram is displayed as follows:"<<endl;
+	this->presentation->displayComponents();	
+	cout<<endl;
+	this->presentation->displayConnections();
+}
+
 void TextUI::displayComponentMap(HashMap<string,Component*> componentMap){	
 	cout<<" +-----------------------------------------------------"<<endl;
 	cout<<"        Type      |       ID       |      Name"<<endl;

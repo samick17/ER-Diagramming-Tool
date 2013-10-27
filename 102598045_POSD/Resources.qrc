@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/res">
+        <file>Resources/exit.png</file>
+        <file>Resources/open.png</file>
+    </qresource>
+</RCC>

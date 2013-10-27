@@ -14,6 +14,7 @@ public:
 	void displayConnections(HashMap<string,Connector*> connectorMap);
 	void displayEntities(HashMap<string,Component*> entityMap);
 	void displayEntityAttributes(Entity* entity,HashMap<string,Component*> attributesMap);
+	void displayDiagram();
 	void displayComponentMap(HashMap<string,Component*> componentMap);	
 	void displayStringWithComma(string strStart,vector<string> stringVector,string strEnd);
 	void processCommand();
