@@ -1,6 +1,8 @@
 #pragma once
 
 #include <QMainWindow>
+#include <QGraphicsView>
+#include <QGraphicsScene>
 #include <QMenuBar>
 #include <QToolBar>
 #include "FileMenuItem.h"
@@ -18,14 +20,18 @@ public:
 	GraphicalUI(Presentation* presentation);
 	~GraphicalUI();
 
-	void initialGUILayout();
-	Presentation* getPresentation();	
+	void GraphicalUI::displayComponents();
+
+	Presentation* getPresentation();
 private:
 	Presentation* presentation;
-	FileMenuItem* fileMenuItem;
-	QMenuBar menuBar;
-	QToolBar toolBar;
-	void setTitle();
+	FileMenuItem* fileMenuItem;	
+	QMenuBar* menuBar;
+	QToolBar* toolBar;
+	QGraphicsView* view;
+	QGraphicsScene* scene;
+
+	void setTitle();	
 	void initialMenuBar();
 	void initialToolBar();
 };

@@ -385,6 +385,12 @@
     <ClCompile Include="GeneratedFiles\qrc_Resources.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
+    <ClCompile Include="EntityWidget.cpp">
+      <Filter>Source Files\View\GUI\GUIWidget</Filter>
+    </ClCompile>
+    <ClCompile Include="ComponentWidget.cpp">
+      <Filter>Source Files\View\GUI\GUIWidget</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="UndoCommand.h">
@@ -608,6 +614,12 @@
     </ClInclude>
     <ClInclude Include="ActionID.h">
       <Filter>Header Files\Constants</Filter>
+    </ClInclude>
+    <ClInclude Include="EntityWidget.h">
+      <Filter>Header Files\View\GUI\GUIWidget</Filter>
+    </ClInclude>
+    <ClInclude Include="ComponentWidget.h">
+      <Filter>Header Files\View\GUI\GUIWidget</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

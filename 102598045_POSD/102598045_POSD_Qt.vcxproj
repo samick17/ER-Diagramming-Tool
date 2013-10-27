@@ -115,6 +115,8 @@
     <ClCompile Include="..\102598045_POSD\InvalidConnectException.cpp" />
     <ClCompile Include="..\102598045_POSD\InvalidNodeTypeException.cpp" />
     <ClCompile Include="ActionID.cpp" />
+    <ClCompile Include="ComponentWidget.cpp" />
+    <ClCompile Include="EntityWidget.cpp" />
     <ClCompile Include="GeneratedFiles\qrc_Resources.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
       </PrecompiledHeader>
@@ -181,6 +183,7 @@
     <ClInclude Include="ComponentFactory.h" />
     <ClInclude Include="ComponentType.h" />
     <ClInclude Include="ComponentUtil.h" />
+    <ClInclude Include="ComponentWidget.h" />
     <ClInclude Include="ConnectedERReceiver.h" />
     <ClInclude Include="ConnectedSelfException.h" />
     <ClInclude Include="ConnectionData.h" />
@@ -194,6 +197,7 @@
     <ClInclude Include="DuplicatedKeyException.h" />
     <ClInclude Include="EmptyCollectionException.h" />
     <ClInclude Include="Entity.h" />
+    <ClInclude Include="EntityWidget.h" />
     <ClInclude Include="ERModel.h" />
     <ClInclude Include="ERModelUtil.h" />
     <ClInclude Include="Exception.h" />

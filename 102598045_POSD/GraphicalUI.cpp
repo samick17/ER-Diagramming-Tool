@@ -1,7 +1,10 @@
 #include "GraphicalUI.h"
 #include "Presentation.h"
 #include "ApplicationSetting.h"
+#include <QPainter>
 #include <QFileDialog>
+#include <QLayout>
+#include <EntityWidget.h>
 
 GraphicalUI::GraphicalUI(Presentation* presentation): presentation(presentation),QMainWindow(){
 	setTitle();	
@@ -9,7 +12,12 @@ GraphicalUI::GraphicalUI(Presentation* presentation): presentation(presentation)
 	this->initialMenuBar();
 	this->initialToolBar();
 	this->resize(ApplicationSetting::DefaultWidth,ApplicationSetting::DefaultHeight);
+	this->view = new QGraphicsView(this);
+	this->scene = new QGraphicsScene(0,0,ApplicationSetting::DefaultWidth,ApplicationSetting::DefaultHeight,this);
+	view->setScene(this->scene);
+	this->setCentralWidget(view);
     QMetaObject::connectSlotsByName(this);
+	this->scene->addItem(new EntityWidget(new Entity(ComponentData("1","Engineer"))));
 }
 
 GraphicalUI::~GraphicalUI(){
@@ -26,31 +34,40 @@ void GraphicalUI::setTitle(){
 }
 
 void GraphicalUI::initialMenuBar(){
-	this->menuBar.addMenu(this->fileMenuItem);
-	this->setMenuBar(&this->menuBar);
+	this->menuBar = new QMenuBar(this);	
+	this->menuBar->addMenu(this->fileMenuItem);
+	this->setMenuBar(this->menuBar);
 }
 
 void GraphicalUI::initialToolBar(){
+	this->toolBar = new QToolBar(this);
+	this->toolBar->setMovable(false);
 	QAction* openFileAction = new QAction(QIcon(":/res/Resources/open.png"),"&Open...",this);
     openFileAction->setShortcut(QKeySequence("Ctrl+O"));
-	this->toolBar.connect(openFileAction, SIGNAL(triggered()), this, SLOT(openFile()));
+	this->toolBar->connect(openFileAction, SIGNAL(triggered()), this, SLOT(openFile()));
 
 	QAction* exitAction = new QAction(QIcon(":/res/Resources/exit.png"),"&Exit...",this);
     exitAction->setShortcut(QKeySequence("Alt+F4"));
-	this->toolBar.connect(exitAction, SIGNAL(triggered()), this, SLOT(close()));
+	this->toolBar->connect(exitAction, SIGNAL(triggered()), this, SLOT(close()));
 
-	this->toolBar.addAction(openFileAction);
-	this->toolBar.addAction(exitAction);
-	this->addToolBar(&this->toolBar);
+	this->toolBar->addAction(openFileAction);
+	this->toolBar->addAction(exitAction);	
+	this->addToolBar(this->toolBar);
 }
 
+
 void GraphicalUI::openFile(){
-	QString fileName = QFileDialog::getOpenFileName(this, tr("Open File"),"",tr("Files (*.erd)"));
+	QString fileName = QFileDialog::getOpenFileName(this, tr("Open File"),tr("C:\\"),tr("Files (*.erd)"));
 	if(!fileName.isEmpty()){		
 		this->presentation->openFile(fileName.toStdString());
 	}
+	displayComponents();
 }
 
 void GraphicalUI::close(){
 	this->presentation->close();
+}
+
+void GraphicalUI::displayComponents(){
+	
 }
