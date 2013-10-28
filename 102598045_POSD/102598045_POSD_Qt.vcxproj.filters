@@ -62,17 +62,11 @@
     <Filter Include="Source Files\Util">
       <UniqueIdentifier>{e24f5806-a99b-447c-b2c8-119d915c1ddf}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Receiver">
-      <UniqueIdentifier>{9b56b591-4b5c-43be-abd8-3a503b56f90e}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\Process">
       <UniqueIdentifier>{71ff4f8a-3c13-43fe-a375-102818852853}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\Command">
       <UniqueIdentifier>{8341a3d0-9221-4d53-85d3-222cddeffcf6}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Command\UnexecutableCommand">
-      <UniqueIdentifier>{ed1612f3-0be7-4dfa-b475-f49964641f10}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\Exception">
       <UniqueIdentifier>{23f5bc6f-7817-4c77-be06-757362953152}</UniqueIdentifier>
@@ -110,9 +104,6 @@
     <Filter Include="Header Files\Factory">
       <UniqueIdentifier>{e432b637-edc5-487e-a784-6584bf80c40b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Receiver">
-      <UniqueIdentifier>{e41efdac-a06d-46e8-ac92-e08dbf3b705a}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\Exception\ComponentException">
       <UniqueIdentifier>{10152e75-e6db-487c-bd8d-123b27b0cde1}</UniqueIdentifier>
     </Filter>
@@ -148,9 +139,6 @@
     </Filter>
     <Filter Include="Source Files\Command">
       <UniqueIdentifier>{62ffcf58-8aad-42b2-a11f-30c949609b70}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Command\UnexecutableCommand">
-      <UniqueIdentifier>{a1f53fea-00e9-433f-934e-fe754e4f9d58}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -205,24 +193,6 @@
     <ClCompile Include="..\102598045_POSD\ConnectedSelfException.cpp">
       <Filter>Source Files\Exception\ComponentException</Filter>
     </ClCompile>
-    <ClCompile Include="..\102598045_POSD\DisplayDiagramCommand.cpp">
-      <Filter>Source Files\Command</Filter>
-    </ClCompile>
-    <ClCompile Include="..\102598045_POSD\DisplayTableCommand.cpp">
-      <Filter>Source Files\Command</Filter>
-    </ClCompile>
-    <ClCompile Include="..\102598045_POSD\DeleteComponentCommand.cpp">
-      <Filter>Source Files\Command\UnexecutableCommand</Filter>
-    </ClCompile>
-    <ClCompile Include="..\102598045_POSD\ConnectNodeCommand.cpp">
-      <Filter>Source Files\Command\UnexecutableCommand</Filter>
-    </ClCompile>
-    <ClCompile Include="..\102598045_POSD\AddNodeCommand.cpp">
-      <Filter>Source Files\Command\UnexecutableCommand</Filter>
-    </ClCompile>
-    <ClCompile Include="..\102598045_POSD\ConnectionReceiverManager.cpp">
-      <Filter>Source Files\Manager</Filter>
-    </ClCompile>
     <ClCompile Include="..\102598045_POSD\ComponentFactory.cpp">
       <Filter>Source Files\Factory</Filter>
     </ClCompile>
@@ -243,30 +213,6 @@
     </ClCompile>
     <ClCompile Include="..\102598045_POSD\NullPointerException.cpp">
       <Filter>Source Files\Exception</Filter>
-    </ClCompile>
-    <ClCompile Include="..\102598045_POSD\UndoCommand.cpp">
-      <Filter>Source Files\Command</Filter>
-    </ClCompile>
-    <ClCompile Include="..\102598045_POSD\SetCardinalityCommand.cpp">
-      <Filter>Source Files\Command</Filter>
-    </ClCompile>
-    <ClCompile Include="..\102598045_POSD\SetNodeNameCommand.cpp">
-      <Filter>Source Files\Command</Filter>
-    </ClCompile>
-    <ClCompile Include="..\102598045_POSD\SetPrimaryKeyCommand.cpp">
-      <Filter>Source Files\Command</Filter>
-    </ClCompile>
-    <ClCompile Include="..\102598045_POSD\SaveFileCommand.cpp">
-      <Filter>Source Files\Command</Filter>
-    </ClCompile>
-    <ClCompile Include="..\102598045_POSD\FindComponentCommand.cpp">
-      <Filter>Source Files\Command</Filter>
-    </ClCompile>
-    <ClCompile Include="..\102598045_POSD\FindEntityCommand.cpp">
-      <Filter>Source Files\Command</Filter>
-    </ClCompile>
-    <ClCompile Include="..\102598045_POSD\ExitCommand.cpp">
-      <Filter>Source Files\Command</Filter>
     </ClCompile>
     <ClCompile Include="..\102598045_POSD\TableUtil.cpp">
       <Filter>Source Files\Util</Filter>
@@ -304,29 +250,11 @@
     <ClCompile Include="..\102598045_POSD\RelationType.cpp">
       <Filter>Source Files\Constants</Filter>
     </ClCompile>
-    <ClCompile Include="..\102598045_POSD\RedoCommand.cpp">
-      <Filter>Source Files\Command</Filter>
-    </ClCompile>
-    <ClCompile Include="..\102598045_POSD\ReceiverManager.cpp">
-      <Filter>Source Files\Manager</Filter>
-    </ClCompile>
     <ClCompile Include="..\102598045_POSD\TableManager.cpp">
       <Filter>Source Files\Manager</Filter>
     </ClCompile>
-    <ClCompile Include="..\102598045_POSD\ValidConnectedReceiver.cpp">
-      <Filter>Source Files\Receiver</Filter>
-    </ClCompile>
-    <ClCompile Include="..\102598045_POSD\ConnectedERReceiver.cpp">
-      <Filter>Source Files\Receiver</Filter>
-    </ClCompile>
-    <ClCompile Include="..\102598045_POSD\Receiver.cpp">
-      <Filter>Source Files\Receiver</Filter>
-    </ClCompile>
     <ClCompile Include="TextUIProcess.cpp">
       <Filter>Source Files\Process</Filter>
-    </ClCompile>
-    <ClCompile Include="..\102598045_POSD\UnexecutableCommand.cpp">
-      <Filter>Source Files\Command\UnexecutableCommand</Filter>
     </ClCompile>
     <ClCompile Include="..\102598045_POSD\FileNotFoundException.cpp">
       <Filter>Source Files\Exception\IOException</Filter>
@@ -373,12 +301,6 @@
     <ClCompile Include="FileMenuItem.cpp">
       <Filter>Source Files\View\GUI\GUIWidget</Filter>
     </ClCompile>
-    <ClCompile Include="..\102598045_POSD\Presentation.cpp">
-      <Filter>Source Files\View</Filter>
-    </ClCompile>
-    <ClCompile Include="OpenFileCommand.cpp">
-      <Filter>Source Files\Command</Filter>
-    </ClCompile>
     <ClCompile Include="ActionID.cpp">
       <Filter>Source Files\Constants</Filter>
     </ClCompile>
@@ -391,47 +313,23 @@
     <ClCompile Include="ComponentWidget.cpp">
       <Filter>Source Files\View\GUI\GUIWidget</Filter>
     </ClCompile>
+    <ClCompile Include="TextPresentation.cpp">
+      <Filter>Source Files\View</Filter>
+    </ClCompile>
+    <ClCompile Include="GraphicalPresentation.cpp">
+      <Filter>Source Files\View</Filter>
+    </ClCompile>
+    <ClCompile Include="..\102598045_POSD\AddNodeCommand.cpp">
+      <Filter>Source Files\Command</Filter>
+    </ClCompile>
+    <ClCompile Include="..\102598045_POSD\DeleteComponentCommand.cpp">
+      <Filter>Source Files\Command</Filter>
+    </ClCompile>
+    <ClCompile Include="..\102598045_POSD\ConnectNodeCommand.cpp">
+      <Filter>Source Files\Command</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="UndoCommand.h">
-      <Filter>Header Files\Command</Filter>
-    </ClInclude>
-    <ClInclude Include="SetPrimaryKeyCommand.h">
-      <Filter>Header Files\Command</Filter>
-    </ClInclude>
-    <ClInclude Include="SetNodeNameCommand.h">
-      <Filter>Header Files\Command</Filter>
-    </ClInclude>
-    <ClInclude Include="SaveFileCommand.h">
-      <Filter>Header Files\Command</Filter>
-    </ClInclude>
-    <ClInclude Include="FindComponentCommand.h">
-      <Filter>Header Files\Command</Filter>
-    </ClInclude>
-    <ClInclude Include="FindEntityCommand.h">
-      <Filter>Header Files\Command</Filter>
-    </ClInclude>
-    <ClInclude Include="RedoCommand.h">
-      <Filter>Header Files\Command</Filter>
-    </ClInclude>
-    <ClInclude Include="DisplayTableCommand.h">
-      <Filter>Header Files\Command</Filter>
-    </ClInclude>
-    <ClInclude Include="DisplayDiagramCommand.h">
-      <Filter>Header Files\Command</Filter>
-    </ClInclude>
-    <ClInclude Include="AddNodeCommand.h">
-      <Filter>Header Files\Command\UnexecutableCommand</Filter>
-    </ClInclude>
-    <ClInclude Include="ConnectNodeCommand.h">
-      <Filter>Header Files\Command\UnexecutableCommand</Filter>
-    </ClInclude>
-    <ClInclude Include="DeleteComponentCommand.h">
-      <Filter>Header Files\Command\UnexecutableCommand</Filter>
-    </ClInclude>
-    <ClInclude Include="UnexecutableCommand.h">
-      <Filter>Header Files\Command\UnexecutableCommand</Filter>
-    </ClInclude>
     <ClInclude Include="Attribute.h">
       <Filter>Header Files\Model</Filter>
     </ClInclude>
@@ -504,23 +402,11 @@
     <ClInclude Include="CommandManager.h">
       <Filter>Header Files\Manager</Filter>
     </ClInclude>
-    <ClInclude Include="ConnectionReceiverManager.h">
-      <Filter>Header Files\Manager</Filter>
-    </ClInclude>
     <ClInclude Include="TableManager.h">
       <Filter>Header Files\Manager</Filter>
     </ClInclude>
-    <ClInclude Include="ExitCommand.h">
-      <Filter>Header Files\Command</Filter>
-    </ClInclude>
-    <ClInclude Include="SetCardinalityCommand.h">
-      <Filter>Header Files\Command</Filter>
-    </ClInclude>
     <ClInclude Include="Document.h">
       <Filter>Header Files\Parser</Filter>
-    </ClInclude>
-    <ClInclude Include="ReceiverManager.h">
-      <Filter>Header Files\Manager</Filter>
     </ClInclude>
     <ClInclude Include="InputFileParser.h">
       <Filter>Header Files\Parser</Filter>
@@ -554,15 +440,6 @@
     </ClInclude>
     <ClInclude Include="TextUIProcess.h">
       <Filter>Header Files\Process</Filter>
-    </ClInclude>
-    <ClInclude Include="ConnectedERReceiver.h">
-      <Filter>Header Files\Receiver</Filter>
-    </ClInclude>
-    <ClInclude Include="Receiver.h">
-      <Filter>Header Files\Receiver</Filter>
-    </ClInclude>
-    <ClInclude Include="ValidConnectedReceiver.h">
-      <Filter>Header Files\Receiver</Filter>
     </ClInclude>
     <ClInclude Include="NoConnectionException.h">
       <Filter>Header Files\Exception\ComponentException</Filter>
@@ -609,9 +486,6 @@
     <ClInclude Include="FileMenuItem.h">
       <Filter>Header Files\View\GUI\GUIWidget</Filter>
     </ClInclude>
-    <ClInclude Include="OpenFileCommand.h">
-      <Filter>Header Files\Command</Filter>
-    </ClInclude>
     <ClInclude Include="ActionID.h">
       <Filter>Header Files\Constants</Filter>
     </ClInclude>
@@ -621,16 +495,28 @@
     <ClInclude Include="ComponentWidget.h">
       <Filter>Header Files\View\GUI\GUIWidget</Filter>
     </ClInclude>
+    <ClInclude Include="TextPresentation.h">
+      <Filter>Header Files\View</Filter>
+    </ClInclude>
+    <ClInclude Include="AddNodeCommand.h">
+      <Filter>Header Files\Command</Filter>
+    </ClInclude>
+    <ClInclude Include="DeleteComponentCommand.h">
+      <Filter>Header Files\Command</Filter>
+    </ClInclude>
+    <ClInclude Include="ConnectNodeCommand.h">
+      <Filter>Header Files\Command</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="GraphicalUI.h">
       <Filter>Header Files\View\GUI</Filter>
     </CustomBuild>
-    <CustomBuild Include="Presentation.h">
-      <Filter>Header Files\View</Filter>
-    </CustomBuild>
     <CustomBuild Include="Resources.qrc">
       <Filter>Resource Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="GraphicalPresentation.h">
+      <Filter>Header Files\View</Filter>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>

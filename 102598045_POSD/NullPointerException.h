@@ -4,6 +4,6 @@
 
 class NullPointerException : public Exception{
 public:
-	NullPointerException();
-	~NullPointerException();
+    NullPointerException();
+    ~NullPointerException();
 };

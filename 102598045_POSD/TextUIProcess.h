@@ -8,11 +8,11 @@ using namespace std;
 
 class TextUIProcess : public QThread{
 public:
-	TextUIProcess(TextUI* textUI);
-	~TextUIProcess();
+    TextUIProcess(TextUI* textUI);
+    ~TextUIProcess();
 
 protected:
-	void run();
+    void run();
 private:
-	TextUI* textUI;
+    TextUI* textUI;
 };

@@ -6,16 +6,16 @@ using namespace std;
 
 struct ComponentData{
 public:
-	ComponentData(string id,string name);
-	~ComponentData();
+    ComponentData(string id,string name);
+    ~ComponentData();
 
-	string getID();
-	void setID(string id);
-	string getName();
-	void setName(string name);
+    string getID();
+    void setID(string id);
+    string getName();
+    void setName(string name);
 
-	bool operator==(const ComponentData& componentDataToCompare) const;
+    bool operator==(const ComponentData& componentDataToCompare) const;
 private:
-	string id;	
-	string name;
+    string id;    
+    string name;
 };

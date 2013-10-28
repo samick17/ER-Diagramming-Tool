@@ -4,6 +4,6 @@
 
 class EmptyCollectionException : public CollectionException{
 public:
-	EmptyCollectionException(string collectionName);
-	~EmptyCollectionException();
+    EmptyCollectionException(string collectionName);
+    ~EmptyCollectionException();
 };

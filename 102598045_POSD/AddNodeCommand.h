@@ -1,21 +1,19 @@
 #pragma once
 
-#include "UnexecutableCommand.h"
+#include "Command.h"
 
-class AddNodeCommand : public UnexecutableCommand{
-	friend class CommandManagerTest;
-	FRIEND_TEST(CommandManagerTest,testCommandManager);
-	friend class AddNodeCommandTest;
-	FRIEND_TEST(AddNodeCommandTest,testAddNodeCommand);
+class AddNodeCommand : public Command{
+    friend class CommandManagerTest;
+    FRIEND_TEST(CommandManagerTest,testCommandManager);
+    friend class AddNodeCommandTest;
+    FRIEND_TEST(AddNodeCommandTest,testAddNodeCommand);
 public:
-	AddNodeCommand(Presentation* presentation);
-	~AddNodeCommand();
+    AddNodeCommand(ERModel* erModel,Node* node);
+    ~AddNodeCommand();
 
-	void setupCommand();
-
-	void execute();
-	void unExecute();
-private:	
-	Component* node;
-	Component* getNodeToAdd();
+    void execute();
+    void unExecute();
+private:    
+    ERModel* erModel;
+    Component* node;
 };

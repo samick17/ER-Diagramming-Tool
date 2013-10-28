@@ -6,6 +6,6 @@ class GraphicalUI;
 
 class FileMenuItem : public QMenu{
 public:
-	FileMenuItem(GraphicalUI* graphicalUI);
-	~FileMenuItem();
+    FileMenuItem(GraphicalUI* graphicalUI);
+    ~FileMenuItem();
 };

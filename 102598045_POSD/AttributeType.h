@@ -2,7 +2,7 @@
 
 class AttributeType{
 public:
-	static const int PrimaryKey;
-	static const int Default;
-	static const int ForeignKey;
+    static const int PrimaryKey;
+    static const int Default;
+    static const int ForeignKey;
 };

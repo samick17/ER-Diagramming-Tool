@@ -4,19 +4,19 @@
 #include <QDebug>
 
 ComponentWidget::ComponentWidget(Component* component,QGraphicsItem* parent) : component(component),QGraphicsItem(parent){
-	this->mousePress = false;
-	this->setAcceptDrops(true);
+    this->mousePress = false;
+    this->setAcceptDrops(true);
 }
 
 ComponentWidget::~ComponentWidget(){
 }
 
 void ComponentWidget::mousePressEvent(QGraphicsSceneMouseEvent* mouseEvent){
-	mouseEvent->accept();
+    mouseEvent->accept();
     offset = mouseEvent->pos();
-	this->mousePress = true;
-	qDebug()<<"press!"<<endl;
-	update();
+    this->mousePress = true;
+    qDebug()<<"press!"<<endl;
+    update();
 }
 
 void ComponentWidget::mouseMoveEvent(QGraphicsSceneMouseEvent* mouseEvent){
@@ -24,15 +24,15 @@ void ComponentWidget::mouseMoveEvent(QGraphicsSceneMouseEvent* mouseEvent){
     move(mapToParent(mouseEvent->pos() - offset));
 }
 
-void ComponentWidget::mouseReleaseEvent(QGraphicsSceneMouseEvent* mouseEvent){		
-	mouseEvent->accept();
-	this->mousePress = false;
-	qDebug()<<"release!"<<endl;
-	update();
+void ComponentWidget::mouseReleaseEvent(QGraphicsSceneMouseEvent* mouseEvent){        
+    mouseEvent->accept();
+    this->mousePress = false;
+    qDebug()<<"release!"<<endl;
+    update();
 }
 
 void ComponentWidget::move(QPointF position){
-	this->setPos(position);
+    this->setPos(position);
 }
 
 QRectF ComponentWidget::boundingRect() const{

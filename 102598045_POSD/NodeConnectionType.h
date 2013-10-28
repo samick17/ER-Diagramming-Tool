@@ -2,6 +2,6 @@
 
 class NodeConnectionType{
 public:
-	static const int ValidConnect;
-	static const int ConnectEntityAndRelation;
+    static const int ValidConnect;
+    static const int ConnectEntityAndRelation;
 };

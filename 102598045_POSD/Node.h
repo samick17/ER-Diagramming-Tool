@@ -4,12 +4,12 @@
 
 class Node : public Component{
 public:
-	Node(ComponentData componentData);
-	~Node();
+    Node(ComponentData componentData);
+    ~Node();
 
-	string getType();
+    string getType();
 
-	void breakAllConnections();
-	int canConnectTo(Component* target);
-	bool hasSizeToConnect();
+    void breakAllConnections();
+    int canConnectTo(Component* target);
+    bool hasSizeToConnect();
 };

@@ -5,5 +5,5 @@
 
 class ReorderComponentsUtil{
 public:
-	static HashMap<string,string> getReorderedComponentIDMap(HashMap<string,Component*> componentMap);	
+    static HashMap<string,string> getReorderedComponentIDMap(HashMap<string,Component*> componentMap);    
 };

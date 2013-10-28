@@ -4,6 +4,6 @@
 
 class CollectionException : public Exception{
 public:
-	CollectionException(string collectionName);
-	~CollectionException();
+    CollectionException(string collectionName);
+    ~CollectionException();
 };

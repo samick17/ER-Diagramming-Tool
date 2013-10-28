@@ -4,6 +4,6 @@
 
 class NoSuchKeyException : public CollectionException{
 public:
-	NoSuchKeyException(string collectionName);
-	~NoSuchKeyException();
+    NoSuchKeyException(string collectionName);
+    ~NoSuchKeyException();
 };

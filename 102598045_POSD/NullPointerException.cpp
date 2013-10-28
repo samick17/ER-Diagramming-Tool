@@ -1,7 +1,7 @@
 #include "NullPointerException.h"
 
 NullPointerException::NullPointerException(){
-	this->message = "Null Pointer!";
+    this->message = "Null Pointer!";
 }
 
 NullPointerException::~NullPointerException(){

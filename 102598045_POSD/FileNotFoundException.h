@@ -4,6 +4,6 @@
 
 class FileNotFoundException : public Exception{
 public:
-	FileNotFoundException();
-	~FileNotFoundException();
+    FileNotFoundException();
+    ~FileNotFoundException();
 };

@@ -5,7 +5,7 @@
 
 class HashMapTest : public testing::Test{
 protected:
-	HashMap<int,string> testMap;
-	virtual void SetUp();
-	virtual void TearDown();
+    HashMap<int,string> testMap;
+    virtual void SetUp();
+    virtual void TearDown();
 };

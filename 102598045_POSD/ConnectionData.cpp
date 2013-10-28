@@ -7,13 +7,13 @@ ConnectionData::~ConnectionData(){
 }
 
 string ConnectionData::getConnectorID(){
-	return this->connectorID;
+    return this->connectorID;
 }
 
 string ConnectionData::getConnectedFirstNodeID(){
-	return this->connectedFirstNodeID;
+    return this->connectedFirstNodeID;
 }
 
 string ConnectionData::getConnectedSecondNodeID(){
-	return this->connectedSecondNodeID;
+    return this->connectedSecondNodeID;
 }

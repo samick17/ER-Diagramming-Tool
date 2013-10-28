@@ -13,51 +13,51 @@ Connector::~Connector(){
 }
 
 string Connector::getType(){
-	return ComponentType::TypeConnector;
+    return ComponentType::TypeConnector;
 }
 
 void Connector::breakAllConnections(){
-	Component* firstNode = this->getFirstConnectedNode();
-	Component* secondNode = this->getSecondConnectedNode();
+    Component* firstNode = this->getFirstConnectedNode();
+    Component* secondNode = this->getSecondConnectedNode();
 
-	ComponentUtil::disconnectWithEachOther(firstNode,secondNode,this);
+    ComponentUtil::disconnectWithEachOther(firstNode,secondNode,this);
 }
 
 int Connector::canConnectTo(Component* target){
-	throw InvalidConnectException(this->getID(),target->getID());
+    throw InvalidConnectException(this->getID(),target->getID());
 }
 
 bool Connector::hasSizeToConnect(){
-	return this->getAllConnections().size() < ComponentConnectionSize::ConnectorConnectionSize;
+    return this->getAllConnections().size() < ComponentConnectionSize::ConnectorConnectionSize;
 }
 //first node's id will always less than second node
 Component* Connector::getFirstConnectedNode(){
-	Component* firstNode = this->getAllConnections().getValueByIndex(0);
-	Component* secondNode = this->getAllConnections().getValueByIndex(1);
-	if(strcmp(firstNode->getID().c_str(),secondNode->getID().c_str())>0){
-		return secondNode;
-	}
-	return firstNode;
+    Component* firstNode = this->getAllConnections().getValueByIndex(0);
+    Component* secondNode = this->getAllConnections().getValueByIndex(1);
+    if(strcmp(firstNode->getID().c_str(),secondNode->getID().c_str())>0){
+        return secondNode;
+    }
+    return firstNode;
 }
 //second node's id will always greater than first node
 Component* Connector::getSecondConnectedNode(){
-	Component* firstNode = this->getAllConnections().getValueByIndex(0);
-	Component* secondNode = this->getAllConnections().getValueByIndex(1);
-	if(strcmp(firstNode->getID().c_str(),secondNode->getID().c_str())>0){
-		return firstNode;
-	}
-	return secondNode;
+    Component* firstNode = this->getAllConnections().getValueByIndex(0);
+    Component* secondNode = this->getAllConnections().getValueByIndex(1);
+    if(strcmp(firstNode->getID().c_str(),secondNode->getID().c_str())>0){
+        return firstNode;
+    }
+    return secondNode;
 }
 
-bool Connector::isNodesConnection(Component* firstNode,Component* secondNode){	
-	if(firstNode == secondNode)
-		return false;
+bool Connector::isNodesConnection(Component* firstNode,Component* secondNode){    
+    if(firstNode == secondNode)
+        return false;
 
-	bool isConnection = false;
-	HashMap<string,Component*> connections = this->getAllConnections();
+    bool isConnection = false;
+    HashMap<string,Component*> connections = this->getAllConnections();
 
-	isConnection = connections.containsKey(firstNode->getID());
-	isConnection &= connections.containsKey(secondNode->getID());
+    isConnection = connections.containsKey(firstNode->getID());
+    isConnection &= connections.containsKey(secondNode->getID());
 
-	return isConnection;
+    return isConnection;
 }

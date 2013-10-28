@@ -4,6 +4,6 @@
 
 class NoSuchNodeException : public Exception{
 public:
-	NoSuchNodeException(string nodeID);
-	~NoSuchNodeException();
+    NoSuchNodeException(string nodeID);
+    ~NoSuchNodeException();
 };

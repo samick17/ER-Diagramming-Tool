@@ -6,5 +6,5 @@ using namespace std;
 
 class RelationType{
 public:
-	static const string OneToOne;
+    static const string OneToOne;
 };

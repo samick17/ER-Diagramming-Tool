@@ -9,82 +9,82 @@
 #include "ComponentUtil.h"
 
 void EntityTest::SetUp(){
-	this->attribute = new Attribute(ComponentData("0","Name"));
-	this->relationShip = new RelationShip(ComponentData("1","Has"));
-	this->entity = new Entity(ComponentData("2","Engineer"));
+    this->attribute = new Attribute(ComponentData("0","Name"));
+    this->relationShip = new RelationShip(ComponentData("1","Has"));
+    this->entity = new Entity(ComponentData("2","Engineer"));
 }
 
 void EntityTest::TearDown(){
-	delete this->attribute;
-	delete this->relationShip;
-	delete this->entity;
+    delete this->attribute;
+    delete this->relationShip;
+    delete this->entity;
 }
 
 TEST_F(EntityTest,testGetType){
-	ASSERT_EQ(ComponentType::TypeEntity,this->entity->getType());
+    ASSERT_EQ(ComponentType::TypeEntity,this->entity->getType());
 }
 
 TEST_F(EntityTest,testCanConnectTo){
-	ASSERT_EQ(NodeConnectionType::ValidConnect,this->entity->canConnectTo(this->attribute));
-	ASSERT_EQ(NodeConnectionType::ConnectEntityAndRelation,this->entity->canConnectTo(this->relationShip));
-	
-	Connector connector1(ComponentData("3",""));
-	ComponentUtil::connectWithEachOther(this->entity,this->attribute,&connector1);
-	Connector connector2(ComponentData("4",""));
-	ComponentUtil::connectWithEachOther(this->entity,this->relationShip,&connector2);
+    ASSERT_EQ(NodeConnectionType::ValidConnect,this->entity->canConnectTo(this->attribute));
+    ASSERT_EQ(NodeConnectionType::ConnectEntityAndRelation,this->entity->canConnectTo(this->relationShip));
+    
+    Connector connector1(ComponentData("3",""));
+    ComponentUtil::connectWithEachOther(this->entity,this->attribute,&connector1);
+    Connector connector2(ComponentData("4",""));
+    ComponentUtil::connectWithEachOther(this->entity,this->relationShip,&connector2);
 
-	ASSERT_THROW(this->entity->canConnectTo(this->entity),ConnectedSelfException);
-	ASSERT_THROW(this->entity->canConnectTo(this->attribute),HasConnectedException);
-	ASSERT_THROW(this->entity->canConnectTo(this->relationShip),HasConnectedException);
-	ASSERT_THROW(this->entity->canConnectTo(&Entity(ComponentData("5",""))),InvalidConnectException);
-	ASSERT_EQ(NodeConnectionType::ValidConnect,this->entity->canConnectTo(&Attribute(ComponentData("6",""))));
-	ASSERT_EQ(NodeConnectionType::ConnectEntityAndRelation,this->entity->canConnectTo(&RelationShip(ComponentData("7",""))));
+    ASSERT_THROW(this->entity->canConnectTo(this->entity),ConnectedSelfException);
+    ASSERT_THROW(this->entity->canConnectTo(this->attribute),HasConnectedException);
+    ASSERT_THROW(this->entity->canConnectTo(this->relationShip),HasConnectedException);
+    ASSERT_THROW(this->entity->canConnectTo(&Entity(ComponentData("5",""))),InvalidConnectException);
+    ASSERT_EQ(NodeConnectionType::ValidConnect,this->entity->canConnectTo(&Attribute(ComponentData("6",""))));
+    ASSERT_EQ(NodeConnectionType::ConnectEntityAndRelation,this->entity->canConnectTo(&RelationShip(ComponentData("7",""))));
 }
 
 TEST_F(EntityTest,testGetConnectedAttributes){
-	ASSERT_EQ(0,this->entity->getConnectedAttributes().size());
+    ASSERT_EQ(0,this->entity->getConnectedAttributes().size());
 
-	Connector connector1(ComponentData("3",""));
-	ComponentUtil::connectWithEachOther(this->entity,this->attribute,&connector1);
+    Connector connector1(ComponentData("3",""));
+    ComponentUtil::connectWithEachOther(this->entity,this->attribute,&connector1);
 
-	ASSERT_EQ(1,this->entity->getConnectedAttributes().size());
+    ASSERT_EQ(1,this->entity->getConnectedAttributes().size());
 
-	ASSERT_EQ(this->attribute,this->entity->getConnectedAttributes().get(this->attribute->getID()));
+    ASSERT_EQ(this->attribute,this->entity->getConnectedAttributes().get(this->attribute->getID()));
 }
 
 TEST_F(EntityTest,testGetAttributeByID){
-	Connector connector1(ComponentData("3",""));
-	ComponentUtil::connectWithEachOther(this->entity,this->attribute,&connector1);
-	ASSERT_THROW(this->entity->getAttributeByID("100"),NoConnectionException);
-	ASSERT_EQ(this->attribute,this->entity->getAttributeByID(this->attribute->getID()));
+    Connector connector1(ComponentData("3",""));
+    ComponentUtil::connectWithEachOther(this->entity,this->attribute,&connector1);
+    ASSERT_THROW(this->entity->getAttributeByID("100"),NoConnectionException);
+    ASSERT_EQ(this->attribute,this->entity->getAttributeByID(this->attribute->getID()));
 }
 
 TEST_F(EntityTest,testGetPrimaryKeyAttributes){
-	Connector connector1(ComponentData("3",""));
-	ComponentUtil::connectWithEachOther(this->entity,this->attribute,&connector1);
+    Connector connector1(ComponentData("3",""));
+    ComponentUtil::connectWithEachOther(this->entity,this->attribute,&connector1);
 
-	ASSERT_EQ(0,this->entity->getPrimaryKeyAttributes().size());
+    ASSERT_EQ(0,this->entity->getPrimaryKeyAttributes().size());
 
-	vector<string> primaryKeyID;
-	primaryKeyID.push_back("0");
-	this->entity->setPrimaryKey(primaryKeyID);
+    vector<string> primaryKeyID;
+    primaryKeyID.push_back("0");
+    this->entity->setPrimaryKey(primaryKeyID);
 
-	ASSERT_EQ(1,this->entity->getPrimaryKeyAttributes().size());
-	ASSERT_EQ(this->attribute,this->entity->getPrimaryKeyAttributes().get(this->attribute->getID()));
+    ASSERT_EQ(1,this->entity->getPrimaryKeyAttributes().size());
+    ASSERT_EQ(this->attribute,this->entity->getPrimaryKeyAttributes().get(this->attribute->getID()));
 }
 
 TEST_F(EntityTest,testSetPrimaryKey){
-	vector<string> primaryKeyID;
-	primaryKeyID.push_back("1");
-	ASSERT_THROW(this->entity->setPrimaryKey(primaryKeyID),NoConnectionException);
-	Connector connector1(ComponentData("3",""));
-	ComponentUtil::connectWithEachOther(this->entity,this->attribute,&connector1);
+    vector<string> primaryKeyID;
+    primaryKeyID.push_back("1");
+    ASSERT_THROW(this->entity->setPrimaryKey(primaryKeyID),NoConnectionException);
+    Connector connector1(ComponentData("3",""));
+    ComponentUtil::connectWithEachOther(this->entity,this->attribute,&connector1);
 
-	ASSERT_EQ(false,(static_cast<Attribute*>(this->attribute)->isPrimaryKey()));
+    ASSERT_EQ(false,(static_cast<Attribute*>(this->attribute)->isPrimaryKey()));
 
-	ASSERT_THROW(this->entity->setPrimaryKey(primaryKeyID),NoConnectionException);
-	primaryKeyID.clear();
-	primaryKeyID.push_back("0");
-	this->entity->setPrimaryKey(primaryKeyID);
-	ASSERT_EQ(true,(static_cast<Attribute*>(this->attribute)->isPrimaryKey()));	
+    ASSERT_THROW(this->entity->setPrimaryKey(primaryKeyID),NoConnectionException);
+    primaryKeyID.clear();
+    primaryKeyID.push_back("0");
+    this->entity->setPrimaryKey(primaryKeyID);
+    ASSERT_EQ(true,(static_cast<Attribute*>(this->attribute)->isPrimaryKey()));    
 }

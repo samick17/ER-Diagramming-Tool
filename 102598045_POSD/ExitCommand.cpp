@@ -1,11 +1,11 @@
 #include "ExitCommand.h"
 
-ExitCommand::ExitCommand(Presentation* presentation) : Command(presentation){	
+ExitCommand::ExitCommand(TextPresentation* textPresentation) : Command(textPresentation){
 }
 
 ExitCommand::~ExitCommand(){
 }
 
 void ExitCommand::execute(){
-	this->presentation->close();
+    this->textPresentation->close();
 }

@@ -5,7 +5,7 @@
 
 class TableManagerTest : public testing::Test{
 protected:
-	TableManager tableManager;
-	virtual void SetUp();
-	virtual void TearDown();
+    TableManager tableManager;
+    virtual void SetUp();
+    virtual void TearDown();
 };

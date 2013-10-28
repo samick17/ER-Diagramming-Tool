@@ -3,18 +3,18 @@
 #include "Component.h"
 
 class Connector : public Component{
-	friend class ConnectorTest;	
+    friend class ConnectorTest;    
 public:
-	Connector(ComponentData componentData);
-	~Connector();
-	
-	string getType();
+    Connector(ComponentData componentData);
+    ~Connector();
+    
+    string getType();
 
-	void breakAllConnections();
-	int canConnectTo(Component* target);
-	bool hasSizeToConnect();
+    void breakAllConnections();
+    int canConnectTo(Component* target);
+    bool hasSizeToConnect();
 
-	Component* getFirstConnectedNode();
-	Component* getSecondConnectedNode();
-	bool isNodesConnection(Component* firstNode,Component* secondNode);
+    Component* getFirstConnectedNode();
+    Component* getSecondConnectedNode();
+    bool isNodesConnection(Component* firstNode,Component* secondNode);
 };

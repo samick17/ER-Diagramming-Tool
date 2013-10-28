@@ -5,33 +5,34 @@
 #include <QGraphicsScene>
 #include <QMenuBar>
 #include <QToolBar>
+
 #include "FileMenuItem.h"
 
-class Presentation;
+class GraphicalPresentation;
 
 using namespace Qt;
 
 class GraphicalUI : public QMainWindow{
-	Q_OBJECT
+    Q_OBJECT
 public slots:
-	void openFile();
-	void close();
+    void openFile();
+    void close();
 public:
-	GraphicalUI(Presentation* presentation);
-	~GraphicalUI();
+    GraphicalUI(GraphicalPresentation* graphicalPresentation);
+    ~GraphicalUI();
 
-	void GraphicalUI::displayComponents();
+    void GraphicalUI::displayComponents();
 
-	Presentation* getPresentation();
+    GraphicalPresentation* getGraphicalPresentation();
 private:
-	Presentation* presentation;
-	FileMenuItem* fileMenuItem;	
-	QMenuBar* menuBar;
-	QToolBar* toolBar;
-	QGraphicsView* view;
-	QGraphicsScene* scene;
+    GraphicalPresentation* graphicalPresentation;
+    FileMenuItem* fileMenuItem;
+    QMenuBar* menuBar;
+    QToolBar* toolBar;
+    QGraphicsView* view;
+    QGraphicsScene* scene;
 
-	void setTitle();	
-	void initialMenuBar();
-	void initialToolBar();
+    void setTitle();    
+    void initialMenuBar();
+    void initialToolBar();
 };

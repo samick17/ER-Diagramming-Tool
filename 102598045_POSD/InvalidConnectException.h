@@ -4,6 +4,6 @@
 
 class InvalidConnectException : public ComponentException{
 public:
-	InvalidConnectException(string firstNodeID,string secondNodeID);
-	~InvalidConnectException();
+    InvalidConnectException(string firstNodeID,string secondNodeID);
+    ~InvalidConnectException();
 };

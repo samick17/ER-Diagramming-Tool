@@ -8,10 +8,10 @@ using namespace std;
 
 class StringUtil{
 public:
-	static string intToString(int number);
-	static vector<string> split(const string &str,char delim);
-	static string &trimStart(string &str);
-	static string &trimEnd(string &str);
-	static string &trim(string &str);	
-	static string appendWithComma(vector<string> stringVector);
+    static string intToString(int number);
+    static vector<string> split(const string &str,char delim);
+    static string &trimStart(string &str);
+    static string &trimEnd(string &str);
+    static string &trim(string &str);    
+    static string appendWithComma(vector<string> stringVector);
 };

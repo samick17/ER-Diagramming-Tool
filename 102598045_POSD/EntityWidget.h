@@ -4,9 +4,9 @@
 
 class EntityWidget : public ComponentWidget{
 public:
-	EntityWidget(Component* component,QGraphicsItem* parent = 0);
-	~EntityWidget();
+    EntityWidget(Component* component,QGraphicsItem* parent = 0);
+    ~EntityWidget();
 
-	void paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget = 0);
-	QRectF boundingRect() const;
+    void paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget = 0);
+    QRectF boundingRect() const;
 };

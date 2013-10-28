@@ -2,12 +2,12 @@
 
 #include <gtest/gtest.h>
 #include "ERModel.h"
-#include "Presentation.h"
+#include "TextPresentation.h"
 
 class DeleteComponentCommandTest : public testing::Test{
 protected:
-	ERModel erModel;
-	Presentation* presentation;
-	virtual void SetUp();
-	virtual void TearDown();
+    ERModel erModel;
+    TextPresentation* textPresentation;
+    virtual void SetUp();
+    virtual void TearDown();
 };

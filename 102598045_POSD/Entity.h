@@ -6,15 +6,15 @@
 
 class Entity : public Node{
 public:
-	Entity(ComponentData componentData);
-	~Entity();
-	
-	string getType();
+    Entity(ComponentData componentData);
+    ~Entity();
+    
+    string getType();
 
-	int canConnectTo(Component* target);
+    int canConnectTo(Component* target);
 
-	HashMap<string,Attribute*> getConnectedAttributes();
-	Attribute* getAttributeByID(string id);
-	HashMap<string,Attribute*> getPrimaryKeyAttributes();
-	void setPrimaryKey(vector<string> primaryKeyIDVector);
+    HashMap<string,Attribute*> getConnectedAttributes();
+    Attribute* getAttributeByID(string id);
+    HashMap<string,Attribute*> getPrimaryKeyAttributes();
+    void setPrimaryKey(vector<string> primaryKeyIDVector);
 };

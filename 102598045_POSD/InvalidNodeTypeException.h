@@ -4,6 +4,6 @@
 
 class InvalidNodeTypeException : public Exception{
 public:
-	InvalidNodeTypeException();
-	~InvalidNodeTypeException();
+    InvalidNodeTypeException();
+    ~InvalidNodeTypeException();
 };

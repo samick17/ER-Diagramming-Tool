@@ -4,6 +4,6 @@
 
 class DuplicatedKeyException : public CollectionException{
 public:
-	DuplicatedKeyException(string collectionName);
-	~DuplicatedKeyException();
+    DuplicatedKeyException(string collectionName);
+    ~DuplicatedKeyException();
 };

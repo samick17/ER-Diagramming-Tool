@@ -5,14 +5,14 @@
 
 class TableManager{
 public:
-	TableManager();
-	~TableManager();
+    TableManager();
+    ~TableManager();
 
-	void insertTable(Table* table);
-	Table* getTableByID(string id);
-	void clearAll();
+    void insertTable(Table* table);
+    Table* getTableByID(string id);
+    void clearAll();
 
-	HashMap<string,Table*> getAllTables();
+    HashMap<string,Table*> getAllTables();
 private:
-	HashMap<string,Table*> tableMap;
+    HashMap<string,Table*> tableMap;
 };

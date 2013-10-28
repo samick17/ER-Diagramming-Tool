@@ -5,6 +5,6 @@
 
 class RelationShipTest : public ComponentTest{
 protected:
-	virtual void SetUp();
-	virtual void TearDown();
+    virtual void SetUp();
+    virtual void TearDown();
 };

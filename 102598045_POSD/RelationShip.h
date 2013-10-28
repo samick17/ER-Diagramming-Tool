@@ -8,14 +8,14 @@
 
 class RelationShip : public Node{
 public:
-	RelationShip(ComponentData componentData);
-	~RelationShip();
+    RelationShip(ComponentData componentData);
+    ~RelationShip();
 
-	string getType();
-		
-	int canConnectTo(Component* target);	
-	bool hasSizeToConnect();
-	bool isRelationType(string relationType);
+    string getType();
+        
+    int canConnectTo(Component* target);    
+    bool hasSizeToConnect();
+    bool isRelationType(string relationType);
 
-	HashMap<string,Entity*> getConnectedEntities();
+    HashMap<string,Entity*> getConnectedEntities();
 };

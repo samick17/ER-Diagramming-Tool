@@ -4,6 +4,6 @@
 
 class ComponentException : public Exception{
 public:
-	ComponentException();
-	~ComponentException();
+    ComponentException();
+    ~ComponentException();
 };

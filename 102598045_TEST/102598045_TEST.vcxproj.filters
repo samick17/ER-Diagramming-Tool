@@ -43,9 +43,6 @@
     <Filter Include="Source Files\Utils">
       <UniqueIdentifier>{a3db4110-4925-4522-b83b-b511927c22fc}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Receiver">
-      <UniqueIdentifier>{cae3f043-1991-4846-80f4-72925dc5b255}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\View">
       <UniqueIdentifier>{19b37122-54a7-43d6-92c3-d9d882c0fb7b}</UniqueIdentifier>
     </Filter>
@@ -118,9 +115,6 @@
     <Filter Include="Unit Testing Files\MenuTest">
       <UniqueIdentifier>{ac94c765-7196-4229-a1f1-cb902ceaf772}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Command\UnexecutableCommand">
-      <UniqueIdentifier>{0b8170e1-59c0-49e6-9886-abf609491b9c}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MainTest.cpp">
@@ -168,18 +162,6 @@
     <ClCompile Include="..\102598045_POSD\NullPointerException.cpp">
       <Filter>Source Files\Exception</Filter>
     </ClCompile>
-    <ClCompile Include="..\102598045_POSD\ValidConnectedReceiver.cpp">
-      <Filter>Source Files\Receiver</Filter>
-    </ClCompile>
-    <ClCompile Include="..\102598045_POSD\ConnectedERReceiver.cpp">
-      <Filter>Source Files\Receiver</Filter>
-    </ClCompile>
-    <ClCompile Include="..\102598045_POSD\ConnectionReceiverManager.cpp">
-      <Filter>Source Files\Manager</Filter>
-    </ClCompile>
-    <ClCompile Include="..\102598045_POSD\ReceiverManager.cpp">
-      <Filter>Source Files\Manager</Filter>
-    </ClCompile>
     <ClCompile Include="..\102598045_POSD\ConnectionData.cpp">
       <Filter>Source Files\Struct</Filter>
     </ClCompile>
@@ -192,9 +174,6 @@
     <ClCompile Include="..\102598045_POSD\ReorderComponentsUtil.cpp">
       <Filter>Source Files\Utils</Filter>
     </ClCompile>
-    <ClCompile Include="..\102598045_POSD\Receiver.cpp">
-      <Filter>Source Files\Receiver</Filter>
-    </ClCompile>
     <ClCompile Include="..\102598045_POSD\StringUtil.cpp">
       <Filter>Source Files\Utils</Filter>
     </ClCompile>
@@ -203,9 +182,6 @@
     </ClCompile>
     <ClCompile Include="..\102598045_POSD\TableManager.cpp">
       <Filter>Source Files\Manager</Filter>
-    </ClCompile>
-    <ClCompile Include="..\102598045_POSD\Presentation.cpp">
-      <Filter>Source Files\View</Filter>
     </ClCompile>
     <ClCompile Include="..\102598045_POSD\TextUI.cpp">
       <Filter>Source Files\View</Filter>
@@ -297,42 +273,6 @@
     <ClCompile Include="TableTest.cpp">
       <Filter>Unit Testing Files\ModelTest</Filter>
     </ClCompile>
-    <ClCompile Include="..\102598045_POSD\SetNodeNameCommand.cpp">
-      <Filter>Source Files\Command</Filter>
-    </ClCompile>
-    <ClCompile Include="..\102598045_POSD\SaveFileCommand.cpp">
-      <Filter>Source Files\Command</Filter>
-    </ClCompile>
-    <ClCompile Include="..\102598045_POSD\DisplayDiagramCommand.cpp">
-      <Filter>Source Files\Command</Filter>
-    </ClCompile>
-    <ClCompile Include="..\102598045_POSD\DisplayTableCommand.cpp">
-      <Filter>Source Files\Command</Filter>
-    </ClCompile>
-    <ClCompile Include="..\102598045_POSD\UndoCommand.cpp">
-      <Filter>Source Files\Command</Filter>
-    </ClCompile>
-    <ClCompile Include="..\102598045_POSD\RedoCommand.cpp">
-      <Filter>Source Files\Command</Filter>
-    </ClCompile>
-    <ClCompile Include="..\102598045_POSD\ExitCommand.cpp">
-      <Filter>Source Files\Command</Filter>
-    </ClCompile>
-    <ClCompile Include="..\102598045_POSD\SetCardinalityCommand.cpp">
-      <Filter>Source Files\Command</Filter>
-    </ClCompile>
-    <ClCompile Include="..\102598045_POSD\SetPrimaryKeyCommand.cpp">
-      <Filter>Source Files\Command</Filter>
-    </ClCompile>
-    <ClCompile Include="..\102598045_POSD\FindComponentCommand.cpp">
-      <Filter>Source Files\Command</Filter>
-    </ClCompile>
-    <ClCompile Include="..\102598045_POSD\FindEntityCommand.cpp">
-      <Filter>Source Files\Command</Filter>
-    </ClCompile>
-    <ClCompile Include="..\102598045_POSD\Command.cpp">
-      <Filter>Source Files\Command</Filter>
-    </ClCompile>
     <ClCompile Include="ComponentFactoryTest.cpp">
       <Filter>Unit Testing Files\FactoryTest</Filter>
     </ClCompile>
@@ -387,9 +327,6 @@
     <ClCompile Include="OutputFileParserTest.cpp">
       <Filter>Unit Testing Files\ParserTest</Filter>
     </ClCompile>
-    <ClCompile Include="ReceiverManagerTest.cpp">
-      <Filter>Unit Testing Files\ManagerTest</Filter>
-    </ClCompile>
     <ClCompile Include="StackUtilTest.cpp">
       <Filter>Unit Testing Files\UtilTest</Filter>
     </ClCompile>
@@ -402,20 +339,23 @@
     <ClCompile Include="..\102598045_POSD\ApplicationSetting.cpp">
       <Filter>Source Files\Constants</Filter>
     </ClCompile>
-    <ClCompile Include="..\102598045_POSD\OpenFileCommand.cpp">
+    <ClCompile Include="..\102598045_POSD\DeleteComponentCommand.cpp">
       <Filter>Source Files\Command</Filter>
     </ClCompile>
     <ClCompile Include="..\102598045_POSD\AddNodeCommand.cpp">
-      <Filter>Source Files\Command\UnexecutableCommand</Filter>
+      <Filter>Source Files\Command</Filter>
+    </ClCompile>
+    <ClCompile Include="..\102598045_POSD\Command.cpp">
+      <Filter>Source Files\Command</Filter>
     </ClCompile>
     <ClCompile Include="..\102598045_POSD\ConnectNodeCommand.cpp">
-      <Filter>Source Files\Command\UnexecutableCommand</Filter>
+      <Filter>Source Files\Command</Filter>
     </ClCompile>
-    <ClCompile Include="..\102598045_POSD\DeleteComponentCommand.cpp">
-      <Filter>Source Files\Command\UnexecutableCommand</Filter>
+    <ClCompile Include="..\102598045_POSD\GraphicalPresentation.cpp">
+      <Filter>Source Files\View</Filter>
     </ClCompile>
-    <ClCompile Include="..\102598045_POSD\UnexecutableCommand.cpp">
-      <Filter>Source Files\Command\UnexecutableCommand</Filter>
+    <ClCompile Include="..\102598045_POSD\TextPresentation.cpp">
+      <Filter>Source Files\View</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -490,9 +430,6 @@
     </ClInclude>
     <ClInclude Include="OutputFileParserTest.h">
       <Filter>Header Files\ParserTest</Filter>
-    </ClInclude>
-    <ClInclude Include="ReceiverManagerTest.h">
-      <Filter>Header Files\ManagerTest</Filter>
     </ClInclude>
     <ClInclude Include="ERModelUtilTest.h">
       <Filter>Header Files\UtilTest</Filter>

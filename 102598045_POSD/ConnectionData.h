@@ -6,14 +6,14 @@ using namespace std;
 
 struct ConnectionData{
 public:
-	ConnectionData(string connectorID,string connectedFirstNodeID,string connectedSecondNodeID);
-	~ConnectionData();
+    ConnectionData(string connectorID,string connectedFirstNodeID,string connectedSecondNodeID);
+    ~ConnectionData();
 
-	string getConnectorID();
-	string getConnectedFirstNodeID();
-	string getConnectedSecondNodeID();
+    string getConnectorID();
+    string getConnectedFirstNodeID();
+    string getConnectedSecondNodeID();
 private:
-	string connectorID;
-	string connectedFirstNodeID;
-	string connectedSecondNodeID;
+    string connectorID;
+    string connectedFirstNodeID;
+    string connectedSecondNodeID;
 };

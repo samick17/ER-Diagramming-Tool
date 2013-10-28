@@ -91,25 +91,18 @@
     <ClCompile Include="..\102598045_POSD\ComponentFactory.cpp" />
     <ClCompile Include="..\102598045_POSD\ComponentType.cpp" />
     <ClCompile Include="..\102598045_POSD\ComponentUtil.cpp" />
-    <ClCompile Include="..\102598045_POSD\ConnectedERReceiver.cpp" />
     <ClCompile Include="..\102598045_POSD\ConnectedSelfException.cpp" />
     <ClCompile Include="..\102598045_POSD\ConnectionData.cpp" />
-    <ClCompile Include="..\102598045_POSD\ConnectionReceiverManager.cpp" />
     <ClCompile Include="..\102598045_POSD\ConnectNodeCommand.cpp" />
     <ClCompile Include="..\102598045_POSD\Connector.cpp" />
     <ClCompile Include="..\102598045_POSD\DeleteComponentCommand.cpp" />
-    <ClCompile Include="..\102598045_POSD\DisplayDiagramCommand.cpp" />
-    <ClCompile Include="..\102598045_POSD\DisplayTableCommand.cpp" />
     <ClCompile Include="..\102598045_POSD\Document.cpp" />
     <ClCompile Include="..\102598045_POSD\DuplicatedKeyException.cpp" />
     <ClCompile Include="..\102598045_POSD\EmptyCollectionException.cpp" />
     <ClCompile Include="..\102598045_POSD\Entity.cpp" />
     <ClCompile Include="..\102598045_POSD\ERModel.cpp" />
     <ClCompile Include="..\102598045_POSD\Exception.cpp" />
-    <ClCompile Include="..\102598045_POSD\ExitCommand.cpp" />
     <ClCompile Include="..\102598045_POSD\FileNotFoundException.cpp" />
-    <ClCompile Include="..\102598045_POSD\FindComponentCommand.cpp" />
-    <ClCompile Include="..\102598045_POSD\FindEntityCommand.cpp" />
     <ClCompile Include="..\102598045_POSD\HasConnectedException.cpp" />
     <ClCompile Include="..\102598045_POSD\InputFileParser.cpp" />
     <ClCompile Include="..\102598045_POSD\InvalidConnectException.cpp" />
@@ -123,7 +116,6 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
       </PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="OpenFileCommand.cpp" />
     <ClCompile Include="..\102598045_POSD\NoConnectionException.cpp" />
     <ClCompile Include="..\102598045_POSD\Node.cpp" />
     <ClCompile Include="..\102598045_POSD\NodeConnectionType.cpp" />
@@ -131,26 +123,16 @@
     <ClCompile Include="..\102598045_POSD\NoSuchNodeException.cpp" />
     <ClCompile Include="..\102598045_POSD\NullPointerException.cpp" />
     <ClCompile Include="..\102598045_POSD\OutputFileParser.cpp" />
-    <ClCompile Include="..\102598045_POSD\Presentation.cpp" />
-    <ClCompile Include="..\102598045_POSD\Receiver.cpp" />
-    <ClCompile Include="..\102598045_POSD\ReceiverManager.cpp" />
-    <ClCompile Include="..\102598045_POSD\RedoCommand.cpp" />
+    <ClCompile Include="GraphicalPresentation.cpp" />
     <ClCompile Include="..\102598045_POSD\RelationShip.cpp" />
     <ClCompile Include="..\102598045_POSD\RelationType.cpp" />
     <ClCompile Include="..\102598045_POSD\ReorderComponentsUtil.cpp" />
-    <ClCompile Include="..\102598045_POSD\SaveFileCommand.cpp" />
-    <ClCompile Include="..\102598045_POSD\SetCardinalityCommand.cpp" />
-    <ClCompile Include="..\102598045_POSD\SetNodeNameCommand.cpp" />
-    <ClCompile Include="..\102598045_POSD\SetPrimaryKeyCommand.cpp" />
     <ClCompile Include="..\102598045_POSD\StringSymbol.cpp" />
     <ClCompile Include="..\102598045_POSD\StringUtil.cpp" />
     <ClCompile Include="..\102598045_POSD\Table.cpp" />
     <ClCompile Include="..\102598045_POSD\TableManager.cpp" />
     <ClCompile Include="..\102598045_POSD\TableUtil.cpp" />
     <ClCompile Include="..\102598045_POSD\TextUI.cpp" />
-    <ClCompile Include="..\102598045_POSD\UndoCommand.cpp" />
-    <ClCompile Include="..\102598045_POSD\UnexecutableCommand.cpp" />
-    <ClCompile Include="..\102598045_POSD\ValidConnectedReceiver.cpp" />
     <ClCompile Include="ApplicationSetting.cpp" />
     <ClCompile Include="FileMenuItem.cpp" />
     <ClCompile Include="GeneratedFiles\Debug\moc_GraphicalUI.cpp">
@@ -161,6 +143,7 @@
     </ClCompile>
     <ClCompile Include="GraphicalUI.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="TextPresentation.cpp" />
     <ClCompile Include="TextUIProcess.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -184,15 +167,11 @@
     <ClInclude Include="ComponentType.h" />
     <ClInclude Include="ComponentUtil.h" />
     <ClInclude Include="ComponentWidget.h" />
-    <ClInclude Include="ConnectedERReceiver.h" />
     <ClInclude Include="ConnectedSelfException.h" />
     <ClInclude Include="ConnectionData.h" />
-    <ClInclude Include="ConnectionReceiverManager.h" />
     <ClInclude Include="ConnectNodeCommand.h" />
     <ClInclude Include="Connector.h" />
     <ClInclude Include="DeleteComponentCommand.h" />
-    <ClInclude Include="DisplayDiagramCommand.h" />
-    <ClInclude Include="DisplayTableCommand.h" />
     <ClInclude Include="Document.h" />
     <ClInclude Include="DuplicatedKeyException.h" />
     <ClInclude Include="EmptyCollectionException.h" />
@@ -201,14 +180,9 @@
     <ClInclude Include="ERModel.h" />
     <ClInclude Include="ERModelUtil.h" />
     <ClInclude Include="Exception.h" />
-    <ClInclude Include="ExitCommand.h" />
     <ClInclude Include="FileMenuItem.h" />
     <ClInclude Include="FileNotFoundException.h" />
-    <ClInclude Include="FindComponentCommand.h" />
-    <ClInclude Include="FindEntityCommand.h" />
-    <ClInclude Include="UndoCommand.h" />
-    <ClInclude Include="UnexecutableCommand.h" />
-    <ClInclude Include="ValidConnectedReceiver.h" />
+    <ClInclude Include="TextPresentation.h" />
     <CustomBuild Include="GraphicalUI.h">
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath);$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Moc%27ing GraphicalUI.h...</Message>
@@ -224,7 +198,6 @@
     <ClInclude Include="InputFileParser.h" />
     <ClInclude Include="InvalidConnectException.h" />
     <ClInclude Include="InvalidNodeTypeException.h" />
-    <ClInclude Include="OpenFileCommand.h" />
     <ClInclude Include="NoConnectionException.h" />
     <ClInclude Include="Node.h" />
     <ClInclude Include="NodeConnectionType.h" />
@@ -232,7 +205,7 @@
     <ClInclude Include="NoSuchNodeException.h" />
     <ClInclude Include="NullPointerException.h" />
     <ClInclude Include="OutputFileParser.h" />
-    <CustomBuild Include="Presentation.h">
+    <CustomBuild Include="GraphicalPresentation.h">
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(AdditionalInputs)</AdditionalInputs>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
       </Message>
@@ -248,16 +221,9 @@
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
       </Command>
     </CustomBuild>
-    <ClInclude Include="Receiver.h" />
-    <ClInclude Include="ReceiverManager.h" />
-    <ClInclude Include="RedoCommand.h" />
     <ClInclude Include="RelationShip.h" />
     <ClInclude Include="RelationType.h" />
     <ClInclude Include="ReorderComponentsUtil.h" />
-    <ClInclude Include="SaveFileCommand.h" />
-    <ClInclude Include="SetCardinalityCommand.h" />
-    <ClInclude Include="SetNodeNameCommand.h" />
-    <ClInclude Include="SetPrimaryKeyCommand.h" />
     <ClInclude Include="StackUtil.h" />
     <ClInclude Include="StringSymbol.h" />
     <ClInclude Include="StringUtil.h" />

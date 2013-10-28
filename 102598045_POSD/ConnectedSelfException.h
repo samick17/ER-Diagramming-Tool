@@ -4,6 +4,6 @@
 
 class ConnectedSelfException : public ComponentException{
 public:
-	ConnectedSelfException(string nodeID);
-	~ConnectedSelfException();
+    ConnectedSelfException(string nodeID);
+    ~ConnectedSelfException();
 };

@@ -5,7 +5,7 @@
 
 class ReorderComponentsUtilTest : public testing::Test{
 protected:
-	virtual void SetUp();
-	virtual void TearDown();
-	HashMap<string,Component*> componentMap;
+    virtual void SetUp();
+    virtual void TearDown();
+    HashMap<string,Component*> componentMap;
 };

@@ -5,17 +5,17 @@
 #include "AttributeType.h"
 
 class Attribute : public Node{
-public:		
-	Attribute(ComponentData componentData);
-	~Attribute();
+public:        
+    Attribute(ComponentData componentData);
+    ~Attribute();
 
-	string getType();
-	
-	int canConnectTo(Component* target);
-	bool hasSizeToConnect();
+    string getType();
+    
+    int canConnectTo(Component* target);
+    bool hasSizeToConnect();
 
-	bool isPrimaryKey();
-	void setAsPrimaryKey();
+    bool isPrimaryKey();
+    void setAsPrimaryKey();
 private:
-	int attributeType;
+    int attributeType;
 };

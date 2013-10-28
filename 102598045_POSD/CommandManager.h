@@ -1,7 +1,6 @@
 #pragma once
 
-#include "UnexecutableCommand.h"
-#include "Presentation.h"
+#include "Command.h"
 #include <stack>
 
 class ERModel;
@@ -10,21 +9,18 @@ class Command;
 class Presentation;
 
 class CommandManager{
-	friend class CommandManagerTest;
-	FRIEND_TEST(CommandManagerTest,testCommandManager);
+    friend class CommandManagerTest;
+    FRIEND_TEST(CommandManagerTest,testCommandManager);
 public:
-	CommandManager(Presentation* presentation);
-	~CommandManager();
-	
-	Presentation* getPresentation();
+    CommandManager();
+    ~CommandManager();
 
-	void execute(UnexecutableCommand* command);
-	void redo();
-	void undo();
+    void execute(Command* command);
+    void redo();
+    void undo();
 
-	void popAllStack();
+    void popAllStack();
 private:
-	stack<UnexecutableCommand*> redoCommandsStack;
-	stack<UnexecutableCommand*> undoCommandsStack;
-	Presentation* presentation;
+    stack<Command*> redoCommandsStack;
+    stack<Command*> undoCommandsStack;
 };

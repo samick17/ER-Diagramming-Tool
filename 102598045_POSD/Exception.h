@@ -6,11 +6,11 @@ using namespace std;
 
 class Exception{
 public:
-	Exception();
-	Exception(string message);
-	virtual ~Exception();
+    Exception();
+    Exception(string message);
+    virtual ~Exception();
 
-	string getMessage();
+    string getMessage();
 protected:
-	string message;
+    string message;
 };

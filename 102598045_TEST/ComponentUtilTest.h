@@ -8,11 +8,11 @@
 
 class ComponentUtilTest : public testing::Test{
 protected:
-	Attribute* attribute;
-	Entity* entity;
-	RelationShip* relationShip;
-	Connector* connector1;
-	Connector* connector2;
-	virtual void SetUp();
-	virtual void TearDown();
+    Attribute* attribute;
+    Entity* entity;
+    RelationShip* relationShip;
+    Connector* connector1;
+    Connector* connector2;
+    virtual void SetUp();
+    virtual void TearDown();
 };

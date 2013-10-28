@@ -6,5 +6,5 @@ using namespace std;
 
 class DirectoryUtil{
 public:
-	static string getCurrentWorkingDirectory();
+    static string getCurrentWorkingDirectory();
 };

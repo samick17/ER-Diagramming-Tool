@@ -5,7 +5,7 @@
 
 class DocumentTest : public testing::Test{
 protected:
-	Document* document;
-	virtual void SetUp();
-	virtual void TearDown();
+    Document* document;
+    virtual void SetUp();
+    virtual void TearDown();
 };

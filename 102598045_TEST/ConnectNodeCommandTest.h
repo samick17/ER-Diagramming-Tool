@@ -2,12 +2,15 @@
 
 #include <gtest/gtest.h>
 #include "ERModel.h"
-#include "Presentation.h"
+#include "TextPresentation.h"
 
 class ConnectNodeCommandTest : public testing::Test{
 protected:
-	ERModel erModel;
-	Presentation* presentation;
-	virtual void SetUp();
-	virtual void TearDown();
+	Entity* entity;
+	Attribute* attribute;
+	RelationShip* relationShip;
+    ERModel erModel;
+    TextPresentation* textPresentation;
+    virtual void SetUp();
+    virtual void TearDown();
 };

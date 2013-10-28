@@ -1,25 +1,23 @@
 #pragma once
 
 #include <string>
-#include "Presentation.h"
+#include "TextPresentation.h"
 #include "Command.h"
 
 using namespace std;
 
-class Presentation;
-
-typedef Command* (*NewCommandFunction)(Presentation*);
+typedef void (TextPresentation::*CommandInstruction)();
 
 struct CommandData{
 public:
-	CommandData(string key,string info,NewCommandFunction newCommandFunc);
-	~CommandData();
+    CommandData(string key,string info,CommandInstruction commandInstruction);
+    ~CommandData();
 
-	string getKey();
-	string getInfo();
-	NewCommandFunction getNewCommandFunction();
+    string getKey();
+    string getInfo();
+    CommandInstruction getCommandInstruction();
 private:
-	string key;
-	string info;
-	NewCommandFunction newCommandFunction;
+    string key;
+    string info;
+    CommandInstruction commandInstruction;
 };
