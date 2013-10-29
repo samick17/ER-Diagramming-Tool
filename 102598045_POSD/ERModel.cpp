@@ -27,12 +27,14 @@ Node* ERModel::addNode(string componentType){
 //insert component in componentMap, if no such key
 void ERModel::insertComponent(Component* component){
     string componentID = component->getID();
-    this->componentMap.put(component->getID(),component);
+    if(!this->componentMap.containsKey(component->getID()))
+        this->componentMap.put(component->getID(),component);
 }
 //
 void ERModel::insertComponentAt(Component* component,unsigned int index){
     string componentID = component->getID();
-    this->componentMap.insertAt(component->getID(),component,index);
+    if(!this->componentMap.containsKey(component->getID()))
+        this->componentMap.insertAt(component->getID(),component,index);
 }
 //erase component in componentMap, if contains key
 void ERModel::eraseComponent(Component* component){

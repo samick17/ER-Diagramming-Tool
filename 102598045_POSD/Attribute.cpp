@@ -20,7 +20,7 @@ int Attribute::canConnectTo(Component* target){
     int canConnect = Node::canConnectTo(target);
 
     if(typeid(*target).name() == typeid(RelationShip).name())
-        throw InvalidConnectException(this->getID(),target->getID());    
+        throw InvalidConnectException(this->getID(),target->getID());
     
     return canConnect;
 }

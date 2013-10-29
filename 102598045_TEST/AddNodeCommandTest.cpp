@@ -33,14 +33,16 @@ TEST_F(AddNodeCommandTest,testAddNodeCommand){
     ASSERT_EQ(1,this->erModel.getAllComponents().size());
     addNodeCommand2.execute();
     ASSERT_EQ(2,this->erModel.getAllComponents().size());
+	addNodeCommand2.unExecute();
+	ASSERT_EQ(1,this->erModel.getAllComponents().size());
 
     Node* relationShip = new RelationShip(ComponentData("2","Has"));
 	AddNodeCommand addNodeCommand3 = AddNodeCommand(&this->erModel,relationShip);
 
     addNodeCommand3.execute();
-    ASSERT_EQ(3,this->erModel.getAllComponents().size());
-    addNodeCommand3.unExecute();
     ASSERT_EQ(2,this->erModel.getAllComponents().size());
+    addNodeCommand3.unExecute();
+    ASSERT_EQ(1,this->erModel.getAllComponents().size());
     addNodeCommand3.execute();
-    ASSERT_EQ(3,this->erModel.getAllComponents().size());
+    ASSERT_EQ(2,this->erModel.getAllComponents().size());
 }

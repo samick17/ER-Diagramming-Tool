@@ -23,13 +23,13 @@ TEST_F(AttributeTest,testGetType){
 
 TEST_F(AttributeTest,testCanConnectTo){
     ASSERT_THROW(this->attribute->canConnectTo(this->relationShip),InvalidConnectException);
-    ASSERT_EQ(NodeConnectionType::ValidConnect,this->attribute->canConnectTo(this->entity));    
-    ASSERT_THROW(this->attribute->canConnectTo(this->attribute),ConnectedSelfException);    
+    ASSERT_EQ(NodeConnectionType::ValidConnect,this->attribute->canConnectTo(this->entity));
+    ASSERT_THROW(this->attribute->canConnectTo(this->attribute),ConnectedSelfException);
 
     Connector connector(ComponentData("3",""));    
     ComponentUtil::connectWithEachOther(this->attribute,this->entity,&connector);
 
-    ASSERT_THROW(this->attribute->canConnectTo(this->entity),HasConnectedException);    
+    ASSERT_THROW(this->attribute->canConnectTo(this->entity),HasConnectedException);
     ASSERT_THROW(this->attribute->canConnectTo(&Attribute(ComponentData("",""))),InvalidConnectException);
     ASSERT_THROW(this->attribute->canConnectTo(&Entity(ComponentData("",""))),InvalidConnectException);
 }

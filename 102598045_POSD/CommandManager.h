@@ -10,7 +10,7 @@ class Presentation;
 
 class CommandManager{
     friend class CommandManagerTest;
-    FRIEND_TEST(CommandManagerTest,testCommandManager);
+    FRIEND_TEST(CommandManagerTest,testPopAllStack);
 public:
     CommandManager();
     ~CommandManager();

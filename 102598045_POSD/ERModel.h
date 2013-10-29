@@ -10,7 +10,7 @@ class ERModel{
     friend class ERModelTest;
     FRIEND_TEST(ERModelTest,testAddNode);
     FRIEND_TEST(ERModelTest,testInsertComponent);
-    FRIEND_TEST(ERModelTest,testEraseComponent);    
+    FRIEND_TEST(ERModelTest,testEraseComponent);
     FRIEND_TEST(ERModelTest,testAddConnection);
     FRIEND_TEST(ERModelTest,testGetNodesConnector);
     FRIEND_TEST(ERModelTest,testGetAllComponents);
@@ -18,6 +18,9 @@ class ERModel{
     FRIEND_TEST(ERModelTest,testGetAllEntities);
     FRIEND_TEST(ERModelTest,testGetAllRelationShips);
     FRIEND_TEST(ERModelTest,testClearComponentMap);
+	friend class CommandManagerTest;
+	FRIEND_TEST(CommandManagerTest,testCommandManager);
+	FRIEND_TEST(CommandManagerTest,testRedoUndo);
     friend class IntegrationTest;
     FRIEND_TEST(IntegrationTest,testIsPrimaryExist);
     FRIEND_TEST(IntegrationTest,testUndoDeleteComponent);

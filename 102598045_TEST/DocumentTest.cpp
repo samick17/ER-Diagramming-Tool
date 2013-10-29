@@ -4,12 +4,12 @@
 #include "FileNotFoundException.h"
 
 void DocumentTest::SetUp(){
-    string filepath = DirectoryUtil::getCurrentWorkingDirectory()+"/Debug/testDocument.txt";
+    string filepath = DirectoryUtil::getCurrentWorkingDirectory()+"/testDocument.txt";
     this->document = new Document(filepath);
 }
 
 void DocumentTest::TearDown(){
-    string filepath = DirectoryUtil::getCurrentWorkingDirectory()+"/Debug/testDocument.txt";
+    string filepath = DirectoryUtil::getCurrentWorkingDirectory()+"/testDocument.txt";
     remove(filepath.c_str());
     delete this->document;
 }
@@ -35,7 +35,7 @@ TEST_F(DocumentTest,testDocument){
     this->document->saveFile();
     //reconstruct
     delete this->document;
-    string filepath = DirectoryUtil::getCurrentWorkingDirectory()+"/Debug/testDocument.txt";
+    string filepath = DirectoryUtil::getCurrentWorkingDirectory()+"/testDocument.txt";
     this->document = new Document(filepath);
     //test open    
     this->document->openFile();
@@ -44,7 +44,7 @@ TEST_F(DocumentTest,testDocument){
     ASSERT_EQ("Hello~~",this->document->readLine());
     ASSERT_EQ("_)*(@&*^@$",this->document->readLine());
     //test open not existed file
-    filepath = DirectoryUtil::getCurrentWorkingDirectory()+"/Debug/*(&#(*!S!).*!*(!W";
+    filepath = DirectoryUtil::getCurrentWorkingDirectory()+"/*(&#(*!S!).*!*(!W";
     this->document->filePath = filepath;
     ASSERT_THROW(this->document->openFile(),FileNotFoundException);
 }

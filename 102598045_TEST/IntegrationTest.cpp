@@ -15,7 +15,7 @@ void IntegrationTest::SetUp(){
     this->textPresentation = new TextPresentation(&erModel);
     ASSERT_EQ(0,this->erModel.getAllComponents().size());
     //set file directory
-    string directory = DirectoryUtil::getCurrentWorkingDirectory()+"/Debug/testdata";
+    string directory = DirectoryUtil::getCurrentWorkingDirectory()+"/testdata";
     _mkdir(directory.c_str());
     //save file to directory
     string filePath = directory+"/test_file1.erd";
@@ -39,7 +39,7 @@ void IntegrationTest::SetUp(){
 
 void IntegrationTest::TearDown(){    
     //delete file
-    string directory = DirectoryUtil::getCurrentWorkingDirectory()+"/Debug/testdata";
+    string directory = DirectoryUtil::getCurrentWorkingDirectory()+"/testdata";
     string filePath = directory+"/test_file1.erd";    
     remove(filePath.c_str());
     _rmdir(directory.c_str());
