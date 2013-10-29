@@ -16,6 +16,15 @@ TextUI::TextUI(TextPresentation* textPresentation) : textPresentation(textPresen
 TextUI::~TextUI(){
 }
 
+string TextUI::getInput(){
+    string input;
+	while(input.empty()){
+        cout<<">";
+        getline(cin,input);
+    }
+    return input;
+}
+
 void TextUI::displayMenu(){
     this->displayTitle("Commands Menu");
     cout<<" +------------------------------------------------------+"<<endl;
@@ -109,7 +118,7 @@ void TextUI::displayStringWithComma(string strStart,vector<string> stringVector,
 }
 
 void TextUI::processCommand(){
-    string input = this->textPresentation->getInput();
+    string input = this->getInput();
     this->textPresentation->processCommand(input);
 }
 

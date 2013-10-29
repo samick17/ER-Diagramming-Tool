@@ -10,7 +10,6 @@ class TextUIProcess : public QThread{
 public:
     TextUIProcess(TextUI* textUI);
     ~TextUIProcess();
-
 protected:
     void run();
 private:

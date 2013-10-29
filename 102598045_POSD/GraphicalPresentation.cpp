@@ -35,9 +35,9 @@ void GraphicalPresentation::close(){
 
 string GraphicalPresentation::getInput(){
     string input;    
-    while(input.length() == 0){
+	while(input.empty()){
         cout<<">";
-        getline(cin,input);        
+        getline(cin,input);
     }
     return input;
 }

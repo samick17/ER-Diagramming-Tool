@@ -6,7 +6,7 @@ TextUIProcess::TextUIProcess(TextUI* textUI) : textUI(textUI){
 TextUIProcess::~TextUIProcess(){
 }
 
-void TextUIProcess::run(){    
+void TextUIProcess::run(){
     while(true){
         this->textUI->displayMenu();
         this->textUI->processCommand();

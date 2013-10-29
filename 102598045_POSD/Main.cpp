@@ -14,13 +14,13 @@ int main(int argc, char *argv[]){
     TextPresentation textPresentation(&erModel);
     TextUI textUI(&textPresentation);
     textPresentation.setTextUI(&textUI);
-	
+
     TextUIProcess textUIProcess(&textUI);
     textUIProcess.start();
 
-	GraphicalPresentation graphicalPresentation(&erModel);
+    GraphicalPresentation graphicalPresentation(&erModel);
     GraphicalUI gui(&graphicalPresentation);
     gui.show();
-    
+
     return app.exec();
 }

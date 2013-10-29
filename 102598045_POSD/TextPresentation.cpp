@@ -29,25 +29,9 @@ ERModel* TextPresentation::getERModel(){
     return this->erModel;
 }
 
-//if alive == false,program will close
-void TextPresentation::close(){
-    this->alive = false;
-    cout<<"GooBye!"<<endl;
-    exit(0);
-}
-
-string TextPresentation::getInput(){
-    string input;
-    while(input.length() == 0){
-        cout<<">";
-        getline(cin,input);
-    }
-    return input;
-}
-
 void TextPresentation::openFile(){
     cout<<"Please input the file name: "<<endl;
-    string filePath = this->getInput();
+    string filePath = this->textUI->getInput();
     InputFileParser inputFileParser;
     inputFileParser.parseFileToModel(filePath,erModel);
     this->displayDiagram();
@@ -55,9 +39,15 @@ void TextPresentation::openFile(){
 
 void TextPresentation::saveFile(){
     cout<<"Please input the file name: "<<endl;
-    string filePath = this->getInput();
+	string filePath = this->textUI->getInput();
     OutputFileParser outputFileParser = OutputFileParser(this->erModel->getAllComponents());
     outputFileParser.parseModelToFile(filePath);
+}
+//if alive == false,program will close
+void TextPresentation::close(){
+    this->alive = false;
+    cout<<"GooBye!"<<endl;
+    exit(0);
 }
 
 void TextPresentation::displayDiagram(){
@@ -108,7 +98,7 @@ Component* TextPresentation::findComponent(){
     Component* find = NULL;
     while(find == NULL){
         try{
-            input = this->getInput();
+            input = this->textUI->getInput();
             find = this->erModel->getComponentByID(input);
         }
         catch(Exception& exception){
@@ -150,7 +140,7 @@ void TextPresentation::addNode(){
     Node* node = NULL;
     while(node == NULL){
         try{
-            string input = this->getInput();
+            string input = this->textUI->getInput();
             if(input == ComponentType::TypeConnector)
                 throw InvalidNodeTypeException();
             node = this->erModel->addNode(input);
@@ -167,7 +157,7 @@ void TextPresentation::deleteComponent(){
    //find node to be connect
     cout<<"Please enter the component ID"<<endl;
     Component* componentToDelete = this->findComponent();
-	this->erModel->deleteComponent(componentToDelete);
+    this->erModel->deleteComponent(componentToDelete);
     cout<<"The component '"+componentToDelete->getID()+"' has been deleted. "<<endl;
 }
 
@@ -208,26 +198,26 @@ void TextPresentation::setCardinality(Component* firstNode,Component* secondNode
     cout<<"Enter the type of the cardinality: "<<endl;
     cout<<"[0]1 [1]N"<<endl;
     cout<<"The node '"+firstNode->getID()+"' has been connected to the node '"+secondNode->getID()+"'."<<endl;    
-    string input = this->getInput();
+    string input = this->textUI->getInput();
 
     while(!cardinalityPairMap.containsKey(input)){
         cout<<"the cardinality you entered doesn't exist. Please entered a valid one again"<<endl;        
-        input = this->getInput();
+        input = this->textUI->getInput();
     }
+
     Connector* connection = erModel->getNodesConnector(firstNode,secondNode);
     string relationName = cardinalityPairMap.get(input);
     connection->setName(relationName);
-
     cout<<"Its cardinality of the relationship is '"+relationName+"'."<<endl;
 }
 
 void TextPresentation::setNodeName(Node* nodeToSetName){
     cout<<"Enter the name of this node:"<<endl;
-    string input = this->getInput();
+    string input = this->textUI->getInput();
     //node name out of range
     while(input.size() >= TABLE_WIDTH){
         cout<<"The name you entered is too long,please enter a concise one again."<<endl;
-        input = this->getInput();
+        input = this->textUI->getInput();
     }
 
     nodeToSetName->setName(input);
@@ -237,22 +227,19 @@ void TextPresentation::setNodeName(Node* nodeToSetName){
 void TextPresentation::setPrimaryKey(){
     this->displayEntities();
     cout<<"Enter the ID of the entity: "<<endl;
-    Component* node = this->findEntity();
-    Entity* entity = static_cast<Entity*>(node);
+    Entity* entity = static_cast<Entity*>(this->findEntity());
     this->displayEntityAttributes(entity);
     cout<<"Enter the IDs of the attributes (use a comma to separate two attributes):"<<endl;
     vector<string> attributeIDVector = setEntityAttributesPrimaryKey(entity);
     //display Set Primary Key Result
-    cout<<"The entity '"+entity->getID()+"' has the primary key "<<endl;
-    cout<<"("+StringUtil::appendWithComma(attributeIDVector)+")."<<endl;
-    cout<<endl;
+    cout<<"The entity '"+entity->getID()+"' has the primary key ("+StringUtil::appendWithComma(attributeIDVector)+")."<<endl;
 }
 
 vector<string> TextPresentation::setEntityAttributesPrimaryKey(Entity* entity){
     vector<string> attributeIDVector;
     while(true){
         try{
-            string input = this->getInput();
+            string input = this->textUI->getInput();
             attributeIDVector = StringUtil::split(input,CharSymbol::Comma);
             entity->setPrimaryKey(attributeIDVector);
             break;
@@ -262,12 +249,6 @@ vector<string> TextPresentation::setEntityAttributesPrimaryKey(Entity* entity){
         }
     }
     return  attributeIDVector;
-}
-
-void TextPresentation::logMessage(string message,bool nextLine){
-    cout<<message;
-    if(nextLine)
-        cout<<endl;
 }
 
 void TextPresentation::setTextUI(TextUI* textUI){

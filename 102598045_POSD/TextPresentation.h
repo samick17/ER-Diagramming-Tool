@@ -21,11 +21,9 @@ public:
 
     ERModel* getERModel();
 
-    string getInput();
-    void close();
-
     void openFile();
     void saveFile();
+    void close();
 
     void displayDiagram();
     void displayTable();
@@ -46,7 +44,6 @@ public:
     void setCardinality(Component* firstNode,Component* secondNode);
     void setNodeName(Node* nodeToSetName);
     void setPrimaryKey();
-    void logMessage(string message,bool nextLine);
 
     void setTextUI(TextUI* textUI);
 private:    

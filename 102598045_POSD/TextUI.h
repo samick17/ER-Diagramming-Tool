@@ -9,6 +9,8 @@ class TextUI{
 public:    
     TextUI(TextPresentation* textPresentation);
     ~TextUI();
+
+	string getInput();
     
     void displayMenu();
     void displayTitle(string title);
