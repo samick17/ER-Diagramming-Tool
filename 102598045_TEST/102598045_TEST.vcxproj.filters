@@ -150,9 +150,6 @@
     <ClCompile Include="InstructionMenuTest.cpp">
       <Filter>Unit Testing Files\MenuTest</Filter>
     </ClCompile>
-    <ClCompile Include="..\102598045_POSD\TextUIProcess.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\102598045_POSD\TextUI.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -207,9 +204,6 @@
     <ClCompile Include="..\102598045_POSD\NoConnectionException.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\102598045_POSD\Main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\102598045_POSD\InvalidNodeTypeException.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -228,25 +222,13 @@
     <ClCompile Include="..\102598045_POSD\HasConnectedException.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\102598045_POSD\GraphicalUI.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\102598045_POSD\GraphicalPresentation.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\102598045_POSD\FileNotFoundException.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\102598045_POSD\FileMenuItem.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\102598045_POSD\Exception.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\102598045_POSD\ERModel.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\102598045_POSD\EntityWidget.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\102598045_POSD\Entity.cpp">
@@ -274,9 +256,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\102598045_POSD\ConnectedSelfException.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\102598045_POSD\ComponentWidget.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\102598045_POSD\ComponentUtil.cpp">
@@ -328,6 +307,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\102598045_POSD\ActionID.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DirectoryUtil.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

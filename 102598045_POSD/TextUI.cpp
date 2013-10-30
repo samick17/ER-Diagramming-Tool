@@ -52,7 +52,7 @@ void TextUI::displayTable(HashMap<string,Table*> tableMap){
     for each(Table* table in tableMap){
         string entityName = table->getEntityName();
         int len = TABLE_WIDTH-entityName.size();
-        cout<<"   "<<entityName<<setw(len)<<"|";        
+        cout<<"   "<<entityName<<setw(len)<<"|";
         this->displayStringWithComma(" PK(",table->getAllPrimaryKeyAttributesNameVector(),")");
         this->displayStringWithComma(StringSymbol::Space,table->getAllDefaultKeyAttributesNameVector(),StringSymbol::Empty);        
         this->displayStringWithComma(" FK(",table->getAllForeignKeyAttributesNameVector(),")");
