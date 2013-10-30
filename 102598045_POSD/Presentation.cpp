@@ -2,7 +2,6 @@
 #include "ERModel.h"
 #include "OutputFileParser.h"
 #include "InputFileParser.h"
-#include <Windows.h>
 
 Presentation::Presentation(ERModel* erModel) : erModel(erModel){
 }

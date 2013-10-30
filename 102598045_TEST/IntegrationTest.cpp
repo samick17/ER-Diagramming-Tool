@@ -10,10 +10,12 @@
 #include "ComponentType.h"
 #include "DeleteComponentCommand.h"
 #include "ConnectNodeCommand.h"
+#include "TextUIPresenter.h"
 
 void IntegrationTest::SetUp(){
 	this->presentation = new Presentation(&this->erModel);
     this->textPresentation = new TextPresentation(this->presentation);
+	this->textUIPresenter = new TextUIPresenter(this->textPresentation);
     ASSERT_EQ(0,this->erModel.getAllComponents().size());
     //set file directory
     string directory = DirectoryUtil::getCurrentWorkingDirectory()+"/testdata";
@@ -110,8 +112,10 @@ TEST_F(IntegrationTest,testLoadFileNotExist){
 
 TEST_F(IntegrationTest,testIsPrimaryExist){
     //Display Table
-    this->textPresentation->displayTable();
-
+	
+	//this->textPresentation->textUIPresenter->displayTable();
+	this->textUIPresenter->displayTable();
+	
     Attribute* attributeEmp_ID = static_cast<Attribute*>(this->erModel.componentMap.get("1"));
     Attribute* attributeName = static_cast<Attribute*>(this->erModel.componentMap.get("3"));
     Attribute* attributePC_ID = static_cast<Attribute*>(this->erModel.componentMap.get("5"));
@@ -270,7 +274,7 @@ TEST_F(IntegrationTest,testCommonUsage){
     ASSERT_EQ(1,entityWorkDiary->getPrimaryKeyAttributes().size());
     ASSERT_EQ(attributeWD_ID,entityWorkDiary->getPrimaryKeyAttributes().get(attributeWD_ID->getID()));
     //Display Table
-    this->textPresentation->displayTable();
+    this->textUIPresenter->displayTable();
     //Assert "Work Diary" exists
     ASSERT_EQ(entityWorkDiary,this->erModel.getComponentByID(entityWorkDiary->getID()));
     //Assert "Work Diary" primary key is "WD_ID"
@@ -297,7 +301,7 @@ TEST_F(IntegrationTest,testCommonUsage){
     ASSERT_EQ(false,entityWorkDiary->hasConnectedTo(node21));
     ASSERT_EQ(false,node21->hasConnectedTo(entityWorkDiary));
     //Display Table
-    this->textPresentation->displayTable();    
+    this->textUIPresenter->displayTable();    
     //Assert there is no such node "Work Diary"
     ASSERT_THROW(this->erModel.getComponentByID(entityWorkDiary->getID()),NoSuchNodeException);
     //Assert Engineer's primary key is "Name" and "Emp_ID"
@@ -307,7 +311,7 @@ TEST_F(IntegrationTest,testCommonUsage){
     //Undo
     this->erModel.undo();
     //Display Table
-    this->textPresentation->displayTable();
+    this->textUIPresenter->displayTable();
     //Assert "Work Diary" primary key is "WD_ID"
     ASSERT_EQ(attributeWD_ID,entityWorkDiary->getPrimaryKeyAttributes().get(attributeWD_ID->getID()));
     //Redo

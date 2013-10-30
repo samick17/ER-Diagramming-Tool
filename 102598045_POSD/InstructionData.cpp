@@ -1,6 +1,7 @@
 #include "InstructionData.h"
+#include "TextInstruction.h"
 
-InstructionData::InstructionData(string key,string info,TextInstruction textInstruction) : key(key),info(info),textInstruction(textInstruction){
+InstructionData::InstructionData(string key,string info,NewInstructionFunction newInstructionFunction) : key(key),info(info),newInstructionFunction(newInstructionFunction){
 }
 
 InstructionData::~InstructionData(){
@@ -14,6 +15,6 @@ string InstructionData::getInfo(){
     return this->info;
 }
 //the function pointer to new command instance
-TextInstruction InstructionData::getTextInstruction(){
-    return this->textInstruction;
+NewInstructionFunction InstructionData::getNewInstructionFunction(){
+	return this->newInstructionFunction;
 }

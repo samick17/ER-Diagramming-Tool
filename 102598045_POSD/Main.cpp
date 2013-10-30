@@ -9,16 +9,14 @@
 
 int main(int argc, char *argv[]){
     QApplication  app(argc, argv);
-    
+
     ERModel erModel;
 
-	Presentation presentation(&erModel);
+    Presentation presentation(&erModel);
 
     TextPresentation textPresentation(&presentation);
     TextUI textUI(&textPresentation);
-    textPresentation.setTextUI(&textUI);
-
-	TextUIProcess textUIProcess(&textUI);
+    TextUIProcess textUIProcess(&textUI);
     textUIProcess.start();
 
     GraphicalPresentation graphicalPresentation(&presentation);

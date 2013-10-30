@@ -67,6 +67,45 @@
     <Filter Include="Unit Testing Files\MenuTest">
       <UniqueIdentifier>{ac94c765-7196-4229-a1f1-cb902ceaf772}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Model">
+      <UniqueIdentifier>{9136129e-5827-470c-8e50-9c3081ad0c0d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Constants">
+      <UniqueIdentifier>{f1814239-90bd-4f16-9a85-2622334e7224}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Command">
+      <UniqueIdentifier>{dcb63c53-f7ea-4342-aa7e-73b00070dd2f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Exception">
+      <UniqueIdentifier>{ee2b8b49-1f0f-4228-a502-5ad8c70a0ad0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\View">
+      <UniqueIdentifier>{9920bdf6-dee9-45b0-9ee0-668355c3e3ac}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\View\TextUI">
+      <UniqueIdentifier>{dd8c442d-d2f0-49a7-a7c6-38540081271d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\View\TextUI\TextInstruction">
+      <UniqueIdentifier>{46ea1162-a57a-4066-80d7-f5cfa5b2eebf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Manager">
+      <UniqueIdentifier>{02b0abf8-0edc-41b4-a7ce-1fa489976ce3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Struct">
+      <UniqueIdentifier>{11acfbd3-c742-400a-960c-bc896f04e2df}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Util">
+      <UniqueIdentifier>{f1e2dcbe-42d6-40f1-a8ed-e4d1c052427b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Factory">
+      <UniqueIdentifier>{821db335-5a71-449d-aec1-1e0a5790ecfd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Parser">
+      <UniqueIdentifier>{0cb096b8-b75e-47e0-ab2e-18fd0bf5d864}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Menu">
+      <UniqueIdentifier>{1baad05b-f73f-49c7-96ad-322a4e16dcc5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MainTest.cpp">
@@ -150,167 +189,206 @@
     <ClCompile Include="InstructionMenuTest.cpp">
       <Filter>Unit Testing Files\MenuTest</Filter>
     </ClCompile>
-    <ClCompile Include="..\102598045_POSD\TextUI.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\102598045_POSD\TextPresentation.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\102598045_POSD\TableUtil.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\102598045_POSD\TableManager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\102598045_POSD\Table.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\102598045_POSD\StringUtil.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\102598045_POSD\StringSymbol.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\102598045_POSD\ReorderComponentsUtil.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\102598045_POSD\RelationType.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\102598045_POSD\RelationShip.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\102598045_POSD\Presentation.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\102598045_POSD\OutputFileParser.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\102598045_POSD\NullPointerException.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\102598045_POSD\NoSuchNodeException.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\102598045_POSD\NoSuchKeyException.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\102598045_POSD\NodeConnectionType.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\102598045_POSD\Node.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\102598045_POSD\NoConnectionException.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\102598045_POSD\InvalidNodeTypeException.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\102598045_POSD\InvalidConnectException.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\102598045_POSD\InstructionMenu.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\102598045_POSD\InstructionData.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\102598045_POSD\InputFileParser.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\102598045_POSD\HasConnectedException.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\102598045_POSD\FileNotFoundException.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\102598045_POSD\Exception.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\102598045_POSD\ERModel.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\102598045_POSD\Entity.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\102598045_POSD\EmptyCollectionException.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\102598045_POSD\DuplicatedKeyException.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\102598045_POSD\Document.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\102598045_POSD\DeleteComponentCommand.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\102598045_POSD\Connector.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\102598045_POSD\ConnectNodeCommand.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\102598045_POSD\ConnectionData.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\102598045_POSD\ConnectedSelfException.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\102598045_POSD\ComponentUtil.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\102598045_POSD\ComponentType.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\102598045_POSD\ComponentFactory.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\102598045_POSD\ComponentException.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\102598045_POSD\ComponentData.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\102598045_POSD\ComponentConnectionSize.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\102598045_POSD\Component.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\102598045_POSD\CommandManager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\102598045_POSD\Command.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\102598045_POSD\CollectionType.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\102598045_POSD\CollectionException.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\102598045_POSD\CharSymbol.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\102598045_POSD\AttributeType.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\102598045_POSD\Attribute.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="..\102598045_POSD\AddNodeCommand.cpp">
+      <Filter>Source Files\Command</Filter>
     </ClCompile>
     <ClCompile Include="..\102598045_POSD\ApplicationSetting.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\102598045_POSD\AddNodeCommand.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Constants</Filter>
     </ClCompile>
     <ClCompile Include="..\102598045_POSD\ActionID.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Constants</Filter>
+    </ClCompile>
+    <ClCompile Include="..\102598045_POSD\Attribute.cpp">
+      <Filter>Source Files\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="..\102598045_POSD\AttributeType.cpp">
+      <Filter>Source Files\Constants</Filter>
+    </ClCompile>
+    <ClCompile Include="..\102598045_POSD\CharSymbol.cpp">
+      <Filter>Source Files\Constants</Filter>
+    </ClCompile>
+    <ClCompile Include="..\102598045_POSD\AddNodeInstruction.cpp">
+      <Filter>Source Files\View\TextUI\TextInstruction</Filter>
+    </ClCompile>
+    <ClCompile Include="..\102598045_POSD\CloseInstruction.cpp">
+      <Filter>Source Files\View\TextUI\TextInstruction</Filter>
+    </ClCompile>
+    <ClCompile Include="..\102598045_POSD\Command.cpp">
+      <Filter>Source Files\Command</Filter>
+    </ClCompile>
+    <ClCompile Include="..\102598045_POSD\ComponentConnectionSize.cpp">
+      <Filter>Source Files\Constants</Filter>
+    </ClCompile>
+    <ClCompile Include="..\102598045_POSD\CollectionType.cpp">
+      <Filter>Source Files\Constants</Filter>
+    </ClCompile>
+    <ClCompile Include="..\102598045_POSD\ComponentType.cpp">
+      <Filter>Source Files\Constants</Filter>
+    </ClCompile>
+    <ClCompile Include="..\102598045_POSD\CollectionException.cpp">
+      <Filter>Source Files\Exception</Filter>
+    </ClCompile>
+    <ClCompile Include="..\102598045_POSD\ComponentException.cpp">
+      <Filter>Source Files\Exception</Filter>
+    </ClCompile>
+    <ClCompile Include="..\102598045_POSD\ConnectedSelfException.cpp">
+      <Filter>Source Files\Exception</Filter>
+    </ClCompile>
+    <ClCompile Include="..\102598045_POSD\DuplicatedKeyException.cpp">
+      <Filter>Source Files\Exception</Filter>
+    </ClCompile>
+    <ClCompile Include="..\102598045_POSD\EmptyCollectionException.cpp">
+      <Filter>Source Files\Exception</Filter>
+    </ClCompile>
+    <ClCompile Include="..\102598045_POSD\FileNotFoundException.cpp">
+      <Filter>Source Files\Exception</Filter>
+    </ClCompile>
+    <ClCompile Include="..\102598045_POSD\HasConnectedException.cpp">
+      <Filter>Source Files\Exception</Filter>
+    </ClCompile>
+    <ClCompile Include="..\102598045_POSD\InvalidConnectException.cpp">
+      <Filter>Source Files\Exception</Filter>
+    </ClCompile>
+    <ClCompile Include="..\102598045_POSD\InvalidNodeTypeException.cpp">
+      <Filter>Source Files\Exception</Filter>
+    </ClCompile>
+    <ClCompile Include="..\102598045_POSD\NoConnectionException.cpp">
+      <Filter>Source Files\Exception</Filter>
+    </ClCompile>
+    <ClCompile Include="..\102598045_POSD\NoSuchKeyException.cpp">
+      <Filter>Source Files\Exception</Filter>
+    </ClCompile>
+    <ClCompile Include="..\102598045_POSD\NoSuchNodeException.cpp">
+      <Filter>Source Files\Exception</Filter>
+    </ClCompile>
+    <ClCompile Include="..\102598045_POSD\NullPointerException.cpp">
+      <Filter>Source Files\Exception</Filter>
+    </ClCompile>
+    <ClCompile Include="..\102598045_POSD\Component.cpp">
+      <Filter>Source Files\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="..\102598045_POSD\Connector.cpp">
+      <Filter>Source Files\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="..\102598045_POSD\Entity.cpp">
+      <Filter>Source Files\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="..\102598045_POSD\Node.cpp">
+      <Filter>Source Files\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="..\102598045_POSD\RelationShip.cpp">
+      <Filter>Source Files\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="..\102598045_POSD\ERModel.cpp">
+      <Filter>Source Files\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="..\102598045_POSD\DeleteComponentCommand.cpp">
+      <Filter>Source Files\Command</Filter>
+    </ClCompile>
+    <ClCompile Include="..\102598045_POSD\ConnectNodeCommand.cpp">
+      <Filter>Source Files\Command</Filter>
+    </ClCompile>
+    <ClCompile Include="..\102598045_POSD\ConnectionData.cpp">
+      <Filter>Source Files\Struct</Filter>
+    </ClCompile>
+    <ClCompile Include="..\102598045_POSD\ComponentData.cpp">
+      <Filter>Source Files\Struct</Filter>
+    </ClCompile>
+    <ClCompile Include="..\102598045_POSD\InstructionData.cpp">
+      <Filter>Source Files\Struct</Filter>
+    </ClCompile>
+    <ClCompile Include="..\102598045_POSD\ConnectTwoNodesInstruction.cpp">
+      <Filter>Source Files\View\TextUI\TextInstruction</Filter>
+    </ClCompile>
+    <ClCompile Include="..\102598045_POSD\DeleteComponentInstruction.cpp">
+      <Filter>Source Files\View\TextUI\TextInstruction</Filter>
+    </ClCompile>
+    <ClCompile Include="..\102598045_POSD\DisplayDiagramInstruction.cpp">
+      <Filter>Source Files\View\TextUI\TextInstruction</Filter>
+    </ClCompile>
+    <ClCompile Include="..\102598045_POSD\DisplayTableInstruction.cpp">
+      <Filter>Source Files\View\TextUI\TextInstruction</Filter>
+    </ClCompile>
+    <ClCompile Include="..\102598045_POSD\SetPrimaryKeyInstruction.cpp">
+      <Filter>Source Files\View\TextUI\TextInstruction</Filter>
+    </ClCompile>
+    <ClCompile Include="..\102598045_POSD\UndoInstruction.cpp">
+      <Filter>Source Files\View\TextUI\TextInstruction</Filter>
+    </ClCompile>
+    <ClCompile Include="..\102598045_POSD\SaveFileInstruction.cpp">
+      <Filter>Source Files\View\TextUI\TextInstruction</Filter>
+    </ClCompile>
+    <ClCompile Include="..\102598045_POSD\TextInstruction.cpp">
+      <Filter>Source Files\View\TextUI\TextInstruction</Filter>
+    </ClCompile>
+    <ClCompile Include="..\102598045_POSD\CommandManager.cpp">
+      <Filter>Source Files\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="..\102598045_POSD\ComponentUtil.cpp">
+      <Filter>Source Files\Util</Filter>
     </ClCompile>
     <ClCompile Include="DirectoryUtil.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\102598045_POSD\ReorderComponentsUtil.cpp">
+      <Filter>Source Files\Util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\102598045_POSD\StringUtil.cpp">
+      <Filter>Source Files\Util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\102598045_POSD\TableUtil.cpp">
+      <Filter>Source Files\Util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\102598045_POSD\InputFileParser.cpp">
+      <Filter>Source Files\Parser</Filter>
+    </ClCompile>
+    <ClCompile Include="..\102598045_POSD\OutputFileParser.cpp">
+      <Filter>Source Files\Parser</Filter>
+    </ClCompile>
+    <ClCompile Include="..\102598045_POSD\Document.cpp">
+      <Filter>Source Files\Parser</Filter>
+    </ClCompile>
+    <ClCompile Include="..\102598045_POSD\InstructionMenu.cpp">
+      <Filter>Source Files\Menu</Filter>
+    </ClCompile>
+    <ClCompile Include="..\102598045_POSD\OpenFileInstruction.cpp">
+      <Filter>Source Files\View\TextUI\TextInstruction</Filter>
+    </ClCompile>
+    <ClCompile Include="..\102598045_POSD\RedoInstruction.cpp">
+      <Filter>Source Files\View\TextUI\TextInstruction</Filter>
+    </ClCompile>
+    <ClCompile Include="..\102598045_POSD\NodeConnectionType.cpp">
+      <Filter>Source Files\Constants</Filter>
+    </ClCompile>
+    <ClCompile Include="..\102598045_POSD\RelationType.cpp">
+      <Filter>Source Files\Constants</Filter>
+    </ClCompile>
+    <ClCompile Include="..\102598045_POSD\StringSymbol.cpp">
+      <Filter>Source Files\Constants</Filter>
+    </ClCompile>
+    <ClCompile Include="..\102598045_POSD\ComponentFactory.cpp">
+      <Filter>Source Files\Factory</Filter>
+    </ClCompile>
+    <ClCompile Include="..\102598045_POSD\TableManager.cpp">
+      <Filter>Source Files\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="..\102598045_POSD\Exception.cpp">
+      <Filter>Source Files\Exception</Filter>
+    </ClCompile>
+    <ClCompile Include="..\102598045_POSD\Presentation.cpp">
+      <Filter>Source Files\View</Filter>
+    </ClCompile>
+    <ClCompile Include="..\102598045_POSD\TextPresentation.cpp">
+      <Filter>Source Files\View</Filter>
+    </ClCompile>
+    <ClCompile Include="..\102598045_POSD\Table.cpp">
+      <Filter>Source Files\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="..\102598045_POSD\TextUI.cpp">
+      <Filter>Source Files\View</Filter>
+    </ClCompile>
+    <ClCompile Include="..\102598045_POSD\TextUIPresenter.cpp">
+      <Filter>Source Files\View</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

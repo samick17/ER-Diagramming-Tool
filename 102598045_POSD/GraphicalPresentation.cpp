@@ -46,7 +46,7 @@ void GraphicalPresentation::displayTable(){
     //this->textUI->displayTable(tableMap);
 }
 
-void GraphicalPresentation::displayComponents(){    
+void GraphicalPresentation::displayComponents(){
     HashMap<string,Component*> componentMap = this->presentation->getAllComponents();
     if(componentMap.empty())
         throw EmptyCollectionException(ComponentType::TypeComponent);

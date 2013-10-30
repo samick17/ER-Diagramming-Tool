@@ -1,7 +1,11 @@
 #pragma once
 
-#include "InstructionData.h"
 #include "HashMap.h"
+#include "TextPresentation.h"
+#include "TextInstruction.h"
+#include <gtest/gtest_prod.h> 
+
+struct InstructionData;
 
 class InstructionMenu{
     friend class InstructionMenuTest;
@@ -12,7 +16,16 @@ public:
 
     HashMap<string,InstructionData*> getInstructionDataMap();
     InstructionData* getInstructionDataByKey(string key);
-private:    
+private:
     HashMap<string,InstructionData*> instructionDataMap;
+	TextPresentation* textPresentation;
     void insertInstructionData(InstructionData* instructionData);
+	
+	template<class Type>
+	static TextInstruction* newTextInstruction();
 };
+
+template<typename Type>
+static TextInstruction* InstructionMenu::newTextInstruction(){
+	return new Type();
+}

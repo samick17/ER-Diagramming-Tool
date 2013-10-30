@@ -9,45 +9,40 @@
 #define TABLE_WIDTH          16
 #define COLUMN_WIDTH          8
 
-class TextUI;
 class InstructionMenu;
-class TextUIProcess;
+class TextUIPresenter;
 
 class TextPresentation{
-public:    
+public:
     TextPresentation(Presentation* presentation);
     ~TextPresentation();
 
+    string getInput();
     InstructionMenu* getInstructionMenu();
-	//
-    void openFile();
-    void saveFile();
-    void close();
-	//display
-    void displayDiagram();
-    void displayTable();
-    void displayComponents();
-    void displayConnections();
-    void displayEntities();
-    void displayEntityAttributes(Entity* entity);
+
+    void displayMenu();
+    void processCommand();
+    HashMap<string,Table*> getAllTables();
+    HashMap<string,Component*> getAllComponents();
+    HashMap<string,Connector*> getAllConnections();
+    HashMap<string,Component*> getAllEntities();
+    HashMap<string,Component*> getEntityAttributes(Entity* entity);
 
     Component* findComponent();
     Entity* findEntity();
-	//instruction
-    void processCommand(string commandKey);
-    void addNode();
-    void deleteComponent();
-    void connectTwoNodes();
+
+    void openFile(string filePath);
+    void saveFile(string filePath);
+	void close();
+    Node* addNode(string nodeType);
+    void deleteComponent(Component* componentToDelete);
+    int connectTwoNodes(Component* firstNode,Component* secondNode);
+    void setCardinality(Component* firstNode,Component* secondNode,string relationName);
     void redo();
     void undo();
-    void setCardinality(Component* firstNode,Component* secondNode);
-    void setNodeName(Node* nodeToSetName);
-    void setPrimaryKey();
-	//setter
-    void setTextUI(TextUI* textUI);
 private:
     Presentation* presentation;
+    TextUIPresenter* textUIPresenter;
     InstructionMenu* instructionMenu;
-    TextUI* textUI;
-    vector<string> setEntityAttributesPrimaryKey(Entity* entity);
+    
 };

@@ -140,6 +140,12 @@
     <Filter Include="Source Files\Command">
       <UniqueIdentifier>{62ffcf58-8aad-42b2-a11f-30c949609b70}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\View\TextUI\TextInstruction">
+      <UniqueIdentifier>{efa67499-ecf4-46b7-b812-35cae332453c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\View\TextUI\TextInstruction">
+      <UniqueIdentifier>{10d47808-3981-430c-82e5-76b8a8bddd19}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -331,6 +337,45 @@
     <ClCompile Include="InstructionMenu.cpp">
       <Filter>Source Files\Menu</Filter>
     </ClCompile>
+    <ClCompile Include="TextUIPresenter.cpp">
+      <Filter>Source Files\View\TextUI</Filter>
+    </ClCompile>
+    <ClCompile Include="TextInstruction.cpp">
+      <Filter>Source Files\View\TextUI\TextInstruction</Filter>
+    </ClCompile>
+    <ClCompile Include="AddNodeInstruction.cpp">
+      <Filter>Source Files\View\TextUI\TextInstruction</Filter>
+    </ClCompile>
+    <ClCompile Include="ConnectTwoNodesInstruction.cpp">
+      <Filter>Source Files\View\TextUI\TextInstruction</Filter>
+    </ClCompile>
+    <ClCompile Include="DeleteComponentInstruction.cpp">
+      <Filter>Source Files\View\TextUI\TextInstruction</Filter>
+    </ClCompile>
+    <ClCompile Include="DisplayTableInstruction.cpp">
+      <Filter>Source Files\View\TextUI\TextInstruction</Filter>
+    </ClCompile>
+    <ClCompile Include="DisplayDiagramInstruction.cpp">
+      <Filter>Source Files\View\TextUI\TextInstruction</Filter>
+    </ClCompile>
+    <ClCompile Include="UndoInstruction.cpp">
+      <Filter>Source Files\View\TextUI\TextInstruction</Filter>
+    </ClCompile>
+    <ClCompile Include="RedoInstruction.cpp">
+      <Filter>Source Files\View\TextUI\TextInstruction</Filter>
+    </ClCompile>
+    <ClCompile Include="OpenFileInstruction.cpp">
+      <Filter>Source Files\View\TextUI\TextInstruction</Filter>
+    </ClCompile>
+    <ClCompile Include="SaveFileInstruction.cpp">
+      <Filter>Source Files\View\TextUI\TextInstruction</Filter>
+    </ClCompile>
+    <ClCompile Include="CloseInstruction.cpp">
+      <Filter>Source Files\View\TextUI\TextInstruction</Filter>
+    </ClCompile>
+    <ClCompile Include="SetPrimaryKeyInstruction.cpp">
+      <Filter>Source Files\View\TextUI\TextInstruction</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Attribute.h">
@@ -509,6 +554,45 @@
     </ClInclude>
     <ClInclude Include="InstructionMenu.h">
       <Filter>Header Files\Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="TextUIPresenter.h">
+      <Filter>Header Files\View\TextUI</Filter>
+    </ClInclude>
+    <ClInclude Include="TextInstruction.h">
+      <Filter>Header Files\View\TextUI\TextInstruction</Filter>
+    </ClInclude>
+    <ClInclude Include="AddNodeInstruction.h">
+      <Filter>Header Files\View\TextUI\TextInstruction</Filter>
+    </ClInclude>
+    <ClInclude Include="ConnectTwoNodesInstruction.h">
+      <Filter>Header Files\View\TextUI\TextInstruction</Filter>
+    </ClInclude>
+    <ClInclude Include="DisplayDiagramInstruction.h">
+      <Filter>Header Files\View\TextUI\TextInstruction</Filter>
+    </ClInclude>
+    <ClInclude Include="DisplayTableInstruction.h">
+      <Filter>Header Files\View\TextUI\TextInstruction</Filter>
+    </ClInclude>
+    <ClInclude Include="DeleteComponentInstruction.h">
+      <Filter>Header Files\View\TextUI\TextInstruction</Filter>
+    </ClInclude>
+    <ClInclude Include="SetPrimaryKeyInstruction.h">
+      <Filter>Header Files\View\TextUI\TextInstruction</Filter>
+    </ClInclude>
+    <ClInclude Include="RedoInstruction.h">
+      <Filter>Header Files\View\TextUI\TextInstruction</Filter>
+    </ClInclude>
+    <ClInclude Include="UndoInstruction.h">
+      <Filter>Header Files\View\TextUI\TextInstruction</Filter>
+    </ClInclude>
+    <ClInclude Include="OpenFileInstruction.h">
+      <Filter>Header Files\View\TextUI\TextInstruction</Filter>
+    </ClInclude>
+    <ClInclude Include="SaveFileInstruction.h">
+      <Filter>Header Files\View\TextUI\TextInstruction</Filter>
+    </ClInclude>
+    <ClInclude Include="CloseInstruction.h">
+      <Filter>Header Files\View\TextUI\TextInstruction</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

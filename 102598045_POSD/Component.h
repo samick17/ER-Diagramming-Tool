@@ -8,7 +8,7 @@
 
 using namespace std;
 
-class Component {
+class Component{
     friend class ERModelTest;
     FRIEND_TEST(ERModelTest,addConnection);
     friend class ConnectorTest;

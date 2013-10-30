@@ -57,8 +57,7 @@ TEST_F(TableTest,testInsertAllAttributes){
 
     ASSERT_EQ(6,this->table->attributeMap.size());
 
-    ASSERT_EQ(attributeSex,this->table->attributeMap.get("6"
-        ));
+    ASSERT_EQ(attributeSex,this->table->attributeMap.get("6"));
     ASSERT_EQ(attributeDepartment,this->table->attributeMap.get("8"));
     ASSERT_EQ(attributeWeight,this->table->attributeMap.get("13"));
 }

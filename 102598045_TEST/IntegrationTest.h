@@ -10,6 +10,7 @@ protected:
     ERModel erModel;
 	Presentation* presentation;
     TextPresentation* textPresentation;
+	TextUIPresenter* textUIPresenter;
     virtual void SetUp();
     virtual void TearDown();    
     void assertLoadFileCorrectly();

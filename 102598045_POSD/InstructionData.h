@@ -1,22 +1,25 @@
 #pragma once
 
 #include <string>
-#include "TextPresentation.h"
+#include "InstructionMenu.h"
+#include <gtest/gtest_prod.h> 
+
+class TextInstruction;
 
 using namespace std;
 
-typedef void (TextPresentation::*TextInstruction)();
+typedef TextInstruction* (*NewInstructionFunction)();
 
 struct InstructionData{
 public:
-    InstructionData(string key,string info,TextInstruction textInstruction);
+    InstructionData(string key,string info,NewInstructionFunction newInstructionFunction);
     ~InstructionData();
 
     string getKey();
     string getInfo();
-    TextInstruction getTextInstruction();
+    NewInstructionFunction getNewInstructionFunction();
 private:
     string key;
     string info;
-    TextInstruction textInstruction;
+    NewInstructionFunction newInstructionFunction;
 };

@@ -24,7 +24,7 @@ public:
 
     GraphicalPresentation* getGraphicalPresentation();
 protected:
-	void closeEvent ( QCloseEvent * event );
+	void closeEvent (QCloseEvent* event);
 private:
     GraphicalPresentation* graphicalPresentation;
     FileMenuItem* fileMenuItem;
