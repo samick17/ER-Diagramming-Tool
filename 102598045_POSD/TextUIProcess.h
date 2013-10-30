@@ -1,6 +1,7 @@
 #pragma once
 
 #include <QThread>
+#include <QMutex>
 #include <string>
 #include "TextUI.h"
 
@@ -10,8 +11,11 @@ class TextUIProcess : public QThread{
 public:
     TextUIProcess(TextUI* textUI);
     ~TextUIProcess();
-protected:
-    void run();
+
+    void requestStop();
 private:
+    void run();
+    QMutex mutex;
+    bool stopRequested;
     TextUI* textUI;
 };

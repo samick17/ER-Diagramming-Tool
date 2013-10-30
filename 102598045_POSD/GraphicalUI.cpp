@@ -29,6 +29,10 @@ GraphicalPresentation* GraphicalUI::getGraphicalPresentation(){
     return this->graphicalPresentation;
 }
 
+void GraphicalUI::closeEvent(QCloseEvent * event){
+    this->close();
+}
+
 void GraphicalUI::setTitle(){
     QString title = QString(ApplicationSetting::Title.c_str());
     this->setWindowTitle(title);
@@ -58,15 +62,12 @@ void GraphicalUI::initialToolBar(){
 
 
 void GraphicalUI::openFile(){
-    QString fileName = QFileDialog::getOpenFileName(this, tr("Open File"),tr("C:\\"),tr("Files (*.erd)"));
-    if(!fileName.isEmpty()){
-		this->graphicalPresentation->openFile(fileName.toStdString());
-    }
+    this->graphicalPresentation->openFile();
     displayComponents();
 }
 
 void GraphicalUI::close(){
-	this->graphicalPresentation->close();
+    this->graphicalPresentation->close();
 }
 
 void GraphicalUI::displayComponents(){

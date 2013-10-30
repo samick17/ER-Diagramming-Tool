@@ -166,14 +166,8 @@
     <ClCompile Include="..\102598045_POSD\Command.cpp">
       <Filter>Source Files\Command</Filter>
     </ClCompile>
-    <ClCompile Include="..\102598045_POSD\CommandData.cpp">
-      <Filter>Source Files\Struct</Filter>
-    </ClCompile>
     <ClCompile Include="..\102598045_POSD\CommandManager.cpp">
       <Filter>Source Files\Manager</Filter>
-    </ClCompile>
-    <ClCompile Include="..\102598045_POSD\CommandMenu.cpp">
-      <Filter>Source Files\Menu</Filter>
     </ClCompile>
     <ClCompile Include="..\102598045_POSD\ComponentConnectionSize.cpp">
       <Filter>Source Files\Constants</Filter>
@@ -328,6 +322,15 @@
     <ClCompile Include="..\102598045_POSD\ConnectNodeCommand.cpp">
       <Filter>Source Files\Command</Filter>
     </ClCompile>
+    <ClCompile Include="Presentation.cpp">
+      <Filter>Source Files\View</Filter>
+    </ClCompile>
+    <ClCompile Include="InstructionData.cpp">
+      <Filter>Source Files\Struct</Filter>
+    </ClCompile>
+    <ClCompile Include="InstructionMenu.cpp">
+      <Filter>Source Files\Menu</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Attribute.h">
@@ -350,9 +353,6 @@
     </ClInclude>
     <ClInclude Include="Command.h">
       <Filter>Header Files\Command</Filter>
-    </ClInclude>
-    <ClInclude Include="CommandData.h">
-      <Filter>Header Files\Struct</Filter>
     </ClInclude>
     <ClInclude Include="ComponentData.h">
       <Filter>Header Files\Struct</Filter>
@@ -432,14 +432,8 @@
     <ClInclude Include="ReorderComponentsUtil.h">
       <Filter>Header Files\Util</Filter>
     </ClInclude>
-    <ClInclude Include="CommandMenu.h">
-      <Filter>Header Files\Menu</Filter>
-    </ClInclude>
     <ClInclude Include="ComponentFactory.h">
       <Filter>Header Files\Factory</Filter>
-    </ClInclude>
-    <ClInclude Include="TextUIProcess.h">
-      <Filter>Header Files\Process</Filter>
     </ClInclude>
     <ClInclude Include="NoConnectionException.h">
       <Filter>Header Files\Exception\ComponentException</Filter>
@@ -507,6 +501,15 @@
     <ClInclude Include="ConnectNodeCommand.h">
       <Filter>Header Files\Command</Filter>
     </ClInclude>
+    <ClInclude Include="Presentation.h">
+      <Filter>Header Files\View</Filter>
+    </ClInclude>
+    <ClInclude Include="InstructionData.h">
+      <Filter>Header Files\Struct</Filter>
+    </ClInclude>
+    <ClInclude Include="InstructionMenu.h">
+      <Filter>Header Files\Menu</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="GraphicalUI.h">
@@ -517,6 +520,9 @@
     </CustomBuild>
     <CustomBuild Include="GraphicalPresentation.h">
       <Filter>Header Files\View</Filter>
+    </CustomBuild>
+    <CustomBuild Include="TextUIProcess.h">
+      <Filter>Header Files\Process</Filter>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>

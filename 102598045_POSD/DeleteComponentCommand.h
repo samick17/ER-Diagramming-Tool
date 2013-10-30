@@ -6,11 +6,6 @@
 #include "HashMap.h"
 
 class DeleteComponentCommand : public Command{
-    /*friend IntegrationTest;
-    FRIEND_TEST(IntegrationTest,testUndoDeleteComponent);
-    FRIEND_TEST(IntegrationTest,testCommonUsage);
-    friend class CommandManagerTest;
-    FRIEND_TEST(CommandManagerTest,testCommandManager);*/
     friend class DeleteComponentCommandTest;
     FRIEND_TEST(DeleteComponentCommandTest,testDeleteComponentCommand);    
     FRIEND_TEST(DeleteComponentCommandTest,testSaveConnectionData);

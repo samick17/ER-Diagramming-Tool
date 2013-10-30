@@ -1,11 +1,11 @@
 #pragma once
 
-#include "CommandMenu.h"
+#include "InstructionMenu.h"
 #include <gtest/gtest.h>
 
-class CommandMenuTest : public testing::Test{
+class InstructionMenuTest : public testing::Test{
 protected:        
     virtual void SetUp();
     virtual void TearDown();
-    CommandMenu commandMenu;
+    InstructionMenu instructionMenu;
 };

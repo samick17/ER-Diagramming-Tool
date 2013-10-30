@@ -3,7 +3,7 @@
 #include <iomanip>
 #include "Connector.h"
 #include "Table.h"
-#include "CommandMenu.h"
+#include "InstructionMenu.h"
 #include "ApplicationSetting.h"
 #include "StringUtil.h"
 #include "StringSymbol.h"
@@ -11,6 +11,7 @@
 TextUI::TextUI(TextPresentation* textPresentation) : textPresentation(textPresentation){
     string title = "Title "+ApplicationSetting::Title;
     system(title.c_str());
+    
 }
 
 TextUI::~TextUI(){
@@ -18,7 +19,7 @@ TextUI::~TextUI(){
 
 string TextUI::getInput(){
     string input;
-	while(input.empty()){
+    while(input.empty()){
         cout<<">";
         getline(cin,input);
     }
@@ -28,17 +29,17 @@ string TextUI::getInput(){
 void TextUI::displayMenu(){
     this->displayTitle("Commands Menu");
     cout<<" +------------------------------------------------------+"<<endl;
-	CommandMenu commandMenu;
-    for each(CommandData* commandData in commandMenu.getCommandDataMap()){
-        int length = COMMAND_KEY_WIDTH+commandData->getInfo().size();
+	InstructionMenu* instructionMenu = this->textPresentation->getInstructionMenu();
+	for each(InstructionData* instructionData in instructionMenu->getInstructionDataMap()){
+        int length = COMMAND_KEY_WIDTH+instructionData->getInfo().size();
         length = MENU_WIDTH-length;
-        cout<<"¢x"<<setw(COMMAND_KEY_WIDTH)<<left<<commandData->getKey()+".";
-        cout<<right<<commandData->getInfo()<<setw(length)<<"¢x"<<endl;
+        cout<<"¢x"<<setw(COMMAND_KEY_WIDTH)<<left<<instructionData->getKey()+".";
+        cout<<right<<instructionData->getInfo()<<setw(length)<<"¢x"<<endl;
     }
     cout<<" +------------------------------------------------------+"<<endl;
 }
 
-void TextUI::displayTitle(string title){    
+void TextUI::displayTitle(string title){
     cout<<"  +----------------------------+"<<endl;
     cout<<" ¢x    "<<title<<setw(TITLE_WIDTH-title.size())<<"¢x"<<endl;
     cout<<"  +----------------------------+"<<endl;
@@ -51,7 +52,6 @@ void TextUI::displayTable(HashMap<string,Table*> tableMap){
     for each(Table* table in tableMap){
         string entityName = table->getEntityName();
         int len = TABLE_WIDTH-entityName.size();
-
         cout<<"   "<<entityName<<setw(len)<<"|";        
         this->displayStringWithComma(" PK(",table->getAllPrimaryKeyAttributesNameVector(),")");
         this->displayStringWithComma(StringSymbol::Space,table->getAllDefaultKeyAttributesNameVector(),StringSymbol::Empty);        
@@ -91,7 +91,7 @@ void TextUI::displayEntityAttributes(Entity* entity,HashMap<string,Component*> a
 
 void TextUI::displayDiagram(){
     cout<<"The ER diagram is displayed as follows:"<<endl;
-    this->textPresentation->displayComponents();    
+    this->textPresentation->displayComponents();
     cout<<endl;
     this->textPresentation->displayConnections();
 }

@@ -11,8 +11,9 @@
 #include "DeleteComponentCommand.h"
 #include "ConnectNodeCommand.h"
 
-void IntegrationTest::SetUp(){    
-    this->textPresentation = new TextPresentation(&erModel);
+void IntegrationTest::SetUp(){
+	this->presentation = new Presentation(&this->erModel);
+    this->textPresentation = new TextPresentation(this->presentation);
     ASSERT_EQ(0,this->erModel.getAllComponents().size());
     //set file directory
     string directory = DirectoryUtil::getCurrentWorkingDirectory()+"/testdata";
@@ -44,6 +45,7 @@ void IntegrationTest::TearDown(){
     remove(filePath.c_str());
     _rmdir(directory.c_str());
     //delete pointer
+	delete this->presentation;
     delete this->textPresentation;
 }
 //Assert Diagram is loaded correctly

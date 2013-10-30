@@ -1,30 +1,18 @@
 #pragma once
 
-#include "ERModel.h"
 #include "Component.h"
+#include "Presentation.h"
 
-#define TITLE_WIDTH            26
-#define MENU_WIDTH            56
-#define COMMAND_KEY_WIDTH     4
-#define TABLE_WIDTH            16
-#define COLUMN_WIDTH         8
-
-class CommandManager;
-class Command;
-class TextUI;
+class GraphicalUI;
 
 class GraphicalPresentation{
-public:    
-    GraphicalPresentation(ERModel* erModel);
+public:
+    GraphicalPresentation(Presentation* presentation);
     ~GraphicalPresentation();
 
-    ERModel* getERModel();
-
-    string getInput();
+    void openFile();
+    void saveFile();
     void close();
-
-    void openFile(string filePath);
-    void saveFile(string filePath);
 
     void displayDiagram();
     void displayTable();
@@ -33,16 +21,8 @@ public:
     void displayEntities();
     void displayEntityAttributes(Entity* entity);
 
-    void processCommand(string commandKey);
-    void logMessage(string message,bool nextLine);
-
-    void setCommandManager(CommandManager* commandManager);
-    void setTextUI(TextUI* textUI);
-    CommandManager* getCommandManager();
+    void setGraphicalUI(GraphicalUI* graphicalUI);
 private:    
-    bool alive;
-    ERModel* erModel;
-    CommandManager* commandManager;
-    TextUI* textUI;
-    void executeCommand(Command* command);
+    Presentation* presentation;
+    GraphicalUI* graphicalUI;
 };

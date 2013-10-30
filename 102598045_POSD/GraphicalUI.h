@@ -5,7 +5,6 @@
 #include <QGraphicsScene>
 #include <QMenuBar>
 #include <QToolBar>
-
 #include "FileMenuItem.h"
 
 class GraphicalPresentation;
@@ -21,9 +20,11 @@ public:
     GraphicalUI(GraphicalPresentation* graphicalPresentation);
     ~GraphicalUI();
 
-    void GraphicalUI::displayComponents();
+    void displayComponents();
 
     GraphicalPresentation* getGraphicalPresentation();
+protected:
+	void closeEvent ( QCloseEvent * event );
 private:
     GraphicalPresentation* graphicalPresentation;
     FileMenuItem* fileMenuItem;
@@ -32,7 +33,7 @@ private:
     QGraphicsView* view;
     QGraphicsScene* scene;
 
-    void setTitle();    
+    void setTitle();
     void initialMenuBar();
     void initialToolBar();
 };

@@ -10,6 +10,7 @@ protected:
 	Attribute* attribute;
 	RelationShip* relationShip;
     ERModel erModel;
+	Presentation* presentation;
     TextPresentation* textPresentation;
     virtual void SetUp();
     virtual void TearDown();

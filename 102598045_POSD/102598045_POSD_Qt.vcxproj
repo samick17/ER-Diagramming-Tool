@@ -81,9 +81,9 @@
     <ClCompile Include="..\102598045_POSD\CollectionException.cpp" />
     <ClCompile Include="..\102598045_POSD\CollectionType.cpp" />
     <ClCompile Include="..\102598045_POSD\Command.cpp" />
-    <ClCompile Include="..\102598045_POSD\CommandData.cpp" />
+    <ClCompile Include="InstructionData.cpp" />
     <ClCompile Include="..\102598045_POSD\CommandManager.cpp" />
-    <ClCompile Include="..\102598045_POSD\CommandMenu.cpp" />
+    <ClCompile Include="InstructionMenu.cpp" />
     <ClCompile Include="..\102598045_POSD\Component.cpp" />
     <ClCompile Include="..\102598045_POSD\ComponentConnectionSize.cpp" />
     <ClCompile Include="..\102598045_POSD\ComponentData.cpp" />
@@ -143,6 +143,7 @@
     </ClCompile>
     <ClCompile Include="GraphicalUI.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="Presentation.cpp" />
     <ClCompile Include="TextPresentation.cpp" />
     <ClCompile Include="TextUIProcess.cpp" />
   </ItemGroup>
@@ -156,9 +157,9 @@
     <ClInclude Include="CollectionException.h" />
     <ClInclude Include="CollectionType.h" />
     <ClInclude Include="Command.h" />
-    <ClInclude Include="CommandData.h" />
+    <ClInclude Include="InstructionData.h" />
     <ClInclude Include="CommandManager.h" />
-    <ClInclude Include="CommandMenu.h" />
+    <ClInclude Include="InstructionMenu.h" />
     <ClInclude Include="Component.h" />
     <ClInclude Include="ComponentConnectionSize.h" />
     <ClInclude Include="ComponentData.h" />
@@ -182,6 +183,7 @@
     <ClInclude Include="Exception.h" />
     <ClInclude Include="FileMenuItem.h" />
     <ClInclude Include="FileNotFoundException.h" />
+    <ClInclude Include="Presentation.h" />
     <ClInclude Include="TextPresentation.h" />
     <CustomBuild Include="GraphicalUI.h">
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath);$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
@@ -231,7 +233,22 @@
     <ClInclude Include="TableManager.h" />
     <ClInclude Include="TableUtil.h" />
     <ClInclude Include="TextUI.h" />
-    <ClInclude Include="TextUIProcess.h" />
+    <CustomBuild Include="TextUIProcess.h">
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(AdditionalInputs)</AdditionalInputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(AdditionalInputs)</AdditionalInputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+      </Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+      </Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+      </Command>
+    </CustomBuild>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="Resources.qrc">

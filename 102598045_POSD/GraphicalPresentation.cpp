@@ -1,119 +1,79 @@
 #include "GraphicalPresentation.h"
 #include <iostream>
+#include <iomanip>
 #include "Entity.h"
 #include "Connector.h"
-#include <iomanip>
 #include "ComponentUtil.h"
 #include "ERModelUtil.h"
 #include "StringUtil.h"
-#include "CommandMenu.h"
+#include "InstructionMenu.h"
 #include "CommandManager.h"
 #include "NullPointerException.h"
 #include "EmptyCollectionException.h"
 #include "StringSymbol.h"
 #include "ComponentType.h"
-#include "TextUI.h"
-#include "InputFileParser.h"
-#include "OutputFileParser.h"
+#include "GraphicalUI.h"
+#include <QFileDialog>
 
-GraphicalPresentation::GraphicalPresentation(ERModel* erModel) : erModel(erModel){
+GraphicalPresentation::GraphicalPresentation(Presentation* presentation) : presentation(presentation){
 }
 
 GraphicalPresentation::~GraphicalPresentation(){
 }
 
-ERModel* GraphicalPresentation::getERModel(){
-    return this->erModel;
+void GraphicalPresentation::openFile(){
+	QString fileName = QFileDialog::getOpenFileName(NULL, "Open File","C:\\","Files (*.erd)");
+	this->presentation->openFile(fileName.toStdString());
 }
 
+void GraphicalPresentation::saveFile(){
+	QString fileName = QFileDialog::getOpenFileName(NULL, "Open File","C:\\","Files (*.erd)");
+	this->presentation->saveFile(fileName.toStdString());
+}
 //if alive == false,program will close
 void GraphicalPresentation::close(){
-    this->alive = false;
-    cout<<"GooBye!"<<endl;
-    exit(0);
+	this->presentation->close();
 }
-
-string GraphicalPresentation::getInput(){
-    string input;    
-	while(input.empty()){
-        cout<<">";
-        getline(cin,input);
-    }
-    return input;
-}
-
-void GraphicalPresentation::openFile(string filePath){
-    InputFileParser inputFileParser;
-    inputFileParser.parseFileToModel(filePath,erModel);
-}
-
-void GraphicalPresentation::saveFile(string filePath){
-    OutputFileParser outputFileParser = OutputFileParser(this->erModel->getAllComponents());
-    outputFileParser.parseModelToFile(filePath);
-}
-
 void GraphicalPresentation::displayDiagram(){
     //display current diagram
-    this->textUI->displayDiagram();
+	//this->graphicalUI->displayDiagram();
 }
 
 void GraphicalPresentation::displayTable(){
-    HashMap<string,Table*> tableMap = erModel->getAllTables();
+	HashMap<string,Table*> tableMap = this->presentation->getAllTables();
     if(tableMap.empty())
         throw EmptyCollectionException("Tables");
-    this->textUI->displayTable(tableMap);
+    //this->textUI->displayTable(tableMap);
 }
 
 void GraphicalPresentation::displayComponents(){    
-    HashMap<string,Component*> componentMap = erModel->getAllComponents();
+    HashMap<string,Component*> componentMap = this->presentation->getAllComponents();
     if(componentMap.empty())
         throw EmptyCollectionException(ComponentType::TypeComponent);
-    this->textUI->displayComponents(componentMap);
+    //this->textUI->displayComponents(componentMap);
 }
 
 void GraphicalPresentation::displayConnections(){    
-    HashMap<string,Connector*> connectorMap = erModel->getAllConnectors();
+    HashMap<string,Connector*> connectorMap = this->presentation->getAllConnectors();
     if(connectorMap.empty())
         throw EmptyCollectionException(ComponentType::TypeConnectorName);    
-    this->textUI->displayConnections(connectorMap);
+    //this->textUI->displayConnections(connectorMap);
 }
 
 void GraphicalPresentation::displayEntities(){
-    HashMap<string,Entity*> entityMap = erModel->getAllEntities();
+    HashMap<string,Entity*> entityMap = this->presentation->getAllEntities();
     if(entityMap.empty())
         throw EmptyCollectionException(ComponentType::TypeEntityName);
-    this->textUI->displayEntities(ComponentUtil::toComponentHashMap<Entity>(entityMap));
+    //this->textUI->displayEntities(ComponentUtil::toComponentHashMap<Entity>(entityMap));
 }
 
 void GraphicalPresentation::displayEntityAttributes(Entity* entity){
     HashMap<string,Attribute*> attributeMap = entity->getConnectedAttributes();
     if(attributeMap.empty())
         throw EmptyCollectionException(ComponentType::TypeAttributeName);
-    this->textUI->displayEntityAttributes(entity,ComponentUtil::toComponentHashMap<Attribute>(attributeMap));
+    //this->textUI->displayEntityAttributes(entity,ComponentUtil::toComponentHashMap<Attribute>(attributeMap));
 }
 
-void GraphicalPresentation::processCommand(string commandKey){
-    
-}
-
-void GraphicalPresentation::executeCommand(Command* command){
-    
-}
-
-void GraphicalPresentation::logMessage(string message,bool nextLine){
-    cout<<message;
-    if(nextLine)
-        cout<<endl;
-}
-
-void GraphicalPresentation::setCommandManager(CommandManager* commandManager){
-    this->commandManager = commandManager;
-}
-
-void GraphicalPresentation::setTextUI(TextUI* textUI){
-    this->textUI = textUI;
-}
-
-CommandManager* GraphicalPresentation::getCommandManager(){
-    return this->commandManager;
+void GraphicalPresentation::setGraphicalUI(GraphicalUI* graphicalUI){
+	this->graphicalUI = graphicalUI;
 }

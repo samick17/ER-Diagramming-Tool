@@ -1,53 +1,50 @@
 #include "TextPresentation.h"
 #include <iostream>
-#include <iomanip>
 #include "Node.h"
 #include "Entity.h"
 #include "Connector.h"
+#include "ERModel.h"
 #include "ComponentUtil.h"
 #include "ERModelUtil.h"
 #include "StringUtil.h"
-#include "CommandMenu.h"
 #include "NullPointerException.h"
 #include "EmptyCollectionException.h"
 #include "InvalidNodeTypeException.h"
 #include "StringSymbol.h"
 #include "CharSymbol.h"
 #include "ComponentType.h"
-#include "ERModel.h"
+#include "InstructionMenu.h"
 #include "TextUI.h"
-#include "InputFileParser.h"
-#include "OutputFileParser.h"
 
-TextPresentation::TextPresentation(ERModel* erModel) : erModel(erModel){
+TextPresentation::TextPresentation(Presentation* presentation) : presentation(presentation){
+    this->instructionMenu = new InstructionMenu();
 }
 
 TextPresentation::~TextPresentation(){
+    delete this->instructionMenu;
 }
 
-ERModel* TextPresentation::getERModel(){
-    return this->erModel;
+InstructionMenu* TextPresentation::getInstructionMenu(){
+    return this->instructionMenu;
 }
 
 void TextPresentation::openFile(){
     cout<<"Please input the file name: "<<endl;
     string filePath = this->textUI->getInput();
-    InputFileParser inputFileParser;
-    inputFileParser.parseFileToModel(filePath,erModel);
+	this->presentation->openFile(filePath);
     this->displayDiagram();
 }
 
 void TextPresentation::saveFile(){
     cout<<"Please input the file name: "<<endl;
-	string filePath = this->textUI->getInput();
-    OutputFileParser outputFileParser = OutputFileParser(this->erModel->getAllComponents());
-    outputFileParser.parseModelToFile(filePath);
+    string filePath = this->textUI->getInput();
+    this->presentation->saveFile(filePath);
 }
+
 //if alive == false,program will close
 void TextPresentation::close(){
-    this->alive = false;
-    cout<<"GooBye!"<<endl;
-    exit(0);
+	cout<<"GooBye!"<<endl;
+    this->presentation->close();
 }
 
 void TextPresentation::displayDiagram(){
@@ -56,28 +53,28 @@ void TextPresentation::displayDiagram(){
 }
 
 void TextPresentation::displayTable(){
-    HashMap<string,Table*> tableMap = erModel->getAllTables();
+    HashMap<string,Table*> tableMap = this->presentation->getAllTables();
     if(tableMap.empty())
         throw EmptyCollectionException("Tables");
     this->textUI->displayTable(tableMap);
 }
 
 void TextPresentation::displayComponents(){
-    HashMap<string,Component*> componentMap = erModel->getAllComponents();
+	HashMap<string,Component*> componentMap = this->presentation->getAllComponents();
     if(componentMap.empty())
         throw EmptyCollectionException(ComponentType::TypeComponent);
     this->textUI->displayComponents(componentMap);
 }
 
 void TextPresentation::displayConnections(){
-    HashMap<string,Connector*> connectorMap = erModel->getAllConnectors();
+	HashMap<string,Connector*> connectorMap = this->presentation->getAllConnectors();
     if(connectorMap.empty())
         throw EmptyCollectionException(ComponentType::TypeConnectorName);
     this->textUI->displayConnections(connectorMap);
 }
 
 void TextPresentation::displayEntities(){
-    HashMap<string,Entity*> entityMap = erModel->getAllEntities();
+    HashMap<string,Entity*> entityMap = this->presentation->getAllEntities();
     if(entityMap.empty())
         throw EmptyCollectionException(ComponentType::TypeEntityName);
     this->textUI->displayEntities(ComponentUtil::toComponentHashMap<Entity>(entityMap));
@@ -91,15 +88,11 @@ void TextPresentation::displayEntityAttributes(Entity* entity){
 }
 
 Component* TextPresentation::findComponent(){
-    //get All Components too check there has components to find
-    this->erModel->getAllComponents();
-
-    string input;
     Component* find = NULL;
     while(find == NULL){
         try{
-            input = this->textUI->getInput();
-            find = this->erModel->getComponentByID(input);
+            string input = this->textUI->getInput();
+            find = this->presentation->getComponentByID(input);
         }
         catch(Exception& exception){
             cout<<exception.getMessage()<<endl;
@@ -109,7 +102,7 @@ Component* TextPresentation::findComponent(){
 }
 
 Entity* TextPresentation::findEntity(){
-	Component* find = this->findComponent();
+    Component* find = this->findComponent();
     while(typeid(*find).name() != typeid(Entity).name()){
         cout<<"The node '"+find->getID()+"' is not an entity. Please enter a valid one again."<<endl;
         find = this->findComponent();
@@ -120,11 +113,10 @@ Entity* TextPresentation::findEntity(){
 void TextPresentation::processCommand(string commandKey){
     Command* command = NULL;
     try{
-        CommandMenu commandMenu;
-        CommandData* commandData = commandMenu.getCommandDataByKey(commandKey);
+        InstructionData* instructionData = this->instructionMenu->getInstructionDataByKey(commandKey);
         //get new Command Function From Command Data
-        CommandInstruction commandInstruction = commandData->getCommandInstruction();
-        (this->*commandInstruction)();
+        TextInstruction textInstruction = instructionData->getTextInstruction();
+        (this->*textInstruction)();
     }
     catch(NullPointerException){
         this->textUI->alertException("wrong command,please input correct command.");
@@ -143,7 +135,7 @@ void TextPresentation::addNode(){
             string input = this->textUI->getInput();
             if(input == ComponentType::TypeConnector)
                 throw InvalidNodeTypeException();
-            node = this->erModel->addNode(input);
+            node = this->presentation->addNode(input);
         }
         catch(Exception& exception){
             cout<<exception.getMessage()<<endl;
@@ -157,12 +149,12 @@ void TextPresentation::deleteComponent(){
    //find node to be connect
     cout<<"Please enter the component ID"<<endl;
     Component* componentToDelete = this->findComponent();
-    this->erModel->deleteComponent(componentToDelete);
+    this->presentation->deleteComponent(componentToDelete);
     cout<<"The component '"+componentToDelete->getID()+"' has been deleted. "<<endl;
 }
 
 void TextPresentation::connectTwoNodes(){
-    HashMap<string,Component*> componentMap = this->erModel->getAllComponents();
+    HashMap<string,Component*> componentMap = this->presentation->getAllComponents();
     if(componentMap.empty())
         throw EmptyCollectionException("Nodes");
     cout<<"Please enter the first node ID"<<endl;
@@ -170,7 +162,7 @@ void TextPresentation::connectTwoNodes(){
     cout<<"Please enter the second node ID"<<endl;
     Component* secondNode = this->findComponent();
 
-    int result = this->erModel->addConnection(firstNode,secondNode);
+    int result = this->presentation->addConnection(firstNode,secondNode);
     if(result == NodeConnectionType::ConnectEntityAndRelation)
         this->setCardinality(firstNode,secondNode);
     else if(result == NodeConnectionType::ValidConnect)
@@ -179,14 +171,14 @@ void TextPresentation::connectTwoNodes(){
 }
 
 void TextPresentation::redo(){
-    this->erModel->redo();
+    this->presentation->redo();
     cout<<"Redo succeed."<<endl;
     this->displayComponents();
     this->displayConnections();
 }
 
 void TextPresentation::undo(){
-    this->erModel->undo();
+    this->presentation->undo();
     cout<<"Undo succeed."<<endl;
     this->displayComponents();
     this->displayConnections();
@@ -197,15 +189,15 @@ void TextPresentation::setCardinality(Component* firstNode,Component* secondNode
     cardinalityPairMap.put("0",RelationType::OneToOne);
     cout<<"Enter the type of the cardinality: "<<endl;
     cout<<"[0]1 [1]N"<<endl;
-    cout<<"The node '"+firstNode->getID()+"' has been connected to the node '"+secondNode->getID()+"'."<<endl;    
+    cout<<"The node '"+firstNode->getID()+"' has been connected to the node '"+secondNode->getID()+"'."<<endl;
     string input = this->textUI->getInput();
 
     while(!cardinalityPairMap.containsKey(input)){
-        cout<<"the cardinality you entered doesn't exist. Please entered a valid one again"<<endl;        
+        cout<<"the cardinality you entered doesn't exist. Please entered a valid one again"<<endl;
         input = this->textUI->getInput();
     }
 
-    Connector* connection = erModel->getNodesConnector(firstNode,secondNode);
+    Connector* connection = this->presentation->getNodesConnector(firstNode,secondNode);
     string relationName = cardinalityPairMap.get(input);
     connection->setName(relationName);
     cout<<"Its cardinality of the relationship is '"+relationName+"'."<<endl;

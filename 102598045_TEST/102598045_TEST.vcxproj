@@ -62,6 +62,7 @@
       <SuppressStartupBanner>false</SuppressStartupBanner>
       <OptimizeReferences>false</OptimizeReferences>
       <Profile>true</Profile>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -82,6 +83,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\102598045_POSD\ActionID.cpp" />
     <ClCompile Include="..\102598045_POSD\AddNodeCommand.cpp" />
     <ClCompile Include="..\102598045_POSD\ApplicationSetting.cpp" />
     <ClCompile Include="..\102598045_POSD\Attribute.cpp" />
@@ -90,9 +92,7 @@
     <ClCompile Include="..\102598045_POSD\CollectionException.cpp" />
     <ClCompile Include="..\102598045_POSD\CollectionType.cpp" />
     <ClCompile Include="..\102598045_POSD\Command.cpp" />
-    <ClCompile Include="..\102598045_POSD\CommandData.cpp" />
     <ClCompile Include="..\102598045_POSD\CommandManager.cpp" />
-    <ClCompile Include="..\102598045_POSD\CommandMenu.cpp" />
     <ClCompile Include="..\102598045_POSD\Component.cpp" />
     <ClCompile Include="..\102598045_POSD\ComponentConnectionSize.cpp" />
     <ClCompile Include="..\102598045_POSD\ComponentData.cpp" />
@@ -100,6 +100,7 @@
     <ClCompile Include="..\102598045_POSD\ComponentFactory.cpp" />
     <ClCompile Include="..\102598045_POSD\ComponentType.cpp" />
     <ClCompile Include="..\102598045_POSD\ComponentUtil.cpp" />
+    <ClCompile Include="..\102598045_POSD\ComponentWidget.cpp" />
     <ClCompile Include="..\102598045_POSD\ConnectedSelfException.cpp" />
     <ClCompile Include="..\102598045_POSD\ConnectionData.cpp" />
     <ClCompile Include="..\102598045_POSD\ConnectNodeCommand.cpp" />
@@ -109,14 +110,20 @@
     <ClCompile Include="..\102598045_POSD\DuplicatedKeyException.cpp" />
     <ClCompile Include="..\102598045_POSD\EmptyCollectionException.cpp" />
     <ClCompile Include="..\102598045_POSD\Entity.cpp" />
+    <ClCompile Include="..\102598045_POSD\EntityWidget.cpp" />
     <ClCompile Include="..\102598045_POSD\ERModel.cpp" />
     <ClCompile Include="..\102598045_POSD\Exception.cpp" />
+    <ClCompile Include="..\102598045_POSD\FileMenuItem.cpp" />
     <ClCompile Include="..\102598045_POSD\FileNotFoundException.cpp" />
     <ClCompile Include="..\102598045_POSD\GraphicalPresentation.cpp" />
-    <ClCompile Include="..\102598045_POSD\InputFileParser.cpp" />
+    <ClCompile Include="..\102598045_POSD\GraphicalUI.cpp" />
     <ClCompile Include="..\102598045_POSD\HasConnectedException.cpp" />
+    <ClCompile Include="..\102598045_POSD\InputFileParser.cpp" />
+    <ClCompile Include="..\102598045_POSD\InstructionData.cpp" />
+    <ClCompile Include="..\102598045_POSD\InstructionMenu.cpp" />
     <ClCompile Include="..\102598045_POSD\InvalidConnectException.cpp" />
     <ClCompile Include="..\102598045_POSD\InvalidNodeTypeException.cpp" />
+    <ClCompile Include="..\102598045_POSD\Main.cpp" />
     <ClCompile Include="..\102598045_POSD\NoConnectionException.cpp" />
     <ClCompile Include="..\102598045_POSD\Node.cpp" />
     <ClCompile Include="..\102598045_POSD\NodeConnectionType.cpp" />
@@ -124,6 +131,7 @@
     <ClCompile Include="..\102598045_POSD\NoSuchNodeException.cpp" />
     <ClCompile Include="..\102598045_POSD\NullPointerException.cpp" />
     <ClCompile Include="..\102598045_POSD\OutputFileParser.cpp" />
+    <ClCompile Include="..\102598045_POSD\Presentation.cpp" />
     <ClCompile Include="..\102598045_POSD\RelationShip.cpp" />
     <ClCompile Include="..\102598045_POSD\RelationType.cpp" />
     <ClCompile Include="..\102598045_POSD\ReorderComponentsUtil.cpp" />
@@ -134,17 +142,17 @@
     <ClCompile Include="..\102598045_POSD\TableUtil.cpp" />
     <ClCompile Include="..\102598045_POSD\TextPresentation.cpp" />
     <ClCompile Include="..\102598045_POSD\TextUI.cpp" />
+    <ClCompile Include="..\102598045_POSD\TextUIProcess.cpp" />
     <ClCompile Include="AddNodeCommandTest.cpp" />
     <ClCompile Include="AttributeTest.cpp" />
     <ClCompile Include="CommandManagerTest.cpp" />
-    <ClCompile Include="CommandMenuTest.cpp" />
+    <ClCompile Include="InstructionMenuTest.cpp" />
     <ClCompile Include="ComponentFactoryTest.cpp" />
     <ClCompile Include="ComponentTest.cpp" />
     <ClCompile Include="ComponentUtilTest.cpp" />
     <ClCompile Include="ConnectNodeCommandTest.cpp" />
     <ClCompile Include="ConnectorTest.cpp" />
     <ClCompile Include="DeleteComponentCommandTest.cpp" />
-    <ClCompile Include="DirectoryUtil.cpp" />
     <ClCompile Include="DocumentTest.cpp" />
     <ClCompile Include="EntityTest.cpp" />
     <ClCompile Include="ERModelTest.cpp" />
@@ -167,7 +175,7 @@
     <ClInclude Include="AddNodeCommandTest.h" />
     <ClInclude Include="AttributeTest.h" />
     <ClInclude Include="CommandManagerTest.h" />
-    <ClInclude Include="CommandMenuTest.h" />
+    <ClInclude Include="InstructionMenuTest.h" />
     <ClInclude Include="ComponentFactoryTest.h" />
     <ClInclude Include="ComponentTest.h" />
     <ClInclude Include="ComponentUtilTest.h" />
