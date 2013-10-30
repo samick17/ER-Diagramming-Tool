@@ -35,22 +35,18 @@ void GraphicalPresentation::close(){
 	this->presentation->close();
 }
 void GraphicalPresentation::displayDiagram(){
-    //display current diagram
-	//this->graphicalUI->displayDiagram();
 }
 
 void GraphicalPresentation::displayTable(){
 	HashMap<string,Table*> tableMap = this->presentation->getAllTables();
     if(tableMap.empty())
         throw EmptyCollectionException("Tables");
-    //this->textUI->displayTable(tableMap);
 }
 
 void GraphicalPresentation::displayComponents(){
     HashMap<string,Component*> componentMap = this->presentation->getAllComponents();
     if(componentMap.empty())
         throw EmptyCollectionException(ComponentType::TypeComponent);
-    //this->textUI->displayComponents(componentMap);
 }
 
 void GraphicalPresentation::displayConnections(){    

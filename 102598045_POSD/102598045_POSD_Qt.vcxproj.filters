@@ -146,6 +146,12 @@
     <Filter Include="Source Files\View\TextUI\TextInstruction">
       <UniqueIdentifier>{10d47808-3981-430c-82e5-76b8a8bddd19}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\View\GUI\GUIWidget\ModelWidget">
+      <UniqueIdentifier>{ff1f06c7-d88a-4f19-9ffe-8865e63a4f16}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\View\GUI\GUIWidget\ModelWidget">
+      <UniqueIdentifier>{060ab95b-936b-4db9-ae00-9df8386f3385}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -307,12 +313,6 @@
     <ClCompile Include="GeneratedFiles\qrc_Resources.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
-    <ClCompile Include="EntityWidget.cpp">
-      <Filter>Source Files\View\GUI\GUIWidget</Filter>
-    </ClCompile>
-    <ClCompile Include="ComponentWidget.cpp">
-      <Filter>Source Files\View\GUI\GUIWidget</Filter>
-    </ClCompile>
     <ClCompile Include="TextPresentation.cpp">
       <Filter>Source Files\View</Filter>
     </ClCompile>
@@ -375,6 +375,18 @@
     </ClCompile>
     <ClCompile Include="SetPrimaryKeyInstruction.cpp">
       <Filter>Source Files\View\TextUI\TextInstruction</Filter>
+    </ClCompile>
+    <ClCompile Include="ComponentWidget.cpp">
+      <Filter>Source Files\View\GUI\GUIWidget\ModelWidget</Filter>
+    </ClCompile>
+    <ClCompile Include="EntityWidget.cpp">
+      <Filter>Source Files\View\GUI\GUIWidget\ModelWidget</Filter>
+    </ClCompile>
+    <ClCompile Include="RelationShipWidget.cpp">
+      <Filter>Source Files\View\GUI\GUIWidget\ModelWidget</Filter>
+    </ClCompile>
+    <ClCompile Include="ConnectorWidget.cpp">
+      <Filter>Source Files\View\GUI\GUIWidget\ModelWidget</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -528,12 +540,6 @@
     <ClInclude Include="ActionID.h">
       <Filter>Header Files\Constants</Filter>
     </ClInclude>
-    <ClInclude Include="EntityWidget.h">
-      <Filter>Header Files\View\GUI\GUIWidget</Filter>
-    </ClInclude>
-    <ClInclude Include="ComponentWidget.h">
-      <Filter>Header Files\View\GUI\GUIWidget</Filter>
-    </ClInclude>
     <ClInclude Include="TextPresentation.h">
       <Filter>Header Files\View</Filter>
     </ClInclude>
@@ -593,6 +599,24 @@
     </ClInclude>
     <ClInclude Include="CloseInstruction.h">
       <Filter>Header Files\View\TextUI\TextInstruction</Filter>
+    </ClInclude>
+    <ClInclude Include="AttributeWidget.cpp">
+      <Filter>Source Files\View\GUI\GUIWidget\ModelWidget</Filter>
+    </ClInclude>
+    <ClInclude Include="ComponentWidget.h">
+      <Filter>Header Files\View\GUI\GUIWidget\ModelWidget</Filter>
+    </ClInclude>
+    <ClInclude Include="EntityWidget.h">
+      <Filter>Header Files\View\GUI\GUIWidget\ModelWidget</Filter>
+    </ClInclude>
+    <ClInclude Include="AttributeWidget.h">
+      <Filter>Header Files\View\GUI\GUIWidget\ModelWidget</Filter>
+    </ClInclude>
+    <ClInclude Include="RelationShipWidget.h">
+      <Filter>Header Files\View\GUI\GUIWidget\ModelWidget</Filter>
+    </ClInclude>
+    <ClInclude Include="ConnectorWidget.h">
+      <Filter>Header Files\View\GUI\GUIWidget\ModelWidget</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

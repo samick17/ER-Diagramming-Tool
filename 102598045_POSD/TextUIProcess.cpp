@@ -2,12 +2,11 @@
 
 
 TextUIProcess::TextUIProcess(TextUI* textUI) : textUI(textUI){
-	this->stopRequested = false;
+    this->stopRequested = false;
     this->start();
 }
 
 TextUIProcess::~TextUIProcess(){
-
 }
 
 void TextUIProcess::requestStop(){

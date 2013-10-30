@@ -83,6 +83,7 @@
     <ClCompile Include="..\102598045_POSD\Command.cpp" />
     <ClCompile Include="AddNodeInstruction.cpp" />
     <ClCompile Include="CloseInstruction.cpp" />
+    <ClCompile Include="ConnectorWidget.cpp" />
     <ClCompile Include="ConnectTwoNodesInstruction.cpp" />
     <ClCompile Include="DeleteComponentInstruction.cpp" />
     <ClCompile Include="DisplayDiagramInstruction.cpp" />
@@ -152,6 +153,7 @@
     <ClCompile Include="OpenFileInstruction.cpp" />
     <ClCompile Include="Presentation.cpp" />
     <ClCompile Include="RedoInstruction.cpp" />
+    <ClCompile Include="RelationShipWidget.cpp" />
     <ClCompile Include="SaveFileInstruction.cpp" />
     <ClCompile Include="SetPrimaryKeyInstruction.cpp" />
     <ClCompile Include="TextInstruction.cpp" />
@@ -167,17 +169,21 @@
     <ClInclude Include="ApplicationSetting.h" />
     <ClInclude Include="Attribute.h" />
     <ClInclude Include="AttributeType.h" />
+    <ClInclude Include="AttributeWidget.cpp" />
+    <ClInclude Include="AttributeWidget.h" />
     <ClInclude Include="CharSymbol.h" />
     <ClInclude Include="CloseInstruction.h" />
     <ClInclude Include="CollectionException.h" />
     <ClInclude Include="CollectionType.h" />
     <ClInclude Include="Command.h" />
+    <ClInclude Include="ConnectorWidget.h" />
     <ClInclude Include="ConnectTwoNodesInstruction.h" />
     <ClInclude Include="DeleteComponentInstruction.h" />
     <ClInclude Include="DisplayDiagramInstruction.h" />
     <ClInclude Include="DisplayTableInstruction.h" />
     <ClInclude Include="OpenFileInstruction.h" />
     <ClInclude Include="RedoInstruction.h" />
+    <ClInclude Include="RelationShipWidget.h" />
     <ClInclude Include="SaveFileInstruction.h" />
     <ClInclude Include="SetPrimaryKeyInstruction.h" />
     <ClInclude Include="TextInstruction.h" />

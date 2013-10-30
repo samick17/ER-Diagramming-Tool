@@ -8,7 +8,7 @@
 #include <EntityWidget.h>
 
 GraphicalUI::GraphicalUI(GraphicalPresentation* graphicalPresentation): graphicalPresentation(graphicalPresentation),QMainWindow(){
-    setTitle();    
+    setTitle();
     fileMenuItem = new FileMenuItem(this);
     this->initialMenuBar();
     this->initialToolBar();
@@ -18,7 +18,6 @@ GraphicalUI::GraphicalUI(GraphicalPresentation* graphicalPresentation): graphica
     view->setScene(this->scene);
     this->setCentralWidget(view);
     QMetaObject::connectSlotsByName(this);
-    this->scene->addItem(new EntityWidget(new Entity(ComponentData("1","Engineer"))));
 }
 
 GraphicalUI::~GraphicalUI(){
@@ -39,7 +38,7 @@ void GraphicalUI::setTitle(){
 }
 
 void GraphicalUI::initialMenuBar(){
-    this->menuBar = new QMenuBar(this);    
+    this->menuBar = new QMenuBar(this);
     this->menuBar->addMenu(this->fileMenuItem);
     this->setMenuBar(this->menuBar);
 }
@@ -56,7 +55,7 @@ void GraphicalUI::initialToolBar(){
     this->toolBar->connect(exitAction, SIGNAL(triggered()), this, SLOT(close()));
 
     this->toolBar->addAction(openFileAction);
-    this->toolBar->addAction(exitAction);    
+    this->toolBar->addAction(exitAction);
     this->addToolBar(this->toolBar);
 }
 
@@ -64,6 +63,7 @@ void GraphicalUI::initialToolBar(){
 void GraphicalUI::openFile(){
     this->graphicalPresentation->openFile();
     displayComponents();
+	displayComponents();
 }
 
 void GraphicalUI::close(){
@@ -71,5 +71,12 @@ void GraphicalUI::close(){
 }
 
 void GraphicalUI::displayComponents(){
-    
+    this->refresh();
+    //this->scene->addItem(new EntityWidget(new Entity(ComponentData("1","Engineer"))));
+}
+
+void GraphicalUI::refresh(){
+    for each(QGraphicsItem* gItem in this->scene->items())
+        delete gItem;
+    this->scene->clear();
 }

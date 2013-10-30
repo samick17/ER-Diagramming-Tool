@@ -52,7 +52,7 @@ Connector* Presentation::getNodesConnector(Component* firstNode,Component* secon
 }
 
 HashMap<string,Component*> Presentation::getAllComponents(){
-    return this->erModel->getAllComponents();
+	return this->erModel->getAllComponents();
 }
 
 HashMap<string,Connector*> Presentation::getAllConnectors(){

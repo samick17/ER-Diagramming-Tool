@@ -14,9 +14,6 @@ public:
     void paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget = 0) = 0;
     QRectF boundingRect() const;
 protected:
-    bool mousePress;
-    QColor color;
-    QPointF offset;
     Component* component;
 
     void mousePressEvent(QGraphicsSceneMouseEvent* mouseEvent);

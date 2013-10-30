@@ -32,8 +32,9 @@ private:
     QToolBar* toolBar;
     QGraphicsView* view;
     QGraphicsScene* scene;
-
+	
     void setTitle();
     void initialMenuBar();
     void initialToolBar();
+	void refresh();
 };
