@@ -3,8 +3,7 @@
 #include <QPainter>
 #include <QDebug>
 
-ComponentWidget::ComponentWidget(Component* component,QGraphicsItem* parent) : component(component),QGraphicsItem(parent){
-    this->setAcceptDrops(true);
+ComponentWidget::ComponentWidget(QRectF rect,QGraphicsItem* parent) : rect(rect),QGraphicsItem(parent){
 }
 
 ComponentWidget::~ComponentWidget(){
@@ -24,5 +23,5 @@ void ComponentWidget::move(QPointF position){
 }
 
 QRectF ComponentWidget::boundingRect() const{
-     return QRectF(0, 0, 100, 50);
+    return this->rect;
 }

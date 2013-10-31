@@ -77,7 +77,7 @@ void GraphicalUI::close(){
 
 void GraphicalUI::displayComponents(){
     this->refresh();
-    this->scene->addItem(new EntityWidget(new Entity(ComponentData("1","Engineer"))));
+    this->scene->addItem(new EntityWidget(QRectF(0,0,100,50)));
 }
 
 void GraphicalUI::refresh(){

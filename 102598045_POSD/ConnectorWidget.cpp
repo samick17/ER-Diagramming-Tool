@@ -2,7 +2,7 @@
 #include <QGraphicsSceneMouseEvent>
 #include <QPainter>
 
-ConnectorWidget::ConnectorWidget(Component* component,QGraphicsItem* parent) : ComponentWidget(component,parent){
+ConnectorWidget::ConnectorWidget(QRectF rect,QGraphicsItem* parent) : ComponentWidget(rect,parent){
     this->setAcceptDrops(true);
 }
 
@@ -10,10 +10,5 @@ ConnectorWidget::~ConnectorWidget(){
 }
 
 void ConnectorWidget::paint(QPainter* painter,const QStyleOptionGraphicsItem* option,QWidget* widget){
-    painter->drawText(this->boundingRect(), Qt::AlignCenter,QString(this->component->getName().c_str()));
     painter->drawEllipse(this->boundingRect());
-}
-
-QRectF ConnectorWidget::boundingRect() const{
-     return QRectF(0, 0, 100, 50);
 }
