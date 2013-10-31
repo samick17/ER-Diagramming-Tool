@@ -9,4 +9,6 @@ public:
 
     void paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget = 0);
     QRectF boundingRect() const;
+private:
+    QRectF rect;
 };

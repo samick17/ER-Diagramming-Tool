@@ -2,26 +2,22 @@
 #include "GraphicalPresentation.h"
 #include "ApplicationSetting.h"
 #include "Entity.h"
-#include <QPainter>
-#include <QFileDialog>
-#include <QLayout>
+#include "ActionData.h"
 #include <EntityWidget.h>
 
 GraphicalUI::GraphicalUI(GraphicalPresentation* graphicalPresentation): graphicalPresentation(graphicalPresentation),QMainWindow(){
-    setTitle();
-    fileMenuItem = new FileMenuItem(this);
+    this->setTitle(ApplicationSetting::Title);
+    this->resize(ApplicationSetting::DefaultWidth,ApplicationSetting::DefaultHeight);
+    this->initialGraphicView();
+    this->initialAllAction();
     this->initialMenuBar();
     this->initialToolBar();
-    this->resize(ApplicationSetting::DefaultWidth,ApplicationSetting::DefaultHeight);
-    this->view = new QGraphicsView(this);
-    this->scene = new QGraphicsScene(0,0,ApplicationSetting::DefaultWidth,ApplicationSetting::DefaultHeight,this);
-    view->setScene(this->scene);
-    this->setCentralWidget(view);
     QMetaObject::connectSlotsByName(this);
 }
 
 GraphicalUI::~GraphicalUI(){
     delete this->fileMenuItem;
+    this->refresh();
 }
 
 GraphicalPresentation* GraphicalUI::getGraphicalPresentation(){
@@ -32,13 +28,28 @@ void GraphicalUI::closeEvent(QCloseEvent * event){
     this->close();
 }
 
-void GraphicalUI::setTitle(){
-    QString title = QString(ApplicationSetting::Title.c_str());
-    this->setWindowTitle(title);
+void GraphicalUI::setTitle(string title){
+    this->setWindowTitle(QString(title.c_str()));
+}
+
+void GraphicalUI::initialGraphicView(){
+    this->view = new QGraphicsView(this);
+    this->scene = new QGraphicsScene(0,0,ApplicationSetting::DefaultWidth,ApplicationSetting::DefaultHeight,this);
+    this->view->setScene(this->scene);
+    this->setCentralWidget(view);
+}
+
+void GraphicalUI::initialAllAction(){
+    this->actionMap = new QActionMap(this);
+    QAction* openFileAction = this->actionMap->getQAction(ActionData::OpenFile);
+    this->toolBar->connect(openFileAction, SIGNAL(triggered()), this, SLOT(openFile()));
+    QAction* exitAction = this->actionMap->getQAction(ActionData::Exit);
+    this->toolBar->connect(exitAction, SIGNAL(triggered()), this, SLOT(close()));
 }
 
 void GraphicalUI::initialMenuBar(){
     this->menuBar = new QMenuBar(this);
+    this->fileMenuItem = new FileMenuItem(this->actionMap);
     this->menuBar->addMenu(this->fileMenuItem);
     this->setMenuBar(this->menuBar);
 }
@@ -46,24 +57,18 @@ void GraphicalUI::initialMenuBar(){
 void GraphicalUI::initialToolBar(){
     this->toolBar = new QToolBar(this);
     this->toolBar->setMovable(false);
-    QAction* openFileAction = new QAction(QIcon(":/res/Resources/open.png"),"&Open...",this);
-    openFileAction->setShortcut(QKeySequence("Ctrl+O"));
-    this->toolBar->connect(openFileAction, SIGNAL(triggered()), this, SLOT(openFile()));
 
-    QAction* exitAction = new QAction(QIcon(":/res/Resources/exit.png"),"&Exit...",this);
-    exitAction->setShortcut(QKeySequence("Alt+F4"));
-    this->toolBar->connect(exitAction, SIGNAL(triggered()), this, SLOT(close()));
+    QAction* openFileAction = this->actionMap->getQAction(ActionData::OpenFile);
+    QAction* exitAction = this->actionMap->getQAction(ActionData::Exit);
 
     this->toolBar->addAction(openFileAction);
     this->toolBar->addAction(exitAction);
     this->addToolBar(this->toolBar);
 }
 
-
 void GraphicalUI::openFile(){
     this->graphicalPresentation->openFile();
     displayComponents();
-	displayComponents();
 }
 
 void GraphicalUI::close(){
@@ -72,7 +77,7 @@ void GraphicalUI::close(){
 
 void GraphicalUI::displayComponents(){
     this->refresh();
-    //this->scene->addItem(new EntityWidget(new Entity(ComponentData("1","Engineer"))));
+    this->scene->addItem(new EntityWidget(new Entity(ComponentData("1","Engineer"))));
 }
 
 void GraphicalUI::refresh(){

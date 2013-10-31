@@ -21,7 +21,6 @@ int main(int argc, char *argv[]){
 
     GraphicalPresentation graphicalPresentation(&presentation);
     GraphicalUI graphicalUI(&graphicalPresentation);
-    graphicalPresentation.setGraphicalUI(&graphicalUI);
 
     graphicalUI.show();
     return app.exec();

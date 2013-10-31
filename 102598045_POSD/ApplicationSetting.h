@@ -9,4 +9,6 @@ public:
     static const string Title;
     static const int DefaultWidth;
     static const int DefaultHeight;
+    static const string FilePath;
+    static const string FileExtension;
 };

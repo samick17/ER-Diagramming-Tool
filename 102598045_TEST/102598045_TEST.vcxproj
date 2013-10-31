@@ -83,7 +83,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\102598045_POSD\ActionID.cpp" />
     <ClCompile Include="..\102598045_POSD\AddNodeCommand.cpp" />
     <ClCompile Include="..\102598045_POSD\AddNodeInstruction.cpp" />
     <ClCompile Include="..\102598045_POSD\ApplicationSetting.cpp" />

@@ -1,17 +1,12 @@
 #include "FileMenuItem.h"
 #include "TextPresentation.h"
 #include "GraphicalUI.h"
+#include "ActionData.h"
 
-FileMenuItem::FileMenuItem(GraphicalUI* graphicalUI){
+FileMenuItem::FileMenuItem(QActionMap* actionMap){
     this->setTitle(QString("File"));
-    
-    QAction* openFileAction = new QAction(QIcon(":/res/Resources/open.png"),"&Open...",this);
-    openFileAction->setShortcut(QKeySequence("Ctrl+O"));
-    connect(openFileAction, SIGNAL(triggered()), graphicalUI, SLOT(openFile()));
-
-    QAction* exitAction = new QAction(QIcon(":/res/Resources/exit.png"),"&Exit",this);    
-    exitAction->setShortcut(QKeySequence("Alt+F4"));
-    connect(exitAction, SIGNAL(triggered()), graphicalUI, SLOT(close()));
+    QAction* openFileAction = actionMap->getQAction(ActionData::OpenFile);
+    QAction* exitAction = actionMap->getQAction(ActionData::Exit);
 
     this->addAction(openFileAction);
     this->addAction(exitAction);

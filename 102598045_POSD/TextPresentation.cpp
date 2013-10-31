@@ -11,8 +11,11 @@
 #include "InstructionMenu.h"
 #include "InstructionData.h"
 #include "TextUIPresenter.h"
+#include "ApplicationSetting.h"
 
 TextPresentation::TextPresentation(Presentation* presentation) : presentation(presentation){
+    string title = "Title "+ApplicationSetting::Title;
+    system(title.c_str());
     this->instructionMenu = new InstructionMenu();
     this->textUIPresenter = new TextUIPresenter(this);
 }
@@ -40,7 +43,7 @@ void TextPresentation::displayMenu(){
 
 void TextPresentation::processCommand(){
     string commandKey = this->getInput();
-	TextInstruction* textInstruction = NULL;
+    TextInstruction* textInstruction = NULL;
     try{
         InstructionData* instructionData = this->instructionMenu->getInstructionDataByKey(commandKey);
         //get new Command Function From Command Data

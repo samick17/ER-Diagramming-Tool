@@ -307,9 +307,6 @@
     <ClCompile Include="FileMenuItem.cpp">
       <Filter>Source Files\View\GUI\GUIWidget</Filter>
     </ClCompile>
-    <ClCompile Include="ActionID.cpp">
-      <Filter>Source Files\Constants</Filter>
-    </ClCompile>
     <ClCompile Include="GeneratedFiles\qrc_Resources.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
@@ -387,6 +384,15 @@
     </ClCompile>
     <ClCompile Include="ConnectorWidget.cpp">
       <Filter>Source Files\View\GUI\GUIWidget\ModelWidget</Filter>
+    </ClCompile>
+    <ClCompile Include="QActionMap.cpp">
+      <Filter>Source Files\View\GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="QActionData.cpp">
+      <Filter>Source Files\Struct</Filter>
+    </ClCompile>
+    <ClCompile Include="ActionData.cpp">
+      <Filter>Source Files\Constants</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -537,9 +543,6 @@
     <ClInclude Include="FileMenuItem.h">
       <Filter>Header Files\View\GUI\GUIWidget</Filter>
     </ClInclude>
-    <ClInclude Include="ActionID.h">
-      <Filter>Header Files\Constants</Filter>
-    </ClInclude>
     <ClInclude Include="TextPresentation.h">
       <Filter>Header Files\View</Filter>
     </ClInclude>
@@ -617,6 +620,15 @@
     </ClInclude>
     <ClInclude Include="ConnectorWidget.h">
       <Filter>Header Files\View\GUI\GUIWidget\ModelWidget</Filter>
+    </ClInclude>
+    <ClInclude Include="QActionMap.h">
+      <Filter>Header Files\View\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="QActionData.h">
+      <Filter>Header Files\Struct</Filter>
+    </ClInclude>
+    <ClInclude Include="ActionData.h">
+      <Filter>Header Files\Constants</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

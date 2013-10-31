@@ -195,9 +195,6 @@
     <ClCompile Include="..\102598045_POSD\ApplicationSetting.cpp">
       <Filter>Source Files\Constants</Filter>
     </ClCompile>
-    <ClCompile Include="..\102598045_POSD\ActionID.cpp">
-      <Filter>Source Files\Constants</Filter>
-    </ClCompile>
     <ClCompile Include="..\102598045_POSD\Attribute.cpp">
       <Filter>Source Files\Model</Filter>
     </ClCompile>

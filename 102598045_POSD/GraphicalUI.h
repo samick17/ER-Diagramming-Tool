@@ -6,6 +6,7 @@
 #include <QMenuBar>
 #include <QToolBar>
 #include "FileMenuItem.h"
+#include "QActionMap.h"
 
 class GraphicalPresentation;
 
@@ -24,7 +25,7 @@ public:
 
     GraphicalPresentation* getGraphicalPresentation();
 protected:
-	void closeEvent (QCloseEvent* event);
+    void closeEvent (QCloseEvent* event);
 private:
     GraphicalPresentation* graphicalPresentation;
     FileMenuItem* fileMenuItem;
@@ -32,9 +33,12 @@ private:
     QToolBar* toolBar;
     QGraphicsView* view;
     QGraphicsScene* scene;
-	
-    void setTitle();
+    QActionMap* actionMap;
+
+    void setTitle(string title);
+    void initialGraphicView();
+    void initialAllAction();
     void initialMenuBar();
     void initialToolBar();
-	void refresh();
+    void refresh();
 };

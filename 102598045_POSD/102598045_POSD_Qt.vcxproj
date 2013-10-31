@@ -114,7 +114,7 @@
     <ClCompile Include="..\102598045_POSD\InputFileParser.cpp" />
     <ClCompile Include="..\102598045_POSD\InvalidConnectException.cpp" />
     <ClCompile Include="..\102598045_POSD\InvalidNodeTypeException.cpp" />
-    <ClCompile Include="ActionID.cpp" />
+    <ClCompile Include="ActionData.cpp" />
     <ClCompile Include="ComponentWidget.cpp" />
     <ClCompile Include="EntityWidget.cpp" />
     <ClCompile Include="GeneratedFiles\qrc_Resources.cpp">
@@ -152,6 +152,8 @@
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="OpenFileInstruction.cpp" />
     <ClCompile Include="Presentation.cpp" />
+    <ClCompile Include="QActionData.cpp" />
+    <ClCompile Include="QActionMap.cpp" />
     <ClCompile Include="RedoInstruction.cpp" />
     <ClCompile Include="RelationShipWidget.cpp" />
     <ClCompile Include="SaveFileInstruction.cpp" />
@@ -163,7 +165,7 @@
     <ClCompile Include="UndoInstruction.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="ActionID.h" />
+    <ClInclude Include="ActionData.h" />
     <ClInclude Include="AddNodeCommand.h" />
     <ClInclude Include="AddNodeInstruction.h" />
     <ClInclude Include="ApplicationSetting.h" />
@@ -182,6 +184,8 @@
     <ClInclude Include="DisplayDiagramInstruction.h" />
     <ClInclude Include="DisplayTableInstruction.h" />
     <ClInclude Include="OpenFileInstruction.h" />
+    <ClInclude Include="QActionData.h" />
+    <ClInclude Include="QActionMap.h" />
     <ClInclude Include="RedoInstruction.h" />
     <ClInclude Include="RelationShipWidget.h" />
     <ClInclude Include="SaveFileInstruction.h" />
