@@ -7,11 +7,31 @@
 #include "GraphicalUI.h"
 #include "ActionData.h"
 #include "ApplicationSetting.h"
+#include "Attribute.h"
+#include "Entity.h"
+#include "RelationShip.h"
+#include "Connector.h"
 
 GraphicalPresentation::GraphicalPresentation(Presentation* presentation) : presentation(presentation){
 }
 
 GraphicalPresentation::~GraphicalPresentation(){
+}
+
+HashMap<string,Attribute*> GraphicalPresentation::getAllAttributes(){
+    return this->presentation->getAllAttributes();
+}
+
+HashMap<string,Entity*> GraphicalPresentation::getAllEntities(){
+    return this->presentation->getAllEntities();
+}
+
+HashMap<string,RelationShip*> GraphicalPresentation::getAllRelationShips(){
+    return this->presentation->getAllRelationShips();
+}
+
+HashMap<string,Connector*> GraphicalPresentation::getAllConnectors(){
+    return this->presentation->getAllConnectors();
 }
 
 void GraphicalPresentation::openFile(){

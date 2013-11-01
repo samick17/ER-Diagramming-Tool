@@ -52,11 +52,11 @@ Connector* Presentation::getNodesConnector(Component* firstNode,Component* secon
 }
 
 HashMap<string,Component*> Presentation::getAllComponents(){
-	return this->erModel->getAllComponents();
+    return this->erModel->getAllComponents();
 }
 
-HashMap<string,Connector*> Presentation::getAllConnectors(){
-    return this->erModel->getAllConnectors();
+HashMap<string,Attribute*> Presentation::getAllAttributes(){
+	return this->erModel->getAllAttributes();
 }
 
 HashMap<string,Entity*> Presentation::getAllEntities(){
@@ -65,6 +65,10 @@ HashMap<string,Entity*> Presentation::getAllEntities(){
 
 HashMap<string,RelationShip*> Presentation::getAllRelationShips(){
     return this->erModel->getAllRelationShips();
+}
+
+HashMap<string,Connector*> Presentation::getAllConnectors(){
+    return this->erModel->getAllConnectors();
 }
 //get All Tables
 HashMap<string,Table*> Presentation::getAllTables(){

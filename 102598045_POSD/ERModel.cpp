@@ -89,9 +89,13 @@ HashMap<string,Component*> ERModel::getAllComponents(){
     return this->componentMap;
 }
 
+HashMap<string,Attribute*> ERModel::getAllAttributes(){
+	HashMap<string,Attribute*> attributeMap = ERModelUtil::convertComponentHashMapToTypeHashMap<Attribute>(this->componentMap);
+    return attributeMap;
+}
+
 HashMap<string,Connector*> ERModel::getAllConnectors(){
     HashMap<string,Connector*> connectorMap = ERModelUtil::convertComponentHashMapToTypeHashMap<Connector>(this->componentMap);
-    
     return connectorMap;
 }
 

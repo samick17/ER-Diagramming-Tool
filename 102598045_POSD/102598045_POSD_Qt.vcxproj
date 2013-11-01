@@ -82,6 +82,7 @@
     <ClCompile Include="..\102598045_POSD\CollectionType.cpp" />
     <ClCompile Include="..\102598045_POSD\Command.cpp" />
     <ClCompile Include="AddNodeInstruction.cpp" />
+    <ClCompile Include="AttributeWidget.cpp" />
     <ClCompile Include="CloseInstruction.cpp" />
     <ClCompile Include="ConnectorWidget.cpp" />
     <ClCompile Include="ConnectTwoNodesInstruction.cpp" />
@@ -163,6 +164,7 @@
     <ClCompile Include="TextUIPresenter.cpp" />
     <ClCompile Include="TextUIProcess.cpp" />
     <ClCompile Include="UndoInstruction.cpp" />
+    <ClCompile Include="WidgetDefaultSetting.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ActionData.h" />
@@ -171,7 +173,6 @@
     <ClInclude Include="ApplicationSetting.h" />
     <ClInclude Include="Attribute.h" />
     <ClInclude Include="AttributeType.h" />
-    <ClInclude Include="AttributeWidget.cpp" />
     <ClInclude Include="AttributeWidget.h" />
     <ClInclude Include="CharSymbol.h" />
     <ClInclude Include="CloseInstruction.h" />
@@ -221,6 +222,7 @@
     <ClInclude Include="TextPresentation.h" />
     <ClInclude Include="TextUIPresenter.h" />
     <ClInclude Include="UndoInstruction.h" />
+    <ClInclude Include="WidgetDefaultSetting.h" />
     <CustomBuild Include="GraphicalUI.h">
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath);$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Moc%27ing GraphicalUI.h...</Message>

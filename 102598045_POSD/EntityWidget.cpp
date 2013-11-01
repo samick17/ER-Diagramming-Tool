@@ -9,5 +9,6 @@ EntityWidget::~EntityWidget(){
 }
 
 void EntityWidget::paint(QPainter* painter,const QStyleOptionGraphicsItem* option,QWidget* widget){
-    painter->drawEllipse(this->rect);
+	painter->drawRect(this->boundingRect());
+	painter->drawText(this->boundingRect(), Qt::AlignCenter,QString("test"));
 }

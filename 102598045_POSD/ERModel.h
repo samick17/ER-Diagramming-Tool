@@ -18,9 +18,9 @@ class ERModel{
     FRIEND_TEST(ERModelTest,testGetAllEntities);
     FRIEND_TEST(ERModelTest,testGetAllRelationShips);
     FRIEND_TEST(ERModelTest,testClearComponentMap);
-	friend class CommandManagerTest;
-	FRIEND_TEST(CommandManagerTest,testCommandManager);
-	FRIEND_TEST(CommandManagerTest,testRedoUndo);
+    friend class CommandManagerTest;
+    FRIEND_TEST(CommandManagerTest,testCommandManager);
+    FRIEND_TEST(CommandManagerTest,testRedoUndo);
     friend class IntegrationTest;
     FRIEND_TEST(IntegrationTest,testIsPrimaryExist);
     FRIEND_TEST(IntegrationTest,testUndoDeleteComponent);
@@ -42,9 +42,10 @@ public:
     Component* getComponentByID(string id);
     Connector* getNodesConnector(Component* firstNode,Component* secondNode);
     HashMap<string,Component*> getAllComponents();
-    HashMap<string,Connector*> getAllConnectors();
+    HashMap<string,Attribute*> getAllAttributes();
     HashMap<string,Entity*> getAllEntities();
     HashMap<string,RelationShip*> getAllRelationShips();
+    HashMap<string,Connector*> getAllConnectors();
     HashMap<string,Table*> getAllTables();
 
     void clearComponentMap();

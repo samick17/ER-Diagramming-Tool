@@ -394,6 +394,12 @@
     <ClCompile Include="ActionData.cpp">
       <Filter>Source Files\Constants</Filter>
     </ClCompile>
+    <ClCompile Include="AttributeWidget.cpp">
+      <Filter>Source Files\View\GUI\GUIWidget\ModelWidget</Filter>
+    </ClCompile>
+    <ClCompile Include="WidgetDefaultSetting.cpp">
+      <Filter>Source Files\Constants</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Attribute.h">
@@ -603,16 +609,10 @@
     <ClInclude Include="CloseInstruction.h">
       <Filter>Header Files\View\TextUI\TextInstruction</Filter>
     </ClInclude>
-    <ClInclude Include="AttributeWidget.cpp">
-      <Filter>Source Files\View\GUI\GUIWidget\ModelWidget</Filter>
-    </ClInclude>
     <ClInclude Include="ComponentWidget.h">
       <Filter>Header Files\View\GUI\GUIWidget\ModelWidget</Filter>
     </ClInclude>
     <ClInclude Include="EntityWidget.h">
-      <Filter>Header Files\View\GUI\GUIWidget\ModelWidget</Filter>
-    </ClInclude>
-    <ClInclude Include="AttributeWidget.h">
       <Filter>Header Files\View\GUI\GUIWidget\ModelWidget</Filter>
     </ClInclude>
     <ClInclude Include="RelationShipWidget.h">
@@ -628,6 +628,12 @@
       <Filter>Header Files\Struct</Filter>
     </ClInclude>
     <ClInclude Include="ActionData.h">
+      <Filter>Header Files\Constants</Filter>
+    </ClInclude>
+    <ClInclude Include="AttributeWidget.h">
+      <Filter>Header Files\View\GUI\GUIWidget\ModelWidget</Filter>
+    </ClInclude>
+    <ClInclude Include="WidgetDefaultSetting.h">
       <Filter>Header Files\Constants</Filter>
     </ClInclude>
   </ItemGroup>

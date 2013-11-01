@@ -3,7 +3,9 @@
 #include "ApplicationSetting.h"
 #include "Entity.h"
 #include "ActionData.h"
-#include <EntityWidget.h>
+#include "RelationShipWidget.h"
+#include "EntityWidget.h"
+#include "AttributeWidget.h"
 
 GraphicalUI::GraphicalUI(GraphicalPresentation* graphicalPresentation): graphicalPresentation(graphicalPresentation),QMainWindow(){
     this->setTitle(ApplicationSetting::Title);
@@ -24,7 +26,7 @@ GraphicalPresentation* GraphicalUI::getGraphicalPresentation(){
     return this->graphicalPresentation;
 }
 
-void GraphicalUI::closeEvent(QCloseEvent * event){
+void GraphicalUI::closeEvent(QCloseEvent* closeEvent){
     this->close();
 }
 
@@ -77,7 +79,15 @@ void GraphicalUI::close(){
 
 void GraphicalUI::displayComponents(){
     this->refresh();
-    this->scene->addItem(new EntityWidget(QRectF(0,0,100,50)));
+
+    for each(Entity* entity in this->graphicalPresentation->getAllEntities()){
+    }
+    for each(RelationShip* relationShip in this->graphicalPresentation->getAllRelationShips()){
+    }
+    for each(Attribute* attribute in this->graphicalPresentation->getAllAttributes()){
+    }
+    for each(Connector* connector in this->graphicalPresentation->getAllConnectors()){
+    }
 }
 
 void GraphicalUI::refresh(){

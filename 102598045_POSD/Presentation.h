@@ -5,6 +5,7 @@
 
 class Component;
 class Node;
+class Attribute;
 class Entity;
 class RelationShip;
 class Connector;
@@ -31,9 +32,10 @@ public:
     Component* getComponentByID(string id);
     Connector* getNodesConnector(Component* firstNode,Component* secondNode);
     HashMap<string,Component*> getAllComponents();
-    HashMap<string,Connector*> getAllConnectors();
+    HashMap<string,Attribute*> getAllAttributes();
     HashMap<string,Entity*> getAllEntities();
     HashMap<string,RelationShip*> getAllRelationShips();
+    HashMap<string,Connector*> getAllConnectors();
     HashMap<string,Table*> getAllTables();
 private:
     ERModel* erModel;
