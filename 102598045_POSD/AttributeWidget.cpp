@@ -2,13 +2,13 @@
 #include <QGraphicsSceneMouseEvent>
 #include <QPainter>
 
-AttributeWidget::AttributeWidget(QRectF rect,QGraphicsItem* parent) : ComponentWidget(rect,parent){
+AttributeWidget::AttributeWidget(QGraphicsItem* parent) : ComponentWidget(parent){
 }
 
 AttributeWidget::~AttributeWidget(){
 }
 
 void AttributeWidget::paint(QPainter* painter,const QStyleOptionGraphicsItem* option,QWidget* widget){
-	painter->drawEllipse(this->boundingRect());
-	painter->drawText(this->boundingRect(), Qt::AlignCenter,QString("test"));
+    painter->drawEllipse(this->boundingRect());
+    painter->drawText(this->boundingRect(), Qt::AlignCenter,QString("test"));
 }

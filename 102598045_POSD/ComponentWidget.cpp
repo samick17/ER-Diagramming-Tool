@@ -1,9 +1,10 @@
 #include "ComponentWidget.h"
 #include <QGraphicsSceneMouseEvent>
 #include <QPainter>
-#include <QDebug>
+#include "WidgetDefaultSetting.h"
 
-ComponentWidget::ComponentWidget(QRectF rect,QGraphicsItem* parent) : rect(rect),QGraphicsItem(parent){
+ComponentWidget::ComponentWidget(QGraphicsItem* parent) : QGraphicsItem(parent){
+    this->rect = QRectF(0,0,WidgetDefaultSetting::Width,WidgetDefaultSetting::Height);
 }
 
 ComponentWidget::~ComponentWidget(){

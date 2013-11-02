@@ -2,22 +2,16 @@
 
 #include "Component.h"
 #include "Presentation.h"
+#include "WidgetFactory.h"
 
 class GraphicalUI;
-/*class Attribute;
-class Entity;
-class RelationShip;
-class Connector;*/
 
 class GraphicalPresentation{
 public:
     GraphicalPresentation(Presentation* presentation);
     ~GraphicalPresentation();
 
-    HashMap<string,Attribute*> getAllAttributes();
-    HashMap<string,Entity*> getAllEntities();
-    HashMap<string,RelationShip*> getAllRelationShips();
-    HashMap<string,Connector*> getAllConnectors();
+    HashMap<string,ComponentWidget*> getAllComponentWidgets();
 
     void openFile();
     void saveFile();
@@ -25,4 +19,7 @@ public:
 private:
     Presentation* presentation;
     GraphicalUI* graphicalUI;
+    HashMap<string,ComponentWidget*> componentWidgetMap;
+    void deleteAndClearAllComponentWidget();
+    void updateComponentWidgetMap();
 };

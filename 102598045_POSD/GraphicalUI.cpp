@@ -1,11 +1,8 @@
 #include "GraphicalUI.h"
 #include "GraphicalPresentation.h"
 #include "ApplicationSetting.h"
-#include "Entity.h"
 #include "ActionData.h"
-#include "RelationShipWidget.h"
-#include "EntityWidget.h"
-#include "AttributeWidget.h"
+#include <iostream>
 
 GraphicalUI::GraphicalUI(GraphicalPresentation* graphicalPresentation): graphicalPresentation(graphicalPresentation),QMainWindow(){
     this->setTitle(ApplicationSetting::Title);
@@ -58,11 +55,8 @@ void GraphicalUI::initialMenuBar(){
 
 void GraphicalUI::initialToolBar(){
     this->toolBar = new QToolBar(this);
-    this->toolBar->setMovable(false);
-
     QAction* openFileAction = this->actionMap->getQAction(ActionData::OpenFile);
     QAction* exitAction = this->actionMap->getQAction(ActionData::Exit);
-
     this->toolBar->addAction(openFileAction);
     this->toolBar->addAction(exitAction);
     this->addToolBar(this->toolBar);
@@ -70,28 +64,19 @@ void GraphicalUI::initialToolBar(){
 
 void GraphicalUI::openFile(){
     this->graphicalPresentation->openFile();
-    displayComponents();
+    this->displayDiagram();
 }
 
 void GraphicalUI::close(){
     this->graphicalPresentation->close();
 }
 
-void GraphicalUI::displayComponents(){
+void GraphicalUI::displayDiagram(){
     this->refresh();
-
-    for each(Entity* entity in this->graphicalPresentation->getAllEntities()){
-    }
-    for each(RelationShip* relationShip in this->graphicalPresentation->getAllRelationShips()){
-    }
-    for each(Attribute* attribute in this->graphicalPresentation->getAllAttributes()){
-    }
-    for each(Connector* connector in this->graphicalPresentation->getAllConnectors()){
-    }
+    HashMap<string,ComponentWidget*> componentWidgetMap = this->graphicalPresentation->getAllComponentWidgets();
+	cout<<"widget size "<<componentWidgetMap.size()<<endl;
 }
 
 void GraphicalUI::refresh(){
-    for each(QGraphicsItem* gItem in this->scene->items())
-        delete gItem;
     this->scene->clear();
 }

@@ -20,7 +20,7 @@ public:
     void resetFactory();
 private:
     static int count;
-    HashMap<string,NewComponentFunction> newComponentMap;    
+    HashMap<string,NewComponentFunction> newComponentMap;
     NewComponentFunction findNewComponentFunction(string componentType);
     template <typename Type>
     static Component* newComponent(ComponentData componentData);

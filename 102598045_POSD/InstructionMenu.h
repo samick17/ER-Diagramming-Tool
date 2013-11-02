@@ -21,7 +21,7 @@ private:
 	TextPresentation* textPresentation;
     void insertInstructionData(InstructionData* instructionData);
 	
-	template<class Type>
+	template<typename Type>
 	static TextInstruction* newTextInstruction();
 };
 

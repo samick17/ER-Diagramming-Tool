@@ -2,8 +2,7 @@
 #include <QGraphicsSceneMouseEvent>
 #include <QPainter>
 
-ConnectorWidget::ConnectorWidget(QRectF rect,QGraphicsItem* parent) : ComponentWidget(rect,parent){
-    this->setAcceptDrops(true);
+ConnectorWidget::ConnectorWidget(QGraphicsItem* parent) : ComponentWidget(parent){
 }
 
 ConnectorWidget::~ConnectorWidget(){

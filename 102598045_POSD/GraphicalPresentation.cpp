@@ -1,37 +1,20 @@
 #include "GraphicalPresentation.h"
-#include <iostream>
-#include <iomanip>
 #include <QFileDialog>
-#include "StringSymbol.h"
-#include "ComponentType.h"
-#include "GraphicalUI.h"
 #include "ActionData.h"
 #include "ApplicationSetting.h"
-#include "Attribute.h"
-#include "Entity.h"
-#include "RelationShip.h"
-#include "Connector.h"
 
 GraphicalPresentation::GraphicalPresentation(Presentation* presentation) : presentation(presentation){
 }
 
 GraphicalPresentation::~GraphicalPresentation(){
+    this->deleteAndClearAllComponentWidget();
 }
 
-HashMap<string,Attribute*> GraphicalPresentation::getAllAttributes(){
-    return this->presentation->getAllAttributes();
-}
-
-HashMap<string,Entity*> GraphicalPresentation::getAllEntities(){
-    return this->presentation->getAllEntities();
-}
-
-HashMap<string,RelationShip*> GraphicalPresentation::getAllRelationShips(){
-    return this->presentation->getAllRelationShips();
-}
-
-HashMap<string,Connector*> GraphicalPresentation::getAllConnectors(){
-    return this->presentation->getAllConnectors();
+HashMap<string,ComponentWidget*> GraphicalPresentation::getAllComponentWidgets(){
+    this->deleteAndClearAllComponentWidget();
+    this->updateComponentWidgetMap();
+    //calculate widget position
+    return this->componentWidgetMap;
 }
 
 void GraphicalPresentation::openFile(){
@@ -54,4 +37,18 @@ void GraphicalPresentation::saveFile(){
 
 void GraphicalPresentation::close(){
     this->presentation->close();
+}
+
+void GraphicalPresentation::deleteAndClearAllComponentWidget(){
+    for each(ComponentWidget* componentWidget in this->componentWidgetMap)
+        delete componentWidget;
+    this->componentWidgetMap.clear();
+}
+
+void GraphicalPresentation::updateComponentWidgetMap(){
+    this->deleteAndClearAllComponentWidget();
+    WidgetFactory widgetFactory;
+    for each(Component* component in this->presentation->getAllComponents()){
+        this->componentWidgetMap.put(component->getID(),widgetFactory.createComponentWidget(component->getType()));
+    }
 }

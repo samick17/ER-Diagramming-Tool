@@ -24,7 +24,7 @@ public:
     void setName(string);
     string getClassName();
 
-    void connectTo(Component* target);    
+    void connectTo(Component* target);
     void disconnectTo(Component* target);
     virtual void breakAllConnections() = 0;
     virtual int canConnectTo(Component* target) = 0;

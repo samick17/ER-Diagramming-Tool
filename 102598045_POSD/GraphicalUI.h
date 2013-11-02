@@ -21,7 +21,7 @@ public:
     GraphicalUI(GraphicalPresentation* graphicalPresentation);
     ~GraphicalUI();
 
-    void displayComponents();
+    void displayDiagram();
 
     GraphicalPresentation* getGraphicalPresentation();
 protected:

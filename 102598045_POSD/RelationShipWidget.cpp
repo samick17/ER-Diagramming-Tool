@@ -2,15 +2,15 @@
 #include <QGraphicsSceneMouseEvent>
 #include <QPainter>
 
-RelationShipWidget::RelationShipWidget(QRectF rect,QGraphicsItem* parent) : ComponentWidget(rect,parent){
+RelationShipWidget::RelationShipWidget(QGraphicsItem* parent) : ComponentWidget(parent){
 }
 
 RelationShipWidget::~RelationShipWidget(){
 }
 
 void RelationShipWidget::paint(QPainter* painter,const QStyleOptionGraphicsItem* option,QWidget* widget){
-	painter->drawPolygon(getDiamondPolygon(this->boundingRect()));
-	painter->drawText(this->boundingRect(), Qt::AlignCenter,QString("test"));
+    painter->drawPolygon(getDiamondPolygon(this->boundingRect()));
+    painter->drawText(this->boundingRect(), Qt::AlignCenter,QString("test"));
 }
 
 QPolygon RelationShipWidget::getDiamondPolygon(QRectF rect){

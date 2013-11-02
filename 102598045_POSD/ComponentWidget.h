@@ -8,7 +8,7 @@ class QGraphicsSceneMouseEvent;
 
 class ComponentWidget : public QGraphicsItem{
 public:
-    ComponentWidget(QRectF rect,QGraphicsItem* parent = 0);
+    ComponentWidget(QGraphicsItem* parent = 0);
     ~ComponentWidget();
 
     void paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget = 0) = 0;
