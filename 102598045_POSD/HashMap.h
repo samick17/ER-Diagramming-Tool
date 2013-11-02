@@ -88,7 +88,7 @@ unsigned int HashMap<Key,Value>::size(){
 
 template<typename Key,typename Value>
 bool HashMap<Key,Value>::containsKey(Key key){
-    std::unordered_map<Key,Value>::iterator hashmapIterator = hashmap.find(key);    
+    std::unordered_map<Key,Value>::iterator hashmapIterator = hashmap.find(key);
     if(hashmapIterator == hashmap.end())
         return false;
     return true;

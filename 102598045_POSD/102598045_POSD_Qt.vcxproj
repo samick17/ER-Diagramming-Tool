@@ -151,6 +151,7 @@
     </ClCompile>
     <ClCompile Include="GraphicalUI.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="Number.cpp" />
     <ClCompile Include="OpenFileInstruction.cpp" />
     <ClCompile Include="Presentation.cpp" />
     <ClCompile Include="QActionData.cpp" />
@@ -185,6 +186,7 @@
     <ClInclude Include="DeleteComponentInstruction.h" />
     <ClInclude Include="DisplayDiagramInstruction.h" />
     <ClInclude Include="DisplayTableInstruction.h" />
+    <ClInclude Include="Number.h" />
     <ClInclude Include="OpenFileInstruction.h" />
     <ClInclude Include="QActionData.h" />
     <ClInclude Include="QActionMap.h" />

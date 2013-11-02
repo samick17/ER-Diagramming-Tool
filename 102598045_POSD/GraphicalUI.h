@@ -9,6 +9,7 @@
 #include "QActionMap.h"
 
 class GraphicalPresentation;
+class SelectedFrameWidget;
 
 using namespace Qt;
 
@@ -25,7 +26,9 @@ public:
 
     GraphicalPresentation* getGraphicalPresentation();
 protected:
-    void closeEvent (QCloseEvent* event);
+    void closeEvent(QCloseEvent* closeEvent);
+    void keyPressEvent(QKeyEvent* keyEvent);
+    void keyReleaseEvent(QKeyEvent* keyEvent);
 private:
     GraphicalPresentation* graphicalPresentation;
     FileMenuItem* fileMenuItem;

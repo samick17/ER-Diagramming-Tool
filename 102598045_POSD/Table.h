@@ -21,7 +21,7 @@ public:
 
     string getEntityID();
     string getEntityName();
-    
+
     vector<string> getAllPrimaryKeyAttributesNameVector();
     vector<string> getAllDefaultKeyAttributesNameVector();
     vector<string> getAllForeignKeyAttributesNameVector();

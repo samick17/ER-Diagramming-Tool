@@ -2,7 +2,7 @@
 #include "GraphicalPresentation.h"
 #include "ApplicationSetting.h"
 #include "ActionData.h"
-#include <iostream>
+#include <QKeyEvent>
 
 GraphicalUI::GraphicalUI(GraphicalPresentation* graphicalPresentation): graphicalPresentation(graphicalPresentation),QMainWindow(){
     this->setTitle(ApplicationSetting::Title);
@@ -25,6 +25,16 @@ GraphicalPresentation* GraphicalUI::getGraphicalPresentation(){
 
 void GraphicalUI::closeEvent(QCloseEvent* closeEvent){
     this->close();
+}
+
+void GraphicalUI::keyPressEvent(QKeyEvent* keyEvent){
+    if(keyEvent->key() == Key_Control)
+        this->graphicalPresentation->keyCtrlPressed();
+}
+
+void GraphicalUI::keyReleaseEvent(QKeyEvent* keyEvent){
+    if(keyEvent->key() == Key_Control)
+        this->graphicalPresentation->keyCtrlReleased();
 }
 
 void GraphicalUI::setTitle(string title){
@@ -74,7 +84,9 @@ void GraphicalUI::close(){
 void GraphicalUI::displayDiagram(){
     this->refresh();
     HashMap<string,ComponentWidget*> componentWidgetMap = this->graphicalPresentation->getAllComponentWidgets();
-	cout<<"widget size "<<componentWidgetMap.size()<<endl;
+    for each(ComponentWidget* componentWidget in componentWidgetMap){
+        this->scene->addItem(componentWidget);
+    }
 }
 
 void GraphicalUI::refresh(){

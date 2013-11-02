@@ -403,6 +403,9 @@
     <ClCompile Include="WidgetFactory.cpp">
       <Filter>Source Files\Factory</Filter>
     </ClCompile>
+    <ClCompile Include="Number.cpp">
+      <Filter>Source Files\Constants</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Attribute.h">
@@ -641,6 +644,9 @@
     </ClInclude>
     <ClInclude Include="WidgetFactory.h">
       <Filter>Header Files\Factory</Filter>
+    </ClInclude>
+    <ClInclude Include="Number.h">
+      <Filter>Header Files\Constants</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

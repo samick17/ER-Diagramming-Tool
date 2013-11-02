@@ -48,7 +48,7 @@ vector<string> Table::getAllDefaultKeyAttributesNameVector(){
 
 vector<string> Table::getAllForeignKeyAttributesNameVector(){
     vector<string> nameVector;
-    for each(Attribute* attribute in this->foreignKeyAttributeMap)        
-            nameVector.push_back(attribute->getName());    
+    for each(Attribute* attribute in this->foreignKeyAttributeMap)
+            nameVector.push_back(attribute->getName());
     return nameVector;
 }

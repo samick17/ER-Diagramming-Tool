@@ -39,8 +39,8 @@ bool RelationShip::isRelationType(string relationType){
     
     bool isRType = true;
     if(relationType == RelationType::OneToOne){
-        for each(Component* component in this->getAllConnections())        
-            isRType &= (component->getName() == RelationType::OneToOne);        
+        for each(Component* component in this->getAllConnections())
+            isRType &= (component->getName() == RelationType::OneToOne);
     }
     else{
         isRType = false;
@@ -49,6 +49,6 @@ bool RelationShip::isRelationType(string relationType){
     return isRType;
 }
 //get related Entity
-HashMap<string,Entity*> RelationShip::getConnectedEntities(){        
+HashMap<string,Entity*> RelationShip::getConnectedEntities(){
     return ComponentUtil::getConnectedNodeHashMapByType<Entity>(this->getAllConnections());
 }

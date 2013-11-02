@@ -7,22 +7,24 @@
 #include "RelationShipWidget.h"
 #include "ConnectorWidget.h"
 
-typedef ComponentWidget* (*NewComponentWidgetFunction)();
+class GraphicalPresentation;
+
+typedef ComponentWidget* (*NewComponentWidgetFunction)(GraphicalPresentation* graphicalPresentation);
 
 class WidgetFactory{
 public:
     WidgetFactory();
     ~WidgetFactory();
 
-    ComponentWidget* createComponentWidget(string componentType);
+    ComponentWidget* createComponentWidget(string componentType,GraphicalPresentation* graphicalPresentation);
 private:
     HashMap<string,NewComponentWidgetFunction> newComponentWidgetMap;
     NewComponentWidgetFunction findNewComponentWidgetFunction(string componentType);
     template<typename Type>
-    static ComponentWidget* newComponentWidget();
+    static ComponentWidget* newComponentWidget(GraphicalPresentation* graphicalPresentation);
 };
 
 template<typename Type>
-static ComponentWidget* WidgetFactory::newComponentWidget(){
-    return new Type();
+static ComponentWidget* WidgetFactory::newComponentWidget(GraphicalPresentation* graphicalPresentation){
+    return new Type(graphicalPresentation);
 }

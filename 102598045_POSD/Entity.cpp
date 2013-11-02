@@ -19,8 +19,8 @@ string Entity::getType(){
     return ComponentType::TypeEntity;
 }
 
-int Entity::canConnectTo(Component* target){    
-    int canConnect = Node::canConnectTo(target);    
+int Entity::canConnectTo(Component* target){
+    int canConnect = Node::canConnectTo(target);
     
     if(typeid(*target).name() == typeid(RelationShip).name())
         canConnect = NodeConnectionType::ConnectEntityAndRelation;
@@ -30,16 +30,14 @@ int Entity::canConnectTo(Component* target){
 
 HashMap<string,Attribute*> Entity::getConnectedAttributes(){
     HashMap<string,Attribute*> connectedAttributeMap = ComponentUtil::getConnectedNodeHashMapByType<Attribute>(this->getAllConnections());
-
     return connectedAttributeMap;
 }
 //get Attribute By ID, if doesn't has such attribute, throw exception
 Attribute* Entity::getAttributeByID(string id){
     HashMap<string,Attribute*> attributeMap = this->getConnectedAttributes();
-
     for each(Attribute* attribute in attributeMap)
-        if(attribute->getID() == id)        
-            return attribute;            
+        if(attribute->getID() == id)
+            return attribute;
 
     throw NoConnectionException(id,this->getID());
 }

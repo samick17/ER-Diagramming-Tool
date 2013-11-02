@@ -1,5 +1,6 @@
 #include "WidgetFactory.h"
 #include "ComponentType.h"
+#include "GraphicalPresentation.h"
 
 WidgetFactory::WidgetFactory(){
     this->newComponentWidgetMap.put(ComponentType::TypeAttribute,newComponentWidget<AttributeWidget>);
@@ -11,9 +12,9 @@ WidgetFactory::WidgetFactory(){
 WidgetFactory::~WidgetFactory(){
 }
 
-ComponentWidget* WidgetFactory::createComponentWidget(string componentType){
+ComponentWidget* WidgetFactory::createComponentWidget(string componentType,GraphicalPresentation* graphicalPresentation){
     NewComponentWidgetFunction newComponentWidgetFunctiontion = findNewComponentWidgetFunction(componentType);
-    ComponentWidget* componentWidget = newComponentWidgetFunctiontion();
+    ComponentWidget* componentWidget = newComponentWidgetFunctiontion(graphicalPresentation);
     return componentWidget;
 }
 
