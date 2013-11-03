@@ -7,7 +7,6 @@
 #include "InstructionData.h"
 #include "Entity.h"
 #include "StringUtil.h"
-#include <iostream>
 #include "OpenFileInstruction.h"
 #include "SaveFileInstruction.h"
 #include "AddNodeInstruction.h"

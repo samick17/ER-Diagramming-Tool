@@ -14,7 +14,6 @@ public:
     void displayMenu();
     void processCommand();
 
-    void alertException(string infomation);
     void notify();
 private:
     TextPresentation* textPresentation;

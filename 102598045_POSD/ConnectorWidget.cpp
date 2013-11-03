@@ -18,7 +18,7 @@ void ConnectorWidget::paint(QPainter* painter,const QStyleOptionGraphicsItem* op
 void ConnectorWidget::setConnectionPoint(QPointF sourcePoint,QPointF targetPoint){
     int left = min(sourcePoint.x(),targetPoint.x());
     int top = min(sourcePoint.y(),targetPoint.y());
-        this->rect = QRectF(left,top,abs(sourcePoint.x()-targetPoint.x()),abs(sourcePoint.y()-targetPoint.y()));
+    this->rect = QRectF(left,top,abs(sourcePoint.x()-targetPoint.x()),abs(sourcePoint.y()-targetPoint.y()));
     this->sourcePoint = sourcePoint;
     this->targetPoint = targetPoint;
 }
