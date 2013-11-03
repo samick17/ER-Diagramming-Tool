@@ -19,6 +19,7 @@ public:
 
     string getInput();
     InstructionMenu* getInstructionMenu();
+    TextUIPresenter* getTextUIPresenter();
 
     void displayMenu();
     void processCommand();
@@ -33,13 +34,17 @@ public:
 
     void openFile(string filePath);
     void saveFile(string filePath);
-	void close();
+    void close();
     Node* addNode(string nodeType);
     void deleteComponent(Component* componentToDelete);
     int connectTwoNodes(Component* firstNode,Component* secondNode);
     void setCardinality(Component* firstNode,Component* secondNode,string relationName);
     void redo();
     void undo();
+    void registerObserver(IObserver* observer);
+    void unregisterObserver(IObserver* observer);
+    void notify();
+    void notify(IObserver* observer);
 private:
     Presentation* presentation;
     TextUIPresenter* textUIPresenter;

@@ -2,12 +2,6 @@
 #include "Component.h"
 #include "RelationType.h"
 
-ConnectTwoNodesInstruction::ConnectTwoNodesInstruction(){
-}
-
-ConnectTwoNodesInstruction::~ConnectTwoNodesInstruction(){
-}
-
 void ConnectTwoNodesInstruction::execute(TextPresentation* textPresentation,TextUIPresenter* textUIPresenter){
     textPresentation->getAllComponents();
     cout<<"Please enter the first node ID"<<endl;
@@ -36,7 +30,7 @@ void ConnectTwoNodesInstruction::setCardinality(Component* firstNode,Component* 
         cout<<"the cardinality you entered doesn't exist. Please entered a valid one again"<<endl;
         input = textPresentation->getInput();
     }
-	string relationName = cardinalityPairMap.get(input);
-	textPresentation->setCardinality(firstNode,secondNode,relationName);
+    string relationName = cardinalityPairMap.get(input);
+    textPresentation->setCardinality(firstNode,secondNode,relationName);
     cout<<"Its cardinality of the relationship is '"+relationName+"'."<<endl;
 }

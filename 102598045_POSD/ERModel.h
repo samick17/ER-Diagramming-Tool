@@ -5,8 +5,9 @@
 #include "TableManager.h"
 #include "HashMap.h"
 #include "CommandManager.h"
+#include "IObservable.h"
 
-class ERModel{
+class ERModel : IObservable{
     friend class ERModelTest;
     FRIEND_TEST(ERModelTest,testAddNode);
     FRIEND_TEST(ERModelTest,testInsertComponent);
@@ -49,8 +50,13 @@ public:
     HashMap<string,Table*> getAllTables();
 
     void clearComponentMap();
+    void registerObserver(IObserver* observer);
+    void unregisterObserver(IObserver* observer);
+    void notify();
+    void notify(IObserver* observer);
 private:
     HashMap<string,Component*> componentMap;
+	vector<IObserver*> observerVector;
     CommandManager commandManager;
     TableManager tableManager;
 };

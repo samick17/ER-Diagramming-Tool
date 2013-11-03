@@ -12,15 +12,21 @@ GraphicalUI::GraphicalUI(GraphicalPresentation* graphicalPresentation): graphica
     this->initialMenuBar();
     this->initialToolBar();
     QMetaObject::connectSlotsByName(this);
+    this->graphicalPresentation->registerObserver(this);
 }
 
 GraphicalUI::~GraphicalUI(){
+    this->graphicalPresentation->unregisterObserver(this);
     delete this->fileMenuItem;
     this->refresh();
 }
 
 GraphicalPresentation* GraphicalUI::getGraphicalPresentation(){
     return this->graphicalPresentation;
+}
+
+void GraphicalUI::notify(){
+    this->displayDiagram();
 }
 
 void GraphicalUI::closeEvent(QCloseEvent* closeEvent){
@@ -74,7 +80,7 @@ void GraphicalUI::initialToolBar(){
 
 void GraphicalUI::openFile(){
     this->graphicalPresentation->openFile();
-    this->displayDiagram();
+    //this->displayDiagram();
 }
 
 void GraphicalUI::close(){

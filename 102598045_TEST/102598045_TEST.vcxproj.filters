@@ -315,9 +315,6 @@
     <ClCompile Include="..\102598045_POSD\SaveFileInstruction.cpp">
       <Filter>Source Files\View\TextUI\TextInstruction</Filter>
     </ClCompile>
-    <ClCompile Include="..\102598045_POSD\TextInstruction.cpp">
-      <Filter>Source Files\View\TextUI\TextInstruction</Filter>
-    </ClCompile>
     <ClCompile Include="..\102598045_POSD\CommandManager.cpp">
       <Filter>Source Files\Manager</Filter>
     </ClCompile>

@@ -1,11 +1,5 @@
 #include "DeleteComponentInstruction.h"
 
-DeleteComponentInstruction::DeleteComponentInstruction(){
-}
-
-DeleteComponentInstruction::~DeleteComponentInstruction(){
-}
-
 void DeleteComponentInstruction::execute(TextPresentation* textPresentation,TextUIPresenter* textUIPresenter){
     //find node to be connect
     cout<<"Please enter the component ID"<<endl;

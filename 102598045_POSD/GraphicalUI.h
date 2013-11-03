@@ -7,13 +7,14 @@
 #include <QToolBar>
 #include "FileMenuItem.h"
 #include "QActionMap.h"
+#include "IObserver.h"
 
 class GraphicalPresentation;
 class SelectedFrameWidget;
 
 using namespace Qt;
 
-class GraphicalUI : public QMainWindow{
+class GraphicalUI : public QMainWindow,IObserver{
     Q_OBJECT
 public slots:
     void openFile();
@@ -25,6 +26,7 @@ public:
     void displayDiagram();
 
     GraphicalPresentation* getGraphicalPresentation();
+    void notify();
 protected:
     void closeEvent(QCloseEvent* closeEvent);
     void keyPressEvent(QKeyEvent* keyEvent);

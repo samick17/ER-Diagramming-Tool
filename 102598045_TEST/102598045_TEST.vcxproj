@@ -143,7 +143,6 @@
     <ClCompile Include="..\102598045_POSD\Table.cpp" />
     <ClCompile Include="..\102598045_POSD\TableManager.cpp" />
     <ClCompile Include="..\102598045_POSD\TableUtil.cpp" />
-    <ClCompile Include="..\102598045_POSD\TextInstruction.cpp" />
     <ClCompile Include="..\102598045_POSD\TextPresentation.cpp" />
     <ClCompile Include="..\102598045_POSD\TextUI.cpp" />
     <ClCompile Include="..\102598045_POSD\TextUIPresenter.cpp" />

@@ -8,6 +8,7 @@ public:
     ~AttributeWidget();
 
     void paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget = 0);
+    void showUnderLine(bool isDisplayUnderLine);
 private:
-    QPolygon getDiamondPolygon(QRectF rect);
+    bool isDisplayUnderLine;
 };

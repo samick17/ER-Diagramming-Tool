@@ -152,6 +152,9 @@
     <Filter Include="Header Files\View\GUI\GUIWidget\ModelWidget">
       <UniqueIdentifier>{060ab95b-936b-4db9-ae00-9df8386f3385}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Observer">
+      <UniqueIdentifier>{f0be6894-69b5-490d-99c4-f2356af4cfc3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -336,9 +339,6 @@
     </ClCompile>
     <ClCompile Include="TextUIPresenter.cpp">
       <Filter>Source Files\View\TextUI</Filter>
-    </ClCompile>
-    <ClCompile Include="TextInstruction.cpp">
-      <Filter>Source Files\View\TextUI\TextInstruction</Filter>
     </ClCompile>
     <ClCompile Include="AddNodeInstruction.cpp">
       <Filter>Source Files\View\TextUI\TextInstruction</Filter>
@@ -647,6 +647,12 @@
     </ClInclude>
     <ClInclude Include="Number.h">
       <Filter>Header Files\Constants</Filter>
+    </ClInclude>
+    <ClInclude Include="IObserver.h">
+      <Filter>Header Files\Observer</Filter>
+    </ClInclude>
+    <ClInclude Include="IObservable.h">
+      <Filter>Header Files\Observer</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -1,11 +1,12 @@
 #pragma once
 
 #include "TextPresentation.h"
+#include "IObserver.h"
 
 class Table;
 class Connector;
 
-class TextUI{
+class TextUI : public IObserver{
 public:    
     TextUI(TextPresentation* textPresentation);
     ~TextUI();
@@ -14,6 +15,7 @@ public:
     void processCommand();
 
     void alertException(string infomation);
+    void notify();
 private:
     TextPresentation* textPresentation;
 };

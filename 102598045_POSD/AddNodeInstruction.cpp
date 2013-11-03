@@ -3,16 +3,10 @@
 #include "ComponentType.h"
 #include "InvalidNodeTypeException.h"
 
-AddNodeInstruction::AddNodeInstruction(){
-}
-
-AddNodeInstruction::~AddNodeInstruction(){
-}
-
 void AddNodeInstruction::execute(TextPresentation* textPresentation,TextUIPresenter* textUIPresenter){
     cout<<"What kind of node do you want to add?\n[A]Attribute [E]Entity [R]Relation"<<endl;
     Node* node = this->addNode(textPresentation);
-	//set Node Name
+    //set Node Name
     cout<<"Enter the name of this node:"<<endl;
     string input = textPresentation->getInput();
     //node name out of range

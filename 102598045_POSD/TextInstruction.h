@@ -6,8 +6,6 @@
 
 class TextInstruction{
 public:
-    TextInstruction();
-    ~TextInstruction();
     virtual void execute(TextPresentation* textPresentation,TextUIPresenter* textUIPresenter) = 0;
 private:
 };

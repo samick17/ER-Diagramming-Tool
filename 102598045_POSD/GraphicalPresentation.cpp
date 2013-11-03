@@ -46,7 +46,7 @@ void GraphicalPresentation::close(){
 }
 
 bool GraphicalPresentation::isSelected(ComponentWidget* selectedWidget){
-	if(this->selectedWidgetList.contains(selectedWidget))
+    if(this->selectedWidgetList.contains(selectedWidget))
         return true;
     return false;
 }
@@ -74,6 +74,22 @@ void GraphicalPresentation::keyCtrlReleased(){
     this->isCtrlPressed = false;
 }
 
+void GraphicalPresentation::registerObserver(IObserver* observer){
+    this->presentation->registerObserver(observer);
+}
+
+void GraphicalPresentation::unregisterObserver(IObserver* observer){
+    this->presentation->unregisterObserver(observer);
+}
+
+void GraphicalPresentation::notify(){
+    this->presentation->notify();
+}
+
+void GraphicalPresentation::notify(IObserver* observer){
+    this->presentation->notify(observer);
+}
+
 void GraphicalPresentation::clearAllComponentWidget(){
     this->componentWidgetMap.clear();
     this->selectedWidgetList.clear();
@@ -85,7 +101,7 @@ void GraphicalPresentation::updateComponentWidgetMap(){
     this->createRelationShipWidget(componentMap,this->presentation->getAllRelationShips());
     this->createRemainsEntityWidget(componentMap);
     this->createRemainsAttributeWidget(componentMap);
-	this->createConnectorWidget(this->presentation->getAllConnectors());
+    this->createConnectorWidget(this->presentation->getAllConnectors());
 }
 
 void GraphicalPresentation::createRelationShipWidget(HashMap<string,Component*>& componentMap,HashMap<string,RelationShip*> relationShipMap){
@@ -125,13 +141,13 @@ void GraphicalPresentation::createEntityWidget(HashMap<string,Component*>& compo
 
 void GraphicalPresentation::createAttributeWidget(HashMap<string,Component*>& componentMap,HashMap<string,Attribute*> attributeMap,int& attributeHeight){
     WidgetFactory widgetFactory;
-    //HashMap<string,Attribute*> attributeMap = entity->getConnectedAttributes();
     for each(Attribute* attribute in attributeMap){
-        ComponentWidget* attributeWidget = widgetFactory.createComponentWidget(attribute->getType(),this);
+        AttributeWidget* attributeWidget = static_cast<AttributeWidget*>(widgetFactory.createComponentWidget(attribute->getType(),this));
         this->componentWidgetMap.put(attribute->getID(),attributeWidget);
         attributeWidget->setText(attribute->getName());
         componentMap.put(attribute->getID(),attribute);
         attributeWidget->setPos(WidgetDefaultSetting::AttributeHorizontalDistance,attributeHeight);
+        attributeWidget->showUnderLine(attribute->isPrimaryKey());
         attributeHeight += WidgetDefaultSetting::AttributeVerticalDistance;
     }
 }
@@ -151,16 +167,16 @@ void GraphicalPresentation::createConnectorWidget(HashMap<string,Connector*> con
 void GraphicalPresentation::setConnectorWidget(ConnectorWidget* connectorWidget,ComponentWidget* sourceWidget,ComponentWidget* targetWidget){
     QRectF sourceRect = sourceWidget->boundingRect();
     QRectF targetRect = targetWidget->boundingRect();
-	QPointF sourceCenterLeft = QPointF(sourceRect.left(),sourceRect.center().y());
-	QPointF sourceCenterRight = QPointF(sourceRect.right(),sourceRect.center().y());
-	QPointF targetCenterLeft = QPointF(targetRect.left(),targetRect.center().y());
-	QPointF targetCenterRight = QPointF(targetRect.right(),targetRect.center().y());
-	QPointF deltaLeft = sourceCenterLeft-targetCenterRight;
-	QPointF deltaRight = sourceCenterRight-targetCenterLeft;
-	if(deltaLeft.manhattanLength() < deltaRight.manhattanLength())
-		connectorWidget->setConnectionPoint(sourceCenterLeft,targetCenterRight);
-	else 
-		connectorWidget->setConnectionPoint(sourceCenterRight,targetCenterLeft);
+    QPointF sourceCenterLeft = QPointF(sourceRect.left(),sourceRect.center().y());
+    QPointF sourceCenterRight = QPointF(sourceRect.right(),sourceRect.center().y());
+    QPointF targetCenterLeft = QPointF(targetRect.left(),targetRect.center().y());
+    QPointF targetCenterRight = QPointF(targetRect.right(),targetRect.center().y());
+    QPointF deltaLeft = sourceCenterLeft-targetCenterRight;
+    QPointF deltaRight = sourceCenterRight-targetCenterLeft;
+    if(deltaLeft.manhattanLength() < deltaRight.manhattanLength())
+        connectorWidget->setConnectionPoint(sourceCenterLeft,targetCenterRight);
+    else 
+        connectorWidget->setConnectionPoint(sourceCenterRight,targetCenterLeft);
 }
 
 void GraphicalPresentation::createRemainsEntityWidget(HashMap<string,Component*>& componentMap){

@@ -125,3 +125,21 @@ void ERModel::clearComponentMap(){
     
     this->componentMap.clear();
 }
+
+void ERModel::registerObserver(IObserver* observer){
+    observerVector.push_back(observer);
+}
+
+void ERModel::unregisterObserver(IObserver* observer){
+    vector<IObserver*>::iterator observerIterator = find(observerVector.begin(),observerVector.end(),observer);
+    observerVector.erase(observerIterator);
+}
+
+void ERModel::notify(){
+    for each(IObserver* observer in observerVector)
+        observer->notify();
+}
+
+void ERModel::notify(IObserver* observer){
+    observer->notify();
+}

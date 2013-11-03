@@ -4,12 +4,6 @@
 #include "CharSymbol.h"
 #include "Entity.h"
 
-SetPrimaryKeyInstruction::SetPrimaryKeyInstruction(){
-}
-
-SetPrimaryKeyInstruction::~SetPrimaryKeyInstruction(){
-}
-
 void SetPrimaryKeyInstruction::execute(TextPresentation* textPresentation,TextUIPresenter* textUIPresenter){
     textUIPresenter->displayEntities();
     cout<<"Enter the ID of the entity: "<<endl;

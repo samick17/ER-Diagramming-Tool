@@ -160,7 +160,6 @@
     <ClCompile Include="RelationShipWidget.cpp" />
     <ClCompile Include="SaveFileInstruction.cpp" />
     <ClCompile Include="SetPrimaryKeyInstruction.cpp" />
-    <ClCompile Include="TextInstruction.cpp" />
     <ClCompile Include="TextPresentation.cpp" />
     <ClCompile Include="TextUIPresenter.cpp" />
     <ClCompile Include="TextUIProcess.cpp" />
@@ -186,6 +185,8 @@
     <ClInclude Include="DeleteComponentInstruction.h" />
     <ClInclude Include="DisplayDiagramInstruction.h" />
     <ClInclude Include="DisplayTableInstruction.h" />
+    <ClInclude Include="IObservable.h" />
+    <ClInclude Include="IObserver.h" />
     <ClInclude Include="Number.h" />
     <ClInclude Include="OpenFileInstruction.h" />
     <ClInclude Include="QActionData.h" />

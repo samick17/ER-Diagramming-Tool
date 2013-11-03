@@ -2,6 +2,7 @@
 
 #include <string>
 #include "HashMap.h"
+#include "IObserver.h"
 
 class Component;
 class Node;
@@ -37,6 +38,11 @@ public:
     HashMap<string,RelationShip*> getAllRelationShips();
     HashMap<string,Connector*> getAllConnectors();
     HashMap<string,Table*> getAllTables();
+
+    void registerObserver(IObserver* observer);
+    void unregisterObserver(IObserver* observer);
+    void notify();
+    void notify(IObserver* observer);
 private:
     ERModel* erModel;
 };

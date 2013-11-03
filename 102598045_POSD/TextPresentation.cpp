@@ -37,6 +37,10 @@ InstructionMenu* TextPresentation::getInstructionMenu(){
     return this->instructionMenu;
 }
 
+TextUIPresenter* TextPresentation::getTextUIPresenter(){
+    return this->textUIPresenter;
+}
+
 void TextPresentation::displayMenu(){
     this->textUIPresenter->displayMenu();
 }
@@ -151,4 +155,19 @@ void TextPresentation::redo(){
 
 void TextPresentation::undo(){
     this->presentation->undo();
+}
+void TextPresentation::registerObserver(IObserver* observer){
+	this->presentation->registerObserver(observer);
+}
+
+void TextPresentation::unregisterObserver(IObserver* observer){
+    this->presentation->unregisterObserver(observer);
+}
+
+void TextPresentation::notify(){
+    this->presentation->notify();
+}
+
+void TextPresentation::notify(IObserver* observer){
+    this->presentation->notify(observer);
 }
