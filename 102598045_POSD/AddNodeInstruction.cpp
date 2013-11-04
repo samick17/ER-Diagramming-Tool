@@ -2,6 +2,7 @@
 #include "Node.h"
 #include "ComponentType.h"
 #include "InvalidNodeTypeException.h"
+#include "ControllerEvent.h"
 
 void AddNodeInstruction::execute(TextPresentation* textPresentation,TextUIPresenter* textUIPresenter){
     cout<<"What kind of node do you want to add?\n[A]Attribute [E]Entity [R]Relation"<<endl;
@@ -16,7 +17,7 @@ void AddNodeInstruction::execute(TextPresentation* textPresentation,TextUIPresen
     }
     node->setName(input);
     cout<<"A node ["+node->getClassName()+"] has been added. ID: "+node->getID()+",Name: "+node->getName()<<endl;
-    textUIPresenter->displayComponents();
+	textPresentation->notify(ControllerEvent::AddNode);
 }
 
 Node* AddNodeInstruction::addNode(TextPresentation* textPresentation){

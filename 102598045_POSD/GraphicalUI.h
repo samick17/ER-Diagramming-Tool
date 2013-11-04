@@ -16,17 +16,15 @@ using namespace Qt;
 
 class GraphicalUI : public QMainWindow,IObserver{
     Q_OBJECT
-public slots:
-    void openFile();
-    void close();
+signals:
+    void notifyEvent(int notifiedEventType);
 public:
     GraphicalUI(GraphicalPresentation* graphicalPresentation);
     ~GraphicalUI();
 
-    void displayDiagram();
-
     GraphicalPresentation* getGraphicalPresentation();
-    void notify();
+    void notify(int notifiedEventType);
+    void setTitle(string title);
 protected:
     void closeEvent(QCloseEvent* closeEvent);
     void keyPressEvent(QKeyEvent* keyEvent);
@@ -39,11 +37,18 @@ private:
     QGraphicsView* view;
     QGraphicsScene* scene;
     QActionMap* actionMap;
+    typedef void (GraphicalUI::*ViewNotifyFunction)();
+    HashMap<int,ViewNotifyFunction> notifyMap;
 
-    void setTitle(string title);
     void initialGraphicView();
     void initialAllAction();
     void initialMenuBar();
     void initialToolBar();
+    void initialNotifyMap();
     void refresh();
+    void displayDiagram();
+private slots:
+    void openFile();
+    void close();
+    void executeNotify(int notifiedEventType);
 };

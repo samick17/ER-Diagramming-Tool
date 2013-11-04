@@ -1,5 +1,4 @@
 #include "GraphicalPresentation.h"
-#include <QFileDialog>
 #include "ActionData.h"
 #include "ApplicationSetting.h"
 #include "Attribute.h"
@@ -9,6 +8,7 @@
 #include "WidgetDefaultSetting.h"
 #include <algorithm>
 #include "Number.h"
+#include "ControllerEvent.h"
 
 GraphicalPresentation::GraphicalPresentation(Presentation* presentation) : presentation(presentation){
     this->isCtrlPressed = false;
@@ -23,22 +23,13 @@ HashMap<string,ComponentWidget*> GraphicalPresentation::getAllComponentWidgets()
     return this->componentWidgetMap;
 }
 
-void GraphicalPresentation::openFile(){
-    QFileDialog* openFileDialog = new QFileDialog(NULL, QString(ActionData::OpenFile.c_str()),QString(ApplicationSetting::FilePath.c_str()),QString(ApplicationSetting::FileExtension.c_str()));
-    if(openFileDialog->exec()){
-        QString filePath = openFileDialog->selectedFiles().first();	
-        this->presentation->openFile(filePath.toStdString());
-    }
-    delete openFileDialog;
+void GraphicalPresentation::openFile(string filePath){
+    this->presentation->openFile(filePath);
+	this->presentation->notify(ControllerEvent::DisplayDiagram);
 }
 
-void GraphicalPresentation::saveFile(){
-    QFileDialog* saveFileDialog = new QFileDialog(NULL, QString(ActionData::OpenFile.c_str()),QString(ApplicationSetting::FilePath.c_str()),QString(ApplicationSetting::FileExtension.c_str()));
-    saveFileDialog->exec();
-    QString filePath = saveFileDialog->selectedFiles().first();
-    if(!filePath.isEmpty())
-        this->presentation->saveFile(filePath.toStdString());
-    delete saveFileDialog;
+void GraphicalPresentation::saveFile(string filePath){
+        this->presentation->saveFile(filePath);
 }
 //close window
 void GraphicalPresentation::close(){
@@ -82,12 +73,12 @@ void GraphicalPresentation::unregisterObserver(IObserver* observer){
     this->presentation->unregisterObserver(observer);
 }
 
-void GraphicalPresentation::notify(){
-    this->presentation->notify();
+void GraphicalPresentation::notify(int notifiedEventType){
+    this->presentation->notify(notifiedEventType);
 }
 
-void GraphicalPresentation::notify(IObserver* observer){
-    this->presentation->notify(observer);
+void GraphicalPresentation::notify(IObserver* observer,int notifiedEventType){
+    this->presentation->notify(observer,notifiedEventType);
 }
 
 void GraphicalPresentation::clearAllComponentWidget(){

@@ -12,12 +12,14 @@
 #include "InstructionData.h"
 #include "TextUIPresenter.h"
 #include "ApplicationSetting.h"
+#include "ControllerEvent.h"
 
 TextPresentation::TextPresentation(Presentation* presentation) : presentation(presentation){
     string title = "Title "+ApplicationSetting::Title;
     system(title.c_str());
     this->instructionMenu = new InstructionMenu();
     this->textUIPresenter = new TextUIPresenter(this);
+	this->initialNotifyMap();
 }
 
 TextPresentation::~TextPresentation(){
@@ -157,17 +159,34 @@ void TextPresentation::undo(){
     this->presentation->undo();
 }
 void TextPresentation::registerObserver(IObserver* observer){
-	this->presentation->registerObserver(observer);
+    this->presentation->registerObserver(observer);
 }
 
 void TextPresentation::unregisterObserver(IObserver* observer){
     this->presentation->unregisterObserver(observer);
 }
 
-void TextPresentation::notify(){
-    this->presentation->notify();
+void TextPresentation::notify(int notifiedEventType){
+    this->presentation->notify(notifiedEventType);
 }
 
-void TextPresentation::notify(IObserver* observer){
-    this->presentation->notify(observer);
+void TextPresentation::notify(IObserver* observer,int notifiedEventType){
+    this->presentation->notify(observer,notifiedEventType);
+}
+
+void TextPresentation::initialNotifyMap(){
+    this->notifyMap.put(ControllerEvent::OpenFile,&TextUIPresenter::displayDiagram);
+    this->notifyMap.put(ControllerEvent::AddNode,&TextUIPresenter::displayComponents);
+    this->notifyMap.put(ControllerEvent::ConnectTwoNodes,&TextUIPresenter::displayConnections);
+    this->notifyMap.put(ControllerEvent::DisplayDiagram,&TextUIPresenter::displayDiagram);
+    this->notifyMap.put(ControllerEvent::DisplayTable,&TextUIPresenter::displayTable);
+    this->notifyMap.put(ControllerEvent::Undo,&TextUIPresenter::displayDiagram);
+    this->notifyMap.put(ControllerEvent::Redo,&TextUIPresenter::displayDiagram);
+}
+
+void TextPresentation::executeNotify(int notifiedEventType){
+    if(this->notifyMap.containsKey(notifiedEventType)){
+        ViewNotifyFunction notifyFunction = notifyMap.get(notifiedEventType);
+        (this->textUIPresenter->*notifyFunction)();
+    }
 }

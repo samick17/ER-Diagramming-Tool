@@ -14,7 +14,7 @@ public:
     void displayMenu();
     void processCommand();
 
-    void notify();
+    void notify(int notifiedEventType);
 private:
     TextPresentation* textPresentation;
 };

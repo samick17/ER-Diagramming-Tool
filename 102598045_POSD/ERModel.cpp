@@ -135,11 +135,11 @@ void ERModel::unregisterObserver(IObserver* observer){
     observerVector.erase(observerIterator);
 }
 
-void ERModel::notify(){
+void ERModel::notify(int notifiedEventType){
     for each(IObserver* observer in observerVector)
-        observer->notify();
+        observer->notify(notifiedEventType);
 }
 
-void ERModel::notify(IObserver* observer){
-    observer->notify();
+void ERModel::notify(IObserver* observer,int notifiedEventType){
+    observer->notify(notifiedEventType);
 }

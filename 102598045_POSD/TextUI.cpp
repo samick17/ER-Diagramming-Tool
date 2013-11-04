@@ -1,5 +1,6 @@
 #include "TextUI.h"
 #include "TextUIPresenter.h"
+#include <iostream>
 
 TextUI::TextUI(TextPresentation* textPresentation) : textPresentation(textPresentation){
     this->textPresentation->registerObserver(this);
@@ -17,7 +18,6 @@ void TextUI::processCommand(){
     this->textPresentation->processCommand();
 }
 
-void TextUI::notify(){
-    TextUIPresenter* textUIPresenter = this->textPresentation->getTextUIPresenter();
-    textUIPresenter->displayDiagram();
+void TextUI::notify(int notifiedEventType){
+    this->textPresentation->executeNotify(notifiedEventType);
 }

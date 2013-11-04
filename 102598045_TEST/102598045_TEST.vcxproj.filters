@@ -384,6 +384,9 @@
     <ClCompile Include="..\102598045_POSD\TextUIPresenter.cpp">
       <Filter>Source Files\View</Filter>
     </ClCompile>
+    <ClCompile Include="..\102598045_POSD\ControllerEvent.cpp">
+      <Filter>Source Files\Constants</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DirectoryUtil.h">

@@ -3,6 +3,8 @@
 #include "ApplicationSetting.h"
 #include "ActionData.h"
 #include <QKeyEvent>
+#include <QFileDialog>
+#include "ControllerEvent.h"
 
 GraphicalUI::GraphicalUI(GraphicalPresentation* graphicalPresentation): graphicalPresentation(graphicalPresentation),QMainWindow(){
     this->setTitle(ApplicationSetting::Title);
@@ -11,8 +13,11 @@ GraphicalUI::GraphicalUI(GraphicalPresentation* graphicalPresentation): graphica
     this->initialAllAction();
     this->initialMenuBar();
     this->initialToolBar();
+    this->initialNotifyMap();
     QMetaObject::connectSlotsByName(this);
     this->graphicalPresentation->registerObserver(this);
+    qRegisterMetaType<string>("string");
+    connect(this,SIGNAL(notifyEvent(int)),this,SLOT(executeNotify(int)));
 }
 
 GraphicalUI::~GraphicalUI(){
@@ -25,8 +30,8 @@ GraphicalPresentation* GraphicalUI::getGraphicalPresentation(){
     return this->graphicalPresentation;
 }
 
-void GraphicalUI::notify(){
-    this->displayDiagram();
+void GraphicalUI::notify(int notifiedEventType){
+    this->notifyEvent(notifiedEventType);
 }
 
 void GraphicalUI::closeEvent(QCloseEvent* closeEvent){
@@ -78,13 +83,36 @@ void GraphicalUI::initialToolBar(){
     this->addToolBar(this->toolBar);
 }
 
+void GraphicalUI::initialNotifyMap(){
+    this->notifyMap.put(ControllerEvent::OpenFile,&GraphicalUI::displayDiagram);
+    this->notifyMap.put(ControllerEvent::AddNode,&GraphicalUI::displayDiagram);
+    this->notifyMap.put(ControllerEvent::ConnectTwoNodes,&GraphicalUI::displayDiagram);
+    this->notifyMap.put(ControllerEvent::DisplayDiagram,&GraphicalUI::displayDiagram);
+    this->notifyMap.put(ControllerEvent::SetPrimaryKey,&GraphicalUI::displayDiagram);
+    this->notifyMap.put(ControllerEvent::DisplayTable,&GraphicalUI::displayDiagram);
+    this->notifyMap.put(ControllerEvent::DeleteComponent,&GraphicalUI::displayDiagram);
+    this->notifyMap.put(ControllerEvent::Undo,&GraphicalUI::displayDiagram);
+    this->notifyMap.put(ControllerEvent::Redo,&GraphicalUI::displayDiagram);
+}
+
 void GraphicalUI::openFile(){
-    this->graphicalPresentation->openFile();
-    //this->displayDiagram();
+    QFileDialog* openFileDialog = new QFileDialog(NULL, QString(ActionData::OpenFile.c_str()),QString(ApplicationSetting::FilePath.c_str()),QString(ApplicationSetting::FileExtension.c_str()));
+    if(openFileDialog->exec()){
+        QString filePath = openFileDialog->selectedFiles().first();
+        this->graphicalPresentation->openFile(filePath.toStdString());
+    }
+    delete openFileDialog;
 }
 
 void GraphicalUI::close(){
     this->graphicalPresentation->close();
+}
+//execute notify event that are mapped.
+void GraphicalUI::executeNotify(int notifiedEventType){
+    if(notifyMap.containsKey(notifiedEventType)){
+        ViewNotifyFunction notifyFunction = notifyMap.get(notifiedEventType);
+        (this->*notifyFunction)();
+    }
 }
 
 void GraphicalUI::displayDiagram(){

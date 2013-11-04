@@ -1,6 +1,7 @@
 #include "ConnectTwoNodesInstruction.h"
 #include "Component.h"
 #include "RelationType.h"
+#include "ControllerEvent.h"
 
 void ConnectTwoNodesInstruction::execute(TextPresentation* textPresentation,TextUIPresenter* textUIPresenter){
     textPresentation->getAllComponents();
@@ -15,7 +16,7 @@ void ConnectTwoNodesInstruction::execute(TextPresentation* textPresentation,Text
         this->setCardinality(firstNode,secondNode,textPresentation);
     else if(result == NodeConnectionType::ValidConnect)
         cout<<"The node '"+firstNode->getID()+"' has been connected to the node '"+secondNode->getID()+"' successfully!"<<endl;
-    textUIPresenter->displayConnections();
+	textPresentation->notify(ControllerEvent::ConnectTwoNodes);
 }
 
 void ConnectTwoNodesInstruction::setCardinality(Component* firstNode,Component* secondNode,TextPresentation* textPresentation){

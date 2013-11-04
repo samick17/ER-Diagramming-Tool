@@ -12,7 +12,6 @@ Presentation::~Presentation(){
 void Presentation::openFile(string filePath){
     InputFileParser inputFileParser;
     inputFileParser.parseFileToModel(filePath,erModel);
-    this->erModel->notify();
 }
 
 void Presentation::saveFile(string filePath){
@@ -26,29 +25,24 @@ void Presentation::close(){
 
 Node* Presentation::addNode(string componentType){
     Node* node = this->erModel->addNode(componentType);
-    this->erModel->notify();
     return node;
 }
 
 void Presentation::deleteComponent(Component* component){
     this->erModel->deleteComponent(component);
-    this->erModel->notify();
 }
 
 int Presentation::addConnection(Component* firstNode,Component* secondNode){
     int result = this->erModel->addConnection(firstNode,secondNode);
-    this->erModel->notify();
     return result;
 }
 
 void Presentation::redo(){
     this->erModel->redo();
-    this->erModel->notify();
 }
 
 void Presentation::undo(){
     this->erModel->undo();
-    this->erModel->notify();
 }
 
 Component* Presentation::getComponentByID(string id){
@@ -64,7 +58,7 @@ HashMap<string,Component*> Presentation::getAllComponents(){
 }
 
 HashMap<string,Attribute*> Presentation::getAllAttributes(){
-	return this->erModel->getAllAttributes();
+    return this->erModel->getAllAttributes();
 }
 
 HashMap<string,Entity*> Presentation::getAllEntities(){
@@ -91,10 +85,10 @@ void Presentation::unregisterObserver(IObserver* observer){
     this->erModel->unregisterObserver(observer);
 }
 
-void Presentation::notify(){
-    this->erModel->notify();
+void Presentation::notify(int notifiedEventType){
+    this->erModel->notify(notifiedEventType);
 }
 
-void Presentation::notify(IObserver* observer){
-    this->erModel->notify(observer);
+void Presentation::notify(IObserver* observer,int notifiedEventType){
+    this->erModel->notify(observer,notifiedEventType);
 }

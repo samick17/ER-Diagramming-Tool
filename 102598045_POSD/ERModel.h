@@ -52,11 +52,11 @@ public:
     void clearComponentMap();
     void registerObserver(IObserver* observer);
     void unregisterObserver(IObserver* observer);
-    void notify();
-    void notify(IObserver* observer);
+    void notify(int notifiedEventType);
+    void notify(IObserver* observer,int notifiedEventType);
 private:
     HashMap<string,Component*> componentMap;
-	vector<IObserver*> observerVector;
+    vector<IObserver*> observerVector;
     CommandManager commandManager;
     TableManager tableManager;
 };

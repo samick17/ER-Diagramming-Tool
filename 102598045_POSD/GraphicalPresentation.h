@@ -14,8 +14,8 @@ public:
 
     HashMap<string,ComponentWidget*> getAllComponentWidgets();
 
-    void openFile();
-    void saveFile();
+    void openFile(string filePath);
+    void saveFile(string filePath);
     void close();
     bool isSelected(ComponentWidget* selectedWidget);
     void selectWidget(ComponentWidget* selectedWidget);
@@ -23,8 +23,8 @@ public:
     void keyCtrlReleased();
     void registerObserver(IObserver* observer);
     void unregisterObserver(IObserver* observer);
-    void notify();
-    void notify(IObserver* observer);
+    void notify(int notifiedEventType);
+    void notify(IObserver* observer,int notifiedEventType);
 private:
     Presentation* presentation;
     GraphicalUI* graphicalUI;
