@@ -8,13 +8,8 @@ RelationShipWidget::RelationShipWidget(GraphicalPresentation* graphicalPresentat
 RelationShipWidget::~RelationShipWidget(){
 }
 
-void RelationShipWidget::paint(QPainter* painter,const QStyleOptionGraphicsItem* option,QWidget* widget){
-    painter->drawPolygon(getDiamondPolygon(this->rect));
-    painter->drawText(this->rect, Qt::AlignCenter,QString(this->text.c_str()));
-    this->drawSelectedFrame(painter);
-}
-
-QPolygon RelationShipWidget::getDiamondPolygon(QRectF rect){
+QPainterPath RelationShipWidget::shape() const{
+    QPainterPath path;
     QPolygon diamondPolygon;
     int left = rect.left();
     int top = rect.top();
@@ -25,6 +20,14 @@ QPolygon RelationShipWidget::getDiamondPolygon(QRectF rect){
     diamondPolygon<<QPoint(left,centerY)
                   <<QPoint(centerX,top)
                   <<QPoint(right,centerY)
-                  <<QPoint(centerX,bottom);
-    return diamondPolygon;
+                  <<QPoint(centerX,bottom)
+                  <<QPoint(left,centerY);
+    path.addPolygon(diamondPolygon);
+    return path;
+}
+
+void RelationShipWidget::paint(QPainter* painter,const QStyleOptionGraphicsItem* option,QWidget* widget){
+    painter->drawPath(this->shape());
+    painter->drawText(this->rect, Qt::AlignCenter,QString(this->text.c_str()));
+    this->drawSelectedFrame(painter);
 }

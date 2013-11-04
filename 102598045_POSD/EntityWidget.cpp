@@ -8,8 +8,14 @@ EntityWidget::EntityWidget(GraphicalPresentation* graphicalPresentation,QGraphic
 EntityWidget::~EntityWidget(){
 }
 
+QPainterPath EntityWidget::shape() const{
+    QPainterPath path;
+    path.addRect(this->rect);
+    return path;
+}
+
 void EntityWidget::paint(QPainter* painter,const QStyleOptionGraphicsItem* option,QWidget* widget){
-    painter->drawRect(this->rect);
+	painter->drawPath(this->shape());
     painter->drawText(this->rect, Qt::AlignCenter,QString(this->text.c_str()));
     this->drawSelectedFrame(painter);
 }

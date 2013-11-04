@@ -10,13 +10,19 @@ AttributeWidget::AttributeWidget(GraphicalPresentation* graphicalPresentation,QG
 AttributeWidget::~AttributeWidget(){
 }
 
+QPainterPath AttributeWidget::shape() const{
+    QPainterPath path;
+    path.addEllipse(this->rect);
+    return path;
+}
+
 void AttributeWidget::paint(QPainter* painter,const QStyleOptionGraphicsItem* option,QWidget* widget){
     if(this->isDisplayUnderLine){
         QFont font = painter->font();
         font.setUnderline(true);
         painter->setFont(font);
     }
-    painter->drawEllipse(this->rect);
+    painter->drawPath(this->shape());
     painter->drawText(this->rect, Qt::AlignCenter,QString(this->text.c_str()));
     this->drawSelectedFrame(painter);
 }
