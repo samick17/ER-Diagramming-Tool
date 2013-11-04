@@ -33,11 +33,11 @@ private:
     bool isCtrlPressed;
     void clearAllComponentWidget();
     void updateComponentWidgetMap();
-    void createRelationShipWidget(HashMap<string,Component*>& componentMap,HashMap<string,RelationShip*> relationShipMap);
-    void createEntityWidget(HashMap<string,Component*>& componentMap,HashMap<string,Entity*> entityMap,int& relationShipHeight);
-    void createAttributeWidget(HashMap<string,Component*>& componentMap,HashMap<string,Attribute*> attributeMap,int& attributeHeight);
+    int createRelationShipWidget(HashMap<string,Component*>& componentMap,HashMap<string,RelationShip*> relationShipMap,int& currentHeight);
+    int createEntityWidget(HashMap<string,Component*>& componentMap,HashMap<string,Entity*> entityMap,int& currentHeight);
+    int createAttributeWidget(HashMap<string,Component*>& componentMap,HashMap<string,Attribute*> attributeMap,int& attributeHeight);
     void createConnectorWidget(HashMap<string,Connector*> connectorMap);
-    void setConnectorWidget(ConnectorWidget* connectorWidget,ComponentWidget* sourceWidget,ComponentWidget* targetWidget);
-    void createRemainsEntityWidget(HashMap<string,Component*>& componentMap);
-    void createRemainsAttributeWidget(HashMap<string,Component*>& componentMap);
+    void setConnectorWidgetProperty(ConnectorWidget* connectorWidget,ComponentWidget* sourceWidget,ComponentWidget* targetWidget);
+    void createRemainsEntityWidget(HashMap<string,Component*>& componentMap,int& currentHeight);
+    void createRemainsAttributeWidget(HashMap<string,Component*>& componentMap,int& currentHeight);
 };

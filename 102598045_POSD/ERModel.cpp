@@ -101,13 +101,11 @@ HashMap<string,Connector*> ERModel::getAllConnectors(){
 
 HashMap<string,Entity*> ERModel::getAllEntities(){
     HashMap<string,Entity*> entityMap = ERModelUtil::convertComponentHashMapToTypeHashMap<Entity>(this->getAllComponents());
-
     return entityMap;
 }
 
-HashMap<string,RelationShip*> ERModel::getAllRelationShips(){    
+HashMap<string,RelationShip*> ERModel::getAllRelationShips(){
     HashMap<string,RelationShip*> relationShipMap = ERModelUtil::convertComponentHashMapToTypeHashMap<RelationShip>(this->getAllComponents());
-    
     return relationShipMap;
 }
 //get All Tables

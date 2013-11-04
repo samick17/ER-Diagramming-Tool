@@ -9,6 +9,7 @@
 #include <algorithm>
 #include "Number.h"
 #include "ControllerEvent.h"
+#include "ERModelUtil.h"
 
 GraphicalPresentation::GraphicalPresentation(Presentation* presentation) : presentation(presentation){
     this->isCtrlPressed = false;
@@ -25,13 +26,13 @@ HashMap<string,ComponentWidget*> GraphicalPresentation::getAllComponentWidgets()
 
 void GraphicalPresentation::openFile(string filePath){
     this->presentation->openFile(filePath);
-	this->presentation->notify(ControllerEvent::DisplayDiagram);
+    this->presentation->notify(ControllerEvent::DisplayDiagram);
 }
 
 void GraphicalPresentation::saveFile(string filePath){
-        this->presentation->saveFile(filePath);
+    this->presentation->saveFile(filePath);
 }
-//close window
+//close & exit application
 void GraphicalPresentation::close(){
     this->presentation->close();
 }
@@ -88,74 +89,77 @@ void GraphicalPresentation::clearAllComponentWidget(){
 //update all from model to widget
 void GraphicalPresentation::updateComponentWidgetMap(){
     this->clearAllComponentWidget();
-    HashMap<string,Component*> componentMap;
-    this->createRelationShipWidget(componentMap,this->presentation->getAllRelationShips());
-    this->createRemainsEntityWidget(componentMap);
-    this->createRemainsAttributeWidget(componentMap);
+    HashMap<string,Component*> componentMap = this->presentation->getAllComponents();
+    //create relationShip
+    int currentTotalHeight = 0;
+    this->createRelationShipWidget(componentMap,this->presentation->getAllRelationShips(),currentTotalHeight);
+    this->createRemainsEntityWidget(componentMap,currentTotalHeight);
+    this->createRemainsAttributeWidget(componentMap,currentTotalHeight);
     this->createConnectorWidget(this->presentation->getAllConnectors());
 }
 //create relationship widgets and its connected entities
-void GraphicalPresentation::createRelationShipWidget(HashMap<string,Component*>& componentMap,HashMap<string,RelationShip*> relationShipMap){
+int GraphicalPresentation::createRelationShipWidget(HashMap<string,Component*>& componentMap,HashMap<string,RelationShip*> relationShipMap,int& currentHeight){
     WidgetFactory widgetFactory;
-    int relationShipHeight = 0;
     for each(RelationShip* relationShip in this->presentation->getAllRelationShips()){
-        this->createEntityWidget(componentMap,relationShip->getConnectedEntities(),relationShipHeight);
-        ComponentWidget* relationShipWidget = widgetFactory.createComponentWidget(relationShip->getType(),this);
+        HashMap<string,Entity*> connectedEntitiesMap = relationShip->getConnectedEntities();
+        int totalHeight = this->createEntityWidget(componentMap,connectedEntitiesMap,currentHeight);
+        int currentRelationShipHeight = currentHeight;
+        if(!connectedEntitiesMap.empty())
+            currentRelationShipHeight = totalHeight/connectedEntitiesMap.size();
+        ComponentWidgetData componentWidgetData = ComponentWidgetData(relationShip->getName(),WidgetDefaultSetting::RelationShipHorizontalDistance,currentRelationShipHeight);
+        ComponentWidget* relationShipWidget = widgetFactory.createComponentWidget(relationShip->getType(),componentWidgetData,this);
         this->componentWidgetMap.put(relationShip->getID(),relationShipWidget);
-        relationShipWidget->setText(relationShip->getName());
-        componentMap.put(relationShip->getID(),relationShip);
-        relationShipWidget->setPos(WidgetDefaultSetting::RelationShipHorizontalDistance,relationShipHeight);
+        componentMap.remove(relationShip->getID());
+        currentHeight += WidgetDefaultSetting::RelationShipVerticalDistance;
     }
+    return currentHeight;
 }
 //create entity widgets and its connected attributes
-void GraphicalPresentation::createEntityWidget(HashMap<string,Component*>& componentMap,HashMap<string,Entity*> entityMap,int& relationShipHeight){
+int GraphicalPresentation::createEntityWidget(HashMap<string,Component*>& componentMap,HashMap<string,Entity*> entityMap,int& currentHeight){
     WidgetFactory widgetFactory;
     int finalRelationShipHeight = 0;
-    int attributeHeight = 0;
+    //int currentHeight = 0;
     for each(Entity* entity in entityMap){
-        if(componentMap.containsKey(entity->getID()))
+        if(!componentMap.containsKey(entity->getID()))
             continue;
-        this->createAttributeWidget(componentMap,entity->getConnectedAttributes(),attributeHeight);
+        this->createAttributeWidget(componentMap,entity->getConnectedAttributes(),currentHeight);
         int currentTotalHeight = WidgetDefaultSetting::AttributeVerticalDistance*entity->getConnectedAttributes().size();
-        int entityHeight = attributeHeight - ((currentTotalHeight+WidgetDefaultSetting::Height)/Number::Two);
-        ComponentWidget* entityWidget = widgetFactory.createComponentWidget(entity->getType(),this);
+        int entityHeight = currentHeight-((currentTotalHeight+WidgetDefaultSetting::Height)/Number::Two);
+        ComponentWidgetData componentWidgetData = ComponentWidgetData(entity->getName(),WidgetDefaultSetting::EntityHorizontalDistance,entityHeight);
+        ComponentWidget* entityWidget = widgetFactory.createComponentWidget(entity->getType(),componentWidgetData,this);
         this->componentWidgetMap.put(entity->getID(),entityWidget);
-        entityWidget->setText(entity->getName());
-        componentMap.put(entity->getID(),entity);
-        entityWidget->setPos(WidgetDefaultSetting::EntityHorizontalDistance,entityHeight);
+        componentMap.remove(entity->getID());
         finalRelationShipHeight += entityHeight;
+        currentHeight += WidgetDefaultSetting::EntityVerticalDistance;
     }
-    //caculate relationship height
-    if(!entityMap.empty())
-        relationShipHeight = finalRelationShipHeight/entityMap.size();
+    return currentHeight;
 }
 //create attribute widgets
-void GraphicalPresentation::createAttributeWidget(HashMap<string,Component*>& componentMap,HashMap<string,Attribute*> attributeMap,int& attributeHeight){
+int GraphicalPresentation::createAttributeWidget(HashMap<string,Component*>& componentMap,HashMap<string,Attribute*> attributeMap,int& attributeHeight){
     WidgetFactory widgetFactory;
     for each(Attribute* attribute in attributeMap){
-        AttributeWidget* attributeWidget = static_cast<AttributeWidget*>(widgetFactory.createComponentWidget(attribute->getType(),this));
+        ComponentWidgetData componentWidgetData = ComponentWidgetData(attribute->getName(),WidgetDefaultSetting::AttributeHorizontalDistance,attributeHeight,attribute->isPrimaryKey());
+        AttributeWidget* attributeWidget = static_cast<AttributeWidget*>(widgetFactory.createComponentWidget(attribute->getType(),componentWidgetData,this));
         this->componentWidgetMap.put(attribute->getID(),attributeWidget);
-        attributeWidget->setText(attribute->getName());
-        componentMap.put(attribute->getID(),attribute);
-        attributeWidget->setPos(WidgetDefaultSetting::AttributeHorizontalDistance,attributeHeight);
-        attributeWidget->showUnderLine(attribute->isPrimaryKey());
+        componentMap.remove(attribute->getID());
         attributeHeight += WidgetDefaultSetting::AttributeVerticalDistance;
     }
+    return attributeHeight;
 }
 //create connector widgets,and set property , e.g.text,line to draw
 void GraphicalPresentation::createConnectorWidget(HashMap<string,Connector*> connectorMap){
     WidgetFactory widgetFactory;
     for each(Connector* connector in connectorMap){
-        ConnectorWidget* connectorWidget = static_cast<ConnectorWidget*>(widgetFactory.createComponentWidget(connector->getType(),this));
+        ComponentWidgetData componentWidgetData = ComponentWidgetData(connector->getName(),0,0);
+        ConnectorWidget* connectorWidget = static_cast<ConnectorWidget*>(widgetFactory.createComponentWidget(connector->getType(),componentWidgetData,this));
         ComponentWidget* sourceWidget = this->componentWidgetMap.get(connector->getFirstConnectedNode()->getID());
         ComponentWidget* targetWidget = this->componentWidgetMap.get(connector->getSecondConnectedNode()->getID());
-        this->setConnectorWidget(connectorWidget,sourceWidget,targetWidget);
-        connectorWidget->setText(connector->getName());
+        this->setConnectorWidgetProperty(connectorWidget,sourceWidget,targetWidget);
         this->componentWidgetMap.put(connector->getID(),connectorWidget);
     }
 }
 //set connector widget's property
-void GraphicalPresentation::setConnectorWidget(ConnectorWidget* connectorWidget,ComponentWidget* sourceWidget,ComponentWidget* targetWidget){
+void GraphicalPresentation::setConnectorWidgetProperty(ConnectorWidget* connectorWidget,ComponentWidget* sourceWidget,ComponentWidget* targetWidget){
     QRectF sourceRect = sourceWidget->boundingRect();
     QRectF targetRect = targetWidget->boundingRect();
     QPointF sourceCenterLeft = QPointF(sourceRect.left(),sourceRect.center().y());
@@ -170,20 +174,12 @@ void GraphicalPresentation::setConnectorWidget(ConnectorWidget* connectorWidget,
         connectorWidget->setConnectionPoint(sourceCenterRight,targetCenterLeft);
 }
 //create unconnected entity widgets
-void GraphicalPresentation::createRemainsEntityWidget(HashMap<string,Component*>& componentMap){
-    int currentHeight = 0;
-    HashMap<string,Entity*> entityMap = this->presentation->getAllEntities();
-    for each(Component* component in componentMap)
-        if(entityMap.containsKey(component->getID()))
-            entityMap.remove(component->getID());
+void GraphicalPresentation::createRemainsEntityWidget(HashMap<string,Component*>& componentMap,int& currentHeight){
+    HashMap<string,Entity*> entityMap = ERModelUtil::convertComponentHashMapToTypeHashMap<Entity>(componentMap);
     this->createEntityWidget(componentMap,entityMap,currentHeight);
 }
 //create unconnected attribute widgets
-void GraphicalPresentation::createRemainsAttributeWidget(HashMap<string,Component*>& componentMap){
-    int currentHeight = 0;
-    HashMap<string,Attribute*> attributeMap = this->presentation->getAllAttributes();
-    for each(Component* component in componentMap)
-        if(attributeMap.containsKey(component->getID()))
-            attributeMap.remove(component->getID());
+void GraphicalPresentation::createRemainsAttributeWidget(HashMap<string,Component*>& componentMap,int& currentHeight){
+    HashMap<string,Attribute*> attributeMap = ERModelUtil::convertComponentHashMapToTypeHashMap<Attribute>(componentMap);
     this->createAttributeWidget(componentMap,attributeMap,currentHeight);
 }

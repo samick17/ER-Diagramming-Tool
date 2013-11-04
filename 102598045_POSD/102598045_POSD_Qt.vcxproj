@@ -84,6 +84,7 @@
     <ClCompile Include="AddNodeInstruction.cpp" />
     <ClCompile Include="AttributeWidget.cpp" />
     <ClCompile Include="CloseInstruction.cpp" />
+    <ClCompile Include="ComponentWidgetData.cpp" />
     <ClCompile Include="ConnectorWidget.cpp" />
     <ClCompile Include="ConnectTwoNodesInstruction.cpp" />
     <ClCompile Include="DeleteComponentInstruction.cpp" />
@@ -181,6 +182,7 @@
     <ClInclude Include="CollectionException.h" />
     <ClInclude Include="CollectionType.h" />
     <ClInclude Include="Command.h" />
+    <ClInclude Include="ComponentWidgetData.h" />
     <ClInclude Include="ConnectorWidget.h" />
     <ClInclude Include="ConnectTwoNodesInstruction.h" />
     <ClInclude Include="DeleteComponentInstruction.h" />

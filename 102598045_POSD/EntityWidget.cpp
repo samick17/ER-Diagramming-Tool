@@ -2,7 +2,7 @@
 #include <QGraphicsSceneMouseEvent>
 #include <QPainter>
 
-EntityWidget::EntityWidget(GraphicalPresentation* graphicalPresentation,QGraphicsItem* parent) : ComponentWidget(graphicalPresentation,parent){
+EntityWidget::EntityWidget(ComponentWidgetData componentWidgetData,GraphicalPresentation* graphicalPresentation,QGraphicsItem* parent) : ComponentWidget(componentWidgetData,graphicalPresentation,parent){
 }
 
 EntityWidget::~EntityWidget(){
@@ -14,8 +14,7 @@ QPainterPath EntityWidget::shape() const{
     return path;
 }
 
-void EntityWidget::paint(QPainter* painter,const QStyleOptionGraphicsItem* option,QWidget* widget){
-	painter->drawPath(this->shape());
-    painter->drawText(this->rect, Qt::AlignCenter,QString(this->text.c_str()));
-    this->drawSelectedFrame(painter);
+void EntityWidget::doPaint(QPainter* painter){
+    painter->drawPath(this->shape());
+    painter->drawText(this->rect,Qt::AlignCenter,QString(this->getText().c_str()));
 }

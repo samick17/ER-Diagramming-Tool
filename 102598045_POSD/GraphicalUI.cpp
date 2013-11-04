@@ -5,6 +5,7 @@
 #include <QKeyEvent>
 #include <QFileDialog>
 #include "ControllerEvent.h"
+#include <iostream>
 
 GraphicalUI::GraphicalUI(GraphicalPresentation* graphicalPresentation): graphicalPresentation(graphicalPresentation),QMainWindow(){
     this->setTitle(ApplicationSetting::Title);
@@ -62,9 +63,9 @@ void GraphicalUI::initialGraphicView(){
 void GraphicalUI::initialAllAction(){
     this->actionMap = new QActionMap(this);
     QAction* openFileAction = this->actionMap->getQAction(ActionData::OpenFile);
-    this->toolBar->connect(openFileAction, SIGNAL(triggered()), this, SLOT(openFile()));
+    this->toolBar->connect(openFileAction,SIGNAL(triggered()),this,SLOT(openFile()));
     QAction* exitAction = this->actionMap->getQAction(ActionData::Exit);
-    this->toolBar->connect(exitAction, SIGNAL(triggered()), this, SLOT(close()));
+    this->toolBar->connect(exitAction,SIGNAL(triggered()),this,SLOT(close()));
 }
 
 void GraphicalUI::initialMenuBar(){
@@ -96,7 +97,7 @@ void GraphicalUI::initialNotifyMap(){
 }
 
 void GraphicalUI::openFile(){
-    QFileDialog* openFileDialog = new QFileDialog(NULL, QString(ActionData::OpenFile.c_str()),QString(ApplicationSetting::FilePath.c_str()),QString(ApplicationSetting::FileExtension.c_str()));
+    QFileDialog* openFileDialog = new QFileDialog(NULL,QString(ActionData::OpenFile.c_str()),QString(ApplicationSetting::FilePath.c_str()),QString(ApplicationSetting::FileExtension.c_str()));
     if(openFileDialog->exec()){
         QString filePath = openFileDialog->selectedFiles().first();
         this->graphicalPresentation->openFile(filePath.toStdString());
@@ -118,9 +119,8 @@ void GraphicalUI::executeNotify(int notifiedEventType){
 void GraphicalUI::displayDiagram(){
     this->refresh();
     HashMap<string,ComponentWidget*> componentWidgetMap = this->graphicalPresentation->getAllComponentWidgets();
-    for each(ComponentWidget* componentWidget in componentWidgetMap){
+    for each(ComponentWidget* componentWidget in componentWidgetMap)
         this->scene->addItem(componentWidget);
-    }
 }
 
 void GraphicalUI::refresh(){

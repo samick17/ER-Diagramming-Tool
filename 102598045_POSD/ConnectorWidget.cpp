@@ -3,16 +3,16 @@
 #include <QPainter>
 #include <algorithm>
 
-ConnectorWidget::ConnectorWidget(GraphicalPresentation* graphicalPresentation,QGraphicsItem* parent) : ComponentWidget(graphicalPresentation,parent){
+ConnectorWidget::ConnectorWidget(ComponentWidgetData componentWidgetData,GraphicalPresentation* graphicalPresentation,QGraphicsItem* parent) : ComponentWidget(componentWidgetData,graphicalPresentation,parent){
 }
 
 ConnectorWidget::~ConnectorWidget(){
 }
 
-void ConnectorWidget::paint(QPainter* painter,const QStyleOptionGraphicsItem* option,QWidget* widget){
+
+void ConnectorWidget::doPaint(QPainter* painter){
     painter->drawLine(this->sourcePoint,this->targetPoint);
-    painter->drawText(this->rect, Qt::AlignCenter,QString(this->text.c_str()));
-    this->drawSelectedFrame(painter);
+    painter->drawText(this->rect,Qt::AlignHCenter,QString(this->getText().c_str()));
 }
 
 void ConnectorWidget::setConnectionPoint(QPointF sourcePoint,QPointF targetPoint){

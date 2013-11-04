@@ -2,6 +2,7 @@
 #include "ControllerEvent.h"
 
 void DeleteComponentInstruction::execute(TextPresentation* textPresentation,TextUIPresenter* textUIPresenter){
+	textUIPresenter->displayComponents();
     //find node to be connect
     cout<<"Please enter the component ID"<<endl;
     Component* componentToDelete = textPresentation->findComponent();

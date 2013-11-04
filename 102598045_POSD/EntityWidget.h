@@ -4,9 +4,10 @@
 
 class EntityWidget : public ComponentWidget{
 public:
-    EntityWidget(GraphicalPresentation* graphicalPresentation,QGraphicsItem* parent = 0);
+    EntityWidget(ComponentWidgetData componentWidgetData,GraphicalPresentation* graphicalPresentation,QGraphicsItem* parent = 0);
     ~EntityWidget();
 
     QPainterPath shape() const;
-    void paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget = 0);
+protected:
+    void doPaint(QPainter* painter);
 };

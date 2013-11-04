@@ -12,9 +12,9 @@ WidgetFactory::WidgetFactory(){
 WidgetFactory::~WidgetFactory(){
 }
 
-ComponentWidget* WidgetFactory::createComponentWidget(string componentType,GraphicalPresentation* graphicalPresentation){
+ComponentWidget* WidgetFactory::createComponentWidget(string componentType,ComponentWidgetData componentWidgetData,GraphicalPresentation* graphicalPresentation){
     NewComponentWidgetFunction newComponentWidgetFunctiontion = findNewComponentWidgetFunction(componentType);
-    ComponentWidget* componentWidget = newComponentWidgetFunctiontion(graphicalPresentation);
+    ComponentWidget* componentWidget = newComponentWidgetFunctiontion(componentWidgetData,graphicalPresentation);
     return componentWidget;
 }
 

@@ -3,8 +3,7 @@
 #include <QPainter>
 #include "GraphicalPresentation.h"
 
-AttributeWidget::AttributeWidget(GraphicalPresentation* graphicalPresentation,QGraphicsItem* parent) : ComponentWidget(graphicalPresentation,parent){
-    this->isDisplayUnderLine = false;
+AttributeWidget::AttributeWidget(ComponentWidgetData componentWidgetData,GraphicalPresentation* graphicalPresentation,QGraphicsItem* parent) : ComponentWidget(componentWidgetData,graphicalPresentation,parent){
 }
 
 AttributeWidget::~AttributeWidget(){
@@ -16,17 +15,7 @@ QPainterPath AttributeWidget::shape() const{
     return path;
 }
 
-void AttributeWidget::paint(QPainter* painter,const QStyleOptionGraphicsItem* option,QWidget* widget){
-    if(this->isDisplayUnderLine){
-        QFont font = painter->font();
-        font.setUnderline(true);
-        painter->setFont(font);
-    }
+void AttributeWidget::doPaint(QPainter* painter){
     painter->drawPath(this->shape());
-    painter->drawText(this->rect, Qt::AlignCenter,QString(this->text.c_str()));
-    this->drawSelectedFrame(painter);
-}
-
-void AttributeWidget::showUnderLine(bool isDisplayUnderLine){
-    this->isDisplayUnderLine = isDisplayUnderLine;
+    painter->drawText(this->rect,Qt::AlignCenter,QString(this->getText().c_str()));
 }
