@@ -5,8 +5,6 @@
 #include "WidgetFactory.h"
 #include <QList>
 
-class GraphicalUI;
-
 class GraphicalPresentation{
 public:
     GraphicalPresentation(Presentation* presentation);
@@ -27,7 +25,6 @@ public:
     void notify(IObserver* observer,int notifiedEventType);
 private:
     Presentation* presentation;
-    GraphicalUI* graphicalUI;
     HashMap<string,ComponentWidget*> componentWidgetMap;
     QList<ComponentWidget*> selectedWidgetList;
     bool isCtrlPressed;

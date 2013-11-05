@@ -19,11 +19,12 @@ TextPresentation::TextPresentation(Presentation* presentation) : presentation(pr
     system(title.c_str());
     this->instructionMenu = new InstructionMenu();
     this->textUIPresenter = new TextUIPresenter(this);
-	this->initialNotifyMap();
+    this->initialNotifyMap();
 }
 
 TextPresentation::~TextPresentation(){
     delete this->instructionMenu;
+    delete this->textUIPresenter;
 }
 
 string TextPresentation::getInput(){
