@@ -1,6 +1,5 @@
 #include "TextUI.h"
 #include "TextUIPresenter.h"
-#include <iostream>
 
 TextUI::TextUI(TextPresentation* textPresentation) : textPresentation(textPresentation){
     this->textPresentation->registerObserver(this);

@@ -9,6 +9,7 @@ public:
 
     void setConnectionPoint(QPointF sourcePoint,QPointF targetPoint);
 protected:
+    QPainterPath shape() const;
     void doPaint(QPainter* painter);
 private:
     QPointF sourcePoint;

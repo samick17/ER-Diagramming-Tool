@@ -153,6 +153,7 @@
     <ClCompile Include="GraphicalUI.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="ControllerEvent.cpp" />
+    <ClCompile Include="NodeWidget.cpp" />
     <ClCompile Include="Number.cpp" />
     <ClCompile Include="OpenFileInstruction.cpp" />
     <ClCompile Include="Presentation.cpp" />
@@ -191,6 +192,7 @@
     <ClInclude Include="IObservable.h" />
     <ClInclude Include="IObserver.h" />
     <ClInclude Include="ControllerEvent.h" />
+    <ClInclude Include="NodeWidget.h" />
     <ClInclude Include="Number.h" />
     <ClInclude Include="OpenFileInstruction.h" />
     <ClInclude Include="QActionData.h" />

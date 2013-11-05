@@ -412,6 +412,9 @@
     <ClCompile Include="ComponentWidgetData.cpp">
       <Filter>Source Files\Struct</Filter>
     </ClCompile>
+    <ClCompile Include="NodeWidget.cpp">
+      <Filter>Source Files\View\GUI\GUIWidget\ModelWidget</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Attribute.h">
@@ -665,6 +668,9 @@
     </ClInclude>
     <ClInclude Include="ComponentWidgetData.h">
       <Filter>Header Files\Struct</Filter>
+    </ClInclude>
+    <ClInclude Include="NodeWidget.h">
+      <Filter>Header Files\View\GUI\GUIWidget\ModelWidget</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

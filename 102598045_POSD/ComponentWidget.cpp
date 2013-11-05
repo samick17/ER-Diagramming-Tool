@@ -4,6 +4,8 @@
 #include "WidgetDefaultSetting.h"
 #include "GraphicalPresentation.h"
 
+using namespace Qt;
+
 ComponentWidget::ComponentWidget(ComponentWidgetData componentWidgetData,GraphicalPresentation* graphicalPresentation,QGraphicsItem* parent) : graphicalPresentation(graphicalPresentation),componentWidgetData(componentWidgetData),QGraphicsItem(parent){
     this->rect = QRectF(componentWidgetData.getPositionX(),componentWidgetData.getPositionY(),WidgetDefaultSetting::Width,WidgetDefaultSetting::Height);
 }
@@ -32,7 +34,7 @@ void ComponentWidget::mouseReleaseEvent(QGraphicsSceneMouseEvent* mouseEvent){
 void ComponentWidget::paint(QPainter* painter,const QStyleOptionGraphicsItem* option, QWidget* widget){
     //set anti-aliasing & pen width
     painter->setRenderHint(QPainter::Antialiasing);
-    painter->setPen(QPen(Qt::black,WidgetDefaultSetting::WidgetLineWidth));
+    painter->setPen(QPen(black,WidgetDefaultSetting::WidgetLineWidth));
     //set under Lined
     QFont font = painter->font();
     font.setUnderline(this->getIsUnderLined());
@@ -49,7 +51,7 @@ QRectF ComponentWidget::boundingRect() const{
 
 void ComponentWidget::drawSelectedFrame(QPainter* painter){
     if(this->graphicalPresentation->isSelected(this)){
-        painter->setPen(QPen(Qt::darkCyan,WidgetDefaultSetting::SelectedFrameLineWidth,Qt::DotLine));
-        painter->drawRect(this->rect);
+        painter->setPen(QPen(darkGreen,WidgetDefaultSetting::SelectedFrameLineWidth,Qt::DotLine));
+        painter->drawPath(this->shape());
     }
 }

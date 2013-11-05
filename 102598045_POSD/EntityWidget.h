@@ -1,13 +1,11 @@
 #pragma once
 
-#include "ComponentWidget.h"
+#include "NodeWidget.h"
 
-class EntityWidget : public ComponentWidget{
+class EntityWidget : public NodeWidget{
 public:
     EntityWidget(ComponentWidgetData componentWidgetData,GraphicalPresentation* graphicalPresentation,QGraphicsItem* parent = 0);
     ~EntityWidget();
 
     QPainterPath shape() const;
-protected:
-    void doPaint(QPainter* painter);
 };

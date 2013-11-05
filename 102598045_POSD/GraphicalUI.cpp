@@ -5,7 +5,6 @@
 #include <QKeyEvent>
 #include <QFileDialog>
 #include "ControllerEvent.h"
-#include <iostream>
 
 GraphicalUI::GraphicalUI(GraphicalPresentation* graphicalPresentation): graphicalPresentation(graphicalPresentation),QMainWindow(){
     this->setTitle(ApplicationSetting::Title);

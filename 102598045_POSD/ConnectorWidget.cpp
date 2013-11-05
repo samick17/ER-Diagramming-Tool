@@ -3,16 +3,25 @@
 #include <QPainter>
 #include <algorithm>
 
+using namespace Qt;
+
 ConnectorWidget::ConnectorWidget(ComponentWidgetData componentWidgetData,GraphicalPresentation* graphicalPresentation,QGraphicsItem* parent) : ComponentWidget(componentWidgetData,graphicalPresentation,parent){
 }
 
 ConnectorWidget::~ConnectorWidget(){
 }
 
+QPainterPath ConnectorWidget::shape() const{
+    QPainterPath path;
+    QPolygonF line;
+    line<<sourcePoint<<targetPoint;
+    path.addPolygon(line);
+    return path;
+}
 
 void ConnectorWidget::doPaint(QPainter* painter){
-    painter->drawLine(this->sourcePoint,this->targetPoint);
-    painter->drawText(this->rect,Qt::AlignHCenter,QString(this->getText().c_str()));
+    painter->drawPath(this->shape());
+    painter->drawText(this->rect,AlignHCenter,QString(this->getText().c_str()));
 }
 
 void ConnectorWidget::setConnectionPoint(QPointF sourcePoint,QPointF targetPoint){

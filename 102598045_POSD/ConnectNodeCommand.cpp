@@ -17,8 +17,8 @@ ConnectNodeCommand::~ConnectNodeCommand(){
 }
 
 void ConnectNodeCommand::execute(){
-	this->erModel->insertComponent(connector);
-	ComponentUtil::connectWithEachOther(firstNode,secondNode,connector);
+    this->erModel->insertComponent(connector);
+    ComponentUtil::connectWithEachOther(firstNode,secondNode,connector);
     this->executionFlag = true;
 }
 
