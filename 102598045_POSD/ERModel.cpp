@@ -9,6 +9,8 @@
 #include "AddNodeCommand.h"
 #include "DeleteComponentCommand.h"
 #include "ConnectNodeCommand.h"
+#include "InputFileParser.h"
+#include "OutputFileParser.h"
 
 ERModel::ERModel(){
 }
@@ -63,6 +65,18 @@ void ERModel::redo(){
 void ERModel::undo(){
     this->commandManager.undo();
 }
+
+void ERModel::openFile(string filePath){
+    InputFileParser inputFileParser;
+    inputFileParser.parseFileToModel(filePath,this);
+    //open file should reset undo/redo state
+    this->commandManager.popAllStack();
+}
+
+void ERModel::saveFile(string filePath){
+    OutputFileParser outputFileParser = OutputFileParser(this->getAllComponents());
+    outputFileParser.parseModelToFile(filePath);
+}
 //if doesn't contains such component, throw exception
 Component* ERModel::getComponentByID(string id){
     if(this->componentMap.containsKey(id))
@@ -90,7 +104,7 @@ HashMap<string,Component*> ERModel::getAllComponents(){
 }
 
 HashMap<string,Attribute*> ERModel::getAllAttributes(){
-	HashMap<string,Attribute*> attributeMap = ERModelUtil::convertComponentHashMapToTypeHashMap<Attribute>(this->componentMap);
+    HashMap<string,Attribute*> attributeMap = ERModelUtil::convertComponentHashMapToTypeHashMap<Attribute>(this->componentMap);
     return attributeMap;
 }
 

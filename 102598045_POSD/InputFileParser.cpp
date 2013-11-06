@@ -26,7 +26,7 @@ void InputFileParser::parseFileToModel(string filePath,ERModel* erModel){
     this->loadAllPrimaryKeyAndSetUpFromDoc(doc);
 }
 
-void InputFileParser::loadAllComponentsFromDoc(Document& doc){    
+void InputFileParser::loadAllComponentsFromDoc(Document& doc){
     string line;
     while(StringUtil::trim((line = doc.readLine())) != StringSymbol::Empty){
         //load component data & push to componentDataQueue

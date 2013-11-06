@@ -1,7 +1,5 @@
 #include "Presentation.h"
 #include "ERModel.h"
-#include "OutputFileParser.h"
-#include "InputFileParser.h"
 
 Presentation::Presentation(ERModel* erModel) : erModel(erModel){
 }
@@ -10,13 +8,11 @@ Presentation::~Presentation(){
 }
 
 void Presentation::openFile(string filePath){
-    InputFileParser inputFileParser;
-    inputFileParser.parseFileToModel(filePath,erModel);
+    this->erModel->openFile(filePath);
 }
 
 void Presentation::saveFile(string filePath){
-    OutputFileParser outputFileParser = OutputFileParser(this->erModel->getAllComponents());
-    outputFileParser.parseModelToFile(filePath);
+    this->erModel->saveFile(filePath);
 }
 
 void Presentation::close(){

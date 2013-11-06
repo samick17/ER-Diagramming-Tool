@@ -152,6 +152,7 @@
     <ClCompile Include="AttributeTest.cpp" />
     <ClCompile Include="CommandManagerTest.cpp" />
     <ClCompile Include="DirectoryUtil.cpp" />
+    <ClCompile Include="FileCreator.cpp" />
     <ClCompile Include="InstructionMenuTest.cpp" />
     <ClCompile Include="ComponentFactoryTest.cpp" />
     <ClCompile Include="ComponentTest.cpp" />
@@ -181,6 +182,7 @@
     <ClInclude Include="AddNodeCommandTest.h" />
     <ClInclude Include="AttributeTest.h" />
     <ClInclude Include="CommandManagerTest.h" />
+    <ClInclude Include="FileCreator.h" />
     <ClInclude Include="InstructionMenuTest.h" />
     <ClInclude Include="ComponentFactoryTest.h" />
     <ClInclude Include="ComponentTest.h" />

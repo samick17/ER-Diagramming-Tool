@@ -13,6 +13,7 @@ class ERModel : IObservable{
     FRIEND_TEST(ERModelTest,testInsertComponent);
     FRIEND_TEST(ERModelTest,testEraseComponent);
     FRIEND_TEST(ERModelTest,testAddConnection);
+    FRIEND_TEST(ERModelTest,testOpenFile);
     FRIEND_TEST(ERModelTest,testGetNodesConnector);
     FRIEND_TEST(ERModelTest,testGetAllComponents);
     FRIEND_TEST(ERModelTest,testGetAllConnectors);
@@ -39,6 +40,8 @@ public:
     int addConnection(Component* firstNode,Component* secondNode);
     void redo();
     void undo();
+    void openFile(string filePath);
+    void saveFile(string filePath);
 
     Component* getComponentByID(string id);
     Connector* getNodesConnector(Component* firstNode,Component* secondNode);

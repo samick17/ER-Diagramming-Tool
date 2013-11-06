@@ -9,6 +9,7 @@
 #include "ComponentType.h"
 #include "InputFileParser.h"
 #include "EmptyCollectionException.h"
+#include "FileCreator.h"
 
 void ERModelTest::SetUp(){
     ASSERT_EQ(0,this->erModel.getAllComponents().size());
@@ -150,6 +151,17 @@ TEST_F(ERModelTest,testAddConnection){
     //relationShip connect to attribute
     ASSERT_THROW(this->erModel.addConnection(relationShipWorkOn,attributeDepartmentName),InvalidConnectException);
     ASSERT_EQ(false,hasConnected(relationShipWorkOn,attributeDepartmentName));
+}
+
+TEST_F(ERModelTest,testOpenFile){
+    string filePath = FileCreator::createDefaultFile();
+
+    this->erModel.openFile(filePath);
+    ASSERT_EQ(15,this->erModel.getAllComponents().size());
+    ASSERT_THROW(this->erModel.commandManager.redo(),Exception);
+    ASSERT_THROW(this->erModel.commandManager.undo(),Exception);
+
+    FileCreator::deleteDefaultFile();
 }
 
 TEST_F(ERModelTest,testGetComponentByID){

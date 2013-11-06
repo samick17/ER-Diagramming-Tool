@@ -11,43 +11,27 @@
 #include "DeleteComponentCommand.h"
 #include "ConnectNodeCommand.h"
 #include "TextUIPresenter.h"
+#include "FileCreator.h"
 
 void IntegrationTest::SetUp(){
-	this->presentation = new Presentation(&this->erModel);
+    this->presentation = new Presentation(&this->erModel);
     this->textPresentation = new TextPresentation(this->presentation);
-	this->textUIPresenter = new TextUIPresenter(this->textPresentation);
+    this->textUIPresenter = new TextUIPresenter(this->textPresentation);
     ASSERT_EQ(0,this->erModel.getAllComponents().size());
-    //set file directory
-    string directory = DirectoryUtil::getCurrentWorkingDirectory()+"/testdata";
-    _mkdir(directory.c_str());
-    //save file to directory
-    string filePath = directory+"/test_file1.erd";
-    Document doc(filePath);    
-    string fileData[] = {
-        "E, Engineer","A, Emp_ID","R, Has","A, Name","E, PC","A, PC_ID","A, Purchase_Date","C","C","C","C","C, 1","C, 1","A, Department","C",
-        "",
-        "7 0,1","8 0,3","9 4,5","10 4,6","11 0,2","12 2,4","14 0,13",
-        "",
-        "0 1,3","4 5"
-    };
-    for(int lineIndex = 0;lineIndex<sizeof(fileData)/sizeof(*fileData);lineIndex++)
-        doc.wirteLine(fileData[lineIndex]);
-    doc.saveFile();
-    //load file to model
+
+    //create file & load file to model
+    string filePath = FileCreator::createDefaultFile();
     InputFileParser inputFileParser;
     inputFileParser.parseFileToModel(filePath,&this->erModel);
     //Assert Diagram is loaded correctly
     assertLoadFileCorrectly();
 }
 
-void IntegrationTest::TearDown(){    
+void IntegrationTest::TearDown(){
     //delete file
-    string directory = DirectoryUtil::getCurrentWorkingDirectory()+"/testdata";
-    string filePath = directory+"/test_file1.erd";    
-    remove(filePath.c_str());
-    _rmdir(directory.c_str());
+    FileCreator::deleteDefaultFile();
     //delete pointer
-	delete this->presentation;
+    delete this->presentation;
     delete this->textPresentation;
 }
 //Assert Diagram is loaded correctly
