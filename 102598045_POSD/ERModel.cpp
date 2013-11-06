@@ -32,7 +32,7 @@ void ERModel::insertComponent(Component* component){
     if(!this->componentMap.containsKey(component->getID()))
         this->componentMap.put(component->getID(),component);
 }
-//
+//insert component at index argument
 void ERModel::insertComponentAt(Component* component,unsigned int index){
     string componentID = component->getID();
     if(!this->componentMap.containsKey(component->getID()))
@@ -137,7 +137,7 @@ void ERModel::clearComponentMap(){
     
     this->componentMap.clear();
 }
-
+//observer...
 void ERModel::registerObserver(IObserver* observer){
     observerVector.push_back(observer);
 }

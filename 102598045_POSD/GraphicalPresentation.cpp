@@ -57,7 +57,7 @@ void GraphicalPresentation::selectWidget(ComponentWidget* selectedWidget){
     for each(ComponentWidget* widget in widgetList)
         widget->update();
 }
-
+//key pressed
 void GraphicalPresentation::keyCtrlPressed(){
     this->isCtrlPressed = true;
 }
@@ -65,7 +65,7 @@ void GraphicalPresentation::keyCtrlPressed(){
 void GraphicalPresentation::keyCtrlReleased(){
     this->isCtrlPressed = false;
 }
-
+//observer
 void GraphicalPresentation::registerObserver(IObserver* observer){
     this->presentation->registerObserver(observer);
 }
@@ -81,7 +81,7 @@ void GraphicalPresentation::notify(int notifiedEventType){
 void GraphicalPresentation::notify(IObserver* observer,int notifiedEventType){
     this->presentation->notify(observer,notifiedEventType);
 }
-
+//
 void GraphicalPresentation::clearAllComponentWidget(){
     this->componentWidgetMap.clear();
     this->selectedWidgetList.clear();
