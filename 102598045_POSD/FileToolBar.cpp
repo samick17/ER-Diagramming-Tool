@@ -1,14 +1,12 @@
-#include "FileMenuItem.h"
+#include "FileToolBar.h"
 #include "ActionData.h"
 
-FileMenuItem::FileMenuItem(QActionMap* actionMap){
-    this->setTitle(QString("File"));
+FileToolBar::FileToolBar(QActionMap* actionMap,QWidget* parent) : QToolBar(parent){
     QAction* openFileAction = actionMap->getQAction(ActionData::OpenFile);
     QAction* exitAction = actionMap->getQAction(ActionData::Exit);
-
     this->addAction(openFileAction);
     this->addAction(exitAction);
 }
 
-FileMenuItem::~FileMenuItem(){
+FileToolBar::~FileToolBar(){
 }

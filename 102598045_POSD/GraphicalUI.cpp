@@ -62,9 +62,9 @@ void GraphicalUI::initialGraphicView(){
 void GraphicalUI::initialAllAction(){
     this->actionMap = new QActionMap(this);
     QAction* openFileAction = this->actionMap->getQAction(ActionData::OpenFile);
-    this->toolBar->connect(openFileAction,SIGNAL(triggered()),this,SLOT(openFile()));
+    connect(openFileAction,SIGNAL(triggered()),this,SLOT(openFile()));
     QAction* exitAction = this->actionMap->getQAction(ActionData::Exit);
-    this->toolBar->connect(exitAction,SIGNAL(triggered()),this,SLOT(close()));
+    connect(exitAction,SIGNAL(triggered()),this,SLOT(close()));
 }
 
 void GraphicalUI::initialMenuBar(){
@@ -75,12 +75,10 @@ void GraphicalUI::initialMenuBar(){
 }
 
 void GraphicalUI::initialToolBar(){
-    this->toolBar = new QToolBar(this);
-    QAction* openFileAction = this->actionMap->getQAction(ActionData::OpenFile);
-    QAction* exitAction = this->actionMap->getQAction(ActionData::Exit);
-    this->toolBar->addAction(openFileAction);
-    this->toolBar->addAction(exitAction);
-    this->addToolBar(this->toolBar);
+    this->fileToolBar = new FileToolBar(this->actionMap,this);
+    this->addToolBar(this->fileToolBar);
+	this->addDrawableToolBar = new AddDrawableToolBar(this->actionMap,this);
+	this->addToolBar(this->addDrawableToolBar);
 }
 
 void GraphicalUI::initialNotifyMap(){

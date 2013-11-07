@@ -3,12 +3,13 @@
 #include <QString>
 #include <QKeySequence>
 #include <string>
+#include "StringSymbol.h"
 
 using namespace std;
 
 struct QActionData{
 public:
-    QActionData(string actionText,string iconPath,string keySequence);
+    QActionData(string actionText,string iconPath,string keySequence = StringSymbol::Empty);
     ~QActionData();
 
     string getActionText();

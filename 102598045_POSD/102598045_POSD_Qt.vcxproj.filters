@@ -155,6 +155,18 @@
     <Filter Include="Header Files\Observer">
       <UniqueIdentifier>{f0be6894-69b5-490d-99c4-f2356af4cfc3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\View\GUI\ToolBar">
+      <UniqueIdentifier>{09c7fe9f-bd3e-4680-8463-7bf75b3a4d1e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\View\GUI\MenuItem">
+      <UniqueIdentifier>{9b230725-bc5b-40d4-ad40-0497f7908410}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\View\GUI\MenuItem">
+      <UniqueIdentifier>{ad0dd498-fdd5-4ca5-afcf-9c56339e769b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\View\GUI\ToolBar">
+      <UniqueIdentifier>{95ea280b-014c-4adf-9cae-615db7b410fd}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -307,9 +319,6 @@
     <ClCompile Include="GraphicalUI.cpp">
       <Filter>Source Files\View\GUI</Filter>
     </ClCompile>
-    <ClCompile Include="FileMenuItem.cpp">
-      <Filter>Source Files\View\GUI\GUIWidget</Filter>
-    </ClCompile>
     <ClCompile Include="GeneratedFiles\qrc_Resources.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
@@ -414,6 +423,18 @@
     </ClCompile>
     <ClCompile Include="NodeWidget.cpp">
       <Filter>Source Files\View\GUI\GUIWidget\ModelWidget</Filter>
+    </ClCompile>
+    <ClCompile Include="FileMenuItem.cpp">
+      <Filter>Source Files\View\GUI\MenuItem</Filter>
+    </ClCompile>
+    <ClCompile Include="FileToolBar.cpp">
+      <Filter>Source Files\View\GUI\ToolBar</Filter>
+    </ClCompile>
+    <ClCompile Include="AddDrawableToolBar.cpp">
+      <Filter>Source Files\View\GUI\ToolBar</Filter>
+    </ClCompile>
+    <ClCompile Include="SetPointerWidget.cpp">
+      <Filter>Source Files\View\GUI\GUIWidget</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -561,9 +582,6 @@
     <ClInclude Include="TextUI.h">
       <Filter>Header Files\View\TextUI</Filter>
     </ClInclude>
-    <ClInclude Include="FileMenuItem.h">
-      <Filter>Header Files\View\GUI\GUIWidget</Filter>
-    </ClInclude>
     <ClInclude Include="TextPresentation.h">
       <Filter>Header Files\View</Filter>
     </ClInclude>
@@ -672,6 +690,18 @@
     <ClInclude Include="NodeWidget.h">
       <Filter>Header Files\View\GUI\GUIWidget\ModelWidget</Filter>
     </ClInclude>
+    <ClInclude Include="FileMenuItem.h">
+      <Filter>Header Files\View\GUI\MenuItem</Filter>
+    </ClInclude>
+    <ClInclude Include="FileToolBar.h">
+      <Filter>Header Files\View\GUI\ToolBar</Filter>
+    </ClInclude>
+    <ClInclude Include="AddDrawableToolBar.h">
+      <Filter>Header Files\View\GUI\ToolBar</Filter>
+    </ClInclude>
+    <ClInclude Include="SetPointerWidget.h">
+      <Filter>Header Files\View\GUI\GUIWidget</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="GraphicalUI.h">
@@ -692,6 +722,21 @@
       <Filter>Resource Files</Filter>
     </None>
     <None Include="Resources\open.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Resources\attribute.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Resources\connector.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Resources\cursor.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Resources\entity.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Resources\relationship.png">
       <Filter>Resource Files</Filter>
     </None>
   </ItemGroup>

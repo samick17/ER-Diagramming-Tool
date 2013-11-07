@@ -5,6 +5,11 @@
 QActionMap::QActionMap(GraphicalUI* graphicalUI){
     this->putQAction(QActionData(ActionData::OpenFile,ActionData::OpenFileIconPath,ActionData::OpenFileShortCutKey),graphicalUI);
     this->putQAction(QActionData(ActionData::Exit,ActionData::ExitIconPath,ActionData::ExitShortCutKey),graphicalUI);
+    this->putQAction(QActionData(ActionData::PointerState,ActionData::PointerIconPath),graphicalUI);
+    this->putQAction(QActionData(ActionData::ConnectState,ActionData::ConnectorIconPath),graphicalUI);
+    this->putQAction(QActionData(ActionData::AttributeState,ActionData::AttributeIconPath),graphicalUI);
+    this->putQAction(QActionData(ActionData::EntityState,ActionData::EntityIconPath),graphicalUI);
+    this->putQAction(QActionData(ActionData::RelationShipState,ActionData::RelationShipIconPath),graphicalUI);
 }
 
 QActionMap::~QActionMap(){

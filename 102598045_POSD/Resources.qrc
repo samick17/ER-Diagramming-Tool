@@ -2,5 +2,10 @@
     <qresource prefix="/res">
         <file>Resources/exit.png</file>
         <file>Resources/open.png</file>
+        <file>Resources/attribute.png</file>
+        <file>Resources/connector.png</file>
+        <file>Resources/cursor.png</file>
+        <file>Resources/entity.png</file>
+        <file>Resources/relationship.png</file>
     </qresource>
 </RCC>

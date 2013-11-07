@@ -81,6 +81,7 @@
     <ClCompile Include="..\102598045_POSD\CollectionException.cpp" />
     <ClCompile Include="..\102598045_POSD\CollectionType.cpp" />
     <ClCompile Include="..\102598045_POSD\Command.cpp" />
+    <ClCompile Include="AddDrawableToolBar.cpp" />
     <ClCompile Include="AddNodeInstruction.cpp" />
     <ClCompile Include="AttributeWidget.cpp" />
     <ClCompile Include="CloseInstruction.cpp" />
@@ -90,6 +91,7 @@
     <ClCompile Include="DeleteComponentInstruction.cpp" />
     <ClCompile Include="DisplayDiagramInstruction.cpp" />
     <ClCompile Include="DisplayTableInstruction.cpp" />
+    <ClCompile Include="FileToolBar.cpp" />
     <ClCompile Include="InstructionData.cpp" />
     <ClCompile Include="..\102598045_POSD\CommandManager.cpp" />
     <ClCompile Include="InstructionMenu.cpp" />
@@ -162,6 +164,7 @@
     <ClCompile Include="RedoInstruction.cpp" />
     <ClCompile Include="RelationShipWidget.cpp" />
     <ClCompile Include="SaveFileInstruction.cpp" />
+    <ClCompile Include="SetPointerWidget.cpp" />
     <ClCompile Include="SetPrimaryKeyInstruction.cpp" />
     <ClCompile Include="TextPresentation.cpp" />
     <ClCompile Include="TextUIPresenter.cpp" />
@@ -172,6 +175,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ActionData.h" />
+    <ClInclude Include="AddDrawableToolBar.h" />
     <ClInclude Include="AddNodeCommand.h" />
     <ClInclude Include="AddNodeInstruction.h" />
     <ClInclude Include="ApplicationSetting.h" />
@@ -189,6 +193,7 @@
     <ClInclude Include="DeleteComponentInstruction.h" />
     <ClInclude Include="DisplayDiagramInstruction.h" />
     <ClInclude Include="DisplayTableInstruction.h" />
+    <ClInclude Include="FileToolBar.h" />
     <ClInclude Include="IObservable.h" />
     <ClInclude Include="IObserver.h" />
     <ClInclude Include="ControllerEvent.h" />
@@ -200,6 +205,7 @@
     <ClInclude Include="RedoInstruction.h" />
     <ClInclude Include="RelationShipWidget.h" />
     <ClInclude Include="SaveFileInstruction.h" />
+    <ClInclude Include="SetPointerWidget.h" />
     <ClInclude Include="SetPrimaryKeyInstruction.h" />
     <ClInclude Include="TextInstruction.h" />
     <ClInclude Include="InstructionData.h" />
@@ -311,10 +317,15 @@
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\GeneratedFiles\qrc_%(Filename).cpp;%(Outputs)</Outputs>
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"$(QTDIR)\bin\rcc.exe" -name "%(Filename)" -no-compress "%(FullPath)" -o .\GeneratedFiles\qrc_%(Filename).cpp</Command>
     </CustomBuild>
+    <None Include="Resources\attribute.png" />
+    <None Include="Resources\connector.png" />
+    <None Include="Resources\cursor.png" />
+    <None Include="Resources\entity.png" />
     <None Include="Resources\exit.png" />
     <None Include="Resources\open.png">
       <FileType>Document</FileType>
     </None>
+    <None Include="Resources\relationship.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
