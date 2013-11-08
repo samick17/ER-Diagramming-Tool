@@ -167,6 +167,12 @@
     <Filter Include="Source Files\View\GUI\ToolBar">
       <UniqueIdentifier>{95ea280b-014c-4adf-9cae-615db7b410fd}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\View\GUI\GUIWidget\ToolBarWidget">
+      <UniqueIdentifier>{621570b2-0cef-42e6-9f46-023f72c5b44a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\View\GUI\GUIWidget\ToolBarWidget">
+      <UniqueIdentifier>{86f8a5fb-10d8-4334-a928-1a8fa86562d3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -433,8 +439,8 @@
     <ClCompile Include="AddDrawableToolBar.cpp">
       <Filter>Source Files\View\GUI\ToolBar</Filter>
     </ClCompile>
-    <ClCompile Include="SetPointerWidget.cpp">
-      <Filter>Source Files\View\GUI\GUIWidget</Filter>
+    <ClCompile Include="ToolBarWidget.cpp">
+      <Filter>Source Files\View\GUI\GUIWidget\ToolBarWidget</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -699,8 +705,8 @@
     <ClInclude Include="AddDrawableToolBar.h">
       <Filter>Header Files\View\GUI\ToolBar</Filter>
     </ClInclude>
-    <ClInclude Include="SetPointerWidget.h">
-      <Filter>Header Files\View\GUI\GUIWidget</Filter>
+    <ClInclude Include="ToolBarWidget.h">
+      <Filter>Header Files\View\GUI\GUIWidget\ToolBarWidget</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

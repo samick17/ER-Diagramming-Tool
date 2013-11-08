@@ -164,11 +164,11 @@
     <ClCompile Include="RedoInstruction.cpp" />
     <ClCompile Include="RelationShipWidget.cpp" />
     <ClCompile Include="SaveFileInstruction.cpp" />
-    <ClCompile Include="SetPointerWidget.cpp" />
     <ClCompile Include="SetPrimaryKeyInstruction.cpp" />
     <ClCompile Include="TextPresentation.cpp" />
     <ClCompile Include="TextUIPresenter.cpp" />
     <ClCompile Include="TextUIProcess.cpp" />
+    <ClCompile Include="ToolBarWidget.cpp" />
     <ClCompile Include="UndoInstruction.cpp" />
     <ClCompile Include="WidgetDefaultSetting.cpp" />
     <ClCompile Include="WidgetFactory.cpp" />
@@ -205,7 +205,6 @@
     <ClInclude Include="RedoInstruction.h" />
     <ClInclude Include="RelationShipWidget.h" />
     <ClInclude Include="SaveFileInstruction.h" />
-    <ClInclude Include="SetPointerWidget.h" />
     <ClInclude Include="SetPrimaryKeyInstruction.h" />
     <ClInclude Include="TextInstruction.h" />
     <ClInclude Include="InstructionData.h" />
@@ -237,6 +236,7 @@
     <ClInclude Include="Presentation.h" />
     <ClInclude Include="TextPresentation.h" />
     <ClInclude Include="TextUIPresenter.h" />
+    <ClInclude Include="ToolBarWidget.h" />
     <ClInclude Include="UndoInstruction.h" />
     <ClInclude Include="WidgetDefaultSetting.h" />
     <ClInclude Include="WidgetFactory.h" />
