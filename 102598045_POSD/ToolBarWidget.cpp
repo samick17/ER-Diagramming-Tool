@@ -1,16 +1,13 @@
 #include "ToolBarWidget.h"
 #include "ActionData.h"
-#include <iostream>
+#include "AddDrawableToolBar.h"
+#include "GraphicalUI.h"
 
-ToolBarWidget::ToolBarWidget(QActionMap* actionMap,string actionName,QWidget* parent) : QToolButton(parent){
+ToolBarWidget::ToolBarWidget(AddDrawableToolBar* toolBar,QActionMap* actionMap,string actionName) : toolBar(toolBar),QToolButton(toolBar){
     QAction* action = actionMap->getQAction(actionName);
-    this->addAction(action);
-    this->setIcon(action->icon());
+    this->setDefaultAction(action);
     this->setCheckable(true);
 }
 
 ToolBarWidget::~ToolBarWidget(){
-}
-
-void ToolBarWidget::mousePressEvent(QMouseEvent* mouseEvent){
 }

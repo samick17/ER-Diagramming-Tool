@@ -10,18 +10,26 @@
 #include "Number.h"
 #include "ControllerEvent.h"
 #include "ERModelUtil.h"
+#include "StateFactory.h"
+#include "StateID.h"
 
 GraphicalPresentation::GraphicalPresentation(Presentation* presentation) : presentation(presentation){
     this->isCtrlPressed = false;
+    this->state = NULL;
 }
 
 GraphicalPresentation::~GraphicalPresentation(){
     this->clearAllComponentWidget();
+    delete this->state;
 }
 
 HashMap<string,ComponentWidget*> GraphicalPresentation::getAllComponentWidgets(){
     this->updateComponentWidgetMap();
     return this->componentWidgetMap;
+}
+
+State* GraphicalPresentation::getState(){
+    return this->state;
 }
 
 void GraphicalPresentation::openFile(string filePath){
@@ -57,6 +65,13 @@ void GraphicalPresentation::selectWidget(ComponentWidget* selectedWidget){
     for each(ComponentWidget* widget in widgetList)
         widget->update();
 }
+
+void GraphicalPresentation::switchState(int stateID){
+    if(this->state != NULL)
+        delete this->state;
+    StateFactory stateFactory;
+    this->state = stateFactory.createState(stateID,this);
+}
 //key pressed
 void GraphicalPresentation::keyCtrlPressed(){
     this->isCtrlPressed = true;
@@ -81,7 +96,7 @@ void GraphicalPresentation::notify(int notifiedEventType){
 void GraphicalPresentation::notify(IObserver* observer,int notifiedEventType){
     this->presentation->notify(observer,notifiedEventType);
 }
-//
+
 void GraphicalPresentation::clearAllComponentWidget(){
     this->componentWidgetMap.clear();
     this->selectedWidgetList.clear();

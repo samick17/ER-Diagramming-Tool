@@ -31,6 +31,9 @@ protected:
     void closeEvent(QCloseEvent* closeEvent);
     void keyPressEvent(QKeyEvent* keyEvent);
     void keyReleaseEvent(QKeyEvent* keyEvent);
+    void mousePressEvent(QMouseEvent* mouseEvent);
+    void mouseMoveEvent(QMouseEvent* mouseEvent);
+    void mouseReleaseEvent(QMouseEvent* mouseEvent);
 private:
     GraphicalPresentation* graphicalPresentation;
     FileMenuItem* fileMenuItem;
@@ -53,5 +56,6 @@ private:
 private slots:
     void openFile();
     void close();
+    void switchState(int stateID);
     void executeNotify(int notifiedEventType);
 };

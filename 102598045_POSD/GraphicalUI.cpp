@@ -4,7 +4,10 @@
 #include "ActionData.h"
 #include <QKeyEvent>
 #include <QFileDialog>
+#include <QSignalMapper>
 #include "ControllerEvent.h"
+#include "StateID.h"
+#include "State.h"
 
 GraphicalUI::GraphicalUI(GraphicalPresentation* graphicalPresentation): graphicalPresentation(graphicalPresentation),QMainWindow(){
     this->setTitle(ApplicationSetting::Title);
@@ -18,6 +21,7 @@ GraphicalUI::GraphicalUI(GraphicalPresentation* graphicalPresentation): graphica
     this->graphicalPresentation->registerObserver(this);
     qRegisterMetaType<string>("string");
     connect(this,SIGNAL(notifyEvent(int)),this,SLOT(executeNotify(int)));
+    this->switchState(StateID::PointerState);
 }
 
 GraphicalUI::~GraphicalUI(){
@@ -48,6 +52,18 @@ void GraphicalUI::keyReleaseEvent(QKeyEvent* keyEvent){
         this->graphicalPresentation->keyCtrlReleased();
 }
 
+void GraphicalUI::mousePressEvent(QMouseEvent* mouseEvent){
+    this->graphicalPresentation->getState()->mousePressEvent();
+}
+
+void GraphicalUI::mouseMoveEvent(QMouseEvent* mouseEvent){
+    this->graphicalPresentation->getState()->mouseMoveEvent();
+}
+
+void GraphicalUI::mouseReleaseEvent(QMouseEvent* mouseEvent){
+    this->graphicalPresentation->getState()->mouseReleaseEvent();
+}
+
 void GraphicalUI::setTitle(string title){
     this->setWindowTitle(QString(title.c_str()));
 }
@@ -65,6 +81,30 @@ void GraphicalUI::initialAllAction(){
     connect(openFileAction,SIGNAL(triggered()),this,SLOT(openFile()));
     QAction* exitAction = this->actionMap->getQAction(ActionData::Exit);
     connect(exitAction,SIGNAL(triggered()),this,SLOT(close()));
+
+    QSignalMapper* signalMapper = new QSignalMapper (this) ;
+
+    QAction* pointerStateAction = this->actionMap->getQAction(ActionData::PointerState);
+    connect(pointerStateAction,SIGNAL(triggered()),signalMapper,SLOT(map()));
+    signalMapper->setMapping(pointerStateAction,StateID::PointerState);
+
+    QAction* connectStateAction = this->actionMap->getQAction(ActionData::ConnectState);
+    connect(connectStateAction,SIGNAL(triggered()),signalMapper,SLOT(map()));
+    signalMapper->setMapping(connectStateAction,StateID::ConnectState);
+
+    QAction* attributeStateAction = this->actionMap->getQAction(ActionData::AttributeState);
+    connect(attributeStateAction,SIGNAL(triggered()),signalMapper,SLOT(map()));
+    signalMapper->setMapping(attributeStateAction,StateID::AttributeState);
+
+    QAction* entityStateAction = this->actionMap->getQAction(ActionData::EntityState);
+    connect(entityStateAction,SIGNAL(triggered()),signalMapper,SLOT(map()));
+    signalMapper->setMapping(entityStateAction,StateID::EntityState);
+
+    QAction* relationShipStateAction = this->actionMap->getQAction(ActionData::RelationShipState);
+    connect(relationShipStateAction,SIGNAL(triggered()),signalMapper,SLOT(map()));
+    signalMapper->setMapping(relationShipStateAction,StateID::RelationShipState);
+
+    connect (signalMapper, SIGNAL(mapped(int)), this, SLOT(switchState(int))) ;
 }
 
 void GraphicalUI::initialMenuBar(){
@@ -77,8 +117,8 @@ void GraphicalUI::initialMenuBar(){
 void GraphicalUI::initialToolBar(){
     this->fileToolBar = new FileToolBar(this->actionMap,this);
     this->addToolBar(this->fileToolBar);
-	this->addDrawableToolBar = new AddDrawableToolBar(this->actionMap,this);
-	this->addToolBar(this->addDrawableToolBar);
+    this->addDrawableToolBar = new AddDrawableToolBar(this,this->actionMap);
+    this->addToolBar(this->addDrawableToolBar);
 }
 
 void GraphicalUI::initialNotifyMap(){
@@ -104,6 +144,11 @@ void GraphicalUI::openFile(){
 
 void GraphicalUI::close(){
     this->graphicalPresentation->close();
+}
+
+void GraphicalUI::switchState(int stateID){
+    this->addDrawableToolBar->selectToolButton(stateID);
+    this->graphicalPresentation->switchState(stateID);
 }
 //execute notify event that are mapped.
 void GraphicalUI::executeNotify(int notifiedEventType){

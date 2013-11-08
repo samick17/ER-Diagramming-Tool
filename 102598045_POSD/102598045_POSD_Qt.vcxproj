@@ -83,10 +83,12 @@
     <ClCompile Include="..\102598045_POSD\Command.cpp" />
     <ClCompile Include="AddDrawableToolBar.cpp" />
     <ClCompile Include="AddNodeInstruction.cpp" />
+    <ClCompile Include="AddNodeState.cpp" />
     <ClCompile Include="AttributeWidget.cpp" />
     <ClCompile Include="CloseInstruction.cpp" />
     <ClCompile Include="ComponentWidgetData.cpp" />
     <ClCompile Include="ConnectorWidget.cpp" />
+    <ClCompile Include="ConnectState.cpp" />
     <ClCompile Include="ConnectTwoNodesInstruction.cpp" />
     <ClCompile Include="DeleteComponentInstruction.cpp" />
     <ClCompile Include="DisplayDiagramInstruction.cpp" />
@@ -158,6 +160,7 @@
     <ClCompile Include="NodeWidget.cpp" />
     <ClCompile Include="Number.cpp" />
     <ClCompile Include="OpenFileInstruction.cpp" />
+    <ClCompile Include="PointerState.cpp" />
     <ClCompile Include="Presentation.cpp" />
     <ClCompile Include="QActionData.cpp" />
     <ClCompile Include="QActionMap.cpp" />
@@ -165,6 +168,9 @@
     <ClCompile Include="RelationShipWidget.cpp" />
     <ClCompile Include="SaveFileInstruction.cpp" />
     <ClCompile Include="SetPrimaryKeyInstruction.cpp" />
+    <ClCompile Include="State.cpp" />
+    <ClCompile Include="StateFactory.cpp" />
+    <ClCompile Include="StateID.cpp" />
     <ClCompile Include="TextPresentation.cpp" />
     <ClCompile Include="TextUIPresenter.cpp" />
     <ClCompile Include="TextUIProcess.cpp" />
@@ -178,6 +184,7 @@
     <ClInclude Include="AddDrawableToolBar.h" />
     <ClInclude Include="AddNodeCommand.h" />
     <ClInclude Include="AddNodeInstruction.h" />
+    <ClInclude Include="AddNodeState.h" />
     <ClInclude Include="ApplicationSetting.h" />
     <ClInclude Include="Attribute.h" />
     <ClInclude Include="AttributeType.h" />
@@ -189,6 +196,7 @@
     <ClInclude Include="Command.h" />
     <ClInclude Include="ComponentWidgetData.h" />
     <ClInclude Include="ConnectorWidget.h" />
+    <ClInclude Include="ConnectState.h" />
     <ClInclude Include="ConnectTwoNodesInstruction.h" />
     <ClInclude Include="DeleteComponentInstruction.h" />
     <ClInclude Include="DisplayDiagramInstruction.h" />
@@ -200,12 +208,16 @@
     <ClInclude Include="NodeWidget.h" />
     <ClInclude Include="Number.h" />
     <ClInclude Include="OpenFileInstruction.h" />
+    <ClInclude Include="PointerState.h" />
     <ClInclude Include="QActionData.h" />
     <ClInclude Include="QActionMap.h" />
     <ClInclude Include="RedoInstruction.h" />
     <ClInclude Include="RelationShipWidget.h" />
     <ClInclude Include="SaveFileInstruction.h" />
     <ClInclude Include="SetPrimaryKeyInstruction.h" />
+    <ClInclude Include="State.h" />
+    <ClInclude Include="StateFactory.h" />
+    <ClInclude Include="StateID.h" />
     <ClInclude Include="TextInstruction.h" />
     <ClInclude Include="InstructionData.h" />
     <ClInclude Include="CommandManager.h" />

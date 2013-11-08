@@ -3,10 +3,12 @@
 #include <QToolButton>
 #include "QActionMap.h"
 
+class AddDrawableToolBar;
+
 class ToolBarWidget : public QToolButton{
 public:
-    ToolBarWidget(QActionMap* actionMap,string actionName,QWidget* parent = 0);
+    ToolBarWidget(AddDrawableToolBar* toolBar,QActionMap* actionMap,string actionName);
     ~ToolBarWidget();
-protected:
-    void mousePressEvent(QMouseEvent* mouseEvent);
+private:
+    AddDrawableToolBar* toolBar;
 };

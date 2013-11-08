@@ -173,6 +173,12 @@
     <Filter Include="Source Files\View\GUI\GUIWidget\ToolBarWidget">
       <UniqueIdentifier>{86f8a5fb-10d8-4334-a928-1a8fa86562d3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\View\GUI\State">
+      <UniqueIdentifier>{5986ac8d-2e58-4bc5-bc44-c07e7a9bc9a2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\View\GUI\State">
+      <UniqueIdentifier>{16cc152a-dc5d-432a-baa8-94ee3eb07c7a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -442,6 +448,24 @@
     <ClCompile Include="ToolBarWidget.cpp">
       <Filter>Source Files\View\GUI\GUIWidget\ToolBarWidget</Filter>
     </ClCompile>
+    <ClCompile Include="State.cpp">
+      <Filter>Source Files\View\GUI\State</Filter>
+    </ClCompile>
+    <ClCompile Include="PointerState.cpp">
+      <Filter>Source Files\View\GUI\State</Filter>
+    </ClCompile>
+    <ClCompile Include="AddNodeState.cpp">
+      <Filter>Source Files\View\GUI\State</Filter>
+    </ClCompile>
+    <ClCompile Include="ConnectState.cpp">
+      <Filter>Source Files\View\GUI\State</Filter>
+    </ClCompile>
+    <ClCompile Include="StateID.cpp">
+      <Filter>Source Files\Constants</Filter>
+    </ClCompile>
+    <ClCompile Include="StateFactory.cpp">
+      <Filter>Source Files\Factory</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Attribute.h">
@@ -707,6 +731,24 @@
     </ClInclude>
     <ClInclude Include="ToolBarWidget.h">
       <Filter>Header Files\View\GUI\GUIWidget\ToolBarWidget</Filter>
+    </ClInclude>
+    <ClInclude Include="State.h">
+      <Filter>Header Files\View\GUI\State</Filter>
+    </ClInclude>
+    <ClInclude Include="PointerState.h">
+      <Filter>Header Files\View\GUI\State</Filter>
+    </ClInclude>
+    <ClInclude Include="AddNodeState.h">
+      <Filter>Header Files\View\GUI\State</Filter>
+    </ClInclude>
+    <ClInclude Include="ConnectState.h">
+      <Filter>Header Files\View\GUI\State</Filter>
+    </ClInclude>
+    <ClInclude Include="StateID.h">
+      <Filter>Header Files\Constants</Filter>
+    </ClInclude>
+    <ClInclude Include="StateFactory.h">
+      <Filter>Header Files\Factory</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

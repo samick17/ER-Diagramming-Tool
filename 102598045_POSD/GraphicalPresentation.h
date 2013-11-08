@@ -5,18 +5,22 @@
 #include "WidgetFactory.h"
 #include <QList>
 
+class State;
+
 class GraphicalPresentation{
 public:
     GraphicalPresentation(Presentation* presentation);
     ~GraphicalPresentation();
 
     HashMap<string,ComponentWidget*> getAllComponentWidgets();
+    State* getState();
 
     void openFile(string filePath);
     void saveFile(string filePath);
     void close();
     bool isSelected(ComponentWidget* selectedWidget);
     void selectWidget(ComponentWidget* selectedWidget);
+    void switchState(int stateID);
     void keyCtrlPressed();
     void keyCtrlReleased();
     void registerObserver(IObserver* observer);
@@ -28,6 +32,8 @@ private:
     HashMap<string,ComponentWidget*> componentWidgetMap;
     QList<ComponentWidget*> selectedWidgetList;
     bool isCtrlPressed;
+    State* state;
+
     void clearAllComponentWidget();
     void updateComponentWidgetMap();
     int createRelationShipWidget(HashMap<string,Component*>& componentMap,HashMap<string,RelationShip*> relationShipMap,int& currentHeight);
