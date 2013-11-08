@@ -2,7 +2,7 @@
 
 #include <string>
 #include "HashMap.h"
-#include "IObserver.h"
+#include "ISynchronizer.h"
 
 class Component;
 class Node;
@@ -39,10 +39,10 @@ public:
     HashMap<string,Connector*> getAllConnectors();
     HashMap<string,Table*> getAllTables();
 
-    void registerObserver(IObserver* observer);
-    void unregisterObserver(IObserver* observer);
-    void notify(int notifiedEventType);
-    void notify(IObserver* observer,int notifiedEventType);
+    void registerSynchronizer(ISynchronizer* synchronizer);
+    void unregisterSynchronizer(ISynchronizer* synchronizer);
+    void sync(int syncEventType);
+    void sync(ISynchronizer* synchronizer,int syncEventType);
 private:
     ERModel* erModel;
 };

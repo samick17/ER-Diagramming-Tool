@@ -3,5 +3,5 @@
 
 void DisplayDiagramInstruction::execute(TextPresentation* textPresentation,TextUIPresenter* textUIPresenter){
     textUIPresenter->displayDiagram();
-	textPresentation->notify(ControllerEvent::DisplayDiagram);
+	textPresentation->sync(ControllerEvent::DisplayDiagram);
 }

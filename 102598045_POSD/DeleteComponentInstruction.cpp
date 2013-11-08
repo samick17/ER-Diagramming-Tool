@@ -8,5 +8,5 @@ void DeleteComponentInstruction::execute(TextPresentation* textPresentation,Text
     Component* componentToDelete = textPresentation->findComponent();
     textPresentation->deleteComponent(componentToDelete);
     cout<<"The component '"+componentToDelete->getID()+"' has been deleted. "<<endl;
-	textPresentation->notify(ControllerEvent::DeleteComponent);
+	textPresentation->sync(ControllerEvent::DeleteComponent);
 }

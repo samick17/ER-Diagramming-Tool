@@ -5,9 +5,9 @@
 #include "TableManager.h"
 #include "HashMap.h"
 #include "CommandManager.h"
-#include "IObservable.h"
+#include "ISyncable.h"
 
-class ERModel : IObservable{
+class ERModel : ISyncable{
     friend class ERModelTest;
     FRIEND_TEST(ERModelTest,testAddNode);
     FRIEND_TEST(ERModelTest,testInsertComponent);
@@ -53,13 +53,13 @@ public:
     HashMap<string,Table*> getAllTables();
 
     void clearComponentMap();
-    void registerObserver(IObserver* observer);
-    void unregisterObserver(IObserver* observer);
-    void notify(int notifiedEventType);
-    void notify(IObserver* observer,int notifiedEventType);
+    void registerSynchronizer(ISynchronizer* synchronizer);
+    void unregisterSynchronizer(ISynchronizer* synchronizer);
+    void sync(int syncEventType);
+    void sync(ISynchronizer* synchronizer,int syncEventType);
 private:
     HashMap<string,Component*> componentMap;
-    vector<IObserver*> observerVector;
+    vector<ISynchronizer*> synchronizerVector;
     CommandManager commandManager;
     TableManager tableManager;
 };

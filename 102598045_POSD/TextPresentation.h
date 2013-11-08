@@ -41,16 +41,16 @@ public:
     void setCardinality(Component* firstNode,Component* secondNode,string relationName);
     void redo();
     void undo();
-    void registerObserver(IObserver* observer);
-    void unregisterObserver(IObserver* observer);
-    void notify(int notifiedEventType);
-    void notify(IObserver* observer,int notifiedEventType);
-    void executeNotify(int notifiedEventType);
+    void registerSynchronizer(ISynchronizer* synchronizer);
+    void unregisterSynchronizer(ISynchronizer* synchronizer);
+    void sync(int syncEventType);
+    void sync(ISynchronizer* synchronizer,int syncEventType);
+    void executeSync(int syncEventType);
 private:
     Presentation* presentation;
     TextUIPresenter* textUIPresenter;
     InstructionMenu* instructionMenu;
-    typedef void (TextUIPresenter::*ViewNotifyFunction)();
-    HashMap<int,void (TextUIPresenter::*)()> notifyMap;
-    void initialNotifyMap();
+    typedef void (TextUIPresenter::*ViewSyncFunction)();
+    HashMap<int,void (TextUIPresenter::*)()> syncMap;
+    void initialSyncMap();
 };

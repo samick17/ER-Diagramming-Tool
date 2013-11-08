@@ -204,8 +204,8 @@
     <ClInclude Include="DisplayTableInstruction.h" />
     <ClInclude Include="FileToolBar.h" />
     <ClInclude Include="GUIScene.h" />
-    <ClInclude Include="IObservable.h" />
-    <ClInclude Include="IObserver.h" />
+    <ClInclude Include="ISyncable.h" />
+    <ClInclude Include="ISynchronizer.h" />
     <ClInclude Include="ControllerEvent.h" />
     <ClInclude Include="NodeWidget.h" />
     <ClInclude Include="Number.h" />

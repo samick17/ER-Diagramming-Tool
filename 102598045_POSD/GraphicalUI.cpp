@@ -16,16 +16,16 @@ GraphicalUI::GraphicalUI(GraphicalPresentation* graphicalPresentation): graphica
     this->initialAllAction();
     this->initialMenuBar();
     this->initialToolBar();
-    this->initialNotifyMap();
+    this->initialSyncMap();
     QMetaObject::connectSlotsByName(this);
-    this->graphicalPresentation->registerObserver(this);
+    this->graphicalPresentation->registerSynchronizer(this);
     qRegisterMetaType<string>("string");
-    connect(this,SIGNAL(notifyEvent(int)),this,SLOT(executeNotify(int)));
+    connect(this,SIGNAL(syncEvent(int)),this,SLOT(executeSync(int)));
     this->switchState(StateID::PointerState);
 }
 
 GraphicalUI::~GraphicalUI(){
-    this->graphicalPresentation->unregisterObserver(this);
+    this->graphicalPresentation->unregisterSynchronizer(this);
     delete this->fileMenuItem;
     this->refresh();
 }
@@ -34,8 +34,8 @@ GraphicalPresentation* GraphicalUI::getGraphicalPresentation(){
     return this->graphicalPresentation;
 }
 
-void GraphicalUI::notify(int notifiedEventType){
-    this->notifyEvent(notifiedEventType);
+void GraphicalUI::sync(int syncEventType){
+    this->syncEvent(syncEventType);
 }
 
 void GraphicalUI::closeEvent(QCloseEvent* closeEvent){
@@ -121,16 +121,16 @@ void GraphicalUI::initialToolBar(){
     this->addToolBar(this->addDrawableToolBar);
 }
 
-void GraphicalUI::initialNotifyMap(){
-    this->notifyMap.put(ControllerEvent::OpenFile,&GraphicalUI::displayDiagram);
-    this->notifyMap.put(ControllerEvent::AddNode,&GraphicalUI::displayDiagram);
-    this->notifyMap.put(ControllerEvent::ConnectTwoNodes,&GraphicalUI::displayDiagram);
-    this->notifyMap.put(ControllerEvent::DisplayDiagram,&GraphicalUI::displayDiagram);
-    this->notifyMap.put(ControllerEvent::SetPrimaryKey,&GraphicalUI::displayDiagram);
-    this->notifyMap.put(ControllerEvent::DisplayTable,&GraphicalUI::displayDiagram);
-    this->notifyMap.put(ControllerEvent::DeleteComponent,&GraphicalUI::displayDiagram);
-    this->notifyMap.put(ControllerEvent::Undo,&GraphicalUI::displayDiagram);
-    this->notifyMap.put(ControllerEvent::Redo,&GraphicalUI::displayDiagram);
+void GraphicalUI::initialSyncMap(){
+    this->syncMap.put(ControllerEvent::OpenFile,&GraphicalUI::displayDiagram);
+    this->syncMap.put(ControllerEvent::AddNode,&GraphicalUI::displayDiagram);
+    this->syncMap.put(ControllerEvent::ConnectTwoNodes,&GraphicalUI::displayDiagram);
+    this->syncMap.put(ControllerEvent::DisplayDiagram,&GraphicalUI::displayDiagram);
+    this->syncMap.put(ControllerEvent::SetPrimaryKey,&GraphicalUI::displayDiagram);
+    this->syncMap.put(ControllerEvent::DisplayTable,&GraphicalUI::displayDiagram);
+    this->syncMap.put(ControllerEvent::DeleteComponent,&GraphicalUI::displayDiagram);
+    this->syncMap.put(ControllerEvent::Undo,&GraphicalUI::displayDiagram);
+    this->syncMap.put(ControllerEvent::Redo,&GraphicalUI::displayDiagram);
 }
 
 void GraphicalUI::openFile(){
@@ -151,10 +151,10 @@ void GraphicalUI::switchState(int stateID){
     this->graphicalPresentation->switchState(stateID);
 }
 //execute notify event that are mapped.
-void GraphicalUI::executeNotify(int notifiedEventType){
-    if(notifyMap.containsKey(notifiedEventType)){
-        ViewNotifyFunction notifyFunction = notifyMap.get(notifiedEventType);
-        (this->*notifyFunction)();
+void GraphicalUI::executeSync(int notifiedEventType){
+    if(this->syncMap.containsKey(notifiedEventType)){
+        ViewSyncFunction syncFunction = this->syncMap.get(notifiedEventType);
+        (this->*syncFunction)();
     }
 }
 

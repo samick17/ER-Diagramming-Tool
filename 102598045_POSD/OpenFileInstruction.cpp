@@ -5,5 +5,5 @@ void OpenFileInstruction::execute(TextPresentation* textPresentation,TextUIPrese
     cout<<"Please input the file name: "<<endl;
     string filePath = textPresentation->getInput();
     textPresentation->openFile(filePath);
-	textPresentation->notify(ControllerEvent::OpenFile);
+	textPresentation->sync(ControllerEvent::OpenFile);
 }

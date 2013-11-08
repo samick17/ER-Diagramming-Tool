@@ -1,12 +1,12 @@
 #pragma once
 
 #include "TextPresentation.h"
-#include "IObserver.h"
+#include "ISynchronizer.h"
 
 class Table;
 class Connector;
 
-class TextUI : public IObserver{
+class TextUI : public ISynchronizer{
 public:    
     TextUI(TextPresentation* textPresentation);
     ~TextUI();
@@ -14,7 +14,7 @@ public:
     void displayMenu();
     void processCommand();
 
-    void notify(int notifiedEventType);
+    void sync(int syncEventType);
 private:
     TextPresentation* textPresentation;
 };

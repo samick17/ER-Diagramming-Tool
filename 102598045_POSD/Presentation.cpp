@@ -73,18 +73,18 @@ HashMap<string,Table*> Presentation::getAllTables(){
     return this->erModel->getAllTables();
 }
 
-void Presentation::registerObserver(IObserver* observer){
-    this->erModel->registerObserver(observer);
+void Presentation::registerSynchronizer(ISynchronizer* synchronizer){
+    this->erModel->registerSynchronizer(synchronizer);
 }
 
-void Presentation::unregisterObserver(IObserver* observer){
-    this->erModel->unregisterObserver(observer);
+void Presentation::unregisterSynchronizer(ISynchronizer* synchronizer){
+    this->erModel->unregisterSynchronizer(synchronizer);
 }
 
-void Presentation::notify(int notifiedEventType){
-    this->erModel->notify(notifiedEventType);
+void Presentation::sync(int syncEventType){
+    this->erModel->sync(syncEventType);
 }
 
-void Presentation::notify(IObserver* observer,int notifiedEventType){
-    this->erModel->notify(observer,notifiedEventType);
+void Presentation::sync(ISynchronizer* synchronizer,int syncEventType){
+    this->erModel->sync(synchronizer,syncEventType);
 }

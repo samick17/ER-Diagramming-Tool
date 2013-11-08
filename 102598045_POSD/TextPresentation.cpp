@@ -19,7 +19,7 @@ TextPresentation::TextPresentation(Presentation* presentation) : presentation(pr
     system(title.c_str());
     this->instructionMenu = new InstructionMenu();
     this->textUIPresenter = new TextUIPresenter(this);
-    this->initialNotifyMap();
+    this->initialSyncMap();
 }
 
 TextPresentation::~TextPresentation(){
@@ -159,35 +159,35 @@ void TextPresentation::redo(){
 void TextPresentation::undo(){
     this->presentation->undo();
 }
-void TextPresentation::registerObserver(IObserver* observer){
-    this->presentation->registerObserver(observer);
+void TextPresentation::registerSynchronizer(ISynchronizer* synchronizer){
+    this->presentation->registerSynchronizer(synchronizer);
 }
 
-void TextPresentation::unregisterObserver(IObserver* observer){
-    this->presentation->unregisterObserver(observer);
+void TextPresentation::unregisterSynchronizer(ISynchronizer* synchronizer){
+    this->presentation->unregisterSynchronizer(synchronizer);
 }
 
-void TextPresentation::notify(int notifiedEventType){
-    this->presentation->notify(notifiedEventType);
+void TextPresentation::sync(int syncEventType){
+    this->presentation->sync(syncEventType);
 }
 
-void TextPresentation::notify(IObserver* observer,int notifiedEventType){
-    this->presentation->notify(observer,notifiedEventType);
+void TextPresentation::sync(ISynchronizer* synchronizer,int syncEventType){
+    this->presentation->sync(synchronizer,syncEventType);
 }
 
-void TextPresentation::initialNotifyMap(){
-    this->notifyMap.put(ControllerEvent::OpenFile,&TextUIPresenter::displayDiagram);
-    this->notifyMap.put(ControllerEvent::AddNode,&TextUIPresenter::displayComponents);
-    this->notifyMap.put(ControllerEvent::ConnectTwoNodes,&TextUIPresenter::displayConnections);
-    this->notifyMap.put(ControllerEvent::DisplayDiagram,&TextUIPresenter::displayDiagram);
-    this->notifyMap.put(ControllerEvent::DisplayTable,&TextUIPresenter::displayTable);
-    this->notifyMap.put(ControllerEvent::Undo,&TextUIPresenter::displayDiagram);
-    this->notifyMap.put(ControllerEvent::Redo,&TextUIPresenter::displayDiagram);
+void TextPresentation::initialSyncMap(){
+    this->syncMap.put(ControllerEvent::OpenFile,&TextUIPresenter::displayDiagram);
+    this->syncMap.put(ControllerEvent::AddNode,&TextUIPresenter::displayComponents);
+    this->syncMap.put(ControllerEvent::ConnectTwoNodes,&TextUIPresenter::displayConnections);
+    this->syncMap.put(ControllerEvent::DisplayDiagram,&TextUIPresenter::displayDiagram);
+    this->syncMap.put(ControllerEvent::DisplayTable,&TextUIPresenter::displayTable);
+    this->syncMap.put(ControllerEvent::Undo,&TextUIPresenter::displayDiagram);
+    this->syncMap.put(ControllerEvent::Redo,&TextUIPresenter::displayDiagram);
 }
 
-void TextPresentation::executeNotify(int notifiedEventType){
-    if(this->notifyMap.containsKey(notifiedEventType)){
-        ViewNotifyFunction notifyFunction = notifyMap.get(notifiedEventType);
-        (this->textUIPresenter->*notifyFunction)();
+void TextPresentation::executeSync(int syncEventType){
+    if(this->syncMap.containsKey(syncEventType)){
+        ViewSyncFunction syncFunction = syncMap.get(syncEventType);
+        (this->textUIPresenter->*syncFunction)();
     }
 }

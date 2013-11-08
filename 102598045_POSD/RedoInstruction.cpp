@@ -6,5 +6,5 @@ void RedoInstruction::execute(TextPresentation* textPresentation,TextUIPresenter
     cout<<"Redo succeed."<<endl;
     textUIPresenter->displayComponents();
     textUIPresenter->displayConnections();
-	textPresentation->notify(ControllerEvent::DisplayDiagram);
+	textPresentation->sync(ControllerEvent::DisplayDiagram);
 }

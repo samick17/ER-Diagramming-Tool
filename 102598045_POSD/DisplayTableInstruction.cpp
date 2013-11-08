@@ -3,5 +3,5 @@
 
 void DisplayTableInstruction::execute(TextPresentation* textPresentation,TextUIPresenter* textUIPresenter){
     textUIPresenter->displayTable();
-	textPresentation->notify(ControllerEvent::DisplayTable);
+	textPresentation->sync(ControllerEvent::DisplayTable);
 }

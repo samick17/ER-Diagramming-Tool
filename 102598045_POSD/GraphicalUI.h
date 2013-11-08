@@ -9,23 +9,23 @@
 #include "FileToolBar.h"
 #include "AddDrawableToolBar.h"
 #include "QActionMap.h"
-#include "IObserver.h"
+#include "ISynchronizer.h"
 
 class GraphicalPresentation;
 class SelectedFrameWidget;
 
 using namespace Qt;
 
-class GraphicalUI : public QMainWindow,IObserver{
+class GraphicalUI : public QMainWindow,ISynchronizer{
     Q_OBJECT
 signals:
-    void notifyEvent(int notifiedEventType);
+    void syncEvent(int syncEventType);
 public:
     GraphicalUI(GraphicalPresentation* graphicalPresentation);
     ~GraphicalUI();
 
     GraphicalPresentation* getGraphicalPresentation();
-    void notify(int notifiedEventType);
+    void sync(int syncEventType);
     void setTitle(string title);
 
     void mousePress();
@@ -44,19 +44,19 @@ private:
     QGraphicsView* view;
     GUIScene* scene;
     QActionMap* actionMap;
-    typedef void (GraphicalUI::*ViewNotifyFunction)();
-    HashMap<int,ViewNotifyFunction> notifyMap;
+    typedef void (GraphicalUI::*ViewSyncFunction)();
+    HashMap<int,ViewSyncFunction> syncMap;
 
     void initialGraphicView();
     void initialAllAction();
     void initialMenuBar();
     void initialToolBar();
-    void initialNotifyMap();
+    void initialSyncMap();
     void refresh();
     void displayDiagram();
 private slots:
     void openFile();
     void close();
     void switchState(int stateID);
-    void executeNotify(int notifiedEventType);
+    void executeSync(int syncEventType);
 };

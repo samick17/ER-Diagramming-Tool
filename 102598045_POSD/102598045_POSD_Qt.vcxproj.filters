@@ -152,9 +152,6 @@
     <Filter Include="Header Files\View\GUI\GUIWidget\ModelWidget">
       <UniqueIdentifier>{060ab95b-936b-4db9-ae00-9df8386f3385}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Observer">
-      <UniqueIdentifier>{f0be6894-69b5-490d-99c4-f2356af4cfc3}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\View\GUI\ToolBar">
       <UniqueIdentifier>{09c7fe9f-bd3e-4680-8463-7bf75b3a4d1e}</UniqueIdentifier>
     </Filter>
@@ -178,6 +175,9 @@
     </Filter>
     <Filter Include="Source Files\View\GUI\State">
       <UniqueIdentifier>{16cc152a-dc5d-432a-baa8-94ee3eb07c7a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\ViewSynchronizer">
+      <UniqueIdentifier>{f0be6894-69b5-490d-99c4-f2356af4cfc3}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -708,12 +708,6 @@
     <ClInclude Include="Number.h">
       <Filter>Header Files\Constants</Filter>
     </ClInclude>
-    <ClInclude Include="IObserver.h">
-      <Filter>Header Files\Observer</Filter>
-    </ClInclude>
-    <ClInclude Include="IObservable.h">
-      <Filter>Header Files\Observer</Filter>
-    </ClInclude>
     <ClInclude Include="ControllerEvent.h">
       <Filter>Header Files\Constants</Filter>
     </ClInclude>
@@ -755,6 +749,12 @@
     </ClInclude>
     <ClInclude Include="GUIScene.h">
       <Filter>Header Files\View\GUI\GUIWidget</Filter>
+    </ClInclude>
+    <ClInclude Include="ISyncable.h">
+      <Filter>Header Files\ViewSynchronizer</Filter>
+    </ClInclude>
+    <ClInclude Include="ISynchronizer.h">
+      <Filter>Header Files\ViewSynchronizer</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

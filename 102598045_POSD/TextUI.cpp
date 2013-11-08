@@ -2,11 +2,11 @@
 #include "TextUIPresenter.h"
 
 TextUI::TextUI(TextPresentation* textPresentation) : textPresentation(textPresentation){
-    this->textPresentation->registerObserver(this);
+	this->textPresentation->registerSynchronizer(this);
 }
 
 TextUI::~TextUI(){
-    this->textPresentation->unregisterObserver(this);
+	this->textPresentation->unregisterSynchronizer(this);
 }
 
 void TextUI::displayMenu(){
@@ -17,6 +17,6 @@ void TextUI::processCommand(){
     this->textPresentation->processCommand();
 }
 
-void TextUI::notify(int notifiedEventType){
-    this->textPresentation->executeNotify(notifiedEventType);
+void TextUI::sync(int syncEventType){
+    this->textPresentation->executeSync(syncEventType);
 }

@@ -34,7 +34,7 @@ State* GraphicalPresentation::getState(){
 
 void GraphicalPresentation::openFile(string filePath){
     this->presentation->openFile(filePath);
-    this->presentation->notify(ControllerEvent::DisplayDiagram);
+    this->presentation->sync(ControllerEvent::DisplayDiagram);
 }
 
 void GraphicalPresentation::saveFile(string filePath){
@@ -80,21 +80,21 @@ void GraphicalPresentation::keyCtrlPressed(){
 void GraphicalPresentation::keyCtrlReleased(){
     this->isCtrlPressed = false;
 }
-//observer
-void GraphicalPresentation::registerObserver(IObserver* observer){
-    this->presentation->registerObserver(observer);
+
+void GraphicalPresentation::registerSynchronizer(ISynchronizer* synchronizer){
+    this->presentation->registerSynchronizer(synchronizer);
 }
 
-void GraphicalPresentation::unregisterObserver(IObserver* observer){
-    this->presentation->unregisterObserver(observer);
+void GraphicalPresentation::unregisterSynchronizer(ISynchronizer* synchronizer){
+    this->presentation->unregisterSynchronizer(synchronizer);
 }
 
-void GraphicalPresentation::notify(int notifiedEventType){
-    this->presentation->notify(notifiedEventType);
+void GraphicalPresentation::sync(int syncEventType){
+    this->presentation->sync(syncEventType);
 }
 
-void GraphicalPresentation::notify(IObserver* observer,int notifiedEventType){
-    this->presentation->notify(observer,notifiedEventType);
+void GraphicalPresentation::sync(ISynchronizer* synchronizer,int syncEventType){
+    this->presentation->sync(synchronizer,syncEventType);
 }
 
 void GraphicalPresentation::clearAllComponentWidget(){

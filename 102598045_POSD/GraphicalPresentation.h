@@ -23,10 +23,10 @@ public:
     void switchState(int stateID);
     void keyCtrlPressed();
     void keyCtrlReleased();
-    void registerObserver(IObserver* observer);
-    void unregisterObserver(IObserver* observer);
-    void notify(int notifiedEventType);
-    void notify(IObserver* observer,int notifiedEventType);
+    void registerSynchronizer(ISynchronizer* synchronizer);
+    void unregisterSynchronizer(ISynchronizer* synchronizer);
+    void sync(int syncEventType);
+    void sync(ISynchronizer* synchronizer,int syncEventType);
 private:
     Presentation* presentation;
     HashMap<string,ComponentWidget*> componentWidgetMap;

@@ -137,21 +137,22 @@ void ERModel::clearComponentMap(){
     
     this->componentMap.clear();
 }
-//observer...
-void ERModel::registerObserver(IObserver* observer){
-    observerVector.push_back(observer);
+
+void ERModel::registerSynchronizer(ISynchronizer* synchronizer){
+    synchronizerVector.push_back(synchronizer);
 }
 
-void ERModel::unregisterObserver(IObserver* observer){
-    vector<IObserver*>::iterator observerIterator = find(observerVector.begin(),observerVector.end(),observer);
-    observerVector.erase(observerIterator);
+void ERModel::unregisterSynchronizer(ISynchronizer* synchronizer){
+    vector<ISynchronizer*>::iterator synchronizerIterator;
+    synchronizerIterator = find(synchronizerVector.begin(),synchronizerVector.end(),synchronizer);
+    synchronizerVector.erase(synchronizerIterator);
 }
 
-void ERModel::notify(int notifiedEventType){
-    for each(IObserver* observer in observerVector)
-        observer->notify(notifiedEventType);
+void ERModel::sync(int notifiedEventType){
+    for each(ISynchronizer* synchronizer in this->synchronizerVector)
+        synchronizer->sync(notifiedEventType);
 }
 
-void ERModel::notify(IObserver* observer,int notifiedEventType){
-    observer->notify(notifiedEventType);
+void ERModel::sync(ISynchronizer* synchronizer,int notifiedEventType){
+    synchronizer->sync(notifiedEventType);
 }
