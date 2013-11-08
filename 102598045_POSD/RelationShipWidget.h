@@ -4,7 +4,7 @@
 
 class RelationShipWidget : public NodeWidget{
 public:
-    RelationShipWidget(ComponentWidgetData componentWidgetData,GraphicalPresentation* graphicalPresentation,QGraphicsItem* parent = 0);
+    RelationShipWidget(ComponentWidgetData componentWidgetData,GraphicalPresentation* graphicalPresentation,QGraphicsItem* parent = NULL);
     ~RelationShipWidget();
 
     QPainterPath shape() const;

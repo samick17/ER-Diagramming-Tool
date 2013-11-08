@@ -5,6 +5,6 @@
 
 class FileToolBar : public QToolBar{
 public:
-    FileToolBar(QActionMap* actionMap,QWidget* parent = 0);
+    FileToolBar(QActionMap* actionMap,QWidget* parent = NULL);
     ~FileToolBar();
 };

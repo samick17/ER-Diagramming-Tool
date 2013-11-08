@@ -4,7 +4,7 @@
 
 class EntityWidget : public NodeWidget{
 public:
-    EntityWidget(ComponentWidgetData componentWidgetData,GraphicalPresentation* graphicalPresentation,QGraphicsItem* parent = 0);
+    EntityWidget(ComponentWidgetData componentWidgetData,GraphicalPresentation* graphicalPresentation,QGraphicsItem* parent = NULL);
     ~EntityWidget();
 
     QPainterPath shape() const;

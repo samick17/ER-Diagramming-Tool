@@ -4,7 +4,7 @@
 
 class NodeWidget : public ComponentWidget{
 public:
-    NodeWidget(ComponentWidgetData componentWidgetData,GraphicalPresentation* graphicalPresentation,QGraphicsItem* parent = 0);
+    NodeWidget(ComponentWidgetData componentWidgetData,GraphicalPresentation* graphicalPresentation,QGraphicsItem* parent = NULL);
     ~NodeWidget();
 
     QPainterPath shape() const = 0;

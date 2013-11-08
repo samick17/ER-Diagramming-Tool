@@ -94,6 +94,7 @@
     <ClCompile Include="DisplayDiagramInstruction.cpp" />
     <ClCompile Include="DisplayTableInstruction.cpp" />
     <ClCompile Include="FileToolBar.cpp" />
+    <ClCompile Include="GUIScene.cpp" />
     <ClCompile Include="InstructionData.cpp" />
     <ClCompile Include="..\102598045_POSD\CommandManager.cpp" />
     <ClCompile Include="InstructionMenu.cpp" />
@@ -202,6 +203,7 @@
     <ClInclude Include="DisplayDiagramInstruction.h" />
     <ClInclude Include="DisplayTableInstruction.h" />
     <ClInclude Include="FileToolBar.h" />
+    <ClInclude Include="GUIScene.h" />
     <ClInclude Include="IObservable.h" />
     <ClInclude Include="IObserver.h" />
     <ClInclude Include="ControllerEvent.h" />

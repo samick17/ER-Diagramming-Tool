@@ -12,7 +12,7 @@ using namespace std;
 
 class ComponentWidget : public QGraphicsItem{
 public:
-    ComponentWidget(ComponentWidgetData componentWidgetData,GraphicalPresentation* graphicalPresentation,QGraphicsItem* parent = 0);
+    ComponentWidget(ComponentWidgetData componentWidgetData,GraphicalPresentation* graphicalPresentation,QGraphicsItem* parent = NULL);
     ~ComponentWidget();
     
     void paint(QPainter* painter,const QStyleOptionGraphicsItem* option, QWidget* widget = 0);

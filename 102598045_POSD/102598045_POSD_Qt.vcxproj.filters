@@ -466,6 +466,9 @@
     <ClCompile Include="StateFactory.cpp">
       <Filter>Source Files\Factory</Filter>
     </ClCompile>
+    <ClCompile Include="GUIScene.cpp">
+      <Filter>Source Files\View\GUI\GUIWidget</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Attribute.h">
@@ -749,6 +752,9 @@
     </ClInclude>
     <ClInclude Include="StateFactory.h">
       <Filter>Header Files\Factory</Filter>
+    </ClInclude>
+    <ClInclude Include="GUIScene.h">
+      <Filter>Header Files\View\GUI\GUIWidget</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

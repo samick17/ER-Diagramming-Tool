@@ -52,15 +52,15 @@ void GraphicalUI::keyReleaseEvent(QKeyEvent* keyEvent){
         this->graphicalPresentation->keyCtrlReleased();
 }
 
-void GraphicalUI::mousePressEvent(QMouseEvent* mouseEvent){
+void GraphicalUI::mousePress(){
     this->graphicalPresentation->getState()->mousePressEvent();
 }
 
-void GraphicalUI::mouseMoveEvent(QMouseEvent* mouseEvent){
+void GraphicalUI::mouseMove(){
     this->graphicalPresentation->getState()->mouseMoveEvent();
 }
 
-void GraphicalUI::mouseReleaseEvent(QMouseEvent* mouseEvent){
+void GraphicalUI::mouseRelease(){
     this->graphicalPresentation->getState()->mouseReleaseEvent();
 }
 
@@ -70,7 +70,7 @@ void GraphicalUI::setTitle(string title){
 
 void GraphicalUI::initialGraphicView(){
     this->view = new QGraphicsView(this);
-    this->scene = new QGraphicsScene(0,0,ApplicationSetting::DefaultWidth,ApplicationSetting::DefaultHeight,this);
+    this->scene = new GUIScene(0,0,ApplicationSetting::DefaultWidth,ApplicationSetting::DefaultHeight,this);
     this->view->setScene(this->scene);
     this->setCentralWidget(view);
 }
