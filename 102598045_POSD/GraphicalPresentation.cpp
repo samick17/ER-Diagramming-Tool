@@ -71,6 +71,7 @@ void GraphicalPresentation::switchState(int stateID){
         delete this->state;
     StateFactory stateFactory;
     this->state = stateFactory.createState(stateID,this);
+
 }
 //key pressed
 void GraphicalPresentation::keyCtrlPressed(){

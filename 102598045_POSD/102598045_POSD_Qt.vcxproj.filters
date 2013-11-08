@@ -179,6 +179,9 @@
     <Filter Include="Header Files\ViewSynchronizer">
       <UniqueIdentifier>{f0be6894-69b5-490d-99c4-f2356af4cfc3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Observer">
+      <UniqueIdentifier>{70023ca4-13af-4db2-a9b8-d91264864f77}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -755,6 +758,12 @@
     </ClInclude>
     <ClInclude Include="ISynchronizer.h">
       <Filter>Header Files\ViewSynchronizer</Filter>
+    </ClInclude>
+    <ClInclude Include="IObserver.h">
+      <Filter>Header Files\Observer</Filter>
+    </ClInclude>
+    <ClInclude Include="ISubject.h">
+      <Filter>Header Files\Observer</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

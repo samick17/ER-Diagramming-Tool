@@ -4,11 +4,11 @@
 
 class TextUIPresenter{
 public:
-	TextUIPresenter(TextPresentation* textPresentation);
-	~TextUIPresenter();
+    TextUIPresenter(TextPresentation* textPresentation);
+    ~TextUIPresenter();
 
     void displayTitle(string title);
-	void displayMenu();
+    void displayMenu();
     void displayTable();
     void displayComponents();
     void displayConnections();
@@ -17,6 +17,6 @@ public:
     void displayDiagram();
     void displayStringWithComma(string strStart,vector<string> stringVector,string strEnd);
 private:
-	TextPresentation* textPresentation;
-	void displayComponentMap(HashMap<string,Component*> componentMap);
+    TextPresentation* textPresentation;
+    void displayComponentMap(HashMap<string,Component*> componentMap);
 };
