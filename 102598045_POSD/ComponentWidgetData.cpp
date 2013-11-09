@@ -1,18 +1,15 @@
 #include "ComponentWidgetData.h"
 
-ComponentWidgetData::ComponentWidgetData(string text,int positionX,int positionY,bool isUnderLined) : text(text),positionX(positionX),positionY(positionY),isUnderLined(isUnderLined){
+ComponentWidgetData::ComponentWidgetData(Component* component,int positionX,int positionY,bool isUnderLined) : component(component),positionX(positionX),positionY(positionY),isUnderLined(isUnderLined){
 }
 
 ComponentWidgetData::~ComponentWidgetData(){
 }
 
-string ComponentWidgetData::getText(){
-    return this->text;
+Component* ComponentWidgetData::getComponent(){
+    return this->component;
 }
 
-void ComponentWidgetData::setText(string text){
-	this->text = text;
-}
 
 int ComponentWidgetData::getPositionX(){
     return this->positionX;

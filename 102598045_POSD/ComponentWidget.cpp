@@ -13,8 +13,12 @@ ComponentWidget::ComponentWidget(ComponentWidgetData componentWidgetData,Graphic
 ComponentWidget::~ComponentWidget(){
 }
 
+Component* ComponentWidget::getComponent(){
+    return this->componentWidgetData.getComponent();
+}
+
 string ComponentWidget::getText(){
-    return this->componentWidgetData.getText();
+    return this->getComponent()->getName();
 }
 
 bool ComponentWidget::getIsUnderLined(){

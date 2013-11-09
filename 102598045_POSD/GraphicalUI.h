@@ -28,9 +28,9 @@ public:
     void sync(int syncEventType);
     void setTitle(string title);
 
-    void mousePress();
-    void mouseMove();
-    void mouseRelease();
+    void mousePress(QPointF position);
+    void mouseMove(QPointF position);
+    void mouseRelease(QPointF position);
 protected:
     void closeEvent(QCloseEvent* closeEvent);
     void keyPressEvent(QKeyEvent* keyEvent);

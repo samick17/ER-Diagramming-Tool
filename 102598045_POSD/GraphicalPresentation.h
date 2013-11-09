@@ -3,9 +3,9 @@
 #include "Component.h"
 #include "Presentation.h"
 #include "WidgetFactory.h"
-#include <QList>
 
 class State;
+class StateSubject;
 
 class GraphicalPresentation{
 public:
@@ -14,6 +14,8 @@ public:
 
     HashMap<string,ComponentWidget*> getAllComponentWidgets();
     State* getState();
+    StateSubject* getStateSubject();
+    
 
     void openFile(string filePath);
     void saveFile(string filePath);
@@ -30,9 +32,9 @@ public:
 private:
     Presentation* presentation;
     HashMap<string,ComponentWidget*> componentWidgetMap;
-    QList<ComponentWidget*> selectedWidgetList;
+    HashMap<string,ComponentWidget*> selectedWidgetMap;
     bool isCtrlPressed;
-    State* state;
+    StateSubject* stateSubject;
 
     void clearAllComponentWidget();
     void updateComponentWidgetMap();

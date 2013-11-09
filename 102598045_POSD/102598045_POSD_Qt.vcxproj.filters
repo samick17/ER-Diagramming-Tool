@@ -472,6 +472,9 @@
     <ClCompile Include="GUIScene.cpp">
       <Filter>Source Files\View\GUI\GUIWidget</Filter>
     </ClCompile>
+    <ClCompile Include="StateSubject.cpp">
+      <Filter>Source Files\View\GUI\State</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Attribute.h">
@@ -764,6 +767,9 @@
     </ClInclude>
     <ClInclude Include="ISubject.h">
       <Filter>Header Files\Observer</Filter>
+    </ClInclude>
+    <ClInclude Include="StateSubject.h">
+      <Filter>Header Files\View\GUI\State</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

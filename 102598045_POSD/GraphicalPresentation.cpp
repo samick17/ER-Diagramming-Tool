@@ -12,15 +12,16 @@
 #include "ERModelUtil.h"
 #include "StateFactory.h"
 #include "StateID.h"
+#include "StateSubject.h"
 
 GraphicalPresentation::GraphicalPresentation(Presentation* presentation) : presentation(presentation){
     this->isCtrlPressed = false;
-    this->state = NULL;
+    this->stateSubject = new StateSubject();
 }
 
 GraphicalPresentation::~GraphicalPresentation(){
     this->clearAllComponentWidget();
-    delete this->state;
+    delete this->stateSubject;
 }
 
 HashMap<string,ComponentWidget*> GraphicalPresentation::getAllComponentWidgets(){
@@ -29,8 +30,13 @@ HashMap<string,ComponentWidget*> GraphicalPresentation::getAllComponentWidgets()
 }
 
 State* GraphicalPresentation::getState(){
-    return this->state;
+    return this->stateSubject->getState();
 }
+
+StateSubject* GraphicalPresentation::getStateSubject(){
+    return this->stateSubject;
+}
+
 
 void GraphicalPresentation::openFile(string filePath){
     this->presentation->openFile(filePath);
@@ -46,32 +52,30 @@ void GraphicalPresentation::close(){
 }
 //is widget being selected?
 bool GraphicalPresentation::isSelected(ComponentWidget* selectedWidget){
-    if(this->selectedWidgetList.contains(selectedWidget))
+    string key = selectedWidget->getComponent()->getID();
+    if(this->selectedWidgetMap.containsKey(key))
         return true;
     return false;
 }
 
 void GraphicalPresentation::selectWidget(ComponentWidget* selectedWidget){
-    if(this->selectedWidgetList.contains(selectedWidget)){
-        this->selectedWidgetList.removeOne(selectedWidget);
+    string key = selectedWidget->getComponent()->getID();
+    if(this->selectedWidgetMap.containsKey(key)){
+        this->selectedWidgetMap.remove(key);
         selectedWidget->update();
         return;
     }
-    QList<ComponentWidget*> widgetList = this->selectedWidgetList;
+    HashMap<string,ComponentWidget*> widgetMap = this->selectedWidgetMap;
     if(!this->isCtrlPressed)
-        this->selectedWidgetList.clear();
-    this->selectedWidgetList.push_back(selectedWidget);
+        this->selectedWidgetMap.clear();
+    this->selectedWidgetMap.put(key,selectedWidget);
     selectedWidget->update();
-    for each(ComponentWidget* widget in widgetList)
+    for each(ComponentWidget* widget in widgetMap)
         widget->update();
 }
 
 void GraphicalPresentation::switchState(int stateID){
-    if(this->state != NULL)
-        delete this->state;
-    StateFactory stateFactory;
-    this->state = stateFactory.createState(stateID,this);
-
+    this->stateSubject->switchState(stateID,this);
 }
 //key pressed
 void GraphicalPresentation::keyCtrlPressed(){
@@ -100,7 +104,7 @@ void GraphicalPresentation::sync(ISynchronizer* synchronizer,int syncEventType){
 
 void GraphicalPresentation::clearAllComponentWidget(){
     this->componentWidgetMap.clear();
-    this->selectedWidgetList.clear();
+    this->selectedWidgetMap.clear();
 }
 //update all from model to widget
 void GraphicalPresentation::updateComponentWidgetMap(){
@@ -122,8 +126,9 @@ int GraphicalPresentation::createRelationShipWidget(HashMap<string,Component*>& 
         int currentRelationShipHeight = currentHeight;
         if(!connectedEntitiesMap.empty())
             currentRelationShipHeight = totalHeight/connectedEntitiesMap.size();
-        ComponentWidgetData componentWidgetData = ComponentWidgetData(relationShip->getName(),WidgetDefaultSetting::RelationShipHorizontalDistance,currentRelationShipHeight);
+        ComponentWidgetData componentWidgetData = ComponentWidgetData(relationShip,WidgetDefaultSetting::RelationShipHorizontalDistance,currentRelationShipHeight);
         ComponentWidget* relationShipWidget = widgetFactory.createComponentWidget(relationShip->getType(),componentWidgetData,this);
+
         this->componentWidgetMap.put(relationShip->getID(),relationShipWidget);
         componentMap.remove(relationShip->getID());
         currentHeight += WidgetDefaultSetting::RelationShipVerticalDistance;
@@ -141,7 +146,7 @@ int GraphicalPresentation::createEntityWidget(HashMap<string,Component*>& compon
         this->createAttributeWidget(componentMap,entity->getConnectedAttributes(),currentHeight);
         int currentTotalHeight = WidgetDefaultSetting::AttributeVerticalDistance*entity->getConnectedAttributes().size();
         int entityHeight = currentHeight-((currentTotalHeight+WidgetDefaultSetting::Height)/Number::Two);
-        ComponentWidgetData componentWidgetData = ComponentWidgetData(entity->getName(),WidgetDefaultSetting::EntityHorizontalDistance,entityHeight);
+        ComponentWidgetData componentWidgetData = ComponentWidgetData(entity,WidgetDefaultSetting::EntityHorizontalDistance,entityHeight);
         ComponentWidget* entityWidget = widgetFactory.createComponentWidget(entity->getType(),componentWidgetData,this);
         this->componentWidgetMap.put(entity->getID(),entityWidget);
         componentMap.remove(entity->getID());
@@ -154,7 +159,7 @@ int GraphicalPresentation::createEntityWidget(HashMap<string,Component*>& compon
 int GraphicalPresentation::createAttributeWidget(HashMap<string,Component*>& componentMap,HashMap<string,Attribute*> attributeMap,int& attributeHeight){
     WidgetFactory widgetFactory;
     for each(Attribute* attribute in attributeMap){
-        ComponentWidgetData componentWidgetData = ComponentWidgetData(attribute->getName(),WidgetDefaultSetting::AttributeHorizontalDistance,attributeHeight,attribute->isPrimaryKey());
+        ComponentWidgetData componentWidgetData = ComponentWidgetData(attribute,WidgetDefaultSetting::AttributeHorizontalDistance,attributeHeight,attribute->isPrimaryKey());
         AttributeWidget* attributeWidget = static_cast<AttributeWidget*>(widgetFactory.createComponentWidget(attribute->getType(),componentWidgetData,this));
         this->componentWidgetMap.put(attribute->getID(),attributeWidget);
         componentMap.remove(attribute->getID());
@@ -166,7 +171,7 @@ int GraphicalPresentation::createAttributeWidget(HashMap<string,Component*>& com
 void GraphicalPresentation::createConnectorWidget(HashMap<string,Connector*> connectorMap){
     WidgetFactory widgetFactory;
     for each(Connector* connector in connectorMap){
-        ComponentWidgetData componentWidgetData = ComponentWidgetData(connector->getName(),0,0);
+        ComponentWidgetData componentWidgetData = ComponentWidgetData(connector,0,0);
         ConnectorWidget* connectorWidget = static_cast<ConnectorWidget*>(widgetFactory.createComponentWidget(connector->getType(),componentWidgetData,this));
         ComponentWidget* sourceWidget = this->componentWidgetMap.get(connector->getFirstConnectedNode()->getID());
         ComponentWidget* targetWidget = this->componentWidgetMap.get(connector->getSecondConnectedNode()->getID());

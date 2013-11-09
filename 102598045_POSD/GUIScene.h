@@ -3,6 +3,7 @@
 #include <QGraphicsScene>
 
 class GraphicalUI;
+class ComponentWidget;
 
 class GUIScene : public QGraphicsScene{
 public:

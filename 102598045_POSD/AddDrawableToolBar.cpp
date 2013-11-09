@@ -3,7 +3,9 @@
 #include "ActionData.h"
 #include "GraphicalUI.h"
 #include "StateID.h"
-#include <iostream>
+#include "ISubject.h"
+#include "GraphicalPresentation.h"
+#include "StateSubject.h"
 
 AddDrawableToolBar::AddDrawableToolBar(GraphicalUI* graphicalUI,QActionMap* actionMap) : QToolBar(graphicalUI){
     this->currentWidget = NULL;
@@ -14,6 +16,8 @@ AddDrawableToolBar::AddDrawableToolBar(GraphicalUI* graphicalUI,QActionMap* acti
     this->toolBarWidgetMap.put(StateID::RelationShipState,new ToolBarWidget(this,actionMap,ActionData::RelationShipState));
     for each(ToolBarWidget* toolBarWidget in toolBarWidgetMap)
         this->addWidget(toolBarWidget);
+    this->stateSubject = graphicalUI->getGraphicalPresentation()->getStateSubject();
+    this->stateSubject->registerObserver(this);
 }
 
 AddDrawableToolBar::~AddDrawableToolBar(){
@@ -25,4 +29,9 @@ void AddDrawableToolBar::selectToolButton(int stateID){
     ToolBarWidget* nextSelectToolButton = this->toolBarWidgetMap.get(stateID);
     nextSelectToolButton->setChecked(true);
     this->currentWidget = nextSelectToolButton;
+}
+
+void AddDrawableToolBar::notify(ISubject* subject){
+	if(subject == this->stateSubject)
+		this->selectToolButton(this->stateSubject->getState()->getStateID());
 }

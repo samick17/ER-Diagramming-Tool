@@ -8,6 +8,7 @@
 #include "ControllerEvent.h"
 #include "StateID.h"
 #include "State.h"
+#include <iostream>
 
 GraphicalUI::GraphicalUI(GraphicalPresentation* graphicalPresentation): graphicalPresentation(graphicalPresentation),QMainWindow(){
     this->setTitle(ApplicationSetting::Title);
@@ -52,16 +53,16 @@ void GraphicalUI::keyReleaseEvent(QKeyEvent* keyEvent){
         this->graphicalPresentation->keyCtrlReleased();
 }
 
-void GraphicalUI::mousePress(){
-    this->graphicalPresentation->getState()->mousePressEvent();
+void GraphicalUI::mousePress(QPointF position){
+    this->graphicalPresentation->getState()->mousePressEvent(position);
 }
 
-void GraphicalUI::mouseMove(){
-    this->graphicalPresentation->getState()->mouseMoveEvent();
+void GraphicalUI::mouseMove(QPointF position){
+    this->graphicalPresentation->getState()->mouseMoveEvent(position);
 }
 
-void GraphicalUI::mouseRelease(){
-    this->graphicalPresentation->getState()->mouseReleaseEvent();
+void GraphicalUI::mouseRelease(QPointF position){
+    this->graphicalPresentation->getState()->mouseReleaseEvent(position);
 }
 
 void GraphicalUI::setTitle(string title){
@@ -81,29 +82,22 @@ void GraphicalUI::initialAllAction(){
     connect(openFileAction,SIGNAL(triggered()),this,SLOT(openFile()));
     QAction* exitAction = this->actionMap->getQAction(ActionData::Exit);
     connect(exitAction,SIGNAL(triggered()),this,SLOT(close()));
-
     QSignalMapper* signalMapper = new QSignalMapper (this) ;
-
     QAction* pointerStateAction = this->actionMap->getQAction(ActionData::PointerState);
     connect(pointerStateAction,SIGNAL(triggered()),signalMapper,SLOT(map()));
     signalMapper->setMapping(pointerStateAction,StateID::PointerState);
-
     QAction* connectStateAction = this->actionMap->getQAction(ActionData::ConnectState);
     connect(connectStateAction,SIGNAL(triggered()),signalMapper,SLOT(map()));
     signalMapper->setMapping(connectStateAction,StateID::ConnectState);
-
     QAction* attributeStateAction = this->actionMap->getQAction(ActionData::AttributeState);
     connect(attributeStateAction,SIGNAL(triggered()),signalMapper,SLOT(map()));
     signalMapper->setMapping(attributeStateAction,StateID::AttributeState);
-
     QAction* entityStateAction = this->actionMap->getQAction(ActionData::EntityState);
     connect(entityStateAction,SIGNAL(triggered()),signalMapper,SLOT(map()));
     signalMapper->setMapping(entityStateAction,StateID::EntityState);
-
     QAction* relationShipStateAction = this->actionMap->getQAction(ActionData::RelationShipState);
     connect(relationShipStateAction,SIGNAL(triggered()),signalMapper,SLOT(map()));
     signalMapper->setMapping(relationShipStateAction,StateID::RelationShipState);
-
     connect (signalMapper, SIGNAL(mapped(int)), this, SLOT(switchState(int))) ;
 }
 
@@ -147,7 +141,6 @@ void GraphicalUI::close(){
 }
 
 void GraphicalUI::switchState(int stateID){
-    this->addDrawableToolBar->selectToolButton(stateID);
     this->graphicalPresentation->switchState(stateID);
 }
 //execute notify event that are mapped.

@@ -6,9 +6,12 @@ class State{
 public:
     State(int stateID,GraphicalPresentation* graphicalPresentation);
 
-    virtual void mousePressEvent() = 0;
-    virtual void mouseMoveEvent() = 0;
-    virtual void mouseReleaseEvent() = 0;
+    int getStateID();
+
+    virtual void mousePressEvent(QPointF position) = 0;
+    virtual void mouseMoveEvent(QPointF position) = 0;
+    virtual void mouseReleaseEvent(QPointF position) = 0;
 protected:
     GraphicalPresentation* graphicalPresentation;
+    int stateID;
 };

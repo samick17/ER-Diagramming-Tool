@@ -14,7 +14,9 @@ class ComponentWidget : public QGraphicsItem{
 public:
     ComponentWidget(ComponentWidgetData componentWidgetData,GraphicalPresentation* graphicalPresentation,QGraphicsItem* parent = NULL);
     ~ComponentWidget();
-    
+
+    Component* getComponent();
+
     void paint(QPainter* painter,const QStyleOptionGraphicsItem* option, QWidget* widget = 0);
     QRectF boundingRect() const;
 protected:

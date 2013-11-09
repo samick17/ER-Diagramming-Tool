@@ -1,16 +1,16 @@
 #pragma once
 
 #include <string>
+#include "Component.h"
 
 using namespace std;
 
 struct ComponentWidgetData{
 public:
-    ComponentWidgetData(string text,int positionX,int positionY,bool isUnderLined = false);
+    ComponentWidgetData(Component* component,int positionX,int positionY,bool isUnderLined = false);
     ~ComponentWidgetData();
 
-    string getText();
-	void setText(string text);
+    Component* getComponent();
     int getPositionX();
 	void setPositionX(int positionX);
     int getPositionY();
@@ -18,7 +18,7 @@ public:
     bool getIsUnderLined();
 	void setIsUnderLined(bool isUnderLined);
 private:
-    string text;
+    Component* component;
     int positionX;
     int positionY;
     bool isUnderLined;

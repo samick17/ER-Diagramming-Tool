@@ -1,19 +1,15 @@
 #include "AddNodeState.h"
 #include "StateID.h"
-#include <iostream>
 
 AddNodeState::AddNodeState(int stateID,GraphicalPresentation* graphicalPresentation) : State(stateID,graphicalPresentation){
 }
 
-void AddNodeState::mousePressEvent(){
-	cout<<"press"<<endl;
+void AddNodeState::mousePressEvent(QPointF position){
 }
 
-void AddNodeState::mouseMoveEvent(){
-	cout<<"move"<<endl;
+void AddNodeState::mouseMoveEvent(QPointF position){
 }
 
-void AddNodeState::mouseReleaseEvent(){
-	cout<<"release"<<endl;
+void AddNodeState::mouseReleaseEvent(QPointF position){
     graphicalPresentation->switchState(StateID::PointerState);
 }
