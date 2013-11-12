@@ -12,11 +12,11 @@ public:
 
     Component* getComponent();
     int getPositionX();
-	void setPositionX(int positionX);
+    void setPositionX(int positionX);
     int getPositionY();
-	void setPositionY(int positionY);
+    void setPositionY(int positionY);
     bool getIsUnderLined();
-	void setIsUnderLined(bool isUnderLined);
+    void setIsUnderLined(bool isUnderLined);
 private:
     Component* component;
     int positionX;

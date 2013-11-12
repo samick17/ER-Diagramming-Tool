@@ -16,6 +16,7 @@ public:
     ~ComponentWidget();
 
     Component* getComponent();
+    void setText(string text);
 
     void paint(QPainter* painter,const QStyleOptionGraphicsItem* option, QWidget* widget = 0);
     QRectF boundingRect() const;

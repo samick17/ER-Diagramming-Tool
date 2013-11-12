@@ -39,10 +39,7 @@ StateSubject* GraphicalPresentation::getStateSubject(){
 
 void GraphicalPresentation::addNode(string nodeType,QPointF position){
     Node* node = this->presentation->addNode(nodeType);
-	//WidgetFactory widetFactory;
-	//ComponentWidget* widget = widetFactory.createComponentWidget(nodeType,ComponentWidgetData(node,position.x(),position.y()),this);
-	//this->componentWidgetMap.put(node->getID(),widget);
-	this->presentation->sync(ControllerEvent::DisplayDiagram);
+    this->presentation->sync(ControllerEvent::DisplayDiagram);
 }
 
 void GraphicalPresentation::openFile(string filePath){
@@ -58,26 +55,24 @@ void GraphicalPresentation::close(){
     this->presentation->close();
 }
 //is widget being selected?
-bool GraphicalPresentation::isSelected(ComponentWidget* selectedWidget){
-    string key = selectedWidget->getComponent()->getID();
-    if(this->selectedWidgetMap.containsKey(key))
+bool GraphicalPresentation::isSelected(string componentID){
+    if(this->selectedWidgetSet.find(componentID) != this->selectedWidgetSet.end())
         return true;
     return false;
 }
 
-void GraphicalPresentation::selectWidget(ComponentWidget* selectedWidget){
-    string key = selectedWidget->getComponent()->getID();
-    if(this->selectedWidgetMap.containsKey(key)){
-        this->selectedWidgetMap.remove(key);
-        selectedWidget->update();
+void GraphicalPresentation::selectWidget(string componentID){
+    if(this->selectedWidgetSet.find(componentID) != this->selectedWidgetSet.end()){
+        this->selectedWidgetSet.erase(componentID);
+        //selectedWidget->update();
         return;
     }
-    HashMap<string,ComponentWidget*> widgetMap = this->selectedWidgetMap;
+    set<string> selectedWidgetSet = this->selectedWidgetSet;
     if(!this->isCtrlPressed)
-        this->selectedWidgetMap.clear();
-    this->selectedWidgetMap.put(key,selectedWidget);
-    selectedWidget->update();
-    for each(ComponentWidget* widget in widgetMap)
+        this->selectedWidgetSet.clear();
+    this->selectedWidgetSet.insert(componentID);
+    //selectedWidget->update();
+    for each(ComponentWidget* widget in componentWidgetMap)
         widget->update();
 }
 
@@ -111,7 +106,7 @@ void GraphicalPresentation::sync(ISynchronizer* synchronizer,int syncEventType){
 
 void GraphicalPresentation::clearAllComponentWidget(){
     this->componentWidgetMap.clear();
-    this->selectedWidgetMap.clear();
+    this->selectedWidgetSet.clear();
 }
 //update all from model to widget
 void GraphicalPresentation::updateComponentWidgetMap(){

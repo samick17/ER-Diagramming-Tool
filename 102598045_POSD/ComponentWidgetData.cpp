@@ -10,13 +10,12 @@ Component* ComponentWidgetData::getComponent(){
     return this->component;
 }
 
-
 int ComponentWidgetData::getPositionX(){
     return this->positionX;
 }
 
 void ComponentWidgetData::setPositionX(int positionX){
-	this->positionX = positionX;
+    this->positionX = positionX;
 }
 
 int ComponentWidgetData::getPositionY(){
@@ -24,7 +23,7 @@ int ComponentWidgetData::getPositionY(){
 }
 
 void ComponentWidgetData::setPositionY(int positionY){
-	this->positionY = positionY;
+    this->positionY = positionY;
 }
 
 bool ComponentWidgetData::getIsUnderLined(){
@@ -32,5 +31,5 @@ bool ComponentWidgetData::getIsUnderLined(){
 }
 
 void ComponentWidgetData::setIsUnderLined(bool isUnderLined){
-	this->isUnderLined = isUnderLined;
+    this->isUnderLined = isUnderLined;
 }

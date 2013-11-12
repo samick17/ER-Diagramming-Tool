@@ -21,12 +21,17 @@ string ComponentWidget::getText(){
     return this->getComponent()->getName();
 }
 
+void ComponentWidget::setText(string text){
+    return this->getComponent()->setName(text);
+}
+
 bool ComponentWidget::getIsUnderLined(){
     return this->componentWidgetData.getIsUnderLined();
 }
 
 void ComponentWidget::mousePressEvent(QGraphicsSceneMouseEvent* mouseEvent){
-    this->graphicalPresentation->selectWidget(this);
+    string componentID = this->getComponent()->getID();
+    this->graphicalPresentation->selectWidget(componentID);
 }
 
 void ComponentWidget::mouseMoveEvent(QGraphicsSceneMouseEvent* mouseEvent){
@@ -54,7 +59,7 @@ QRectF ComponentWidget::boundingRect() const{
 }
 
 void ComponentWidget::drawSelectedFrame(QPainter* painter){
-    if(this->graphicalPresentation->isSelected(this)){
+    if(this->graphicalPresentation->isSelected(this->getComponent()->getID())){
         painter->setPen(QPen(darkGreen,WidgetDefaultSetting::SelectedFrameLineWidth,Qt::DotLine));
         painter->drawPath(this->shape());
     }

@@ -18,6 +18,7 @@ public:
     Value remove(Key key);
     unsigned int size();
     bool containsKey(Key key);
+    bool containsValue(Value value);
     Value getValueByIndex(unsigned int index);
     unsigned int getValueIndex(Value value);
     bool empty();
@@ -94,6 +95,17 @@ bool HashMap<Key,Value>::containsKey(Key key){
     if(hashmapIterator == hashmap.end())
         return false;
     return true;
+}
+
+template<typename Key,typename Value>
+bool HashMap<Key,Value>::containsValue(Value value){
+    try{
+        this->tryGetValueKey(value);
+        return true;
+    }
+    catch(Exception&){
+        return false;
+    }
 }
 
 template<typename Key,typename Value>

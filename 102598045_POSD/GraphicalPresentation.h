@@ -4,6 +4,7 @@
 #include "Presentation.h"
 #include "WidgetFactory.h"
 #include <QPointF>
+#include <set>
 
 class State;
 class StateSubject;
@@ -21,8 +22,8 @@ public:
     void openFile(string filePath);
     void saveFile(string filePath);
     void close();
-    bool isSelected(ComponentWidget* selectedWidget);
-    void selectWidget(ComponentWidget* selectedWidget);
+    bool isSelected(string componentID);
+    void selectWidget(string componentID);
     void switchState(int stateID);
     void keyCtrlPressed();
     void keyCtrlReleased();
@@ -33,7 +34,7 @@ public:
 private:
     Presentation* presentation;
     HashMap<string,ComponentWidget*> componentWidgetMap;
-    HashMap<string,ComponentWidget*> selectedWidgetMap;
+    set<string> selectedWidgetSet;
     bool isCtrlPressed;
     StateSubject* stateSubject;
 
