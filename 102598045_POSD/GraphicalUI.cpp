@@ -10,7 +10,7 @@
 #include "State.h"
 
 GraphicalUI::GraphicalUI(GraphicalPresentation* graphicalPresentation): graphicalPresentation(graphicalPresentation),QMainWindow(){
-    this->setTitle(ApplicationSetting::Title);
+    this->setTitle(ApplicationSetting::Title,ApplicationSetting::IconPath);
     this->resize(ApplicationSetting::DefaultWidth,ApplicationSetting::DefaultHeight);
     this->initialGraphicView();
     this->initialAllAction();
@@ -22,12 +22,10 @@ GraphicalUI::GraphicalUI(GraphicalPresentation* graphicalPresentation): graphica
     connect(this,SIGNAL(syncEvent(int)),this,SLOT(executeSync(int)));
     this->switchState(StateID::PointerState);
     this->graphicalPresentation->registerSynchronizer(this);
-    this->graphicalPresentation->registerObserver(this);
 }
 
 GraphicalUI::~GraphicalUI(){
     this->graphicalPresentation->unregisterSynchronizer(this);
-    this->graphicalPresentation->unregisterObserver(this);
     delete this->fileMenuItem;
 }
 
@@ -69,12 +67,9 @@ void GraphicalUI::mouseRelease(QPointF& position){
     this->graphicalPresentation->getState()->mouseReleaseEvent(position);
 }
 
-void GraphicalUI::notify(ISubject* subject){
-    
-}
-
-void GraphicalUI::setTitle(string title){
+void GraphicalUI::setTitle(string title,string iconPath){
     this->setWindowTitle(QString(title.c_str()));
+    this->setWindowIcon(QIcon(iconPath.c_str()));
 }
 
 void GraphicalUI::initialGraphicView(){

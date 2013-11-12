@@ -60,10 +60,12 @@ int ERModel::addConnection(Component* firstNode,Component* secondNode){
 
 void ERModel::redo(){
     this->commandManager.redo();
+    this->notify();
 }
 
 void ERModel::undo(){
     this->commandManager.undo();
+    this->notify();
 }
 
 void ERModel::openFile(string filePath){
@@ -151,8 +153,4 @@ void ERModel::unregisterSynchronizer(ISynchronizer* synchronizer){
 void ERModel::sync(int notifiedEventType){
     for each(ISynchronizer* synchronizer in this->synchronizerVector)
         synchronizer->sync(notifiedEventType);
-}
-
-void ERModel::sync(ISynchronizer* synchronizer,int notifiedEventType){
-    synchronizer->sync(notifiedEventType);
 }

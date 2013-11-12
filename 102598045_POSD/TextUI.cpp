@@ -6,7 +6,7 @@ TextUI::TextUI(TextPresentation* textPresentation) : textPresentation(textPresen
 }
 
 TextUI::~TextUI(){
-	this->textPresentation->unregisterSynchronizer(this);
+    this->textPresentation->unregisterSynchronizer(this);
 }
 
 void TextUI::displayMenu(){

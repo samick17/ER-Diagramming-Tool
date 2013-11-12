@@ -11,7 +11,7 @@ public:
     void setPosition(Point position);
     Size& getSize();
     void setSize(Size size);
-    Point& getCenterPosition();
+    Point getCenterPosition();
 
     bool operator==(const Rect& rectToCompare) const;
 private:

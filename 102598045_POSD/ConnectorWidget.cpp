@@ -28,16 +28,16 @@ void ConnectorWidget::doPaint(QPainter* painter){
 }
 
 void ConnectorWidget::updateConnectionPoint(){
-	HashMap<string,ComponentWidgetData> componentWidgetDataMap = this->graphicalPresentation->getAllComponentWidgetDatas();
+	HashMap<string,ComponentWidgetData*> componentWidgetDataMap = this->graphicalPresentation->getAllComponentWidgetDatas();
 
 	Connector* connector = static_cast<Connector*>(this->getComponent());
 
-	ComponentWidgetData sourceWidgetData = componentWidgetDataMap.get(connector->getFirstConnectedNode()->getID());
-	ComponentWidgetData targetWidgetData = componentWidgetDataMap.get(connector->getSecondConnectedNode()->getID());
+	ComponentWidgetData* sourceWidgetData = componentWidgetDataMap.get(connector->getFirstConnectedNode()->getID());
+	ComponentWidgetData* targetWidgetData = componentWidgetDataMap.get(connector->getSecondConnectedNode()->getID());
 	
-	Point sourceCenterPosition = sourceWidgetData.getRect().getCenterPosition();
+	Point sourceCenterPosition = sourceWidgetData->getRect().getCenterPosition();
 	QPointF sourcePoint = QPointF(sourceCenterPosition.getX(),sourceCenterPosition.getY());
-	Point targetCenterPosition = targetWidgetData.getRect().getCenterPosition();
+	Point targetCenterPosition = targetWidgetData->getRect().getCenterPosition();
 	QPointF targetPoint = QPointF(targetCenterPosition.getX(),targetCenterPosition.getY());
 
 	qreal left = sourcePoint.x()<targetPoint.x()?sourcePoint.x():targetPoint.x();

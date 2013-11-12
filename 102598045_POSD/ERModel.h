@@ -57,7 +57,6 @@ public:
     void registerSynchronizer(ISynchronizer* synchronizer);
     void unregisterSynchronizer(ISynchronizer* synchronizer);
     void sync(int syncEventType);
-    void sync(ISynchronizer* synchronizer,int syncEventType);
 private:
     HashMap<string,Component*> componentMap;
     vector<ISynchronizer*> synchronizerVector;

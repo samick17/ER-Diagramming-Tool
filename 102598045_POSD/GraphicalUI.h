@@ -10,14 +10,13 @@
 #include "AddDrawableToolBar.h"
 #include "QActionMap.h"
 #include "ISynchronizer.h"
-#include "IObserver.h"
 
 class GraphicalPresentation;
 class SelectedFrameWidget;
 
 using namespace Qt;
 
-class GraphicalUI : public QMainWindow,public ISynchronizer,public IObserver{
+class GraphicalUI : public QMainWindow,public ISynchronizer{
     Q_OBJECT
 signals:
     void syncEvent(int syncEventType);
@@ -28,13 +27,11 @@ public:
     GraphicalPresentation* getGraphicalPresentation();
     GUIScene* getScene();
     void sync(int syncEventType);
-    void setTitle(string title);
+    void setTitle(string title,string iconPath);
 
     void mousePress(QPointF& position);
     void mouseMove(QPointF& position);
     void mouseRelease(QPointF& position);
-
-    void notify(ISubject* subject);
 protected:
     void closeEvent(QCloseEvent* closeEvent);
     void keyPressEvent(QKeyEvent* keyEvent);

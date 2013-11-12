@@ -4,10 +4,12 @@
 #include <QGraphicsSceneMouseEvent>
 #include "GraphicalPresentation.h"
 #include "WidgetFactory.h"
+#include <iostream>
 
 GUIScene::GUIScene(qreal left,qreal top,qreal width,qreal height,GraphicalUI* graphicalUI) : graphicalUI(graphicalUI),QGraphicsScene(left,top,width,height,graphicalUI){
     this->graphicalPresentation = this->graphicalUI->getGraphicalPresentation();
     this->graphicalPresentation->registerObserver(this);
+    this->connect(this,SIGNAL(notifyEvent()),this,SLOT(executeNotify()));
 }
 
 GUIScene::~GUIScene(){
@@ -15,16 +17,15 @@ GUIScene::~GUIScene(){
 }
 
 void GUIScene::notify(ISubject* subject){
-    this->update();
-	this->displayDiagram();
+    this->notifyEvent();
 }
 
 void GUIScene::displayDiagram(){
     this->clear();
-    HashMap<string,ComponentWidgetData> componentWidgetDataMap = this->graphicalPresentation->getAllComponentWidgetDatas();
+    HashMap<string,ComponentWidgetData*> componentWidgetDataMap = this->graphicalPresentation->getAllComponentWidgetDatas();
     WidgetFactory widgetFactory;
-    for(auto iterator = componentWidgetDataMap.rbegin();iterator!=componentWidgetDataMap.rend();iterator++){
-        ComponentWidget* componentWidget = widgetFactory.createComponentWidget(*iterator,this->graphicalPresentation);
+    for each(ComponentWidgetData* componentWidgetData in componentWidgetDataMap){
+        ComponentWidget* componentWidget = widgetFactory.createComponentWidget(*componentWidgetData,this->graphicalPresentation);
         this->addItem(componentWidget);
     }
 }
@@ -45,4 +46,10 @@ void GUIScene::mouseReleaseEvent(QGraphicsSceneMouseEvent* mouseEvent){
     this->QGraphicsScene::mouseReleaseEvent(mouseEvent);
     QPointF position = mouseEvent->scenePos();
     this->graphicalUI->mouseRelease(position);
+}
+
+void GUIScene::executeNotify(){
+    //this->update();
+    this->displayDiagram();
+    cout<<"notify scene"<<endl;
 }

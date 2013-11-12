@@ -171,10 +171,6 @@ void TextPresentation::sync(int syncEventType){
     this->presentation->sync(syncEventType);
 }
 
-void TextPresentation::sync(ISynchronizer* synchronizer,int syncEventType){
-    this->presentation->sync(synchronizer,syncEventType);
-}
-
 void TextPresentation::initialSyncMap(){
     this->syncMap.put(ControllerEvent::OpenFile,&TextUIPresenter::displayDiagram);
     this->syncMap.put(ControllerEvent::AddNode,&TextUIPresenter::displayComponents);

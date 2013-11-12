@@ -6,16 +6,17 @@
 #include <QPointF>
 #include <set>
 #include "Subject.h"
+#include "IObserver.h"
 
 class State;
 class StateSubject;
 
-class GraphicalPresentation : public Subject{
+class GraphicalPresentation : public Subject,public IObserver{
 public:
     GraphicalPresentation(Presentation* presentation);
     ~GraphicalPresentation();
 
-    HashMap<string,ComponentWidgetData> getAllComponentWidgetDatas();
+    HashMap<string,ComponentWidgetData*> getAllComponentWidgetDatas();
     State* getState();
     StateSubject* getStateSubject();
 
@@ -32,16 +33,22 @@ public:
     void registerSynchronizer(ISynchronizer* synchronizer);
     void unregisterSynchronizer(ISynchronizer* synchronizer);
     void sync(int syncEventType);
-    void sync(ISynchronizer* synchronizer,int syncEventType);
+
+    void notify(ISubject* subject);
+protected:
+    //observer
+    void doRegisterObserver(IObserver* observer);
+    void doUngisterObserver(IObserver* observer);
 private:
     Presentation* presentation;
-    HashMap<string,ComponentWidgetData> componentDataMap;
+    HashMap<string,ComponentWidgetData*> componentDataMap;
     set<string> selectedWidgetSet;
     bool isCtrlPressed;
     StateSubject* stateSubject;
 
     void clearAllComponentWidget();
     void updateComponentWidgetMap();
+    void removeExistsOrDeletedComponentData(HashMap<string,Component*>& componentMap);
     int createRelationShipWidget(HashMap<string,Component*>& componentMap,HashMap<string,RelationShip*> relationShipMap,int& currentHeight);
     int createEntityWidget(HashMap<string,Component*>& componentMap,HashMap<string,Entity*> entityMap,int& currentHeight);
     int createAttributeWidget(HashMap<string,Component*>& componentMap,HashMap<string,Attribute*> attributeMap,int& attributeHeight);

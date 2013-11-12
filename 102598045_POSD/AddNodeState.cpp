@@ -3,6 +3,7 @@
 #include "ComponentType.h"
 #include <QInputDialog>
 #include <QObject>
+#include "DialogSetting.h"
 
 AddNodeState::AddNodeState(int stateID,GraphicalPresentation* graphicalPresentation) : State(stateID,graphicalPresentation){
     stateToNodeTypeMap.put(StateID::AttributeState,ComponentType::TypeAttribute);
@@ -11,11 +12,10 @@ AddNodeState::AddNodeState(int stateID,GraphicalPresentation* graphicalPresentat
 }
 
 void AddNodeState::mousePressEvent(QPointF position){
-    bool ok;
-    QString text = QInputDialog::getText(NULL,QString(""),QString(""),QLineEdit::Normal,QString(""),&ok);
-    if (ok && !text.isEmpty()){
+    string nodeName = this->getNodeName();
+    if (!nodeName.empty()){
         string nodeType = stateToNodeTypeMap.get(stateID);
-        this->graphicalPresentation->addNode(nodeType,text.toStdString(),position);
+        this->graphicalPresentation->addNode(nodeType,nodeName,position);
     }
     this->graphicalPresentation->switchState(StateID::PointerState);
 }
@@ -24,4 +24,9 @@ void AddNodeState::mouseMoveEvent(QPointF position){
 }
 
 void AddNodeState::mouseReleaseEvent(QPointF position){
+}
+
+string AddNodeState::getNodeName(){
+    QString text = QInputDialog::getText(NULL,QString(DialogSetting::Title.c_str()),QString(DialogSetting::Text.c_str()),QLineEdit::Normal);
+    return text.toStdString();
 }

@@ -16,14 +16,16 @@
 GraphicalPresentation::GraphicalPresentation(Presentation* presentation) : presentation(presentation){
     this->isCtrlPressed = false;
     this->stateSubject = new StateSubject();
+    this->presentation->registerObserver(this);
 }
 
 GraphicalPresentation::~GraphicalPresentation(){
     this->clearAllComponentWidget();
     delete this->stateSubject;
+    this->presentation->unregisterObserver(this);
 }
 
-HashMap<string,ComponentWidgetData> GraphicalPresentation::getAllComponentWidgetDatas(){
+HashMap<string,ComponentWidgetData*> GraphicalPresentation::getAllComponentWidgetDatas(){
     return this->componentDataMap;
 }
 
@@ -39,7 +41,7 @@ void GraphicalPresentation::addNode(string nodeType,string nodeName,QPointF posi
     Node* node = this->presentation->addNode(nodeType);
     node->setName(nodeName);
     Rect rect = Rect(Point(position.x()-Size::DefaultSize().getWidth()/Number::Two,position.y()-Size::DefaultSize().getHeight()/Number::Two),Size::DefaultSize());
-    this->componentDataMap.put(node->getID(),ComponentWidgetData(node,rect));
+    this->componentDataMap.put(node->getID(),new ComponentWidgetData(node,rect));
     this->presentation->sync(ControllerEvent::DisplayDiagram);
 }
 
@@ -80,7 +82,7 @@ void GraphicalPresentation::selectWidget(string componentID){
             this->selectedWidgetSet.insert(componentID);
         }
     }
-    this->notify();
+    this->Subject::notify();
 }
 
 void GraphicalPresentation::switchState(int stateID){
@@ -107,29 +109,51 @@ void GraphicalPresentation::sync(int syncEventType){
     this->presentation->sync(syncEventType);
 }
 
-void GraphicalPresentation::sync(ISynchronizer* synchronizer,int syncEventType){
-    this->presentation->sync(synchronizer,syncEventType);
+void GraphicalPresentation::doRegisterObserver(IObserver* observer){
+    this->presentation->registerObserver(observer);
+}
+
+void GraphicalPresentation::doUngisterObserver(IObserver* observer){
+    this->presentation->unregisterObserver(observer);
+}
+
+void GraphicalPresentation::notify(ISubject* subject){
+    this->updateComponentWidgetMap();
 }
 
 void GraphicalPresentation::clearAllComponentWidget(){
+	for each(ComponentWidgetData* componentWidgetData in this->componentDataMap)
+		delete componentWidgetData;
     this->componentDataMap.clear();
     this->selectedWidgetSet.clear();
 }
 //update all from model to widget
 void GraphicalPresentation::updateComponentWidgetMap(){
     HashMap<string,Component*> componentMap = this->presentation->getAllComponents();
-    for each(ComponentWidgetData componentWidgetData in this->componentDataMap){
-        Component* component = componentWidgetData.getComponent();
-        string key = component->getID();
-        if(componentMap.containsKey(key)){
-            componentMap.remove(key);
-        }
-    }
+    this->removeExistsOrDeletedComponentData(componentMap);
     int currentTotalHeight = 0;
     this->createRelationShipWidget(componentMap,this->presentation->getAllRelationShips(),currentTotalHeight);
     this->createRemainsEntityWidget(componentMap,currentTotalHeight);
     this->createRemainsAttributeWidget(componentMap,currentTotalHeight);
     this->createConnectorWidget(componentMap,this->presentation->getAllConnectors());
+    this->Subject::notify();
+}
+
+void GraphicalPresentation::removeExistsOrDeletedComponentData(HashMap<string,Component*>& componentMap){
+    HashMap<string,ComponentWidgetData*> comparedWidgetDataMapBuffer;
+    for each(ComponentWidgetData* componentWidgetData in this->componentDataMap){
+        Component* component = componentWidgetData->getComponent();
+        string key = component->getID();
+        if(!componentMap.containsKey(key))
+            comparedWidgetDataMapBuffer.put(key,componentWidgetData);
+        if(componentMap.containsKey(key))
+            componentMap.remove(key);
+    }
+    for each(ComponentWidgetData* componentWidgetData in comparedWidgetDataMapBuffer){
+        Component* component = componentWidgetData->getComponent();
+        string key = component->getID();
+        this->componentDataMap.remove(key);
+    }
 }
 //create relationship widgets and its connected entities
 int GraphicalPresentation::createRelationShipWidget(HashMap<string,Component*>& componentMap,HashMap<string,RelationShip*> relationShipMap,int& currentHeight){
@@ -142,7 +166,7 @@ int GraphicalPresentation::createRelationShipWidget(HashMap<string,Component*>& 
         if(!connectedEntitiesMap.empty())
             currentRelationShipHeight = totalHeight/connectedEntitiesMap.size();
         Rect rect = Rect(Point(WidgetDefaultSetting::RelationShipHorizontalDistance,currentRelationShipHeight),Size::DefaultSize());
-        ComponentWidgetData componentWidgetData = ComponentWidgetData(relationShip,rect);
+        ComponentWidgetData* componentWidgetData = new ComponentWidgetData(relationShip,rect);
         this->componentDataMap.put(relationShip->getID(),componentWidgetData);
         componentMap.remove(relationShip->getID());
         currentHeight += WidgetDefaultSetting::RelationShipVerticalDistance;
@@ -159,7 +183,7 @@ int GraphicalPresentation::createEntityWidget(HashMap<string,Component*>& compon
         int currentTotalHeight = WidgetDefaultSetting::AttributeVerticalDistance*entity->getConnectedAttributes().size();
         int entityHeight = currentHeight-((currentTotalHeight+WidgetDefaultSetting::Height)/Number::Two);
         Rect rect = Rect(Point(WidgetDefaultSetting::EntityHorizontalDistance,entityHeight),Size::DefaultSize());
-        ComponentWidgetData componentWidgetData = ComponentWidgetData(entity,rect);
+        ComponentWidgetData* componentWidgetData = new ComponentWidgetData(entity,rect);
         this->componentDataMap.put(entity->getID(),componentWidgetData);
         componentMap.remove(entity->getID());
         finalRelationShipHeight += entityHeight;
@@ -173,7 +197,7 @@ int GraphicalPresentation::createAttributeWidget(HashMap<string,Component*>& com
         if(!componentMap.containsKey(attribute->getID()))
             continue;
         Rect rect = Rect(Point(WidgetDefaultSetting::AttributeHorizontalDistance,attributeHeight),Size::DefaultSize());
-        ComponentWidgetData componentWidgetData = ComponentWidgetData(attribute,rect,attribute->isPrimaryKey());
+        ComponentWidgetData* componentWidgetData = new ComponentWidgetData(attribute,rect,attribute->isPrimaryKey());
         this->componentDataMap.put(attribute->getID(),componentWidgetData);
         componentMap.remove(attribute->getID());
         attributeHeight += WidgetDefaultSetting::AttributeVerticalDistance;
@@ -186,7 +210,7 @@ void GraphicalPresentation::createConnectorWidget(HashMap<string,Component*>& co
         if(!componentMap.containsKey(connector->getID()))
             continue;
         Rect rect = Rect(Point::DefaultPoint(),Size::DefaultSize());
-        ComponentWidgetData componentWidgetData = ComponentWidgetData(connector,rect);
+        ComponentWidgetData* componentWidgetData = new ComponentWidgetData(connector,rect);
         this->componentDataMap.put(connector->getID(),componentWidgetData);
     }
 }

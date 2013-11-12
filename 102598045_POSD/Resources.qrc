@@ -7,5 +7,6 @@
         <file>Resources/cursor.png</file>
         <file>Resources/entity.png</file>
         <file>Resources/relationship.png</file>
+        <file>Resources/application.png</file>
     </qresource>
 </RCC>

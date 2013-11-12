@@ -86,10 +86,6 @@ void Presentation::sync(int syncEventType){
     this->erModel->sync(syncEventType);
 }
 
-void Presentation::sync(ISynchronizer* synchronizer,int syncEventType){
-    this->erModel->sync(synchronizer,syncEventType);
-}
-
 void Presentation::registerObserver(IObserver* observer){
     this->erModel->registerObserver(observer);
 }

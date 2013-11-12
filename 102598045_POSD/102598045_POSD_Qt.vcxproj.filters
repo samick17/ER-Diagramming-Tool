@@ -490,6 +490,15 @@
     <ClCompile Include="StateSubject.cpp">
       <Filter>Source Files\Observer</Filter>
     </ClCompile>
+    <ClCompile Include="DialogSetting.cpp">
+      <Filter>Source Files\Constants</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_GUIScene.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_GUIScene.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Attribute.h">
@@ -768,9 +777,6 @@
     <ClInclude Include="StateFactory.h">
       <Filter>Header Files\Factory</Filter>
     </ClInclude>
-    <ClInclude Include="GUIScene.h">
-      <Filter>Header Files\View\GUI\GUIWidget</Filter>
-    </ClInclude>
     <ClInclude Include="ISyncable.h">
       <Filter>Header Files\ViewSynchronizer</Filter>
     </ClInclude>
@@ -798,6 +804,9 @@
     <ClInclude Include="StateSubject.h">
       <Filter>Header Files\Observer</Filter>
     </ClInclude>
+    <ClInclude Include="DialogSetting.h">
+      <Filter>Header Files\Constants</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="GraphicalUI.h">
@@ -811,6 +820,9 @@
     </CustomBuild>
     <CustomBuild Include="TextUIProcess.h">
       <Filter>Header Files\Process</Filter>
+    </CustomBuild>
+    <CustomBuild Include="GUIScene.h">
+      <Filter>Header Files\View\GUI\GUIWidget</Filter>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>

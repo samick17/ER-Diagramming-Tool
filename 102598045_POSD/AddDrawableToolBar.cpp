@@ -21,6 +21,7 @@ AddDrawableToolBar::AddDrawableToolBar(GraphicalUI* graphicalUI,QActionMap* acti
 }
 
 AddDrawableToolBar::~AddDrawableToolBar(){
+    this->stateSubject->unregisterObserver(this);
 }
 
 void AddDrawableToolBar::selectToolButton(int stateID){

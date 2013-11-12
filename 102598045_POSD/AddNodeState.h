@@ -13,4 +13,5 @@ public:
 
 private:
     HashMap<int,string> stateToNodeTypeMap;
+    string getNodeName();
 };

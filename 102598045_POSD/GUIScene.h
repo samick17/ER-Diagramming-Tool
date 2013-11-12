@@ -8,6 +8,9 @@ class ComponentWidget;
 class GraphicalPresentation;
 
 class GUIScene : public QGraphicsScene,public IObserver{
+    Q_OBJECT
+signals:
+    void notifyEvent();
 public:
     GUIScene(qreal left,qreal top,qreal width,qreal height,GraphicalUI* graphicalUI);
     ~GUIScene();
@@ -21,4 +24,6 @@ protected:
 private:
     GraphicalUI* graphicalUI;
     GraphicalPresentation* graphicalPresentation;
+private slots:
+    void executeNotify();
 };

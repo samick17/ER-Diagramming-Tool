@@ -20,7 +20,7 @@ void Rect::setSize(Size size){
     this->size = size;
 }
 
-Point& Rect::getCenterPosition(){
+Point Rect::getCenterPosition(){
     double centerX = this->position.getX()+this->size.getWidth()/Number::Two;
     double centerY = this->position.getY()+this->size.getHeight()/Number::Two;
     Point center = Point(centerX,centerY);
