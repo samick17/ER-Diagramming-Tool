@@ -62,18 +62,19 @@ bool GraphicalPresentation::isSelected(string componentID){
 }
 
 void GraphicalPresentation::selectWidget(string componentID){
+    if(!this->isCtrlPressed){
+        set<string> selectedWidgetSetBuffer = this->selectedWidgetSet;
+        this->selectedWidgetSet.clear();
+        for each(string selectedComponentID in selectedWidgetSetBuffer)
+            this->componentWidgetMap.get(selectedComponentID)->update();
+    }
     if(this->selectedWidgetSet.find(componentID) != this->selectedWidgetSet.end()){
         this->selectedWidgetSet.erase(componentID);
-        //selectedWidget->update();
+        this->componentWidgetMap.get(componentID)->update();
         return;
     }
-    set<string> selectedWidgetSet = this->selectedWidgetSet;
-    if(!this->isCtrlPressed)
-        this->selectedWidgetSet.clear();
     this->selectedWidgetSet.insert(componentID);
-    //selectedWidget->update();
-    for each(ComponentWidget* widget in componentWidgetMap)
-        widget->update();
+    this->componentWidgetMap.get(componentID)->update();
 }
 
 void GraphicalPresentation::switchState(int stateID){
