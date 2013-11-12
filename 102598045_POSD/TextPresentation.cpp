@@ -186,8 +186,10 @@ void TextPresentation::initialSyncMap(){
 }
 
 void TextPresentation::executeSync(int syncEventType){
-    if(this->syncMap.containsKey(syncEventType)){
+    try{
         ViewSyncFunction syncFunction = syncMap.get(syncEventType);
         (this->textUIPresenter->*syncFunction)();
+    }
+    catch(Exception&){
     }
 }

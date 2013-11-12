@@ -16,6 +16,6 @@ public:
 
     bool operator==(const ComponentData& componentDataToCompare) const;
 private:
-    string id;    
+    string id;
     string name;
 };

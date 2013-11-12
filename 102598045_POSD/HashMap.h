@@ -7,6 +7,8 @@
 #include "DuplicatedKeyException.h"
 #include "CollectionType.h"
 
+using namespace std;
+
 template<typename Key,typename Value>
 class HashMap{
 public:
@@ -21,36 +23,35 @@ public:
     bool empty();
     void clear();
     
-    typedef typename std::vector<Value>::iterator iterator;
-    typedef typename std::vector<Value>::reverse_iterator reverse_iterator;
+    typedef typename vector<Value>::iterator iterator;
+    typedef typename vector<Value>::reverse_iterator reverse_iterator;
     iterator begin();
     iterator end();
     reverse_iterator rbegin();
     reverse_iterator rend();
 private:    
-    std::unordered_map<Key,Value> hashmap;
-    std::vector<Value> valueVector;
+    unordered_map<Key,Value> hashmap;
+    vector<Value> valueVector;
 };
 
 template<typename Key,typename Value>
 Value HashMap<Key,Value>::put(Key key,Value value){
-    std::unordered_map<Key,Value>::iterator hashmapIterator = hashmap.find(key);    
+    unordered_map<Key,Value>::iterator hashmapIterator = hashmap.find(key);
     //contains Key
     if(hashmapIterator != hashmap.end())
         throw DuplicatedKeyException(CollectionType::TypeHashMap);
-    hashmap.insert(pair<Key,Value>(key,value));    
+    hashmap.insert(pair<Key,Value>(key,value));
     valueVector.push_back(value);
-
     return value;
 }
 //Insert Value at index
 template<typename Key,typename Value>
 Value HashMap<Key,Value>::insertAt(Key key,Value value,unsigned int index){
-    std::unordered_map<Key,Value>::iterator hashmapIterator = hashmap.find(key);
+    unordered_map<Key,Value>::iterator hashmapIterator = hashmap.find(key);
     //contains Key
     if(hashmapIterator != hashmap.end())
         throw DuplicatedKeyException(CollectionType::TypeHashMap);
-    hashmap.insert(pair<Key,Value>(key,value));    
+    hashmap.insert(pair<Key,Value>(key,value));
     valueVector.insert(valueVector.begin()+index,value);
 
     return value;
@@ -58,26 +59,27 @@ Value HashMap<Key,Value>::insertAt(Key key,Value value,unsigned int index){
 
 template<typename Key,typename Value>
 Value HashMap<Key,Value>::get(Key key){
-    std::unordered_map<Key,Value>::iterator hashmapIterator = hashmap.find(key);    
+    unordered_map<Key,Value>::iterator hashmapIterator = hashmap.find(key);
     //no such key
     if(hashmapIterator == hashmap.end())
-        throw NoSuchKeyException(CollectionType::TypeHashMap);    
+        throw NoSuchKeyException(CollectionType::TypeHashMap);
     Value value = hashmapIterator->second;
+
     return value;
 }
 
 template<typename Key,typename Value>
 Value HashMap<Key,Value>::remove(Key key){
-    std::unordered_map<Key,Value>::iterator hashmapIterator = hashmap.find(key);    
+    unordered_map<Key,Value>::iterator hashmapIterator = hashmap.find(key);
     //no such key
     if(hashmapIterator == hashmap.end())
-        throw NoSuchKeyException(CollectionType::TypeHashMap);    
+        throw NoSuchKeyException(CollectionType::TypeHashMap);
     Value value = hashmapIterator->second;
     hashmap.erase(hashmapIterator);
 
-    std::vector<Value>::iterator valueIterator = find(valueVector.begin(),valueVector.end(),value);
+    vector<Value>::iterator valueIterator = find(valueVector.begin(),valueVector.end(),value);
     valueVector.erase(valueIterator);
-    
+
     return value;
 }
 
@@ -88,7 +90,7 @@ unsigned int HashMap<Key,Value>::size(){
 
 template<typename Key,typename Value>
 bool HashMap<Key,Value>::containsKey(Key key){
-    std::unordered_map<Key,Value>::iterator hashmapIterator = hashmap.find(key);
+    unordered_map<Key,Value>::iterator hashmapIterator = hashmap.find(key);
     if(hashmapIterator == hashmap.end())
         return false;
     return true;
@@ -104,7 +106,7 @@ Value HashMap<Key,Value>::getValueByIndex(unsigned int index){
 template<typename Key,typename Value>
 unsigned int HashMap<Key,Value>::getValueIndex(Value value){
     vector<Value>::iterator valueIterator = find(valueVector.begin(),valueVector.end(),value);
-    return std::distance(valueVector.begin(),valueIterator);
+    return distance(valueVector.begin(),valueIterator);
 }
 
 template<typename Key,typename Value>

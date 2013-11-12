@@ -77,14 +77,14 @@ void TextUIPresenter::displayEntities(){
 }
 
 void TextUIPresenter::displayEntityAttributes(Entity* entity){
-	HashMap<string,Component*> attributesMap = this->textPresentation->getEntityAttributes(entity);
+    HashMap<string,Component*> attributesMap = this->textPresentation->getEntityAttributes(entity);
     cout<<"Attributes of the entity '"<<entity->getID()<<"'"<<endl;
     this->displayComponentMap(attributesMap);
 }
 
 void TextUIPresenter::displayDiagram(){
     cout<<"The ER diagram is displayed as follows:"<<endl;
-	this->displayComponents();
+    this->displayComponents();
     cout<<endl;
     this->displayConnections();
 }

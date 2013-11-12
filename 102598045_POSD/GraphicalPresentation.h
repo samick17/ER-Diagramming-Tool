@@ -3,6 +3,7 @@
 #include "Component.h"
 #include "Presentation.h"
 #include "WidgetFactory.h"
+#include <QPointF>
 
 class State;
 class StateSubject;
@@ -16,7 +17,7 @@ public:
     State* getState();
     StateSubject* getStateSubject();
     
-
+    void addNode(string nodeType,QPointF position);
     void openFile(string filePath);
     void saveFile(string filePath);
     void close();

@@ -37,6 +37,13 @@ StateSubject* GraphicalPresentation::getStateSubject(){
     return this->stateSubject;
 }
 
+void GraphicalPresentation::addNode(string nodeType,QPointF position){
+    Node* node = this->presentation->addNode(nodeType);
+	//WidgetFactory widetFactory;
+	//ComponentWidget* widget = widetFactory.createComponentWidget(nodeType,ComponentWidgetData(node,position.x(),position.y()),this);
+	//this->componentWidgetMap.put(node->getID(),widget);
+	this->presentation->sync(ControllerEvent::DisplayDiagram);
+}
 
 void GraphicalPresentation::openFile(string filePath){
     this->presentation->openFile(filePath);

@@ -17,7 +17,7 @@ void AddNodeInstruction::execute(TextPresentation* textPresentation,TextUIPresen
     }
     node->setName(input);
     cout<<"A node ["+node->getClassName()+"] has been added. ID: "+node->getID()+",Name: "+node->getName()<<endl;
-	textPresentation->sync(ControllerEvent::AddNode);
+    textPresentation->sync(ControllerEvent::AddNode);
 }
 
 Node* AddNodeInstruction::addNode(TextPresentation* textPresentation){
