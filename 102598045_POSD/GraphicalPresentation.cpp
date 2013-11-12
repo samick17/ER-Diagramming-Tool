@@ -122,8 +122,8 @@ void GraphicalPresentation::notify(ISubject* subject){
 }
 
 void GraphicalPresentation::clearAllComponentWidget(){
-	for each(ComponentWidgetData* componentWidgetData in this->componentDataMap)
-		delete componentWidgetData;
+    for each(ComponentWidgetData* componentWidgetData in this->componentDataMap)
+        delete componentWidgetData;
     this->componentDataMap.clear();
     this->selectedWidgetSet.clear();
 }

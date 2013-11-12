@@ -24,8 +24,8 @@ void GUIScene::displayDiagram(){
     this->clear();
     HashMap<string,ComponentWidgetData*> componentWidgetDataMap = this->graphicalPresentation->getAllComponentWidgetDatas();
     WidgetFactory widgetFactory;
-    for each(ComponentWidgetData* componentWidgetData in componentWidgetDataMap){
-        ComponentWidget* componentWidget = widgetFactory.createComponentWidget(*componentWidgetData,this->graphicalPresentation);
+    for(auto iterator = componentWidgetDataMap.rbegin();iterator != componentWidgetDataMap.rend();iterator++){
+        ComponentWidget* componentWidget = widgetFactory.createComponentWidget(**iterator,this->graphicalPresentation);
         this->addItem(componentWidget);
     }
 }

@@ -55,8 +55,9 @@ void ComponentWidget::paint(QPainter* painter,const QStyleOptionGraphicsItem* op
     painter->setFont(font);
     //draw select frame to highlight
     this->drawSelectedFrame(painter);
-    //paint 
+    //paint
     painter->setBrush(Qt::white);
+    painter->fillPath(this->shape(),painter->brush());
     this->doPaint(painter);
 }
 
