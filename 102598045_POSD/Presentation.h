@@ -12,6 +12,7 @@ class RelationShip;
 class Connector;
 class Table;
 class ERModel;
+class IObserver;
 
 using namespace std;
 
@@ -32,7 +33,7 @@ public:
 
     Component* getComponentByID(string id);
     Connector* getNodesConnector(Component* firstNode,Component* secondNode);
-    HashMap<string,Component*> getAllComponents();
+    HashMap<string,Component*>& getAllComponents();
     HashMap<string,Attribute*> getAllAttributes();
     HashMap<string,Entity*> getAllEntities();
     HashMap<string,RelationShip*> getAllRelationShips();
@@ -43,6 +44,9 @@ public:
     void unregisterSynchronizer(ISynchronizer* synchronizer);
     void sync(int syncEventType);
     void sync(ISynchronizer* synchronizer,int syncEventType);
+
+    void registerObserver(IObserver* observer);
+    void unregisterObserver(IObserver* observer);
 private:
     ERModel* erModel;
 };

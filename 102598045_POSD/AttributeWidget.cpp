@@ -5,7 +5,7 @@
 
 using namespace Qt;
 
-AttributeWidget::AttributeWidget(ComponentWidgetData componentWidgetData,GraphicalPresentation* graphicalPresentation,QGraphicsItem* parent) : NodeWidget(componentWidgetData,graphicalPresentation,parent){
+AttributeWidget::AttributeWidget(ComponentWidgetData componentWidgetData,GraphicalPresentation* graphicalPresentation) : NodeWidget(componentWidgetData,graphicalPresentation){
 }
 
 AttributeWidget::~AttributeWidget(){

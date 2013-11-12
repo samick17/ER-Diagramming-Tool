@@ -2,22 +2,22 @@
 
 #include "Component.h"
 #include "Presentation.h"
-#include "WidgetFactory.h"
+#include "ComponentWidgetData.h"
 #include <QPointF>
 #include <set>
 
 class State;
 class StateSubject;
 
-class GraphicalPresentation{
+class GraphicalPresentation {
 public:
     GraphicalPresentation(Presentation* presentation);
     ~GraphicalPresentation();
 
-    HashMap<string,ComponentWidget*> getAllComponentWidgets();
+    HashMap<string,ComponentWidgetData> getAllComponentWidgetDatas();
     State* getState();
     StateSubject* getStateSubject();
-    
+
     void addNode(string nodeType,QPointF position);
     void openFile(string filePath);
     void saveFile(string filePath);
@@ -27,13 +27,17 @@ public:
     void switchState(int stateID);
     void keyCtrlPressed();
     void keyCtrlReleased();
+    //synchronize view
     void registerSynchronizer(ISynchronizer* synchronizer);
     void unregisterSynchronizer(ISynchronizer* synchronizer);
     void sync(int syncEventType);
     void sync(ISynchronizer* synchronizer,int syncEventType);
+    //register
+    void registerObserver(IObserver* observer);
+    void unregisterObserver(IObserver* observer);
 private:
     Presentation* presentation;
-    HashMap<string,ComponentWidget*> componentWidgetMap;
+    HashMap<string,ComponentWidgetData> componentDataMap;
     set<string> selectedWidgetSet;
     bool isCtrlPressed;
     StateSubject* stateSubject;
@@ -43,8 +47,7 @@ private:
     int createRelationShipWidget(HashMap<string,Component*>& componentMap,HashMap<string,RelationShip*> relationShipMap,int& currentHeight);
     int createEntityWidget(HashMap<string,Component*>& componentMap,HashMap<string,Entity*> entityMap,int& currentHeight);
     int createAttributeWidget(HashMap<string,Component*>& componentMap,HashMap<string,Attribute*> attributeMap,int& attributeHeight);
-    void createConnectorWidget(HashMap<string,Connector*> connectorMap);
-    void setConnectorWidgetProperty(ConnectorWidget* connectorWidget,ComponentWidget* sourceWidget,ComponentWidget* targetWidget);
+    void createConnectorWidget(HashMap<string,Component*>& componentMap,HashMap<string,Connector*> connectorMap);
     void createRemainsEntityWidget(HashMap<string,Component*>& componentMap,int& currentHeight);
     void createRemainsAttributeWidget(HashMap<string,Component*>& componentMap,int& currentHeight);
 };

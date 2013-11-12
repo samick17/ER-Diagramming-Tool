@@ -6,8 +6,9 @@
 #include "HashMap.h"
 #include "CommandManager.h"
 #include "ISyncable.h"
+#include "Subject.h"
 
-class ERModel : ISyncable{
+class ERModel : public ISyncable,public Subject{
     friend class ERModelTest;
     FRIEND_TEST(ERModelTest,testAddNode);
     FRIEND_TEST(ERModelTest,testInsertComponent);
@@ -45,7 +46,7 @@ public:
 
     Component* getComponentByID(string id);
     Connector* getNodesConnector(Component* firstNode,Component* secondNode);
-    HashMap<string,Component*> getAllComponents();
+    HashMap<string,Component*>& getAllComponents();
     HashMap<string,Attribute*> getAllAttributes();
     HashMap<string,Entity*> getAllEntities();
     HashMap<string,RelationShip*> getAllRelationShips();

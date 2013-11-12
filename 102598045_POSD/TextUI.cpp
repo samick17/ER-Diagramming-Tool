@@ -2,7 +2,7 @@
 #include "TextUIPresenter.h"
 
 TextUI::TextUI(TextPresentation* textPresentation) : textPresentation(textPresentation){
-	this->textPresentation->registerSynchronizer(this);
+    this->textPresentation->registerSynchronizer(this);
 }
 
 TextUI::~TextUI(){

@@ -182,6 +182,9 @@
     <Filter Include="Header Files\Observer">
       <UniqueIdentifier>{70023ca4-13af-4db2-a9b8-d91264864f77}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Observer">
+      <UniqueIdentifier>{ce060f33-126d-4cba-86bb-563ad14d91d6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -472,8 +475,20 @@
     <ClCompile Include="GUIScene.cpp">
       <Filter>Source Files\View\GUI\GUIWidget</Filter>
     </ClCompile>
+    <ClCompile Include="Rect.cpp">
+      <Filter>Source Files\Struct</Filter>
+    </ClCompile>
+    <ClCompile Include="Point.cpp">
+      <Filter>Source Files\Struct</Filter>
+    </ClCompile>
+    <ClCompile Include="Size.cpp">
+      <Filter>Source Files\Struct</Filter>
+    </ClCompile>
+    <ClCompile Include="Subject.cpp">
+      <Filter>Source Files\Observer</Filter>
+    </ClCompile>
     <ClCompile Include="StateSubject.cpp">
-      <Filter>Source Files\View\GUI\State</Filter>
+      <Filter>Source Files\Observer</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -768,8 +783,20 @@
     <ClInclude Include="ISubject.h">
       <Filter>Header Files\Observer</Filter>
     </ClInclude>
+    <ClInclude Include="Point.h">
+      <Filter>Header Files\Struct</Filter>
+    </ClInclude>
+    <ClInclude Include="Rect.h">
+      <Filter>Header Files\Struct</Filter>
+    </ClInclude>
+    <ClInclude Include="Size.h">
+      <Filter>Header Files\Struct</Filter>
+    </ClInclude>
+    <ClInclude Include="Subject.h">
+      <Filter>Header Files\Observer</Filter>
+    </ClInclude>
     <ClInclude Include="StateSubject.h">
-      <Filter>Header Files\View\GUI\State</Filter>
+      <Filter>Header Files\Observer</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

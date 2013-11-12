@@ -8,7 +8,7 @@
 #include "ControllerEvent.h"
 #include "StateID.h"
 #include "State.h"
-#include <iostream>
+#include "WidgetFactory.h"
 
 GraphicalUI::GraphicalUI(GraphicalPresentation* graphicalPresentation): graphicalPresentation(graphicalPresentation),QMainWindow(){
     this->setTitle(ApplicationSetting::Title);
@@ -19,20 +19,25 @@ GraphicalUI::GraphicalUI(GraphicalPresentation* graphicalPresentation): graphica
     this->initialToolBar();
     this->initialSyncMap();
     QMetaObject::connectSlotsByName(this);
-    this->graphicalPresentation->registerSynchronizer(this);
     qRegisterMetaType<string>("string");
     connect(this,SIGNAL(syncEvent(int)),this,SLOT(executeSync(int)));
     this->switchState(StateID::PointerState);
+    this->graphicalPresentation->registerSynchronizer(this);
+    this->graphicalPresentation->registerObserver(this);
 }
 
 GraphicalUI::~GraphicalUI(){
     this->graphicalPresentation->unregisterSynchronizer(this);
+    this->graphicalPresentation->unregisterObserver(this);
     delete this->fileMenuItem;
-    this->refresh();
 }
 
 GraphicalPresentation* GraphicalUI::getGraphicalPresentation(){
     return this->graphicalPresentation;
+}
+
+GUIScene* GraphicalUI::getScene(){
+    return this->scene;
 }
 
 void GraphicalUI::sync(int syncEventType){
@@ -53,16 +58,20 @@ void GraphicalUI::keyReleaseEvent(QKeyEvent* keyEvent){
         this->graphicalPresentation->keyCtrlReleased();
 }
 
-void GraphicalUI::mousePress(QPointF position){
+void GraphicalUI::mousePress(QPointF& position){
     this->graphicalPresentation->getState()->mousePressEvent(position);
 }
 
-void GraphicalUI::mouseMove(QPointF position){
+void GraphicalUI::mouseMove(QPointF& position){
     this->graphicalPresentation->getState()->mouseMoveEvent(position);
 }
 
-void GraphicalUI::mouseRelease(QPointF position){
+void GraphicalUI::mouseRelease(QPointF& position){
     this->graphicalPresentation->getState()->mouseReleaseEvent(position);
+}
+
+void GraphicalUI::notify(ISubject* subject){
+    
 }
 
 void GraphicalUI::setTitle(string title){
@@ -70,10 +79,11 @@ void GraphicalUI::setTitle(string title){
 }
 
 void GraphicalUI::initialGraphicView(){
-    this->view = new QGraphicsView(this);
     this->scene = new GUIScene(0,0,ApplicationSetting::DefaultWidth,ApplicationSetting::DefaultHeight,this);
+    this->view = new QGraphicsView(this);
     this->view->setScene(this->scene);
     this->setCentralWidget(view);
+    this->view->setInteractive(true);
 }
 
 void GraphicalUI::initialAllAction(){
@@ -131,6 +141,7 @@ void GraphicalUI::openFile(){
     QFileDialog* openFileDialog = new QFileDialog(NULL,QString(ActionData::OpenFile.c_str()),QString(ApplicationSetting::FilePath.c_str()),QString(ApplicationSetting::FileExtension.c_str()));
     if(openFileDialog->exec()){
         QString filePath = openFileDialog->selectedFiles().first();
+        this->scene->clear();
         this->graphicalPresentation->openFile(filePath.toStdString());
     }
     delete openFileDialog;
@@ -152,12 +163,11 @@ void GraphicalUI::executeSync(int notifiedEventType){
 }
 
 void GraphicalUI::displayDiagram(){
-    this->refresh();
-    HashMap<string,ComponentWidget*> componentWidgetMap = this->graphicalPresentation->getAllComponentWidgets();
-    for each(ComponentWidget* componentWidget in componentWidgetMap)
-        this->scene->addItem(componentWidget);
-}
-
-void GraphicalUI::refresh(){
     this->scene->clear();
+    HashMap<string,ComponentWidgetData> componentWidgetDataMap = this->graphicalPresentation->getAllComponentWidgetDatas();
+    WidgetFactory widgetFactory;
+    for(auto iterator = componentWidgetDataMap.rbegin();iterator!=componentWidgetDataMap.rend();iterator++){
+        ComponentWidget* componentWidget = widgetFactory.createComponentWidget(*iterator,this->getGraphicalPresentation());
+        this->scene->addItem(componentWidget);
+    }
 }

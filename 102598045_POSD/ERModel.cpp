@@ -99,7 +99,7 @@ Connector* ERModel::getNodesConnector(Component* firstNode,Component* secondNode
     throw NullPointerException();
 }
 
-HashMap<string,Component*> ERModel::getAllComponents(){
+HashMap<string,Component*>& ERModel::getAllComponents(){
     return this->componentMap;
 }
 

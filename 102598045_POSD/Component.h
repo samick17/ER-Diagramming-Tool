@@ -1,14 +1,16 @@
 #pragma once
 
 #include <string>
+#include <set>
 #include "HashMap.h"
 #include "ComponentData.h"
 #include "NodeConnectionType.h"
+#include "Subject.h"
 #include <gtest/gtest_prod.h> 
 
 using namespace std;
 
-class Component{
+class Component : public Subject{
     friend class ERModelTest;
     FRIEND_TEST(ERModelTest,addConnection);
     friend class ConnectorTest;
@@ -34,6 +36,6 @@ public:
     HashMap<string,Component*> getAllConnections();
 protected:
     ComponentData componentData;
-private:    
+private:
     HashMap<string,Component*> connectionMap;
 };

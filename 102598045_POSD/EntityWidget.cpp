@@ -4,7 +4,7 @@
 
 using namespace Qt;
 
-EntityWidget::EntityWidget(ComponentWidgetData componentWidgetData,GraphicalPresentation* graphicalPresentation,QGraphicsItem* parent) : NodeWidget(componentWidgetData,graphicalPresentation,parent){
+EntityWidget::EntityWidget(ComponentWidgetData componentWidgetData,GraphicalPresentation* graphicalPresentation) : NodeWidget(componentWidgetData,graphicalPresentation){
 }
 
 EntityWidget::~EntityWidget(){

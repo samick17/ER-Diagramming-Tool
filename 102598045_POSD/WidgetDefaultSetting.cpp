@@ -9,4 +9,4 @@ const int WidgetDefaultSetting::EntityHorizontalDistance = 250;
 const int WidgetDefaultSetting::EntityVerticalDistance = 100;
 const int WidgetDefaultSetting::RelationShipHorizontalDistance = 400;
 const int WidgetDefaultSetting::RelationShipVerticalDistance = 100;
-const int WidgetDefaultSetting::SelectedFrameLineWidth = 5;
+const int WidgetDefaultSetting::SelectedFrameLineWidth = 3;

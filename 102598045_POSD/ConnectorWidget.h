@@ -4,10 +4,10 @@
 
 class ConnectorWidget : public ComponentWidget{
 public:
-    ConnectorWidget(ComponentWidgetData componentWidgetData,GraphicalPresentation* graphicalPresentation,QGraphicsItem* parent = NULL);
+    ConnectorWidget(ComponentWidgetData componentWidgetData,GraphicalPresentation* graphicalPresentation);
     ~ConnectorWidget();
 
-    void setConnectionPoint(QPointF sourcePoint,QPointF targetPoint);
+    void updateConnectionPoint();
 protected:
     QPainterPath shape() const;
     void doPaint(QPainter* painter);

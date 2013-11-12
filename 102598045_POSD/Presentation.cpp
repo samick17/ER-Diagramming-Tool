@@ -1,5 +1,6 @@
 #include "Presentation.h"
 #include "ERModel.h"
+#include "IObserver.h"
 
 Presentation::Presentation(ERModel* erModel) : erModel(erModel){
 }
@@ -49,7 +50,7 @@ Connector* Presentation::getNodesConnector(Component* firstNode,Component* secon
     return this->erModel->getNodesConnector(firstNode,secondNode);
 }
 
-HashMap<string,Component*> Presentation::getAllComponents(){
+HashMap<string,Component*>& Presentation::getAllComponents(){
     return this->erModel->getAllComponents();
 }
 
@@ -87,4 +88,12 @@ void Presentation::sync(int syncEventType){
 
 void Presentation::sync(ISynchronizer* synchronizer,int syncEventType){
     this->erModel->sync(synchronizer,syncEventType);
+}
+
+void Presentation::registerObserver(IObserver* observer){
+    this->erModel->registerObserver(observer);
+}
+
+void Presentation::unregisterObserver(IObserver* observer){
+    this->erModel->unregisterObserver(observer);
 }

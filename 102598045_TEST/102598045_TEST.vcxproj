@@ -141,6 +141,7 @@
     <ClCompile Include="..\102598045_POSD\SetPrimaryKeyInstruction.cpp" />
     <ClCompile Include="..\102598045_POSD\StringSymbol.cpp" />
     <ClCompile Include="..\102598045_POSD\StringUtil.cpp" />
+    <ClCompile Include="..\102598045_POSD\Subject.cpp" />
     <ClCompile Include="..\102598045_POSD\Table.cpp" />
     <ClCompile Include="..\102598045_POSD\TableManager.cpp" />
     <ClCompile Include="..\102598045_POSD\TableUtil.cpp" />

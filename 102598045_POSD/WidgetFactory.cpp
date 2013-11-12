@@ -12,7 +12,8 @@ WidgetFactory::WidgetFactory(){
 WidgetFactory::~WidgetFactory(){
 }
 
-ComponentWidget* WidgetFactory::createComponentWidget(string componentType,ComponentWidgetData componentWidgetData,GraphicalPresentation* graphicalPresentation){
+ComponentWidget* WidgetFactory::createComponentWidget(ComponentWidgetData componentWidgetData,GraphicalPresentation* graphicalPresentation){
+    string componentType = componentWidgetData.getComponent()->getType();
     NewComponentWidgetFunction newComponentWidgetFunctiontion = findNewComponentWidgetFunction(componentType);
     ComponentWidget* componentWidget = newComponentWidgetFunctiontion(componentWidgetData,graphicalPresentation);
     return componentWidget;

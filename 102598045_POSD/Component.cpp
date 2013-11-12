@@ -55,8 +55,8 @@ bool Component::hasConnectedTo(Component* target){
     for each(Component* component in this->connectionMap){
         HashMap<string,Component*> compConnMap = component->connectionMap;
         if(compConnMap.containsKey(target->getID()))
-            return true;        
-    }    
+            return true;
+    }
     return false;
 }
 

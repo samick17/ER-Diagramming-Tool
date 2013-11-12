@@ -4,7 +4,7 @@
 
 using namespace Qt;
 
-RelationShipWidget::RelationShipWidget(ComponentWidgetData componentWidgetData,GraphicalPresentation* graphicalPresentation,QGraphicsItem* parent) : NodeWidget(componentWidgetData,graphicalPresentation,parent){
+RelationShipWidget::RelationShipWidget(ComponentWidgetData componentWidgetData,GraphicalPresentation* graphicalPresentation) : NodeWidget(componentWidgetData,graphicalPresentation){
 }
 
 RelationShipWidget::~RelationShipWidget(){

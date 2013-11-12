@@ -1,6 +1,6 @@
 #include "ComponentWidgetData.h"
 
-ComponentWidgetData::ComponentWidgetData(Component* component,int positionX,int positionY,bool isUnderLined) : component(component),positionX(positionX),positionY(positionY),isUnderLined(isUnderLined){
+ComponentWidgetData::ComponentWidgetData(Component* component,Rect rect,bool isUnderLined) : component(component),rect(rect),isUnderLined(isUnderLined){
 }
 
 ComponentWidgetData::~ComponentWidgetData(){
@@ -10,20 +10,16 @@ Component* ComponentWidgetData::getComponent(){
     return this->component;
 }
 
-int ComponentWidgetData::getPositionX(){
-    return this->positionX;
+Rect& ComponentWidgetData::getRect(){
+    return this->rect;
 }
 
-void ComponentWidgetData::setPositionX(int positionX){
-    this->positionX = positionX;
+void ComponentWidgetData::setPosition(Point position){
+    this->rect.setPosition(position);
 }
 
-int ComponentWidgetData::getPositionY(){
-    return this->positionY;
-}
-
-void ComponentWidgetData::setPositionY(int positionY){
-    this->positionY = positionY;
+void ComponentWidgetData::setSize(Size size){
+    this->rect.setSize(size);
 }
 
 bool ComponentWidgetData::getIsUnderLined(){

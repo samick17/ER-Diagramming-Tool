@@ -3,14 +3,18 @@
 #include <QPainter>
 #include "WidgetDefaultSetting.h"
 #include "GraphicalPresentation.h"
+#include <iostream>
 
 using namespace Qt;
 
-ComponentWidget::ComponentWidget(ComponentWidgetData componentWidgetData,GraphicalPresentation* graphicalPresentation,QGraphicsItem* parent) : graphicalPresentation(graphicalPresentation),componentWidgetData(componentWidgetData),QGraphicsItem(parent){
-    this->rect = QRectF(componentWidgetData.getPositionX(),componentWidgetData.getPositionY(),WidgetDefaultSetting::Width,WidgetDefaultSetting::Height);
+ComponentWidget::ComponentWidget(ComponentWidgetData componentWidgetData,GraphicalPresentation* graphicalPresentation) : graphicalPresentation(graphicalPresentation),componentWidgetData(componentWidgetData){
+    Rect rect = componentWidgetData.getRect();
+    this->rect = QRectF(rect.getPosition().getX(),rect.getPosition().getY(),rect.getSize().getWidth(),rect.getSize().getHeight());
+    this->getComponent()->registerObserver(this);
 }
 
 ComponentWidget::~ComponentWidget(){
+    this->getComponent()->unregisterObserver(this);
 }
 
 Component* ComponentWidget::getComponent(){
@@ -48,14 +52,19 @@ void ComponentWidget::paint(QPainter* painter,const QStyleOptionGraphicsItem* op
     QFont font = painter->font();
     font.setUnderline(this->getIsUnderLined());
     painter->setFont(font);
-    //paint
-    this->doPaint(painter);
     //draw select frame to highlight
     this->drawSelectedFrame(painter);
+    //paint 
+    painter->setBrush(Qt::white);
+    this->doPaint(painter);
 }
 
 QRectF ComponentWidget::boundingRect() const{
     return this->rect;
+}
+
+void ComponentWidget::notify(ISubject* subject){
+    this->update();
 }
 
 void ComponentWidget::drawSelectedFrame(QPainter* painter){

@@ -3,7 +3,6 @@
 #include "ComponentWidget.h"
 #include <QGraphicsSceneMouseEvent>
 #include "GraphicalPresentation.h"
-#include <iostream>
 
 GUIScene::GUIScene(qreal left,qreal top,qreal width,qreal height,GraphicalUI* graphicalUI) : graphicalUI(graphicalUI),QGraphicsScene(left,top,width,height,graphicalUI){
 }
@@ -12,16 +11,16 @@ GUIScene::~GUIScene(){
 }
 
 void GUIScene::mousePressEvent(QGraphicsSceneMouseEvent* mouseEvent){
-    QGraphicsScene::mousePressEvent(mouseEvent);
-    this->graphicalUI->mousePress(mouseEvent->pos());
+    QPointF position = mouseEvent->scenePos();
+    this->graphicalUI->mousePress(position);
 }
 
 void GUIScene::mouseMoveEvent(QGraphicsSceneMouseEvent* mouseEvent){
-    QGraphicsScene::mouseMoveEvent(mouseEvent);
-	this->graphicalUI->mouseMove(mouseEvent->pos());
+    QPointF position = mouseEvent->scenePos();
+    this->graphicalUI->mouseMove(position);
 }
 
 void GUIScene::mouseReleaseEvent(QGraphicsSceneMouseEvent* mouseEvent){
-    QGraphicsScene::mouseReleaseEvent(mouseEvent);
-    this->graphicalUI->mouseRelease(mouseEvent->pos());
+    QPointF position = mouseEvent->scenePos();
+    this->graphicalUI->mouseRelease(position);
 }

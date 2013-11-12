@@ -4,15 +4,16 @@
 #include <QColor>
 #include <string>
 #include "ComponentWidgetData.h"
+#include "IObserver.h"
 
 class QGraphicsSceneMouseEvent;
 class GraphicalPresentation;
 
 using namespace std;
 
-class ComponentWidget : public QGraphicsItem{
+class ComponentWidget : public QGraphicsItem,public IObserver{
 public:
-    ComponentWidget(ComponentWidgetData componentWidgetData,GraphicalPresentation* graphicalPresentation,QGraphicsItem* parent = NULL);
+    ComponentWidget(ComponentWidgetData componentWidgetData,GraphicalPresentation* graphicalPresentation);
     ~ComponentWidget();
 
     Component* getComponent();
@@ -20,6 +21,8 @@ public:
 
     void paint(QPainter* painter,const QStyleOptionGraphicsItem* option, QWidget* widget = 0);
     QRectF boundingRect() const;
+
+    void notify(ISubject* subject);
 protected:
     ComponentWidgetData componentWidgetData;
     QRectF rect;
