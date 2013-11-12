@@ -8,7 +8,6 @@
 #include "ControllerEvent.h"
 #include "StateID.h"
 #include "State.h"
-#include "WidgetFactory.h"
 
 GraphicalUI::GraphicalUI(GraphicalPresentation* graphicalPresentation): graphicalPresentation(graphicalPresentation),QMainWindow(){
     this->setTitle(ApplicationSetting::Title);
@@ -163,11 +162,5 @@ void GraphicalUI::executeSync(int notifiedEventType){
 }
 
 void GraphicalUI::displayDiagram(){
-    this->scene->clear();
-    HashMap<string,ComponentWidgetData> componentWidgetDataMap = this->graphicalPresentation->getAllComponentWidgetDatas();
-    WidgetFactory widgetFactory;
-    for(auto iterator = componentWidgetDataMap.rbegin();iterator!=componentWidgetDataMap.rend();iterator++){
-        ComponentWidget* componentWidget = widgetFactory.createComponentWidget(*iterator,this->getGraphicalPresentation());
-        this->scene->addItem(componentWidget);
-    }
+    this->scene->displayDiagram();
 }

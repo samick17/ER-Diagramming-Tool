@@ -13,7 +13,6 @@
 #include "StateID.h"
 #include "StateSubject.h"
 
-
 GraphicalPresentation::GraphicalPresentation(Presentation* presentation) : presentation(presentation){
     this->isCtrlPressed = false;
     this->stateSubject = new StateSubject();
@@ -36,11 +35,12 @@ StateSubject* GraphicalPresentation::getStateSubject(){
     return this->stateSubject;
 }
 
-void GraphicalPresentation::addNode(string nodeType,QPointF position){
+void GraphicalPresentation::addNode(string nodeType,string nodeName,QPointF position){
     Node* node = this->presentation->addNode(nodeType);
-    Rect rect = Rect(Point(position.x(),position.y()),Size::DefaultSize());
+    node->setName(nodeName);
+    Rect rect = Rect(Point(position.x()-Size::DefaultSize().getWidth()/Number::Two,position.y()-Size::DefaultSize().getHeight()/Number::Two),Size::DefaultSize());
     this->componentDataMap.put(node->getID(),ComponentWidgetData(node,rect));
-    this->presentation->sync(ControllerEvent::DisplayDiagram);	
+    this->presentation->sync(ControllerEvent::DisplayDiagram);
 }
 
 void GraphicalPresentation::openFile(string filePath){
@@ -65,15 +65,22 @@ bool GraphicalPresentation::isSelected(string componentID){
 }
 
 void GraphicalPresentation::selectWidget(string componentID){
-    if(!this->isCtrlPressed){
-        set<string> selectedWidgetSetBuffer = this->selectedWidgetSet;
+    bool isSelected = this->isSelected(componentID);
+    if(this->isCtrlPressed){
+        if(this->isSelected(componentID)){
+            this->selectedWidgetSet.erase(componentID);
+        }else {
+            this->selectedWidgetSet.insert(componentID);
+        }
+    }else {
         this->selectedWidgetSet.clear();
+        if(isSelected){
+            this->selectedWidgetSet.erase(componentID);
+        }else {
+            this->selectedWidgetSet.insert(componentID);
+        }
     }
-    if(this->selectedWidgetSet.find(componentID) != this->selectedWidgetSet.end()){
-        this->selectedWidgetSet.erase(componentID);
-        return;
-    }
-    this->selectedWidgetSet.insert(componentID);
+    this->notify();
 }
 
 void GraphicalPresentation::switchState(int stateID){
@@ -102,14 +109,6 @@ void GraphicalPresentation::sync(int syncEventType){
 
 void GraphicalPresentation::sync(ISynchronizer* synchronizer,int syncEventType){
     this->presentation->sync(synchronizer,syncEventType);
-}
-
-void GraphicalPresentation::registerObserver(IObserver* observer){
-    this->presentation->registerObserver(observer);
-}
-
-void GraphicalPresentation::unregisterObserver(IObserver* observer){
-    this->presentation->unregisterObserver(observer);
 }
 
 void GraphicalPresentation::clearAllComponentWidget(){

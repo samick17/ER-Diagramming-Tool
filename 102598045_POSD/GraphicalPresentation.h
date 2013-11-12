@@ -5,11 +5,12 @@
 #include "ComponentWidgetData.h"
 #include <QPointF>
 #include <set>
+#include "Subject.h"
 
 class State;
 class StateSubject;
 
-class GraphicalPresentation {
+class GraphicalPresentation : public Subject{
 public:
     GraphicalPresentation(Presentation* presentation);
     ~GraphicalPresentation();
@@ -18,7 +19,7 @@ public:
     State* getState();
     StateSubject* getStateSubject();
 
-    void addNode(string nodeType,QPointF position);
+    void addNode(string nodeType,string nodeName,QPointF position);
     void openFile(string filePath);
     void saveFile(string filePath);
     void close();
@@ -32,9 +33,6 @@ public:
     void unregisterSynchronizer(ISynchronizer* synchronizer);
     void sync(int syncEventType);
     void sync(ISynchronizer* synchronizer,int syncEventType);
-    //register
-    void registerObserver(IObserver* observer);
-    void unregisterObserver(IObserver* observer);
 private:
     Presentation* presentation;
     HashMap<string,ComponentWidgetData> componentDataMap;

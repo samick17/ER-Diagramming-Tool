@@ -3,7 +3,6 @@
 #include <QPainter>
 #include "WidgetDefaultSetting.h"
 #include "GraphicalPresentation.h"
-#include <iostream>
 
 using namespace Qt;
 
@@ -11,10 +10,12 @@ ComponentWidget::ComponentWidget(ComponentWidgetData componentWidgetData,Graphic
     Rect rect = componentWidgetData.getRect();
     this->rect = QRectF(rect.getPosition().getX(),rect.getPosition().getY(),rect.getSize().getWidth(),rect.getSize().getHeight());
     this->getComponent()->registerObserver(this);
+    this->graphicalPresentation->registerObserver(this);
 }
 
 ComponentWidget::~ComponentWidget(){
     this->getComponent()->unregisterObserver(this);
+    this->graphicalPresentation->unregisterObserver(this);
 }
 
 Component* ComponentWidget::getComponent(){
@@ -68,7 +69,8 @@ void ComponentWidget::notify(ISubject* subject){
 }
 
 void ComponentWidget::drawSelectedFrame(QPainter* painter){
-    if(this->graphicalPresentation->isSelected(this->getComponent()->getID())){
+    string componentID = this->getComponent()->getID();
+    if(this->graphicalPresentation->isSelected(componentID)){
         painter->setPen(QPen(darkGreen,WidgetDefaultSetting::SelectedFrameLineWidth,Qt::DotLine));
         painter->drawPath(this->shape());
     }
