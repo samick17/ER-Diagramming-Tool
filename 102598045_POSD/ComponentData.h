@@ -16,6 +16,7 @@ public:
     void setName(string name);
     Rect getRect();
     void setPosition(Point position);
+    void setCenterPosition(Point position);
     void setSize(Size size);
 
     bool operator==(const ComponentData& componentDataToCompare) const;

@@ -6,7 +6,7 @@ class PointerState : public State{
 public:
     PointerState(int stateID,GraphicalPresentation* graphicalPresentation);
 
-   void mousePressEvent(QPointF position);
-   void mouseMoveEvent(QPointF position);
-   void mouseReleaseEvent(QPointF position);
+   void mousePressEvent(Point position);
+   void mouseMoveEvent(Point position);
+   void mouseReleaseEvent(Point position);
 };

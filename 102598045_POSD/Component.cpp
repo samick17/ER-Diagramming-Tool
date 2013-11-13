@@ -38,6 +38,10 @@ void Component::setPosition(Point position){
     this->componentData.setPosition(position);
 }
 
+void Component::setCenterPosition(Point position){
+    this->componentData.setCenterPosition(position);
+}
+
 void Component::setSize(Size size){
     this->componentData.setSize(size);
 }

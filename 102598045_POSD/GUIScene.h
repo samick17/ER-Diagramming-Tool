@@ -24,6 +24,7 @@ protected:
 private:
     GraphicalUI* graphicalUI;
     GraphicalPresentation* graphicalPresentation;
+	void updateAll();
 private slots:
     void executeNotify();
 };

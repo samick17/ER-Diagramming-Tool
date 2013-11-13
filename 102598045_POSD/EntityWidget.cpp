@@ -3,7 +3,7 @@
 
 using namespace Qt;
 
-EntityWidget::EntityWidget(Component** component,GraphicalPresentation* graphicalPresentation) : NodeWidget(component,graphicalPresentation){
+EntityWidget::EntityWidget(Component* component,GraphicalPresentation* graphicalPresentation) : NodeWidget(component,graphicalPresentation){
 }
 
 EntityWidget::~EntityWidget(){

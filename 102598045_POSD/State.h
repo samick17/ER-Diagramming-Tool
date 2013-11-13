@@ -8,10 +8,11 @@ public:
 
     int getStateID();
 
-    virtual void mousePressEvent(QPointF position) = 0;
-    virtual void mouseMoveEvent(QPointF position) = 0;
-    virtual void mouseReleaseEvent(QPointF position) = 0;
+    virtual void mousePressEvent(Point position) = 0;
+    virtual void mouseMoveEvent(Point position) = 0;
+    virtual void mouseReleaseEvent(Point position) = 0;
 protected:
     GraphicalPresentation* graphicalPresentation;
     int stateID;
+    Point currentPosition;
 };

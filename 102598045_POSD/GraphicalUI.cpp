@@ -7,7 +7,8 @@
 #include <QSignalMapper>
 #include "ControllerEvent.h"
 #include "StateID.h"
-#include "State.h"
+#include <QInputDialog>
+#include "DialogSetting.h"
 
 GraphicalUI::GraphicalUI(GraphicalPresentation* graphicalPresentation): graphicalPresentation(graphicalPresentation),QMainWindow(){
     this->setTitle(ApplicationSetting::Title,ApplicationSetting::IconPath);
@@ -20,6 +21,7 @@ GraphicalUI::GraphicalUI(GraphicalPresentation* graphicalPresentation): graphica
     QMetaObject::connectSlotsByName(this);
     qRegisterMetaType<string>("string");
     connect(this,SIGNAL(syncEvent(int)),this,SLOT(executeSync(int)));
+    connect(this,SIGNAL(switchStateEvent(int)),this,SLOT(executeSwitchState(int)));
     this->switchState(StateID::PointerState);
     this->graphicalPresentation->registerSynchronizer(this);
 }
@@ -55,16 +57,19 @@ void GraphicalUI::keyReleaseEvent(QKeyEvent* keyEvent){
         this->graphicalPresentation->keyCtrlReleased();
 }
 
-void GraphicalUI::mousePress(QPointF& position){
-    this->graphicalPresentation->getState()->mousePressEvent(position);
+void GraphicalUI::mousePress(QPointF mousePosition){
+    Point position = Point(mousePosition.x(),mousePosition.y());
+    this->graphicalPresentation->mousePressEvent(position);
 }
 
-void GraphicalUI::mouseMove(QPointF& position){
-    this->graphicalPresentation->getState()->mouseMoveEvent(position);
+void GraphicalUI::mouseMove(QPointF mousePosition){
+    Point position = Point(mousePosition.x(),mousePosition.y());
+    this->graphicalPresentation->mouseMoveEvent(position);
 }
 
-void GraphicalUI::mouseRelease(QPointF& position){
-    this->graphicalPresentation->getState()->mouseReleaseEvent(position);
+void GraphicalUI::mouseRelease(QPointF mousePosition){
+    Point position = Point(mousePosition.x(),mousePosition.y());
+    this->graphicalPresentation->mouseReleaseEvent(position);
 }
 
 void GraphicalUI::setTitle(string title,string iconPath){
@@ -86,7 +91,8 @@ void GraphicalUI::initialAllAction(){
     connect(openFileAction,SIGNAL(triggered()),this,SLOT(openFile()));
     QAction* exitAction = this->actionMap->getQAction(ActionData::Exit);
     connect(exitAction,SIGNAL(triggered()),this,SLOT(close()));
-    QSignalMapper* signalMapper = new QSignalMapper (this) ;
+
+    QSignalMapper* signalMapper = new QSignalMapper(this);
     QAction* pointerStateAction = this->actionMap->getQAction(ActionData::PointerState);
     connect(pointerStateAction,SIGNAL(triggered()),signalMapper,SLOT(map()));
     signalMapper->setMapping(pointerStateAction,StateID::PointerState);
@@ -147,12 +153,21 @@ void GraphicalUI::close(){
 
 void GraphicalUI::switchState(int stateID){
     this->graphicalPresentation->switchState(stateID);
+    this->switchStateEvent(stateID);	
 }
 //execute notify event that are mapped.
 void GraphicalUI::executeSync(int notifiedEventType){
     if(this->syncMap.containsKey(notifiedEventType)){
         ViewSyncFunction syncFunction = this->syncMap.get(notifiedEventType);
         (this->*syncFunction)();
+    }
+}
+
+void GraphicalUI::executeSwitchState(int stateID){
+    if(stateID >= StateID::AttributeState && stateID <= StateID::RelationShipState){
+        QString text = QInputDialog::getText(NULL,QString(DialogSetting::Title.c_str()),QString(DialogSetting::Text.c_str()),QLineEdit::Normal);
+
+        this->graphicalPresentation->setText(text.toStdString());
     }
 }
 

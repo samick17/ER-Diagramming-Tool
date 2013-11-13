@@ -27,6 +27,20 @@ Point Rect::getCenterPosition(){
     return center;
 }
 
+bool Rect::contains(Point point){
+	Point position = this->getPosition();
+	Size size = this->getSize();
+	if(point.getX()<position.getX())
+		return false;
+	if(point.getY()<position.getY())
+		return false;
+	if(point.getX()>position.getX()+size.getWidth())
+		return false;
+	if(point.getY()>position.getY()+size.getHeight())
+		return false;
+    return true;
+}
+
 bool Rect::operator==(const Rect& rectToCompare) const{
     if(this->position == rectToCompare.position && this->size == rectToCompare.size)
         return true;

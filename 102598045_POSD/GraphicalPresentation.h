@@ -2,7 +2,6 @@
 
 #include "Component.h"
 #include "Presentation.h"
-#include <QPointF>
 #include <set>
 #include "Subject.h"
 #include "IObserver.h"
@@ -15,16 +14,19 @@ public:
     GraphicalPresentation(Presentation* presentation);
     ~GraphicalPresentation();
 
-    State* getState();
     StateSubject* getStateSubject();
     HashMap<string,Component*>& getAllComponents();
+    void setText(string text);
+    string getText();
 
-    void addNode(string nodeType,string nodeName,QPointF position);
+    void addNode(string nodeType,string nodeName,Point position);
+    Node* getLastAddedNode();
     void openFile(string filePath);
     void saveFile(string filePath);
     void close();
     bool isSelected(string componentID);
     void selectWidget(string componentID);
+    void unSelectAll();
     void switchState(int stateID);
     void keyCtrlPressed();
     void keyCtrlReleased();
@@ -34,6 +36,10 @@ public:
     void sync(int syncEventType);
 
     void notify(ISubject* subject);
+
+    void mousePressEvent(Point position);
+    void mouseMoveEvent(Point position);
+    void mouseReleaseEvent(Point position);
 protected:
     //observer
     void doRegisterObserver(IObserver* observer);
@@ -43,4 +49,6 @@ private:
     set<string> selectedWidgetSet;
     bool isCtrlPressed;
     StateSubject* stateSubject;
+    string text;
+    Node* lastNode;
 };

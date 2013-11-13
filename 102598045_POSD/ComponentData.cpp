@@ -1,4 +1,5 @@
 #include "ComponentData.h"
+#include "Number.h"
 
 ComponentData::ComponentData(string id,string name) : id(id),name(name){
 }
@@ -28,6 +29,12 @@ Rect ComponentData::getRect(){
 
 void ComponentData::setPosition(Point position){
     this->rect.setPosition(position);
+}
+
+void ComponentData::setCenterPosition(Point position){
+    Size size = this->getRect().getSize();
+    Point newPosition = Point(position.getX()-size.getWidth()/Number::Two,position.getY()-size.getHeight()/Number::Two);
+    this->setPosition(newPosition);
 }
 
 void ComponentData::setSize(Size size){

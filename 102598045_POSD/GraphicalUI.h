@@ -20,6 +20,7 @@ class GraphicalUI : public QMainWindow,public ISynchronizer{
     Q_OBJECT
 signals:
     void syncEvent(int syncEventType);
+    void switchStateEvent(int stateID);
 public:
     GraphicalUI(GraphicalPresentation* graphicalPresentation);
     ~GraphicalUI();
@@ -29,9 +30,9 @@ public:
     void sync(int syncEventType);
     void setTitle(string title,string iconPath);
 
-    void mousePress(QPointF& position);
-    void mouseMove(QPointF& position);
-    void mouseRelease(QPointF& position);
+    void mousePress(QPointF mousePosition);
+    void mouseMove(QPointF mousePosition);
+    void mouseRelease(QPointF mousePosition);
 protected:
     void closeEvent(QCloseEvent* closeEvent);
     void keyPressEvent(QKeyEvent* keyEvent);
@@ -58,5 +59,6 @@ private slots:
     void openFile();
     void close();
     void switchState(int stateID);
+    void executeSwitchState(int stateID);
     void executeSync(int syncEventType);
 };

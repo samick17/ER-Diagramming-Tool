@@ -4,7 +4,7 @@
 
 using namespace Qt;
 
-AttributeWidget::AttributeWidget(Component** component,GraphicalPresentation* graphicalPresentation) : NodeWidget(component,graphicalPresentation){
+AttributeWidget::AttributeWidget(Component* component,GraphicalPresentation* graphicalPresentation) : NodeWidget(component,graphicalPresentation){
 }
 
 AttributeWidget::~AttributeWidget(){

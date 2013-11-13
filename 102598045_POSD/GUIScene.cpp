@@ -23,9 +23,10 @@ void GUIScene::displayDiagram(){
     this->clear();
     HashMap<string,Component*>& componentMap = this->graphicalPresentation->getAllComponents();
     WidgetFactory widgetFactory;
-    for each(Component*& component in componentMap){
-        ComponentWidget* componentWidget = widgetFactory.createComponentWidget(&component,this->graphicalPresentation);
+    for each(Component* component in componentMap){
+        ComponentWidget* componentWidget = widgetFactory.createComponentWidget(component,this->graphicalPresentation);
         this->addItem(componentWidget);
+        componentWidget->updateWidget();
     }
 }
 
@@ -33,21 +34,31 @@ void GUIScene::mousePressEvent(QGraphicsSceneMouseEvent* mouseEvent){
     this->QGraphicsScene::mousePressEvent(mouseEvent);
     QPointF position = mouseEvent->scenePos();
     this->graphicalUI->mousePress(position);
+    this->updateAll();
 }
 
 void GUIScene::mouseMoveEvent(QGraphicsSceneMouseEvent* mouseEvent){
     this->QGraphicsScene::mouseMoveEvent(mouseEvent);
     QPointF position = mouseEvent->scenePos();
     this->graphicalUI->mouseMove(position);
+    this->updateAll();
 }
 
 void GUIScene::mouseReleaseEvent(QGraphicsSceneMouseEvent* mouseEvent){
     this->QGraphicsScene::mouseReleaseEvent(mouseEvent);
     QPointF position = mouseEvent->scenePos();
     this->graphicalUI->mouseRelease(position);
+    this->updateAll();
 }
 
 void GUIScene::executeNotify(){
-    //this->update();
     this->displayDiagram();
+}
+
+void GUIScene::updateAll(){
+    for each(QGraphicsItem* component in this->items()){
+        ComponentWidget* widget = static_cast<ComponentWidget*>(component);
+        widget->updateWidget();
+    }
+    this->update();
 }

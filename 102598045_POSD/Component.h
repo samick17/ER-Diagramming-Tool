@@ -5,12 +5,11 @@
 #include "HashMap.h"
 #include "ComponentData.h"
 #include "NodeConnectionType.h"
-#include "Subject.h"
 #include <gtest/gtest_prod.h> 
 
 using namespace std;
 
-class Component : public Subject{
+class Component{
     friend class ERModelTest;
     FRIEND_TEST(ERModelTest,addConnection);
     friend class ConnectorTest;
@@ -26,6 +25,7 @@ public:
     string getClassName();
     Rect getRect();
     void setPosition(Point position);
+    void setCenterPosition(Point position);
     void setSize(Size size);
 
     void connectTo(Component* target);

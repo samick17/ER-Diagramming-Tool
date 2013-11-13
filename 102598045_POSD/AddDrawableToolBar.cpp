@@ -33,6 +33,7 @@ void AddDrawableToolBar::selectToolButton(int stateID){
 }
 
 void AddDrawableToolBar::notify(ISubject* subject){
-	if(subject == this->stateSubject)
+	if(subject == this->stateSubject){
 		this->selectToolButton(this->stateSubject->getState()->getStateID());
+	}
 }

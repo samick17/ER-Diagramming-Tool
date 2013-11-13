@@ -6,7 +6,6 @@
 #include "RelationShip.h"
 #include "Connector.h"
 #include "WidgetDefaultSetting.h"
-#include "Number.h"
 #include "ControllerEvent.h"
 #include "ERModelUtil.h"
 #include "StateFactory.h"
@@ -24,10 +23,6 @@ GraphicalPresentation::~GraphicalPresentation(){
     this->presentation->unregisterObserver(this);
 }
 
-State* GraphicalPresentation::getState(){
-    return this->stateSubject->getState();
-}
-
 StateSubject* GraphicalPresentation::getStateSubject(){
     return this->stateSubject;
 }
@@ -36,13 +31,17 @@ HashMap<string,Component*>& GraphicalPresentation::getAllComponents(){
     return this->presentation->getAllComponents();
 }
 
-void GraphicalPresentation::addNode(string nodeType,string nodeName,QPointF position){
+void GraphicalPresentation::addNode(string nodeType,string nodeName,Point position){
     Node* node = this->presentation->addNode(nodeType);
+    this->lastNode = node;
     node->setName(nodeName);
-    Size size = Size::DefaultSize();
-    node->setPosition(Point(position.x()-size.getWidth()/Number::Two,position.y()-size.getHeight()/Number::Two));
-    node->setSize(size);
+    node->setSize(Size::DefaultSize());
+    node->setCenterPosition(position);
     this->presentation->sync(ControllerEvent::DisplayDiagram);
+}
+
+Node* GraphicalPresentation::getLastAddedNode(){
+    return this->lastNode;
 }
 
 void GraphicalPresentation::openFile(string filePath){
@@ -83,6 +82,10 @@ void GraphicalPresentation::selectWidget(string componentID){
     this->Subject::notify();
 }
 
+void GraphicalPresentation::unSelectAll(){
+    this->selectedWidgetSet.clear();
+}
+
 void GraphicalPresentation::switchState(int stateID){
     this->stateSubject->switchState(stateID,this);
 }
@@ -116,4 +119,23 @@ void GraphicalPresentation::doUngisterObserver(IObserver* observer){
 }
 
 void GraphicalPresentation::notify(ISubject* subject){
+}
+
+void GraphicalPresentation::mousePressEvent(Point position){
+    this->stateSubject->getState()->mousePressEvent(position);
+}
+void GraphicalPresentation::mouseMoveEvent(Point position){
+    this->stateSubject->getState()->mouseMoveEvent(position);
+}
+
+void GraphicalPresentation::mouseReleaseEvent(Point position){
+    this->stateSubject->getState()->mouseReleaseEvent(position);
+}
+
+void GraphicalPresentation::setText(string text){
+    this->text = text;
+}
+
+string GraphicalPresentation::getText(){
+    return this->text;
 }

@@ -5,7 +5,7 @@
 
 using namespace Qt;
 
-ConnectorWidget::ConnectorWidget(Component** component,GraphicalPresentation* graphicalPresentation) : ComponentWidget(component,graphicalPresentation){
+ConnectorWidget::ConnectorWidget(Component* component,GraphicalPresentation* graphicalPresentation) : ComponentWidget(component,graphicalPresentation){
 }
 
 ConnectorWidget::~ConnectorWidget(){
