@@ -130,15 +130,19 @@
     <ClCompile Include="..\102598045_POSD\NoSuchKeyException.cpp" />
     <ClCompile Include="..\102598045_POSD\NoSuchNodeException.cpp" />
     <ClCompile Include="..\102598045_POSD\NullPointerException.cpp" />
+    <ClCompile Include="..\102598045_POSD\Number.cpp" />
     <ClCompile Include="..\102598045_POSD\OpenFileInstruction.cpp" />
     <ClCompile Include="..\102598045_POSD\OutputFileParser.cpp" />
+    <ClCompile Include="..\102598045_POSD\Point.cpp" />
     <ClCompile Include="..\102598045_POSD\Presentation.cpp" />
+    <ClCompile Include="..\102598045_POSD\Rect.cpp" />
     <ClCompile Include="..\102598045_POSD\RedoInstruction.cpp" />
     <ClCompile Include="..\102598045_POSD\RelationShip.cpp" />
     <ClCompile Include="..\102598045_POSD\RelationType.cpp" />
     <ClCompile Include="..\102598045_POSD\ReorderComponentsUtil.cpp" />
     <ClCompile Include="..\102598045_POSD\SaveFileInstruction.cpp" />
     <ClCompile Include="..\102598045_POSD\SetPrimaryKeyInstruction.cpp" />
+    <ClCompile Include="..\102598045_POSD\Size.cpp" />
     <ClCompile Include="..\102598045_POSD\StringSymbol.cpp" />
     <ClCompile Include="..\102598045_POSD\StringUtil.cpp" />
     <ClCompile Include="..\102598045_POSD\Subject.cpp" />
@@ -149,6 +153,7 @@
     <ClCompile Include="..\102598045_POSD\TextUI.cpp" />
     <ClCompile Include="..\102598045_POSD\TextUIPresenter.cpp" />
     <ClCompile Include="..\102598045_POSD\UndoInstruction.cpp" />
+    <ClCompile Include="..\102598045_POSD\WidgetDefaultSetting.cpp" />
     <ClCompile Include="AddNodeCommandTest.cpp" />
     <ClCompile Include="AttributeTest.cpp" />
     <ClCompile Include="CommandManagerTest.cpp" />

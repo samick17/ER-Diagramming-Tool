@@ -30,9 +30,9 @@ void CommandManager::redo(){
     }
 }
 
-void CommandManager::undo(){    
+void CommandManager::undo(){
     try{
-        //pop from undo Stack    
+        //pop from undo Stack
         Command* command = StackUtil::pop(this->undoCommandsStack);
         //push to redo Stack
         this->redoCommandsStack.push(command);

@@ -18,7 +18,7 @@ AddNodeCommand::~AddNodeCommand(){
 //if ERModel doesn't contains this node, add this node to ERModel
 void AddNodeCommand::execute(){
     this->erModel->insertComponent(this->node);
-	this->executionFlag = true;
+    this->executionFlag = true;
 }
 
 void AddNodeCommand::unExecute(){

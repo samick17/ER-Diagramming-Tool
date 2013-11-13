@@ -15,11 +15,11 @@ public:
 //delete all elements in stack
 template<typename Type>
 static void StackUtil::deleteAllElementsInStack(stack<Type*>& typesStack){
-    while(!typesStack.empty()){            
+    while(!typesStack.empty()){
         Type* typePointer = typesStack.top();
         typesStack.pop();
         if(typePointer != NULL)
-            delete typePointer;        
+            delete typePointer;
     }
 }
 //pop and return object

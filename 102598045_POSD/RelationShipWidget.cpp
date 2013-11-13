@@ -1,10 +1,9 @@
 #include "RelationShipWidget.h"
-#include <QGraphicsSceneMouseEvent>
 #include <QPainter>
 
 using namespace Qt;
 
-RelationShipWidget::RelationShipWidget(ComponentWidgetData componentWidgetData,GraphicalPresentation* graphicalPresentation) : NodeWidget(componentWidgetData,graphicalPresentation){
+RelationShipWidget::RelationShipWidget(Component** component,GraphicalPresentation* graphicalPresentation) : NodeWidget(component,graphicalPresentation){
 }
 
 RelationShipWidget::~RelationShipWidget(){
@@ -13,11 +12,14 @@ RelationShipWidget::~RelationShipWidget(){
 QPainterPath RelationShipWidget::shape() const{
     QPainterPath path;
     QPolygonF diamondPolygon;
-    QPointF centerLeft = QPointF(this->rect.left(),this->rect.center().y());
-    QPointF centerTop = QPointF(this->rect.center().x(),this->rect.top());
-    QPointF centerRight = QPointF(this->rect.right(),this->rect.center().y());
-    QPointF centerBottom = QPointF(this->rect.center().x(),this->rect.bottom());
+    QRectF rectangle = this->boundingRect();
+    QPointF centerLeft = QPointF(rectangle.left(),rectangle.center().y());
+    QPointF centerTop = QPointF(rectangle.center().x(),rectangle.top());
+    QPointF centerRight = QPointF(rectangle.right(),rectangle.center().y());
+    QPointF centerBottom = QPointF(rectangle.center().x(),rectangle.bottom());
     diamondPolygon<<centerLeft<<centerTop<<centerRight<<centerBottom<<centerLeft;
     path.addPolygon(diamondPolygon);
     return path;
 }
+
+void RelationShipWidget::doUpdateWidget(){}

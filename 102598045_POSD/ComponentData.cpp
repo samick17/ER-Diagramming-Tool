@@ -22,6 +22,18 @@ void ComponentData::setName(string name){
     this->name = name;
 }
 
+Rect ComponentData::getRect(){
+    return this->rect;
+}
+
+void ComponentData::setPosition(Point position){
+    this->rect.setPosition(position);
+}
+
+void ComponentData::setSize(Size size){
+    this->rect.setSize(size);
+}
+
 bool ComponentData::operator==(const ComponentData& componentDataToCompare) const{
     if(this->id == componentDataToCompare.id && this->name == componentDataToCompare.name){
         return true;

@@ -2,7 +2,6 @@
 
 #include "Component.h"
 #include "Presentation.h"
-#include "ComponentWidgetData.h"
 #include <QPointF>
 #include <set>
 #include "Subject.h"
@@ -16,9 +15,9 @@ public:
     GraphicalPresentation(Presentation* presentation);
     ~GraphicalPresentation();
 
-    HashMap<string,ComponentWidgetData*> getAllComponentWidgetDatas();
     State* getState();
     StateSubject* getStateSubject();
+    HashMap<string,Component*>& getAllComponents();
 
     void addNode(string nodeType,string nodeName,QPointF position);
     void openFile(string filePath);
@@ -41,18 +40,7 @@ protected:
     void doUngisterObserver(IObserver* observer);
 private:
     Presentation* presentation;
-    HashMap<string,ComponentWidgetData*> componentDataMap;
     set<string> selectedWidgetSet;
     bool isCtrlPressed;
     StateSubject* stateSubject;
-
-    void clearAllComponentWidget();
-    void updateComponentWidgetMap();
-    void removeExistsOrDeletedComponentData(HashMap<string,Component*>& componentMap);
-    int createRelationShipWidget(HashMap<string,Component*>& componentMap,HashMap<string,RelationShip*> relationShipMap,int& currentHeight);
-    int createEntityWidget(HashMap<string,Component*>& componentMap,HashMap<string,Entity*> entityMap,int& currentHeight);
-    int createAttributeWidget(HashMap<string,Component*>& componentMap,HashMap<string,Attribute*> attributeMap,int& attributeHeight);
-    void createConnectorWidget(HashMap<string,Component*>& componentMap,HashMap<string,Connector*> connectorMap);
-    void createRemainsEntityWidget(HashMap<string,Component*>& componentMap,int& currentHeight);
-    void createRemainsAttributeWidget(HashMap<string,Component*>& componentMap,int& currentHeight);
 };

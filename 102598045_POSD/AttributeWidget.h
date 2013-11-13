@@ -4,8 +4,10 @@
 
 class AttributeWidget : public NodeWidget{
 public:
-    AttributeWidget(ComponentWidgetData componentWidgetData,GraphicalPresentation* graphicalPresentation);
+    AttributeWidget(Component** component,GraphicalPresentation* graphicalPresentation);
     ~AttributeWidget();
 
     QPainterPath shape() const;
+protected:
+    void doUpdateWidget();
 };

@@ -3,7 +3,7 @@
 #include <QGraphicsItem>
 #include <QColor>
 #include <string>
-#include "ComponentWidgetData.h"
+#include "Component.h"
 #include "IObserver.h"
 
 class QGraphicsSceneMouseEvent;
@@ -13,23 +13,21 @@ using namespace std;
 
 class ComponentWidget : public QGraphicsItem,public IObserver{
 public:
-    ComponentWidget(ComponentWidgetData componentWidgetData,GraphicalPresentation* graphicalPresentation);
+    ComponentWidget(Component** component,GraphicalPresentation* graphicalPresentation);
     ~ComponentWidget();
 
-    Component* getComponent();
-    void setText(string text);
-
     void paint(QPainter* painter,const QStyleOptionGraphicsItem* option, QWidget* widget = 0);
+
     QRectF boundingRect() const;
 
     void notify(ISubject* subject);
 protected:
-    ComponentWidgetData componentWidgetData;
-    QRectF rect;
+    Component** component;
     GraphicalPresentation* graphicalPresentation;
-
     string getText();
-    bool getIsUnderLined();
+    bool getIsUnderLine();
+    string getComponentID();
+    virtual void doUpdateWidget() = 0;
 
     virtual void doPaint(QPainter* painter) = 0;
     void mousePressEvent(QGraphicsSceneMouseEvent* mouseEvent);
@@ -37,4 +35,9 @@ protected:
     void mouseReleaseEvent(QGraphicsSceneMouseEvent* mouseEvent);
 private:
     void drawSelectedFrame(QPainter* painter);
+    QRectF rect;
+    string text;
+    bool isUnderLine;
+    string componentID;
+    void updateWidget();
 };

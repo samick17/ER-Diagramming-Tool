@@ -1,11 +1,10 @@
 #include "AttributeWidget.h"
-#include <QGraphicsSceneMouseEvent>
 #include <QPainter>
 #include "GraphicalPresentation.h"
 
 using namespace Qt;
 
-AttributeWidget::AttributeWidget(ComponentWidgetData componentWidgetData,GraphicalPresentation* graphicalPresentation) : NodeWidget(componentWidgetData,graphicalPresentation){
+AttributeWidget::AttributeWidget(Component** component,GraphicalPresentation* graphicalPresentation) : NodeWidget(component,graphicalPresentation){
 }
 
 AttributeWidget::~AttributeWidget(){
@@ -13,6 +12,9 @@ AttributeWidget::~AttributeWidget(){
 
 QPainterPath AttributeWidget::shape() const{
     QPainterPath path;
-    path.addEllipse(this->rect);
+    path.addEllipse(this->boundingRect());
     return path;
+}
+
+void AttributeWidget::doUpdateWidget(){
 }

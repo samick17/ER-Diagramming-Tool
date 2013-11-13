@@ -9,22 +9,22 @@
 
 class GraphicalPresentation;
 
-typedef ComponentWidget* (*NewComponentWidgetFunction)(ComponentWidgetData componentWidgetData,GraphicalPresentation* graphicalPresentation);
+typedef ComponentWidget* (*NewComponentWidgetFunction)(Component** component,GraphicalPresentation* graphicalPresentation);
 
 class WidgetFactory{
 public:
     WidgetFactory();
     ~WidgetFactory();
 
-    ComponentWidget* createComponentWidget(ComponentWidgetData componentWidgetData,GraphicalPresentation* graphicalPresentation);
+    ComponentWidget* createComponentWidget(Component** component,GraphicalPresentation* graphicalPresentation);
 private:
     HashMap<string,NewComponentWidgetFunction> newComponentWidgetMap;
     NewComponentWidgetFunction findNewComponentWidgetFunction(string componentType);
     template<typename Type>
-    static ComponentWidget* newComponentWidget(ComponentWidgetData componentWidgetData,GraphicalPresentation* graphicalPresentation);
+    static ComponentWidget* newComponentWidget(Component** component,GraphicalPresentation* graphicalPresentation);
 };
 
 template<typename Type>
-static ComponentWidget* WidgetFactory::newComponentWidget(ComponentWidgetData componentWidgetData,GraphicalPresentation* graphicalPresentation){
-    return new Type(componentWidgetData,graphicalPresentation);
+static ComponentWidget* WidgetFactory::newComponentWidget(Component** component,GraphicalPresentation* graphicalPresentation){
+    return new Type(component,graphicalPresentation);
 }

@@ -7,7 +7,7 @@ DeleteComponentCommand::DeleteComponentCommand(ERModel* erModel,Component* compo
 }
 
 DeleteComponentCommand::~DeleteComponentCommand(){
-	if(this->executionFlag){
+    if(this->executionFlag){
         //delete connectionSet
         for each(Connector* connector in this->connectionMap)
             delete connector;

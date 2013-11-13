@@ -1,10 +1,9 @@
 #include "EntityWidget.h"
-#include <QGraphicsSceneMouseEvent>
 #include <QPainter>
 
 using namespace Qt;
 
-EntityWidget::EntityWidget(ComponentWidgetData componentWidgetData,GraphicalPresentation* graphicalPresentation) : NodeWidget(componentWidgetData,graphicalPresentation){
+EntityWidget::EntityWidget(Component** component,GraphicalPresentation* graphicalPresentation) : NodeWidget(component,graphicalPresentation){
 }
 
 EntityWidget::~EntityWidget(){
@@ -12,6 +11,8 @@ EntityWidget::~EntityWidget(){
 
 QPainterPath EntityWidget::shape() const{
     QPainterPath path;
-    path.addRect(this->rect);
+    path.addRect(this->boundingRect());
     return path;
 }
+
+void EntityWidget::doUpdateWidget(){}

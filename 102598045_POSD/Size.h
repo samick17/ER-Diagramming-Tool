@@ -1,8 +1,10 @@
 #pragma once
 
+#include "WidgetDefaultSetting.h"
+
 struct Size{
 public:
-    Size(double width,double height);
+	Size(double width = WidgetDefaultSetting::Width,double height = WidgetDefaultSetting::Height);
 
     double getWidth();
     double getHeight();

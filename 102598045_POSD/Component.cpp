@@ -14,10 +14,6 @@ string Component::getID(){
     return this->componentData.getID();
 }
 
-void Component::setID(string id){
-    this->componentData.setID(id);
-}
-
 string Component::getType(){
     return ComponentType::TypeComponent;
 }
@@ -33,6 +29,19 @@ void Component::setName(string name){
 string Component::getClassName(){
     return StringUtil::split(typeid(*this).name(),CharSymbol::Space)[1];
 }
+
+Rect Component::getRect(){
+    return this->componentData.getRect();
+}
+
+void Component::setPosition(Point position){
+    this->componentData.setPosition(position);
+}
+
+void Component::setSize(Size size){
+    this->componentData.setSize(size);
+}
+
 //if no such connection in set, connect to target
 void Component::connectTo(Component* target){    
     if(!this->connectionMap.containsKey(target->getID()))

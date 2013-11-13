@@ -35,10 +35,10 @@ void InputFileParser::loadAllComponentsFromDoc(Document& doc){
         string name = StringSymbol::Empty;
 
         //load component name
-        if(componentDataVector.size() > 1)        
+        if(componentDataVector.size() > 1)
             name = StringUtil::trim(componentDataVector[1]);
 
-        this->componentDataQueue.push(StringPair(type,name));        
+        this->componentDataQueue.push(StringPair(type,name));
     }
 }
 

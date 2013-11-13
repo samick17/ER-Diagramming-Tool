@@ -134,8 +134,11 @@ void ERModel::clearComponentMap(){
     componentFactory.resetFactory();
     this->commandManager.popAllStack();
 
-    for each(Component* component in this->componentMap)
-        delete component;
+    for each(Component*& component in this->componentMap){
+		component = NULL;
+		Component* componentBuffer = component;
+		delete componentBuffer;
+    }
     
     this->componentMap.clear();
 }

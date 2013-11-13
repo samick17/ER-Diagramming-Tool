@@ -5,7 +5,7 @@
 
 struct Rect{
 public:
-    Rect(Point position,Size size);
+    Rect(Point position = Point(),Size size = Size());
 
     Point& getPosition();
     void setPosition(Point position);

@@ -1,6 +1,7 @@
 #pragma once
 
 #include <string>
+#include "Rect.h"
 
 using namespace std;
 
@@ -13,9 +14,13 @@ public:
     void setID(string id);
     string getName();
     void setName(string name);
+    Rect getRect();
+    void setPosition(Point position);
+    void setSize(Size size);
 
     bool operator==(const ComponentData& componentDataToCompare) const;
 private:
     string id;
     string name;
+    Rect rect;
 };

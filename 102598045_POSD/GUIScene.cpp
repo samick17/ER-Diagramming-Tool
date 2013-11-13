@@ -4,7 +4,6 @@
 #include <QGraphicsSceneMouseEvent>
 #include "GraphicalPresentation.h"
 #include "WidgetFactory.h"
-#include <iostream>
 
 GUIScene::GUIScene(qreal left,qreal top,qreal width,qreal height,GraphicalUI* graphicalUI) : graphicalUI(graphicalUI),QGraphicsScene(left,top,width,height,graphicalUI){
     this->graphicalPresentation = this->graphicalUI->getGraphicalPresentation();
@@ -22,10 +21,10 @@ void GUIScene::notify(ISubject* subject){
 
 void GUIScene::displayDiagram(){
     this->clear();
-    HashMap<string,ComponentWidgetData*> componentWidgetDataMap = this->graphicalPresentation->getAllComponentWidgetDatas();
+    HashMap<string,Component*>& componentMap = this->graphicalPresentation->getAllComponents();
     WidgetFactory widgetFactory;
-    for(auto iterator = componentWidgetDataMap.rbegin();iterator != componentWidgetDataMap.rend();iterator++){
-        ComponentWidget* componentWidget = widgetFactory.createComponentWidget(**iterator,this->graphicalPresentation);
+    for each(Component*& component in componentMap){
+        ComponentWidget* componentWidget = widgetFactory.createComponentWidget(&component,this->graphicalPresentation);
         this->addItem(componentWidget);
     }
 }
@@ -51,5 +50,4 @@ void GUIScene::mouseReleaseEvent(QGraphicsSceneMouseEvent* mouseEvent){
 void GUIScene::executeNotify(){
     //this->update();
     this->displayDiagram();
-    cout<<"notify scene"<<endl;
 }

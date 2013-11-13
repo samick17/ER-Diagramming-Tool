@@ -6,37 +6,40 @@
 
 using namespace Qt;
 
-ComponentWidget::ComponentWidget(ComponentWidgetData componentWidgetData,GraphicalPresentation* graphicalPresentation) : graphicalPresentation(graphicalPresentation),componentWidgetData(componentWidgetData){
-    Rect rect = componentWidgetData.getRect();
-    this->rect = QRectF(rect.getPosition().getX(),rect.getPosition().getY(),rect.getSize().getWidth(),rect.getSize().getHeight());
-    this->getComponent()->registerObserver(this);
+ComponentWidget::ComponentWidget(Component** component,GraphicalPresentation* graphicalPresentation) : graphicalPresentation(graphicalPresentation),component(component){
+    Rect componentRect = (*component)->getRect();
+    Point position = componentRect.getPosition();
+    Size size = componentRect.getSize();
+    this->text = (*component)->getName(); 
+    this->componentID = (*component)->getID();
+    this->rect = QRectF(position.getX(),position.getY(),size.getWidth(),size.getHeight());
+    (*component)->registerObserver(this);
     this->graphicalPresentation->registerObserver(this);
 }
 
 ComponentWidget::~ComponentWidget(){
-    this->getComponent()->unregisterObserver(this);
+    (*component)->unregisterObserver(this);
     this->graphicalPresentation->unregisterObserver(this);
 }
 
-Component* ComponentWidget::getComponent(){
-    return this->componentWidgetData.getComponent();
-}
-
 string ComponentWidget::getText(){
-    return this->getComponent()->getName();
+    return this->text;
 }
 
-void ComponentWidget::setText(string text){
-    return this->getComponent()->setName(text);
+bool ComponentWidget::getIsUnderLine(){
+    return this->isUnderLine;
 }
 
-bool ComponentWidget::getIsUnderLined(){
-    return this->componentWidgetData.getIsUnderLined();
+string ComponentWidget::getComponentID(){
+    return this->componentID;
+}
+
+void ComponentWidget::updateWidget(){
+    doUpdateWidget();
 }
 
 void ComponentWidget::mousePressEvent(QGraphicsSceneMouseEvent* mouseEvent){
-    string componentID = this->getComponent()->getID();
-    this->graphicalPresentation->selectWidget(componentID);
+    this->graphicalPresentation->selectWidget(this->componentID);
 }
 
 void ComponentWidget::mouseMoveEvent(QGraphicsSceneMouseEvent* mouseEvent){
@@ -51,7 +54,7 @@ void ComponentWidget::paint(QPainter* painter,const QStyleOptionGraphicsItem* op
     painter->setPen(QPen(black,WidgetDefaultSetting::WidgetLineWidth));
     //set under Lined
     QFont font = painter->font();
-    font.setUnderline(this->getIsUnderLined());
+    font.setUnderline(false);
     painter->setFont(font);
     //draw select frame to highlight
     this->drawSelectedFrame(painter);
@@ -67,11 +70,11 @@ QRectF ComponentWidget::boundingRect() const{
 
 void ComponentWidget::notify(ISubject* subject){
     this->update();
+    this->updateWidget();
 }
 
 void ComponentWidget::drawSelectedFrame(QPainter* painter){
-    string componentID = this->getComponent()->getID();
-    if(this->graphicalPresentation->isSelected(componentID)){
+    if(this->graphicalPresentation->isSelected(this->componentID)){
         painter->setPen(QPen(darkGreen,WidgetDefaultSetting::SelectedFrameLineWidth,Qt::DotLine));
         painter->drawPath(this->shape());
     }

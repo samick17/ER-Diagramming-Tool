@@ -94,7 +94,6 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Subject.cpp" />
-    <ClCompile Include="ComponentWidgetData.cpp" />
     <ClCompile Include="ConnectorWidget.cpp" />
     <ClCompile Include="ConnectState.cpp" />
     <ClCompile Include="ConnectTwoNodesInstruction.cpp" />
@@ -209,7 +208,6 @@
     <ClInclude Include="Command.h" />
     <ClInclude Include="DialogSetting.h" />
     <ClInclude Include="Subject.h" />
-    <ClInclude Include="ComponentWidgetData.h" />
     <ClInclude Include="ConnectorWidget.h" />
     <ClInclude Include="ConnectState.h" />
     <ClInclude Include="ConnectTwoNodesInstruction.h" />

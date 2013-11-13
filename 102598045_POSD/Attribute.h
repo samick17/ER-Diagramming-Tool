@@ -16,6 +16,7 @@ public:
 
     bool isPrimaryKey();
     void setAsPrimaryKey();
+
 private:
     int attributeType;
 };

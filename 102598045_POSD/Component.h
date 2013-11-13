@@ -20,11 +20,13 @@ public:
     virtual ~Component();
 
     string getID();
-    void setID(string id);
     virtual string getType();
     string getName();
     void setName(string);
     string getClassName();
+    Rect getRect();
+    void setPosition(Point position);
+    void setSize(Size size);
 
     void connectTo(Component* target);
     void disconnectTo(Component* target);
