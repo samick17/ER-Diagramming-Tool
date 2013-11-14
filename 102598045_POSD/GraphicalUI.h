@@ -10,6 +10,7 @@
 #include "AddDrawableToolBar.h"
 #include "QActionMap.h"
 #include "ISynchronizer.h"
+#include "Component.h"
 
 class GraphicalPresentation;
 class SelectedFrameWidget;
@@ -29,10 +30,6 @@ public:
     GUIScene* getScene();
     void sync(int syncEventType);
     void setTitle(string title,string iconPath);
-
-    void mousePress(QPointF mousePosition);
-    void mouseMove(QPointF mousePosition);
-    void mouseRelease(QPointF mousePosition);
 protected:
     void closeEvent(QCloseEvent* closeEvent);
     void keyPressEvent(QKeyEvent* keyEvent);

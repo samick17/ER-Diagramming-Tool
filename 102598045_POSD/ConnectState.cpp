@@ -3,11 +3,11 @@
 ConnectState::ConnectState(int stateID,GraphicalPresentation* graphicalPresentation) : State(stateID,graphicalPresentation){
 }
 
-void ConnectState::mousePressEvent(Point position){
+void ConnectState::doMousePressEvent(Point position,Component* component){
 }
 
-void ConnectState::mouseMoveEvent(Point position){
+void ConnectState::doMouseMoveEvent(Point position,Component* component){
 }
 
-void ConnectState::mouseReleaseEvent(Point position){
+void ConnectState::doMouseReleaseEvent(Point position,Component* component){
 }

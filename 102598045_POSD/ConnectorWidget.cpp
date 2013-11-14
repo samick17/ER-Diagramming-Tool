@@ -1,6 +1,5 @@
 #include "ConnectorWidget.h"
 #include <QPainter>
-#include "GraphicalPresentation.h"
 #include "Connector.h"
 
 using namespace Qt;

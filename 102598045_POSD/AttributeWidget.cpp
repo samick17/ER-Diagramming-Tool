@@ -1,6 +1,5 @@
 #include "AttributeWidget.h"
 #include <QPainter>
-#include "GraphicalPresentation.h"
 
 using namespace Qt;
 

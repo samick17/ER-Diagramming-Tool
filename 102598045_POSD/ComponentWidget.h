@@ -15,6 +15,7 @@ public:
     ComponentWidget(Component* component,GraphicalPresentation* graphicalPresentation);
     ~ComponentWidget();
 
+    Component* getComponent();
     void updateWidget();
 
     void paint(QPainter* painter,const QStyleOptionGraphicsItem* option, QWidget* widget = 0);
@@ -28,9 +29,9 @@ protected:
     string getComponentID();
     virtual void doUpdateWidget() = 0;
 
-    void mousePressEvent(QGraphicsSceneMouseEvent* mouseEvent);
+    /*void mousePressEvent(QGraphicsSceneMouseEvent* mouseEvent);
     void mouseMoveEvent(QGraphicsSceneMouseEvent* mouseEvent);
-    void mouseReleaseEvent(QGraphicsSceneMouseEvent* mouseEvent);
+    void mouseReleaseEvent(QGraphicsSceneMouseEvent* mouseEvent);*/
     virtual void doPaint(QPainter* painter) = 0;
 private:
     void drawSelectedFrame(QPainter* painter);

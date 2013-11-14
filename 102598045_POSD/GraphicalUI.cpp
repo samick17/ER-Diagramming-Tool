@@ -57,21 +57,6 @@ void GraphicalUI::keyReleaseEvent(QKeyEvent* keyEvent){
         this->graphicalPresentation->keyCtrlReleased();
 }
 
-void GraphicalUI::mousePress(QPointF mousePosition){
-    Point position = Point(mousePosition.x(),mousePosition.y());
-    this->graphicalPresentation->mousePressEvent(position);
-}
-
-void GraphicalUI::mouseMove(QPointF mousePosition){
-    Point position = Point(mousePosition.x(),mousePosition.y());
-    this->graphicalPresentation->mouseMoveEvent(position);
-}
-
-void GraphicalUI::mouseRelease(QPointF mousePosition){
-    Point position = Point(mousePosition.x(),mousePosition.y());
-    this->graphicalPresentation->mouseReleaseEvent(position);
-}
-
 void GraphicalUI::setTitle(string title,string iconPath){
     this->setWindowTitle(QString(title.c_str()));
     this->setWindowIcon(QIcon(iconPath.c_str()));
@@ -82,7 +67,7 @@ void GraphicalUI::initialGraphicView(){
     this->view = new QGraphicsView(this);
     this->view->setScene(this->scene);
     this->setCentralWidget(view);
-    this->view->setInteractive(true);
+    //this->view->setInteractive(true);
 }
 
 void GraphicalUI::initialAllAction(){
@@ -153,7 +138,7 @@ void GraphicalUI::close(){
 
 void GraphicalUI::switchState(int stateID){
     this->graphicalPresentation->switchState(stateID);
-    this->switchStateEvent(stateID);	
+    this->switchStateEvent(stateID);
 }
 //execute notify event that are mapped.
 void GraphicalUI::executeSync(int notifiedEventType){
@@ -166,7 +151,6 @@ void GraphicalUI::executeSync(int notifiedEventType){
 void GraphicalUI::executeSwitchState(int stateID){
     if(stateID >= StateID::AttributeState && stateID <= StateID::RelationShipState){
         QString text = QInputDialog::getText(NULL,QString(DialogSetting::Title.c_str()),QString(DialogSetting::Text.c_str()),QLineEdit::Normal);
-
         this->graphicalPresentation->setText(text.toStdString());
     }
 }

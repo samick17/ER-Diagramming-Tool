@@ -10,16 +10,23 @@ double Point::getY(){
     return this->coordinateY;
 }
 
-bool Point::operator==(const Point& pointToCompare) const{
-    if(this->coordinateX == pointToCompare.coordinateX && this->coordinateY == pointToCompare.coordinateY)
+bool Point::operator==(const Point& pointToOperate) const{
+    if(this->coordinateX == pointToOperate.coordinateX && this->coordinateY == pointToOperate.coordinateY)
         return true;
     return false;
 }
 
-Point& Point::operator+=(const Point& pointToAdd){
-    this->coordinateX += pointToAdd.coordinateX;
-    this->coordinateY += pointToAdd.coordinateY;
+Point& Point::operator+=(const Point& pointToOperate){
+    this->coordinateX += pointToOperate.coordinateX;
+    this->coordinateY += pointToOperate.coordinateY;
     return *this;
+}
+
+Point Point::operator-(const Point& pointToOperate){
+    Point point = *this;
+    point.coordinateX -= pointToOperate.coordinateX;
+    point.coordinateX -= pointToOperate.coordinateY;
+	return point;
 }
 
 Point Point::DefaultPoint(){

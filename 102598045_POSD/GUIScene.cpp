@@ -4,6 +4,7 @@
 #include <QGraphicsSceneMouseEvent>
 #include "GraphicalPresentation.h"
 #include "WidgetFactory.h"
+#include <iostream>
 
 GUIScene::GUIScene(qreal left,qreal top,qreal width,qreal height,GraphicalUI* graphicalUI) : graphicalUI(graphicalUI),QGraphicsScene(left,top,width,height,graphicalUI){
     this->graphicalPresentation = this->graphicalUI->getGraphicalPresentation();
@@ -31,24 +32,39 @@ void GUIScene::displayDiagram(){
 }
 
 void GUIScene::mousePressEvent(QGraphicsSceneMouseEvent* mouseEvent){
-    this->QGraphicsScene::mousePressEvent(mouseEvent);
-    QPointF position = mouseEvent->scenePos();
-    this->graphicalUI->mousePress(position);
-    this->updateAll();
+    QPointF qPosition = mouseEvent->scenePos();
+    ComponentWidget* widget = static_cast<ComponentWidget*>(this->itemAt(qPosition));
+	Component* component = NULL;
+	Point position = Point(qPosition.x(),qPosition.y());
+    if(widget){
+        component = widget->getComponent();
+    }
+	this->graphicalPresentation->mousePressEvent(position,component);
+	this->updateAll();
 }
 
 void GUIScene::mouseMoveEvent(QGraphicsSceneMouseEvent* mouseEvent){
-    this->QGraphicsScene::mouseMoveEvent(mouseEvent);
-    QPointF position = mouseEvent->scenePos();
-    this->graphicalUI->mouseMove(position);
-    this->updateAll();
+    QPointF qPosition = mouseEvent->scenePos();
+    ComponentWidget* widget = static_cast<ComponentWidget*>(this->itemAt(qPosition));
+	Component* component = NULL;
+	Point position = Point(qPosition.x(),qPosition.y());
+    if(widget){
+        component = widget->getComponent();
+    }
+	this->graphicalPresentation->mouseMoveEvent(position,component);
+	this->updateAll();
 }
 
 void GUIScene::mouseReleaseEvent(QGraphicsSceneMouseEvent* mouseEvent){
-    this->QGraphicsScene::mouseReleaseEvent(mouseEvent);
-    QPointF position = mouseEvent->scenePos();
-    this->graphicalUI->mouseRelease(position);
-    this->updateAll();
+    QPointF qPosition = mouseEvent->scenePos();
+    ComponentWidget* widget = static_cast<ComponentWidget*>(this->itemAt(qPosition));
+	Component* component = NULL;
+	Point position = Point(qPosition.x(),qPosition.y());
+    if(widget){
+        component = widget->getComponent();
+    }
+	this->graphicalPresentation->mouseReleaseEvent(position,component);
+	this->updateAll();
 }
 
 void GUIScene::executeNotify(){

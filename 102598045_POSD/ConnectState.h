@@ -5,8 +5,8 @@
 class ConnectState : public State{
 public:
     ConnectState(int stateID,GraphicalPresentation* graphicalPresentation);
-
-   void mousePressEvent(Point position);
-   void mouseMoveEvent(Point position);
-   void mouseReleaseEvent(Point position);
+protected:
+   void doMousePressEvent(Point position,Component* component);
+   void doMouseMoveEvent(Point position,Component* component);
+   void doMouseReleaseEvent(Point position,Component* component);
 };

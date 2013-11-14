@@ -121,19 +121,23 @@ void GraphicalPresentation::doUngisterObserver(IObserver* observer){
 void GraphicalPresentation::notify(ISubject* subject){
 }
 
-void GraphicalPresentation::mousePressEvent(Point position){
-    this->stateSubject->getState()->mousePressEvent(position);
-}
-void GraphicalPresentation::mouseMoveEvent(Point position){
-    this->stateSubject->getState()->mouseMoveEvent(position);
+void GraphicalPresentation::mousePressEvent(Point position,Component* component){
+    this->stateSubject->getState()->mousePressEvent(position,component);
 }
 
-void GraphicalPresentation::mouseReleaseEvent(Point position){
-    this->stateSubject->getState()->mouseReleaseEvent(position);
+void GraphicalPresentation::mouseMoveEvent(Point position,Component* component){
+    this->stateSubject->getState()->mouseMoveEvent(position,component);
+}
+
+void GraphicalPresentation::mouseReleaseEvent(Point position,Component* component){
+    this->stateSubject->getState()->mouseReleaseEvent(position,component);
 }
 
 void GraphicalPresentation::setText(string text){
-    this->text = text;
+    if(text.empty())
+        this->switchState(StateID::PointerState);
+    else
+        this->text = text;
 }
 
 string GraphicalPresentation::getText(){

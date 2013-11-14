@@ -1,6 +1,5 @@
 #include "NodeWidget.h"
 #include <QPainter>
-#include "GraphicalPresentation.h"
 
 using namespace Qt;
 

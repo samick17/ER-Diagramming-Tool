@@ -37,9 +37,9 @@ public:
 
     void notify(ISubject* subject);
 
-    void mousePressEvent(Point position);
-    void mouseMoveEvent(Point position);
-    void mouseReleaseEvent(Point position);
+    void mousePressEvent(Point position,Component* component);
+    void mouseMoveEvent(Point position,Component* component);
+    void mouseReleaseEvent(Point position,Component* component);
 protected:
     //observer
     void doRegisterObserver(IObserver* observer);

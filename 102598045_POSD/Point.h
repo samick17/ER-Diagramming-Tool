@@ -7,8 +7,9 @@ public:
     double getX();
     double getY();
 
-    bool operator==(const Point& pointToCompare) const;
-    Point& operator+=(const Point& pointToAdd);
+    bool operator==(const Point& pointToOperate) const;
+    Point& operator+=(const Point& pointToOperate);
+    Point operator-(const Point& pointToOperate);
 
     static Point DefaultPoint();
 private:
