@@ -3,7 +3,6 @@
 #include <QPainter>
 #include "WidgetDefaultSetting.h"
 #include "GraphicalPresentation.h"
-#include <iostream>
 
 using namespace Qt;
 
@@ -24,25 +23,6 @@ bool ComponentWidget::getIsUnderLine(){
 string ComponentWidget::getComponentID(){
     return this->componentID;
 }
-/*
-void ComponentWidget::mousePressEvent(QGraphicsSceneMouseEvent* mouseEvent){
-    QPointF qPosition = mouseEvent->scenePos();
-    Point position = Point(qPosition.x(),qPosition.y());
-    this->graphicalPresentation->mousePressEvent(position,this->component);
-}
-
-void ComponentWidget::mouseMoveEvent(QGraphicsSceneMouseEvent* mouseEvent){
-    QPointF qPosition = mouseEvent->scenePos();
-    Point position = Point(qPosition.x(),qPosition.y());
-    this->graphicalPresentation->mouseMoveEvent(position,this->component);
-	cout<<"widget mouse move"<<endl;
-}
-
-void ComponentWidget::mouseReleaseEvent(QGraphicsSceneMouseEvent* mouseEvent){
-    QPointF qPosition = mouseEvent->scenePos();
-    Point position = Point(qPosition.x(),qPosition.y());
-    this->graphicalPresentation->mouseReleaseEvent(position,this->component);
-}*/
 
 Component* ComponentWidget::getComponent(){
     return this->component;
@@ -83,6 +63,6 @@ QRectF ComponentWidget::boundingRect() const{
 void ComponentWidget::drawSelectedFrame(QPainter* painter){
     if(this->graphicalPresentation->isSelected(this->componentID)){
         painter->setPen(QPen(darkGreen,WidgetDefaultSetting::SelectedFrameLineWidth,Qt::DotLine));
-		painter->drawRect(this->boundingRect());
+		painter->drawPath(this->shape());
     }
 }

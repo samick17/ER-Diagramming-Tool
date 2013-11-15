@@ -9,7 +9,7 @@ AddNodeState::AddNodeState(int stateID,GraphicalPresentation* graphicalPresentat
     stateToNodeTypeMap.put(StateID::RelationShipState,ComponentType::TypeRelationShip);
 }
 
-void AddNodeState::doMousePressEvent(Point position,Component* component){
+void AddNodeState::doMousePressEvent(Point position){
     string nodeName = this->graphicalPresentation->getText();
     string nodeType = stateToNodeTypeMap.get(this->getStateID());
     this->graphicalPresentation->addNode(nodeType,nodeName,Point());
@@ -17,11 +17,11 @@ void AddNodeState::doMousePressEvent(Point position,Component* component){
     node->setCenterPosition(position);
 }
 
-void AddNodeState::doMouseMoveEvent(Point position,Component* component){
+void AddNodeState::doMouseMoveEvent(Point position){
     Node* node = this->graphicalPresentation->getLastAddedNode();
     node->setCenterPosition(position);
 }
 
-void AddNodeState::doMouseReleaseEvent(Point position,Component* component){
+void AddNodeState::doMouseReleaseEvent(Point position){
     this->graphicalPresentation->switchState(StateID::PointerState);
 }

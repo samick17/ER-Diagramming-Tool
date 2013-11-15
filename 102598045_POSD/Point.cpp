@@ -22,11 +22,19 @@ Point& Point::operator+=(const Point& pointToOperate){
     return *this;
 }
 
+Point Point::operator+(const Point& pointToOperate){
+    Point point = *this;
+    point.coordinateX += pointToOperate.coordinateX;
+    point.coordinateY += pointToOperate.coordinateY;
+    return point;
+}
+
+
 Point Point::operator-(const Point& pointToOperate){
     Point point = *this;
     point.coordinateX -= pointToOperate.coordinateX;
-    point.coordinateX -= pointToOperate.coordinateY;
-	return point;
+    point.coordinateY -= pointToOperate.coordinateY;
+    return point;
 }
 
 Point Point::DefaultPoint(){

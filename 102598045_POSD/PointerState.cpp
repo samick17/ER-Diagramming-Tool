@@ -4,20 +4,13 @@
 PointerState::PointerState(int stateID,GraphicalPresentation* graphicalPresentation) : State(stateID,graphicalPresentation){
 }
 
-void PointerState::doMousePressEvent(Point position,Component* component){
-	if(component != NULL){
-		this->graphicalPresentation->selectWidget(component->getID());
-    }
+void PointerState::doMousePressEvent(Point position){
+	this->graphicalPresentation->selectWidget();
 }
 
-void PointerState::doMouseMoveEvent(Point position,Component* component){
-	if(component != NULL){
-		cout<<"mouse move component"<<endl;
-		component->setCenterPosition(position);
-	}else{
-	    cout<<"mouse move"<<endl;
-	}
+void PointerState::doMouseMoveEvent(Point position){
+	this->graphicalPresentation->moveSelectedWidget(this->getDeltaPosition());
 }
 
-void PointerState::doMouseReleaseEvent(Point position,Component* component){
+void PointerState::doMouseReleaseEvent(Point position){
 }

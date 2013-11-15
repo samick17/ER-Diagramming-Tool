@@ -8,13 +8,13 @@ public:
 
     int getStateID();
 
-    void mousePressEvent(Point position,Component* component);
-    void mouseMoveEvent(Point position,Component* component);
-    void mouseReleaseEvent(Point position,Component* component);
+    void mousePressEvent(Point position);
+    void mouseMoveEvent(Point position);
+    void mouseReleaseEvent(Point position);
 protected:
-    virtual void doMousePressEvent(Point position,Component* component) = 0;
-    virtual void doMouseMoveEvent(Point position,Component* component) = 0;
-    virtual void doMouseReleaseEvent(Point position,Component* component) = 0;
+    virtual void doMousePressEvent(Point position) = 0;
+    virtual void doMouseMoveEvent(Point position) = 0;
+    virtual void doMouseReleaseEvent(Point position) = 0;
 
     Point getDeltaPosition();
 

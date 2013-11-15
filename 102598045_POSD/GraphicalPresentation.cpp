@@ -31,17 +31,40 @@ HashMap<string,Component*>& GraphicalPresentation::getAllComponents(){
     return this->presentation->getAllComponents();
 }
 
+void GraphicalPresentation::setText(string text){
+    if(text.empty())
+        this->switchState(StateID::PointerState);
+    else
+        this->text = text;
+}
+
+string GraphicalPresentation::getText(){
+    return this->text;
+}
+
+Node* GraphicalPresentation::getLastAddedNode(){
+    return this->lastAddedNode;
+}
+
+Component* GraphicalPresentation::getLastPressedComponent(){
+	return this->lastPressedComponent;
+}
+
+Component* GraphicalPresentation::getLastMovedComponent(){
+	return this->lastMovedComponent;
+}
+
+Component* GraphicalPresentation::getLastReleasedComponent(){
+	return this->lastReleasedComponent;
+}
+
 void GraphicalPresentation::addNode(string nodeType,string nodeName,Point position){
     Node* node = this->presentation->addNode(nodeType);
-    this->lastNode = node;
+    this->lastAddedNode = node;
     node->setName(nodeName);
     node->setSize(Size::DefaultSize());
     node->setCenterPosition(position);
     this->presentation->sync(ControllerEvent::DisplayDiagram);
-}
-
-Node* GraphicalPresentation::getLastAddedNode(){
-    return this->lastNode;
 }
 
 void GraphicalPresentation::openFile(string filePath){
@@ -63,7 +86,12 @@ bool GraphicalPresentation::isSelected(string componentID){
     return false;
 }
 //select widget : highlight/unhilight selected,notify all
-void GraphicalPresentation::selectWidget(string componentID){
+void GraphicalPresentation::selectWidget(){
+	if(this->lastPressedComponent == NULL){
+		this->unSelectAll();
+		return;
+	}
+    string componentID = this->lastPressedComponent->getID();
     bool isSelected = this->isSelected(componentID);
     if(this->isCtrlPressed){
         if(this->isSelected(componentID)){
@@ -80,6 +108,15 @@ void GraphicalPresentation::selectWidget(string componentID){
         }
     }
     this->Subject::notify();
+}
+
+void GraphicalPresentation::moveSelectedWidget(Point deltaPosition){
+    HashMap<string,Component*> componentMap = this->presentation->getAllComponents();
+    for each(string componentID in this->selectedWidgetSet){
+        Component* component = componentMap.get(componentID);
+        Point position = component->getRect().getPosition();
+		component->setPosition(position+deltaPosition);
+    }
 }
 
 void GraphicalPresentation::unSelectAll(){
@@ -122,24 +159,16 @@ void GraphicalPresentation::notify(ISubject* subject){
 }
 
 void GraphicalPresentation::mousePressEvent(Point position,Component* component){
-    this->stateSubject->getState()->mousePressEvent(position,component);
+	this->lastPressedComponent = component;
+    this->stateSubject->getState()->mousePressEvent(position);
 }
 
 void GraphicalPresentation::mouseMoveEvent(Point position,Component* component){
-    this->stateSubject->getState()->mouseMoveEvent(position,component);
+	this->lastMovedComponent = component;
+    this->stateSubject->getState()->mouseMoveEvent(position);
 }
 
 void GraphicalPresentation::mouseReleaseEvent(Point position,Component* component){
-    this->stateSubject->getState()->mouseReleaseEvent(position,component);
-}
-
-void GraphicalPresentation::setText(string text){
-    if(text.empty())
-        this->switchState(StateID::PointerState);
-    else
-        this->text = text;
-}
-
-string GraphicalPresentation::getText(){
-    return this->text;
+	this->lastReleasedComponent = component;
+    this->stateSubject->getState()->mouseReleaseEvent(position);
 }

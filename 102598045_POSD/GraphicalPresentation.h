@@ -18,14 +18,18 @@ public:
     HashMap<string,Component*>& getAllComponents();
     void setText(string text);
     string getText();
+    Node* getLastAddedNode();
+    Component* getLastPressedComponent();
+    Component* getLastMovedComponent();
+    Component* getLastReleasedComponent();
 
     void addNode(string nodeType,string nodeName,Point position);
-    Node* getLastAddedNode();
     void openFile(string filePath);
     void saveFile(string filePath);
     void close();
     bool isSelected(string componentID);
-    void selectWidget(string componentID);
+    void selectWidget();
+    void moveSelectedWidget(Point position);
     void unSelectAll();
     void switchState(int stateID);
     void keyCtrlPressed();
@@ -50,5 +54,8 @@ private:
     bool isCtrlPressed;
     StateSubject* stateSubject;
     string text;
-    Node* lastNode;
+    Node* lastAddedNode;
+    Component* lastPressedComponent;
+    Component* lastMovedComponent;
+    Component* lastReleasedComponent;
 };

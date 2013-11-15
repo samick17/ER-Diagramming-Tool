@@ -9,6 +9,7 @@ public:
 
     bool operator==(const Point& pointToOperate) const;
     Point& operator+=(const Point& pointToOperate);
+    Point operator+(const Point& pointToOperate);
     Point operator-(const Point& pointToOperate);
 
     static Point DefaultPoint();
