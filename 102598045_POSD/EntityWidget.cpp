@@ -15,4 +15,5 @@ QPainterPath EntityWidget::shape() const{
     return path;
 }
 
-void EntityWidget::doUpdateWidget(){}
+void EntityWidget::doUpdateWidget(){
+}

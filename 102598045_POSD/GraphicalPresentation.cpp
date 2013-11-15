@@ -15,12 +15,10 @@
 GraphicalPresentation::GraphicalPresentation(Presentation* presentation) : presentation(presentation){
     this->isCtrlPressed = false;
     this->stateSubject = new StateSubject();
-    this->presentation->registerObserver(this);
 }
 
 GraphicalPresentation::~GraphicalPresentation(){
     delete this->stateSubject;
-    this->presentation->unregisterObserver(this);
 }
 
 StateSubject* GraphicalPresentation::getStateSubject(){
@@ -115,7 +113,7 @@ void GraphicalPresentation::moveSelectedWidget(Point deltaPosition){
     for each(string componentID in this->selectedWidgetSet){
         Component* component = componentMap.get(componentID);
         Point position = component->getRect().getPosition();
-		component->setPosition(position+deltaPosition);
+        component->setPosition(position+deltaPosition);
     }
 }
 
@@ -155,20 +153,17 @@ void GraphicalPresentation::doUngisterObserver(IObserver* observer){
     this->presentation->unregisterObserver(observer);
 }
 
-void GraphicalPresentation::notify(ISubject* subject){
-}
-
 void GraphicalPresentation::mousePressEvent(Point position,Component* component){
-	this->lastPressedComponent = component;
+    this->lastPressedComponent = component;
     this->stateSubject->getState()->mousePressEvent(position);
 }
 
 void GraphicalPresentation::mouseMoveEvent(Point position,Component* component){
-	this->lastMovedComponent = component;
+    this->lastMovedComponent = component;
     this->stateSubject->getState()->mouseMoveEvent(position);
 }
 
 void GraphicalPresentation::mouseReleaseEvent(Point position,Component* component){
-	this->lastReleasedComponent = component;
+    this->lastReleasedComponent = component;
     this->stateSubject->getState()->mouseReleaseEvent(position);
 }

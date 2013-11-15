@@ -1,5 +1,4 @@
 #include "Connector.h"
-#include "ERModel.h"
 #include "ComponentType.h"
 #include "InvalidConnectException.h"
 #include "ComponentUtil.h"
@@ -49,7 +48,7 @@ Component* Connector::getSecondConnectedNode(){
     return secondNode;
 }
 
-bool Connector::isNodesConnection(Component* firstNode,Component* secondNode){    
+bool Connector::isNodesConnection(Component* firstNode,Component* secondNode){
     if(firstNode == secondNode)
         return false;
 

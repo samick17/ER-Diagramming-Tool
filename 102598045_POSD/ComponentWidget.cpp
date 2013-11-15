@@ -63,6 +63,6 @@ QRectF ComponentWidget::boundingRect() const{
 void ComponentWidget::drawSelectedFrame(QPainter* painter){
     if(this->graphicalPresentation->isSelected(this->componentID)){
         painter->setPen(QPen(darkGreen,WidgetDefaultSetting::SelectedFrameLineWidth,Qt::DotLine));
-		painter->drawPath(this->shape());
+        painter->drawPath(this->shape());
     }
 }

@@ -24,6 +24,7 @@ public:
     string getClassName();
     Rect getRect();
     void setPosition(Point position);
+    virtual void doSetPosition(Point position);
     void setCenterPosition(Point position);
     void setSize(Size size);
 

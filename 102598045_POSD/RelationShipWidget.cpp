@@ -22,4 +22,5 @@ QPainterPath RelationShipWidget::shape() const{
     return path;
 }
 
-void RelationShipWidget::doUpdateWidget(){}
+void RelationShipWidget::doUpdateWidget(){
+}

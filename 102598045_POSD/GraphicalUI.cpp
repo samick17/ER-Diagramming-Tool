@@ -67,7 +67,6 @@ void GraphicalUI::initialGraphicView(){
     this->view = new QGraphicsView(this);
     this->view->setScene(this->scene);
     this->setCentralWidget(view);
-    //this->view->setInteractive(true);
 }
 
 void GraphicalUI::initialAllAction(){

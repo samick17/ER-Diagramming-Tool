@@ -23,4 +23,5 @@ void ConnectorWidget::doPaint(QPainter* painter){
     painter->drawText(this->boundingRect(),AlignHCenter,QString(this->getText().c_str()));
 }
 
-void ConnectorWidget::doUpdateWidget(){}
+void ConnectorWidget::doUpdateWidget(){
+}

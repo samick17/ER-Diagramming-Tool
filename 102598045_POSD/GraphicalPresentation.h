@@ -4,12 +4,11 @@
 #include "Presentation.h"
 #include <set>
 #include "Subject.h"
-#include "IObserver.h"
 
 class State;
 class StateSubject;
 
-class GraphicalPresentation : public Subject,public IObserver{
+class GraphicalPresentation : public Subject{
 public:
     GraphicalPresentation(Presentation* presentation);
     ~GraphicalPresentation();
@@ -38,8 +37,6 @@ public:
     void registerSynchronizer(ISynchronizer* synchronizer);
     void unregisterSynchronizer(ISynchronizer* synchronizer);
     void sync(int syncEventType);
-
-    void notify(ISubject* subject);
 
     void mousePressEvent(Point position,Component* component);
     void mouseMoveEvent(Point position,Component* component);
