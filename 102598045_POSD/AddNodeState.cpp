@@ -2,11 +2,22 @@
 #include "StateID.h"
 #include "ComponentType.h"
 #include "Node.h"
+#include "DialogSetting.h"
+#include <QInputDialog>
 
 AddNodeState::AddNodeState(int stateID,GraphicalPresentation* graphicalPresentation) : State(stateID,graphicalPresentation){
     stateToNodeTypeMap.put(StateID::AttributeState,ComponentType::TypeAttribute);
     stateToNodeTypeMap.put(StateID::EntityState,ComponentType::TypeEntity);
     stateToNodeTypeMap.put(StateID::RelationShipState,ComponentType::TypeRelationShip);
+}
+
+AddNodeState::~AddNodeState(){
+}
+
+void AddNodeState::onCreate(){
+    QString text = QInputDialog::getText(NULL,QString(DialogSetting::Title.c_str()),QString(DialogSetting::Text.c_str()),QLineEdit::Normal);
+    string nodeName = text.toStdString();
+    this->graphicalPresentation->setText(nodeName);
 }
 
 void AddNodeState::doMousePressEvent(Point position){

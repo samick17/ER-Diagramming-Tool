@@ -3,6 +3,9 @@
 State::State(int stateID,GraphicalPresentation* graphicalPresentation) : stateID(stateID),graphicalPresentation(graphicalPresentation){
 }
 
+State::~State(){
+}
+
 int State::getStateID(){
     return this->stateID;
 }
@@ -15,7 +18,7 @@ void State::mousePressEvent(Point position){
 
 void State::mouseMoveEvent(Point position){
     this->deltaPosition = position-this->currentPosition;
-	this->doMouseMoveEvent(position);
+    this->doMouseMoveEvent(position);
     this->currentPosition = position;
 }
 

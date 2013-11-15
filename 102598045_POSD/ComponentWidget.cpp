@@ -38,6 +38,9 @@ void ComponentWidget::updateWidget(){
     this->doUpdateWidget();
 }
 
+void ComponentWidget::doUpdateWidget(){
+}
+
 void ComponentWidget::paint(QPainter* painter,const QStyleOptionGraphicsItem* option, QWidget* widget){
     //set anti-aliasing & pen width
     painter->setRenderHint(QPainter::Antialiasing);

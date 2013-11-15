@@ -14,6 +14,3 @@ QPainterPath EntityWidget::shape() const{
     path.addRect(this->boundingRect());
     return path;
 }
-
-void EntityWidget::doUpdateWidget(){
-}

@@ -51,12 +51,12 @@ void Component::setSize(Size size){
 }
 
 //if no such connection in set, connect to target
-void Component::connectTo(Component* target){    
+void Component::connectTo(Component* target){
     if(!this->connectionMap.containsKey(target->getID()))
         this->connectionMap.put(target->getID(),target);
 }
 //if has such connection in set, disconnect to target
-void Component::disconnectTo(Component* target){    
+void Component::disconnectTo(Component* target){
     if(this->connectionMap.containsKey(target->getID()))
         this->connectionMap.remove(target->getID());
 }

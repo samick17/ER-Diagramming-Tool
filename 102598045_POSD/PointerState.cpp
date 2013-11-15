@@ -1,11 +1,16 @@
 #include "PointerState.h"
-#include <iostream>
 
 PointerState::PointerState(int stateID,GraphicalPresentation* graphicalPresentation) : State(stateID,graphicalPresentation){
 }
 
+PointerState::~PointerState(){
+}
+
+void PointerState::onCreate(){
+}
+
 void PointerState::doMousePressEvent(Point position){
-	this->graphicalPresentation->selectWidget();
+    this->graphicalPresentation->selectWidget();
 }
 
 void PointerState::doMouseMoveEvent(Point position){

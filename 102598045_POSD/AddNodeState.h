@@ -6,6 +6,8 @@
 class AddNodeState : public State{
 public:
     AddNodeState(int stateID,GraphicalPresentation* graphicalPresentation);
+    ~AddNodeState();
+    void onCreate();
 protected:
    void doMousePressEvent(Point position);
    void doMouseMoveEvent(Point position);

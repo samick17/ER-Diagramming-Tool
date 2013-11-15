@@ -8,6 +8,4 @@ public:
     ~RelationShipWidget();
 
     QPainterPath shape() const;
-protected:
-	void doUpdateWidget();
 };

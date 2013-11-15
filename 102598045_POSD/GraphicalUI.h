@@ -21,7 +21,6 @@ class GraphicalUI : public QMainWindow,public ISynchronizer{
     Q_OBJECT
 signals:
     void syncEvent(int syncEventType);
-    void switchStateEvent(int stateID);
 public:
     GraphicalUI(GraphicalPresentation* graphicalPresentation);
     ~GraphicalUI();
@@ -56,6 +55,5 @@ private slots:
     void openFile();
     void close();
     void switchState(int stateID);
-    void executeSwitchState(int stateID);
     void executeSync(int syncEventType);
 };

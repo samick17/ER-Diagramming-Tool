@@ -27,8 +27,8 @@ protected:
     string getText();
     bool getIsUnderLine();
     string getComponentID();
-    virtual void doUpdateWidget() = 0;
     virtual void doPaint(QPainter* painter) = 0;
+    virtual void doUpdateWidget();
 private:
     void drawSelectedFrame(QPainter* painter);
     QRectF rect;

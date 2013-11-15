@@ -21,7 +21,6 @@ GraphicalUI::GraphicalUI(GraphicalPresentation* graphicalPresentation): graphica
     QMetaObject::connectSlotsByName(this);
     qRegisterMetaType<string>("string");
     connect(this,SIGNAL(syncEvent(int)),this,SLOT(executeSync(int)));
-    connect(this,SIGNAL(switchStateEvent(int)),this,SLOT(executeSwitchState(int)));
     this->switchState(StateID::PointerState);
     this->graphicalPresentation->registerSynchronizer(this);
 }
@@ -137,20 +136,12 @@ void GraphicalUI::close(){
 
 void GraphicalUI::switchState(int stateID){
     this->graphicalPresentation->switchState(stateID);
-    this->switchStateEvent(stateID);
 }
 //execute notify event that are mapped.
 void GraphicalUI::executeSync(int notifiedEventType){
     if(this->syncMap.containsKey(notifiedEventType)){
         ViewSyncFunction syncFunction = this->syncMap.get(notifiedEventType);
         (this->*syncFunction)();
-    }
-}
-
-void GraphicalUI::executeSwitchState(int stateID){
-    if(stateID >= StateID::AttributeState && stateID <= StateID::RelationShipState){
-        QString text = QInputDialog::getText(NULL,QString(DialogSetting::Title.c_str()),QString(DialogSetting::Text.c_str()),QLineEdit::Normal);
-        this->graphicalPresentation->setText(text.toStdString());
     }
 }
 

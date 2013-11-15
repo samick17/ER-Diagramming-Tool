@@ -18,6 +18,7 @@ void StateSubject::switchState(int stateID,GraphicalPresentation* graphicalPrese
     StateFactory stateFactory;
     this->state = stateFactory.createState(stateID,graphicalPresentation);
     notify();
+    this->state->onCreate();
 }
 
 void StateSubject::registerObserver(IObserver* observer){

@@ -9,7 +9,6 @@ public:
 protected:
     QPainterPath shape() const;
     void doPaint(QPainter* painter);
-	void doUpdateWidget();
 private:
     QPointF sourcePoint;
     QPointF targetPoint;

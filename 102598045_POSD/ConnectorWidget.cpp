@@ -13,7 +13,9 @@ ConnectorWidget::~ConnectorWidget(){
 QPainterPath ConnectorWidget::shape() const{
     QPainterPath path;
     QPolygonF line;
-    line<<sourcePoint<<targetPoint;
+    QPointF leftTop = QPointF(this->boundingRect().left(),this->boundingRect().top());
+    QPointF rightBottom = QPointF(this->boundingRect().right(),this->boundingRect().bottom());
+    line<<leftTop<<rightBottom;
     path.addPolygon(line);
     return path;
 }
@@ -21,7 +23,4 @@ QPainterPath ConnectorWidget::shape() const{
 void ConnectorWidget::doPaint(QPainter* painter){
     painter->drawPath(this->shape());
     painter->drawText(this->boundingRect(),AlignHCenter,QString(this->getText().c_str()));
-}
-
-void ConnectorWidget::doUpdateWidget(){
 }

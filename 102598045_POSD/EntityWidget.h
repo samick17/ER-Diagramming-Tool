@@ -8,6 +8,4 @@ public:
     ~EntityWidget();
 
     QPainterPath shape() const;
-protected:
-	void doUpdateWidget();
 };

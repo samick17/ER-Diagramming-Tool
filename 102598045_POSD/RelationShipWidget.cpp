@@ -21,6 +21,3 @@ QPainterPath RelationShipWidget::shape() const{
     path.addPolygon(diamondPolygon);
     return path;
 }
-
-void RelationShipWidget::doUpdateWidget(){
-}

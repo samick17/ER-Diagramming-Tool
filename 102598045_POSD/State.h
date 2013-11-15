@@ -5,6 +5,8 @@
 class State{
 public:
     State(int stateID,GraphicalPresentation* graphicalPresentation);
+    virtual ~State();
+    virtual void onCreate() = 0;
 
     int getStateID();
 

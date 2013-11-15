@@ -85,10 +85,10 @@ bool GraphicalPresentation::isSelected(string componentID){
 }
 //select widget : highlight/unhilight selected,notify all
 void GraphicalPresentation::selectWidget(){
-	if(this->lastPressedComponent == NULL){
-		this->unSelectAll();
-		return;
-	}
+    if(this->lastPressedComponent == NULL){
+        this->unSelectAll();
+        return;
+    }
     string componentID = this->lastPressedComponent->getID();
     bool isSelected = this->isSelected(componentID);
     if(this->isCtrlPressed){
@@ -105,7 +105,7 @@ void GraphicalPresentation::selectWidget(){
             this->selectedWidgetSet.insert(componentID);
         }
     }
-    this->Subject::notify();
+    this->notify();
 }
 
 void GraphicalPresentation::moveSelectedWidget(Point deltaPosition){
