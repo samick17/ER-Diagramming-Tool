@@ -5,10 +5,6 @@
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
       <Extensions>cpp;cxx;c;def</Extensions>
     </Filter>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h</Extensions>
-    </Filter>
     <Filter Include="Resource Files">
       <UniqueIdentifier>{D9D6E242-F8AF-46E4-B9FD-80ECBC20BA3E}</UniqueIdentifier>
       <Extensions>qrc;*</Extensions>
@@ -65,11 +61,63 @@
     <Filter Include="Source Files\Process">
       <UniqueIdentifier>{71ff4f8a-3c13-43fe-a375-102818852853}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Exception\CollectionException">
+      <UniqueIdentifier>{b2459656-dc63-42fa-a86e-0a0f20eacd22}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Exception\IOException">
+      <UniqueIdentifier>{3f695053-8cc2-4f76-b89b-cde7502279fb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\View\TextUI">
+      <UniqueIdentifier>{e885d042-611d-47a7-9af6-ada92ef872cd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\View\GUI">
+      <UniqueIdentifier>{ab2d53e0-7a67-40df-9a68-b75931024646}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\View\GUI\GUIWidget">
+      <UniqueIdentifier>{59cf8c24-363d-4586-b188-154cb7d1248f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Command">
+      <UniqueIdentifier>{62ffcf58-8aad-42b2-a11f-30c949609b70}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\View\TextUI\TextInstruction">
+      <UniqueIdentifier>{10d47808-3981-430c-82e5-76b8a8bddd19}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\View\GUI\GUIWidget\ModelWidget">
+      <UniqueIdentifier>{ff1f06c7-d88a-4f19-9ffe-8865e63a4f16}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\View\GUI\MenuItem">
+      <UniqueIdentifier>{ad0dd498-fdd5-4ca5-afcf-9c56339e769b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\View\GUI\ToolBar">
+      <UniqueIdentifier>{95ea280b-014c-4adf-9cae-615db7b410fd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\View\GUI\GUIWidget\ToolBarWidget">
+      <UniqueIdentifier>{86f8a5fb-10d8-4334-a928-1a8fa86562d3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\View\GUI\State">
+      <UniqueIdentifier>{16cc152a-dc5d-432a-baa8-94ee3eb07c7a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Observer">
+      <UniqueIdentifier>{ce060f33-126d-4cba-86bb-563ad14d91d6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h</Extensions>
+    </Filter>
     <Filter Include="Header Files\Command">
       <UniqueIdentifier>{8341a3d0-9221-4d53-85d3-222cddeffcf6}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\Exception">
       <UniqueIdentifier>{23f5bc6f-7817-4c77-be06-757362953152}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Exception\ComponentException">
+      <UniqueIdentifier>{10152e75-e6db-487c-bd8d-123b27b0cde1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Exception\IOException">
+      <UniqueIdentifier>{4237417e-f01e-4b06-b168-d96b327e1263}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Exception\CollectionException">
+      <UniqueIdentifier>{0e8dce8f-9912-4552-b294-05958c5cf2e8}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\Model">
       <UniqueIdentifier>{e06c051b-2542-42d8-91a6-c7e5a6ecc57f}</UniqueIdentifier>
@@ -89,6 +137,33 @@
     <Filter Include="Header Files\View">
       <UniqueIdentifier>{7b710235-94aa-4750-8914-f8d92208d62e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\View\TextUI">
+      <UniqueIdentifier>{c00980f6-1697-48ec-874c-84799d2cdf50}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\View\TextUI\TextInstruction">
+      <UniqueIdentifier>{efa67499-ecf4-46b7-b812-35cae332453c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\View\GUI">
+      <UniqueIdentifier>{0c296417-9ccc-4819-b2c9-a0efb5761e02}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\View\GUI\GUIWidget">
+      <UniqueIdentifier>{880638e6-bf55-4eb7-8c81-2e8208c0f71e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\View\GUI\GUIWidget\ModelWidget">
+      <UniqueIdentifier>{060ab95b-936b-4db9-ae00-9df8386f3385}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\View\GUI\GUIWidget\ToolBarWidget">
+      <UniqueIdentifier>{621570b2-0cef-42e6-9f46-023f72c5b44a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\View\GUI\ToolBar">
+      <UniqueIdentifier>{09c7fe9f-bd3e-4680-8463-7bf75b3a4d1e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\View\GUI\MenuItem">
+      <UniqueIdentifier>{9b230725-bc5b-40d4-ad40-0497f7908410}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\View\GUI\State">
+      <UniqueIdentifier>{5986ac8d-2e58-4bc5-bc44-c07e7a9bc9a2}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Header Files\Parser">
       <UniqueIdentifier>{50467b2a-900d-4c40-a9a8-63c8b3e444e7}</UniqueIdentifier>
     </Filter>
@@ -104,86 +179,11 @@
     <Filter Include="Header Files\Factory">
       <UniqueIdentifier>{e432b637-edc5-487e-a784-6584bf80c40b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Exception\ComponentException">
-      <UniqueIdentifier>{10152e75-e6db-487c-bd8d-123b27b0cde1}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Exception\IOException">
-      <UniqueIdentifier>{4237417e-f01e-4b06-b168-d96b327e1263}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Exception\CollectionException">
-      <UniqueIdentifier>{0e8dce8f-9912-4552-b294-05958c5cf2e8}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Exception\CollectionException">
-      <UniqueIdentifier>{b2459656-dc63-42fa-a86e-0a0f20eacd22}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Exception\IOException">
-      <UniqueIdentifier>{3f695053-8cc2-4f76-b89b-cde7502279fb}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\View\TextUI">
-      <UniqueIdentifier>{e885d042-611d-47a7-9af6-ada92ef872cd}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\View\GUI">
-      <UniqueIdentifier>{ab2d53e0-7a67-40df-9a68-b75931024646}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\View\TextUI">
-      <UniqueIdentifier>{c00980f6-1697-48ec-874c-84799d2cdf50}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\View\GUI">
-      <UniqueIdentifier>{0c296417-9ccc-4819-b2c9-a0efb5761e02}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\View\GUI\GUIWidget">
-      <UniqueIdentifier>{59cf8c24-363d-4586-b188-154cb7d1248f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\View\GUI\GUIWidget">
-      <UniqueIdentifier>{880638e6-bf55-4eb7-8c81-2e8208c0f71e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Command">
-      <UniqueIdentifier>{62ffcf58-8aad-42b2-a11f-30c949609b70}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\View\TextUI\TextInstruction">
-      <UniqueIdentifier>{efa67499-ecf4-46b7-b812-35cae332453c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\View\TextUI\TextInstruction">
-      <UniqueIdentifier>{10d47808-3981-430c-82e5-76b8a8bddd19}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\View\GUI\GUIWidget\ModelWidget">
-      <UniqueIdentifier>{ff1f06c7-d88a-4f19-9ffe-8865e63a4f16}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\View\GUI\GUIWidget\ModelWidget">
-      <UniqueIdentifier>{060ab95b-936b-4db9-ae00-9df8386f3385}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\View\GUI\ToolBar">
-      <UniqueIdentifier>{09c7fe9f-bd3e-4680-8463-7bf75b3a4d1e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\View\GUI\MenuItem">
-      <UniqueIdentifier>{9b230725-bc5b-40d4-ad40-0497f7908410}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\View\GUI\MenuItem">
-      <UniqueIdentifier>{ad0dd498-fdd5-4ca5-afcf-9c56339e769b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\View\GUI\ToolBar">
-      <UniqueIdentifier>{95ea280b-014c-4adf-9cae-615db7b410fd}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\View\GUI\GUIWidget\ToolBarWidget">
-      <UniqueIdentifier>{621570b2-0cef-42e6-9f46-023f72c5b44a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\View\GUI\GUIWidget\ToolBarWidget">
-      <UniqueIdentifier>{86f8a5fb-10d8-4334-a928-1a8fa86562d3}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\View\GUI\State">
-      <UniqueIdentifier>{5986ac8d-2e58-4bc5-bc44-c07e7a9bc9a2}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\View\GUI\State">
-      <UniqueIdentifier>{16cc152a-dc5d-432a-baa8-94ee3eb07c7a}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\ViewSynchronizer">
       <UniqueIdentifier>{f0be6894-69b5-490d-99c4-f2356af4cfc3}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\Observer">
       <UniqueIdentifier>{70023ca4-13af-4db2-a9b8-d91264864f77}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Observer">
-      <UniqueIdentifier>{ce060f33-126d-4cba-86bb-563ad14d91d6}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -800,6 +800,9 @@
     </ClInclude>
     <ClInclude Include="DialogSetting.h">
       <Filter>Header Files\Constants</Filter>
+    </ClInclude>
+    <ClInclude Include="QueueUtil.h">
+      <Filter>Header Files\Util</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

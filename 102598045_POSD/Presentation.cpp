@@ -50,7 +50,7 @@ Connector* Presentation::getNodesConnector(Component* firstNode,Component* secon
     return this->erModel->getNodesConnector(firstNode,secondNode);
 }
 
-HashMap<string,Component*>& Presentation::getAllComponents(){
+HashMap<string,Component*> Presentation::getAllComponents(){
     return this->erModel->getAllComponents();
 }
 

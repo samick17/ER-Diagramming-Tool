@@ -28,12 +28,12 @@ void ERModelTest::SetUp(){
     this->erModel.addConnection(entityPC,attributePurchase_Date);
     this->erModel.addConnection(entityEngineer,relationShipHas);
     this->erModel.addConnection(relationShipHas,entityPC);
-    Attribute* attributeDepartment = static_cast<Attribute*>(this->erModel.addNode(ComponentType::TypeAttribute));    
+    Attribute* attributeDepartment = static_cast<Attribute*>(this->erModel.addNode(ComponentType::TypeAttribute));
     this->erModel.addConnection(entityEngineer,attributeDepartment);
     this->erModel.getComponentByID("11")->setName(RelationType::OneToOne);
-    this->erModel.getComponentByID("12")->setName(RelationType::OneToOne);    
+    this->erModel.getComponentByID("12")->setName(RelationType::OneToOne);
     attributeEmp_ID->setAsPrimaryKey();
-    attributeName->setAsPrimaryKey();    
+    attributeName->setAsPrimaryKey();
     attributePC_ID->setAsPrimaryKey();
 
     entityEngineer->setName("Engineer");
@@ -68,7 +68,7 @@ bool ERModelTest::hasConnected(Component* firstComponent,Component* secondCompon
 
 TEST_F(ERModelTest,testAddNode){
     //test add unknown
-    ASSERT_THROW(this->erModel.addNode("X"),InvalidNodeTypeException);    
+    ASSERT_THROW(this->erModel.addNode("X"),InvalidNodeTypeException);
     ASSERT_THROW(this->erModel.addNode("Q"),InvalidNodeTypeException);
     ASSERT_EQ(15,this->erModel.componentMap.size());
     //test add attribute
@@ -104,7 +104,7 @@ TEST_F(ERModelTest,testInsertComponent){
 
     Component* connector = new Connector(ComponentData("18",""));
     this->erModel.insertComponent(connector);
-    ASSERT_EQ(19,this->erModel.componentMap.size());        
+    ASSERT_EQ(19,this->erModel.componentMap.size());
 }
 
 TEST_F(ERModelTest,testEraseComponent){
@@ -115,7 +115,7 @@ TEST_F(ERModelTest,testEraseComponent){
     ASSERT_EQ(14,this->erModel.componentMap.size());
 }
 
-TEST_F(ERModelTest,testAddConnection){    
+TEST_F(ERModelTest,testAddConnection){
     Component* entityNoteBook = this->erModel.addNode(ComponentType::TypeEntity);
     Component* attributeNoteBookID = this->erModel.addNode(ComponentType::TypeAttribute);
     Component* relationShipOwn = this->erModel.addNode(ComponentType::TypeRelationShip);
@@ -162,6 +162,10 @@ TEST_F(ERModelTest,testOpenFile){
     ASSERT_THROW(this->erModel.commandManager.undo(),Exception);
 
     FileCreator::deleteDefaultFile();
+}
+
+TEST_F(ERModelTest,testSaveFile){
+
 }
 
 TEST_F(ERModelTest,testGetComponentByID){

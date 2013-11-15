@@ -23,9 +23,8 @@ public:
     void setName(string);
     string getClassName();
     Rect getRect();
-    void setPosition(Point position);
-    virtual void doSetPosition(Point position);
-    void setCenterPosition(Point position);
+    virtual void setPosition(Point position) = 0;
+    virtual void setCenterPosition(Point position) = 0;
     void setSize(Size size);
 
     void connectTo(Component* target);

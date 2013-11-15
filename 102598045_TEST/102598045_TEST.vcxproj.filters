@@ -109,6 +109,12 @@
     <Filter Include="Source Files\Observer">
       <UniqueIdentifier>{75139101-2ea4-425e-9e22-2f9d949dd3d2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Unit Testing Files\StructTest">
+      <UniqueIdentifier>{0c5699a7-43fa-4451-b978-7777f9fa80ec}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\StructTest">
+      <UniqueIdentifier>{66e987b8-26cf-432e-980e-5748544a07a5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MainTest.cpp">
@@ -411,6 +417,27 @@
     <ClCompile Include="..\102598045_POSD\Size.cpp">
       <Filter>Source Files\Struct</Filter>
     </ClCompile>
+    <ClCompile Include="ComponentDataTest.cpp">
+      <Filter>Unit Testing Files\StructTest</Filter>
+    </ClCompile>
+    <ClCompile Include="ConnectionDataTest.cpp">
+      <Filter>Unit Testing Files\StructTest</Filter>
+    </ClCompile>
+    <ClCompile Include="InstructionDataTest.cpp">
+      <Filter>Unit Testing Files\StructTest</Filter>
+    </ClCompile>
+    <ClCompile Include="PointTest.cpp">
+      <Filter>Unit Testing Files\StructTest</Filter>
+    </ClCompile>
+    <ClCompile Include="QActionDataTest.cpp">
+      <Filter>Unit Testing Files\StructTest</Filter>
+    </ClCompile>
+    <ClCompile Include="RectTest.cpp">
+      <Filter>Unit Testing Files\StructTest</Filter>
+    </ClCompile>
+    <ClCompile Include="SizeTest.cpp">
+      <Filter>Unit Testing Files\StructTest</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DirectoryUtil.h">
@@ -496,6 +523,27 @@
     </ClInclude>
     <ClInclude Include="FileCreator.h">
       <Filter>Header Files\TestingUtils</Filter>
+    </ClInclude>
+    <ClInclude Include="ComponentDataTest.h">
+      <Filter>Header Files\StructTest</Filter>
+    </ClInclude>
+    <ClInclude Include="ConnectionDataTest.h">
+      <Filter>Header Files\StructTest</Filter>
+    </ClInclude>
+    <ClInclude Include="InstructionDataTest.h">
+      <Filter>Header Files\StructTest</Filter>
+    </ClInclude>
+    <ClInclude Include="PointTest.h">
+      <Filter>Header Files\StructTest</Filter>
+    </ClInclude>
+    <ClInclude Include="QActionDataTest.h">
+      <Filter>Header Files\StructTest</Filter>
+    </ClInclude>
+    <ClInclude Include="RectTest.h">
+      <Filter>Header Files\StructTest</Filter>
+    </ClInclude>
+    <ClInclude Include="SizeTest.h">
+      <Filter>Header Files\StructTest</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

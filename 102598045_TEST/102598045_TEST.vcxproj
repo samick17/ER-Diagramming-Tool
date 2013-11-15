@@ -183,6 +183,13 @@
     <ClCompile Include="TableManagerTest.cpp" />
     <ClCompile Include="TableTest.cpp" />
     <ClCompile Include="TableUtilTest.cpp" />
+    <ClCompile Include="ComponentDataTest.cpp" />
+    <ClCompile Include="ConnectionDataTest.cpp" />
+    <ClCompile Include="InstructionDataTest.cpp" />
+    <ClCompile Include="PointTest.cpp" />
+    <ClCompile Include="QActionDataTest.cpp" />
+    <ClCompile Include="RectTest.cpp" />
+    <ClCompile Include="SizeTest.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AddNodeCommandTest.h" />
@@ -213,6 +220,13 @@
     <ClInclude Include="TableManagerTest.h" />
     <ClInclude Include="TableTest.h" />
     <ClInclude Include="TableUtilTest.h" />
+    <ClInclude Include="ComponentDataTest.h" />
+    <ClInclude Include="ConnectionDataTest.h" />
+    <ClInclude Include="InstructionDataTest.h" />
+    <ClInclude Include="PointTest.h" />
+    <ClInclude Include="QActionDataTest.h" />
+    <ClInclude Include="RectTest.h" />
+    <ClInclude Include="SizeTest.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

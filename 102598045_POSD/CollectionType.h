@@ -8,4 +8,5 @@ class CollectionType{
 public:
     static const string TypeHashMap;
     static const string TypeStack;
+    static const string TypeQueue;
 };

@@ -8,8 +8,12 @@ public:
     ~Node();
 
     string getType();
+    void setPosition(Point position);
+    void setCenterPosition(Point position);
 
     void breakAllConnections();
     int canConnectTo(Component* target);
     bool hasSizeToConnect();
+private:
+    void updateConnectorsPosition();
 };

@@ -14,6 +14,7 @@
 
 GraphicalPresentation::GraphicalPresentation(Presentation* presentation) : presentation(presentation){
     this->isCtrlPressed = false;
+    this->showPreview = false;
     this->stateSubject = new StateSubject();
 }
 
@@ -25,8 +26,16 @@ StateSubject* GraphicalPresentation::getStateSubject(){
     return this->stateSubject;
 }
 
-HashMap<string,Component*>& GraphicalPresentation::getAllComponents(){
-    return this->presentation->getAllComponents();
+HashMap<string,Component*> GraphicalPresentation::getAllComponents(){
+    HashMap<string,Component*> componentMap = this->presentation->getAllComponents();
+    HashMap<string,Connector*> connectorMap = ERModelUtil::convertComponentHashMapToTypeHashMap<Connector>(componentMap);
+    for each(Connector* connector in connectorMap){
+        componentMap.remove(connector->getID());
+    }
+    for each(Connector* connector in connectorMap){
+        componentMap.insertAt(connector->getID(),connector,0);
+    }
+    return componentMap;
 }
 
 void GraphicalPresentation::setText(string text){
@@ -53,7 +62,7 @@ Component* GraphicalPresentation::getLastMovedComponent(){
 }
 
 Component* GraphicalPresentation::getLastReleasedComponent(){
-	return this->lastReleasedComponent;
+    return this->lastReleasedComponent;
 }
 
 void GraphicalPresentation::addNode(string nodeType,string nodeName,Point position){
@@ -63,6 +72,14 @@ void GraphicalPresentation::addNode(string nodeType,string nodeName,Point positi
     node->setSize(Size::DefaultSize());
     node->setCenterPosition(position);
     this->presentation->sync(ControllerEvent::DisplayDiagram);
+}
+
+void GraphicalPresentation::addConnection(Component* sourceComponent,Component* targetComponent){
+	try{
+	    this->presentation->addConnection(sourceComponent,targetComponent);
+	}
+	catch(Exception&){
+	}
 }
 
 void GraphicalPresentation::openFile(string filePath){
@@ -166,4 +183,18 @@ void GraphicalPresentation::mouseMoveEvent(Point position,Component* component){
 void GraphicalPresentation::mouseReleaseEvent(Point position,Component* component){
     this->lastReleasedComponent = component;
     this->stateSubject->getState()->mouseReleaseEvent(position);
+}
+
+void GraphicalPresentation::setPreviewState(bool showPreview){
+    this->showPreview = showPreview;
+    this->notify();
+}
+
+void GraphicalPresentation::setPreviewSourcePoint(Point sourcePoint){
+    this->sourcePoint = sourcePoint;
+}
+
+void GraphicalPresentation::setPreviewTargetPoint(Point currentPoint){
+    this->currentPoint = currentPoint;
+    this->notify();
 }

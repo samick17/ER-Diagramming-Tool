@@ -34,14 +34,6 @@ Rect Component::getRect(){
     return this->componentData.getRect();
 }
 
-void Component::setPosition(Point position){
-    this->componentData.setPosition(position);
-    this->doSetPosition(position);
-}
-
-void Component::doSetPosition(Point position){
-}
-
 void Component::setCenterPosition(Point position){
     this->componentData.setCenterPosition(position);
 }

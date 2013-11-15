@@ -207,6 +207,7 @@
     <ClInclude Include="CollectionType.h" />
     <ClInclude Include="Command.h" />
     <ClInclude Include="DialogSetting.h" />
+    <ClInclude Include="QueueUtil.h" />
     <ClInclude Include="Subject.h" />
     <ClInclude Include="ConnectorWidget.h" />
     <ClInclude Include="ConnectState.h" />

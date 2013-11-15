@@ -1,7 +1,7 @@
 #include "QActionData.h"
 
 QActionData::QActionData(string actionText,string iconPath,string keySequence) : actionText(actionText),iconPath(iconPath){
-    this->keySequence = QKeySequence(keySequence.c_str());
+    this->keySequence = keySequence;
 }
 
 QActionData::~QActionData(){
@@ -15,6 +15,6 @@ string QActionData::getIconPath(){
     return this->iconPath;
 }
 
-QKeySequence QActionData::getKeySequence(){
+string QActionData::getKeySequence(){
     return this->keySequence;
 }

@@ -14,7 +14,7 @@ public:
     ~GraphicalPresentation();
 
     StateSubject* getStateSubject();
-    HashMap<string,Component*>& getAllComponents();
+    HashMap<string,Component*> getAllComponents();
     void setText(string text);
     string getText();
     Node* getLastAddedNode();
@@ -23,6 +23,7 @@ public:
     Component* getLastReleasedComponent();
 
     void addNode(string nodeType,string nodeName,Point position);
+    void addConnection(Component* sourceComponent,Component* targetComponent);
     void openFile(string filePath);
     void saveFile(string filePath);
     void close();
@@ -41,6 +42,10 @@ public:
     void mousePressEvent(Point position,Component* component);
     void mouseMoveEvent(Point position,Component* component);
     void mouseReleaseEvent(Point position,Component* component);
+
+    void setPreviewState(bool showPreview);
+    void setPreviewSourcePoint(Point sourcePoint);
+    void setPreviewTargetPoint(Point currentPoint);
 protected:
     //observer
     void doRegisterObserver(IObserver* observer);
@@ -55,4 +60,7 @@ private:
     Component* lastPressedComponent;
     Component* lastMovedComponent;
     Component* lastReleasedComponent;
+	bool showPreview;
+	Point sourcePoint;
+	Point currentPoint;
 };

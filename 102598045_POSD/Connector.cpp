@@ -4,6 +4,7 @@
 #include "ComponentUtil.h"
 #include "ComponentConnectionSize.h"
 #include "StringSymbol.h"
+#include "QueueUtil.h"
 
 Connector::Connector(ComponentData componentData) : Component(componentData){
 }
@@ -13,6 +14,26 @@ Connector::~Connector(){
 
 string Connector::getType(){
     return ComponentType::TypeConnector;
+}
+
+void Connector::setPosition(Point position){
+}
+
+void Connector::setCenterPosition(Point position){
+}
+
+void Connector::updateRect(){
+    Component* firstNode = this->getFirstConnectedNode();
+    Component* secondNode = this->getSecondConnectedNode();
+    if(!firstNode && !secondNode)
+        return;
+    Point sourcePoint = firstNode->getRect().getCenterPosition();
+    Point targetPoint = secondNode->getRect().getCenterPosition();
+
+    Point position = Point(min(sourcePoint.getX(),targetPoint.getX()),min(sourcePoint.getY(),targetPoint.getY()));
+    this->componentData.setPosition(position);
+    Size size = Size(abs(sourcePoint.getX()-targetPoint.getX()),abs(sourcePoint.getY()-targetPoint.getY()));
+    this->componentData.setSize(size);
 }
 
 void Connector::breakAllConnections(){
@@ -31,21 +52,17 @@ bool Connector::hasSizeToConnect(){
 }
 //first node's id will always less than second node
 Component* Connector::getFirstConnectedNode(){
-    Component* firstNode = this->getAllConnections().getValueByIndex(0);
-    Component* secondNode = this->getAllConnections().getValueByIndex(1);
-    if(strcmp(firstNode->getID().c_str(),secondNode->getID().c_str())>0){
-        return secondNode;
-    }
-    return firstNode;
+    HashMap<string,Component*> connectionMap = this->getAllConnections();
+    if(connectionMap.empty())
+        return NULL;
+    return connectionMap.getValueByIndex(0);
 }
 //second node's id will always greater than first node
 Component* Connector::getSecondConnectedNode(){
-    Component* firstNode = this->getAllConnections().getValueByIndex(0);
-    Component* secondNode = this->getAllConnections().getValueByIndex(1);
-    if(strcmp(firstNode->getID().c_str(),secondNode->getID().c_str())>0){
-        return firstNode;
-    }
-    return secondNode;
+    HashMap<string,Component*> connectionMap = this->getAllConnections();
+    if(connectionMap.size()>1)
+        return connectionMap.getValueByIndex(1);
+    return NULL;
 }
 
 bool Connector::isNodesConnection(Component* firstNode,Component* secondNode){

@@ -6,12 +6,11 @@
 #include <gtest/gtest.h>
 
 class IntegrationTest : public testing::Test{
-protected:        
+protected:
     ERModel erModel;
-	Presentation* presentation;
+    Presentation* presentation;
     TextPresentation* textPresentation;
-	TextUIPresenter* textUIPresenter;
+    TextUIPresenter* textUIPresenter;
     virtual void SetUp();
-    virtual void TearDown();    
-    void assertLoadFileCorrectly();
+    virtual void TearDown();
 };

@@ -5,6 +5,7 @@
 using namespace Qt;
 
 ConnectorWidget::ConnectorWidget(Component* component,GraphicalPresentation* graphicalPresentation) : ComponentWidget(component,graphicalPresentation){
+    this->doUpdateWidget();
 }
 
 ConnectorWidget::~ConnectorWidget(){
@@ -13,14 +14,25 @@ ConnectorWidget::~ConnectorWidget(){
 QPainterPath ConnectorWidget::shape() const{
     QPainterPath path;
     QPolygonF line;
-    QPointF leftTop = QPointF(this->boundingRect().left(),this->boundingRect().top());
-    QPointF rightBottom = QPointF(this->boundingRect().right(),this->boundingRect().bottom());
-    line<<leftTop<<rightBottom;
+    line<<this->sourcePoint<<this->targetPoint;
     path.addPolygon(line);
+    path.addEllipse(this->boundingRect().center(),2,2);
     return path;
 }
 
 void ConnectorWidget::doPaint(QPainter* painter){
     painter->drawPath(this->shape());
     painter->drawText(this->boundingRect(),AlignHCenter,QString(this->getText().c_str()));
+}
+
+void ConnectorWidget::doUpdateWidget(){
+    Connector* connector = static_cast<Connector*>(this->component);
+    Component* firstComponent = connector->getFirstConnectedNode();
+    Component* secondComponent = connector->getSecondConnectedNode();
+    if(!firstComponent && !secondComponent)
+        return;
+    Point sourcePosition = firstComponent->getRect().getCenterPosition();
+    this->sourcePoint = QPointF(sourcePosition.getX(),sourcePosition.getY());
+    Point targetPosition = secondComponent->getRect().getCenterPosition();
+    this->targetPoint = QPointF(targetPosition.getX(),targetPosition.getY());
 }

@@ -22,6 +22,9 @@ void GUIScene::notify(ISubject* subject){
 
 void GUIScene::displayDiagram(){
     this->clear();
+	//display preview
+
+	//display all
     HashMap<string,Component*>& componentMap = this->graphicalPresentation->getAllComponents();
     WidgetFactory widgetFactory;
     for each(Component* component in componentMap){
@@ -34,37 +37,37 @@ void GUIScene::displayDiagram(){
 void GUIScene::mousePressEvent(QGraphicsSceneMouseEvent* mouseEvent){
     QPointF qPosition = mouseEvent->scenePos();
     ComponentWidget* widget = static_cast<ComponentWidget*>(this->itemAt(qPosition));
-	Component* component = NULL;
-	Point position = Point(qPosition.x(),qPosition.y());
+    Component* component = NULL;
+    Point position = Point(qPosition.x(),qPosition.y());
     if(widget){
         component = widget->getComponent();
     }
-	this->graphicalPresentation->mousePressEvent(position,component);
-	this->updateAll();
+    this->graphicalPresentation->mousePressEvent(position,component);
+    this->updateAll();
 }
 
 void GUIScene::mouseMoveEvent(QGraphicsSceneMouseEvent* mouseEvent){
     QPointF qPosition = mouseEvent->scenePos();
     ComponentWidget* widget = static_cast<ComponentWidget*>(this->itemAt(qPosition));
-	Component* component = NULL;
-	Point position = Point(qPosition.x(),qPosition.y());
+    Component* component = NULL;
+    Point position = Point(qPosition.x(),qPosition.y());
     if(widget){
         component = widget->getComponent();
     }
-	this->graphicalPresentation->mouseMoveEvent(position,component);
-	this->updateAll();
+    this->graphicalPresentation->mouseMoveEvent(position,component);
+    this->updateAll();
 }
 
 void GUIScene::mouseReleaseEvent(QGraphicsSceneMouseEvent* mouseEvent){
     QPointF qPosition = mouseEvent->scenePos();
     ComponentWidget* widget = static_cast<ComponentWidget*>(this->itemAt(qPosition));
-	Component* component = NULL;
-	Point position = Point(qPosition.x(),qPosition.y());
+    Component* component = NULL;
+    Point position = Point(qPosition.x(),qPosition.y());
     if(widget){
         component = widget->getComponent();
     }
-	this->graphicalPresentation->mouseReleaseEvent(position,component);
-	this->updateAll();
+    this->graphicalPresentation->mouseReleaseEvent(position,component);
+    this->updateAll();
 }
 
 void GUIScene::executeNotify(){
@@ -74,7 +77,7 @@ void GUIScene::executeNotify(){
 void GUIScene::updateAll(){
     for each(QGraphicsItem* component in this->items()){
         ComponentWidget* widget = static_cast<ComponentWidget*>(component);
-        widget->updateWidget();
+		widget->updateWidget();
     }
     this->update();
 }

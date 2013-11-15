@@ -1,6 +1,13 @@
 #pragma once
 
+#include <gtest/gtest_prod.h> 
+
 struct Point{
+    friend class PointTest;
+    FRIEND_TEST(PointTest,testOperatorEquals);
+    FRIEND_TEST(PointTest,testOperatorPlusEquals);
+    FRIEND_TEST(PointTest,testOperatorPlus);
+    FRIEND_TEST(PointTest,testOperatorMinus);
 public:
     Point(double coordinateX = 0,double coordinateY = 0);
 

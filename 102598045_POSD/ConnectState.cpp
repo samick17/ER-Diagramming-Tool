@@ -11,20 +11,20 @@ void ConnectState::onCreate(){
 }
 
 void ConnectState::doMousePressEvent(Point position){
-	Component* component = this->graphicalPresentation->getLastPressedComponent();
-	if(component == NULL)
-		cout<<"null component"<<endl;
-	else 
-		cout<<"press component"<<component->getID()<<endl;
+    Component* component = this->graphicalPresentation->getLastPressedComponent();
+    this->graphicalPresentation->setPreviewState(component);
+    this->graphicalPresentation->setPreviewSourcePoint(position);
+    this->graphicalPresentation->setPreviewTargetPoint(position);
 }
 
 void ConnectState::doMouseMoveEvent(Point position){
+    this->graphicalPresentation->setPreviewTargetPoint(position);
 }
 
 void ConnectState::doMouseReleaseEvent(Point position){
-	Component* component = this->graphicalPresentation->getLastReleasedComponent();
-	if(component == NULL)
-		cout<<"null component"<<endl;
-	else 
-		cout<<"press component"<<component->getID()<<endl;
+	this->graphicalPresentation->setPreviewState(false);
+	Component* sourceComponent = this->graphicalPresentation->getLastPressedComponent();
+	Component* targetComponent = this->graphicalPresentation->getLastReleasedComponent();
+	if(sourceComponent && targetComponent)
+		this->graphicalPresentation->addConnection(sourceComponent,targetComponent);	
 }

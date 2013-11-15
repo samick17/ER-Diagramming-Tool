@@ -8,8 +8,6 @@
 #include "NoSuchKeyException.h"
 #include "NullPointerException.h"
 #include "ComponentType.h"
-#include "DeleteComponentCommand.h"
-#include "ConnectNodeCommand.h"
 #include "TextUIPresenter.h"
 #include "FileCreator.h"
 
@@ -24,18 +22,6 @@ void IntegrationTest::SetUp(){
     InputFileParser inputFileParser;
     inputFileParser.parseFileToModel(filePath,&this->erModel);
     //Assert Diagram is loaded correctly
-    assertLoadFileCorrectly();
-}
-
-void IntegrationTest::TearDown(){
-    //delete file
-    FileCreator::deleteDefaultFile();
-    //delete pointer
-    delete this->presentation;
-    delete this->textPresentation;
-}
-//Assert Diagram is loaded correctly
-void IntegrationTest::assertLoadFileCorrectly(){
     ASSERT_EQ(15,this->erModel.componentMap.size());
     //Assert all component type is correct
     ASSERT_EQ(ComponentType::TypeEntity,this->erModel.componentMap.get("0")->getType());
@@ -84,7 +70,15 @@ void IntegrationTest::assertLoadFileCorrectly(){
     ASSERT_EQ(2,this->erModel.componentMap.get("11")->getAllConnections().size());
     ASSERT_EQ(2,this->erModel.componentMap.get("12")->getAllConnections().size());
     ASSERT_EQ(1,this->erModel.componentMap.get("13")->getAllConnections().size());
-    ASSERT_EQ(2,this->erModel.componentMap.get("14")->getAllConnections().size());    
+    ASSERT_EQ(2,this->erModel.componentMap.get("14")->getAllConnections().size());
+}
+
+void IntegrationTest::TearDown(){
+    //delete file
+    FileCreator::deleteDefaultFile();
+    //delete pointer
+    delete this->presentation;
+    delete this->textPresentation;
 }
 
 TEST_F(IntegrationTest,testLoadFileNotExist){
@@ -96,10 +90,8 @@ TEST_F(IntegrationTest,testLoadFileNotExist){
 
 TEST_F(IntegrationTest,testIsPrimaryExist){
     //Display Table
-	
-	//this->textPresentation->textUIPresenter->displayTable();
-	this->textUIPresenter->displayTable();
-	
+    this->textUIPresenter->displayTable();
+
     Attribute* attributeEmp_ID = static_cast<Attribute*>(this->erModel.componentMap.get("1"));
     Attribute* attributeName = static_cast<Attribute*>(this->erModel.componentMap.get("3"));
     Attribute* attributePC_ID = static_cast<Attribute*>(this->erModel.componentMap.get("5"));
@@ -113,7 +105,7 @@ TEST_F(IntegrationTest,testIsPrimaryExist){
     ASSERT_EQ(false,attributePurchase_Date->isPrimaryKey());
     ASSERT_EQ(false,attributeDepartment->isPrimaryKey());
     //Assert Entity: Engineer's primary key is "Name" & "Emp_ID"
-    Entity* entityEngineer = static_cast<Entity*>(this->erModel.componentMap.get("0"));    
+    Entity* entityEngineer = static_cast<Entity*>(this->erModel.componentMap.get("0"));
     ASSERT_EQ(3,entityEngineer->getConnectedAttributes().size());
     ASSERT_EQ(2,entityEngineer->getPrimaryKeyAttributes().size());
     ASSERT_EQ(true,entityEngineer->getConnectedAttributes().containsKey(attributeEmp_ID->getID()));
@@ -149,7 +141,7 @@ TEST_F(IntegrationTest,testUndoDeleteComponent){
     ASSERT_EQ(entityTest,this->erModel.componentMap.get(entityTest->getID()));
     ASSERT_EQ(16,this->erModel.componentMap.size());
 
-	this->erModel.deleteComponent(entityTest);
+    this->erModel.deleteComponent(entityTest);
         
     ASSERT_THROW(this->erModel.componentMap.get(entityTest->getID()),NoSuchKeyException);
     ASSERT_EQ(15,this->erModel.componentMap.size());
@@ -173,8 +165,8 @@ TEST_F(IntegrationTest,testRedoConnectComponent){
     ASSERT_EQ(attributeTestAttr,this->erModel.componentMap.get(attributeTestAttr->getID()));
     ASSERT_EQ(17,this->erModel.componentMap.size());
 
-	this->erModel.addConnection(entityTest,attributeTestAttr);
-    
+    this->erModel.addConnection(entityTest,attributeTestAttr);
+
     Connector* connector = static_cast<Connector*>(this->erModel.getComponentByID("17"));
     ASSERT_EQ(true,connector->isNodesConnection(entityTest,attributeTestAttr));
     ASSERT_EQ(18,this->erModel.componentMap.size());

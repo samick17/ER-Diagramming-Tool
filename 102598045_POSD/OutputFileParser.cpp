@@ -16,7 +16,7 @@ void OutputFileParser::parseModelToFile(string filePath){
     Document doc(filePath);        
     //write all
     this->writeAllComponentsToDoc(doc,componentMap);
-    this->writeAllConnectorsToDoc(doc,componentMap);    
+    this->writeAllConnectorsToDoc(doc,componentMap);
     this->writeAllPrimaryKeyToDoc(doc,componentMap);
     
     doc.saveFile();
@@ -72,8 +72,8 @@ string OutputFileParser::serializeEntityToString(Entity* entity){
     string result = reorderedIDMap.get(entity->getID());
     vector<string> primaryKeyAttributeIDVector;
 
-    for each(Attribute* attribute in primaryKeyAttributeHashMap)    
-        primaryKeyAttributeIDVector.push_back(reorderedIDMap.get(attribute->getID()));    
+    for each(Attribute* attribute in primaryKeyAttributeHashMap)
+        primaryKeyAttributeIDVector.push_back(reorderedIDMap.get(attribute->getID()));
 
     result += StringSymbol::Space+StringUtil::appendWithComma(primaryKeyAttributeIDVector);
     return result;

@@ -1,6 +1,5 @@
 #include "TextUIProcess.h"
 
-
 TextUIProcess::TextUIProcess(TextUI* textUI) : textUI(textUI){
     this->stopRequested = false;
     this->start();

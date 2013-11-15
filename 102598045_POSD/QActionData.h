@@ -1,7 +1,5 @@
 #pragma once
 
-#include <QString>
-#include <QKeySequence>
 #include <string>
 #include "StringSymbol.h"
 
@@ -14,9 +12,9 @@ public:
 
     string getActionText();
     string getIconPath();
-    QKeySequence getKeySequence();
+    string getKeySequence();
 private:
     string actionText;
     string iconPath;
-    QKeySequence keySequence;
+    string keySequence;
 };
