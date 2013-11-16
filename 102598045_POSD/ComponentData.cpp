@@ -32,9 +32,7 @@ void ComponentData::setPosition(Point position){
 }
 
 void ComponentData::setCenterPosition(Point position){
-    Size size = this->getRect().getSize();
-    Point newPosition = Point(position.getX()-size.getWidth()/Number::Two,position.getY()-size.getHeight()/Number::Two);
-    this->setPosition(newPosition);
+    this->rect.setCenterPosition(position);
 }
 
 void ComponentData::setSize(Size size){

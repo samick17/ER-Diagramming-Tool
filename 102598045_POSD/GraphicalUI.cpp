@@ -63,8 +63,7 @@ void GraphicalUI::setTitle(string title,string iconPath){
 
 void GraphicalUI::initialGraphicView(){
     this->view = new QGraphicsView(this);
-    QRectF sceneRect = QRectF(0,0,ApplicationSetting::DefaultWidth,ApplicationSetting::DefaultHeight);
-    this->scene = new GUIScene(sceneRect,this,this->view);
+    this->scene = new GUIScene(this->view->contentsRect(),this,this->view);
     this->view->setScene(this->scene);
     this->setCentralWidget(view);
 }

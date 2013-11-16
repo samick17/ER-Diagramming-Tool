@@ -5,6 +5,7 @@
 
 class RectTest : public testing::Test{
 protected:
+    Rect rect;
     virtual void SetUp();
     virtual void TearDown();
 };

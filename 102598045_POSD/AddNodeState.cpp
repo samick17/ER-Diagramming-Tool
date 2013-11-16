@@ -13,7 +13,7 @@ AddNodeState::AddNodeState(int stateID,GraphicalPresentation* graphicalPresentat
 
 AddNodeState::~AddNodeState(){
 }
-
+//this function will be called from StateFactory right after constructed.
 void AddNodeState::onCreate(){
     QString text = QInputDialog::getText(NULL,QString(DialogSetting::Title.c_str()),QString(DialogSetting::Text.c_str()),QLineEdit::Normal);
     string nodeName = text.toStdString();

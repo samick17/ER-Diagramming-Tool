@@ -4,16 +4,32 @@
 #include "Size.h"
 
 struct Rect{
+    friend class RectTest;
+    FRIEND_TEST(RectTest,testSetPosition);
+    FRIEND_TEST(RectTest,testSetSize);
 public:
     Rect(Point position = Point(),Size size = Size());
 
-    Point& getPosition();
+    Point getPosition();
     void setPosition(Point position);
-    Size& getSize();
+    void setCenterPosition(Point centerPosition);
+    double getWidth();
+    double getHeight();
     void setSize(Size size);
-    Point getCenterPosition();
-    bool contains(Point point);
 
+    double getLeft();
+    double getRight();
+    double getTop();
+    double getBottom();
+    double getCenterX();
+    double getCenterY();
+
+    Point getCenterPosition();
+    Point getCenterLeft();
+    Point getCenterRight();
+    Point getCenterTop();
+    Point getCenterBottom();
+    
     bool operator==(const Rect& rectToCompare) const;
 private:
     Point position;

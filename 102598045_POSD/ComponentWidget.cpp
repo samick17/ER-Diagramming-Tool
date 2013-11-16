@@ -19,10 +19,9 @@ string ComponentWidget::getComponentID(){
 void ComponentWidget::updateWidget(){
     Rect componentRect = this->component->getRect();
     Point position = componentRect.getPosition();
-    Size size = componentRect.getSize();
     this->setText(this->component->getName());
     this->componentID = this->component->getID();
-    this->setRect(QRectF(position.getX(),position.getY(),size.getWidth(),size.getHeight()));
+    this->setRect(QRectF(position.getX(),position.getY(),componentRect.getWidth(),componentRect.getHeight()));
     this->doUpdateWidget();
 }
 
