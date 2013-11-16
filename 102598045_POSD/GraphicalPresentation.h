@@ -41,7 +41,7 @@ public:
     void mousePressEvent(Point position,Component* component);
     void mouseMoveEvent(Point position,Component* component);
     void mouseReleaseEvent(Point position,Component* component);
-
+    //preview connector
     void setPreviewState(bool showPreview);
     bool getPreviewState();
     void setPreviewSourcePoint(Point sourcePoint);

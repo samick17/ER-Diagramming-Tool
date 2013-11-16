@@ -16,5 +16,5 @@ string InstructionData::getInfo(){
 }
 //the function pointer to new command instance
 NewInstructionFunction InstructionData::getNewInstructionFunction(){
-	return this->newInstructionFunction;
+    return this->newInstructionFunction;
 }

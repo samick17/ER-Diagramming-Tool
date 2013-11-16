@@ -8,7 +8,7 @@ TEST_F(HashMapTest,testHashMap){
     ASSERT_EQ(0,testMap.size());
     
     //Assert empty
-    ASSERT_EQ(true,testMap.empty());    
+    ASSERT_EQ(true,testMap.empty());
     int key1 = 0;
     string string1 = "test1";
     ASSERT_EQ(string1,testMap.put(key1,string1));

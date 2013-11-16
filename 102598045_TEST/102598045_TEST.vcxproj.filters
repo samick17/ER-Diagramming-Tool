@@ -115,6 +115,12 @@
     <Filter Include="Header Files\StructTest">
       <UniqueIdentifier>{66e987b8-26cf-432e-980e-5748544a07a5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\PresentationTest">
+      <UniqueIdentifier>{193b9130-b831-4a38-992c-b63fc9bc4387}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Unit Testing Files\PresentationTest">
+      <UniqueIdentifier>{25440486-98cb-4a60-9a33-79d2b6ac1612}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MainTest.cpp">
@@ -438,6 +444,12 @@
     <ClCompile Include="SizeTest.cpp">
       <Filter>Unit Testing Files\StructTest</Filter>
     </ClCompile>
+    <ClCompile Include="GraphicalPresentationTest.cpp">
+      <Filter>Unit Testing Files\PresentationTest</Filter>
+    </ClCompile>
+    <ClCompile Include="TextPresentationTest.cpp">
+      <Filter>Unit Testing Files\PresentationTest</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DirectoryUtil.h">
@@ -544,6 +556,12 @@
     </ClInclude>
     <ClInclude Include="SizeTest.h">
       <Filter>Header Files\StructTest</Filter>
+    </ClInclude>
+    <ClInclude Include="GraphicalPresentationTest.h">
+      <Filter>Header Files\PresentationTest</Filter>
+    </ClInclude>
+    <ClInclude Include="TextPresentationTest.h">
+      <Filter>Header Files\PresentationTest</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

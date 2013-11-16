@@ -1,14 +1,10 @@
 #include "GraphicalPresentation.h"
 #include "ActionData.h"
 #include "ApplicationSetting.h"
-#include "Attribute.h"
-#include "Entity.h"
-#include "RelationShip.h"
 #include "Connector.h"
-#include "WidgetDefaultSetting.h"
+#include "Node.h"
 #include "ControllerEvent.h"
 #include "ERModelUtil.h"
-#include "StateFactory.h"
 #include "StateID.h"
 #include "StateSubject.h"
 
@@ -28,6 +24,7 @@ StateSubject* GraphicalPresentation::getStateSubject(){
 
 HashMap<string,Component*> GraphicalPresentation::getAllComponents(){
     HashMap<string,Component*> componentMap = this->presentation->getAllComponents();
+    //extract connector & insert to front
     HashMap<string,Connector*> connectorMap = ERModelUtil::convertComponentHashMapToTypeHashMap<Connector>(componentMap);
     for each(Connector* connector in connectorMap){
         componentMap.remove(connector->getID());
@@ -54,7 +51,7 @@ Node* GraphicalPresentation::getLastAddedNode(){
 }
 
 Component* GraphicalPresentation::getLastPressedComponent(){
-	return this->lastPressedComponent;
+    return this->lastPressedComponent;
 }
 
 Component* GraphicalPresentation::getLastReleasedComponent(){
@@ -65,17 +62,17 @@ void GraphicalPresentation::addNode(string nodeType,string nodeName,Point positi
     Node* node = this->presentation->addNode(nodeType);
     this->lastAddedNode = node;
     node->setName(nodeName);
-    node->setSize(Size::DefaultSize());
+    node->setSize(Size());
     node->setCenterPosition(position);
     this->presentation->sync(ControllerEvent::DisplayDiagram);
 }
 
 void GraphicalPresentation::addConnection(Component* sourceComponent,Component* targetComponent){
-	try{
-	    this->presentation->addConnection(sourceComponent,targetComponent);
-	}
-	catch(Exception&){
-	}
+    try{
+        this->presentation->addConnection(sourceComponent,targetComponent);
+    }
+    catch(Exception&){
+    }
 }
 
 void GraphicalPresentation::openFile(string filePath){

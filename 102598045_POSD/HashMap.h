@@ -99,13 +99,10 @@ bool HashMap<Key,Value>::containsKey(Key key){
 
 template<typename Key,typename Value>
 bool HashMap<Key,Value>::containsValue(Value value){
-    try{
-        this->tryGetValueKey(value);
+    vector<Value>::iterator iteratorFind = find(this->valueVector.begin(),this->valueVector.end(),value);
+    if(iteratorFind != this->valueVector.end())
         return true;
-    }
-    catch(Exception&){
-        return false;
-    }
+    return false;
 }
 
 template<typename Key,typename Value>

@@ -36,7 +36,3 @@ Point Point::operator-(const Point& pointToOperate){
     point.coordinateY -= pointToOperate.coordinateY;
     return point;
 }
-
-Point Point::DefaultPoint(){
-    return Point(0,0);
-}

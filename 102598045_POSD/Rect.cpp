@@ -27,6 +27,10 @@ double Rect::getHeight(){
     return this->size.getHeight();
 }
 
+Size Rect::getSize(){
+    return this->size;
+}
+
 void Rect::setSize(Size size){
     this->size = size;
 }

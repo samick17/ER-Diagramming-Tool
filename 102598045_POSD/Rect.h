@@ -6,6 +6,7 @@
 struct Rect{
     friend class RectTest;
     FRIEND_TEST(RectTest,testSetPosition);
+    FRIEND_TEST(RectTest,testSetCenterPosition);
     FRIEND_TEST(RectTest,testSetSize);
 public:
     Rect(Point position = Point(),Size size = Size());
@@ -15,6 +16,7 @@ public:
     void setCenterPosition(Point centerPosition);
     double getWidth();
     double getHeight();
+    Size getSize();
     void setSize(Size size);
 
     double getLeft();

@@ -20,8 +20,8 @@ void ComponentUtilTest::TearDown(){
 
 TEST_F(ComponentUtilTest,testGetConnectedNodeHashMapByType){
     this->attribute->connectTo(connector1);
-    this->entity->connectTo(connector1);    
-    this->connector1->connectTo(attribute);    
+    this->entity->connectTo(connector1);
+    this->connector1->connectTo(attribute);
     this->connector1->connectTo(entity);
 
     ASSERT_EQ(1,ComponentUtil::getConnectedNodeHashMapByType<Attribute>(this->entity->getAllConnections()).size());
@@ -30,8 +30,8 @@ TEST_F(ComponentUtilTest,testGetConnectedNodeHashMapByType){
     ASSERT_EQ(this->entity,ComponentUtil::getConnectedNodeHashMapByType<Entity>(this->attribute->getAllConnections()).get("18"));
     
     this->relationShip->connectTo(this->connector2);
-    this->entity->connectTo(this->connector2);    
-    this->connector2->connectTo(this->relationShip);    
+    this->entity->connectTo(this->connector2);
+    this->connector2->connectTo(this->relationShip);
     this->connector2->connectTo(this->entity);
 
     ASSERT_EQ(1,ComponentUtil::getConnectedNodeHashMapByType<RelationShip>(this->entity->getAllConnections()).size());

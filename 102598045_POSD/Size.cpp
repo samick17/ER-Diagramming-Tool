@@ -26,13 +26,3 @@ bool Size::operator==(const Size& sizeToCompare) const{
         return true;
     return false;
 }
-
-Size& Size::operator+=(const Size& sizeToAdd){
-    this->width += sizeToAdd.width;
-    this->height += sizeToAdd.height;
-    return *this;
-}
-
-Size Size::DefaultSize(){
-    return Size(WidgetDefaultSetting::Width,WidgetDefaultSetting::Height);
-}

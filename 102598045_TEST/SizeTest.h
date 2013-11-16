@@ -5,6 +5,7 @@
 
 class SizeTest : public testing::Test{
 protected:
+    Size size;
     virtual void SetUp();
     virtual void TearDown();
 };

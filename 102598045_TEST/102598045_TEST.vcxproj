@@ -159,6 +159,7 @@
     <ClCompile Include="CommandManagerTest.cpp" />
     <ClCompile Include="DirectoryUtil.cpp" />
     <ClCompile Include="FileCreator.cpp" />
+    <ClCompile Include="GraphicalPresentationTest.cpp" />
     <ClCompile Include="InstructionMenuTest.cpp" />
     <ClCompile Include="ComponentFactoryTest.cpp" />
     <ClCompile Include="ComponentTest.cpp" />
@@ -190,12 +191,14 @@
     <ClCompile Include="QActionDataTest.cpp" />
     <ClCompile Include="RectTest.cpp" />
     <ClCompile Include="SizeTest.cpp" />
+    <ClCompile Include="TextPresentationTest.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AddNodeCommandTest.h" />
     <ClInclude Include="AttributeTest.h" />
     <ClInclude Include="CommandManagerTest.h" />
     <ClInclude Include="FileCreator.h" />
+    <ClInclude Include="GraphicalPresentationTest.h" />
     <ClInclude Include="InstructionMenuTest.h" />
     <ClInclude Include="ComponentFactoryTest.h" />
     <ClInclude Include="ComponentTest.h" />
@@ -227,6 +230,7 @@
     <ClInclude Include="QActionDataTest.h" />
     <ClInclude Include="RectTest.h" />
     <ClInclude Include="SizeTest.h" />
+    <ClInclude Include="TextPresentationTest.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

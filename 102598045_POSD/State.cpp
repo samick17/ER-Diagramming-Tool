@@ -12,7 +12,7 @@ int State::getStateID(){
 
 void State::mousePressEvent(Point position){
     this->currentPosition = position;
-    this->deltaPosition = Point::DefaultPoint();
+    this->deltaPosition = Point();
     this->doMousePressEvent(position);
 }
 

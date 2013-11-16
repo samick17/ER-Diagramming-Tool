@@ -165,12 +165,12 @@ TEST_F(OutputFileParserTest,testSerializeConnectorToString){
     ASSERT_EQ("6 0,3",this->outputFileParser->serializeConnectorToString(static_cast<Connector*>(this->componentMap.get("6"))));
     ASSERT_EQ("9 0,8",this->outputFileParser->serializeConnectorToString(static_cast<Connector*>(this->componentMap.get("9"))));
     ASSERT_EQ("10 7,8",this->outputFileParser->serializeConnectorToString(static_cast<Connector*>(this->componentMap.get("10"))));
-    ASSERT_EQ("14 11,7",this->outputFileParser->serializeConnectorToString(static_cast<Connector*>(this->componentMap.get("14"))));
-    ASSERT_EQ("15 12,7",this->outputFileParser->serializeConnectorToString(static_cast<Connector*>(this->componentMap.get("15"))));
-    ASSERT_EQ("16 13,7",this->outputFileParser->serializeConnectorToString(static_cast<Connector*>(this->componentMap.get("16"))));
+    ASSERT_EQ("14 7,11",this->outputFileParser->serializeConnectorToString(static_cast<Connector*>(this->componentMap.get("14"))));
+    ASSERT_EQ("15 7,12",this->outputFileParser->serializeConnectorToString(static_cast<Connector*>(this->componentMap.get("15"))));
+    ASSERT_EQ("16 7,13",this->outputFileParser->serializeConnectorToString(static_cast<Connector*>(this->componentMap.get("16"))));
     ASSERT_EQ("22 17,18",this->outputFileParser->serializeConnectorToString(static_cast<Connector*>(this->componentMap.get("22"))));
     ASSERT_EQ("23 17,19",this->outputFileParser->serializeConnectorToString(static_cast<Connector*>(this->componentMap.get("23"))));
     ASSERT_EQ("24 17,20",this->outputFileParser->serializeConnectorToString(static_cast<Connector*>(this->componentMap.get("24"))));
-    ASSERT_EQ("25 21,7",this->outputFileParser->serializeConnectorToString(static_cast<Connector*>(this->componentMap.get("25"))));
+    ASSERT_EQ("25 7,21",this->outputFileParser->serializeConnectorToString(static_cast<Connector*>(this->componentMap.get("25"))));
     ASSERT_EQ("26 17,21",this->outputFileParser->serializeConnectorToString(static_cast<Connector*>(this->componentMap.get("26"))));
 }

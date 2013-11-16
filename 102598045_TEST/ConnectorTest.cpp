@@ -10,6 +10,11 @@ void ConnectorTest::SetUp(){
 
     this->connector = new Connector(ComponentData("3",""));
     ComponentUtil::connectWithEachOther(this->attribute,this->entity,this->connector);
+    //ASSERT Connected With Each Other
+    ASSERT_EQ(this->attribute,this->connector->getFirstConnectedNode());
+    ASSERT_EQ(this->entity,this->connector->getSecondConnectedNode());
+    ASSERT_EQ(true,this->attribute->getAllConnections().containsValue(this->connector));
+    ASSERT_EQ(true,this->entity->getAllConnections().containsValue(this->connector));
 }
 
 void ConnectorTest::TearDown(){
@@ -50,19 +55,19 @@ TEST_F(ConnectorTest,testHasSizeToConnect){
 }
 
 TEST_F(ConnectorTest,testGetFirstConnectedNode){
-    Connector connectorEntityAndRelation(ComponentData("4",""));
+    Connector connectorEntityAndRelation = Connector(ComponentData("4",""));
     ComponentUtil::connectWithEachOther(this->entity,this->relationShip,&connectorEntityAndRelation);
-    
-    ASSERT_EQ(this->attribute,this->connector->getFirstConnectedNode());
-    ASSERT_EQ(this->relationShip,connectorEntityAndRelation.getFirstConnectedNode());
+
+    ASSERT_EQ(this->entity,connectorEntityAndRelation.getFirstConnectedNode());
+    ASSERT_EQ(this->relationShip,connectorEntityAndRelation.getSecondConnectedNode());
 }
 
 TEST_F(ConnectorTest,testGetSecondConnectedNode){
     Connector connectorEntityAndRelation(ComponentData("4",""));
     ComponentUtil::connectWithEachOther(this->entity,this->relationShip,&connectorEntityAndRelation);
 
-    ASSERT_EQ(this->entity,this->connector->getSecondConnectedNode());
-    ASSERT_EQ(this->entity,connectorEntityAndRelation.getSecondConnectedNode());
+    ASSERT_EQ(this->entity,connectorEntityAndRelation.getFirstConnectedNode());
+    ASSERT_EQ(this->relationShip,connectorEntityAndRelation.getSecondConnectedNode());
 }
 
 TEST_F(ConnectorTest,testIsNodesConnection){

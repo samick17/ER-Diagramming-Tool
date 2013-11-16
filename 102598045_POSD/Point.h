@@ -18,8 +18,6 @@ public:
     Point& operator+=(const Point& pointToOperate);
     Point operator+(const Point& pointToOperate);
     Point operator-(const Point& pointToOperate);
-
-    static Point DefaultPoint();
 private:
     double coordinateX;
     double coordinateY;
