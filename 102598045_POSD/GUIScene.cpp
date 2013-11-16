@@ -4,9 +4,8 @@
 #include <QGraphicsSceneMouseEvent>
 #include "GraphicalPresentation.h"
 #include "WidgetFactory.h"
-#include <iostream>
 
-GUIScene::GUIScene(qreal left,qreal top,qreal width,qreal height,GraphicalUI* graphicalUI) : graphicalUI(graphicalUI),QGraphicsScene(left,top,width,height,graphicalUI){
+GUIScene::GUIScene(QRectF sceneRect,GraphicalUI* graphicalUI,QGraphicsView* view) : QGraphicsScene(sceneRect,graphicalUI),graphicalUI(graphicalUI),view(view){
     this->graphicalPresentation = this->graphicalUI->getGraphicalPresentation();
     this->graphicalPresentation->registerObserver(this);
     this->connect(this,SIGNAL(notifyEvent()),this,SLOT(executeNotify()));
@@ -25,16 +24,14 @@ void GUIScene::displayDiagram(){
     WidgetFactory widgetFactory;
     //display preview
     if(this->graphicalPresentation->getPreviewState()){
-        widgetFactory.createPreviewWidget(this->graphicalPresentation);
+        BaseWidget* widget = widgetFactory.createPreviewWidget(this->graphicalPresentation);
+        this->addWidget(widget);
     }
     //display all
     HashMap<string,Component*>& componentMap = this->graphicalPresentation->getAllComponents();
-    
     for each(Component* component in componentMap){
         BaseWidget* componentWidget = widgetFactory.createComponentWidget(component,this->graphicalPresentation);
-        this->addItem(componentWidget);
-        this->componentWidgetMap.put(component->getID(),componentWidget);
-        componentWidget->updateWidget();
+        this->addWidget(componentWidget);
     }
 }
 
@@ -45,6 +42,7 @@ void GUIScene::mousePressEvent(QGraphicsSceneMouseEvent* mouseEvent){
     Point position = Point(qPosition.x(),qPosition.y());
     if(widget){
         component = widget->getComponent();
+        this->view->ensureVisible(widget);
     }
     this->graphicalPresentation->mousePressEvent(position,component);
     this->updateAll();
@@ -57,6 +55,7 @@ void GUIScene::mouseMoveEvent(QGraphicsSceneMouseEvent* mouseEvent){
     Point position = Point(qPosition.x(),qPosition.y());
     if(widget){
         component = widget->getComponent();
+        this->view->ensureVisible(widget);
     }
     this->graphicalPresentation->mouseMoveEvent(position,component);
     this->updateAll();
@@ -69,6 +68,7 @@ void GUIScene::mouseReleaseEvent(QGraphicsSceneMouseEvent* mouseEvent){
     Point position = Point(qPosition.x(),qPosition.y());
     if(widget){
         component = widget->getComponent();
+        this->view->ensureVisible(widget);
     }
     this->graphicalPresentation->mouseReleaseEvent(position,component);
     this->updateAll();
@@ -78,8 +78,15 @@ void GUIScene::executeNotify(){
     this->displayDiagram();
 }
 
+void GUIScene::addWidget(BaseWidget* widget){
+    this->addItem(widget);
+    this->widgetList.push_back(widget);
+    widget->updateWidget();
+    this->view->ensureVisible(widget);
+}
+
 void GUIScene::updateAll(){
-    for each(ComponentWidget* widget in this->componentWidgetMap){
+    for each(BaseWidget* widget in this->widgetList){
         widget->updateWidget();
     }
     this->update();
@@ -88,5 +95,5 @@ void GUIScene::updateAll(){
 void GUIScene::clearAll(){
     this->clear();
     //qt's scene will auto delete widget item,so the work we have to do just clear it.
-    this->componentWidgetMap.clear();
+    this->widgetList.clear();
 }

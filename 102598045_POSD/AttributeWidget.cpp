@@ -1,5 +1,6 @@
 #include "AttributeWidget.h"
 #include <QPainter>
+#include "Attribute.h"
 
 using namespace Qt;
 
@@ -16,4 +17,6 @@ QPainterPath AttributeWidget::shape() const{
 }
 
 void AttributeWidget::doUpdateWidget(){
+    Attribute* attribute = static_cast<Attribute*>(this->component);
+    this->setUnderLine(attribute->isPrimaryKey());
 }

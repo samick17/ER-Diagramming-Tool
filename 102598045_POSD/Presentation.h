@@ -42,7 +42,7 @@ public:
 
     void registerSynchronizer(ISynchronizer* synchronizer);
     void unregisterSynchronizer(ISynchronizer* synchronizer);
-    void sync(int syncEventType);
+    void sync(string syncEventType);
 
     void registerObserver(IObserver* observer);
     void unregisterObserver(IObserver* observer);

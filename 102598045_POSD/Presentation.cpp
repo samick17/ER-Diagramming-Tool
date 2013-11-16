@@ -82,7 +82,7 @@ void Presentation::unregisterSynchronizer(ISynchronizer* synchronizer){
     this->erModel->unregisterSynchronizer(synchronizer);
 }
 
-void Presentation::sync(int syncEventType){
+void Presentation::sync(string syncEventType){
     this->erModel->sync(syncEventType);
 }
 

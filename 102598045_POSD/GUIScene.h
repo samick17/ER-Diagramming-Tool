@@ -2,7 +2,6 @@
 
 #include <QGraphicsScene>
 #include "IObserver.h"
-#include "HashMap.h"
 
 class GraphicalUI;
 class BaseWidget;
@@ -13,7 +12,7 @@ class GUIScene : public QGraphicsScene,public IObserver{
 signals:
     void notifyEvent();
 public:
-    GUIScene(qreal left,qreal top,qreal width,qreal height,GraphicalUI* graphicalUI);
+    GUIScene(QRectF sceneRect,GraphicalUI* graphicalUI,QGraphicsView* view);
     ~GUIScene();
 
     void notify(ISubject* subject);
@@ -24,8 +23,10 @@ protected:
     void mouseReleaseEvent(QGraphicsSceneMouseEvent* mouseEvent);
 private:
     GraphicalUI* graphicalUI;
+    QGraphicsView* view;
     GraphicalPresentation* graphicalPresentation;
-    HashMap<string,BaseWidget*> componentWidgetMap;
+    QList<BaseWidget*> widgetList;
+    void addWidget(BaseWidget* widget);
     void updateAll();
     void clearAll();
 private slots:

@@ -20,7 +20,7 @@ GraphicalUI::GraphicalUI(GraphicalPresentation* graphicalPresentation): graphica
     this->initialSyncMap();
     QMetaObject::connectSlotsByName(this);
     qRegisterMetaType<string>("string");
-    connect(this,SIGNAL(syncEvent(int)),this,SLOT(executeSync(int)));
+    connect(this,SIGNAL(syncEvent(string)),this,SLOT(executeSync(string)));
     this->switchState(StateID::PointerState);
     this->graphicalPresentation->registerSynchronizer(this);
 }
@@ -38,7 +38,7 @@ GUIScene* GraphicalUI::getScene(){
     return this->scene;
 }
 
-void GraphicalUI::sync(int syncEventType){
+void GraphicalUI::sync(string syncEventType){
     this->syncEvent(syncEventType);
 }
 
@@ -62,8 +62,9 @@ void GraphicalUI::setTitle(string title,string iconPath){
 }
 
 void GraphicalUI::initialGraphicView(){
-    this->scene = new GUIScene(0,0,ApplicationSetting::DefaultWidth,ApplicationSetting::DefaultHeight,this);
     this->view = new QGraphicsView(this);
+    QRectF sceneRect = QRectF(0,0,ApplicationSetting::DefaultWidth,ApplicationSetting::DefaultHeight);
+    this->scene = new GUIScene(sceneRect,this,this->view);
     this->view->setScene(this->scene);
     this->setCentralWidget(view);
 }
@@ -118,6 +119,7 @@ void GraphicalUI::initialSyncMap(){
     this->syncMap.put(ControllerEvent::DeleteComponent,&GraphicalUI::displayDiagram);
     this->syncMap.put(ControllerEvent::Undo,&GraphicalUI::displayDiagram);
     this->syncMap.put(ControllerEvent::Redo,&GraphicalUI::displayDiagram);
+    this->syncMap.put(ControllerEvent::Close,&GraphicalUI::close);
 }
 
 void GraphicalUI::openFile(){
@@ -138,7 +140,7 @@ void GraphicalUI::switchState(int stateID){
     this->graphicalPresentation->switchState(stateID);
 }
 //execute notify event that are mapped.
-void GraphicalUI::executeSync(int notifiedEventType){
+void GraphicalUI::executeSync(string notifiedEventType){
     if(this->syncMap.containsKey(notifiedEventType)){
         ViewSyncFunction syncFunction = this->syncMap.get(notifiedEventType);
         (this->*syncFunction)();

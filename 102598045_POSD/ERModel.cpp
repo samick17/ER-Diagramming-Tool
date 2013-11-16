@@ -153,7 +153,7 @@ void ERModel::unregisterSynchronizer(ISynchronizer* synchronizer){
     synchronizerVector.erase(synchronizerIterator);
 }
 
-void ERModel::sync(int notifiedEventType){
+void ERModel::sync(string syncEventType){
     for each(ISynchronizer* synchronizer in this->synchronizerVector)
-        synchronizer->sync(notifiedEventType);
+        synchronizer->sync(syncEventType);
 }

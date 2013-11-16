@@ -2,5 +2,5 @@
 
 class ISynchronizer{
 public:
-    virtual void sync(int syncEventType) = 0;
+    virtual void sync(string syncEventType) = 0;
 };

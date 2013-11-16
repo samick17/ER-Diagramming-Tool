@@ -14,7 +14,7 @@ public:
     void displayMenu();
     void processCommand();
 
-    void sync(int syncEventType);
+    void sync(string syncEventType);
 private:
     TextPresentation* textPresentation;
 };

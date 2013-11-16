@@ -1,13 +1,13 @@
 #include "ControllerEvent.h"
 
-const int ControllerEvent::OpenFile = 0;
-const int ControllerEvent::SaveFile = 1;
-const int ControllerEvent::AddNode = 2;
-const int ControllerEvent::ConnectTwoNodes = 3;
-const int ControllerEvent::DisplayDiagram = 4;
-const int ControllerEvent::SetPrimaryKey = 5;
-const int ControllerEvent::DisplayTable = 6;
-const int ControllerEvent::DeleteComponent = 7;
-const int ControllerEvent::Undo = 8;
-const int ControllerEvent::Redo = 9;
-const int ControllerEvent::Close = 10;
+const string ControllerEvent::OpenFile = "1";
+const string ControllerEvent::SaveFile = "2";
+const string ControllerEvent::AddNode = "3";
+const string ControllerEvent::ConnectTwoNodes = "4";
+const string ControllerEvent::DisplayDiagram = "5";
+const string ControllerEvent::SetPrimaryKey = "6";
+const string ControllerEvent::DisplayTable = "7";
+const string ControllerEvent::DeleteComponent = "8";
+const string ControllerEvent::Undo = "9";
+const string ControllerEvent::Redo = "10";
+const string ControllerEvent::Close = "11";

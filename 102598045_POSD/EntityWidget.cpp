@@ -1,7 +1,4 @@
 #include "EntityWidget.h"
-#include <QPainter>
-
-using namespace Qt;
 
 EntityWidget::EntityWidget(Component* component,GraphicalPresentation* graphicalPresentation) : NodeWidget(component,graphicalPresentation){
 }

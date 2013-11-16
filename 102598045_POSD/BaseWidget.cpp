@@ -5,12 +5,12 @@
 using namespace Qt;
 
 BaseWidget::BaseWidget(GraphicalPresentation* graphicalPresentation) : graphicalPresentation(graphicalPresentation){
+    this->isUnderLine = false;
 }
 
 BaseWidget::~BaseWidget(){}
 
 void BaseWidget::updateWidget(){
-    this->doUpdateWidget();
 }
 
 void BaseWidget::doUpdateWidget(){
@@ -22,7 +22,7 @@ void BaseWidget::paint(QPainter* painter,const QStyleOptionGraphicsItem* option,
     painter->setPen(QPen(black,WidgetDefaultSetting::WidgetLineWidth));
     //set under Lined
     QFont font = painter->font();
-    font.setUnderline(false);
+    font.setUnderline(this->getIsUnderLine());
     painter->setFont(font);
     QBrush brush = painter->brush();
     //paint
@@ -52,6 +52,10 @@ void BaseWidget::setRect(QRectF rect){
 
 bool BaseWidget::getIsUnderLine(){
     return this->isUnderLine;
+}
+
+void BaseWidget::setUnderLine(bool isUnderLine){
+    this->isUnderLine = isUnderLine;
 }
 
 void BaseWidget::drawSelectedFrame(QPainter* painter){

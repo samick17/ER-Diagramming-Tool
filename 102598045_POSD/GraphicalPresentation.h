@@ -19,7 +19,6 @@ public:
     string getText();
     Node* getLastAddedNode();
     Component* getLastPressedComponent();
-    Component* getLastMovedComponent();
     Component* getLastReleasedComponent();
 
     void addNode(string nodeType,string nodeName,Point position);
@@ -37,7 +36,7 @@ public:
     //synchronize view
     void registerSynchronizer(ISynchronizer* synchronizer);
     void unregisterSynchronizer(ISynchronizer* synchronizer);
-    void sync(int syncEventType);
+    void sync(string syncEventType);
 
     void mousePressEvent(Point position,Component* component);
     void mouseMoveEvent(Point position,Component* component);
@@ -61,7 +60,6 @@ private:
     string text;
     Node* lastAddedNode;
     Component* lastPressedComponent;
-    Component* lastMovedComponent;
     Component* lastReleasedComponent;
     bool showPreview;
     Point sourcePoint;

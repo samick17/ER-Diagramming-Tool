@@ -1,16 +1,20 @@
 #pragma once
 
+#include <string>
+
+using namespace std;
+
 class ControllerEvent{
 public:
-    static const int OpenFile;
-    static const int SaveFile;
-    static const int AddNode;
-    static const int ConnectTwoNodes;
-    static const int DisplayDiagram;
-    static const int SetPrimaryKey;
-    static const int DisplayTable;
-    static const int DeleteComponent;
-    static const int Undo;
-    static const int Redo;
-    static const int Close;
+    static const string OpenFile;
+    static const string SaveFile;
+    static const string AddNode;
+    static const string ConnectTwoNodes;
+    static const string DisplayDiagram;
+    static const string SetPrimaryKey;
+    static const string DisplayTable;
+    static const string DeleteComponent;
+    static const string Undo;
+    static const string Redo;
+    static const string Close;
 };

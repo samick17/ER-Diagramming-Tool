@@ -43,13 +43,13 @@ public:
     void undo();
     void registerSynchronizer(ISynchronizer* synchronizer);
     void unregisterSynchronizer(ISynchronizer* synchronizer);
-    void sync(int syncEventType);
-    void executeSync(int syncEventType);
+    void sync(string syncEventType);
+    void executeSync(string syncEventType);
 private:
     Presentation* presentation;
     TextUIPresenter* textUIPresenter;
     InstructionMenu* instructionMenu;
     typedef void (TextUIPresenter::*ViewSyncFunction)();
-    HashMap<int,void (TextUIPresenter::*)()> syncMap;
+    HashMap<string,ViewSyncFunction> syncMap;
     void initialSyncMap();
 };

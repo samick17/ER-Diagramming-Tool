@@ -22,6 +22,7 @@ protected:
     void setText(string text);
     void setRect(QRectF rect);
     bool getIsUnderLine();
+    void setUnderLine(bool isUnderLine);
     virtual void doPaint(QPainter* painter) = 0;
     virtual void doUpdateWidget();
 private:

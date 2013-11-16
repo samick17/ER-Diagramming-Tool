@@ -72,7 +72,7 @@ void TextUIPresenter::displayConnections(){
 
 void TextUIPresenter::displayEntities(){
     this->displayTitle("Entities");
-	HashMap<string,Component*> entityMap = this->textPresentation->getAllEntities();
+    HashMap<string,Component*> entityMap = this->textPresentation->getAllEntities();
     this->displayComponentMap(entityMap);
 }
 

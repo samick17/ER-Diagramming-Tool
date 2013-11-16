@@ -167,7 +167,7 @@ void TextPresentation::unregisterSynchronizer(ISynchronizer* synchronizer){
     this->presentation->unregisterSynchronizer(synchronizer);
 }
 
-void TextPresentation::sync(int syncEventType){
+void TextPresentation::sync(string syncEventType){
     this->presentation->sync(syncEventType);
 }
 
@@ -181,7 +181,7 @@ void TextPresentation::initialSyncMap(){
     this->syncMap.put(ControllerEvent::Redo,&TextUIPresenter::displayDiagram);
 }
 
-void TextPresentation::executeSync(int syncEventType){
+void TextPresentation::executeSync(string syncEventType){
     try{
         ViewSyncFunction syncFunction = syncMap.get(syncEventType);
         (this->textUIPresenter->*syncFunction)();

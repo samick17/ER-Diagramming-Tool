@@ -5,8 +5,6 @@
 #include "DeleteComponentCommand.h"
 #include "NullPointerException.h"
 #include "InstructionData.h"
-#include "Entity.h"
-#include "StringUtil.h"
 #include "OpenFileInstruction.h"
 #include "SaveFileInstruction.h"
 #include "AddNodeInstruction.h"
@@ -18,19 +16,20 @@
 #include "UndoInstruction.h"
 #include "RedoInstruction.h"
 #include "CloseInstruction.h"
+#include "ControllerEvent.h"
 
 InstructionMenu::InstructionMenu(){
-    this->insertInstructionData(new InstructionData("1","Load ER diagram file",newTextInstruction<OpenFileInstruction>));
-    this->insertInstructionData(new InstructionData("2","Save ER diagram file",newTextInstruction<SaveFileInstruction>));
-    this->insertInstructionData(new InstructionData("3","Add a node",newTextInstruction<AddNodeInstruction>));
-    this->insertInstructionData(new InstructionData("4","Connect two nodes",newTextInstruction<ConnectTwoNodesInstruction>));
-    this->insertInstructionData(new InstructionData("5","Display the current diagram",newTextInstruction<DisplayDiagramInstruction>));
-    this->insertInstructionData(new InstructionData("6","Set a primary key",newTextInstruction<SetPrimaryKeyInstruction>));
-    this->insertInstructionData(new InstructionData("7","Display the table",newTextInstruction<DisplayTableInstruction>));
-    this->insertInstructionData(new InstructionData("8","Delete a component",newTextInstruction<DeleteComponentInstruction>));
-    this->insertInstructionData(new InstructionData("9","Undo",newTextInstruction<UndoInstruction>));
-    this->insertInstructionData(new InstructionData("10","Redo",newTextInstruction<RedoInstruction>));
-    this->insertInstructionData(new InstructionData("11","Exit",newTextInstruction<CloseInstruction>));
+    this->insertInstructionData(new InstructionData(ControllerEvent::OpenFile,"Load ER diagram file",newTextInstruction<OpenFileInstruction>));
+    this->insertInstructionData(new InstructionData(ControllerEvent::SaveFile,"Save ER diagram file",newTextInstruction<SaveFileInstruction>));
+    this->insertInstructionData(new InstructionData(ControllerEvent::AddNode,"Add a node",newTextInstruction<AddNodeInstruction>));
+    this->insertInstructionData(new InstructionData(ControllerEvent::ConnectTwoNodes,"Connect two nodes",newTextInstruction<ConnectTwoNodesInstruction>));
+    this->insertInstructionData(new InstructionData(ControllerEvent::DisplayDiagram,"Display the current diagram",newTextInstruction<DisplayDiagramInstruction>));
+    this->insertInstructionData(new InstructionData(ControllerEvent::SetPrimaryKey,"Set a primary key",newTextInstruction<SetPrimaryKeyInstruction>));
+    this->insertInstructionData(new InstructionData(ControllerEvent::DisplayTable,"Display the table",newTextInstruction<DisplayTableInstruction>));
+    this->insertInstructionData(new InstructionData(ControllerEvent::DeleteComponent,"Delete a component",newTextInstruction<DeleteComponentInstruction>));
+    this->insertInstructionData(new InstructionData(ControllerEvent::Undo,"Undo",newTextInstruction<UndoInstruction>));
+    this->insertInstructionData(new InstructionData(ControllerEvent::Redo,"Redo",newTextInstruction<RedoInstruction>));
+    this->insertInstructionData(new InstructionData(ControllerEvent::Close,"Exit",newTextInstruction<CloseInstruction>));
 }
 
 InstructionMenu::~InstructionMenu(){

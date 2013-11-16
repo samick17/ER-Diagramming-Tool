@@ -17,6 +17,6 @@ void TextUI::processCommand(){
     this->textPresentation->processCommand();
 }
 
-void TextUI::sync(int syncEventType){
+void TextUI::sync(string syncEventType){
     this->textPresentation->executeSync(syncEventType);
 }

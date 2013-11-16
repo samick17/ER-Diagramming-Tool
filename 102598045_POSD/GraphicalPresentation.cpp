@@ -57,10 +57,6 @@ Component* GraphicalPresentation::getLastPressedComponent(){
 	return this->lastPressedComponent;
 }
 
-Component* GraphicalPresentation::getLastMovedComponent(){
-	return this->lastMovedComponent;
-}
-
 Component* GraphicalPresentation::getLastReleasedComponent(){
     return this->lastReleasedComponent;
 }
@@ -158,7 +154,7 @@ void GraphicalPresentation::unregisterSynchronizer(ISynchronizer* synchronizer){
     this->presentation->unregisterSynchronizer(synchronizer);
 }
 
-void GraphicalPresentation::sync(int syncEventType){
+void GraphicalPresentation::sync(string syncEventType){
     this->presentation->sync(syncEventType);
 }
 
@@ -176,7 +172,6 @@ void GraphicalPresentation::mousePressEvent(Point position,Component* component)
 }
 
 void GraphicalPresentation::mouseMoveEvent(Point position,Component* component){
-    this->lastMovedComponent = component;
     this->stateSubject->getState()->mouseMoveEvent(position);
 }
 
@@ -187,7 +182,6 @@ void GraphicalPresentation::mouseReleaseEvent(Point position,Component* componen
 
 void GraphicalPresentation::setPreviewState(bool showPreview){
     this->showPreview = showPreview;
-    this->notify();
 }
 
 bool GraphicalPresentation::getPreviewState(){
@@ -204,7 +198,6 @@ Point GraphicalPresentation::getPreviewSourcePoint(){
 
 void GraphicalPresentation::setPreviewTargetPoint(Point currentPoint){
     this->currentPoint = currentPoint;
-    this->notify();
 }
 
 Point GraphicalPresentation::getPreviewTargetPoint(){

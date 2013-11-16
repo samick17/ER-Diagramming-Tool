@@ -18,6 +18,7 @@ void ConnectState::doMousePressEvent(Point position){
     Point componentCenterPosition = component->getRect().getCenterPosition();
     this->graphicalPresentation->setPreviewSourcePoint(componentCenterPosition);
     this->graphicalPresentation->setPreviewTargetPoint(componentCenterPosition);
+    this->graphicalPresentation->notify();
 }
 
 void ConnectState::doMouseMoveEvent(Point position){
@@ -30,4 +31,5 @@ void ConnectState::doMouseReleaseEvent(Point position){
     Component* targetComponent = this->graphicalPresentation->getLastReleasedComponent();
     if(sourceComponent && targetComponent)
         this->graphicalPresentation->addConnection(sourceComponent,targetComponent);	
+    this->graphicalPresentation->notify();
 }

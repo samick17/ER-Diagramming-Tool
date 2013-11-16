@@ -20,14 +20,14 @@ using namespace Qt;
 class GraphicalUI : public QMainWindow,public ISynchronizer{
     Q_OBJECT
 signals:
-    void syncEvent(int syncEventType);
+    void syncEvent(string syncEventType);
 public:
     GraphicalUI(GraphicalPresentation* graphicalPresentation);
     ~GraphicalUI();
 
     GraphicalPresentation* getGraphicalPresentation();
     GUIScene* getScene();
-    void sync(int syncEventType);
+    void sync(string syncEventType);
     void setTitle(string title,string iconPath);
 protected:
     void closeEvent(QCloseEvent* closeEvent);
@@ -43,7 +43,7 @@ private:
     GUIScene* scene;
     QActionMap* actionMap;
     typedef void (GraphicalUI::*ViewSyncFunction)();
-    HashMap<int,ViewSyncFunction> syncMap;
+    HashMap<string,ViewSyncFunction> syncMap;
 
     void initialGraphicView();
     void initialAllAction();
@@ -55,5 +55,5 @@ private slots:
     void openFile();
     void close();
     void switchState(int stateID);
-    void executeSync(int syncEventType);
+    void executeSync(string syncEventType);
 };
