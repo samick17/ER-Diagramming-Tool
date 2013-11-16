@@ -12,11 +12,16 @@ WidgetFactory::WidgetFactory(){
 WidgetFactory::~WidgetFactory(){
 }
 
-ComponentWidget* WidgetFactory::createComponentWidget(Component* component,GraphicalPresentation* graphicalPresentation){
+BaseWidget* WidgetFactory::createComponentWidget(Component* component,GraphicalPresentation* graphicalPresentation){
     string componentType = component->getType();
     NewComponentWidgetFunction newComponentWidgetFunctiontion = findNewComponentWidgetFunction(componentType);
-    ComponentWidget* componentWidget = newComponentWidgetFunctiontion(component,graphicalPresentation);
+    BaseWidget* componentWidget = newComponentWidgetFunctiontion(component,graphicalPresentation);
     return componentWidget;
+}
+
+BaseWidget* WidgetFactory::createPreviewWidget(GraphicalPresentation* graphicalPresentation){
+    //return new PreviewWidget(graphicalPresentation);
+    return NULL;
 }
 
 NewComponentWidgetFunction WidgetFactory::findNewComponentWidgetFunction(string componentType){

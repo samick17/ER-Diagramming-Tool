@@ -85,6 +85,7 @@
     <ClCompile Include="AddNodeInstruction.cpp" />
     <ClCompile Include="AddNodeState.cpp" />
     <ClCompile Include="AttributeWidget.cpp" />
+    <ClCompile Include="BaseWidget.cpp" />
     <ClCompile Include="CloseInstruction.cpp" />
     <ClCompile Include="DialogSetting.cpp" />
     <ClCompile Include="GeneratedFiles\Debug\moc_GUIScene.cpp">
@@ -93,6 +94,7 @@
     <ClCompile Include="GeneratedFiles\Release\moc_GUIScene.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="PreviewWidget.cpp" />
     <ClCompile Include="Subject.cpp" />
     <ClCompile Include="ConnectorWidget.cpp" />
     <ClCompile Include="ConnectState.cpp" />
@@ -201,13 +203,14 @@
     <ClInclude Include="Attribute.h" />
     <ClInclude Include="AttributeType.h" />
     <ClInclude Include="AttributeWidget.h" />
+    <ClInclude Include="BaseWidget.h" />
     <ClInclude Include="CharSymbol.h" />
     <ClInclude Include="CloseInstruction.h" />
     <ClInclude Include="CollectionException.h" />
     <ClInclude Include="CollectionType.h" />
     <ClInclude Include="Command.h" />
     <ClInclude Include="DialogSetting.h" />
-    <ClInclude Include="QueueUtil.h" />
+    <ClInclude Include="PreviewWidget.h" />
     <ClInclude Include="Subject.h" />
     <ClInclude Include="ConnectorWidget.h" />
     <ClInclude Include="ConnectState.h" />

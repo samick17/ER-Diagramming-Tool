@@ -12,7 +12,7 @@ DeleteComponentCommand::~DeleteComponentCommand(){
         for each(Connector* connector in this->connectionMap)
             delete connector;
         //delete component    
-        if(this->component != NULL)
+        if(this->component)
             delete this->component;
     }
     this->clearConnectionDataMap();

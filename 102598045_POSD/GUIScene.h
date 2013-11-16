@@ -2,9 +2,10 @@
 
 #include <QGraphicsScene>
 #include "IObserver.h"
+#include "HashMap.h"
 
 class GraphicalUI;
-class ComponentWidget;
+class BaseWidget;
 class GraphicalPresentation;
 
 class GUIScene : public QGraphicsScene,public IObserver{
@@ -24,7 +25,9 @@ protected:
 private:
     GraphicalUI* graphicalUI;
     GraphicalPresentation* graphicalPresentation;
+    HashMap<string,BaseWidget*> componentWidgetMap;
     void updateAll();
+    void clearAll();
 private slots:
     void executeNotify();
 };

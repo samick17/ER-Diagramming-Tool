@@ -39,6 +39,6 @@ void StateSubject::notify(IObserver* observer){
 }
 
 void StateSubject::deleteState(){
-    if(this->state != NULL)
+    if(this->state)
         delete this->state;
 }

@@ -102,7 +102,7 @@ bool GraphicalPresentation::isSelected(string componentID){
 }
 //select widget : highlight/unhilight selected,notify all
 void GraphicalPresentation::selectWidget(){
-    if(this->lastPressedComponent == NULL){
+    if(!this->lastPressedComponent){
         this->unSelectAll();
         return;
     }
@@ -190,11 +190,23 @@ void GraphicalPresentation::setPreviewState(bool showPreview){
     this->notify();
 }
 
+bool GraphicalPresentation::getPreviewState(){
+    return this->showPreview;
+}
+
 void GraphicalPresentation::setPreviewSourcePoint(Point sourcePoint){
     this->sourcePoint = sourcePoint;
+}
+
+Point GraphicalPresentation::getPreviewSourcePoint(){
+    return this->sourcePoint;
 }
 
 void GraphicalPresentation::setPreviewTargetPoint(Point currentPoint){
     this->currentPoint = currentPoint;
     this->notify();
+}
+
+Point GraphicalPresentation::getPreviewTargetPoint(){
+    return this->currentPoint;
 }

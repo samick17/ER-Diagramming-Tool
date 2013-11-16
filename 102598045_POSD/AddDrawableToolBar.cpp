@@ -25,7 +25,7 @@ AddDrawableToolBar::~AddDrawableToolBar(){
 }
 
 void AddDrawableToolBar::selectToolButton(int stateID){
-    if(this->currentWidget != NULL)
+    if(this->currentWidget)
         this->currentWidget->setChecked(false);
     ToolBarWidget* nextSelectToolButton = this->toolBarWidgetMap.get(stateID);
     nextSelectToolButton->setChecked(true);
@@ -33,7 +33,7 @@ void AddDrawableToolBar::selectToolButton(int stateID){
 }
 
 void AddDrawableToolBar::notify(ISubject* subject){
-	if(subject == this->stateSubject){
-		this->selectToolButton(this->stateSubject->getState()->getStateID());
-	}
+    if(subject == this->stateSubject){
+        this->selectToolButton(this->stateSubject->getState()->getStateID());
+    }
 }

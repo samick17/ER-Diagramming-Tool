@@ -44,8 +44,11 @@ public:
     void mouseReleaseEvent(Point position,Component* component);
 
     void setPreviewState(bool showPreview);
+    bool getPreviewState();
     void setPreviewSourcePoint(Point sourcePoint);
+    Point getPreviewSourcePoint();
     void setPreviewTargetPoint(Point currentPoint);
+    Point getPreviewTargetPoint();
 protected:
     //observer
     void doRegisterObserver(IObserver* observer);
@@ -60,7 +63,7 @@ private:
     Component* lastPressedComponent;
     Component* lastMovedComponent;
     Component* lastReleasedComponent;
-	bool showPreview;
-	Point sourcePoint;
-	Point currentPoint;
+    bool showPreview;
+    Point sourcePoint;
+    Point currentPoint;
 };

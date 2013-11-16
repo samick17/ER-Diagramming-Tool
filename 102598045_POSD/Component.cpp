@@ -47,6 +47,7 @@ void Component::connectTo(Component* target){
     if(!this->connectionMap.containsKey(target->getID()))
         this->connectionMap.put(target->getID(),target);
 }
+
 //if has such connection in set, disconnect to target
 void Component::disconnectTo(Component* target){
     if(this->connectionMap.containsKey(target->getID()))

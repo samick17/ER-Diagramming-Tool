@@ -5,7 +5,9 @@
 using namespace Qt;
 
 ConnectorWidget::ConnectorWidget(Component* component,GraphicalPresentation* graphicalPresentation) : ComponentWidget(component,graphicalPresentation){
-    this->doUpdateWidget();
+    Connector* connector = static_cast<Connector*>(this->component);
+    connector->updateRect();
+    this->updateWidget();
 }
 
 ConnectorWidget::~ConnectorWidget(){

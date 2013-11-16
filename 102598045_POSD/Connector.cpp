@@ -4,7 +4,6 @@
 #include "ComponentUtil.h"
 #include "ComponentConnectionSize.h"
 #include "StringSymbol.h"
-#include "QueueUtil.h"
 
 Connector::Connector(ComponentData componentData) : Component(componentData){
 }

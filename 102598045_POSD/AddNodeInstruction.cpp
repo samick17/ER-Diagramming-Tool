@@ -22,7 +22,7 @@ void AddNodeInstruction::execute(TextPresentation* textPresentation,TextUIPresen
 
 Node* AddNodeInstruction::addNode(TextPresentation* textPresentation){
     Node* node = NULL;
-    while(node == NULL){
+    while(!node){
         try{
             string input = textPresentation->getInput();
             if(input == ComponentType::TypeConnector)

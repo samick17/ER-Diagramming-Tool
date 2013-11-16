@@ -101,7 +101,7 @@ HashMap<string,Component*> TextPresentation::getEntityAttributes(Entity* entity)
 
 Component* TextPresentation::findComponent(){
     Component* find = NULL;
-    while(find == NULL){
+    while(!find){
         try{
             string input = this->getInput();
             find = this->presentation->getComponentByID(input);

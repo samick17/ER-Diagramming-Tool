@@ -21,15 +21,19 @@ void GUIScene::notify(ISubject* subject){
 }
 
 void GUIScene::displayDiagram(){
-    this->clear();
-	//display preview
-
-	//display all
-    HashMap<string,Component*>& componentMap = this->graphicalPresentation->getAllComponents();
+    this->clearAll();
     WidgetFactory widgetFactory;
+    //display preview
+    if(this->graphicalPresentation->getPreviewState()){
+        widgetFactory.createPreviewWidget(this->graphicalPresentation);
+    }
+    //display all
+    HashMap<string,Component*>& componentMap = this->graphicalPresentation->getAllComponents();
+    
     for each(Component* component in componentMap){
-        ComponentWidget* componentWidget = widgetFactory.createComponentWidget(component,this->graphicalPresentation);
+        BaseWidget* componentWidget = widgetFactory.createComponentWidget(component,this->graphicalPresentation);
         this->addItem(componentWidget);
+        this->componentWidgetMap.put(component->getID(),componentWidget);
         componentWidget->updateWidget();
     }
 }
@@ -75,9 +79,14 @@ void GUIScene::executeNotify(){
 }
 
 void GUIScene::updateAll(){
-    for each(QGraphicsItem* component in this->items()){
-        ComponentWidget* widget = static_cast<ComponentWidget*>(component);
-		widget->updateWidget();
+    for each(ComponentWidget* widget in this->componentWidgetMap){
+        widget->updateWidget();
     }
     this->update();
+}
+
+void GUIScene::clearAll(){
+    this->clear();
+    //qt's scene will auto delete widget item,so the work we have to do just clear it.
+    this->componentWidgetMap.clear();
 }

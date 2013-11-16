@@ -16,5 +16,4 @@ QPainterPath AttributeWidget::shape() const{
 }
 
 void AttributeWidget::doUpdateWidget(){
-    //update IsUnderLine
 }

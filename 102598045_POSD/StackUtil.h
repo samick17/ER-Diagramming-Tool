@@ -18,7 +18,7 @@ static void StackUtil::deleteAllElementsInStack(stack<Type*>& typesStack){
     while(!typesStack.empty()){
         Type* typePointer = typesStack.top();
         typesStack.pop();
-        if(typePointer != NULL)
+        if(typePointer)
             delete typePointer;
     }
 }
