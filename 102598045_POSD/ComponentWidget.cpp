@@ -16,6 +16,11 @@ string ComponentWidget::getComponentID(){
     return this->componentID;
 }
 
+void ComponentWidget::doPaint(QPainter* painter){
+    painter->drawPath(this->shape());
+    painter->drawText(this->boundingRect(),AlignCenter,QString(this->getText().c_str()));
+}
+
 void ComponentWidget::updateWidget(){
     Rect componentRect = this->component->getRect();
     Point position = componentRect.getPosition();

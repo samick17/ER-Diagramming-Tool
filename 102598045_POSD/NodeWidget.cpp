@@ -8,8 +8,3 @@ NodeWidget::NodeWidget(Component* component,GraphicalPresentation* graphicalPres
 
 NodeWidget::~NodeWidget(){
 }
-
-void NodeWidget::doPaint(QPainter* painter){
-    painter->drawPath(this->shape());
-    painter->drawText(this->boundingRect(),AlignCenter,QString(this->getText().c_str()));
-}

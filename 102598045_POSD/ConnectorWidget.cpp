@@ -26,11 +26,6 @@ QPainterPath ConnectorWidget::shape() const{
     return path;
 }
 
-void ConnectorWidget::doPaint(QPainter* painter){
-    painter->drawPath(this->shape());
-    painter->drawText(this->boundingRect(),AlignCenter,QString(this->getText().c_str()));
-}
-
 void ConnectorWidget::doUpdateWidget(){
     Connector* connector = static_cast<Connector*>(this->component);
     Component* firstComponent = connector->getFirstConnectedNode();

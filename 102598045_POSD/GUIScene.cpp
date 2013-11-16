@@ -37,45 +37,40 @@ void GUIScene::displayDiagram(){
 
 void GUIScene::mousePressEvent(QGraphicsSceneMouseEvent* mouseEvent){
     QPointF qPosition = mouseEvent->scenePos();
-    ComponentWidget* widget = static_cast<ComponentWidget*>(this->itemAt(qPosition));
-    Component* component = NULL;
     Point position = Point(qPosition.x(),qPosition.y());
-    if(widget){
-        component = widget->getComponent();
-        this->view->ensureVisible(widget);
-    }
+    Component* component = hasItemAtPosition(qPosition);
     this->graphicalPresentation->mousePressEvent(position,component);
     this->updateAll();
 }
 
 void GUIScene::mouseMoveEvent(QGraphicsSceneMouseEvent* mouseEvent){
     QPointF qPosition = mouseEvent->scenePos();
-    ComponentWidget* widget = static_cast<ComponentWidget*>(this->itemAt(qPosition));
-    Component* component = NULL;
     Point position = Point(qPosition.x(),qPosition.y());
-    if(widget){
-        component = widget->getComponent();
-        this->view->ensureVisible(widget);
-    }
+    Component* component = hasItemAtPosition(qPosition);
     this->graphicalPresentation->mouseMoveEvent(position,component);
     this->updateAll();
 }
 
 void GUIScene::mouseReleaseEvent(QGraphicsSceneMouseEvent* mouseEvent){
     QPointF qPosition = mouseEvent->scenePos();
-    ComponentWidget* widget = static_cast<ComponentWidget*>(this->itemAt(qPosition));
-    Component* component = NULL;
     Point position = Point(qPosition.x(),qPosition.y());
-    if(widget){
-        component = widget->getComponent();
-        this->view->ensureVisible(widget);
-    }
+    Component* component = hasItemAtPosition(qPosition);
     this->graphicalPresentation->mouseReleaseEvent(position,component);
     this->updateAll();
 }
 
 void GUIScene::executeNotify(){
     this->displayDiagram();
+}
+
+Component* GUIScene::hasItemAtPosition(QPointF qPosition){
+    ComponentWidget* widget = static_cast<ComponentWidget*>(this->itemAt(qPosition));
+    Component* component = NULL;
+    if(widget){
+        component = widget->getComponent();
+        this->view->ensureVisible(widget);
+    }
+    return component;
 }
 
 void GUIScene::addWidget(BaseWidget* widget){

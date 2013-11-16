@@ -13,6 +13,7 @@ public:
 protected:
     Component* component;
     string getComponentID();
+    void doPaint(QPainter* painter);
 private:
     void drawSelectedFrame(QPainter* painter);
     string componentID;

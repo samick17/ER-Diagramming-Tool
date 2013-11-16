@@ -10,10 +10,13 @@ PreviewWidget::~PreviewWidget(){
 
 QPainterPath PreviewWidget::shape() const{
     QPainterPath path;
-    QPolygonF line;
-    line<<this->sourcePoint<<this->targetPoint;
-    path.addPolygon(line);
-
+    path.moveTo(this->sourcePoint);
+    path.addEllipse(this->sourcePoint,WidgetDefaultSetting::WidgetLineWidth,WidgetDefaultSetting::WidgetLineWidth);
+    path.lineTo(this->targetPoint);
+    path.addEllipse(this->targetPoint,WidgetDefaultSetting::WidgetLineWidth,WidgetDefaultSetting::WidgetLineWidth);
+    QPainterPathStroker painterPathStroker;
+    painterPathStroker.setWidth(WidgetDefaultSetting::ConnectorWidth);
+    path = painterPathStroker.createStroke(path);
     return path;
 }
 

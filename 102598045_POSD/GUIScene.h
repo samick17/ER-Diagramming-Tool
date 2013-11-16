@@ -6,6 +6,7 @@
 class GraphicalUI;
 class BaseWidget;
 class GraphicalPresentation;
+class Component;
 
 class GUIScene : public QGraphicsScene,public IObserver{
     Q_OBJECT
@@ -26,6 +27,7 @@ private:
     QGraphicsView* view;
     GraphicalPresentation* graphicalPresentation;
     QList<BaseWidget*> widgetList;
+    Component* hasItemAtPosition(QPointF qPosition);
     void addWidget(BaseWidget* widget);
     void updateAll();
     void clearAll();

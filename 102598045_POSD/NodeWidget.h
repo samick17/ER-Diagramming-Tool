@@ -8,6 +8,4 @@ public:
     ~NodeWidget();
 
     QPainterPath shape() const = 0;
-protected:
-    void doPaint(QPainter* painter);
 };
