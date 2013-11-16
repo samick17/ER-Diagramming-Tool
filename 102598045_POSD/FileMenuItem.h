@@ -5,6 +5,6 @@
 
 class FileMenuItem : public QMenu{
 public:
-    FileMenuItem(QActionMap* actionMap);
+    FileMenuItem(QActionMap* actionMap,QWidget* parent);
     ~FileMenuItem();
 };

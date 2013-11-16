@@ -502,6 +502,12 @@
     <ClCompile Include="BaseWidget.cpp">
       <Filter>Source Files\View\GUI\GUIWidget\ModelWidget</Filter>
     </ClCompile>
+    <ClCompile Include="AddMenuItem.cpp">
+      <Filter>Source Files\View\GUI\MenuItem</Filter>
+    </ClCompile>
+    <ClCompile Include="MenuSetting.cpp">
+      <Filter>Source Files\Constants</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Attribute.h">
@@ -812,6 +818,12 @@
     </ClInclude>
     <ClInclude Include="BaseWidget.h">
       <Filter>Header Files\View\GUI\GUIWidget\ModelWidget</Filter>
+    </ClInclude>
+    <ClInclude Include="MenuSetting.h">
+      <Filter>Header Files\Constants</Filter>
+    </ClInclude>
+    <ClInclude Include="AddMenuItem.h">
+      <Filter>Header Files\View\GUI\MenuItem</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

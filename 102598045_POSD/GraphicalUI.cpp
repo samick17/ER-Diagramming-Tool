@@ -28,6 +28,7 @@ GraphicalUI::GraphicalUI(GraphicalPresentation* graphicalPresentation): graphica
 GraphicalUI::~GraphicalUI(){
     this->graphicalPresentation->unregisterSynchronizer(this);
     delete this->fileMenuItem;
+    delete this->addMenuItem;
 }
 
 GraphicalPresentation* GraphicalUI::getGraphicalPresentation(){
@@ -74,7 +75,7 @@ void GraphicalUI::initialAllAction(){
     connect(openFileAction,SIGNAL(triggered()),this,SLOT(openFile()));
     QAction* exitAction = this->actionMap->getQAction(ActionData::Exit);
     connect(exitAction,SIGNAL(triggered()),this,SLOT(close()));
-
+    //use signal mapper to pass state argument
     QSignalMapper* signalMapper = new QSignalMapper(this);
     QAction* pointerStateAction = this->actionMap->getQAction(ActionData::PointerState);
     connect(pointerStateAction,SIGNAL(triggered()),signalMapper,SLOT(map()));
@@ -96,8 +97,10 @@ void GraphicalUI::initialAllAction(){
 
 void GraphicalUI::initialMenuBar(){
     this->menuBar = new QMenuBar(this);
-    this->fileMenuItem = new FileMenuItem(this->actionMap);
+    this->fileMenuItem = new FileMenuItem(this->actionMap,this);
+    this->addMenuItem = new AddMenuItem(this->actionMap,this);
     this->menuBar->addMenu(this->fileMenuItem);
+    this->menuBar->addMenu(this->addMenuItem);
     this->setMenuBar(this->menuBar);
 }
 
@@ -138,10 +141,10 @@ void GraphicalUI::close(){
 void GraphicalUI::switchState(int stateID){
     this->graphicalPresentation->switchState(stateID);
 }
-//execute notify event that are mapped.
-void GraphicalUI::executeSync(string notifiedEventType){
-    if(this->syncMap.containsKey(notifiedEventType)){
-        ViewSyncFunction syncFunction = this->syncMap.get(notifiedEventType);
+//execute sunchronization event that are mapped.
+void GraphicalUI::executeSync(string syncEventType){
+    if(this->syncMap.containsKey(syncEventType)){
+        ViewSyncFunction syncFunction = this->syncMap.get(syncEventType);
         (this->*syncFunction)();
     }
 }

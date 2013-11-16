@@ -18,7 +18,6 @@ QPainterPath ConnectorWidget::shape() const{
     QPolygonF line;
     line<<this->sourcePoint<<this->targetPoint;
     path.addPolygon(line);
-    path.addEllipse(this->boundingRect().center(),2,2);
     return path;
 }
 

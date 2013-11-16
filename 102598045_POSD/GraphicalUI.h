@@ -6,6 +6,7 @@
 #include <QToolBar>
 #include "GUIScene.h"
 #include "FileMenuItem.h"
+#include "AddMenuItem.h"
 #include "FileToolBar.h"
 #include "AddDrawableToolBar.h"
 #include "QActionMap.h"
@@ -36,6 +37,7 @@ protected:
 private:
     GraphicalPresentation* graphicalPresentation;
     FileMenuItem* fileMenuItem;
+    AddMenuItem* addMenuItem;
     FileToolBar* fileToolBar;
     AddDrawableToolBar* addDrawableToolBar;
     QMenuBar* menuBar;

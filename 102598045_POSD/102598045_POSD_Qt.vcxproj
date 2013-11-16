@@ -82,6 +82,7 @@
     <ClCompile Include="..\102598045_POSD\CollectionType.cpp" />
     <ClCompile Include="..\102598045_POSD\Command.cpp" />
     <ClCompile Include="AddDrawableToolBar.cpp" />
+    <ClCompile Include="AddMenuItem.cpp" />
     <ClCompile Include="AddNodeInstruction.cpp" />
     <ClCompile Include="AddNodeState.cpp" />
     <ClCompile Include="AttributeWidget.cpp" />
@@ -94,6 +95,7 @@
     <ClCompile Include="GeneratedFiles\Release\moc_GUIScene.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="MenuSetting.cpp" />
     <ClCompile Include="PreviewWidget.cpp" />
     <ClCompile Include="Subject.cpp" />
     <ClCompile Include="ConnectorWidget.cpp" />
@@ -196,6 +198,7 @@
   <ItemGroup>
     <ClInclude Include="ActionData.h" />
     <ClInclude Include="AddDrawableToolBar.h" />
+    <ClInclude Include="AddMenuItem.h" />
     <ClInclude Include="AddNodeCommand.h" />
     <ClInclude Include="AddNodeInstruction.h" />
     <ClInclude Include="AddNodeState.h" />
@@ -210,6 +213,7 @@
     <ClInclude Include="CollectionType.h" />
     <ClInclude Include="Command.h" />
     <ClInclude Include="DialogSetting.h" />
+    <ClInclude Include="MenuSetting.h" />
     <ClInclude Include="PreviewWidget.h" />
     <ClInclude Include="Subject.h" />
     <ClInclude Include="ConnectorWidget.h" />
