@@ -30,7 +30,7 @@ Component* ComponentWidget::getComponent(){
 }
 
 void ComponentWidget::drawSelectedFrame(QPainter* painter){
-    if(this->graphicalPresentation->isSelected(this->componentID)){
+    if(this->graphicalPresentation->isWidgetSelected(this->componentID)){
         painter->setPen(QPen(darkGreen,WidgetDefaultSetting::SelectedFrameLineWidth,Qt::DotLine));
         painter->drawPath(this->shape());
     }

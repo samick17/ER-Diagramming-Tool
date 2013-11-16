@@ -26,12 +26,10 @@ HashMap<string,Component*> GraphicalPresentation::getAllComponents(){
     HashMap<string,Component*> componentMap = this->presentation->getAllComponents();
     //extract connector & insert to front
     HashMap<string,Connector*> connectorMap = ERModelUtil::convertComponentHashMapToTypeHashMap<Connector>(componentMap);
-    for each(Connector* connector in connectorMap){
+    for each(Connector* connector in connectorMap)
         componentMap.remove(connector->getID());
-    }
-    for each(Connector* connector in connectorMap){
+    for each(Connector* connector in connectorMap)
         componentMap.insertAt(connector->getID(),connector,0);
-    }
     return componentMap;
 }
 
@@ -88,7 +86,7 @@ void GraphicalPresentation::close(){
     this->presentation->close();
 }
 //is widget being selected?
-bool GraphicalPresentation::isSelected(string componentID){
+bool GraphicalPresentation::isWidgetSelected(string componentID){
     if(this->selectedWidgetSet.find(componentID) != this->selectedWidgetSet.end())
         return true;
     return false;
@@ -100,22 +98,18 @@ void GraphicalPresentation::selectWidget(){
         return;
     }
     string componentID = this->lastPressedComponent->getID();
-    bool isSelected = this->isSelected(componentID);
-    if(this->isCtrlPressed){
-        if(this->isSelected(componentID)){
-            this->selectedWidgetSet.erase(componentID);
-        }else {
-            this->selectedWidgetSet.insert(componentID);
-        }
-    }else {
+    bool isSelected = this->isWidgetSelected(componentID);
+    if(!this->isCtrlPressed)
         this->selectedWidgetSet.clear();
-        if(isSelected){
-            this->selectedWidgetSet.erase(componentID);
-        }else {
-            this->selectedWidgetSet.insert(componentID);
-        }
-    }
+    this->revertSelectWidget(isSelected,componentID);
     this->notify();
+}
+
+void GraphicalPresentation::revertSelectWidget(bool isSelected,string componentID){
+    if(isSelected)
+        this->selectedWidgetSet.erase(componentID);
+    else 
+        this->selectedWidgetSet.insert(componentID);
 }
 
 void GraphicalPresentation::moveSelectedWidget(Point deltaPosition){

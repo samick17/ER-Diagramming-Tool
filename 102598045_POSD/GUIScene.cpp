@@ -86,9 +86,8 @@ void GUIScene::addWidget(BaseWidget* widget){
 }
 
 void GUIScene::updateAll(){
-    for each(BaseWidget* widget in this->widgetList){
+    for each(BaseWidget* widget in this->widgetList)
         widget->updateWidget();
-    }
     this->update();
 }
 

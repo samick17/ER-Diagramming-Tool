@@ -1,11 +1,10 @@
 #pragma once
 
 #include "Component.h"
-#include "Presentation.h"
 #include <set>
+#include "Presentation.h"
 #include "Subject.h"
 
-class State;
 class StateSubject;
 
 class GraphicalPresentation : public Subject{
@@ -26,8 +25,9 @@ public:
     void openFile(string filePath);
     void saveFile(string filePath);
     void close();
-    bool isSelected(string componentID);
+    bool isWidgetSelected(string componentID);
     void selectWidget();
+    void revertSelectWidget(bool isSelected,string componentID);
     void moveSelectedWidget(Point position);
     void unSelectAll();
     void switchState(int stateID);

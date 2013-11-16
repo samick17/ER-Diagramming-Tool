@@ -5,6 +5,7 @@ public:
     static const int Width;
     static const int Height;
     static const double WidgetLineWidth;
+    static const double ConnectorWidth;
     static const int AttributeHorizontalDistance;
     static const int AttributeVerticalDistance;
     static const int EntityHorizontalDistance;
