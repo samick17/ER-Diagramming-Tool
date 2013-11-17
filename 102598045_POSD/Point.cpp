@@ -1,4 +1,5 @@
 #include "Point.h"
+#include <math.h>
 
 Point::Point(double coordinateX,double coordinateY) : coordinateX(coordinateX),coordinateY(coordinateY){}
 
@@ -8,6 +9,13 @@ double Point::getX(){
 
 double Point::getY(){
     return this->coordinateY;
+}
+
+double Point::getDistance(Point point){
+    double deltaX = point.getX()-this->getX();
+    double deltaY = point.getY()-this->getY();
+    double distance = sqrt(deltaX*deltaX+deltaY*deltaY);
+    return distance;
 }
 
 bool Point::operator==(const Point& pointToOperate) const{

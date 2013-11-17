@@ -26,8 +26,11 @@ void Connector::updateRect(){
     Component* secondNode = this->getSecondConnectedNode();
     if(!firstNode && !secondNode)
         return;
-    Point sourcePoint = firstNode->getRect().getCenterPosition();
-    Point targetPoint = secondNode->getRect().getCenterPosition();
+    Rect sourceRect = firstNode->getRect();
+    Rect targetRect = secondNode->getRect();
+    pair<Point,Point> minDistancePointPair = sourceRect.getMinDistanceToRectPoint(targetRect);
+    Point sourcePoint = minDistancePointPair.first;
+    Point targetPoint = minDistancePointPair.second;
 
     Point position = Point(min(sourcePoint.getX(),targetPoint.getX()),min(sourcePoint.getY(),targetPoint.getY()));
     this->componentData.setPosition(position);

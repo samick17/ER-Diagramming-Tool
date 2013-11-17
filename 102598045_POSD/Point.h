@@ -13,6 +13,7 @@ public:
 
     double getX();
     double getY();
+    double getDistance(Point point);
 
     bool operator==(const Point& pointToOperate) const;
     Point& operator+=(const Point& pointToOperate);

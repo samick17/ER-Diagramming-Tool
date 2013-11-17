@@ -1,5 +1,8 @@
 #include "Rect.h"
 #include "Number.h"
+#include <vector>
+
+using namespace std;
 
 Rect::Rect(Point position,Size size) : position(position),size(size){
 }
@@ -82,6 +85,30 @@ Point Rect::getCenterTop(){
 Point Rect::getCenterBottom(){
     Point centerBottom = Point(this->getCenterX(),this->getBottom());
     return centerBottom;
+}
+
+pair<Point,Point> Rect::getMinDistanceToRectPoint(Rect rect){
+    vector<Point> candidatePointVector;
+    candidatePointVector.push_back(this->getCenterLeft());
+    candidatePointVector.push_back(this->getCenterRight());
+    candidatePointVector.push_back(this->getCenterTop());
+    candidatePointVector.push_back(this->getCenterBottom());
+    vector<Point> comparedPointVector;
+    comparedPointVector.push_back(rect.getCenterLeft());
+    comparedPointVector.push_back(rect.getCenterRight());
+    comparedPointVector.push_back(rect.getCenterTop());
+    comparedPointVector.push_back(rect.getCenterBottom());
+    double distance = DBL_MAX;
+    pair<Point,Point> result;
+    for each(Point candidatePoint in candidatePointVector)
+        for each(Point comparedPoint in comparedPointVector){
+        double distanceBuffer = candidatePoint.getDistance(comparedPoint);
+            if(distanceBuffer<distance){
+                result = pair<Point,Point>(candidatePoint,comparedPoint);
+                distance = distanceBuffer;
+            }
+        }
+    return result;
 }
 
 bool Rect::operator==(const Rect& rectToCompare) const{

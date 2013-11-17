@@ -2,6 +2,7 @@
 
 #include "Point.h"
 #include "Size.h"
+#include <utility>
 
 struct Rect{
     friend class RectTest;
@@ -31,7 +32,8 @@ public:
     Point getCenterRight();
     Point getCenterTop();
     Point getCenterBottom();
-    
+    std::pair<Point,Point> getMinDistanceToRectPoint(Rect rect);
+
     bool operator==(const Rect& rectToCompare) const;
 private:
     Point position;

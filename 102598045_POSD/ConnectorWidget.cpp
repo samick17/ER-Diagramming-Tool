@@ -32,8 +32,12 @@ void ConnectorWidget::doUpdateWidget(){
     Component* secondComponent = connector->getSecondConnectedNode();
     if(!firstComponent && !secondComponent)
         return;
-    Point sourcePosition = firstComponent->getRect().getCenterPosition();
-    Point targetPosition = secondComponent->getRect().getCenterPosition();
-    this->sourcePoint = QPointF(sourcePosition.getX(),sourcePosition.getY());
-    this->targetPoint = QPointF(targetPosition.getX(),targetPosition.getY());
+    Rect sourceRect = firstComponent->getRect();
+    Rect targetRect = secondComponent->getRect();
+    pair<Point,Point> minDistancePointPair = sourceRect.getMinDistanceToRectPoint(targetRect);
+    Point sourcePoint = minDistancePointPair.first;
+    Point targetPoint = minDistancePointPair.second;
+
+    this->sourcePoint = QPointF(sourcePoint.getX(),sourcePoint.getY());
+    this->targetPoint = QPointF(targetPoint.getX(),targetPoint.getY());
 }
