@@ -4,7 +4,7 @@
 #include "HashMap.h"
 #include "ComponentType.h"
 
-typedef Component* (*NewComponentFunction)(ComponentData);
+typedef Component* (*NewComponentFunction)(string);
 
 class ComponentFactory{
     friend class ComponentFactoryTest;
@@ -23,10 +23,10 @@ private:
     HashMap<string,NewComponentFunction> newComponentMap;
     NewComponentFunction findNewComponentFunction(string componentType);
     template <typename Type>
-    static Component* newComponent(ComponentData componentData);
+    static Component* newComponent(string componentID);
 };
 
 template <typename Type>
-Component* ComponentFactory::newComponent(ComponentData componentData){
-    return new Type(componentData);
+Component* ComponentFactory::newComponent(string componentID){
+    return new Type(componentID);
 }

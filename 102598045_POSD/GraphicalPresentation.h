@@ -5,6 +5,7 @@
 #include "Presentation.h"
 #include "Subject.h"
 
+class ComponentData;
 class StateSubject;
 
 class GraphicalPresentation : public Subject{
@@ -14,6 +15,8 @@ public:
 
     StateSubject* getStateSubject();
     HashMap<string,Component*> getAllComponents();
+    set<ComponentData*> getAllComponentDataSet();
+    void updateAllComponentData();
     Node* getLastAddedNode();
     Component* getLastPressedComponent();
     Component* getLastReleasedComponent();
@@ -30,16 +33,15 @@ public:
     void moveSelectedWidget(Point position);
     void unSelectAll();
     void switchState(int stateID);
-    void keyCtrlPressed();
-    void keyCtrlReleased();
+    void setKeyCtrlState(bool isCtrlPressed);
     //synchronize view
     void registerSynchronizer(ISynchronizer* synchronizer);
     void unregisterSynchronizer(ISynchronizer* synchronizer);
     void sync(string syncEventType);
 
-    void mousePressEvent(Point position,Component* component);
-    void mouseMoveEvent(Point position,Component* component);
-    void mouseReleaseEvent(Point position,Component* component);
+    void mousePressEvent(Point position,ComponentData* componentData);
+    void mouseMoveEvent(Point position,ComponentData* componentData);
+    void mouseReleaseEvent(Point position,ComponentData* componentData);
 protected:
     //observer
     void doRegisterObserver(IObserver* observer);
@@ -47,6 +49,8 @@ protected:
 private:
     Presentation* presentation;
     set<string> selectedWidgetSet;
+    set<ComponentData*> componentDataSet;
+    ComponentData* componentDataForPreview;
     bool isCtrlPressed;
     StateSubject* stateSubject;
     Node* lastAddedNode;

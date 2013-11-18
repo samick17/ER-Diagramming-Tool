@@ -8,7 +8,7 @@
 class GraphicalUI;
 class BaseWidget;
 class GraphicalPresentation;
-class Component;
+class ComponentData;
 
 using namespace std;
 
@@ -31,8 +31,8 @@ private:
     QGraphicsView* view;
     GraphicalPresentation* graphicalPresentation;
     QList<BaseWidget*> widgetList;
-    Component* getComponentAtPosition(QPointF qPosition);
-    pair<Point,Component*> getPointComponentPair(QGraphicsSceneMouseEvent* mouseEvent);
+    ComponentData* getComponentDataAtPosition(QPointF qPosition);
+    pair<Point,ComponentData*> getPointComponentPair(QGraphicsSceneMouseEvent* mouseEvent);
     void addWidget(BaseWidget* widget);
     void updateAll();
     void clearAll();

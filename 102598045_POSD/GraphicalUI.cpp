@@ -44,13 +44,11 @@ void GraphicalUI::closeEvent(QCloseEvent* closeEvent){
 }
 
 void GraphicalUI::keyPressEvent(QKeyEvent* keyEvent){
-    if(keyEvent->key() == Key_Control)
-        this->graphicalPresentation->keyCtrlPressed();
+    this->setKeyCtrlPressed(keyEvent);
 }
 
 void GraphicalUI::keyReleaseEvent(QKeyEvent* keyEvent){
-    if(keyEvent->key() == Key_Control)
-        this->graphicalPresentation->keyCtrlReleased();
+    this->setKeyCtrlPressed(keyEvent);
 }
 
 void GraphicalUI::setTitle(string title,string iconPath){
@@ -147,4 +145,9 @@ void GraphicalUI::executeSync(string syncEventType){
 
 void GraphicalUI::displayDiagram(){
     this->scene->displayDiagram();
+}
+
+void GraphicalUI::setKeyCtrlPressed(QKeyEvent* keyEvent){
+     bool isCtrlPressed = keyEvent->key() == Key_Control;
+    this->graphicalPresentation->setKeyCtrlState(isCtrlPressed);
 }

@@ -4,10 +4,9 @@
 
 class Node : public Component{
 public:
-    Node(ComponentData componentData);
+    Node(string componentID,string type);
     ~Node();
 
-    string getType();
     void setPosition(Point position);
     void setCenterPosition(Point position);
 

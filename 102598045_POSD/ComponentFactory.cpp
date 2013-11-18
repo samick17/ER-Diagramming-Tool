@@ -23,7 +23,7 @@ ComponentFactory::~ComponentFactory(){
 //return component pointer, if doesn't has such type, throw exception
 Component* ComponentFactory::createComponent(string componentType){
     NewComponentFunction newComponentFunctiontion = findNewComponentFunction(componentType);
-    Component* component = newComponentFunctiontion(ComponentData(StringUtil::intToString(count),StringSymbol::Empty));
+    Component* component = newComponentFunctiontion(StringUtil::intToString(count));
     ComponentFactory::count++;
     return component;
 }
@@ -33,8 +33,7 @@ void ComponentFactory::resetFactory(){
 }
 //return function pointer of new instance, if doesn't has such type, throw exception
 NewComponentFunction ComponentFactory::findNewComponentFunction(string type){
-    if(this->newComponentMap.containsKey(type)){
+    if(this->newComponentMap.containsKey(type))
         return this->newComponentMap.get(type);
-    }
     throw InvalidNodeTypeException();
 }

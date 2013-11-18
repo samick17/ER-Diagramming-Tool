@@ -3,7 +3,7 @@
 
 using namespace Qt;
 
-RelationShipWidget::RelationShipWidget(Component* component,GraphicalPresentation* graphicalPresentation) : NodeWidget(component,graphicalPresentation){
+RelationShipWidget::RelationShipWidget(ComponentData* componentData,GraphicalPresentation* graphicalPresentation) : NodeWidget(componentData,graphicalPresentation){
 }
 
 RelationShipWidget::~RelationShipWidget(){

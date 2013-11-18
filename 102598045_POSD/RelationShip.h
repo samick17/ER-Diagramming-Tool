@@ -8,12 +8,10 @@
 
 class RelationShip : public Node{
 public:
-    RelationShip(ComponentData componentData);
+    RelationShip(string componentID);
     ~RelationShip();
-
-    string getType();
         
-    int canConnectTo(Component* target);    
+    int canConnectTo(Component* target);
     bool hasSizeToConnect();
     bool isRelationType(string relationType);
 

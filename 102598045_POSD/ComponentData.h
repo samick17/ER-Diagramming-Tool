@@ -7,13 +7,16 @@ using namespace std;
 
 struct ComponentData{
 public:
-    ComponentData(string id,string name);
-    ~ComponentData();
+    ComponentData(string id,string name,string type);
+    virtual ~ComponentData();
 
     string getID();
     void setID(string id);
     string getName();
     void setName(string name);
+    string getType();
+    bool getIsUnderLine();
+    void setIsUnderLine(bool isUnderLine);
     Rect getRect();
     void setPosition(Point position);
     void setCenterPosition(Point position);
@@ -23,5 +26,7 @@ public:
 private:
     string id;
     string name;
+    string type;
+    bool isUnderLine;
     Rect rect;
 };

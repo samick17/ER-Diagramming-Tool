@@ -5,12 +5,10 @@
 #include "AttributeType.h"
 
 class Attribute : public Node{
-public:        
-    Attribute(ComponentData componentData);
+public:
+    Attribute(string componentID);
     ~Attribute();
 
-    string getType();
-    
     int canConnectTo(Component* target);
     bool hasSizeToConnect();
 

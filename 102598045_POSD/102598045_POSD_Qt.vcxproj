@@ -89,6 +89,7 @@
     <ClCompile Include="BaseWidget.cpp" />
     <ClCompile Include="CloseInstruction.cpp" />
     <ClCompile Include="CommandFactory.cpp" />
+    <ClCompile Include="ConnectorData.cpp" />
     <ClCompile Include="DialogSetting.cpp" />
     <ClCompile Include="GeneratedFiles\Debug\moc_GUIScene.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
@@ -213,6 +214,7 @@
     <ClInclude Include="CollectionType.h" />
     <ClInclude Include="Command.h" />
     <ClInclude Include="CommandFactory.h" />
+    <ClInclude Include="ConnectorData.h" />
     <ClInclude Include="DialogSetting.h" />
     <ClInclude Include="MenuSetting.h" />
     <ClInclude Include="Subject.h" />

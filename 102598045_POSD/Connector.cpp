@@ -4,20 +4,20 @@
 #include "ComponentUtil.h"
 #include "ComponentConnectionSize.h"
 #include "StringSymbol.h"
+#include "ConnectorData.h"
 
-Connector::Connector(ComponentData componentData) : Component(componentData){
+Connector::Connector(string componentID){
+    ComponentData componentData = ComponentData(componentID,StringSymbol::Empty,ComponentType::TypeConnector);
+    this->componentData = new ConnectorData(componentData);
 }
 
 Connector::~Connector(){
 }
 
-string Connector::getType(){
-    return ComponentType::TypeConnector;
-}
-
+//connector cannot set position freely
 void Connector::setPosition(Point position){
 }
-
+//connector cannot set position freely
 void Connector::setCenterPosition(Point position){
 }
 
@@ -29,13 +29,9 @@ void Connector::updateRect(){
     Rect sourceRect = firstNode->getRect();
     Rect targetRect = secondNode->getRect();
     pair<Point,Point> minDistancePointPair = sourceRect.getMinDistanceToRectPoint(targetRect);
-    Point sourcePoint = minDistancePointPair.first;
-    Point targetPoint = minDistancePointPair.second;
 
-    Point position = Point(min(sourcePoint.getX(),targetPoint.getX()),min(sourcePoint.getY(),targetPoint.getY()));
-    this->componentData.setPosition(position);
-    Size size = Size(abs(sourcePoint.getX()-targetPoint.getX()),abs(sourcePoint.getY()-targetPoint.getY()));
-    this->componentData.setSize(size);
+    ConnectorData* connectorData = static_cast<ConnectorData*>(this->componentData);
+    connectorData->setPointPair(minDistancePointPair);
 }
 
 void Connector::breakAllConnections(){

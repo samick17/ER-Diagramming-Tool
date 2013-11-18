@@ -1,13 +1,12 @@
 #include "ConnectorWidget.h"
 #include <QPainter>
-#include "Connector.h"
-#include <iostream>
+#include "ConnectorData.h"
 
 using namespace Qt;
 
-ConnectorWidget::ConnectorWidget(Component* component,GraphicalPresentation* graphicalPresentation) : ComponentWidget(component,graphicalPresentation){
-    Connector* connector = static_cast<Connector*>(this->component);
-    connector->updateRect();
+ConnectorWidget::ConnectorWidget(ComponentData* componentData,GraphicalPresentation* graphicalPresentation) : ComponentWidget(componentData,graphicalPresentation){
+    /*Connector* connector = static_cast<Connector*>(this->component);
+    connector->updateRect();*/
     this->updateWidget();
 }
 
@@ -27,7 +26,7 @@ QPainterPath ConnectorWidget::shape() const{
 }
 
 void ConnectorWidget::doUpdateWidget(){
-    Connector* connector = static_cast<Connector*>(this->component);
+    /*Connector* connector = static_cast<Connector*>(this->component);
     Component* firstComponent = connector->getFirstConnectedNode();
     Component* secondComponent = connector->getSecondConnectedNode();
     if(!firstComponent && !secondComponent)
@@ -36,8 +35,10 @@ void ConnectorWidget::doUpdateWidget(){
     Rect targetRect = secondComponent->getRect();
     pair<Point,Point> minDistancePointPair = sourceRect.getMinDistanceToRectPoint(targetRect);
     Point sourcePoint = minDistancePointPair.first;
-    Point targetPoint = minDistancePointPair.second;
-
+    Point targetPoint = minDistancePointPair.second;*/
+    ConnectorData* connectorData = static_cast<ConnectorData*>(this->componentData);
+    Point sourcePoint = connectorData->getSourcePoint();
+    Point targetPoint = connectorData->getTargetPoint();
     this->sourcePoint = QPointF(sourcePoint.getX(),sourcePoint.getY());
     this->targetPoint = QPointF(targetPoint.getX(),targetPoint.getY());
 }

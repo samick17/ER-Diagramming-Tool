@@ -57,6 +57,7 @@ int ERModel::addConnection(Component* firstNode,Component* secondNode){
         CommandFactory commandFactory;
         Command* connectNodeCommand = commandFactory.createConnectNodeCommand(this,firstNode,secondNode,connector);
         this->commandManager.execute(connectNodeCommand);
+        connector->updateRect();
     }
     return result;
 }

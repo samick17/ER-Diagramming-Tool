@@ -4,7 +4,7 @@
 
 class ConnectorWidget : public ComponentWidget{
 public:
-    ConnectorWidget(Component* component,GraphicalPresentation* graphicalPresentation);
+    ConnectorWidget(ComponentData* componentData,GraphicalPresentation* graphicalPresentation);
     ~ConnectorWidget();
 protected:
     QPainterPath shape() const;

@@ -1,7 +1,7 @@
 #include "ComponentData.h"
 #include "Number.h"
 
-ComponentData::ComponentData(string id,string name) : id(id),name(name){
+ComponentData::ComponentData(string id,string name,string type) : id(id),name(name),type(type){
 }
 
 ComponentData::~ComponentData(){
@@ -21,6 +21,18 @@ string ComponentData::getName(){
 
 void ComponentData::setName(string name){
     this->name = name;
+}
+
+string ComponentData::getType(){
+    return this->type;
+}
+
+bool ComponentData::getIsUnderLine(){
+    return this->isUnderLine;
+}
+
+void ComponentData::setIsUnderLine(bool isUnderLine){
+    this->isUnderLine = isUnderLine;
 }
 
 Rect ComponentData::getRect(){

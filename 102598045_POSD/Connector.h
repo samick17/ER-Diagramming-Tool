@@ -6,10 +6,9 @@
 class Connector : public Component{
     friend class ConnectorTest;
 public:
-    Connector(ComponentData componentData);
+    Connector(string componentID);
     ~Connector();
-    
-    string getType();
+
     void setPosition(Point position);
     void setCenterPosition(Point position);
     void updateRect();

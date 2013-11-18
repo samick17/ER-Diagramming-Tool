@@ -6,7 +6,7 @@
 
 using namespace Qt;
 
-ComponentWidget::ComponentWidget(Component* component,GraphicalPresentation* graphicalPresentation) : BaseWidget(graphicalPresentation),component(component){
+ComponentWidget::ComponentWidget(ComponentData* componentData,GraphicalPresentation* graphicalPresentation) : BaseWidget(graphicalPresentation),componentData(componentData){
 }
 
 ComponentWidget::~ComponentWidget(){
@@ -22,16 +22,16 @@ void ComponentWidget::doPaint(QPainter* painter){
 }
 
 void ComponentWidget::updateWidget(){
-    Rect componentRect = this->component->getRect();
+    Rect componentRect = this->componentData->getRect();
     Point position = componentRect.getPosition();
-    this->setText(this->component->getName());
-    this->componentID = this->component->getID();
+    this->setText(this->componentData->getName());
+    this->componentID = this->componentData->getID();
     this->setRect(QRectF(position.getX(),position.getY(),componentRect.getWidth(),componentRect.getHeight()));
     this->doUpdateWidget();
 }
 
-Component* ComponentWidget::getComponent(){
-    return this->component;
+ComponentData* ComponentWidget::getComponentData(){
+    return this->componentData;
 }
 
 void ComponentWidget::drawSelectedFrame(QPainter* painter){

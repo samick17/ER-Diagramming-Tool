@@ -73,7 +73,7 @@ void InputFileParser::loadAllPrimaryKeyAndSetUpFromDoc(Document& doc){
     }
 }
 
-void InputFileParser::addAllComponentToERModel(){    
+void InputFileParser::addAllComponentToERModel(){
     int index = 0;
     //add all component in queue
     while(!this->componentDataQueue.empty()){
@@ -87,7 +87,7 @@ void InputFileParser::addAllComponentToERModel(){
             Component* component = this->erModel->addNode(componentData.first);
             component->setName(componentData.second);
         }
-        this->componentDataQueue.pop();        
+        this->componentDataQueue.pop();
         index++;
     }
 }
@@ -98,7 +98,7 @@ void InputFileParser::addConnector(ConnectionData connectionData,string connecti
     
     this->erModel->addConnection(firstNode,secondNode);
     Component* connector = this->erModel->getComponentByID(connectionData.getConnectorID());
-    connector->setName(connectionName);    
+    connector->setName(connectionName);
 }
 /*
 *compare ComponentDataQueue & ConnectionDataQueue

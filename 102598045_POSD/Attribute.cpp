@@ -5,15 +5,11 @@
 #include "InvalidConnectException.h"
 #include "ComponentConnectionSize.h"
 
-Attribute::Attribute(ComponentData componentData) : Node(componentData){
+Attribute::Attribute(string componentID) : Node(componentID,ComponentType::TypeAttribute){
     this->attributeType = AttributeType::Default;
 }
 
 Attribute::~Attribute(){
-}
-
-string Attribute::getType(){
-    return ComponentType::TypeAttribute;
 }
 
 int Attribute::canConnectTo(Component* target){
@@ -21,7 +17,7 @@ int Attribute::canConnectTo(Component* target){
 
     if(typeid(*target).name() == typeid(RelationShip).name())
         throw InvalidConnectException(this->getID(),target->getID());
-    
+
     return canConnect;
 }
 
@@ -33,6 +29,7 @@ bool Attribute::isPrimaryKey(){
     return this->attributeType == AttributeType::PrimaryKey;
 }
 //set attribute as general
-void Attribute::setAsPrimaryKey(){    
+void Attribute::setAsPrimaryKey(){
+    this->componentData->setIsUnderLine(true);
     this->attributeType = AttributeType::PrimaryKey;
 }

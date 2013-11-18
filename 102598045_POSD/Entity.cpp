@@ -9,14 +9,10 @@
 #include "EmptyCollectionException.h"
 #include "StringSymbol.h"
 
-Entity::Entity(ComponentData componentData) : Node(componentData){
+Entity::Entity(string componentID) : Node(componentID,ComponentType::TypeEntity){
 }
 
 Entity::~Entity(){
-}
-
-string Entity::getType(){
-    return ComponentType::TypeEntity;
 }
 
 int Entity::canConnectTo(Component* target){

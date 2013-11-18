@@ -14,11 +14,11 @@ class Component{
     friend class ConnectorTest;
     FRIEND_TEST(ConnectorTest,testBreakAllConnections);
 public:
-    Component(ComponentData componentData);
+    Component();
     virtual ~Component();
 
     string getID();
-    virtual string getType();
+    string getType();
     string getName();
     void setName(string);
     string getClassName();
@@ -26,6 +26,7 @@ public:
     virtual void setPosition(Point position) = 0;
     virtual void setCenterPosition(Point position) = 0;
     void setSize(Size size);
+    ComponentData* getComponentData();
 
     void connectTo(Component* target);
     void disconnectTo(Component* target);
@@ -36,7 +37,7 @@ public:
 
     HashMap<string,Component*> getAllConnections();
 protected:
-    ComponentData componentData;
+    ComponentData* componentData;
 private:
     HashMap<string,Component*> connectionMap;
 };

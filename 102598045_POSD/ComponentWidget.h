@@ -1,17 +1,17 @@
 #pragma once
 
 #include "BaseWidget.h"
-#include "Component.h"
+#include "ComponentData.h"
 
 class ComponentWidget : public BaseWidget{
 public:
-    ComponentWidget(Component* component,GraphicalPresentation* graphicalPresentation);
+    ComponentWidget(ComponentData* componentData,GraphicalPresentation* graphicalPresentation);
     ~ComponentWidget();
 
     void updateWidget();
-    Component* getComponent();
+    ComponentData* getComponentData();
 protected:
-    Component* component;
+    ComponentData* componentData;
     string getComponentID();
     void doPaint(QPainter* painter);
 private:

@@ -4,7 +4,7 @@
 
 using namespace Qt;
 
-AttributeWidget::AttributeWidget(Component* component,GraphicalPresentation* graphicalPresentation) : NodeWidget(component,graphicalPresentation){
+AttributeWidget::AttributeWidget(ComponentData* componentData,GraphicalPresentation* graphicalPresentation) : NodeWidget(componentData,graphicalPresentation){
 }
 
 AttributeWidget::~AttributeWidget(){
@@ -17,6 +17,5 @@ QPainterPath AttributeWidget::shape() const{
 }
 
 void AttributeWidget::doUpdateWidget(){
-    Attribute* attribute = static_cast<Attribute*>(this->component);
-    this->setUnderLine(attribute->isPrimaryKey());
+    this->setUnderLine(this->componentData->getIsUnderLine());
 }

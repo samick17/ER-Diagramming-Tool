@@ -20,14 +20,17 @@ StateSubject* GraphicalPresentation::getStateSubject(){
 }
 
 HashMap<string,Component*> GraphicalPresentation::getAllComponents(){
-    HashMap<string,Component*> componentMap = this->presentation->getAllComponents();
-    //extract connector & insert to front
-    HashMap<string,Connector*> connectorMap = ERModelUtil::convertComponentHashMapToTypeHashMap<Connector>(componentMap);
-    for each(Connector* connector in connectorMap)
-        componentMap.remove(connector->getID());
-    for each(Connector* connector in connectorMap)
-        componentMap.insertAt(connector->getID(),connector,0);
-    return componentMap;
+    return this->presentation->getAllComponents();
+}
+
+set<ComponentData*> GraphicalPresentation::getAllComponentDataSet(){
+    return this->componentDataSet;
+}
+
+void GraphicalPresentation::updateAllComponentData(){
+    this->componentDataSet.clear();
+    for each(Component* component in this->presentation->getAllComponents())
+        this->componentDataSet.insert(component->getComponentData());
 }
 
 Node* GraphicalPresentation::getLastAddedNode(){
@@ -123,13 +126,10 @@ void GraphicalPresentation::switchState(int stateID){
     this->stateSubject->switchState(stateID,this);
 }
 //key pressed
-void GraphicalPresentation::keyCtrlPressed(){
-    this->isCtrlPressed = true;
+void GraphicalPresentation::setKeyCtrlState(bool isCtrlPressed){
+    this->isCtrlPressed = isCtrlPressed;
 }
 
-void GraphicalPresentation::keyCtrlReleased(){
-    this->isCtrlPressed = false;
-}
 //synchronized view
 void GraphicalPresentation::registerSynchronizer(ISynchronizer* synchronizer){
     this->presentation->registerSynchronizer(synchronizer);
@@ -151,19 +151,23 @@ void GraphicalPresentation::doUngisterObserver(IObserver* observer){
     this->presentation->unregisterObserver(observer);
 }
 
-void GraphicalPresentation::mousePressEvent(Point position,Component* component){
-    this->lastPressedComponent = component;
+void GraphicalPresentation::mousePressEvent(Point position,ComponentData* componentData){
+    if(componentData){
+        this->lastPressedComponent = this->presentation->getComponentByID(componentData->getID());
+    }
     this->stateSubject->getState()->mousePressEvent(position);
     //must use notify to avoid some bug
     this->notify();
 }
 
-void GraphicalPresentation::mouseMoveEvent(Point position,Component* component){
+void GraphicalPresentation::mouseMoveEvent(Point position,ComponentData* componentData){
     this->stateSubject->getState()->mouseMoveEvent(position);
 }
 
-void GraphicalPresentation::mouseReleaseEvent(Point position,Component* component){
-    this->lastReleasedComponent = component;
+void GraphicalPresentation::mouseReleaseEvent(Point position,ComponentData* componentData){
+    if(componentData){
+        this->lastReleasedComponent = this->presentation->getComponentByID(componentData->getID());
+    }
     this->stateSubject->getState()->mouseReleaseEvent(position);
     this->notify();
 }

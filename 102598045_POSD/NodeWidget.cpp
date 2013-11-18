@@ -3,7 +3,7 @@
 
 using namespace Qt;
 
-NodeWidget::NodeWidget(Component* component,GraphicalPresentation* graphicalPresentation) : ComponentWidget(component,graphicalPresentation){
+NodeWidget::NodeWidget(ComponentData* componentData,GraphicalPresentation* graphicalPresentation) : ComponentWidget(componentData,graphicalPresentation){
 }
 
 NodeWidget::~NodeWidget(){

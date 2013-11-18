@@ -22,52 +22,51 @@ void GUIScene::notify(ISubject* subject){
 void GUIScene::displayDiagram(){
     this->clearAll();
     //display all
-    HashMap<string,Component*>& componentMap = this->graphicalPresentation->getAllComponents();
+    set<ComponentData*> componentDataSet = this->graphicalPresentation->getAllComponentDataSet();
     WidgetFactory widgetFactory;
-    for each(Component* component in componentMap){
-        BaseWidget* componentWidget = widgetFactory.createComponentWidget(component,this->graphicalPresentation);
+    for each(ComponentData* componentData in componentDataSet){
+        BaseWidget* componentWidget = widgetFactory.createComponentWidget(componentData,this->graphicalPresentation);
         this->addWidget(componentWidget);
     }
 }
 
 void GUIScene::mousePressEvent(QGraphicsSceneMouseEvent* mouseEvent){
-    pair<Point,Component*> pointComponentPair = this->getPointComponentPair(mouseEvent);
+    pair<Point,ComponentData*> pointComponentPair = this->getPointComponentPair(mouseEvent);
     this->graphicalPresentation->mousePressEvent(pointComponentPair.first,pointComponentPair.second);
     this->updateAll();
 }
 
 void GUIScene::mouseMoveEvent(QGraphicsSceneMouseEvent* mouseEvent){
-    pair<Point,Component*> pointComponentPair = this->getPointComponentPair(mouseEvent);
+    pair<Point,ComponentData*> pointComponentPair = this->getPointComponentPair(mouseEvent);
     this->graphicalPresentation->mouseMoveEvent(pointComponentPair.first,pointComponentPair.second);
     this->updateAll();
 }
 
 void GUIScene::mouseReleaseEvent(QGraphicsSceneMouseEvent* mouseEvent){
-    pair<Point,Component*> pointComponentPair = this->getPointComponentPair(mouseEvent);
+    pair<Point,ComponentData*> pointComponentPair = this->getPointComponentPair(mouseEvent);
     this->graphicalPresentation->mouseReleaseEvent(pointComponentPair.first,pointComponentPair.second);
     this->updateAll();
 }
 //get component from widget
-pair<Point,Component*> GUIScene::getPointComponentPair(QGraphicsSceneMouseEvent* mouseEvent){
+pair<Point,ComponentData*> GUIScene::getPointComponentPair(QGraphicsSceneMouseEvent* mouseEvent){
     QPointF qPosition = mouseEvent->scenePos();
     Point position = Point(qPosition.x(),qPosition.y());
-    Component* component = this->getComponentAtPosition(qPosition);
-    return pair<Point,Component*>(position,component);
+    ComponentData* componentData = this->getComponentDataAtPosition(qPosition);
+    return pair<Point,ComponentData*>(position,componentData);
 }
 
 void GUIScene::executeNotify(){
+    this->graphicalPresentation->updateAllComponentData();
     this->displayDiagram();
 }
 
-Component* GUIScene::getComponentAtPosition(QPointF qPosition){
+ComponentData* GUIScene::getComponentDataAtPosition(QPointF qPosition){
     //if this graphicaItem cannot cast to 'ComponentWidget' ,the value of widget is NULL
     ComponentWidget* widget = dynamic_cast<ComponentWidget*>(this->itemAt(qPosition));
-    Component* component = NULL;
-    if(widget){
-        component = widget->getComponent();
-        //this->view->ensureVisible(widget);
-    }
-    return component;
+    ComponentData* componentData = NULL;
+    if(widget)
+        componentData = widget->getComponentData();
+    return componentData;
 }
 
 void GUIScene::addWidget(BaseWidget* widget){

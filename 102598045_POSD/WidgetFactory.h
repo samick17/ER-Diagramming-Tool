@@ -5,25 +5,27 @@
 #include "EntityWidget.h"
 #include "RelationShipWidget.h"
 #include "ConnectorWidget.h"
+#include "Component.h"
+#include "ComponentData.h"
 
 class GraphicalPresentation;
 
-typedef BaseWidget* (*NewComponentWidgetFunction)(Component* component,GraphicalPresentation* graphicalPresentation);
+typedef BaseWidget* (*NewComponentWidgetFunction)(ComponentData* componentData,GraphicalPresentation* graphicalPresentation);
 
 class WidgetFactory{
 public:
     WidgetFactory();
     ~WidgetFactory();
 
-    BaseWidget* createComponentWidget(Component* component,GraphicalPresentation* graphicalPresentation);
+    BaseWidget* createComponentWidget(ComponentData* componentData,GraphicalPresentation* graphicalPresentation);
 private:
     HashMap<string,NewComponentWidgetFunction> newComponentWidgetMap;
     NewComponentWidgetFunction findNewComponentWidgetFunction(string componentType);
     template<typename Type>
-    static BaseWidget* newComponentWidget(Component* component,GraphicalPresentation* graphicalPresentation);
+    static BaseWidget* newComponentWidget(ComponentData* componentData,GraphicalPresentation* graphicalPresentation);
 };
 
 template<typename Type>
-static BaseWidget* WidgetFactory::newComponentWidget(Component* component,GraphicalPresentation* graphicalPresentation){
-    return new Type(component,graphicalPresentation);
+static BaseWidget* WidgetFactory::newComponentWidget(ComponentData* componentData,GraphicalPresentation* graphicalPresentation){
+    return new Type(componentData,graphicalPresentation);
 }

@@ -4,24 +4,22 @@
 #include "InvalidConnectException.h"
 #include "ConnectedSelfException.h"
 #include "HasConnectedException.h"
+#include "StringSymbol.h"
 
-Node::Node(ComponentData componentData) : Component(componentData){
+Node::Node(string componentID,string type){
+    this->componentData = new ComponentData(componentID,StringSymbol::Empty,type);
 }
 
 Node::~Node(){
 }
 
-string Node::getType(){
-    return ComponentType::TypeNode;
-}
-
 void Node::setPosition(Point position){
-    this->componentData.setPosition(position);
+    this->componentData->setPosition(position);
     this->updateConnectorsPosition();
 }
 
 void Node::setCenterPosition(Point position){
-    this->componentData.setCenterPosition(position);
+    this->componentData->setCenterPosition(position);
     this->updateConnectorsPosition();
 }
 

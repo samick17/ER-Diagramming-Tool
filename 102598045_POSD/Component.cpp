@@ -4,26 +4,27 @@
 #include "CharSymbol.h"
 #include "StringSymbol.h"
 
-Component::Component(ComponentData componentData) : componentData(componentData){
+Component::Component(){
 }
 
 Component::~Component(){
+    delete this->componentData;
 }
 
 string Component::getID(){
-    return this->componentData.getID();
+    return this->componentData->getID();
 }
 
 string Component::getType(){
-    return ComponentType::TypeComponent;
+    return this->componentData->getType();
 }
 
 string Component::getName(){
-    return this->componentData.getName();
+    return this->componentData->getName();
 }
 
 void Component::setName(string name){
-    this->componentData.setName(name);
+    this->componentData->setName(name);
 }
 
 string Component::getClassName(){
@@ -31,15 +32,19 @@ string Component::getClassName(){
 }
 
 Rect Component::getRect(){
-    return this->componentData.getRect();
+    return this->componentData->getRect();
 }
 
 void Component::setCenterPosition(Point position){
-    this->componentData.setCenterPosition(position);
+    this->componentData->setCenterPosition(position);
 }
 
 void Component::setSize(Size size){
-    this->componentData.setSize(size);
+    this->componentData->setSize(size);
+}
+
+ComponentData* Component::getComponentData(){
+    return this->componentData;
 }
 
 //if no such connection in set, connect to target

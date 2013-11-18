@@ -6,10 +6,8 @@
 
 class Entity : public Node{
 public:
-    Entity(ComponentData componentData);
+    Entity(string componentID);
     ~Entity();
-    
-    string getType();
 
     int canConnectTo(Component* target);
 

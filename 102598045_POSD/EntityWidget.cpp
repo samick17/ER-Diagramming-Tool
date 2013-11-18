@@ -1,6 +1,6 @@
 #include "EntityWidget.h"
 
-EntityWidget::EntityWidget(Component* component,GraphicalPresentation* graphicalPresentation) : NodeWidget(component,graphicalPresentation){
+EntityWidget::EntityWidget(ComponentData* componentData,GraphicalPresentation* graphicalPresentation) : NodeWidget(componentData,graphicalPresentation){
 }
 
 EntityWidget::~EntityWidget(){
