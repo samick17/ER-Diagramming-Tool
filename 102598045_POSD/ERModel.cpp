@@ -3,12 +3,10 @@
 #include "TableUtil.h"
 #include "ComponentUtil.h"
 #include "ComponentFactory.h"
+#include "CommandFactory.h"
 #include "CommandManager.h"
 #include "NoSuchNodeException.h"
 #include "NullPointerException.h"
-#include "AddNodeCommand.h"
-#include "DeleteComponentCommand.h"
-#include "ConnectNodeCommand.h"
 #include "InputFileParser.h"
 #include "OutputFileParser.h"
 
@@ -16,14 +14,16 @@ ERModel::ERModel(){
 }
 
 ERModel::~ERModel(){
-    this->clearComponentMap();
+    this->resetERModel();
 }
 
 Node* ERModel::addNode(string componentType){
     Node* node;
     ComponentFactory componentFactory;
     node = static_cast<Node*>(componentFactory.createComponent(componentType));
-    this->commandManager.execute(new AddNodeCommand(this,node));
+    CommandFactory commandFactory;
+    Command* addNodeCommand = commandFactory.createAddNodeCommand(this,node);
+    this->commandManager.execute(addNodeCommand);
     return node;
 }
 //insert component in componentMap, if no such key
@@ -44,16 +44,19 @@ void ERModel::eraseComponent(Component* component){
 }
 
 void ERModel::deleteComponent(Component* component){
-    this->commandManager.execute(new DeleteComponentCommand(this,component));
+    CommandFactory commandFactory;
+    Command* deleteComponentCommand = commandFactory.createDeleteComponentCommand(this,component);
+    this->commandManager.execute(deleteComponentCommand);
 }
-//@return: NodeConnectionType
+//return: NodeConnectionType
 int ERModel::addConnection(Component* firstNode,Component* secondNode){
     int result = firstNode->canConnectTo(secondNode);
-
     if(result == NodeConnectionType::ValidConnect || result == NodeConnectionType::ConnectEntityAndRelation){
         ComponentFactory componentFactory;
         Connector* connector = static_cast<Connector*>(componentFactory.createComponent(ComponentType::TypeConnector));
-        this->commandManager.execute(new ConnectNodeCommand(this,firstNode,secondNode,connector));
+        CommandFactory commandFactory;
+        Command* connectNodeCommand = commandFactory.createConnectNodeCommand(this,firstNode,secondNode,connector);
+        this->commandManager.execute(connectNodeCommand);
     }
     return result;
 }
@@ -129,15 +132,15 @@ HashMap<string,Table*> ERModel::getAllTables(){
     return TableUtil::convertToTableMap(this->tableManager,this->getAllEntities(),this->getAllRelationShips());
 }
 //clear all components & delete it
-void ERModel::clearComponentMap(){
+void ERModel::resetERModel(){
     ComponentFactory componentFactory;
     componentFactory.resetFactory();
     this->commandManager.popAllStack();
 
     for each(Component*& component in this->componentMap){
-		component = NULL;
-		Component* componentBuffer = component;
-		delete componentBuffer;
+        component = NULL;
+        Component* componentBuffer = component;
+        delete componentBuffer;
     }
     
     this->componentMap.clear();

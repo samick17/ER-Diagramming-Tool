@@ -23,14 +23,16 @@ public:
     unsigned int getValueIndex(Value value);
     bool empty();
     void clear();
-    
+
+    bool operator==(const HashMap<Key,Value>& hashMapToCompared) const;
+
     typedef typename vector<Value>::iterator iterator;
     typedef typename vector<Value>::reverse_iterator reverse_iterator;
     iterator begin();
     iterator end();
     reverse_iterator rbegin();
     reverse_iterator rend();
-private:    
+private:
     unordered_map<Key,Value> hashmap;
     vector<Value> valueVector;
 };
@@ -127,6 +129,11 @@ template<typename Key,typename Value>
 void HashMap<Key,Value>::clear(){
     hashmap.clear();
     valueVector.clear();
+}
+
+template<typename Key,typename Value>
+bool HashMap<Key,Value>::operator==(const HashMap<Key,Value>& hashMapToCompared) const{
+    return this->hashmap == hashMapToCompared.hashmap && this->valueVector == hashMapToCompared.valueVector;
 }
 
 template<typename Key,typename Value>

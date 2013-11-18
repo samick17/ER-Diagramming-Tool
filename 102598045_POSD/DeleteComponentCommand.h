@@ -7,10 +7,10 @@
 
 class DeleteComponentCommand : public Command{
     friend class DeleteComponentCommandTest;
-    FRIEND_TEST(DeleteComponentCommandTest,testDeleteComponentCommand);    
+    FRIEND_TEST(DeleteComponentCommandTest,testDeleteComponentCommand);
     FRIEND_TEST(DeleteComponentCommandTest,testSaveConnectionData);
     FRIEND_TEST(DeleteComponentCommandTest,testClearConnectionDataMap);
-    FRIEND_TEST(DeleteComponentCommandTest,testRemoveAndDisconnectComponents);    
+    FRIEND_TEST(DeleteComponentCommandTest,testRemoveAndDisconnectComponents);
     FRIEND_TEST(DeleteComponentCommandTest,testReConnectComponents);
 public:
     DeleteComponentCommand(ERModel* erModel,Component* component);

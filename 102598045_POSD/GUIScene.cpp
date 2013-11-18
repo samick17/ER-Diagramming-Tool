@@ -31,35 +31,37 @@ void GUIScene::displayDiagram(){
 }
 
 void GUIScene::mousePressEvent(QGraphicsSceneMouseEvent* mouseEvent){
-    QPointF qPosition = mouseEvent->scenePos();
-    Point position = Point(qPosition.x(),qPosition.y());
-    Component* component = hasItemAtPosition(qPosition);
-    this->graphicalPresentation->mousePressEvent(position,component);
+    pair<Point,Component*> pointComponentPair = this->getPointComponentPair(mouseEvent);
+    this->graphicalPresentation->mousePressEvent(pointComponentPair.first,pointComponentPair.second);
     this->updateAll();
 }
 
 void GUIScene::mouseMoveEvent(QGraphicsSceneMouseEvent* mouseEvent){
-    QPointF qPosition = mouseEvent->scenePos();
-    Point position = Point(qPosition.x(),qPosition.y());
-    Component* component = hasItemAtPosition(qPosition);
-    this->graphicalPresentation->mouseMoveEvent(position,component);
+    pair<Point,Component*> pointComponentPair = this->getPointComponentPair(mouseEvent);
+    this->graphicalPresentation->mouseMoveEvent(pointComponentPair.first,pointComponentPair.second);
     this->updateAll();
 }
 
 void GUIScene::mouseReleaseEvent(QGraphicsSceneMouseEvent* mouseEvent){
+    pair<Point,Component*> pointComponentPair = this->getPointComponentPair(mouseEvent);
+    this->graphicalPresentation->mouseReleaseEvent(pointComponentPair.first,pointComponentPair.second);
+    this->updateAll();
+}
+//get component from widget
+pair<Point,Component*> GUIScene::getPointComponentPair(QGraphicsSceneMouseEvent* mouseEvent){
     QPointF qPosition = mouseEvent->scenePos();
     Point position = Point(qPosition.x(),qPosition.y());
-    Component* component = hasItemAtPosition(qPosition);
-    this->graphicalPresentation->mouseReleaseEvent(position,component);
-    this->updateAll();
+    Component* component = this->getComponentAtPosition(qPosition);
+    return pair<Point,Component*>(position,component);
 }
 
 void GUIScene::executeNotify(){
     this->displayDiagram();
 }
 
-Component* GUIScene::hasItemAtPosition(QPointF qPosition){
-    ComponentWidget* widget = static_cast<ComponentWidget*>(this->itemAt(qPosition));
+Component* GUIScene::getComponentAtPosition(QPointF qPosition){
+    //if this graphicaItem cannot cast to 'ComponentWidget' ,the value of widget is NULL
+    ComponentWidget* widget = dynamic_cast<ComponentWidget*>(this->itemAt(qPosition));
     Component* component = NULL;
     if(widget){
         component = widget->getComponent();

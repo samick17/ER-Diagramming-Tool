@@ -17,18 +17,18 @@ class ERModel : public ISyncable,public Subject{
     FRIEND_TEST(ERModelTest,testOpenFile);
     FRIEND_TEST(ERModelTest,testGetNodesConnector);
     FRIEND_TEST(ERModelTest,testGetAllComponents);
-    FRIEND_TEST(ERModelTest,testGetAllConnectors);
+    FRIEND_TEST(ERModelTest,testGetAllAttributes);
     FRIEND_TEST(ERModelTest,testGetAllEntities);
     FRIEND_TEST(ERModelTest,testGetAllRelationShips);
+    FRIEND_TEST(ERModelTest,testGetAllConnectors);
     FRIEND_TEST(ERModelTest,testClearComponentMap);
+    FRIEND_TEST(ERModelTest,testIsPrimaryExist);
+    FRIEND_TEST(ERModelTest,testUndoDeleteComponent);
+    FRIEND_TEST(ERModelTest,testRedoConnectComponent);
+    FRIEND_TEST(ERModelTest,testCommonUsage);
     friend class CommandManagerTest;
     FRIEND_TEST(CommandManagerTest,testCommandManager);
     FRIEND_TEST(CommandManagerTest,testRedoUndo);
-    friend class IntegrationTest;
-    FRIEND_TEST(IntegrationTest,testIsPrimaryExist);
-    FRIEND_TEST(IntegrationTest,testUndoDeleteComponent);
-    FRIEND_TEST(IntegrationTest,testRedoConnectComponent);
-    FRIEND_TEST(IntegrationTest,testCommonUsage);
 public:
     ERModel();
     ~ERModel();
@@ -53,7 +53,7 @@ public:
     HashMap<string,Connector*> getAllConnectors();
     HashMap<string,Table*> getAllTables();
 
-    void clearComponentMap();
+    void resetERModel();
     void registerSynchronizer(ISynchronizer* synchronizer);
     void unregisterSynchronizer(ISynchronizer* synchronizer);
     void sync(string syncEventType);

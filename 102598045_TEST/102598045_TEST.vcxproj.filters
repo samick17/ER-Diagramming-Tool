@@ -144,9 +144,6 @@
     <ClCompile Include="RelationShipTest.cpp">
       <Filter>Unit Testing Files\ModelTest</Filter>
     </ClCompile>
-    <ClCompile Include="IntegrationTest.cpp">
-      <Filter>Unit Testing Files</Filter>
-    </ClCompile>
     <ClCompile Include="NodeTest.cpp">
       <Filter>Unit Testing Files\ModelTest</Filter>
     </ClCompile>
@@ -450,6 +447,9 @@
     <ClCompile Include="TextPresentationTest.cpp">
       <Filter>Unit Testing Files\PresentationTest</Filter>
     </ClCompile>
+    <ClCompile Include="..\102598045_POSD\CommandFactory.cpp">
+      <Filter>Source Files\Factory</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DirectoryUtil.h">
@@ -472,9 +472,6 @@
     </ClInclude>
     <ClInclude Include="RelationShipTest.h">
       <Filter>Header Files\ModelTest</Filter>
-    </ClInclude>
-    <ClInclude Include="IntegrationTest.h">
-      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="NodeTest.h">
       <Filter>Header Files\ModelTest</Filter>

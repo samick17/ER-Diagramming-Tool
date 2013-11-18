@@ -505,6 +505,9 @@
     <ClCompile Include="MenuSetting.cpp">
       <Filter>Source Files\Constants</Filter>
     </ClCompile>
+    <ClCompile Include="CommandFactory.cpp">
+      <Filter>Source Files\Factory</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Attribute.h">
@@ -818,6 +821,9 @@
     </ClInclude>
     <ClInclude Include="AddMenuItem.h">
       <Filter>Header Files\View\GUI\MenuItem</Filter>
+    </ClInclude>
+    <ClInclude Include="CommandFactory.h">
+      <Filter>Header Files\Factory</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

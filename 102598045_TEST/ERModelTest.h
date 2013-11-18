@@ -4,8 +4,12 @@
 #include <gtest/gtest.h>
 
 class ERModelTest : public testing::Test{
-protected:        
+protected:
     ERModel erModel;
-    bool hasConnected(Component* firstComponent,Component* secondComponent);    
-    virtual void SetUp();    
+    Presentation* presentation;
+    TextPresentation* textPresentation;
+    TextUIPresenter* textUIPresenter;
+    bool hasConnected(Component* firstComponent,Component* secondComponent);
+    virtual void SetUp();
+    virtual void TearDown();
 };

@@ -16,7 +16,7 @@ void InputFileParser::parseFileToModel(string filePath,ERModel* erModel){
     doc.openFile();
 
     this->erModel = erModel;
-    this->erModel->clearComponentMap();
+    this->erModel->resetERModel();
 
     //load all Nodes & Connectors
     this->loadAllComponentsFromDoc(doc);

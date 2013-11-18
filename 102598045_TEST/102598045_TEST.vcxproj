@@ -93,6 +93,7 @@
     <ClCompile Include="..\102598045_POSD\CollectionException.cpp" />
     <ClCompile Include="..\102598045_POSD\CollectionType.cpp" />
     <ClCompile Include="..\102598045_POSD\Command.cpp" />
+    <ClCompile Include="..\102598045_POSD\CommandFactory.cpp" />
     <ClCompile Include="..\102598045_POSD\CommandManager.cpp" />
     <ClCompile Include="..\102598045_POSD\Component.cpp" />
     <ClCompile Include="..\102598045_POSD\ComponentConnectionSize.cpp" />
@@ -173,7 +174,6 @@
     <ClCompile Include="ERModelUtilTest.cpp" />
     <ClCompile Include="InputFileParserTest.cpp" />
     <ClCompile Include="HashMapTest.cpp" />
-    <ClCompile Include="IntegrationTest.cpp" />
     <ClCompile Include="MainTest.cpp" />
     <ClCompile Include="NodeTest.cpp" />
     <ClCompile Include="OutputFileParserTest.cpp" />
@@ -213,7 +213,6 @@
     <ClInclude Include="ERModelUtilTest.h" />
     <ClInclude Include="InputFileParserTest.h" />
     <ClInclude Include="HashMapTest.h" />
-    <ClInclude Include="IntegrationTest.h" />
     <ClInclude Include="NodeTest.h" />
     <ClInclude Include="OutputFileParserTest.h" />
     <ClInclude Include="RelationShipTest.h" />

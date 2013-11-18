@@ -1,12 +1,16 @@
 #pragma once
 
 #include <QGraphicsScene>
+#include <utility>
 #include "IObserver.h"
+#include "Point.h"
 
 class GraphicalUI;
 class BaseWidget;
 class GraphicalPresentation;
 class Component;
+
+using namespace std;
 
 class GUIScene : public QGraphicsScene,public IObserver{
     Q_OBJECT
@@ -27,7 +31,8 @@ private:
     QGraphicsView* view;
     GraphicalPresentation* graphicalPresentation;
     QList<BaseWidget*> widgetList;
-    Component* hasItemAtPosition(QPointF qPosition);
+    Component* getComponentAtPosition(QPointF qPosition);
+    pair<Point,Component*> getPointComponentPair(QGraphicsSceneMouseEvent* mouseEvent);
     void addWidget(BaseWidget* widget);
     void updateAll();
     void clearAll();
