@@ -96,7 +96,6 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="MenuSetting.cpp" />
-    <ClCompile Include="PreviewWidget.cpp" />
     <ClCompile Include="Subject.cpp" />
     <ClCompile Include="ConnectorWidget.cpp" />
     <ClCompile Include="ConnectState.cpp" />
@@ -214,7 +213,6 @@
     <ClInclude Include="Command.h" />
     <ClInclude Include="DialogSetting.h" />
     <ClInclude Include="MenuSetting.h" />
-    <ClInclude Include="PreviewWidget.h" />
     <ClInclude Include="Subject.h" />
     <ClInclude Include="ConnectorWidget.h" />
     <ClInclude Include="ConnectState.h" />

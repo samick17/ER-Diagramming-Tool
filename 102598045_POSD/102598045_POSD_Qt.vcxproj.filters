@@ -496,9 +496,6 @@
     <ClCompile Include="GeneratedFiles\Release\moc_GUIScene.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
-    <ClCompile Include="PreviewWidget.cpp">
-      <Filter>Source Files\View\GUI\GUIWidget\ModelWidget</Filter>
-    </ClCompile>
     <ClCompile Include="BaseWidget.cpp">
       <Filter>Source Files\View\GUI\GUIWidget\ModelWidget</Filter>
     </ClCompile>
@@ -812,9 +809,6 @@
     </ClInclude>
     <ClInclude Include="DialogSetting.h">
       <Filter>Header Files\Constants</Filter>
-    </ClInclude>
-    <ClInclude Include="PreviewWidget.h">
-      <Filter>Header Files\View\GUI\GUIWidget\ModelWidget</Filter>
     </ClInclude>
     <ClInclude Include="BaseWidget.h">
       <Filter>Header Files\View\GUI\GUIWidget\ModelWidget</Filter>

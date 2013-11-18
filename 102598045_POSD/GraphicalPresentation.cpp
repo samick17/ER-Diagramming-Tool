@@ -10,7 +10,6 @@
 
 GraphicalPresentation::GraphicalPresentation(Presentation* presentation) : presentation(presentation){
     this->isCtrlPressed = false;
-    this->showPreview = false;
     this->stateSubject = new StateSubject();
 }
 
@@ -68,6 +67,7 @@ void GraphicalPresentation::addNode(string nodeType,string nodeName,Point positi
 void GraphicalPresentation::addConnection(Component* sourceComponent,Component* targetComponent){
     try{
         this->presentation->addConnection(sourceComponent,targetComponent);
+        this->notify();
     }
     catch(Exception&){
     }
@@ -169,28 +169,4 @@ void GraphicalPresentation::mouseMoveEvent(Point position,Component* component){
 void GraphicalPresentation::mouseReleaseEvent(Point position,Component* component){
     this->lastReleasedComponent = component;
     this->stateSubject->getState()->mouseReleaseEvent(position);
-}
-
-void GraphicalPresentation::setPreviewState(bool showPreview){
-    this->showPreview = showPreview;
-}
-
-bool GraphicalPresentation::getPreviewState(){
-    return this->showPreview;
-}
-
-void GraphicalPresentation::setPreviewSourcePoint(Point sourcePoint){
-    this->sourcePoint = sourcePoint;
-}
-
-Point GraphicalPresentation::getPreviewSourcePoint(){
-    return this->sourcePoint;
-}
-
-void GraphicalPresentation::setPreviewTargetPoint(Point currentPoint){
-    this->currentPoint = currentPoint;
-}
-
-Point GraphicalPresentation::getPreviewTargetPoint(){
-    return this->currentPoint;
 }

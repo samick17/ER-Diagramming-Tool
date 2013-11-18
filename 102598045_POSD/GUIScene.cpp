@@ -21,14 +21,9 @@ void GUIScene::notify(ISubject* subject){
 
 void GUIScene::displayDiagram(){
     this->clearAll();
-    WidgetFactory widgetFactory;
-    //display preview
-    if(this->graphicalPresentation->getPreviewState()){
-        BaseWidget* widget = widgetFactory.createPreviewWidget(this->graphicalPresentation);
-        this->addWidget(widget);
-    }
     //display all
     HashMap<string,Component*>& componentMap = this->graphicalPresentation->getAllComponents();
+    WidgetFactory widgetFactory;
     for each(Component* component in componentMap){
         BaseWidget* componentWidget = widgetFactory.createComponentWidget(component,this->graphicalPresentation);
         this->addWidget(componentWidget);

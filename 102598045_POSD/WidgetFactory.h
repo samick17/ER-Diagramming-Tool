@@ -16,7 +16,6 @@ public:
     ~WidgetFactory();
 
     BaseWidget* createComponentWidget(Component* component,GraphicalPresentation* graphicalPresentation);
-    BaseWidget* createPreviewWidget(GraphicalPresentation* graphicalPresentation);
 private:
     HashMap<string,NewComponentWidgetFunction> newComponentWidgetMap;
     NewComponentWidgetFunction findNewComponentWidgetFunction(string componentType);
