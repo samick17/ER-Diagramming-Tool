@@ -4,6 +4,7 @@
 #include <QGraphicsSceneMouseEvent>
 #include "GraphicalPresentation.h"
 #include "WidgetFactory.h"
+#include <iostream>
 
 GUIScene::GUIScene(QRectF sceneRect,GraphicalUI* graphicalUI,QGraphicsView* view) : QGraphicsScene(sceneRect,graphicalUI),graphicalUI(graphicalUI),view(view){
     this->graphicalPresentation = this->graphicalUI->getGraphicalPresentation();

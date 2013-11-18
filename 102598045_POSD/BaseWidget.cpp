@@ -24,10 +24,11 @@ void BaseWidget::paint(QPainter* painter,const QStyleOptionGraphicsItem* option,
     QFont font = painter->font();
     font.setUnderline(this->getIsUnderLine());
     painter->setFont(font);
+    //save currnet brush & set new brush
     QBrush brush = painter->brush();
-    //paint
     painter->setBrush(Qt::white);
     painter->fillPath(this->shape(),painter->brush());
+    //paint
     this->doPaint(painter);
     //draw select frame to highlight
     painter->setBrush(brush);
@@ -56,7 +57,4 @@ bool BaseWidget::getIsUnderLine(){
 
 void BaseWidget::setUnderLine(bool isUnderLine){
     this->isUnderLine = isUnderLine;
-}
-
-void BaseWidget::drawSelectedFrame(QPainter* painter){
 }

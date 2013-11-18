@@ -2,8 +2,8 @@
 
 const int WidgetDefaultSetting::Width = 120;
 const int WidgetDefaultSetting::Height = 50;
-const double WidgetDefaultSetting::WidgetLineWidth = 1.8;
-const double WidgetDefaultSetting::ConnectorWidth = 1.5;
+const double WidgetDefaultSetting::WidgetLineWidth = 1.6;
+const double WidgetDefaultSetting::ConnectorWidth = 2;
 const int WidgetDefaultSetting::AttributeHorizontalDistance = 50;
 const int WidgetDefaultSetting::AttributeVerticalDistance = 70;
 const int WidgetDefaultSetting::EntityHorizontalDistance = 250;

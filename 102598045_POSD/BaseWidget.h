@@ -26,7 +26,7 @@ protected:
     virtual void doPaint(QPainter* painter) = 0;
     virtual void doUpdateWidget();
 private:
-    virtual void drawSelectedFrame(QPainter* painter);
+    virtual void drawSelectedFrame(QPainter* painter) = 0;
     QRectF rect;
     string text;
     bool isUnderLine;
