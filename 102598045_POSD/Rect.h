@@ -3,6 +3,9 @@
 #include "Point.h"
 #include "Size.h"
 #include <utility>
+#include <vector>
+
+using namespace std;
 
 struct Rect{
     friend class RectTest;
@@ -20,6 +23,7 @@ public:
     Size getSize();
     void setSize(Size size);
 
+    vector<Point> getSpecialPoints();
     double getLeft();
     double getRight();
     double getTop();
@@ -32,10 +36,13 @@ public:
     Point getCenterRight();
     Point getCenterTop();
     Point getCenterBottom();
-    std::pair<Point,Point> getMinDistanceToRectPoint(Rect rect);
+    pair<Point,Point> getMinDistanceToRectPoint(Rect rect);
 
     bool operator==(const Rect& rectToCompare) const;
 private:
+    static const int CenterLeft,CenterRight,CenterTop,CenterBottom;
+    void updateSpecialPoints();
+    vector<Point> specialPoints;
     Point position;
     Size size;
 };

@@ -1,10 +1,15 @@
 #include "Rect.h"
 #include "Number.h"
-#include <vector>
 
 using namespace std;
 
+const int Rect::CenterLeft = 0;
+const int Rect::CenterRight = 1;
+const int Rect::CenterTop = 2;
+const int Rect::CenterBottom = 3;
+
 Rect::Rect(Point position,Size size) : position(position),size(size){
+    this->updateSpecialPoints();
 }
 
 Point Rect::getPosition(){
@@ -13,13 +18,14 @@ Point Rect::getPosition(){
 
 void Rect::setPosition(Point position){
     this->position = position;
+    this->updateSpecialPoints();
 }
 
 void Rect::setCenterPosition(Point centerPosition){
     double halfWidth = this->size.getHalfWidth();
     double halfHeight = this->size.getHalfHeight();
     Point relativePosition = Point(centerPosition.getX()-halfWidth,centerPosition.getY()-halfHeight);
-    this->position = relativePosition;
+    this->setPosition(relativePosition);
 }
 
 double Rect::getWidth(){
@@ -36,6 +42,11 @@ Size Rect::getSize(){
 
 void Rect::setSize(Size size){
     this->size = size;
+    this->updateSpecialPoints();
+}
+
+vector<Point> Rect::getSpecialPoints(){
+    return this->specialPoints;
 }
 
 double Rect::getLeft(){
@@ -68,41 +79,27 @@ Point Rect::getCenterPosition(){
 }
 
 Point Rect::getCenterLeft(){
-    Point centerLeft = Point(this->getLeft(),this->getCenterY());
-    return centerLeft;
+    return this->specialPoints[Rect::CenterLeft];
 }
 
 Point Rect::getCenterRight(){
-    Point centerRight = Point(this->getRight(),this->getCenterY());
-    return centerRight;
+    return this->specialPoints[Rect::CenterRight];
 }
 
 Point Rect::getCenterTop(){
-    Point centerTop = Point(this->getCenterX(),this->getTop());
-    return centerTop;
+    return this->specialPoints[Rect::CenterTop];
 }
 
 Point Rect::getCenterBottom(){
-    Point centerBottom = Point(this->getCenterX(),this->getBottom());
-    return centerBottom;
+    return this->specialPoints[Rect::CenterBottom];
 }
 
 pair<Point,Point> Rect::getMinDistanceToRectPoint(Rect rect){
-    vector<Point> candidatePointVector;
-    candidatePointVector.push_back(this->getCenterLeft());
-    candidatePointVector.push_back(this->getCenterRight());
-    candidatePointVector.push_back(this->getCenterTop());
-    candidatePointVector.push_back(this->getCenterBottom());
-    vector<Point> comparedPointVector;
-    comparedPointVector.push_back(rect.getCenterLeft());
-    comparedPointVector.push_back(rect.getCenterRight());
-    comparedPointVector.push_back(rect.getCenterTop());
-    comparedPointVector.push_back(rect.getCenterBottom());
     double distance = DBL_MAX;
     pair<Point,Point> result;
-    for each(Point candidatePoint in candidatePointVector)
-        for each(Point comparedPoint in comparedPointVector){
-        double distanceBuffer = candidatePoint.getDistance(comparedPoint);
+    for each(Point candidatePoint in this->specialPoints)
+        for each(Point comparedPoint in rect.getSpecialPoints()){
+            double distanceBuffer = candidatePoint.getDistance(comparedPoint);
             if(distanceBuffer<distance){
                 result = pair<Point,Point>(candidatePoint,comparedPoint);
                 distance = distanceBuffer;
@@ -115,4 +112,12 @@ bool Rect::operator==(const Rect& rectToCompare) const{
     if(this->position == rectToCompare.position && this->size == rectToCompare.size)
         return true;
     return false;
+}
+
+void Rect::updateSpecialPoints(){
+    this->specialPoints.clear();
+    this->specialPoints.push_back(Point(this->getLeft(),this->getCenterY()));
+    this->specialPoints.push_back(Point(this->getRight(),this->getCenterY()));
+    this->specialPoints.push_back(Point(this->getCenterX(),this->getTop()));
+    this->specialPoints.push_back(Point(this->getCenterX(),this->getBottom()));
 }

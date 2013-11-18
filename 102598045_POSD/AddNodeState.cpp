@@ -15,15 +15,17 @@ AddNodeState::~AddNodeState(){
 }
 //this function will be called from StateFactory right after constructed.
 void AddNodeState::onCreate(){
-    QString text = QInputDialog::getText(NULL,QString(DialogSetting::Title.c_str()),QString(DialogSetting::Text.c_str()),QLineEdit::Normal);
-    string nodeName = text.toStdString();
-    this->graphicalPresentation->setText(nodeName);
+    bool isOK;
+    QString text = QInputDialog::getText(NULL,QString(DialogSetting::Title.c_str()),QString(DialogSetting::Text.c_str()),QLineEdit::Normal,"",&isOK);
+    if(isOK)
+        this->nodeName = text.toStdString();
+    else 
+        this->graphicalPresentation->switchState(StateID::PointerState);
 }
 
 void AddNodeState::doMousePressEvent(Point position){
-    string nodeName = this->graphicalPresentation->getText();
     string nodeType = stateToNodeTypeMap.get(this->getStateID());
-    this->graphicalPresentation->addNode(nodeType,nodeName,Point());
+    this->graphicalPresentation->addNode(nodeType,this->nodeName,Point());
     Node* node = this->graphicalPresentation->getLastAddedNode();
     node->setCenterPosition(position);
 }

@@ -14,4 +14,5 @@ protected:
    void doMouseReleaseEvent(Point position);
 private:
     HashMap<int,string> stateToNodeTypeMap;
+    string nodeName;
 };

@@ -14,8 +14,6 @@ public:
 
     StateSubject* getStateSubject();
     HashMap<string,Component*> getAllComponents();
-    void setText(string text);
-    string getText();
     Node* getLastAddedNode();
     Component* getLastPressedComponent();
     Component* getLastReleasedComponent();
@@ -50,7 +48,6 @@ private:
     set<string> selectedWidgetSet;
     bool isCtrlPressed;
     StateSubject* stateSubject;
-    string text;
     Node* lastAddedNode;
     Component* lastPressedComponent;
     Component* lastReleasedComponent;

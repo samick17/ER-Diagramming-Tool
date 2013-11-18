@@ -185,11 +185,13 @@ TEST_F(IntegrationTest,testCommonUsage){
     Entity* entityWorkDiary = static_cast<Entity*>(this->erModel.addNode(ComponentType::TypeEntity));
     entityWorkDiary->setName("Work Diary");
     ASSERT_EQ(entityWorkDiary,this->erModel.componentMap.get(entityWorkDiary->getID()));
+    ASSERT_EQ("Work Diary",this->erModel.componentMap.get(entityWorkDiary->getID())->getName());
     ASSERT_EQ(16,this->erModel.componentMap.size());
     //Add relationShip "Write" & set name as "Write" , ASSERT
     Component* relationShipWrite = this->erModel.addNode(ComponentType::TypeRelationShip);
     relationShipWrite->setName("Write");
     ASSERT_EQ(relationShipWrite,this->erModel.componentMap.get(relationShipWrite->getID()));
+    ASSERT_EQ("Write",this->erModel.componentMap.get(relationShipWrite->getID())->getName());
     ASSERT_EQ(17,this->erModel.componentMap.size());
     //connect node0 & node16
     Component* node0 = this->erModel.componentMap.get("0");
@@ -212,19 +214,22 @@ TEST_F(IntegrationTest,testCommonUsage){
     //Add attribute "Content" & set name as "Content" , ASSERT
     Component* attributeContent = this->erModel.addNode(ComponentType::TypeAttribute);
     ASSERT_EQ(20,this->erModel.componentMap.size());
-    attributeContent->setName("Content");    
+    attributeContent->setName("Content");
     ASSERT_EQ(attributeContent,this->erModel.componentMap.get(attributeContent->getID()));
-    
+    ASSERT_EQ("Content",this->erModel.componentMap.get(attributeContent->getID())->getName());
+
     //Add attribute "WD_ID" & set name as "WD_ID" , ASSERT
     Component* attributeWD_ID = this->erModel.addNode(ComponentType::TypeAttribute);
     ASSERT_EQ(21,this->erModel.componentMap.size());
     attributeWD_ID->setName("WD_ID");
-    ASSERT_EQ(attributeWD_ID,this->erModel.componentMap.get(attributeWD_ID->getID()));    
+    ASSERT_EQ(attributeWD_ID,this->erModel.componentMap.get(attributeWD_ID->getID()));
+    ASSERT_EQ("WD_ID",this->erModel.componentMap.get(attributeWD_ID->getID())->getName());
     //Add attribute "WD_date" & set name as "WD_date" , ASSERT
     Component* attributeWD_date = this->erModel.addNode(ComponentType::TypeAttribute);
     ASSERT_EQ(22,this->erModel.componentMap.size());
     attributeWD_date->setName("WD_date");
-    ASSERT_EQ(attributeWD_date,this->erModel.componentMap.get(attributeWD_date->getID()));    
+    ASSERT_EQ(attributeWD_date,this->erModel.componentMap.get(attributeWD_date->getID()));
+    ASSERT_EQ("WD_date",this->erModel.componentMap.get(attributeWD_date->getID())->getName());
     //connect node15 & node19 , ASSERT
     Component* node19 = this->erModel.componentMap.get("19");
     this->erModel.addConnection(node15,node19);
@@ -249,13 +254,15 @@ TEST_F(IntegrationTest,testCommonUsage){
     entityWorkDiary->setPrimaryKey(workdiaryPrimaryKey);
     ASSERT_EQ(1,entityWorkDiary->getPrimaryKeyAttributes().size());
     ASSERT_EQ(attributeWD_ID,entityWorkDiary->getPrimaryKeyAttributes().get(attributeWD_ID->getID()));
+    ASSERT_EQ("WD_ID",entityWorkDiary->getPrimaryKeyAttributes().get(attributeWD_ID->getID())->getName());
     //Display Table
     this->textUIPresenter->displayTable();
     //Assert "Work Diary" exists
     ASSERT_EQ(entityWorkDiary,this->erModel.getComponentByID(entityWorkDiary->getID()));
     //Assert "Work Diary" primary key is "WD_ID"
     ASSERT_EQ(attributeWD_ID,entityWorkDiary->getPrimaryKeyAttributes().get(attributeWD_ID->getID()));
-    
+    ASSERT_EQ("WD_ID",entityWorkDiary->getPrimaryKeyAttributes().get(attributeWD_ID->getID())->getName());
+
     this->erModel.deleteComponent(entityWorkDiary);
 
     //Assert there is no such node "Work Diary"
@@ -290,6 +297,7 @@ TEST_F(IntegrationTest,testCommonUsage){
     this->textUIPresenter->displayTable();
     //Assert "Work Diary" primary key is "WD_ID"
     ASSERT_EQ(attributeWD_ID,entityWorkDiary->getPrimaryKeyAttributes().get(attributeWD_ID->getID()));
+    ASSERT_EQ("WD_ID",entityWorkDiary->getPrimaryKeyAttributes().get(attributeWD_ID->getID())->getName());
     //Redo
     this->erModel.redo();
     //Assert there is no such node "Work Diary"

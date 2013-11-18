@@ -1,6 +1,4 @@
 #include "GraphicalPresentation.h"
-#include "ActionData.h"
-#include "ApplicationSetting.h"
 #include "Connector.h"
 #include "Node.h"
 #include "ControllerEvent.h"
@@ -30,17 +28,6 @@ HashMap<string,Component*> GraphicalPresentation::getAllComponents(){
     for each(Connector* connector in connectorMap)
         componentMap.insertAt(connector->getID(),connector,0);
     return componentMap;
-}
-
-void GraphicalPresentation::setText(string text){
-    if(text.empty())
-        this->switchState(StateID::PointerState);
-    else
-        this->text = text;
-}
-
-string GraphicalPresentation::getText(){
-    return this->text;
 }
 
 Node* GraphicalPresentation::getLastAddedNode(){
