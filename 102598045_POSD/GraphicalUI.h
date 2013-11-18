@@ -21,13 +21,12 @@ using namespace Qt;
 class GraphicalUI : public QMainWindow,public ISynchronizer{
     Q_OBJECT
 signals:
-    void syncEvent(string syncEventType);
+    void onSyncEvent(string syncEventType);
 public:
     GraphicalUI(GraphicalPresentation* graphicalPresentation);
     ~GraphicalUI();
 
     GraphicalPresentation* getGraphicalPresentation();
-    GUIScene* getScene();
     void sync(string syncEventType);
     void setTitle(string title,string iconPath);
 protected:

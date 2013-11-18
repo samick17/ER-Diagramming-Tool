@@ -54,7 +54,7 @@ void GraphicalPresentation::addNode(string nodeType,string nodeName,Point positi
 void GraphicalPresentation::addConnection(Component* sourceComponent,Component* targetComponent){
     try{
         this->presentation->addConnection(sourceComponent,targetComponent);
-        this->notify();
+        this->presentation->sync(ControllerEvent::ConnectTwoNodes);
     }
     catch(Exception&){
     }
@@ -84,12 +84,19 @@ void GraphicalPresentation::selectWidget(){
         this->unSelectAll();
         return;
     }
-    string componentID = this->lastPressedComponent->getID();
-    bool isSelected = this->isWidgetSelected(componentID);
+    string lastPressedComponentID = this->lastPressedComponent->getID();
+    bool isSelected = this->isWidgetSelected(lastPressedComponentID);
     if(!this->isCtrlPressed)
         this->selectedWidgetSet.clear();
-    this->revertSelectWidget(isSelected,componentID);
-    this->notify();
+    this->revertSelectWidget(isSelected,lastPressedComponentID);
+}
+
+void GraphicalPresentation::selectLastPressedWidget(){
+    if(!this->lastPressedComponent)
+        return;
+    string lastPressedComponentID = this->lastPressedComponent->getID();
+    if(this->selectedWidgetSet.find(lastPressedComponentID) == this->selectedWidgetSet.end())
+        this->selectedWidgetSet.insert(lastPressedComponentID);
 }
 
 void GraphicalPresentation::revertSelectWidget(bool isSelected,string componentID){
@@ -147,6 +154,8 @@ void GraphicalPresentation::doUngisterObserver(IObserver* observer){
 void GraphicalPresentation::mousePressEvent(Point position,Component* component){
     this->lastPressedComponent = component;
     this->stateSubject->getState()->mousePressEvent(position);
+    //must use notify to avoid some bug
+    this->notify();
 }
 
 void GraphicalPresentation::mouseMoveEvent(Point position,Component* component){
@@ -156,4 +165,5 @@ void GraphicalPresentation::mouseMoveEvent(Point position,Component* component){
 void GraphicalPresentation::mouseReleaseEvent(Point position,Component* component){
     this->lastReleasedComponent = component;
     this->stateSubject->getState()->mouseReleaseEvent(position);
+    this->notify();
 }

@@ -17,7 +17,7 @@ public:
     void selectToolButton(int stateID);
     void notify(ISubject* subject);
 private:
-    ToolBarWidget* currentWidget;
+    ToolBarWidget* currentFocusedWidget;
     StateSubject* stateSubject;
     HashMap<int,ToolBarWidget*> toolBarWidgetMap;
 };

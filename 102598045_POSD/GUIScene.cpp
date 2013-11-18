@@ -4,20 +4,19 @@
 #include <QGraphicsSceneMouseEvent>
 #include "GraphicalPresentation.h"
 #include "WidgetFactory.h"
-#include <iostream>
 
 GUIScene::GUIScene(QRectF sceneRect,GraphicalUI* graphicalUI,QGraphicsView* view) : QGraphicsScene(sceneRect,graphicalUI),graphicalUI(graphicalUI),view(view){
     this->graphicalPresentation = this->graphicalUI->getGraphicalPresentation();
     this->graphicalPresentation->registerObserver(this);
-    this->connect(this,SIGNAL(notifyEvent()),this,SLOT(executeNotify()));
+    this->connect(this,SIGNAL(onNotifyEvent()),this,SLOT(executeNotify()));
 }
 
 GUIScene::~GUIScene(){
-    this->graphicalUI->getGraphicalPresentation()->unregisterObserver(this);
+    this->graphicalPresentation->unregisterObserver(this);
 }
 
 void GUIScene::notify(ISubject* subject){
-    this->notifyEvent();
+    this->onNotifyEvent();
 }
 
 void GUIScene::displayDiagram(){
@@ -66,7 +65,7 @@ Component* GUIScene::getComponentAtPosition(QPointF qPosition){
     Component* component = NULL;
     if(widget){
         component = widget->getComponent();
-        this->view->ensureVisible(widget);
+        //this->view->ensureVisible(widget);
     }
     return component;
 }
@@ -75,7 +74,6 @@ void GUIScene::addWidget(BaseWidget* widget){
     this->addItem(widget);
     this->widgetList.push_back(widget);
     widget->updateWidget();
-    this->view->ensureVisible(widget);
 }
 
 void GUIScene::updateAll(){

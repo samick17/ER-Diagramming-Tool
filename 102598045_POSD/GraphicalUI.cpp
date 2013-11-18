@@ -20,7 +20,7 @@ GraphicalUI::GraphicalUI(GraphicalPresentation* graphicalPresentation): graphica
     this->initialSyncMap();
     QMetaObject::connectSlotsByName(this);
     qRegisterMetaType<string>("string");
-    connect(this,SIGNAL(syncEvent(string)),this,SLOT(executeSync(string)));
+    connect(this,SIGNAL(onSyncEvent(string)),this,SLOT(executeSync(string)));
     this->switchState(StateID::PointerState);
     this->graphicalPresentation->registerSynchronizer(this);
 }
@@ -35,12 +35,8 @@ GraphicalPresentation* GraphicalUI::getGraphicalPresentation(){
     return this->graphicalPresentation;
 }
 
-GUIScene* GraphicalUI::getScene(){
-    return this->scene;
-}
-
 void GraphicalUI::sync(string syncEventType){
-    this->syncEvent(syncEventType);
+    this->onSyncEvent(syncEventType);
 }
 
 void GraphicalUI::closeEvent(QCloseEvent* closeEvent){

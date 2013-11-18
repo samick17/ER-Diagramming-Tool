@@ -25,6 +25,7 @@ public:
     void close();
     bool isWidgetSelected(string componentID);
     void selectWidget();
+    void selectLastPressedWidget();
     void revertSelectWidget(bool isSelected,string componentID);
     void moveSelectedWidget(Point position);
     void unSelectAll();

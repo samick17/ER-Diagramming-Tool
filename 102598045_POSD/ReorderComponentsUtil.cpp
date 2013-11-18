@@ -6,8 +6,8 @@ HashMap<string,string> ReorderComponentsUtil::getReorderedComponentIDMap(HashMap
     HashMap<string,string> orderedComponentIDMap;
     int index = 0;
     for each(Component* component in componentMap){
-        orderedComponentIDMap.put(component->getID(),StringUtil::intToString(index));        
+        orderedComponentIDMap.put(component->getID(),StringUtil::intToString(index));
         index++;
     }
-    return orderedComponentIDMap;    
+    return orderedComponentIDMap;
 }

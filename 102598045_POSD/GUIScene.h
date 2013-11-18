@@ -15,7 +15,7 @@ using namespace std;
 class GUIScene : public QGraphicsScene,public IObserver{
     Q_OBJECT
 signals:
-    void notifyEvent();
+    void onNotifyEvent();
 public:
     GUIScene(QRectF sceneRect,GraphicalUI* graphicalUI,QGraphicsView* view);
     ~GUIScene();

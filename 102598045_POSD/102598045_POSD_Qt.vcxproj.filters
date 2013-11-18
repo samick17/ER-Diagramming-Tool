@@ -433,9 +433,6 @@
     <ClCompile Include="Number.cpp">
       <Filter>Source Files\Constants</Filter>
     </ClCompile>
-    <ClCompile Include="ControllerEvent.cpp">
-      <Filter>Source Files\Model</Filter>
-    </ClCompile>
     <ClCompile Include="NodeWidget.cpp">
       <Filter>Source Files\View\GUI\GUIWidget\ModelWidget</Filter>
     </ClCompile>
@@ -507,6 +504,9 @@
     </ClCompile>
     <ClCompile Include="CommandFactory.cpp">
       <Filter>Source Files\Factory</Filter>
+    </ClCompile>
+    <ClCompile Include="ControllerEvent.cpp">
+      <Filter>Source Files\Constants</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

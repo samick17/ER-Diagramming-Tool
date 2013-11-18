@@ -3,12 +3,11 @@
 #include "ActionData.h"
 #include "GraphicalUI.h"
 #include "StateID.h"
-#include "ISubject.h"
 #include "GraphicalPresentation.h"
 #include "StateSubject.h"
 
 AddDrawableToolBar::AddDrawableToolBar(GraphicalUI* graphicalUI,QActionMap* actionMap) : QToolBar(graphicalUI){
-    this->currentWidget = NULL;
+    this->currentFocusedWidget = NULL;
     this->toolBarWidgetMap.put(StateID::PointerState,new ToolBarWidget(this,actionMap,ActionData::PointerState));
     this->toolBarWidgetMap.put(StateID::ConnectState,new ToolBarWidget(this,actionMap,ActionData::ConnectState));
     this->toolBarWidgetMap.put(StateID::AttributeState,new ToolBarWidget(this,actionMap,ActionData::AttributeState));
@@ -16,7 +15,9 @@ AddDrawableToolBar::AddDrawableToolBar(GraphicalUI* graphicalUI,QActionMap* acti
     this->toolBarWidgetMap.put(StateID::RelationShipState,new ToolBarWidget(this,actionMap,ActionData::RelationShipState));
     for each(ToolBarWidget* toolBarWidget in toolBarWidgetMap)
         this->addWidget(toolBarWidget);
-    this->stateSubject = graphicalUI->getGraphicalPresentation()->getStateSubject();
+    //initial state subject
+    GraphicalPresentation* graphicalPresentation = graphicalUI->getGraphicalPresentation();
+    this->stateSubject = graphicalPresentation->getStateSubject();
     this->stateSubject->registerObserver(this);
 }
 
@@ -25,15 +26,15 @@ AddDrawableToolBar::~AddDrawableToolBar(){
 }
 
 void AddDrawableToolBar::selectToolButton(int stateID){
-    if(this->currentWidget)
-        this->currentWidget->setChecked(false);
+    if(this->currentFocusedWidget)
+        this->currentFocusedWidget->setChecked(false);
     ToolBarWidget* nextSelectToolButton = this->toolBarWidgetMap.get(stateID);
     nextSelectToolButton->setChecked(true);
-    this->currentWidget = nextSelectToolButton;
+    this->currentFocusedWidget = nextSelectToolButton;
 }
 
 void AddDrawableToolBar::notify(ISubject* subject){
-    if(subject == this->stateSubject){
-        this->selectToolButton(this->stateSubject->getState()->getStateID());
-    }
+    //update widget according to StateSubject
+    State* state = this->stateSubject->getState();
+    this->selectToolButton(state->getStateID());
 }
