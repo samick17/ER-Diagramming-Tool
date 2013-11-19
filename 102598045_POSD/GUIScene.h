@@ -30,12 +30,10 @@ private:
     GraphicalUI* graphicalUI;
     QGraphicsView* view;
     GraphicalPresentation* graphicalPresentation;
-    QList<ComponentWidget*> widgetList;
     ComponentData* getComponentDataAtPosition(QPointF qPosition);
     pair<Point,ComponentData*> getPointComponentPair(QGraphicsSceneMouseEvent* mouseEvent);
     void addWidget(ComponentWidget* widget);
     void updateAll();
-    void clearAll();
 private slots:
     void executeNotify();
 };

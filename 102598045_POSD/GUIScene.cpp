@@ -21,7 +21,7 @@ void GUIScene::notify(ISubject* subject){
 }
 
 void GUIScene::refreshAllWidgets(){
-    this->clearAll();
+    this->clear();
     //display all
     set<ComponentData*> componentDataSet = this->graphicalPresentation->getAllComponentDataSet();
     WidgetFactory widgetFactory;
@@ -72,18 +72,11 @@ ComponentData* GUIScene::getComponentDataAtPosition(QPointF qPosition){
 
 void GUIScene::addWidget(ComponentWidget* widget){
     this->addItem(widget);
-    this->widgetList.push_back(widget);
     widget->updateWidget();
 }
 
 void GUIScene::updateAll(){
-    for each(ComponentWidget* widget in this->widgetList)
+    for each(ComponentWidget* widget in this->items())
         widget->updateWidget();
     this->update();
-}
-
-void GUIScene::clearAll(){
-    this->clear();
-    //qt's scene will auto delete widget item,so the work we have to do just clear it.
-    this->widgetList.clear();
 }

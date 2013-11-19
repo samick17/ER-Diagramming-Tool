@@ -1,14 +1,15 @@
 #include "GraphicalUI.h"
-#include "GraphicalPresentation.h"
-#include "ApplicationSetting.h"
-#include "ActionData.h"
 #include <QKeyEvent>
 #include <QFileDialog>
 #include <QSignalMapper>
+#include <QInputDialog>
+#include "GraphicalPresentation.h"
+#include "ApplicationSetting.h"
+#include "ActionData.h"
 #include "ControllerEvent.h"
 #include "StateID.h"
-#include <QInputDialog>
 #include "DialogSetting.h"
+#include <iostream>
 
 GraphicalUI::GraphicalUI(GraphicalPresentation* graphicalPresentation): graphicalPresentation(graphicalPresentation),QMainWindow(){
     this->setTitle(ApplicationSetting::Title,ApplicationSetting::IconPath);
@@ -141,7 +142,8 @@ void GraphicalUI::switchState(int stateID){
         if(isOK){
             ComponentData* componentData = this->graphicalPresentation->getComponentDataForPreview();
             componentData->setName(text.toStdString());
-        }else {
+        }
+        else {
             this->graphicalPresentation->switchState(StateID::PointerState);
         }
     }
@@ -155,6 +157,7 @@ void GraphicalUI::executeSync(string syncEventType){
 }
 
 void GraphicalUI::refreshAllWidgets(){
+    this->graphicalPresentation->updateAllComponentData();
     this->scene->refreshAllWidgets();
 }
 
