@@ -130,6 +130,15 @@
     <Filter Include="Header Files\ObserverTest">
       <UniqueIdentifier>{80b41ee3-2229-4d3d-90e5-7642d7490a07}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Unit Testing Files\StateTest">
+      <UniqueIdentifier>{dca1faf7-e73d-4958-8aff-c8c0612e7175}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\StateTest">
+      <UniqueIdentifier>{df33f3f9-ce10-4288-b545-d03407ca269b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Unit Testing Files\Observer">
+      <UniqueIdentifier>{8343ae42-a77f-4e58-98a7-fec09c737890}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MainTest.cpp">
@@ -486,6 +495,27 @@
     <ClCompile Include="..\102598045_POSD\GraphicalPresentation.cpp">
       <Filter>Source Files\View</Filter>
     </ClCompile>
+    <ClCompile Include="CommandFactoryTest.cpp">
+      <Filter>Unit Testing Files\FactoryTest</Filter>
+    </ClCompile>
+    <ClCompile Include="StateFactoryTest.cpp">
+      <Filter>Unit Testing Files\FactoryTest</Filter>
+    </ClCompile>
+    <ClCompile Include="AddNodeStateTest.cpp">
+      <Filter>Unit Testing Files\StateTest</Filter>
+    </ClCompile>
+    <ClCompile Include="ConnectStateTest.cpp">
+      <Filter>Unit Testing Files\StateTest</Filter>
+    </ClCompile>
+    <ClCompile Include="PointerStateTest.cpp">
+      <Filter>Unit Testing Files\StateTest</Filter>
+    </ClCompile>
+    <ClCompile Include="StateSubjectTest.cpp">
+      <Filter>Unit Testing Files\Observer</Filter>
+    </ClCompile>
+    <ClCompile Include="SubjectTest.cpp">
+      <Filter>Unit Testing Files\Observer</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DirectoryUtil.h">
@@ -602,11 +632,20 @@
     <ClInclude Include="StateFactoryTest.h">
       <Filter>Header Files\FactoryTest</Filter>
     </ClInclude>
-    <ClInclude Include="StateSubject.h">
-      <Filter>Header Files\ObserverTest</Filter>
-    </ClInclude>
     <ClInclude Include="SubjectTest.h">
       <Filter>Header Files\ObserverTest</Filter>
+    </ClInclude>
+    <ClInclude Include="StateSubjectTest.h">
+      <Filter>Header Files\ObserverTest</Filter>
+    </ClInclude>
+    <ClInclude Include="PointerStateTest.h">
+      <Filter>Header Files\StateTest</Filter>
+    </ClInclude>
+    <ClInclude Include="ConnectStateTest.h">
+      <Filter>Header Files\StateTest</Filter>
+    </ClInclude>
+    <ClInclude Include="AddNodeStateTest.h">
+      <Filter>Header Files\StateTest</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

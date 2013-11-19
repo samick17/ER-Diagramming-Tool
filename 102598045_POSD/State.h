@@ -1,7 +1,8 @@
 #pragma once
 
-class GraphicalPresentation;
 #include "Point.h"
+
+class GraphicalPresentation;
 
 class State{
 public:

@@ -1,9 +1,9 @@
 #pragma once
 
-#include "Subject.h"
+#include "StateSubject.h"
 #include <gtest/gtest.h>
 
-class SubjectTest : public testing::Test{
+class StateSubjectTest : public testing::Test{
 protected:
     virtual void SetUp();
     virtual void TearDown();

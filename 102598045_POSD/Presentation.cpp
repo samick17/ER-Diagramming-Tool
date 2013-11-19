@@ -30,8 +30,7 @@ void Presentation::deleteComponent(Component* component){
 }
 
 int Presentation::addConnection(Component* firstNode,Component* secondNode){
-    int result = this->erModel->addConnection(firstNode,secondNode);
-    return result;
+    return this->erModel->addConnection(firstNode,secondNode);
 }
 
 void Presentation::redo(){
