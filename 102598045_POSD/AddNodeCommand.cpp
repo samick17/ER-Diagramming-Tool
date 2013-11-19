@@ -1,8 +1,5 @@
 #include "AddNodeCommand.h"
 #include "ERModel.h"
-#include "ComponentType.h"
-#include "Exception.h"
-#include "InvalidNodeTypeException.h"
 
 using namespace std;
 

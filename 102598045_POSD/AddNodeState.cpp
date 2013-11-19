@@ -16,7 +16,7 @@ AddNodeState::~AddNodeState(){
 //this function will be called from StateFactory right after constructed.
 void AddNodeState::onCreate(){
     string nodeType = stateToNodeTypeMap.get(this->getStateID());
-    ComponentData* componentData = new ComponentData(nodeType,"Preview","");
+    ComponentData* componentData = new ComponentData(nodeType,WidgetDefaultSetting::PreviewWidgetID);
     this->graphicalPresentation->setComponentDataForPreview(componentData);
 }
 

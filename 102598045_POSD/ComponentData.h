@@ -2,12 +2,13 @@
 
 #include <string>
 #include "Rect.h"
+#include "StringSymbol.h"
 
 using namespace std;
 
 struct ComponentData{
 public:
-    ComponentData(string type,string id,string name);
+    ComponentData(string type,string id,string name = StringSymbol::Empty);
     virtual ~ComponentData();
 
     string getID();

@@ -1,9 +1,6 @@
 #include "ConnectNodeCommand.h"
 #include "ERModel.h"
-#include "StringUtil.h"
 #include "ComponentUtil.h"
-#include "Exception.h"
-#include "NullPointerException.h"
 
 using namespace std;
 
@@ -11,8 +8,8 @@ ConnectNodeCommand::ConnectNodeCommand(ERModel* erModel,Component* firstNode,Com
 }
 
 ConnectNodeCommand::~ConnectNodeCommand(){
-	if(!this->getExecutionFalg())
-		delete this->connector;
+    if(!this->getExecutionFalg())
+        delete this->connector;
 }
 
 void ConnectNodeCommand::doExecute(){
