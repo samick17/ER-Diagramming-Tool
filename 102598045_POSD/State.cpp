@@ -7,6 +7,9 @@ State::State(int stateID,GraphicalPresentation* graphicalPresentation) : stateID
 State::~State(){
 }
 
+void State::onCreate(){
+}
+
 int State::getStateID(){
     return this->stateID;
 }

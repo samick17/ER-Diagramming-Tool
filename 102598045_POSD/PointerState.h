@@ -6,7 +6,6 @@ class PointerState : public State{
 public:
     PointerState(int stateID,GraphicalPresentation* graphicalPresentation);
     ~PointerState();
-    void onCreate();
 protected:
    void doMousePressEvent(Point position);
    void doMouseMoveEvent(Point position);

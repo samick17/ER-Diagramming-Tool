@@ -5,7 +5,6 @@
 #include "Presentation.h"
 #include "Subject.h"
 
-class ComponentData;
 class StateSubject;
 
 class GraphicalPresentation : public Subject{

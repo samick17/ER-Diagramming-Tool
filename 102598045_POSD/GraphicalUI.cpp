@@ -134,6 +134,16 @@ void GraphicalUI::close(){
 
 void GraphicalUI::switchState(int stateID){
     this->graphicalPresentation->switchState(stateID);
+    if(stateID >= StateID::AttributeState && stateID <= StateID::RelationShipState){
+        bool isOK;
+        QString text = QInputDialog::getText(NULL,QString(DialogSetting::Title.c_str()),QString(DialogSetting::Text.c_str()),QLineEdit::Normal,"",&isOK);
+        if(isOK){
+            ComponentData* componentData = this->graphicalPresentation->getComponentDataForPreview();
+            componentData->setName(text.toStdString());
+        }else {
+            this->graphicalPresentation->switchState(StateID::PointerState);
+        }
+    }
 }
 //execute sunchronization event that are mapped.
 void GraphicalUI::executeSync(string syncEventType){

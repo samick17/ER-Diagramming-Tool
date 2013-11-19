@@ -3,7 +3,6 @@
 #include "ComponentType.h"
 #include "Node.h"
 #include "DialogSetting.h"
-#include <QInputDialog>
 
 AddNodeState::AddNodeState(int stateID,GraphicalPresentation* graphicalPresentation) : State(stateID,graphicalPresentation){
     stateToNodeTypeMap.put(StateID::AttributeState,ComponentType::TypeAttribute);
@@ -32,14 +31,12 @@ void AddNodeState::doMouseDragEvent(Point position){
 }
 
 void AddNodeState::doMouseReleaseEvent(Point position){
-    bool isOK;
-    QString text = QInputDialog::getText(NULL,QString(DialogSetting::Title.c_str()),QString(DialogSetting::Text.c_str()),QLineEdit::Normal,"",&isOK);
-    if(isOK){
-        this->nodeName = text.toStdString();
-        string nodeType = stateToNodeTypeMap.get(this->getStateID());
-        this->graphicalPresentation->addNode(nodeType,this->nodeName,Point());
-        Node* node = this->graphicalPresentation->getLastAddedNode();
-        node->setCenterPosition(position);
-    }
+    ComponentData* componentData = this->graphicalPresentation->getComponentDataForPreview();
+    string nodeType = componentData->getType();
+    string nodeName = componentData->getName();
+
+    this->graphicalPresentation->addNode(nodeType,nodeName,Point());
+    Node* node = this->graphicalPresentation->getLastAddedNode();
+    node->setCenterPosition(position);
     this->graphicalPresentation->switchState(StateID::PointerState);
 }

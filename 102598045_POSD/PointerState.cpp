@@ -6,9 +6,6 @@ PointerState::PointerState(int stateID,GraphicalPresentation* graphicalPresentat
 PointerState::~PointerState(){
 }
 
-void PointerState::onCreate(){
-}
-
 void PointerState::doMousePressEvent(Point position){
     this->graphicalPresentation->selectWidget();
 }

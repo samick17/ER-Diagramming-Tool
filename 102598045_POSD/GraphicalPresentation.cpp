@@ -1,5 +1,4 @@
 #include "GraphicalPresentation.h"
-#include "Connector.h"
 #include "Node.h"
 #include "ControllerEvent.h"
 #include "ERModelUtil.h"
