@@ -1,6 +1,7 @@
 #include "ConnectorData.h"
 
 ConnectorData::ConnectorData(ComponentData componentData,Point sourcePoint,Point targetPoint) : ComponentData(componentData){
+	this->setPointPair(pair<Point,Point>(sourcePoint,targetPoint));
 }
 
 ConnectorData::~ConnectorData(){

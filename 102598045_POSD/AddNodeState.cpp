@@ -25,16 +25,20 @@ void AddNodeState::onCreate(){
 
 void AddNodeState::doMousePressEvent(Point position){
     string nodeType = stateToNodeTypeMap.get(this->getStateID());
-    this->graphicalPresentation->addNode(nodeType,this->nodeName,Point());
-    Node* node = this->graphicalPresentation->getLastAddedNode();
-    node->setCenterPosition(position);
+    ComponentData* componentData = new ComponentData(nodeType,"Preview",this->nodeName);
+    componentData->setCenterPosition(position);
+    this->graphicalPresentation->setComponentDataForPreview(componentData);
 }
 
 void AddNodeState::doMouseMoveEvent(Point position){
-    Node* node = this->graphicalPresentation->getLastAddedNode();
-    node->setCenterPosition(position);
+    ComponentData* componentData = this->graphicalPresentation->getComponentDataForPreview();
+    componentData->setCenterPosition(position);
 }
 
 void AddNodeState::doMouseReleaseEvent(Point position){
+    string nodeType = stateToNodeTypeMap.get(this->getStateID());
+    this->graphicalPresentation->addNode(nodeType,this->nodeName,Point());
+    Node* node = this->graphicalPresentation->getLastAddedNode();
+    node->setCenterPosition(position);
     this->graphicalPresentation->switchState(StateID::PointerState);
 }

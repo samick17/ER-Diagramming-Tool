@@ -14,8 +14,10 @@ public:
     ~GraphicalPresentation();
 
     StateSubject* getStateSubject();
-    HashMap<string,Component*> getAllComponents();
     set<ComponentData*> getAllComponentDataSet();
+    ComponentData* getComponentDataForPreview();
+    void setComponentDataForPreview(ComponentData* componentDataForPreview);
+
     void updateAllComponentData();
     Node* getLastAddedNode();
     Component* getLastPressedComponent();

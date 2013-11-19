@@ -11,28 +11,40 @@ GraphicalPresentation::GraphicalPresentation(Presentation* presentation) : prese
     this->stateSubject = new StateSubject();
     this->lastPressedComponent = NULL;
     this->lastReleasedComponent = NULL;
+    this->componentDataForPreview = NULL;
 }
 
 GraphicalPresentation::~GraphicalPresentation(){
     delete this->stateSubject;
+    if(this->componentDataForPreview)
+        delete this->componentDataForPreview;
 }
 
 StateSubject* GraphicalPresentation::getStateSubject(){
     return this->stateSubject;
 }
 
-HashMap<string,Component*> GraphicalPresentation::getAllComponents(){
-    return this->presentation->getAllComponents();
-}
-
 set<ComponentData*> GraphicalPresentation::getAllComponentDataSet(){
     return this->componentDataSet;
+}
+
+ComponentData* GraphicalPresentation::getComponentDataForPreview(){
+    return this->componentDataForPreview;
+}
+
+void GraphicalPresentation::setComponentDataForPreview(ComponentData* componentDataForPreview){
+    if(this->componentDataForPreview)
+        delete this->componentDataForPreview;
+    this->componentDataForPreview = componentDataForPreview;
+    this->notify();
 }
 
 void GraphicalPresentation::updateAllComponentData(){
     this->componentDataSet.clear();
     for each(Component* component in this->presentation->getAllComponents())
         this->componentDataSet.insert(component->getComponentData());
+    if(this->componentDataForPreview)
+        this->componentDataSet.insert(componentDataForPreview);
 }
 
 Node* GraphicalPresentation::getLastAddedNode(){
@@ -53,12 +65,14 @@ void GraphicalPresentation::addNode(string nodeType,string nodeName,Point positi
     node->setName(nodeName);
     node->setSize(Size());
     node->setCenterPosition(position);
+    this->setComponentDataForPreview(NULL);
     this->presentation->sync(ControllerEvent::DisplayDiagram);
 }
 
 void GraphicalPresentation::addConnection(Component* sourceComponent,Component* targetComponent){
     try{
         this->presentation->addConnection(sourceComponent,targetComponent);
+        this->setComponentDataForPreview(NULL);
         this->presentation->sync(ControllerEvent::ConnectTwoNodes);
     }
     catch(Exception&){

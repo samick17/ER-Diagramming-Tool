@@ -3,6 +3,7 @@
 #include "StringUtil.h"
 #include "CharSymbol.h"
 #include "Entity.h"
+#include "ControllerEvent.h"
 
 void SetPrimaryKeyInstruction::execute(TextPresentation* textPresentation,TextUIPresenter* textUIPresenter){
     textUIPresenter->displayEntities();
@@ -13,6 +14,7 @@ void SetPrimaryKeyInstruction::execute(TextPresentation* textPresentation,TextUI
     vector<string> attributeIDVector = this->setEntityAttributesPrimaryKey(entity,textPresentation);
     //display Set Primary Key Result
     cout<<"The entity '"+entity->getID()+"' has the primary key ("+StringUtil::appendWithComma(attributeIDVector)+")."<<endl;
+    textPresentation->sync(ControllerEvent::SetPrimaryKey);
 }
 
 vector<string> SetPrimaryKeyInstruction::setEntityAttributesPrimaryKey(Entity* entity,TextPresentation* textPresentation){
