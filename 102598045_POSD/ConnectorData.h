@@ -11,7 +11,7 @@ public:
     void setSourcePoint(Point sourcePoint);
     Point getTargetPoint();
     void setTargetPoint(Point targetPoint);
-	void setPointPair(pair<Point,Point> pointPair);
+    void setPointPair(pair<Point,Point> pointPair);
 private:
     Point sourcePoint,targetPoint;
 };

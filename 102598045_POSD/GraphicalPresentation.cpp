@@ -55,6 +55,10 @@ Component* GraphicalPresentation::getLastPressedComponent(){
     return this->lastPressedComponent;
 }
 
+Component* GraphicalPresentation::getLastMovedComponent(){
+    return this->lastMovedComponent;
+}
+
 Component* GraphicalPresentation::getLastReleasedComponent(){
     return this->lastReleasedComponent;
 }
@@ -168,28 +172,29 @@ void GraphicalPresentation::doUngisterObserver(IObserver* observer){
 }
 
 void GraphicalPresentation::mousePressEvent(Point position,ComponentData* componentData){
-    if(this->isERModelContainsComponentData(componentData))
-        this->lastPressedComponent = this->presentation->getComponentByID(componentData->getID());
+    this->lastPressedComponent = this->getComponentByComponentData(componentData);
     this->stateSubject->getState()->mousePressEvent(position);
     //must use notify to avoid some bug
     this->notify();
 }
 
 void GraphicalPresentation::mouseMoveEvent(Point position,ComponentData* componentData){
+    this->lastMovedComponent = this->getComponentByComponentData(componentData);
     this->stateSubject->getState()->mouseMoveEvent(position);
 }
 
 void GraphicalPresentation::mouseReleaseEvent(Point position,ComponentData* componentData){
-    if(this->isERModelContainsComponentData(componentData))
-        this->lastReleasedComponent = this->presentation->getComponentByID(componentData->getID());
+    this->lastReleasedComponent = this->getComponentByComponentData(componentData);
     this->stateSubject->getState()->mouseReleaseEvent(position);
     this->notify();
 }
 
-bool GraphicalPresentation::isERModelContainsComponentData(ComponentData* componentData){
+Component* GraphicalPresentation::getComponentByComponentData(ComponentData* componentData){
     if(!componentData)
-        return false;
+        return NULL;
     HashMap<string,Component*> componentMap = this->presentation->getAllComponents();
     string componentID = componentData->getID();
-    return componentMap.containsKey(componentID);
+    if(componentMap.containsKey(componentID))
+        return componentMap.get(componentID);
+    return NULL;
 }

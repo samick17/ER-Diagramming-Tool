@@ -21,6 +21,7 @@ public:
     void updateAllComponentData();
     Node* getLastAddedNode();
     Component* getLastPressedComponent();
+    Component* getLastMovedComponent();
     Component* getLastReleasedComponent();
 
     void addNode(string nodeType,string nodeName,Point position);
@@ -57,6 +58,7 @@ private:
     StateSubject* stateSubject;
     Node* lastAddedNode;
     Component* lastPressedComponent;
+    Component* lastMovedComponent;
     Component* lastReleasedComponent;
-    bool isERModelContainsComponentData(ComponentData* componentData);
+    Component* getComponentByComponentData(ComponentData* componentData);
 };

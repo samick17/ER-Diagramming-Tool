@@ -26,16 +26,6 @@ QPainterPath ConnectorWidget::shape() const{
 }
 
 void ConnectorWidget::doUpdateWidget(){
-    /*Connector* connector = static_cast<Connector*>(this->component);
-    Component* firstComponent = connector->getFirstConnectedNode();
-    Component* secondComponent = connector->getSecondConnectedNode();
-    if(!firstComponent && !secondComponent)
-        return;
-    Rect sourceRect = firstComponent->getRect();
-    Rect targetRect = secondComponent->getRect();
-    pair<Point,Point> minDistancePointPair = sourceRect.getMinDistanceToRectPoint(targetRect);
-    Point sourcePoint = minDistancePointPair.first;
-    Point targetPoint = minDistancePointPair.second;*/
     ConnectorData* connectorData = static_cast<ConnectorData*>(this->componentData);
     Point sourcePoint = connectorData->getSourcePoint();
     Point targetPoint = connectorData->getTargetPoint();
