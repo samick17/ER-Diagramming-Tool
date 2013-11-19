@@ -96,7 +96,10 @@ HashMap<string,Component*> TextPresentation::getAllEntities(){
 }
 
 HashMap<string,Component*> TextPresentation::getEntityAttributes(Entity* entity){
-    return ComponentUtil::toComponentHashMap<Attribute>(entity->getConnectedAttributes());
+    HashMap<string,Attribute*> attributeMap = entity->getConnectedAttributes();
+    if(attributeMap.empty())
+        throw EmptyCollectionException(ComponentType::TypeAttributeName);
+    return ComponentUtil::toComponentHashMap<Attribute>(attributeMap);
 }
 
 Component* TextPresentation::findComponent(){
