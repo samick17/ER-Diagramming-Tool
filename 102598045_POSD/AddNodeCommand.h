@@ -10,10 +10,11 @@ class AddNodeCommand : public Command{
 public:
     AddNodeCommand(ERModel* erModel,Node* node);
     ~AddNodeCommand();
-
-    void execute();
-    void unExecute();
-private:    
+protected:
+    void onUnExecuteDestroy();
+    void doExecute();
+    void doUnExecute();
+private:
     ERModel* erModel;
     Component* node;
 };

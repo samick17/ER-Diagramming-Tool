@@ -7,23 +7,24 @@ DeleteComponentCommand::DeleteComponentCommand(ERModel* erModel,Component* compo
 }
 
 DeleteComponentCommand::~DeleteComponentCommand(){
-    if(this->executionFlag){
-        //delete connectionSet
-        for each(Connector* connector in this->connectionMap)
-            delete connector;
-        //delete component    
-        if(this->component)
-            delete this->component;
-    }
     this->clearConnectionDataMap();
-}
-void DeleteComponentCommand::execute(){
-    this->clearConnectionDataMap();
-    this->removeAndDisconnectComponents();
-    this->executionFlag = true;
 }
 
-void DeleteComponentCommand::unExecute(){
+void DeleteComponentCommand::onExecuteDestroy(){
+        //delete connectionSet
+    for each(Connector* connector in this->connectionMap)
+        delete connector;
+    //delete component
+    if(this->component)
+        delete this->component;
+}
+
+void DeleteComponentCommand::doExecute(){
+    this->clearConnectionDataMap();
+    this->removeAndDisconnectComponents();
+}
+
+void DeleteComponentCommand::doUnExecute(){
     //insert All connectors to ERModel at origin index
     for(HashMap<string,Connector*>::reverse_iterator connectorIterator = this->connectionMap.rbegin(); connectorIterator!= this->connectionMap.rend(); connectorIterator++){
         Connector* connector = *connectorIterator;
@@ -37,8 +38,6 @@ void DeleteComponentCommand::unExecute(){
     }
     if(typeid(*this->component).name() == typeid(Connector).name())
         reConnectComponents(this->connectionDataMap.get(this->component->getID()),static_cast<Connector*>(component));
-
-	this->executionFlag = false;
 }
 
 void DeleteComponentCommand::saveConnectionData(Connector* connector){

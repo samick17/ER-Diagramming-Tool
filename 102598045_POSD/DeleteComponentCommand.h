@@ -15,9 +15,10 @@ class DeleteComponentCommand : public Command{
 public:
     DeleteComponentCommand(ERModel* erModel,Component* component);
     ~DeleteComponentCommand();
-
-    void execute();
-    void unExecute();
+protected:
+    void onExecuteDestroy();
+    void doExecute();
+    void doUnExecute();
 private:
     ERModel* erModel;
     Component* component;

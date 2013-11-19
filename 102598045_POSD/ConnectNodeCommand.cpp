@@ -11,20 +11,19 @@ ConnectNodeCommand::ConnectNodeCommand(ERModel* erModel,Component* firstNode,Com
 }
 
 ConnectNodeCommand::~ConnectNodeCommand(){
-    if(!this->executionFlag){
-        delete this->connector;
-    }
 }
 
-void ConnectNodeCommand::execute(){
+void ConnectNodeCommand::onUnExecuteDestroy(){
+    delete this->connector;
+}
+
+void ConnectNodeCommand::doExecute(){
     this->erModel->insertComponent(connector);
     ComponentUtil::connectWithEachOther(firstNode,secondNode,connector);
-    this->executionFlag = true;
 }
 
-void ConnectNodeCommand::unExecute(){
+void ConnectNodeCommand::doUnExecute(){
     //disconnect node && remove connector from ERModel
     ComponentUtil::disconnectWithEachOther(this->firstNode,this->secondNode,this->connector);
     this->erModel->eraseComponent(this->connector);
-    this->executionFlag = false;
 }

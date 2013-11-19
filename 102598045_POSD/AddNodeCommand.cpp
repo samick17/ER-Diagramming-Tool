@@ -10,19 +10,18 @@ AddNodeCommand::AddNodeCommand(ERModel* erModel,Node* node) : erModel(erModel),n
 }
 
 AddNodeCommand::~AddNodeCommand(){
-    if(!this->executionFlag){
-        delete this->node;
-    }
+}
+
+void AddNodeCommand::onUnExecuteDestroy(){
+    delete this->node;
 }
 
 //if ERModel doesn't contains this node, add this node to ERModel
-void AddNodeCommand::execute(){
+void AddNodeCommand::doExecute(){
     this->erModel->insertComponent(this->node);
-    this->executionFlag = true;
 }
 
-void AddNodeCommand::unExecute(){
+void AddNodeCommand::doUnExecute(){
     //remove node    
     this->erModel->eraseComponent(this->node);
-    this->executionFlag = false;
 }

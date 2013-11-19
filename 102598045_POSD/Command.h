@@ -11,12 +11,16 @@ class TextUI;
 class ERModel;
 
 class Command{
-public:    
+public:
     Command();
     virtual ~Command();
-        
-    virtual void execute() = 0;
-    virtual void unExecute() = 0;
+    void execute();
+    void unExecute();
 protected:
-     bool executionFlag;
+    virtual void onExecuteDestroy();
+    virtual void onUnExecuteDestroy();
+    virtual void doExecute() = 0;
+    virtual void doUnExecute() = 0;
+private:
+    bool executionFlag;
 };
