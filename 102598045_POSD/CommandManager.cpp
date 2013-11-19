@@ -19,7 +19,7 @@ void CommandManager::execute(Command* command){
 
 void CommandManager::redo(){
     try{
-        //pop from redo Stack    
+        //pop from redo Stack
         Command* command = StackUtil::pop(this->redoCommandsStack);
         //push to undo Stack
         this->undoCommandsStack.push(command);

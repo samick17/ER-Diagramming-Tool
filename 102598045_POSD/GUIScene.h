@@ -21,7 +21,7 @@ public:
     ~GUIScene();
 
     void notify(ISubject* subject);
-    void displayDiagram();
+    void refreshAllWidgets();
 protected:
     void mousePressEvent(QGraphicsSceneMouseEvent* mouseEvent);
     void mouseMoveEvent(QGraphicsSceneMouseEvent* mouseEvent);

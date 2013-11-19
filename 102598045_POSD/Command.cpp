@@ -2,7 +2,6 @@
 #include "ERModel.h"
 #include "TextUI.h"
 #include "StringSymbol.h"
-#include <iostream>
 
 Command::Command(){
     this->executionFlag = false;

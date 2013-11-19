@@ -1,7 +1,6 @@
 #include "ConnectState.h"
 #include "ConnectorData.h"
 #include "ComponentType.h"
-#include <iostream>
 
 ConnectState::ConnectState(int stateID,GraphicalPresentation* graphicalPresentation) : State(stateID,graphicalPresentation){
 }
@@ -10,7 +9,6 @@ ConnectState::~ConnectState(){
 }
 
 void ConnectState::onCreate(){
-
 }
 
 void ConnectState::doMousePressEvent(Point position){
@@ -25,6 +23,9 @@ void ConnectState::doMousePressEvent(Point position){
 }
 
 void ConnectState::doMouseMoveEvent(Point position){
+}
+
+void ConnectState::doMouseDragEvent(Point position){
     ComponentData* componentData = this->graphicalPresentation->getComponentDataForPreview();
     ConnectorData* connectorData = dynamic_cast<ConnectorData*>(componentData);
     if(connectorData){

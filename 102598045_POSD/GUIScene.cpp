@@ -9,6 +9,7 @@ GUIScene::GUIScene(QRectF sceneRect,GraphicalUI* graphicalUI,QGraphicsView* view
     this->graphicalPresentation = this->graphicalUI->getGraphicalPresentation();
     this->graphicalPresentation->registerObserver(this);
     this->connect(this,SIGNAL(onNotifyEvent()),this,SLOT(executeNotify()));
+    this->view->setMouseTracking(true);
 }
 
 GUIScene::~GUIScene(){
@@ -19,7 +20,7 @@ void GUIScene::notify(ISubject* subject){
     this->onNotifyEvent();
 }
 
-void GUIScene::displayDiagram(){
+void GUIScene::refreshAllWidgets(){
     this->clearAll();
     //display all
     set<ComponentData*> componentDataSet = this->graphicalPresentation->getAllComponentDataSet();
@@ -57,7 +58,7 @@ pair<Point,ComponentData*> GUIScene::getPointComponentPair(QGraphicsSceneMouseEv
 
 void GUIScene::executeNotify(){
     this->graphicalPresentation->updateAllComponentData();
-    this->displayDiagram();
+    this->refreshAllWidgets();
 }
 
 ComponentData* GUIScene::getComponentDataAtPosition(QPointF qPosition){

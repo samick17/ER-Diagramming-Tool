@@ -51,7 +51,7 @@ private:
     void initialMenuBar();
     void initialToolBar();
     void initialSyncMap();
-    void displayDiagram();
+    void refreshAllWidgets();
     void setKeyCtrlPressed(QKeyEvent* keyEvent);
 private slots:
     void openFile();

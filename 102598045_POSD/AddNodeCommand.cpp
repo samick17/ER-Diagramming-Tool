@@ -3,7 +3,6 @@
 #include "ComponentType.h"
 #include "Exception.h"
 #include "InvalidNodeTypeException.h"
-#include <iostream>
 
 using namespace std;
 
@@ -11,10 +10,8 @@ AddNodeCommand::AddNodeCommand(ERModel* erModel,Node* node) : erModel(erModel),n
 }
 
 AddNodeCommand::~AddNodeCommand(){
-    if(!this->getExecutionFalg()){
-        cout<<"delete node"<<endl;
+    if(!this->getExecutionFalg())
         delete this->node;
-    }
 }
 
 //if ERModel doesn't contains this node, add this node to ERModel

@@ -11,6 +11,7 @@ public:
 protected:
    void doMousePressEvent(Point position);
    void doMouseMoveEvent(Point position);
+   void doMouseDragEvent(Point position);
    void doMouseReleaseEvent(Point position);
 private:
     HashMap<int,string> stateToNodeTypeMap;

@@ -15,19 +15,12 @@ AddNodeState::~AddNodeState(){
 }
 //this function will be called from StateFactory right after constructed.
 void AddNodeState::onCreate(){
-    bool isOK;
-    QString text = QInputDialog::getText(NULL,QString(DialogSetting::Title.c_str()),QString(DialogSetting::Text.c_str()),QLineEdit::Normal,"",&isOK);
-    if(isOK)
-        this->nodeName = text.toStdString();
-    else 
-        this->graphicalPresentation->switchState(StateID::PointerState);
+    string nodeType = stateToNodeTypeMap.get(this->getStateID());
+    ComponentData* componentData = new ComponentData(nodeType,"Preview","");
+    this->graphicalPresentation->setComponentDataForPreview(componentData);
 }
 
 void AddNodeState::doMousePressEvent(Point position){
-    string nodeType = stateToNodeTypeMap.get(this->getStateID());
-    ComponentData* componentData = new ComponentData(nodeType,"Preview",this->nodeName);
-    componentData->setCenterPosition(position);
-    this->graphicalPresentation->setComponentDataForPreview(componentData);
 }
 
 void AddNodeState::doMouseMoveEvent(Point position){
@@ -35,10 +28,18 @@ void AddNodeState::doMouseMoveEvent(Point position){
     componentData->setCenterPosition(position);
 }
 
+void AddNodeState::doMouseDragEvent(Point position){
+}
+
 void AddNodeState::doMouseReleaseEvent(Point position){
-    string nodeType = stateToNodeTypeMap.get(this->getStateID());
-    this->graphicalPresentation->addNode(nodeType,this->nodeName,Point());
-    Node* node = this->graphicalPresentation->getLastAddedNode();
-    node->setCenterPosition(position);
+    bool isOK;
+    QString text = QInputDialog::getText(NULL,QString(DialogSetting::Title.c_str()),QString(DialogSetting::Text.c_str()),QLineEdit::Normal,"",&isOK);
+    if(isOK){
+        this->nodeName = text.toStdString();
+        string nodeType = stateToNodeTypeMap.get(this->getStateID());
+        this->graphicalPresentation->addNode(nodeType,this->nodeName,Point());
+        Node* node = this->graphicalPresentation->getLastAddedNode();
+        node->setCenterPosition(position);
+    }
     this->graphicalPresentation->switchState(StateID::PointerState);
 }

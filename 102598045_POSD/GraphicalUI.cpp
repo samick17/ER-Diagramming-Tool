@@ -106,15 +106,15 @@ void GraphicalUI::initialToolBar(){
 }
 
 void GraphicalUI::initialSyncMap(){
-    this->syncMap.put(ControllerEvent::OpenFile,&GraphicalUI::displayDiagram);
-    this->syncMap.put(ControllerEvent::AddNode,&GraphicalUI::displayDiagram);
-    this->syncMap.put(ControllerEvent::ConnectTwoNodes,&GraphicalUI::displayDiagram);
-    this->syncMap.put(ControllerEvent::DisplayDiagram,&GraphicalUI::displayDiagram);
-    this->syncMap.put(ControllerEvent::SetPrimaryKey,&GraphicalUI::displayDiagram);
-    this->syncMap.put(ControllerEvent::DisplayTable,&GraphicalUI::displayDiagram);
-    this->syncMap.put(ControllerEvent::DeleteComponent,&GraphicalUI::displayDiagram);
-    this->syncMap.put(ControllerEvent::Undo,&GraphicalUI::displayDiagram);
-    this->syncMap.put(ControllerEvent::Redo,&GraphicalUI::displayDiagram);
+    this->syncMap.put(ControllerEvent::OpenFile,&GraphicalUI::refreshAllWidgets);
+    this->syncMap.put(ControllerEvent::AddNode,&GraphicalUI::refreshAllWidgets);
+    this->syncMap.put(ControllerEvent::ConnectTwoNodes,&GraphicalUI::refreshAllWidgets);
+    this->syncMap.put(ControllerEvent::DisplayDiagram,&GraphicalUI::refreshAllWidgets);
+    this->syncMap.put(ControllerEvent::SetPrimaryKey,&GraphicalUI::refreshAllWidgets);
+    this->syncMap.put(ControllerEvent::DisplayTable,&GraphicalUI::refreshAllWidgets);
+    this->syncMap.put(ControllerEvent::DeleteComponent,&GraphicalUI::refreshAllWidgets);
+    this->syncMap.put(ControllerEvent::Undo,&GraphicalUI::refreshAllWidgets);
+    this->syncMap.put(ControllerEvent::Redo,&GraphicalUI::refreshAllWidgets);
     this->syncMap.put(ControllerEvent::Close,&GraphicalUI::close);
 }
 
@@ -143,8 +143,8 @@ void GraphicalUI::executeSync(string syncEventType){
     }
 }
 
-void GraphicalUI::displayDiagram(){
-    this->scene->displayDiagram();
+void GraphicalUI::refreshAllWidgets(){
+    this->scene->refreshAllWidgets();
 }
 
 void GraphicalUI::setKeyCtrlPressed(QKeyEvent* keyEvent){
