@@ -1,24 +1,24 @@
 #include "TableTest.h"
 
 void TableTest::SetUp(){
-    entity = new Entity(ComponentData("0","Engineer"));
+    entity = new Entity("0","Engineer");
     table = new Table(entity);
 
     ASSERT_EQ(0,table->attributeMap.size());
     ASSERT_EQ(0,table->foreignKeyAttributeMap.size());
 
-    Attribute* attributeName = new Attribute(ComponentData("1","Name"));
+    Attribute* attributeName = new Attribute("1","Name");
     attributeName->setAsPrimaryKey();
-    Attribute* attributeID = new Attribute(ComponentData("2","Emp_ID"));
-    attributeID->setAsPrimaryKey();    
-    Attribute* attributeAge = new Attribute(ComponentData("3","Age"));
+    Attribute* attributeID = new Attribute("2","Emp_ID");
+    attributeID->setAsPrimaryKey();
+    Attribute* attributeAge = new Attribute("3","Age");
     this->attributeMap.put(attributeName->getID(),attributeName);
     this->attributeMap.put(attributeID->getID(),attributeID);
     this->attributeMap.put(attributeAge->getID(),attributeAge);
 
-    Attribute* attributePC_ID = new Attribute(ComponentData("4","PC_ID"));
+    Attribute* attributePC_ID = new Attribute("4","PC_ID");
     attributePC_ID->setAsPrimaryKey();
-    Attribute* attributeValue = new Attribute(ComponentData("5","Purchase_Date"));    
+    Attribute* attributeValue = new Attribute("5","Purchase_Date");
     this->foreignKeyAttributeMap.put(attributePC_ID->getID(),attributePC_ID);
     this->foreignKeyAttributeMap.put(attributeValue->getID(),attributeValue);
 
@@ -47,9 +47,9 @@ void TableTest::deleteAndClearHashMap(HashMap<string,Attribute*>& attributeMap){
 
 TEST_F(TableTest,testInsertAllAttributes){
     HashMap<string,Attribute*> attributeMapInsert;
-    Attribute* attributeSex = new Attribute(ComponentData("6","Sex"));
-    Attribute* attributeDepartment = new Attribute(ComponentData("8","Department"));
-    Attribute* attributeWeight = new Attribute(ComponentData("13","Weight"));
+    Attribute* attributeSex = new Attribute("6","Sex");
+    Attribute* attributeDepartment = new Attribute("8","Department");
+    Attribute* attributeWeight = new Attribute("13","Weight");
     attributeMapInsert.put(attributeSex->getID(),attributeSex);
     attributeMapInsert.put(attributeDepartment->getID(),attributeDepartment);
     attributeMapInsert.put(attributeWeight->getID(),attributeWeight);
@@ -65,8 +65,8 @@ TEST_F(TableTest,testInsertAllAttributes){
 TEST_F(TableTest,testInsertAllForeignKeyAttributes){
     HashMap<string,Attribute*> foreignKeyAttributeMapInsert;
     ASSERT_EQ(2,this->table->foreignKeyAttributeMap.size());
-    Attribute* attributeSex = new Attribute(ComponentData("10","Sex"));
-    Attribute* attributeDepartment = new Attribute(ComponentData("20","Department"));
+    Attribute* attributeSex = new Attribute("10","Sex");
+    Attribute* attributeDepartment = new Attribute("20","Department");
     foreignKeyAttributeMapInsert.put(attributeSex->getID(),attributeSex);
     foreignKeyAttributeMapInsert.put(attributeDepartment->getID(),attributeDepartment);
     this->table->insertAllForeignKeyAttributes(foreignKeyAttributeMapInsert);

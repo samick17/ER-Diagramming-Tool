@@ -2,26 +2,26 @@
 #include "ComponentUtil.h"
 
 void TableUtilTest::SetUp(){
-    Entity* entityEngineer = new Entity(ComponentData("0","Engineer"));//0
-    Attribute* attributeName = new Attribute(ComponentData("1","Name"));//1
-    Entity* entityPC = new Entity(ComponentData("2","PC"));//2
-    Attribute* attributeEmp_ID = new Attribute(ComponentData("3","Emp_ID"));//3
-    Entity* entityNoteBook = new Entity(ComponentData("4","NoteBook"));//4
-    Connector* connector1 = new Connector(ComponentData("5",""));//5 0 1
-    Connector* connector2 = new Connector(ComponentData("6",""));//6 0 3
-    RelationShip* relationShipHas1 = new RelationShip(ComponentData("7","Has"));//7
-    Connector* connector3 = new Connector(ComponentData("8",""));//8 0 7
-    Connector* connector4 = new Connector(ComponentData("9",""));//9 2 7
-    Attribute* attributeNoteBook_ID = new Attribute(ComponentData("10","NoteBook_ID"));//10
-    Attribute* attributePC_ID = new Attribute(ComponentData("11","PC_ID"));//11
-    Attribute* attributePurchase_Date = new Attribute(ComponentData("12","Purchase_Date"));//12
-    RelationShip* relationShipHas2 = new RelationShip(ComponentData("13","Has"));//13
-    Connector* connector5 = new Connector(ComponentData("14",""));//14 4 10
-    Connector* connector6 = new Connector(ComponentData("15",""));//15 11 2
-    Connector* connector7 = new Connector(ComponentData("16",""));//16 12 2
-    Connector* connector8 = new Connector(ComponentData("17",""));//17 0 13
-    Connector* connector9 = new Connector(ComponentData("18",""));//18 4 13
-    Entity* entityTest = new Entity(ComponentData("19","Test Entity"));//19
+    Entity* entityEngineer = new Entity("0","Engineer");//0
+    Attribute* attributeName = new Attribute("1","Name");//1
+    Entity* entityPC = new Entity("2","PC");//2
+    Attribute* attributeEmp_ID = new Attribute("3","Emp_ID");//3
+    Entity* entityNoteBook = new Entity("4","NoteBook");//4
+    Connector* connector1 = new Connector("5");//5 0 1
+    Connector* connector2 = new Connector("6");//6 0 3
+    RelationShip* relationShipHas1 = new RelationShip("7","Has");//7
+    Connector* connector3 = new Connector("8");//8 0 7
+    Connector* connector4 = new Connector("9");//9 2 7
+    Attribute* attributeNoteBook_ID = new Attribute("10","NoteBook_ID");//10
+    Attribute* attributePC_ID = new Attribute("11","PC_ID");//11
+    Attribute* attributePurchase_Date = new Attribute("12","Purchase_Date");//12
+    RelationShip* relationShipHas2 = new RelationShip("13","Has");//13
+    Connector* connector5 = new Connector("14");//14 4 10
+    Connector* connector6 = new Connector("15");//15 11 2
+    Connector* connector7 = new Connector("16");//16 12 2
+    Connector* connector8 = new Connector("17");//17 0 13
+    Connector* connector9 = new Connector("18");//18 4 13
+    Entity* entityTest = new Entity("19","Test Entity");//19
 
     this->entityMap.put(entityEngineer->getID(),entityEngineer);
     this->entityMap.put(entityPC->getID(),entityPC);

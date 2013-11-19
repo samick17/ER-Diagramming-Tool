@@ -15,8 +15,8 @@ void AddNodeCommandTest::TearDown(){
 TEST_F(AddNodeCommandTest,testAddNodeCommand){
     ASSERT_EQ(0,this->erModel.getAllComponents().size());
 
-    Node* entity = new Entity(ComponentData("0","Account"));
-	AddNodeCommand addNodeCommand1 = AddNodeCommand(&this->erModel,entity);
+    Node* entity = new Entity("0","Account");
+    AddNodeCommand addNodeCommand1 = AddNodeCommand(&this->erModel,entity);
 
     addNodeCommand1.execute();
     ASSERT_EQ(1,this->erModel.getAllComponents().size());
@@ -26,7 +26,7 @@ TEST_F(AddNodeCommandTest,testAddNodeCommand){
     ASSERT_EQ(1,this->erModel.getAllComponents().size());
 
     
-    Node* attribute = new Attribute(ComponentData("1","ID"));
+    Node* attribute = new Attribute("1","ID");
     AddNodeCommand addNodeCommand2 = AddNodeCommand(&this->erModel,attribute);
 
     addNodeCommand2.execute();
@@ -35,11 +35,11 @@ TEST_F(AddNodeCommandTest,testAddNodeCommand){
     ASSERT_EQ(1,this->erModel.getAllComponents().size());
     addNodeCommand2.execute();
     ASSERT_EQ(2,this->erModel.getAllComponents().size());
-	addNodeCommand2.unExecute();
-	ASSERT_EQ(1,this->erModel.getAllComponents().size());
+    addNodeCommand2.unExecute();
+    ASSERT_EQ(1,this->erModel.getAllComponents().size());
 
-    Node* relationShip = new RelationShip(ComponentData("2","Has"));
-	AddNodeCommand addNodeCommand3 = AddNodeCommand(&this->erModel,relationShip);
+    Node* relationShip = new RelationShip("2","Has");
+    AddNodeCommand addNodeCommand3 = AddNodeCommand(&this->erModel,relationShip);
 
     addNodeCommand3.execute();
     ASSERT_EQ(2,this->erModel.getAllComponents().size());

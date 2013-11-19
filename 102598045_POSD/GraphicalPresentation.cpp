@@ -9,6 +9,8 @@
 GraphicalPresentation::GraphicalPresentation(Presentation* presentation) : presentation(presentation){
     this->isCtrlPressed = false;
     this->stateSubject = new StateSubject();
+    this->lastPressedComponent = NULL;
+    this->lastReleasedComponent = NULL;
 }
 
 GraphicalPresentation::~GraphicalPresentation(){
@@ -152,9 +154,8 @@ void GraphicalPresentation::doUngisterObserver(IObserver* observer){
 }
 
 void GraphicalPresentation::mousePressEvent(Point position,ComponentData* componentData){
-    if(componentData){
+    if(this->isERModelContainsComponentData(componentData))
         this->lastPressedComponent = this->presentation->getComponentByID(componentData->getID());
-    }
     this->stateSubject->getState()->mousePressEvent(position);
     //must use notify to avoid some bug
     this->notify();
@@ -165,9 +166,16 @@ void GraphicalPresentation::mouseMoveEvent(Point position,ComponentData* compone
 }
 
 void GraphicalPresentation::mouseReleaseEvent(Point position,ComponentData* componentData){
-    if(componentData){
+    if(this->isERModelContainsComponentData(componentData))
         this->lastReleasedComponent = this->presentation->getComponentByID(componentData->getID());
-    }
     this->stateSubject->getState()->mouseReleaseEvent(position);
     this->notify();
+}
+
+bool GraphicalPresentation::isERModelContainsComponentData(ComponentData* componentData){
+    if(!componentData)
+        return false;
+    HashMap<string,Component*> componentMap = this->presentation->getAllComponents();
+    string componentID = componentData->getID();
+    return componentMap.containsKey(componentID);
 }

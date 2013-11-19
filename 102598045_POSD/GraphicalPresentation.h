@@ -56,4 +56,5 @@ private:
     Node* lastAddedNode;
     Component* lastPressedComponent;
     Component* lastReleasedComponent;
+    bool isERModelContainsComponentData(ComponentData* componentData);
 };

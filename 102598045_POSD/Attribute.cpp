@@ -5,7 +5,7 @@
 #include "InvalidConnectException.h"
 #include "ComponentConnectionSize.h"
 
-Attribute::Attribute(string componentID) : Node(componentID,ComponentType::TypeAttribute){
+Attribute::Attribute(string componentID,string componentName) : Node(ComponentType::TypeAttribute,componentID,componentName){
     this->attributeType = AttributeType::Default;
 }
 

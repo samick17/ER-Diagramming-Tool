@@ -9,7 +9,7 @@
 #include "EmptyCollectionException.h"
 #include "StringSymbol.h"
 
-Entity::Entity(string componentID) : Node(componentID,ComponentType::TypeEntity){
+Entity::Entity(string componentID,string componentName) : Node(ComponentType::TypeEntity,componentID,componentName){
 }
 
 Entity::~Entity(){

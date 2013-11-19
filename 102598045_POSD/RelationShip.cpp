@@ -8,7 +8,7 @@
 #include "InvalidConnectException.h"
 #include "ComponentConnectionSize.h"
 
-RelationShip::RelationShip(string componentID) : Node(componentID,ComponentType::TypeRelationShip){
+RelationShip::RelationShip(string componentID,string componentName) : Node(ComponentType::TypeRelationShip,componentID,componentName){
 }
 
 RelationShip::~RelationShip(){

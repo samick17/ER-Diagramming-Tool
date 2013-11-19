@@ -3,11 +3,11 @@
 #include "ComponentUtil.h"
 
 void ComponentTest::SetUp(){
-    this->attribute = new Attribute(ComponentData("0",""));
-    this->relationShip = new RelationShip(ComponentData("1",""));
-    this->entity = new Entity(ComponentData("2",""));
+    this->attribute = new Attribute("0");
+    this->relationShip = new RelationShip("1");
+    this->entity = new Entity("2");
 
-    this->connector = new Connector(ComponentData("3",""));
+    this->connector = new Connector("3");
     ComponentUtil::connectWithEachOther(this->attribute,this->entity,this->connector);
 }
 

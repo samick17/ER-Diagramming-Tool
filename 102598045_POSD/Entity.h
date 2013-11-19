@@ -3,10 +3,11 @@
 #include "Attribute.h"
 #include <vector>
 #include "HashMap.h"
+#include "StringSymbol.h"
 
 class Entity : public Node{
 public:
-    Entity(string componentID);
+    Entity(string componentID,string componentName = StringSymbol::Empty);
     ~Entity();
 
     int canConnectTo(Component* target);

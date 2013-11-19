@@ -1,7 +1,7 @@
 #include "ComponentData.h"
 #include "Number.h"
 
-ComponentData::ComponentData(string id,string name,string type) : id(id),name(name),type(type){
+ComponentData::ComponentData(string type,string id,string name) : type(type),id(id),name(name){
 }
 
 ComponentData::~ComponentData(){

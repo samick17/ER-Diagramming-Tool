@@ -123,22 +123,22 @@ TEST_F(ERModelTest,testAddNode){
 }
 
 TEST_F(ERModelTest,testInsertComponent){
-    Component* attribute = new Attribute(ComponentData("15","Age"));
+    Component* attribute = new Attribute("15","Age");
     this->erModel.insertComponent(attribute);
     ASSERT_EQ(16,this->erModel.componentMap.size());
     ASSERT_EQ(attribute,this->erModel.componentMap.get("15"));
 
-    Component* entity = new Entity(ComponentData("16","NoteBook"));
+    Component* entity = new Entity("16","NoteBook");
     this->erModel.insertComponent(entity);
     ASSERT_EQ(17,this->erModel.componentMap.size());
     ASSERT_EQ(entity,this->erModel.componentMap.get("16"));
 
-    Component* relationShip = new RelationShip(ComponentData("17","Work on"));
+    Component* relationShip = new RelationShip("17","Work on");
     this->erModel.insertComponent(relationShip);
     ASSERT_EQ(18,this->erModel.componentMap.size());
     ASSERT_EQ(relationShip,this->erModel.componentMap.get("17"));
 
-    Component* connector = new Connector(ComponentData("18",""));
+    Component* connector = new Connector("18");
     this->erModel.insertComponent(connector);
     ASSERT_EQ(19,this->erModel.componentMap.size());
     ASSERT_EQ(connector,this->erModel.componentMap.get("18"));

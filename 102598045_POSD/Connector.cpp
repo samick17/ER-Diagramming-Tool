@@ -6,8 +6,8 @@
 #include "StringSymbol.h"
 #include "ConnectorData.h"
 
-Connector::Connector(string componentID){
-    ComponentData componentData = ComponentData(componentID,StringSymbol::Empty,ComponentType::TypeConnector);
+Connector::Connector(string componentID,string componentName){
+    ComponentData componentData = ComponentData(ComponentType::TypeConnector,componentID,componentName);
     this->componentData = new ConnectorData(componentData);
 }
 

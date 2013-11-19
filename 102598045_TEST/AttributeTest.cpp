@@ -6,9 +6,9 @@
 #include "ComponentUtil.h"
 
 void AttributeTest::SetUp(){    
-    this->attribute = new Attribute(ComponentData("0","Name"));
-    this->relationShip = new RelationShip(ComponentData("1","Has"));
-    this->entity = new Entity(ComponentData("2","Engineer"));
+    this->attribute = new Attribute("0","Name");
+    this->relationShip = new RelationShip("1","Has");
+    this->entity = new Entity("2","Engineer");
 }
 
 void AttributeTest::TearDown(){
@@ -26,17 +26,17 @@ TEST_F(AttributeTest,testCanConnectTo){
     ASSERT_EQ(NodeConnectionType::ValidConnect,this->attribute->canConnectTo(this->entity));
     ASSERT_THROW(this->attribute->canConnectTo(this->attribute),ConnectedSelfException);
 
-    Connector connector(ComponentData("3",""));    
+    Connector connector("3");
     ComponentUtil::connectWithEachOther(this->attribute,this->entity,&connector);
 
     ASSERT_THROW(this->attribute->canConnectTo(this->entity),HasConnectedException);
-    ASSERT_THROW(this->attribute->canConnectTo(&Attribute(ComponentData("",""))),InvalidConnectException);
-    ASSERT_THROW(this->attribute->canConnectTo(&Entity(ComponentData("",""))),InvalidConnectException);
+    ASSERT_THROW(this->attribute->canConnectTo(&Attribute("10")),InvalidConnectException);
+    ASSERT_THROW(this->attribute->canConnectTo(&Entity("27")),InvalidConnectException);
 }
 TEST_F(AttributeTest,testHasSizeToConnect){
     ASSERT_EQ(true,this->attribute->hasSizeToConnect());
 
-    Connector connector(ComponentData("3",""));    
+    Connector connector("3");
     ComponentUtil::connectWithEachOther(this->attribute,this->entity,&connector);
     ASSERT_EQ(false,this->attribute->hasSizeToConnect());
 }

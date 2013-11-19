@@ -4,10 +4,9 @@
 #include "InvalidConnectException.h"
 #include "ConnectedSelfException.h"
 #include "HasConnectedException.h"
-#include "StringSymbol.h"
 
-Node::Node(string componentID,string type){
-    this->componentData = new ComponentData(componentID,StringSymbol::Empty,type);
+Node::Node(string type,string componentID,string componentName){
+    this->componentData = new ComponentData(type,componentID,componentName);
 }
 
 Node::~Node(){

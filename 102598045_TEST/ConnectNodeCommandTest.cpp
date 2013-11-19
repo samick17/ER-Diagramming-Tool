@@ -17,7 +17,7 @@ void ConnectNodeCommandTest::TearDown(){
 }
 
 TEST_F(ConnectNodeCommandTest,testConnectNodeCommand){
-	Connector* connector1 = new Connector(ComponentData("3",""));
+	Connector* connector1 = new Connector("3");
 	ConnectNodeCommand connectNodeCommand1 = ConnectNodeCommand(&this->erModel,this->entity,this->attribute,connector1);
 
     connectNodeCommand1.execute();
@@ -39,7 +39,7 @@ TEST_F(ConnectNodeCommandTest,testConnectNodeCommand){
     ASSERT_EQ(true,connectNodeCommand1.secondNode->hasConnectedTo(connectNodeCommand1.firstNode));
     ASSERT_EQ(4,this->erModel.getAllComponents().size());
 
-	Connector* connector2 = new Connector(ComponentData("4",""));
+	Connector* connector2 = new Connector("4");
 	ConnectNodeCommand connectNodeCommand2 = ConnectNodeCommand(&this->erModel,this->entity,this->relationShip,connector2);
 
     connectNodeCommand2.execute();

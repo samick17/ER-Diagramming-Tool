@@ -13,17 +13,17 @@ void ERModelUtilTest::TearDown(){
 
 TEST_F(ERModelUtilTest,testConvertComponentHashMapToTypeHashMap){
     HashMap<string,Component*> componentMap;
-    Entity* entity1 = new Entity(ComponentData("0",""));
-    Attribute* attribute1 = new Attribute(ComponentData("2",""));
-    Connector* connector1 = new Connector(ComponentData("1",""));
-    Entity* entity2 = new Entity(ComponentData("24",""));
-    RelationShip* relationShip1 = new RelationShip(ComponentData("15",""));
-    Connector* connector2 = new Connector(ComponentData("17",""));
-    Connector* connector3 = new Connector(ComponentData("6",""));
-    RelationShip* relationShip2 = new RelationShip(ComponentData("39",""));
-    Attribute* attribute2 = new Attribute(ComponentData("22",""));
-    Connector* connector4 = new Connector(ComponentData("48",""));
-    Entity* entity3 = new Entity(ComponentData("13",""));
+    Entity* entity1 = new Entity("0");
+    Attribute* attribute1 = new Attribute("2");
+    Connector* connector1 = new Connector("1");
+    Entity* entity2 = new Entity("24");
+    RelationShip* relationShip1 = new RelationShip("15");
+    Connector* connector2 = new Connector("17");
+    Connector* connector3 = new Connector("6");
+    RelationShip* relationShip2 = new RelationShip("39");
+    Attribute* attribute2 = new Attribute("22");
+    Connector* connector4 = new Connector("48");
+    Entity* entity3 = new Entity("13");
 
     componentMap.put(entity1->getID(),entity1);
     componentMap.put(attribute1->getID(),attribute1);

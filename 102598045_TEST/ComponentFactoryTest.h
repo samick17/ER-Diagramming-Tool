@@ -7,5 +7,5 @@ class ComponentFactoryTest : public testing::Test{
 protected:
     ComponentFactory componentFactory;
     virtual void SetUp();
-    virtual void TearDown();    
+    virtual void TearDown();
 };

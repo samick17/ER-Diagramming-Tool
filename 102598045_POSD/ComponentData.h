@@ -7,7 +7,7 @@ using namespace std;
 
 struct ComponentData{
 public:
-    ComponentData(string id,string name,string type);
+    ComponentData(string type,string id,string name);
     virtual ~ComponentData();
 
     string getID();

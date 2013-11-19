@@ -1,12 +1,12 @@
 #pragma once
 
 #include "Component.h"
-#include <queue>
+#include "StringSymbol.h"
 
 class Connector : public Component{
     friend class ConnectorTest;
 public:
-    Connector(string componentID);
+    Connector(string componentID,string componentName = StringSymbol::Empty);
     ~Connector();
 
     void setPosition(Point position);

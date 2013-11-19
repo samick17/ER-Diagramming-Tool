@@ -10,22 +10,22 @@ void TableManagerTest::TearDown(){
 TEST_F(TableManagerTest,testInsertTable){    
     //insert & assert size
     ASSERT_EQ(0,this->tableManager.getAllTables().size());
-    this->tableManager.insertTable(new Table(&Entity(ComponentData("0","Character"))));
+    this->tableManager.insertTable(new Table(&Entity("0","Character")));
     ASSERT_EQ(1,this->tableManager.getAllTables().size());
-    this->tableManager.insertTable(new Table(&Entity(ComponentData("1","Account"))));
+    this->tableManager.insertTable(new Table(&Entity("1","Account")));
     ASSERT_EQ(2,this->tableManager.getAllTables().size());
-    this->tableManager.insertTable(new Table(&Entity(ComponentData("2","Guide"))));
+    this->tableManager.insertTable(new Table(&Entity("2","Guide")));
     ASSERT_EQ(3,this->tableManager.getAllTables().size());
-    this->tableManager.insertTable(new Table(&Entity(ComponentData("3","Friend"))));
+    this->tableManager.insertTable(new Table(&Entity("3","Friend")));
     ASSERT_EQ(4,this->tableManager.getAllTables().size());
-    this->tableManager.insertTable(new Table(&Entity(ComponentData("4","Scene"))));
+    this->tableManager.insertTable(new Table(&Entity("4","Scene")));
     ASSERT_EQ(5,this->tableManager.getAllTables().size());
 }
 
 TEST_F(TableManagerTest,testGetTableByID){
-    Entity* entityCharacter = new Entity(ComponentData("0","Character"));
-    Entity* entityAccount = new Entity(ComponentData("1","Account"));
-    Entity* entityGuide = new Entity(ComponentData("2","Guide"));
+    Entity* entityCharacter = new Entity("0","Character");
+    Entity* entityAccount = new Entity("1","Account");
+    Entity* entityGuide = new Entity("2","Guide");
 
     Table* tableCharacter = new Table(entityCharacter);
     Table* tableAccount = new Table(entityAccount);
@@ -53,9 +53,9 @@ TEST_F(TableManagerTest,testGetTableByID){
 
 TEST_F(TableManagerTest,testClearAll){
     ASSERT_EQ(0,this->tableManager.getAllTables().size());
-    this->tableManager.insertTable(new Table(&Entity(ComponentData("0","Character"))));
-    this->tableManager.insertTable(new Table(&Entity(ComponentData("1","Account"))));
-    this->tableManager.insertTable(new Table(&Entity(ComponentData("3","Friend"))));
+    this->tableManager.insertTable(new Table(&Entity("0","Character")));
+    this->tableManager.insertTable(new Table(&Entity("1","Account")));
+    this->tableManager.insertTable(new Table(&Entity("3","Friend")));
     ASSERT_EQ(3,this->tableManager.getAllTables().size());
     this->tableManager.clearAll();
     ASSERT_EQ(0,this->tableManager.getAllTables().size());

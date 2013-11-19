@@ -4,11 +4,11 @@
 #include "ComponentUtil.h"
 
 void ConnectorTest::SetUp(){
-    this->attribute = new Attribute(ComponentData("0",""));
-    this->relationShip = new RelationShip(ComponentData("1",""));
-    this->entity = new Entity(ComponentData("2",""));
+    this->attribute = new Attribute("0");
+    this->relationShip = new RelationShip("1");
+    this->entity = new Entity("2");
 
-    this->connector = new Connector(ComponentData("3",""));
+    this->connector = new Connector("3");
     ComponentUtil::connectWithEachOther(this->attribute,this->entity,this->connector);
     //ASSERT Connected With Each Other
     ASSERT_EQ(this->attribute,this->connector->getFirstConnectedNode());
@@ -55,17 +55,21 @@ TEST_F(ConnectorTest,testHasSizeToConnect){
 }
 
 TEST_F(ConnectorTest,testGetFirstConnectedNode){
-    Connector connectorEntityAndRelation = Connector(ComponentData("4",""));
-    ComponentUtil::connectWithEachOther(this->entity,this->relationShip,&connectorEntityAndRelation);
+    Connector connectorEntityAndRelation("4");
+    ASSERT_EQ(NULL,connectorEntityAndRelation.getFirstConnectedNode());
+    ASSERT_EQ(NULL,connectorEntityAndRelation.getSecondConnectedNode());
 
+    ComponentUtil::connectWithEachOther(this->entity,this->relationShip,&connectorEntityAndRelation);
     ASSERT_EQ(this->entity,connectorEntityAndRelation.getFirstConnectedNode());
     ASSERT_EQ(this->relationShip,connectorEntityAndRelation.getSecondConnectedNode());
 }
 
 TEST_F(ConnectorTest,testGetSecondConnectedNode){
-    Connector connectorEntityAndRelation(ComponentData("4",""));
-    ComponentUtil::connectWithEachOther(this->entity,this->relationShip,&connectorEntityAndRelation);
+    Connector connectorEntityAndRelation("10");
+    ASSERT_EQ(NULL,connectorEntityAndRelation.getFirstConnectedNode());
+    ASSERT_EQ(NULL,connectorEntityAndRelation.getSecondConnectedNode());
 
+    ComponentUtil::connectWithEachOther(this->entity,this->relationShip,&connectorEntityAndRelation);
     ASSERT_EQ(this->entity,connectorEntityAndRelation.getFirstConnectedNode());
     ASSERT_EQ(this->relationShip,connectorEntityAndRelation.getSecondConnectedNode());
 }

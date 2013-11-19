@@ -106,6 +106,7 @@
     <ClCompile Include="..\102598045_POSD\ConnectionData.cpp" />
     <ClCompile Include="..\102598045_POSD\ConnectNodeCommand.cpp" />
     <ClCompile Include="..\102598045_POSD\Connector.cpp" />
+    <ClCompile Include="..\102598045_POSD\ConnectorData.cpp" />
     <ClCompile Include="..\102598045_POSD\ConnectTwoNodesInstruction.cpp" />
     <ClCompile Include="..\102598045_POSD\ControllerEvent.cpp" />
     <ClCompile Include="..\102598045_POSD\DeleteComponentCommand.cpp" />

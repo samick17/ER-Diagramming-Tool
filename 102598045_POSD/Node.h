@@ -4,7 +4,7 @@
 
 class Node : public Component{
 public:
-    Node(string componentID,string type);
+    Node(string type,string componentID,string componentName);
     ~Node();
 
     void setPosition(Point position);

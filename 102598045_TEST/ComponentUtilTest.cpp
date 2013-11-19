@@ -3,11 +3,11 @@
 #include "ComponentUtil.h"
 
 void ComponentUtilTest::SetUp(){
-    this->attribute = new Attribute(ComponentData("57",""));
-    this->entity = new Entity(ComponentData("18",""));
-    this->relationShip = new RelationShip(ComponentData("32",""));
-    this->connector1 = new Connector(ComponentData("19",""));
-    this->connector2 = new Connector(ComponentData("37",""));
+    this->attribute = new Attribute("57");
+    this->entity = new Entity("18");
+    this->relationShip = new RelationShip("32");
+    this->connector1 = new Connector("19");
+    this->connector2 = new Connector("37");
 }
 
 void ComponentUtilTest::TearDown(){
