@@ -11,7 +11,6 @@ public:
     AddNodeCommand(ERModel* erModel,Node* node);
     ~AddNodeCommand();
 protected:
-    void onUnExecuteDestroy();
     void doExecute();
     void doUnExecute();
 private:

@@ -17,10 +17,9 @@ public:
     void execute();
     void unExecute();
 protected:
-    virtual void onExecuteDestroy();
-    virtual void onUnExecuteDestroy();
     virtual void doExecute() = 0;
     virtual void doUnExecute() = 0;
+    bool getExecutionFalg();
 private:
     bool executionFlag;
 };

@@ -14,7 +14,6 @@ public:
     ConnectNodeCommand(ERModel* erModel,Component* firstNode,Component* secondNode,Connector* connector);
     ~ConnectNodeCommand();
 protected:
-    void onUnExecuteDestroy();
     void doExecute();
     void doUnExecute();
 private:

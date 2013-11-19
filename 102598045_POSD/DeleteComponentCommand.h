@@ -16,7 +16,6 @@ public:
     DeleteComponentCommand(ERModel* erModel,Component* component);
     ~DeleteComponentCommand();
 protected:
-    void onExecuteDestroy();
     void doExecute();
     void doUnExecute();
 private:

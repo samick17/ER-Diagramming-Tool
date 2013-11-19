@@ -11,10 +11,8 @@ ConnectNodeCommand::ConnectNodeCommand(ERModel* erModel,Component* firstNode,Com
 }
 
 ConnectNodeCommand::~ConnectNodeCommand(){
-}
-
-void ConnectNodeCommand::onUnExecuteDestroy(){
-    delete this->connector;
+	if(!this->getExecutionFalg())
+		delete this->connector;
 }
 
 void ConnectNodeCommand::doExecute(){
