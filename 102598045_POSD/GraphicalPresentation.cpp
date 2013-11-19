@@ -72,11 +72,11 @@ void GraphicalPresentation::addNode(string nodeType,string nodeName,Point positi
 void GraphicalPresentation::addConnection(Component* sourceComponent,Component* targetComponent){
     try{
         this->presentation->addConnection(sourceComponent,targetComponent);
-        this->setComponentDataForPreview(NULL);
-        this->presentation->sync(ControllerEvent::ConnectTwoNodes);
     }
     catch(Exception&){
     }
+    this->setComponentDataForPreview(NULL);
+    this->presentation->sync(ControllerEvent::ConnectTwoNodes);
 }
 
 void GraphicalPresentation::openFile(string filePath){

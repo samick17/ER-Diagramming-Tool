@@ -6,7 +6,7 @@
 #include "Point.h"
 
 class GraphicalUI;
-class BaseWidget;
+class ComponentWidget;
 class GraphicalPresentation;
 class ComponentData;
 
@@ -30,10 +30,10 @@ private:
     GraphicalUI* graphicalUI;
     QGraphicsView* view;
     GraphicalPresentation* graphicalPresentation;
-    QList<BaseWidget*> widgetList;
+    QList<ComponentWidget*> widgetList;
     ComponentData* getComponentDataAtPosition(QPointF qPosition);
     pair<Point,ComponentData*> getPointComponentPair(QGraphicsSceneMouseEvent* mouseEvent);
-    void addWidget(BaseWidget* widget);
+    void addWidget(ComponentWidget* widget);
     void updateAll();
     void clearAll();
 private slots:

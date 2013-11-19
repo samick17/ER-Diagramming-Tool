@@ -25,7 +25,7 @@ void GUIScene::displayDiagram(){
     set<ComponentData*> componentDataSet = this->graphicalPresentation->getAllComponentDataSet();
     WidgetFactory widgetFactory;
     for each(ComponentData* componentData in componentDataSet){
-        BaseWidget* componentWidget = widgetFactory.createComponentWidget(componentData,this->graphicalPresentation);
+        ComponentWidget* componentWidget = widgetFactory.createComponentWidget(componentData,this->graphicalPresentation);
         this->addWidget(componentWidget);
     }
 }
@@ -69,14 +69,14 @@ ComponentData* GUIScene::getComponentDataAtPosition(QPointF qPosition){
     return componentData;
 }
 
-void GUIScene::addWidget(BaseWidget* widget){
+void GUIScene::addWidget(ComponentWidget* widget){
     this->addItem(widget);
     this->widgetList.push_back(widget);
     widget->updateWidget();
 }
 
 void GUIScene::updateAll(){
-    for each(BaseWidget* widget in this->widgetList)
+    for each(ComponentWidget* widget in this->widgetList)
         widget->updateWidget();
     this->update();
 }

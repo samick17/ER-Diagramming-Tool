@@ -7,6 +7,7 @@
 #include "CommandManager.h"
 #include "NoSuchNodeException.h"
 #include "NullPointerException.h"
+#include "InvalidConnectException.h"
 #include "InputFileParser.h"
 #include "OutputFileParser.h"
 
@@ -50,6 +51,8 @@ void ERModel::deleteComponent(Component* component){
 }
 //return: NodeConnectionType
 int ERModel::addConnection(Component* firstNode,Component* secondNode){
+    if(!firstNode | !secondNode)
+        throw InvalidConnectException(StringSymbol::Empty,StringSymbol::Empty);
     int result = firstNode->canConnectTo(secondNode);
     if(result == NodeConnectionType::ValidConnect || result == NodeConnectionType::ConnectEntityAndRelation){
         ComponentFactory componentFactory;

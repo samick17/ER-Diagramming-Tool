@@ -12,10 +12,10 @@ WidgetFactory::WidgetFactory(){
 WidgetFactory::~WidgetFactory(){
 }
 
-BaseWidget* WidgetFactory::createComponentWidget(ComponentData* componentData,GraphicalPresentation* graphicalPresentation){
+ComponentWidget* WidgetFactory::createComponentWidget(ComponentData* componentData,GraphicalPresentation* graphicalPresentation){
     string componentType = componentData->getType();
     NewComponentWidgetFunction newComponentWidgetFunctiontion = findNewComponentWidgetFunction(componentType);
-    BaseWidget* componentWidget = newComponentWidgetFunctiontion(componentData,graphicalPresentation);
+    ComponentWidget* componentWidget = newComponentWidgetFunctiontion(componentData,graphicalPresentation);
     return componentWidget;
 }
 

@@ -27,6 +27,5 @@ void ConnectState::doMouseMoveEvent(Point position){
 void ConnectState::doMouseReleaseEvent(Point position){
     Component* sourceComponent = this->graphicalPresentation->getLastPressedComponent();
     Component* targetComponent = this->graphicalPresentation->getLastReleasedComponent();
-    if(sourceComponent && targetComponent)
-        this->graphicalPresentation->addConnection(sourceComponent,targetComponent);
+    this->graphicalPresentation->addConnection(sourceComponent,targetComponent);
 }
