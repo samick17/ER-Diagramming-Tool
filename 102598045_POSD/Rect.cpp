@@ -9,7 +9,7 @@ const int Rect::CenterTop = 2;
 const int Rect::CenterBottom = 3;
 
 Rect::Rect(Point position,Size size) : position(position),size(size){
-    this->updateSpecialPoints();
+    this->updateControlPoints();
 }
 
 Point Rect::getPosition(){
@@ -18,7 +18,7 @@ Point Rect::getPosition(){
 
 void Rect::setPosition(Point position){
     this->position = position;
-    this->updateSpecialPoints();
+    this->updateControlPoints();
 }
 
 void Rect::setCenterPosition(Point centerPosition){
@@ -42,11 +42,11 @@ Size Rect::getSize(){
 
 void Rect::setSize(Size size){
     this->size = size;
-    this->updateSpecialPoints();
+    this->updateControlPoints();
 }
 
-vector<Point> Rect::getSpecialPoints(){
-    return this->specialPoints;
+vector<Point> Rect::getControlPoints(){
+    return this->controlPoints;
 }
 
 double Rect::getLeft(){
@@ -79,26 +79,26 @@ Point Rect::getCenterPosition(){
 }
 
 Point Rect::getCenterLeft(){
-    return this->specialPoints[Rect::CenterLeft];
+    return this->controlPoints[Rect::CenterLeft];
 }
 
 Point Rect::getCenterRight(){
-    return this->specialPoints[Rect::CenterRight];
+    return this->controlPoints[Rect::CenterRight];
 }
 
 Point Rect::getCenterTop(){
-    return this->specialPoints[Rect::CenterTop];
+    return this->controlPoints[Rect::CenterTop];
 }
 
 Point Rect::getCenterBottom(){
-    return this->specialPoints[Rect::CenterBottom];
+    return this->controlPoints[Rect::CenterBottom];
 }
-
-pair<Point,Point> Rect::getMinDistanceToRectPoint(Rect rect){
+//calculate this & rect's minmun distance Point
+pair<Point,Point> Rect::getMinDistanceToRectPoint(const Rect& rect){
     double distance = DBL_MAX;
     pair<Point,Point> result;
-    for each(Point candidatePoint in this->specialPoints)
-        for each(Point comparedPoint in rect.getSpecialPoints()){
+    for each(Point candidatePoint in this->controlPoints)
+        for each(Point comparedPoint in rect.controlPoints){
             double distanceBuffer = candidatePoint.getDistance(comparedPoint);
             if(distanceBuffer<distance){
                 result = pair<Point,Point>(candidatePoint,comparedPoint);
@@ -114,10 +114,10 @@ bool Rect::operator==(const Rect& rectToCompare) const{
     return false;
 }
 
-void Rect::updateSpecialPoints(){
-    this->specialPoints.clear();
-    this->specialPoints.push_back(Point(this->getLeft(),this->getCenterY()));
-    this->specialPoints.push_back(Point(this->getRight(),this->getCenterY()));
-    this->specialPoints.push_back(Point(this->getCenterX(),this->getTop()));
-    this->specialPoints.push_back(Point(this->getCenterX(),this->getBottom()));
+void Rect::updateControlPoints(){
+    this->controlPoints.clear();
+    this->controlPoints.push_back(Point(this->getLeft(),this->getCenterY()));
+    this->controlPoints.push_back(Point(this->getRight(),this->getCenterY()));
+    this->controlPoints.push_back(Point(this->getCenterX(),this->getTop()));
+    this->controlPoints.push_back(Point(this->getCenterX(),this->getBottom()));
 }

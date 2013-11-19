@@ -8,10 +8,14 @@ void SizeTest::TearDown(){
 
 TEST_F(SizeTest,testGetHalfWidth){
     ASSERT_EQ(this->size.getWidth()/2,this->size.getHalfWidth());
+    this->size = Size(380,470);
+    ASSERT_EQ(190,this->size.getHalfWidth());
 }
 
 TEST_F(SizeTest,testGetHalfHeight){
     ASSERT_EQ(this->size.getHeight()/2,this->size.getHalfHeight());
+    this->size = Size(600,910);
+    ASSERT_EQ(455,this->size.getHalfHeight());
 }
 
 TEST_F(SizeTest,testOperatorEquals){

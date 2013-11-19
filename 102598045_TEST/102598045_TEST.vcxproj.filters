@@ -453,6 +453,12 @@
     <ClCompile Include="..\102598045_POSD\ConnectorData.cpp">
       <Filter>Source Files\Struct</Filter>
     </ClCompile>
+    <ClCompile Include="..\102598045_POSD\StateID.cpp">
+      <Filter>Source Files\Constants</Filter>
+    </ClCompile>
+    <ClCompile Include="..\102598045_POSD\State.cpp">
+      <Filter>Source Files\View</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DirectoryUtil.h">

@@ -25,6 +25,10 @@ TEST_F(RectTest,testSetPosition){
     point = Point(-105,-35);
     this->rect.setPosition(point);
     ASSERT_EQ(point,this->rect.position);
+    ASSERT_EQ(Point(this->rect.getLeft(),this->rect.getCenterY()),this->rect.getCenterLeft());
+    ASSERT_EQ(Point(this->rect.getRight(),this->rect.getCenterY()),this->rect.getCenterRight());
+    ASSERT_EQ(Point(this->rect.getCenterX(),this->rect.getTop()),this->rect.getCenterTop());
+    ASSERT_EQ(Point(this->rect.getCenterX(),this->rect.getBottom()),this->rect.getCenterBottom());
 }
 
 TEST_F(RectTest,testSetCenterPosition){
@@ -32,6 +36,11 @@ TEST_F(RectTest,testSetCenterPosition){
     this->rect.setCenterPosition(centerPosition);
     Point expectedPosition = Point(centerPosition.getX()-this->rect.size.getWidth()/2,centerPosition.getY()-this->rect.size.getHeight()/2);
     ASSERT_EQ(expectedPosition,this->rect.position);
+    ASSERT_EQ(centerPosition,this->rect.getCenterPosition());
+    ASSERT_EQ(Point(this->rect.getLeft(),this->rect.getCenterY()),this->rect.getCenterLeft());
+    ASSERT_EQ(Point(this->rect.getRight(),this->rect.getCenterY()),this->rect.getCenterRight());
+    ASSERT_EQ(Point(this->rect.getCenterX(),this->rect.getTop()),this->rect.getCenterTop());
+    ASSERT_EQ(Point(this->rect.getCenterX(),this->rect.getBottom()),this->rect.getCenterBottom());
 }
 
 TEST_F(RectTest,testGetWidth){
@@ -43,7 +52,7 @@ TEST_F(RectTest,testGetWidth){
 
 TEST_F(RectTest,testGetHeight){
     ASSERT_EQ(Size().getHeight(),this->rect.getHeight());
-    Size size = Size(321,450);
+    Size size = Size(420,999);
     this->rect = Rect(Point(),size);
     ASSERT_EQ(size.getHeight(),this->rect.getHeight());
 }
@@ -55,6 +64,10 @@ TEST_F(RectTest,testSetSize){
     size = Size(83,257);
     this->rect.setSize(size);
     ASSERT_EQ(size,this->rect.size);
+    ASSERT_EQ(Point(this->rect.getLeft(),this->rect.getCenterY()),this->rect.getCenterLeft());
+    ASSERT_EQ(Point(this->rect.getRight(),this->rect.getCenterY()),this->rect.getCenterRight());
+    ASSERT_EQ(Point(this->rect.getCenterX(),this->rect.getTop()),this->rect.getCenterTop());
+    ASSERT_EQ(Point(this->rect.getCenterX(),this->rect.getBottom()),this->rect.getCenterBottom());
 }
 
 TEST_F(RectTest,testGetLeft){
@@ -121,6 +134,30 @@ TEST_F(RectTest,testGetCenterTop){
 TEST_F(RectTest,testGetCenterBottom){
     Point centerBottom = Point(this->rect.getCenterX(),this->rect.getBottom());
     ASSERT_EQ(centerBottom,this->rect.getCenterBottom());
+}
+
+TEST_F(RectTest,testGetMinDistanceToRectPoint){
+
+}
+
+TEST_F(RectTest,testUpdateControlPoints){
+    this->rect.updateControlPoints();
+    ASSERT_EQ(Point(this->rect.getLeft(),this->rect.getCenterY()),this->rect.getCenterLeft());
+    ASSERT_EQ(Point(this->rect.getRight(),this->rect.getCenterY()),this->rect.getCenterRight());
+    ASSERT_EQ(Point(this->rect.getCenterX(),this->rect.getTop()),this->rect.getCenterTop());
+    ASSERT_EQ(Point(this->rect.getCenterX(),this->rect.getBottom()),this->rect.getCenterBottom());
+    this->rect.size = Size(800,1200);
+    this->rect.updateControlPoints();
+    ASSERT_EQ(Point(this->rect.getLeft(),this->rect.getCenterY()),this->rect.getCenterLeft());
+    ASSERT_EQ(Point(this->rect.getRight(),this->rect.getCenterY()),this->rect.getCenterRight());
+    ASSERT_EQ(Point(this->rect.getCenterX(),this->rect.getTop()),this->rect.getCenterTop());
+    ASSERT_EQ(Point(this->rect.getCenterX(),this->rect.getBottom()),this->rect.getCenterBottom());
+    this->rect.position = Point(-247,333);
+    this->rect.updateControlPoints();
+    ASSERT_EQ(Point(this->rect.getLeft(),this->rect.getCenterY()),this->rect.getCenterLeft());
+    ASSERT_EQ(Point(this->rect.getRight(),this->rect.getCenterY()),this->rect.getCenterRight());
+    ASSERT_EQ(Point(this->rect.getCenterX(),this->rect.getTop()),this->rect.getCenterTop());
+    ASSERT_EQ(Point(this->rect.getCenterX(),this->rect.getBottom()),this->rect.getCenterBottom());
 }
 
 TEST_F(RectTest,testOperatorEquals){

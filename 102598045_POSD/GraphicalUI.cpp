@@ -149,6 +149,6 @@ void GraphicalUI::refreshAllWidgets(){
 
 void GraphicalUI::setKeyCtrlPressed(QKeyEvent* keyEvent){
     bool isCtrlPressed = keyEvent->key() == Key_Control;
-    isCtrlPressed &= keyEvent->type() == QEvent::Type::KeyPress;
+    isCtrlPressed &= keyEvent->type() == QEvent::KeyPress;
     this->graphicalPresentation->setKeyCtrlState(isCtrlPressed);
 }

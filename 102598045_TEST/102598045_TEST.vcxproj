@@ -145,6 +145,8 @@
     <ClCompile Include="..\102598045_POSD\SaveFileInstruction.cpp" />
     <ClCompile Include="..\102598045_POSD\SetPrimaryKeyInstruction.cpp" />
     <ClCompile Include="..\102598045_POSD\Size.cpp" />
+    <ClCompile Include="..\102598045_POSD\State.cpp" />
+    <ClCompile Include="..\102598045_POSD\StateID.cpp" />
     <ClCompile Include="..\102598045_POSD\StringSymbol.cpp" />
     <ClCompile Include="..\102598045_POSD\StringUtil.cpp" />
     <ClCompile Include="..\102598045_POSD\Subject.cpp" />

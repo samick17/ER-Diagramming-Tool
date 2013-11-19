@@ -12,6 +12,7 @@ struct Rect{
     FRIEND_TEST(RectTest,testSetPosition);
     FRIEND_TEST(RectTest,testSetCenterPosition);
     FRIEND_TEST(RectTest,testSetSize);
+    FRIEND_TEST(RectTest,testUpdateControlPoints);
 public:
     Rect(Point position = Point(),Size size = Size());
 
@@ -23,7 +24,7 @@ public:
     Size getSize();
     void setSize(Size size);
 
-    vector<Point> getSpecialPoints();
+    vector<Point> getControlPoints();
     double getLeft();
     double getRight();
     double getTop();
@@ -36,13 +37,13 @@ public:
     Point getCenterRight();
     Point getCenterTop();
     Point getCenterBottom();
-    pair<Point,Point> getMinDistanceToRectPoint(Rect rect);
+    pair<Point,Point> getMinDistanceToRectPoint(const Rect& rect);
 
     bool operator==(const Rect& rectToCompare) const;
 private:
     static const int CenterLeft,CenterRight,CenterTop,CenterBottom;
-    void updateSpecialPoints();
-    vector<Point> specialPoints;
+    void updateControlPoints();
+    vector<Point> controlPoints;
     Point position;
     Size size;
 };
