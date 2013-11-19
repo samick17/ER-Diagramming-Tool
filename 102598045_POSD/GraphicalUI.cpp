@@ -134,6 +134,7 @@ void GraphicalUI::close(){
 
 void GraphicalUI::switchState(int stateID){
     this->graphicalPresentation->switchState(stateID);
+    //display input dialog
     if(stateID >= StateID::AttributeState && stateID <= StateID::RelationShipState){
         bool isOK;
         QString text = QInputDialog::getText(NULL,QString(DialogSetting::Title.c_str()),QString(DialogSetting::Text.c_str()),QLineEdit::Normal,"",&isOK);

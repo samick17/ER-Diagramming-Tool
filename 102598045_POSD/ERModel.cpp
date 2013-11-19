@@ -92,7 +92,7 @@ Component* ERModel::getComponentByID(string id){
         return this->componentMap.get(id);
     throw NoSuchNodeException(id);
 }
-//@return: firstNode & secondNode's connector
+//return: firstNode & secondNode's connector
 Connector* ERModel::getNodesConnector(Component* firstNode,Component* secondNode){
     Connector* connection = NULL;
     if(this->componentMap.containsKey(firstNode->getID()) && 

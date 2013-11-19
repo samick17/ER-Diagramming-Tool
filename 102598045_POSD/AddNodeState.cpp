@@ -3,6 +3,7 @@
 #include "ComponentType.h"
 #include "Node.h"
 #include "DialogSetting.h"
+#include "GraphicalPresentation.h"
 
 AddNodeState::AddNodeState(int stateID,GraphicalPresentation* graphicalPresentation) : State(stateID,graphicalPresentation){
     stateToNodeTypeMap.put(StateID::AttributeState,ComponentType::TypeAttribute);

@@ -85,6 +85,7 @@
   <ItemGroup>
     <ClCompile Include="..\102598045_POSD\AddNodeCommand.cpp" />
     <ClCompile Include="..\102598045_POSD\AddNodeInstruction.cpp" />
+    <ClCompile Include="..\102598045_POSD\AddNodeState.cpp" />
     <ClCompile Include="..\102598045_POSD\ApplicationSetting.cpp" />
     <ClCompile Include="..\102598045_POSD\Attribute.cpp" />
     <ClCompile Include="..\102598045_POSD\AttributeType.cpp" />
@@ -107,6 +108,7 @@
     <ClCompile Include="..\102598045_POSD\ConnectNodeCommand.cpp" />
     <ClCompile Include="..\102598045_POSD\Connector.cpp" />
     <ClCompile Include="..\102598045_POSD\ConnectorData.cpp" />
+    <ClCompile Include="..\102598045_POSD\ConnectState.cpp" />
     <ClCompile Include="..\102598045_POSD\ConnectTwoNodesInstruction.cpp" />
     <ClCompile Include="..\102598045_POSD\ControllerEvent.cpp" />
     <ClCompile Include="..\102598045_POSD\DeleteComponentCommand.cpp" />
@@ -120,6 +122,7 @@
     <ClCompile Include="..\102598045_POSD\ERModel.cpp" />
     <ClCompile Include="..\102598045_POSD\Exception.cpp" />
     <ClCompile Include="..\102598045_POSD\FileNotFoundException.cpp" />
+    <ClCompile Include="..\102598045_POSD\GraphicalPresentation.cpp" />
     <ClCompile Include="..\102598045_POSD\HasConnectedException.cpp" />
     <ClCompile Include="..\102598045_POSD\InputFileParser.cpp" />
     <ClCompile Include="..\102598045_POSD\InstructionData.cpp" />
@@ -136,6 +139,7 @@
     <ClCompile Include="..\102598045_POSD\OpenFileInstruction.cpp" />
     <ClCompile Include="..\102598045_POSD\OutputFileParser.cpp" />
     <ClCompile Include="..\102598045_POSD\Point.cpp" />
+    <ClCompile Include="..\102598045_POSD\PointerState.cpp" />
     <ClCompile Include="..\102598045_POSD\Presentation.cpp" />
     <ClCompile Include="..\102598045_POSD\Rect.cpp" />
     <ClCompile Include="..\102598045_POSD\RedoInstruction.cpp" />
@@ -146,7 +150,9 @@
     <ClCompile Include="..\102598045_POSD\SetPrimaryKeyInstruction.cpp" />
     <ClCompile Include="..\102598045_POSD\Size.cpp" />
     <ClCompile Include="..\102598045_POSD\State.cpp" />
+    <ClCompile Include="..\102598045_POSD\StateFactory.cpp" />
     <ClCompile Include="..\102598045_POSD\StateID.cpp" />
+    <ClCompile Include="..\102598045_POSD\StateSubject.cpp" />
     <ClCompile Include="..\102598045_POSD\StringSymbol.cpp" />
     <ClCompile Include="..\102598045_POSD\StringUtil.cpp" />
     <ClCompile Include="..\102598045_POSD\Subject.cpp" />
@@ -199,6 +205,7 @@
   <ItemGroup>
     <ClInclude Include="AddNodeCommandTest.h" />
     <ClInclude Include="AttributeTest.h" />
+    <ClInclude Include="CommandFactoryTest.h" />
     <ClInclude Include="CommandManagerTest.h" />
     <ClInclude Include="FileCreator.h" />
     <ClInclude Include="GraphicalPresentationTest.h" />
@@ -221,7 +228,10 @@
     <ClInclude Include="RelationShipTest.h" />
     <ClInclude Include="ReorderComponentsUtilTest.h" />
     <ClInclude Include="StackUtilTest.h" />
+    <ClInclude Include="StateFactoryTest.h" />
+    <ClInclude Include="StateSubject.h" />
     <ClInclude Include="StringUtilTest.h" />
+    <ClInclude Include="SubjectTest.h" />
     <ClInclude Include="TableManagerTest.h" />
     <ClInclude Include="TableTest.h" />
     <ClInclude Include="TableUtilTest.h" />

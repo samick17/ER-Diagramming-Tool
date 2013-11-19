@@ -3,24 +3,21 @@
 #include "ControllerEvent.h"
 #include "ERModelUtil.h"
 #include "StateID.h"
-#include "StateSubject.h"
 
 GraphicalPresentation::GraphicalPresentation(Presentation* presentation) : presentation(presentation){
     this->isCtrlPressed = false;
-    this->stateSubject = new StateSubject();
     this->lastPressedComponent = NULL;
     this->lastReleasedComponent = NULL;
     this->componentDataForPreview = NULL;
 }
 
 GraphicalPresentation::~GraphicalPresentation(){
-    delete this->stateSubject;
     if(this->componentDataForPreview)
         delete this->componentDataForPreview;
 }
 
 StateSubject* GraphicalPresentation::getStateSubject(){
-    return this->stateSubject;
+    return &this->stateSubject;
 }
 
 set<ComponentData*> GraphicalPresentation::getAllComponentDataSet(){
@@ -142,7 +139,7 @@ void GraphicalPresentation::unSelectAll(){
 }
 
 void GraphicalPresentation::switchState(int stateID){
-    this->stateSubject->switchState(stateID,this);
+    this->stateSubject.switchState(stateID,this);
 }
 //key pressed
 void GraphicalPresentation::setKeyCtrlState(bool isCtrlPressed){
@@ -172,19 +169,19 @@ void GraphicalPresentation::doUngisterObserver(IObserver* observer){
 
 void GraphicalPresentation::mousePressEvent(Point position,ComponentData* componentData){
     this->lastPressedComponent = this->getComponentByComponentData(componentData);
-    this->stateSubject->getState()->mousePressEvent(position);
+    this->stateSubject.getState()->mousePressEvent(position);
     //must use notify to avoid some bug
     this->notify();
 }
 
 void GraphicalPresentation::mouseMoveEvent(Point position,ComponentData* componentData){
     this->lastMovedComponent = this->getComponentByComponentData(componentData);
-    this->stateSubject->getState()->mouseMoveEvent(position);
+    this->stateSubject.getState()->mouseMoveEvent(position);
 }
 
 void GraphicalPresentation::mouseReleaseEvent(Point position,ComponentData* componentData){
     this->lastReleasedComponent = this->getComponentByComponentData(componentData);
-    this->stateSubject->getState()->mouseReleaseEvent(position);
+    this->stateSubject.getState()->mouseReleaseEvent(position);
     this->notify();
 }
 

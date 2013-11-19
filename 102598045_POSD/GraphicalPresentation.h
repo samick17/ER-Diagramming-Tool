@@ -3,9 +3,7 @@
 #include "Component.h"
 #include <set>
 #include "Presentation.h"
-#include "Subject.h"
-
-class StateSubject;
+#include "StateSubject.h"
 
 class GraphicalPresentation : public Subject{
 public:
@@ -54,7 +52,7 @@ private:
     set<ComponentData*> componentDataSet;
     ComponentData* componentDataForPreview;
     bool isCtrlPressed;
-    StateSubject* stateSubject;
+    StateSubject stateSubject;
     Node* lastAddedNode;
     Component* lastPressedComponent;
     Component* lastMovedComponent;

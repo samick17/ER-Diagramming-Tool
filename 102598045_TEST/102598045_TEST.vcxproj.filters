@@ -121,6 +121,15 @@
     <Filter Include="Unit Testing Files\PresentationTest">
       <UniqueIdentifier>{25440486-98cb-4a60-9a33-79d2b6ac1612}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\View\GUI">
+      <UniqueIdentifier>{f7f6b837-b413-44a1-a4a6-dfa05132002e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\View\GUI\State">
+      <UniqueIdentifier>{5087fd86-7840-4682-8bbf-2e9de7ebafb0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\ObserverTest">
+      <UniqueIdentifier>{80b41ee3-2229-4d3d-90e5-7642d7490a07}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MainTest.cpp">
@@ -457,6 +466,24 @@
       <Filter>Source Files\Constants</Filter>
     </ClCompile>
     <ClCompile Include="..\102598045_POSD\State.cpp">
+      <Filter>Source Files\View\GUI\State</Filter>
+    </ClCompile>
+    <ClCompile Include="..\102598045_POSD\AddNodeState.cpp">
+      <Filter>Source Files\View\GUI\State</Filter>
+    </ClCompile>
+    <ClCompile Include="..\102598045_POSD\ConnectState.cpp">
+      <Filter>Source Files\View\GUI\State</Filter>
+    </ClCompile>
+    <ClCompile Include="..\102598045_POSD\PointerState.cpp">
+      <Filter>Source Files\View\GUI\State</Filter>
+    </ClCompile>
+    <ClCompile Include="..\102598045_POSD\StateFactory.cpp">
+      <Filter>Source Files\Factory</Filter>
+    </ClCompile>
+    <ClCompile Include="..\102598045_POSD\StateSubject.cpp">
+      <Filter>Source Files\Observer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\102598045_POSD\GraphicalPresentation.cpp">
       <Filter>Source Files\View</Filter>
     </ClCompile>
   </ItemGroup>
@@ -568,6 +595,18 @@
     </ClInclude>
     <ClInclude Include="TextPresentationTest.h">
       <Filter>Header Files\PresentationTest</Filter>
+    </ClInclude>
+    <ClInclude Include="CommandFactoryTest.h">
+      <Filter>Header Files\FactoryTest</Filter>
+    </ClInclude>
+    <ClInclude Include="StateFactoryTest.h">
+      <Filter>Header Files\FactoryTest</Filter>
+    </ClInclude>
+    <ClInclude Include="StateSubject.h">
+      <Filter>Header Files\ObserverTest</Filter>
+    </ClInclude>
+    <ClInclude Include="SubjectTest.h">
+      <Filter>Header Files\ObserverTest</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

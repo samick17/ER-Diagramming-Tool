@@ -1,6 +1,7 @@
 #include "ConnectState.h"
 #include "ConnectorData.h"
 #include "ComponentType.h"
+#include "GraphicalPresentation.h"
 
 ConnectState::ConnectState(int stateID,GraphicalPresentation* graphicalPresentation) : State(stateID,graphicalPresentation){
 }

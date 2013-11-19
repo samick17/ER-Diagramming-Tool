@@ -1,4 +1,5 @@
 #include "PointerState.h"
+#include "GraphicalPresentation.h"
 
 PointerState::PointerState(int stateID,GraphicalPresentation* graphicalPresentation) : State(stateID,graphicalPresentation){
 }

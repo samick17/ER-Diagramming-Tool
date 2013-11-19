@@ -21,23 +21,6 @@ void StateSubject::switchState(int stateID,GraphicalPresentation* graphicalPrese
     this->state->onCreate();
 }
 
-void StateSubject::registerObserver(IObserver* observer){
-    this->observerSet.insert(observer);
-}
-
-void StateSubject::unregisterObserver(IObserver* observer){
-    this->observerSet.erase(observer);
-}
-
-void StateSubject::notify(){
-    for each(IObserver* observer in this->observerSet)
-       observer->notify(this);
-}
-
-void StateSubject::notify(IObserver* observer){
-    observer->notify(this);
-}
-
 void StateSubject::deleteState(){
     if(this->state)
         delete this->state;
