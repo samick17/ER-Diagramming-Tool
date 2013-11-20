@@ -86,7 +86,6 @@
     <ClCompile Include="AddNodeInstruction.cpp" />
     <ClCompile Include="AddNodeState.cpp" />
     <ClCompile Include="AttributeWidget.cpp" />
-    <ClCompile Include="BaseWidget.cpp" />
     <ClCompile Include="CloseInstruction.cpp" />
     <ClCompile Include="CommandFactory.cpp" />
     <ClCompile Include="ConnectorData.cpp" />
@@ -207,7 +206,6 @@
     <ClInclude Include="Attribute.h" />
     <ClInclude Include="AttributeType.h" />
     <ClInclude Include="AttributeWidget.h" />
-    <ClInclude Include="BaseWidget.h" />
     <ClInclude Include="CharSymbol.h" />
     <ClInclude Include="CloseInstruction.h" />
     <ClInclude Include="CollectionException.h" />
