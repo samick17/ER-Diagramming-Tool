@@ -3,7 +3,7 @@
 #include "ComponentType.h"
 
 void ConnectNodeCommandTest::SetUp(){
-	this->presentation = new Presentation(&this->erModel);
+    this->presentation = new Presentation(&this->erModel);
     this->textPresentation = new TextPresentation(this->presentation);
     this->entity = static_cast<Entity*>(this->erModel.addNode(ComponentType::TypeEntity));
     this->attribute = static_cast<Attribute*>(this->erModel.addNode(ComponentType::TypeAttribute));
@@ -12,13 +12,13 @@ void ConnectNodeCommandTest::SetUp(){
 }
 
 void ConnectNodeCommandTest::TearDown(){
-	delete this->presentation;
+    delete this->presentation;
     delete this->textPresentation;
 }
 
 TEST_F(ConnectNodeCommandTest,testConnectNodeCommand){
-	Connector* connector1 = new Connector("3");
-	ConnectNodeCommand connectNodeCommand1 = ConnectNodeCommand(&this->erModel,this->entity,this->attribute,connector1);
+    Connector* connector1 = new Connector("3");
+    ConnectNodeCommand connectNodeCommand1 = ConnectNodeCommand(&this->erModel,this->entity,this->attribute,connector1);
 
     connectNodeCommand1.execute();
     ASSERT_EQ(1,connectNodeCommand1.firstNode->getAllConnections().size());
@@ -39,8 +39,8 @@ TEST_F(ConnectNodeCommandTest,testConnectNodeCommand){
     ASSERT_EQ(true,connectNodeCommand1.secondNode->hasConnectedTo(connectNodeCommand1.firstNode));
     ASSERT_EQ(4,this->erModel.getAllComponents().size());
 
-	Connector* connector2 = new Connector("4");
-	ConnectNodeCommand connectNodeCommand2 = ConnectNodeCommand(&this->erModel,this->entity,this->relationShip,connector2);
+    Connector* connector2 = new Connector("4");
+    ConnectNodeCommand connectNodeCommand2 = ConnectNodeCommand(&this->erModel,this->entity,this->relationShip,connector2);
 
     connectNodeCommand2.execute();
     ASSERT_EQ(2,connectNodeCommand2.firstNode->getAllConnections().size());

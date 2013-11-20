@@ -6,6 +6,19 @@
 #include "StateSubject.h"
 
 class GraphicalPresentation : public Subject{
+    friend class GraphicalPresentation;
+    FRIEND_TEST(GraphicalPresentationTest,testDeleteComponentDataForPreview);
+    FRIEND_TEST(GraphicalPresentationTest,testUpdateAllComponentData);
+    FRIEND_TEST(GraphicalPresentationTest,testAddNode);
+    FRIEND_TEST(GraphicalPresentationTest,testAddConnection);
+    FRIEND_TEST(GraphicalPresentationTest,testIsWidgetSelected);
+    FRIEND_TEST(GraphicalPresentationTest,testSelectWidget);
+    FRIEND_TEST(GraphicalPresentationTest,testSelectLastPressedWidget);
+    FRIEND_TEST(GraphicalPresentationTest,testRevertSelectWidget);
+    FRIEND_TEST(GraphicalPresentationTest,testMoveSelectedWidget);
+    FRIEND_TEST(GraphicalPresentationTest,testUnSelectAll);
+    FRIEND_TEST(GraphicalPresentationTest,testSwitchState);
+    FRIEND_TEST(GraphicalPresentationTest,getComponentByComponentData);
 public:
     GraphicalPresentation(Presentation* presentation);
     ~GraphicalPresentation();
@@ -21,7 +34,7 @@ public:
     Component* getLastMovedComponent();
     Component* getLastReleasedComponent();
 
-    void addNode(string nodeType,string nodeName,Point position);
+    void addNode(string nodeType,string nodeName,Point centerPosition);
     void addConnection(Component* sourceComponent,Component* targetComponent);
     void openFile(string filePath);
     void saveFile(string filePath);
@@ -58,4 +71,5 @@ private:
     Component* lastMovedComponent;
     Component* lastReleasedComponent;
     Component* getComponentByComponentData(ComponentData* componentData);
+    void deleteComponentDataForPreview();
 };

@@ -19,9 +19,10 @@ ERModel::~ERModel(){
 }
 
 Node* ERModel::addNode(string componentType){
-    Node* node;
+    if(componentType == ComponentType::TypeConnector)
+        return NULL;
     ComponentFactory componentFactory;
-    node = static_cast<Node*>(componentFactory.createComponent(componentType));
+    Node* node = static_cast<Node*>(componentFactory.createComponent(componentType));
     CommandFactory commandFactory;
     Command* addNodeCommand = commandFactory.createAddNodeCommand(this,node);
     this->commandManager.execute(addNodeCommand);

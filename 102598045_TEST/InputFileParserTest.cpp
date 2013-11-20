@@ -145,17 +145,31 @@ TEST_F(InputFileParserTest,testAddAllComponentToERModel){
 }
 
 TEST_F(InputFileParserTest,testAddConnector){
-    this->erModel.addNode(ComponentType::TypeAttribute);
-    this->erModel.addNode(ComponentType::TypeRelationShip);
-    this->erModel.addNode(ComponentType::TypeEntity);
-    this->erModel.addNode(ComponentType::TypeConnector);
-    this->erModel.addNode(ComponentType::TypeConnector);
-    this->erModel.addNode(ComponentType::TypeAttribute);
-    this->erModel.addNode(ComponentType::TypeConnector);
-
-    this->inputFileParser.addConnector(ConnectionData("0","2","3"),"");
-    this->inputFileParser.addConnector(ConnectionData("2","1","4"),"");
-    this->inputFileParser.addConnector(ConnectionData("5","2","6"),"");
+    Component* attribute1 = this->erModel.addNode(ComponentType::TypeAttribute);
+    Component* relatuonShip = this->erModel.addNode(ComponentType::TypeRelationShip);
+    Component* entity = this->erModel.addNode(ComponentType::TypeEntity);
+    this->inputFileParser.addConnector(ConnectionData("3","0","2"),"1");
+    Component* connector1 = this->erModel.getComponentByID("3");
+    ASSERT_EQ(1,attribute1->getAllConnections().size());
+    ASSERT_EQ(1,entity->getAllConnections().size());
+    ASSERT_EQ(2,connector1->getAllConnections().size());
+    ASSERT_EQ(true,attribute1->hasConnectedTo(entity));
+    ASSERT_EQ(true,entity->hasConnectedTo(attribute1));
+    this->inputFileParser.addConnector(ConnectionData("4","2","1"),"N");
+    Component* connector2 = this->erModel.getComponentByID("4");
+    ASSERT_EQ(2,entity->getAllConnections().size());
+    ASSERT_EQ(1,relatuonShip->getAllConnections().size());
+    ASSERT_EQ(2,connector2->getAllConnections().size());
+    ASSERT_EQ(true,entity->hasConnectedTo(relatuonShip));
+    ASSERT_EQ(true,relatuonShip->hasConnectedTo(entity));
+    Component* attribute2 = this->erModel.addNode(ComponentType::TypeAttribute);
+    this->inputFileParser.addConnector(ConnectionData("6","5","2"),"");
+    Component* connector3 = this->erModel.getComponentByID("6");
+    ASSERT_EQ(1,attribute2->getAllConnections().size());
+    ASSERT_EQ(3,entity->getAllConnections().size());
+    ASSERT_EQ(2,connector3->getAllConnections().size());
+    ASSERT_EQ(true,attribute2->hasConnectedTo(entity));
+    ASSERT_EQ(true,entity->hasConnectedTo(attribute2));
 }
 
 TEST_F(InputFileParserTest,testIsQueueArriveConnectionDataID){

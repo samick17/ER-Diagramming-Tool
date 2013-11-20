@@ -4,7 +4,7 @@
 #include "ComponentType.h"
 
 void DeleteComponentCommandTest::SetUp(){
-	this->presentation = new Presentation(&this->erModel);
+    this->presentation = new Presentation(&this->erModel);
     this->textPresentation = new TextPresentation(this->presentation);
     Component* entity1 = this->erModel.addNode(ComponentType::TypeEntity);
     Component* attribute1 = this->erModel.addNode(ComponentType::TypeAttribute);
@@ -29,7 +29,7 @@ void DeleteComponentCommandTest::SetUp(){
 }
 
 void DeleteComponentCommandTest::TearDown(){
-	delete this->presentation;
+    delete this->presentation;
     delete this->textPresentation;
 }
 
@@ -112,16 +112,13 @@ TEST_F(DeleteComponentCommandTest,testSaveConnectionData){
 }
 
 TEST_F(DeleteComponentCommandTest,testClearConnectionDataMap){
-	DeleteComponentCommand deleteComponnentCommand = DeleteComponentCommand(&this->erModel,this->erModel.getComponentByID("0"));
-    
-	ASSERT_EQ(0,deleteComponnentCommand.connectionDataMap.size());
+    DeleteComponentCommand deleteComponnentCommand = DeleteComponentCommand(&this->erModel,this->erModel.getComponentByID("0"));
+    ASSERT_EQ(0,deleteComponnentCommand.connectionDataMap.size());
 
-	deleteComponnentCommand.execute();
-
+    deleteComponnentCommand.execute();
     ASSERT_EQ(4,deleteComponnentCommand.connectionDataMap.size());
 
     deleteComponnentCommand.clearConnectionDataMap();
-
     ASSERT_EQ(0,deleteComponnentCommand.connectionDataMap.size());
 }
 

@@ -12,8 +12,7 @@ GraphicalPresentation::GraphicalPresentation(Presentation* presentation) : prese
 }
 
 GraphicalPresentation::~GraphicalPresentation(){
-    if(this->componentDataForPreview)
-        delete this->componentDataForPreview;
+    this->deleteComponentDataForPreview();
 }
 
 StateSubject* GraphicalPresentation::getStateSubject(){
@@ -29,10 +28,16 @@ ComponentData* GraphicalPresentation::getComponentDataForPreview(){
 }
 
 void GraphicalPresentation::setComponentDataForPreview(ComponentData* componentDataForPreview){
-    if(this->componentDataForPreview)
-        delete this->componentDataForPreview;
+    this->deleteComponentDataForPreview();
     this->componentDataForPreview = componentDataForPreview;
     this->notify();
+}
+
+void GraphicalPresentation::deleteComponentDataForPreview(){
+    if(this->componentDataForPreview){
+        delete this->componentDataForPreview;
+        this->componentDataForPreview = NULL;
+    }
 }
 
 void GraphicalPresentation::updateAllComponentData(){
@@ -59,12 +64,11 @@ Component* GraphicalPresentation::getLastReleasedComponent(){
     return this->lastReleasedComponent;
 }
 
-void GraphicalPresentation::addNode(string nodeType,string nodeName,Point position){
+void GraphicalPresentation::addNode(string nodeType,string nodeName,Point centerPosition){
     Node* node = this->presentation->addNode(nodeType);
     this->lastAddedNode = node;
     node->setName(nodeName);
-    node->setSize(Size());
-    node->setCenterPosition(position);
+    node->setCenterPosition(centerPosition);
     this->setComponentDataForPreview(NULL);
     this->presentation->sync(ControllerEvent::DisplayDiagram);
 }
@@ -81,6 +85,7 @@ void GraphicalPresentation::addConnection(Component* sourceComponent,Component* 
 
 void GraphicalPresentation::openFile(string filePath){
     this->presentation->openFile(filePath);
+    this->unSelectAll();
     this->presentation->sync(ControllerEvent::DisplayDiagram);
 }
 
@@ -128,6 +133,8 @@ void GraphicalPresentation::revertSelectWidget(bool isSelected,string componentI
 void GraphicalPresentation::moveSelectedWidget(Point deltaPosition){
     HashMap<string,Component*> componentMap = this->presentation->getAllComponents();
     for each(string componentID in this->selectedWidgetSet){
+        if(!componentMap.containsKey(componentID))
+            continue;
         Component* component = componentMap.get(componentID);
         Point position = component->getRect().getPosition();
         component->setPosition(position+deltaPosition);

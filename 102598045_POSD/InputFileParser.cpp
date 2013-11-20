@@ -94,8 +94,8 @@ void InputFileParser::addAllComponentToERModel(){
 //convert connectionData & add connector to ERModel
 void InputFileParser::addConnector(ConnectionData connectionData,string connectionName){
     Component* firstNode = this->erModel->getComponentByID(connectionData.getConnectedFirstNodeID());
-    Component* secondNode = erModel->getComponentByID(connectionData.getConnectedSecondNodeID());
-    
+    Component* secondNode = this->erModel->getComponentByID(connectionData.getConnectedSecondNodeID());
+
     this->erModel->addConnection(firstNode,secondNode);
     Component* connector = this->erModel->getComponentByID(connectionData.getConnectorID());
     connector->setName(connectionName);
