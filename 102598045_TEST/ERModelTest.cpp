@@ -10,13 +10,12 @@
 #include "EmptyCollectionException.h"
 #include "ComponentType.h"
 #include "InputFileParser.h"
-#include "TextUIPresenter.h"
 #include "FileCreator.h"
 
 void ERModelTest::SetUp(){
     this->presentation = new Presentation(&this->erModel);
     this->textPresentation = new TextPresentation(this->presentation);
-    this->textUIPresenter = new TextUIPresenter(this->textPresentation);
+    //this->textUIPresenter = new TextUIPresenter(this->textPresentation);
     ASSERT_EQ(0,this->erModel.getAllComponents().size());
 
     //create file & load file to model
@@ -331,8 +330,15 @@ TEST_F(ERModelTest,testLoadFileNotExist){
 }
 
 TEST_F(ERModelTest,testIsPrimaryExist){
-    //Display Table
-    this->textUIPresenter->displayTable();
+    //ASSERT table
+    HashMap<string,Table*> tableMap = this->erModel.getAllTables();
+    ASSERT_EQ(2,tableMap.size());
+    ASSERT_EQ(1,tableMap.get("0")->getAllDefaultKeyAttributesNameVector().size());
+    ASSERT_EQ(2,tableMap.get("0")->getAllPrimaryKeyAttributesNameVector().size());
+    ASSERT_EQ(0,tableMap.get("0")->getAllForeignKeyAttributesNameVector().size());
+    ASSERT_EQ(1,tableMap.get("4")->getAllDefaultKeyAttributesNameVector().size());
+    ASSERT_EQ(1,tableMap.get("4")->getAllPrimaryKeyAttributesNameVector().size());
+    ASSERT_EQ(2,tableMap.get("4")->getAllForeignKeyAttributesNameVector().size());
 
     Attribute* attributeEmp_ID = static_cast<Attribute*>(this->erModel.componentMap.get("1"));
     Attribute* attributeName = static_cast<Attribute*>(this->erModel.componentMap.get("3"));
@@ -497,8 +503,18 @@ TEST_F(ERModelTest,testCommonUsage){
     ASSERT_EQ(1,entityWorkDiary->getPrimaryKeyAttributes().size());
     ASSERT_EQ(attributeWD_ID,entityWorkDiary->getPrimaryKeyAttributes().get(attributeWD_ID->getID()));
     ASSERT_EQ("WD_ID",entityWorkDiary->getPrimaryKeyAttributes().get(attributeWD_ID->getID())->getName());
-    //Display Table
-    this->textUIPresenter->displayTable();
+    //ASSERT table
+    HashMap<string,Table*> tableMap = this->erModel.getAllTables();
+    ASSERT_EQ(3,tableMap.size());
+    ASSERT_EQ(1,tableMap.get("0")->getAllDefaultKeyAttributesNameVector().size());
+    ASSERT_EQ(2,tableMap.get("0")->getAllPrimaryKeyAttributesNameVector().size());
+    ASSERT_EQ(0,tableMap.get("0")->getAllForeignKeyAttributesNameVector().size());
+    ASSERT_EQ(1,tableMap.get("4")->getAllDefaultKeyAttributesNameVector().size());
+    ASSERT_EQ(1,tableMap.get("4")->getAllPrimaryKeyAttributesNameVector().size());
+    ASSERT_EQ(2,tableMap.get("4")->getAllForeignKeyAttributesNameVector().size());
+    ASSERT_EQ(2,tableMap.get("15")->getAllDefaultKeyAttributesNameVector().size());
+    ASSERT_EQ(1,tableMap.get("15")->getAllPrimaryKeyAttributesNameVector().size());
+    ASSERT_EQ(0,tableMap.get("15")->getAllForeignKeyAttributesNameVector().size());
     //Assert "Work Diary" exists
     ASSERT_EQ(entityWorkDiary,this->erModel.getComponentByID(entityWorkDiary->getID()));
     //Assert "Work Diary" primary key is "WD_ID"
@@ -525,8 +541,15 @@ TEST_F(ERModelTest,testCommonUsage){
     ASSERT_THROW(this->erModel.getNodesConnector(entityWorkDiary,node21),NullPointerException);
     ASSERT_EQ(false,entityWorkDiary->hasConnectedTo(node21));
     ASSERT_EQ(false,node21->hasConnectedTo(entityWorkDiary));
-    //Display Table
-    this->textUIPresenter->displayTable();    
+    //ASSERT table
+    tableMap = this->erModel.getAllTables();
+    ASSERT_EQ(2,tableMap.size());
+    ASSERT_EQ(1,tableMap.get("0")->getAllDefaultKeyAttributesNameVector().size());
+    ASSERT_EQ(2,tableMap.get("0")->getAllPrimaryKeyAttributesNameVector().size());
+    ASSERT_EQ(0,tableMap.get("0")->getAllForeignKeyAttributesNameVector().size());
+    ASSERT_EQ(1,tableMap.get("4")->getAllDefaultKeyAttributesNameVector().size());
+    ASSERT_EQ(1,tableMap.get("4")->getAllPrimaryKeyAttributesNameVector().size());
+    ASSERT_EQ(2,tableMap.get("4")->getAllForeignKeyAttributesNameVector().size());
     //Assert there is no such node "Work Diary"
     ASSERT_THROW(this->erModel.getComponentByID(entityWorkDiary->getID()),NoSuchNodeException);
     //Assert Engineer's primary key is "Name" and "Emp_ID"
@@ -535,8 +558,18 @@ TEST_F(ERModelTest,testCommonUsage){
     ASSERT_EQ(this->erModel.getComponentByID("3"),entityEngineer->getPrimaryKeyAttributes().get("3"));
     //Undo
     this->erModel.undo();
-    //Display Table
-    this->textUIPresenter->displayTable();
+    //ASSERT table
+    tableMap = this->erModel.getAllTables();
+    ASSERT_EQ(3,tableMap.size());
+    ASSERT_EQ(1,tableMap.get("0")->getAllDefaultKeyAttributesNameVector().size());
+    ASSERT_EQ(2,tableMap.get("0")->getAllPrimaryKeyAttributesNameVector().size());
+    ASSERT_EQ(0,tableMap.get("0")->getAllForeignKeyAttributesNameVector().size());
+    ASSERT_EQ(1,tableMap.get("4")->getAllDefaultKeyAttributesNameVector().size());
+    ASSERT_EQ(1,tableMap.get("4")->getAllPrimaryKeyAttributesNameVector().size());
+    ASSERT_EQ(2,tableMap.get("4")->getAllForeignKeyAttributesNameVector().size());
+    ASSERT_EQ(2,tableMap.get("15")->getAllDefaultKeyAttributesNameVector().size());
+    ASSERT_EQ(1,tableMap.get("15")->getAllPrimaryKeyAttributesNameVector().size());
+    ASSERT_EQ(0,tableMap.get("15")->getAllForeignKeyAttributesNameVector().size());
     //Assert "Work Diary" primary key is "WD_ID"
     ASSERT_EQ(attributeWD_ID,entityWorkDiary->getPrimaryKeyAttributes().get(attributeWD_ID->getID()));
     ASSERT_EQ("WD_ID",entityWorkDiary->getPrimaryKeyAttributes().get(attributeWD_ID->getID())->getName());

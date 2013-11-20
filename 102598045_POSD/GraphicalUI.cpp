@@ -9,7 +9,6 @@
 #include "ControllerEvent.h"
 #include "StateID.h"
 #include "DialogSetting.h"
-#include <iostream>
 
 GraphicalUI::GraphicalUI(GraphicalPresentation* graphicalPresentation): graphicalPresentation(graphicalPresentation),QMainWindow(){
     this->setTitle(ApplicationSetting::Title,ApplicationSetting::IconPath);

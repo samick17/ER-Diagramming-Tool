@@ -8,7 +8,6 @@ protected:
     ERModel erModel;
     Presentation* presentation;
     TextPresentation* textPresentation;
-    TextUIPresenter* textUIPresenter;
     bool hasConnected(Component* firstComponent,Component* secondComponent);
     virtual void SetUp();
     virtual void TearDown();

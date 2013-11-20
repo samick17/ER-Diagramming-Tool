@@ -74,7 +74,7 @@ void GUIScene::addWidget(ComponentWidget* widget){
     this->addItem(widget);
     widget->updateWidget();
 }
-
+//update all widget
 void GUIScene::updateAll(){
     for each(ComponentWidget* widget in this->items())
         widget->updateWidget();
