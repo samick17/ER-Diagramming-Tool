@@ -12,4 +12,9 @@ public:
     static const double ConnectorWidth;
     static const int SelectedFrameLineWidth;
     static const string PreviewWidgetID;
+    static const double AttributeOffsetX;
+    static const double EntityOffsetX;
+    static const double RelationShipOffsetX;
+    static const double WidgetStartY;
+    static const double WidgetOffsetY;
 };

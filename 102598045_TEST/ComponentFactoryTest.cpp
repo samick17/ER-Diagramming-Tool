@@ -72,3 +72,19 @@ TEST_F(ComponentFactoryTest,testFindNewComponentFunction){
     ASSERT_EQ("315",connector->getID());
     ASSERT_EQ(RelationType::OneToOne,connector->getName());
 }
+
+TEST_F(ComponentFactoryTest,testResetFactory){
+    ASSERT_EQ(4,componentFactory.componentTypeCountMap.size());
+
+    ComponentFactory::count = 24;
+    *componentFactory.componentTypeCountMap.get(ComponentType::TypeAttribute) = 10;
+    ASSERT_EQ(10,*componentFactory.componentTypeCountMap.get(ComponentType::TypeAttribute));
+
+    componentFactory.resetFactory();
+
+    ASSERT_EQ(0,ComponentFactory::count);
+    for each(auto countIterator in componentFactory.componentTypeCountMap){
+        ASSERT_EQ(0,*countIterator);
+    }
+    ASSERT_EQ(4,componentFactory.componentTypeCountMap.size());
+}
