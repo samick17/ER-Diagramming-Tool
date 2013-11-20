@@ -9,6 +9,7 @@
 #include "OpenFileInstruction.h"
 
 void InstructionMenuTest::SetUp(){
+    ASSERT_EQ(11,this->instructionMenu.instructionDataMap.size());
 }
 
 void InstructionMenuTest::TearDown(){

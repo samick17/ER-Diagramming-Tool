@@ -8,6 +8,9 @@ class GraphicalPresentation;
 class IObserver;
 
 class StateSubject : public Subject{
+    friend class StateSubjectTest;
+    FRIEND_TEST(StateSubjectTest,testSwitchState);
+    FRIEND_TEST(StateSubjectTest,testDeleteState);
 public:
     StateSubject(State* state = NULL);
     ~StateSubject();

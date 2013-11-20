@@ -187,6 +187,7 @@
     <ClCompile Include="InputFileParserTest.cpp" />
     <ClCompile Include="HashMapTest.cpp" />
     <ClCompile Include="MainTest.cpp" />
+    <ClCompile Include="MockIObserver.cpp" />
     <ClCompile Include="NodeTest.cpp" />
     <ClCompile Include="OutputFileParserTest.cpp" />
     <ClCompile Include="PointerStateTest.cpp" />
@@ -232,6 +233,7 @@
     <ClInclude Include="ERModelUtilTest.h" />
     <ClInclude Include="InputFileParserTest.h" />
     <ClInclude Include="HashMapTest.h" />
+    <ClInclude Include="MockIObserver.h" />
     <ClInclude Include="NodeTest.h" />
     <ClInclude Include="OutputFileParserTest.h" />
     <ClInclude Include="PointerStateTest.h" />

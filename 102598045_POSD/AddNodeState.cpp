@@ -6,9 +6,9 @@
 #include "GraphicalPresentation.h"
 
 AddNodeState::AddNodeState(int stateID,GraphicalPresentation* graphicalPresentation) : State(stateID,graphicalPresentation){
-    stateToNodeTypeMap.put(StateID::AttributeState,ComponentType::TypeAttribute);
-    stateToNodeTypeMap.put(StateID::EntityState,ComponentType::TypeEntity);
-    stateToNodeTypeMap.put(StateID::RelationShipState,ComponentType::TypeRelationShip);
+    stateToNodeTypeMap.put(StateID::AddAttributeState,ComponentType::TypeAttribute);
+    stateToNodeTypeMap.put(StateID::AddEntityState,ComponentType::TypeEntity);
+    stateToNodeTypeMap.put(StateID::AddRelationShipState,ComponentType::TypeRelationShip);
 }
 
 AddNodeState::~AddNodeState(){

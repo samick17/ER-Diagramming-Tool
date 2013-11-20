@@ -18,14 +18,14 @@ public:
     InstructionData* getInstructionDataByKey(string key);
 private:
     HashMap<string,InstructionData*> instructionDataMap;
-	TextPresentation* textPresentation;
+    TextPresentation* textPresentation;
     void insertInstructionData(InstructionData* instructionData);
-	
-	template<typename Type>
-	static TextInstruction* newTextInstruction();
+
+    template<typename Type>
+    static TextInstruction* newTextInstruction();
 };
 
 template<typename Type>
 static TextInstruction* InstructionMenu::newTextInstruction(){
-	return new Type();
+    return new Type();
 }

@@ -74,17 +74,21 @@ TEST_F(ComponentFactoryTest,testFindNewComponentFunction){
 }
 
 TEST_F(ComponentFactoryTest,testResetFactory){
-    ASSERT_EQ(4,componentFactory.componentTypeCountMap.size());
+    ASSERT_EQ(4,this->componentFactory.componentTypeCountMap.size());
 
     ComponentFactory::count = 24;
     *componentFactory.componentTypeCountMap.get(ComponentType::TypeAttribute) = 10;
-    ASSERT_EQ(10,*componentFactory.componentTypeCountMap.get(ComponentType::TypeAttribute));
+    ASSERT_EQ(10,*this->componentFactory.componentTypeCountMap.get(ComponentType::TypeAttribute));
 
-    componentFactory.resetFactory();
+    this->componentFactory.resetFactory();
 
-    ASSERT_EQ(0,ComponentFactory::count);
-    for each(auto countIterator in componentFactory.componentTypeCountMap){
+    for each(auto countIterator in this->componentFactory.componentTypeCountMap){
         ASSERT_EQ(0,*countIterator);
     }
-    ASSERT_EQ(4,componentFactory.componentTypeCountMap.size());
+    ASSERT_EQ(4,this->componentFactory.componentTypeCountMap.size());
+    ASSERT_EQ(0,ComponentFactory::attributeCount);
+    ASSERT_EQ(0,ComponentFactory::entityCount);
+    ASSERT_EQ(0,ComponentFactory::relationShipCount);
+    ASSERT_EQ(0,ComponentFactory::connectorCount);
+    ASSERT_EQ(0,ComponentFactory::count);
 }

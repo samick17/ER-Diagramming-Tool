@@ -80,13 +80,13 @@ void GraphicalUI::initialAllAction(){
     signalMapper->setMapping(connectStateAction,StateID::ConnectState);
     QAction* attributeStateAction = this->actionMap->getQAction(ActionData::AttributeState);
     connect(attributeStateAction,SIGNAL(triggered()),signalMapper,SLOT(map()));
-    signalMapper->setMapping(attributeStateAction,StateID::AttributeState);
+    signalMapper->setMapping(attributeStateAction,StateID::AddAttributeState);
     QAction* entityStateAction = this->actionMap->getQAction(ActionData::EntityState);
     connect(entityStateAction,SIGNAL(triggered()),signalMapper,SLOT(map()));
-    signalMapper->setMapping(entityStateAction,StateID::EntityState);
+    signalMapper->setMapping(entityStateAction,StateID::AddEntityState);
     QAction* relationShipStateAction = this->actionMap->getQAction(ActionData::RelationShipState);
     connect(relationShipStateAction,SIGNAL(triggered()),signalMapper,SLOT(map()));
-    signalMapper->setMapping(relationShipStateAction,StateID::RelationShipState);
+    signalMapper->setMapping(relationShipStateAction,StateID::AddRelationShipState);
     connect (signalMapper, SIGNAL(mapped(int)), this, SLOT(switchState(int))) ;
 }
 
@@ -136,7 +136,7 @@ void GraphicalUI::close(){
 void GraphicalUI::switchState(int stateID){
     this->graphicalPresentation->switchState(stateID);
     //display input dialog
-    if(stateID >= StateID::AttributeState && stateID <= StateID::RelationShipState){
+    if(stateID >= StateID::AddAttributeState && stateID <= StateID::AddRelationShipState){
         bool isOK;
         QString text = QInputDialog::getText(NULL,QString(DialogSetting::Title.c_str()),QString(DialogSetting::Text.c_str()),QLineEdit::Normal,"",&isOK);
         if(isOK){

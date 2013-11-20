@@ -5,6 +5,7 @@
 
 class SubjectTest : public testing::Test{
 protected:
+    Subject subject;
     virtual void SetUp();
     virtual void TearDown();
 };

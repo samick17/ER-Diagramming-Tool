@@ -7,9 +7,9 @@
 StateFactory::StateFactory(){
     this->newStateMap.put(StateID::PointerState,newState<PointerState>);
     this->newStateMap.put(StateID::ConnectState,newState<ConnectState>);
-    this->newStateMap.put(StateID::AttributeState,newState<AddNodeState>);
-    this->newStateMap.put(StateID::EntityState,newState<AddNodeState>);
-    this->newStateMap.put(StateID::RelationShipState,newState<AddNodeState>);
+    this->newStateMap.put(StateID::AddAttributeState,newState<AddNodeState>);
+    this->newStateMap.put(StateID::AddEntityState,newState<AddNodeState>);
+    this->newStateMap.put(StateID::AddRelationShipState,newState<AddNodeState>);
 }
 
 StateFactory::~StateFactory(){

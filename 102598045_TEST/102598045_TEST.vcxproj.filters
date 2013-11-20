@@ -139,6 +139,12 @@
     <Filter Include="Unit Testing Files\Observer">
       <UniqueIdentifier>{8343ae42-a77f-4e58-98a7-fec09c737890}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\MockObject">
+      <UniqueIdentifier>{c8ce3e07-3095-427d-a4f1-a81091027400}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\MockObject">
+      <UniqueIdentifier>{2750ec86-be0c-4ac3-86c3-d98dcee584bc}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MainTest.cpp">
@@ -516,6 +522,9 @@
     <ClCompile Include="SubjectTest.cpp">
       <Filter>Unit Testing Files\Observer</Filter>
     </ClCompile>
+    <ClCompile Include="MockIObserver.cpp">
+      <Filter>Source Files\MockObject</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DirectoryUtil.h">
@@ -646,6 +655,9 @@
     </ClInclude>
     <ClInclude Include="AddNodeStateTest.h">
       <Filter>Header Files\StateTest</Filter>
+    </ClInclude>
+    <ClInclude Include="MockIObserver.h">
+      <Filter>Header Files\MockObject</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

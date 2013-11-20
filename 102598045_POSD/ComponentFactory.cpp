@@ -40,7 +40,9 @@ Component* ComponentFactory::createComponent(string componentType,string name){
     Component* component = newComponentFunctiontion(StringUtil::intToString(count),name);
     ComponentFactory::count++;
     auto countIterator = this->componentTypeCountMap.get(componentType);
-    component->setPosition(Point(componentTypeMapOffsetX.find(componentType)->second,WidgetDefaultSetting::WidgetStartY+(*countIterator)*WidgetDefaultSetting::WidgetOffsetY));
+    double positionX = componentTypeMapOffsetX.find(componentType)->second;
+    double positionY = WidgetDefaultSetting::WidgetStartY+(*countIterator)*WidgetDefaultSetting::WidgetOffsetY;
+    component->setPosition(Point(positionX,positionY));
     (*countIterator)++;
     return component;
 }

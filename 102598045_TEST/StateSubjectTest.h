@@ -5,6 +5,7 @@
 
 class StateSubjectTest : public testing::Test{
 protected:
+    StateSubject stateSubject;
     virtual void SetUp();
     virtual void TearDown();
 };

@@ -45,7 +45,7 @@ public:
 protected:
     //observer
     void doRegisterObserver(IObserver* observer);
-    void doUngisterObserver(IObserver* observer);
+    void doUnregisterObserver(IObserver* observer);
 private:
     Presentation* presentation;
     set<string> selectedWidgetSet;

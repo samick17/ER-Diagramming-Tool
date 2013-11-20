@@ -164,7 +164,7 @@ void GraphicalPresentation::doRegisterObserver(IObserver* observer){
     this->presentation->registerObserver(observer);
 }
 
-void GraphicalPresentation::doUngisterObserver(IObserver* observer){
+void GraphicalPresentation::doUnregisterObserver(IObserver* observer){
     this->presentation->unregisterObserver(observer);
 }
 

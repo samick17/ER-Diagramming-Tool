@@ -5,6 +5,7 @@
 
 class StateFactoryTest : public testing::Test{
 protected:
+    StateFactory stateFactory;
     virtual void SetUp();
     virtual void TearDown();
 };

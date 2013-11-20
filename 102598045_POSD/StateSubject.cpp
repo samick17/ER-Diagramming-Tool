@@ -22,6 +22,8 @@ void StateSubject::switchState(int stateID,GraphicalPresentation* graphicalPrese
 }
 
 void StateSubject::deleteState(){
-    if(this->state)
+    if(this->state){
         delete this->state;
+        this->state = NULL;
+    }
 }

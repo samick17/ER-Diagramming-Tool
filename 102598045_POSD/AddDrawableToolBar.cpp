@@ -10,9 +10,9 @@ AddDrawableToolBar::AddDrawableToolBar(GraphicalUI* graphicalUI,QActionMap* acti
     this->currentFocusedWidget = NULL;
     this->toolBarWidgetMap.put(StateID::PointerState,new ToolBarWidget(this,actionMap,ActionData::PointerState));
     this->toolBarWidgetMap.put(StateID::ConnectState,new ToolBarWidget(this,actionMap,ActionData::ConnectState));
-    this->toolBarWidgetMap.put(StateID::AttributeState,new ToolBarWidget(this,actionMap,ActionData::AttributeState));
-    this->toolBarWidgetMap.put(StateID::EntityState,new ToolBarWidget(this,actionMap,ActionData::EntityState));
-    this->toolBarWidgetMap.put(StateID::RelationShipState,new ToolBarWidget(this,actionMap,ActionData::RelationShipState));
+    this->toolBarWidgetMap.put(StateID::AddAttributeState,new ToolBarWidget(this,actionMap,ActionData::AttributeState));
+    this->toolBarWidgetMap.put(StateID::AddEntityState,new ToolBarWidget(this,actionMap,ActionData::EntityState));
+    this->toolBarWidgetMap.put(StateID::AddRelationShipState,new ToolBarWidget(this,actionMap,ActionData::RelationShipState));
     for each(ToolBarWidget* toolBarWidget in toolBarWidgetMap)
         this->addWidget(toolBarWidget);
     //initial state subject

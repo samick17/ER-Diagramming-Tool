@@ -8,7 +8,7 @@ void Subject::registerObserver(IObserver* observer){
 
 void Subject::unregisterObserver(IObserver* observer){
     this->observerSet.erase(observer);
-    this->doUngisterObserver(observer);
+    this->doUnregisterObserver(observer);
 }
 
 void Subject::notify(){
@@ -23,5 +23,5 @@ void Subject::notify(IObserver* observer){
 void Subject::doRegisterObserver(IObserver* observer){
 }
 
-void Subject::doUngisterObserver(IObserver* observer){
+void Subject::doUnregisterObserver(IObserver* observer){
 }
