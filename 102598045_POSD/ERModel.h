@@ -21,7 +21,7 @@ class ERModel : public ISyncable,public Subject{
     FRIEND_TEST(ERModelTest,testGetAllEntities);
     FRIEND_TEST(ERModelTest,testGetAllRelationShips);
     FRIEND_TEST(ERModelTest,testGetAllConnectors);
-    FRIEND_TEST(ERModelTest,testClearComponentMap);
+    FRIEND_TEST(ERModelTest,testResetERModel);
     FRIEND_TEST(ERModelTest,testIsPrimaryExist);
     FRIEND_TEST(ERModelTest,testUndoDeleteComponent);
     FRIEND_TEST(ERModelTest,testRedoConnectComponent);
@@ -58,8 +58,14 @@ public:
     void unregisterSynchronizer(ISynchronizer* synchronizer);
     void sync(string syncEventType);
 private:
+    void initialCountMap();
+    void resetCounting();
+    void setNodePosition(string componentType,Node* node);
     HashMap<string,Component*> componentMap;
     vector<ISynchronizer*> synchronizerVector;
+    static int attributeCount,entityCount,relationShipCount;
+    HashMap<string,int*> componentTypeCountMap;
+    unordered_map<string,double> componentTypeMapOffsetX;
     CommandManager commandManager;
     TableManager tableManager;
 };

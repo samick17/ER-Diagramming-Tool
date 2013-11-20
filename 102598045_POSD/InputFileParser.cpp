@@ -17,7 +17,6 @@ void InputFileParser::parseFileToModel(string filePath,ERModel* erModel){
 
     this->erModel = erModel;
     this->erModel->resetERModel();
-
     //load all Nodes & Connectors
     this->loadAllComponentsFromDoc(doc);
     this->loadAllConnectorsFromDoc(doc);

@@ -143,6 +143,8 @@ TEST_F(ERModelTest,testInsertComponent){
     ASSERT_EQ(connector,this->erModel.componentMap.get("18"));
 }
 
+TEST_F(ERModelTest,testInsertComponentAt){}
+
 TEST_F(ERModelTest,testEraseComponent){
     Component* componentToDelete1 = this->erModel.getComponentByID("0");
     this->erModel.eraseComponent(componentToDelete1);
@@ -300,21 +302,23 @@ TEST_F(ERModelTest,testGetAllTables){
     ASSERT_EQ(entityPC,tablePC->entity);
 }
 
-TEST_F(ERModelTest,testClearComponentMap){
+TEST_F(ERModelTest,testResetERModel){
     ASSERT_EQ(false,this->erModel.componentMap.empty());
 
     this->erModel.resetERModel();
-
     ASSERT_EQ(true,this->erModel.componentMap.empty());
+    ASSERT_THROW(this->erModel.commandManager.redo(),Exception);
+    ASSERT_THROW(this->erModel.commandManager.undo(),Exception);
 
     Component* attribute = this->erModel.addNode(ComponentType::TypeAttribute);
     Component* entity = this->erModel.addNode(ComponentType::TypeEntity);
     Component* relationShip = this->erModel.addNode(ComponentType::TypeRelationShip);
     
     ASSERT_EQ(false,this->erModel.componentMap.empty());
-
     this->erModel.resetERModel();
     ASSERT_EQ(true,this->erModel.componentMap.empty());
+    ASSERT_THROW(this->erModel.commandManager.redo(),Exception);
+    ASSERT_THROW(this->erModel.commandManager.undo(),Exception);
 }
 /***************************************************************************/
 /*                      Integration Test                                   */

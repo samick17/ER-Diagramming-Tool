@@ -126,7 +126,7 @@ Entity* TextPresentation::findEntity(){
 }
 
 void TextPresentation::openFile(string filePath){
-	this->presentation->openFile(filePath);
+    this->presentation->openFile(filePath);
 }
 
 void TextPresentation::saveFile(string filePath){
@@ -138,7 +138,8 @@ void TextPresentation::close(){
 }
 
 Node* TextPresentation::addNode(string nodeType){
-    return this->presentation->addNode(nodeType);
+    Node* node = this->presentation->addNode(nodeType);
+    return node;
 }
 
 void TextPresentation::deleteComponent(Component* componentToDelete){

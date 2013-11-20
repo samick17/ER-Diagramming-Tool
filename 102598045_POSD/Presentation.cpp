@@ -21,8 +21,7 @@ void Presentation::close(){
 }
 
 Node* Presentation::addNode(string componentType){
-    Node* node = this->erModel->addNode(componentType);
-    return node;
+    return this->erModel->addNode(componentType);
 }
 
 void Presentation::deleteComponent(Component* component){
