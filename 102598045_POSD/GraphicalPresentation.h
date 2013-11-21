@@ -39,6 +39,9 @@ public:
     void openFile(string filePath);
     void saveFile(string filePath);
     void close();
+    void undo();
+    void redo();
+    void deleteComponent();
     bool isWidgetSelected(string componentID);
     void selectWidget();
     void selectLastPressedWidget();

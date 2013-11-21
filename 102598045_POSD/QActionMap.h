@@ -11,8 +11,8 @@ public:
     QActionMap(GraphicalUI* graphicalUI);
     ~QActionMap();
 
-    QAction* getQAction(string actionText);
+    QAction* getQAction(unsigned int index);
 private:
-    HashMap<string,QAction*> actionMap;
+    HashMap<unsigned int,QAction*> actionMap;
     void putQAction(QActionData qActionData,GraphicalUI* graphicalUI);
 };

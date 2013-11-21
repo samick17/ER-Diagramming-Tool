@@ -7,4 +7,5 @@ public:
     static const int AddAttributeState;
     static const int AddEntityState;
     static const int AddRelationShipState;
+    static const int SetPrimaryKeyState;
 };

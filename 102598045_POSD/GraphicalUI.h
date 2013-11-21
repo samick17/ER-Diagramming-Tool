@@ -56,6 +56,9 @@ private:
 private slots:
     void openFile();
     void close();
+    void undo();
+    void redo();
+    void deleteComponent();
     void switchState(int stateID);
     void executeSync(string syncEventType);
     void displaySetTextDialog();

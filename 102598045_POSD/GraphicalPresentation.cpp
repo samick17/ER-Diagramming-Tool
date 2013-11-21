@@ -96,6 +96,17 @@ void GraphicalPresentation::saveFile(string filePath){
 void GraphicalPresentation::close(){
     this->presentation->close();
 }
+
+void GraphicalPresentation::undo(){
+    this->presentation->undo();
+}
+
+void GraphicalPresentation::redo(){
+    this->presentation->redo();
+}
+
+void GraphicalPresentation::deleteComponent(){
+}
 //is widget being selected?
 bool GraphicalPresentation::isWidgetSelected(string componentID){
     if(this->selectedWidgetSet.find(componentID) != this->selectedWidgetSet.end())

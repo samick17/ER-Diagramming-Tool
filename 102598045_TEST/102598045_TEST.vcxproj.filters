@@ -525,6 +525,9 @@
     <ClCompile Include="MockIObserver.cpp">
       <Filter>Source Files\MockObject</Filter>
     </ClCompile>
+    <ClCompile Include="..\102598045_POSD\SetPrimaryKeyState.cpp">
+      <Filter>Source Files\View\GUI\State</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DirectoryUtil.h">

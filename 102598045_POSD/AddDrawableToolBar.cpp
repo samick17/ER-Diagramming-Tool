@@ -8,13 +8,13 @@
 
 AddDrawableToolBar::AddDrawableToolBar(GraphicalUI* graphicalUI,QActionMap* actionMap) : QToolBar(graphicalUI){
     this->currentFocusedWidget = NULL;
-    this->toolBarWidgetMap.put(StateID::PointerState,new ToolBarWidget(this,actionMap,ActionData::PointerState));
-    this->toolBarWidgetMap.put(StateID::ConnectState,new ToolBarWidget(this,actionMap,ActionData::ConnectState));
-    this->toolBarWidgetMap.put(StateID::AddAttributeState,new ToolBarWidget(this,actionMap,ActionData::AttributeState));
-    this->toolBarWidgetMap.put(StateID::AddEntityState,new ToolBarWidget(this,actionMap,ActionData::EntityState));
-    this->toolBarWidgetMap.put(StateID::AddRelationShipState,new ToolBarWidget(this,actionMap,ActionData::RelationShipState));
-    for each(ToolBarWidget* toolBarWidget in toolBarWidgetMap)
+    unsigned int actionIndex = ActionData::PointerState;
+    for(int index = StateID::PointerState; index <= StateID::SetPrimaryKeyState; index++){
+        ToolBarWidget* toolBarWidget = new ToolBarWidget(this,actionMap,actionIndex);
+        this->toolBarWidgetMap.put(index,toolBarWidget);
         this->addWidget(toolBarWidget);
+        actionIndex++;
+    }
     //initial state subject
     GraphicalPresentation* graphicalPresentation = graphicalUI->getGraphicalPresentation();
     this->stateSubject = graphicalPresentation->getStateSubject();

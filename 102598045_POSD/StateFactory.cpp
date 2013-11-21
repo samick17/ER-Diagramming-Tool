@@ -3,6 +3,7 @@
 #include "PointerState.h"
 #include "ConnectState.h"
 #include "AddNodeState.h"
+#include "SetPrimaryKeyState.h"
 
 StateFactory::StateFactory(){
     this->newStateMap.put(StateID::PointerState,newState<PointerState>);
@@ -10,6 +11,7 @@ StateFactory::StateFactory(){
     this->newStateMap.put(StateID::AddAttributeState,newState<AddNodeState>);
     this->newStateMap.put(StateID::AddEntityState,newState<AddNodeState>);
     this->newStateMap.put(StateID::AddRelationShipState,newState<AddNodeState>);
+    this->newStateMap.put(StateID::SetPrimaryKeyState,newState<SetPrimaryKeyState>);
 }
 
 StateFactory::~StateFactory(){

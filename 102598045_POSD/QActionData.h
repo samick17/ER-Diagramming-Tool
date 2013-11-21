@@ -7,13 +7,15 @@ using namespace std;
 
 struct QActionData{
 public:
-    QActionData(string actionText,string iconPath,string keySequence = StringSymbol::Empty);
+    QActionData(unsigned int actionIndex);
     ~QActionData();
 
+    unsigned int getActionIndex();
     string getActionText();
     string getIconPath();
     string getKeySequence();
 private:
+    unsigned int actionIndex;
     string actionText;
     string iconPath;
     string keySequence;

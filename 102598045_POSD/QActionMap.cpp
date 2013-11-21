@@ -3,25 +3,21 @@
 #include "ActionData.h"
 
 QActionMap::QActionMap(GraphicalUI* graphicalUI){
-    this->putQAction(QActionData(ActionData::OpenFile,ActionData::OpenFileIconPath,ActionData::OpenFileShortCutKey),graphicalUI);
-    this->putQAction(QActionData(ActionData::Exit,ActionData::ExitIconPath,ActionData::ExitShortCutKey),graphicalUI);
-    this->putQAction(QActionData(ActionData::PointerState,ActionData::PointerIconPath),graphicalUI);
-    this->putQAction(QActionData(ActionData::ConnectState,ActionData::ConnectorIconPath),graphicalUI);
-    this->putQAction(QActionData(ActionData::AttributeState,ActionData::AttributeIconPath),graphicalUI);
-    this->putQAction(QActionData(ActionData::EntityState,ActionData::EntityIconPath),graphicalUI);
-    this->putQAction(QActionData(ActionData::RelationShipState,ActionData::RelationShipIconPath),graphicalUI);
+    for (unsigned int index = 0;index < ActionData::ActionLength;index++){
+        this->putQAction(QActionData(index),graphicalUI);
+    }
 }
 
 QActionMap::~QActionMap(){
 }
 
-QAction* QActionMap::getQAction(string actionText){
-    return this->actionMap.get(actionText);
+QAction* QActionMap::getQAction(unsigned int index){
+    return this->actionMap.get(index);
 }
 
 void QActionMap::putQAction(QActionData qActionData,GraphicalUI* graphicalUI){
     QAction* openFileAction = new QAction(QIcon(QString(qActionData.getIconPath().c_str())),QString(qActionData.getActionText().c_str()),graphicalUI);
     QKeySequence keySequence = QKeySequence(qActionData.getKeySequence().c_str());
-	openFileAction->setShortcut(keySequence);
-    this->actionMap.put(qActionData.getActionText(),openFileAction);
+    openFileAction->setShortcut(keySequence);
+    this->actionMap.put(qActionData.getActionIndex(),openFileAction);
 }

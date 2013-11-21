@@ -1,9 +1,17 @@
 #include "QActionData.h"
+#include "ActionData.h"
 
-QActionData::QActionData(string actionText,string iconPath,string keySequence) : actionText(actionText),iconPath(iconPath),keySequence(keySequence){
+QActionData::QActionData(unsigned int actionIndex) : actionIndex(actionIndex){
+    this->actionText = ActionData::ActionName[actionIndex];
+    this->iconPath = ActionData::ActionIconPath[actionIndex];
+    this->keySequence = ActionData::ActionShortCutKey[actionIndex];
 }
 
 QActionData::~QActionData(){
+}
+
+unsigned int QActionData::getActionIndex(){
+    return this->actionIndex;
 }
 
 string QActionData::getActionText(){

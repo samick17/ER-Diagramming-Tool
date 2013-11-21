@@ -69,26 +69,24 @@ void GraphicalUI::initialAllAction(){
     connect(openFileAction,SIGNAL(triggered()),this,SLOT(openFile()));
     QAction* exitAction = this->actionMap->getQAction(ActionData::Exit);
     connect(exitAction,SIGNAL(triggered()),this,SLOT(close()));
-    //use signal mapper to pass state argument
+    QAction* undoAction = this->actionMap->getQAction(ActionData::Undo);
+    connect(undoAction,SIGNAL(triggered()),this,SLOT(undo()));
+    QAction* redoAction = this->actionMap->getQAction(ActionData::Redo);
+    connect(redoAction,SIGNAL(triggered()),this,SLOT(redo()));
+    QAction* deleteComponentAction = this->actionMap->getQAction(ActionData::Delete);
+    connect(deleteComponentAction,SIGNAL(triggered()),this,SLOT(deleteComponent()));
+    
+    //Set State Action : use signal mapper to pass state argument
     QSignalMapper* signalMapper = new QSignalMapper(this);
-    QAction* pointerStateAction = this->actionMap->getQAction(ActionData::PointerState);
-    connect(pointerStateAction,SIGNAL(triggered()),signalMapper,SLOT(map()));
-    signalMapper->setMapping(pointerStateAction,StateID::PointerState);
-    QAction* connectStateAction = this->actionMap->getQAction(ActionData::ConnectState);
-    connect(connectStateAction,SIGNAL(triggered()),signalMapper,SLOT(map()));
-    signalMapper->setMapping(connectStateAction,StateID::ConnectState);
-    QAction* attributeStateAction = this->actionMap->getQAction(ActionData::AttributeState);
-    connect(attributeStateAction,SIGNAL(triggered()),signalMapper,SLOT(map()));
-    connect(attributeStateAction,SIGNAL(triggered()),this,SLOT(displaySetTextDialog()));
-    signalMapper->setMapping(attributeStateAction,StateID::AddAttributeState);
-    QAction* entityStateAction = this->actionMap->getQAction(ActionData::EntityState);
-    connect(entityStateAction,SIGNAL(triggered()),signalMapper,SLOT(map()));
-    connect(entityStateAction,SIGNAL(triggered()),this,SLOT(displaySetTextDialog()));
-    signalMapper->setMapping(entityStateAction,StateID::AddEntityState);
-    QAction* relationShipStateAction = this->actionMap->getQAction(ActionData::RelationShipState);
-    connect(relationShipStateAction,SIGNAL(triggered()),signalMapper,SLOT(map()));
-    connect(relationShipStateAction,SIGNAL(triggered()),this,SLOT(displaySetTextDialog()));
-    signalMapper->setMapping(relationShipStateAction,StateID::AddRelationShipState);
+    int stateID = StateID::PointerState;
+    for(unsigned int index = ActionData::PointerState;index <= ActionData::SetPrimaryKeyState;index++){
+        QAction* pointerStateAction = this->actionMap->getQAction(index);
+        connect(pointerStateAction,SIGNAL(triggered()),signalMapper,SLOT(map()));
+        if(stateID >= StateID::AddAttributeState && stateID <= StateID::AddRelationShipState)
+            connect(pointerStateAction,SIGNAL(triggered()),this,SLOT(displaySetTextDialog()));
+        signalMapper->setMapping(pointerStateAction,stateID);
+        stateID++;
+    }
     connect (signalMapper, SIGNAL(mapped(int)), this, SLOT(switchState(int))) ;
 }
 
@@ -122,7 +120,7 @@ void GraphicalUI::initialSyncMap(){
 }
 
 void GraphicalUI::openFile(){
-    QFileDialog* openFileDialog = new QFileDialog(NULL,QString(ActionData::OpenFile.c_str()),QString(ApplicationSetting::FilePath.c_str()),QString(ApplicationSetting::FileExtension.c_str()));
+    QFileDialog* openFileDialog = new QFileDialog(NULL,QString(ActionData::ActionName[ActionData::OpenFile].c_str()),QString(ApplicationSetting::FilePath.c_str()),QString(ApplicationSetting::FileExtension.c_str()));
     if(openFileDialog->exec()){
         QString filePath = openFileDialog->selectedFiles().first();
         this->scene->clear();
@@ -133,6 +131,18 @@ void GraphicalUI::openFile(){
 
 void GraphicalUI::close(){
     this->graphicalPresentation->close();
+}
+
+void GraphicalUI::undo(){
+    this->graphicalPresentation->undo();
+}
+
+void GraphicalUI::redo(){
+    this->graphicalPresentation->redo();
+}
+
+void GraphicalUI::deleteComponent(){
+    this->graphicalPresentation->deleteComponent();
 }
 
 void GraphicalUI::switchState(int stateID){
@@ -159,9 +169,9 @@ void GraphicalUI::setKeyCtrlPressed(QKeyEvent* keyEvent){
 }
 
 void GraphicalUI::displaySetTextDialog(){
-    bool isOK;
-    QString text = QInputDialog::getText(NULL,QString(DialogSetting::Title.c_str()),QString(DialogSetting::Text.c_str()),QLineEdit::Normal,"",&isOK);
-    if(isOK){
+    bool isOKClicked;
+    QString text = QInputDialog::getText(NULL,QString(DialogSetting::Title.c_str()),QString(DialogSetting::Text.c_str()),QLineEdit::Normal,StringSymbol::Empty.c_str(),&isOKClicked);
+    if(isOKClicked){
         ComponentData* componentData = this->graphicalPresentation->getComponentDataForPreview();
         componentData->setName(text.toStdString());
     }
