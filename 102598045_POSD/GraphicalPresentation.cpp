@@ -98,11 +98,19 @@ void GraphicalPresentation::close(){
 }
 
 void GraphicalPresentation::undo(){
-    this->presentation->undo();
+    try{
+        this->presentation->undo();
+    }
+    catch(Exception&){
+    }
 }
 
 void GraphicalPresentation::redo(){
-    this->presentation->redo();
+    try{
+        this->presentation->redo();
+    }
+    catch(Exception&){
+    }
 }
 
 void GraphicalPresentation::deleteComponent(){
@@ -189,8 +197,6 @@ void GraphicalPresentation::doUnregisterObserver(IObserver* observer){
 void GraphicalPresentation::mousePressEvent(Point position,ComponentData* componentData){
     this->lastPressedComponent = this->getComponentByComponentData(componentData);
     this->stateSubject.getState()->mousePressEvent(position);
-    //must use notify to avoid some bug
-    this->notify();
 }
 
 void GraphicalPresentation::mouseMoveEvent(Point position,ComponentData* componentData){

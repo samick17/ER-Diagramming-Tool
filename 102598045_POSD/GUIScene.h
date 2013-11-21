@@ -17,7 +17,7 @@ class GUIScene : public QGraphicsScene,public IObserver{
 signals:
     void onNotifyEvent();
 public:
-    GUIScene(QRectF sceneRect,GraphicalUI* graphicalUI,QGraphicsView* view);
+    GUIScene(GraphicalUI* graphicalUI);
     ~GUIScene();
 
     void notify(ISubject* subject);
@@ -28,7 +28,6 @@ protected:
     void mouseReleaseEvent(QGraphicsSceneMouseEvent* mouseEvent);
 private:
     GraphicalUI* graphicalUI;
-    QGraphicsView* view;
     GraphicalPresentation* graphicalPresentation;
     ComponentData* getComponentDataAtPosition(QPointF qPosition);
     pair<Point,ComponentData*> getPointComponentPair(QGraphicsSceneMouseEvent* mouseEvent);

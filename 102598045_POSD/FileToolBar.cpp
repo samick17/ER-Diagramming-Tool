@@ -2,10 +2,10 @@
 #include "ActionData.h"
 
 FileToolBar::FileToolBar(QActionMap* actionMap,QWidget* parent) : QToolBar(parent){
-    QAction* openFileAction = actionMap->getQAction(ActionData::OpenFile);
-    QAction* exitAction = actionMap->getQAction(ActionData::Exit);
-    this->addAction(openFileAction);
-    this->addAction(exitAction);
+	for(unsigned int actionIndex = ActionData::OpenFile;actionIndex <= ActionData::Delete;actionIndex++){
+	    QAction* openFileAction = actionMap->getQAction(actionIndex);
+	    this->addAction(openFileAction);
+	}
 }
 
 FileToolBar::~FileToolBar(){

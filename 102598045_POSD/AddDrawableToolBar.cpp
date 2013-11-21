@@ -8,6 +8,7 @@
 
 AddDrawableToolBar::AddDrawableToolBar(GraphicalUI* graphicalUI,QActionMap* actionMap) : QToolBar(graphicalUI){
     this->currentFocusedWidget = NULL;
+    //initial state tool bar widget
     unsigned int actionIndex = ActionData::PointerState;
     for(int index = StateID::PointerState; index <= StateID::SetPrimaryKeyState; index++){
         ToolBarWidget* toolBarWidget = new ToolBarWidget(this,actionMap,actionIndex);

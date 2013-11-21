@@ -36,8 +36,6 @@ void AddNodeState::doMouseReleaseEvent(Point position){
     string nodeType = componentData->getType();
     string nodeName = componentData->getName();
 
-    this->graphicalPresentation->addNode(nodeType,nodeName,Point());
-    Node* node = this->graphicalPresentation->getLastAddedNode();
-    node->setCenterPosition(position);
+    this->graphicalPresentation->addNode(nodeType,nodeName,position);
     this->graphicalPresentation->switchState(StateID::PointerState);
 }

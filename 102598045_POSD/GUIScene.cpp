@@ -5,11 +5,10 @@
 #include "GraphicalPresentation.h"
 #include "WidgetFactory.h"
 
-GUIScene::GUIScene(QRectF sceneRect,GraphicalUI* graphicalUI,QGraphicsView* view) : QGraphicsScene(sceneRect,graphicalUI),graphicalUI(graphicalUI),view(view){
+GUIScene::GUIScene(GraphicalUI* graphicalUI) : QGraphicsScene(graphicalUI),graphicalUI(graphicalUI){
     this->graphicalPresentation = this->graphicalUI->getGraphicalPresentation();
     this->graphicalPresentation->registerObserver(this);
     this->connect(this,SIGNAL(onNotifyEvent()),this,SLOT(executeNotify()));
-    this->view->setMouseTracking(true);
 }
 
 GUIScene::~GUIScene(){
@@ -34,7 +33,6 @@ void GUIScene::refreshAllWidgets(){
 void GUIScene::mousePressEvent(QGraphicsSceneMouseEvent* mouseEvent){
     pair<Point,ComponentData*> pointComponentPair = this->getPointComponentPair(mouseEvent);
     this->graphicalPresentation->mousePressEvent(pointComponentPair.first,pointComponentPair.second);
-    this->updateAll();
 }
 
 void GUIScene::mouseMoveEvent(QGraphicsSceneMouseEvent* mouseEvent){
@@ -46,7 +44,6 @@ void GUIScene::mouseMoveEvent(QGraphicsSceneMouseEvent* mouseEvent){
 void GUIScene::mouseReleaseEvent(QGraphicsSceneMouseEvent* mouseEvent){
     pair<Point,ComponentData*> pointComponentPair = this->getPointComponentPair(mouseEvent);
     this->graphicalPresentation->mouseReleaseEvent(pointComponentPair.first,pointComponentPair.second);
-    this->updateAll();
 }
 //get component from widget
 pair<Point,ComponentData*> GUIScene::getPointComponentPair(QGraphicsSceneMouseEvent* mouseEvent){

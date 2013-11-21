@@ -40,7 +40,7 @@ void CommandManager::undo(){
     }
     catch(Exception&){
         throw Exception("Cannot undo!");
-    }    
+    }
 }
 //pop all command Stack & delete it
 void CommandManager::popAllStack(){

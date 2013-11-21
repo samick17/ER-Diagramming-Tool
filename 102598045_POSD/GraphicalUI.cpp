@@ -3,6 +3,8 @@
 #include <QFileDialog>
 #include <QSignalMapper>
 #include <QInputDialog>
+#include <QTableWidget>
+#include <QHBoxLayout>
 #include "GraphicalPresentation.h"
 #include "ApplicationSetting.h"
 #include "ActionData.h"
@@ -57,10 +59,27 @@ void GraphicalUI::setTitle(string title,string iconPath){
 }
 
 void GraphicalUI::initialGraphicView(){
+    QHBoxLayout* layout = new QHBoxLayout();	
+    QWidget* centralWidget = new QWidget();
+    centralWidget->setLayout(layout);
+    this->setCentralWidget(centralWidget);
+
     this->view = new QGraphicsView(this);
-    this->scene = new GUIScene(this->view->contentsRect(),this,this->view);
+    this->scene = new GUIScene(this);
     this->view->setScene(this->scene);
-    this->setCentralWidget(view);
+    this->view->setMouseTracking(true);
+    layout->addWidget(this->view);
+    layout->setStretchFactor(this->view,5);
+
+    QTableWidget* tableWidget = new QTableWidget();
+    layout->addWidget(tableWidget);
+    layout->setStretchFactor(tableWidget,2);
+    QStringList list;
+    list.append("Type");
+    list.append("Text");
+    tableWidget->setRowCount(10);
+    tableWidget->setColumnCount(2);
+    tableWidget->setHorizontalHeaderLabels(list);
 }
 
 void GraphicalUI::initialAllAction(){
