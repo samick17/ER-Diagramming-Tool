@@ -79,12 +79,15 @@ void GraphicalUI::initialAllAction(){
     signalMapper->setMapping(connectStateAction,StateID::ConnectState);
     QAction* attributeStateAction = this->actionMap->getQAction(ActionData::AttributeState);
     connect(attributeStateAction,SIGNAL(triggered()),signalMapper,SLOT(map()));
+    connect(attributeStateAction,SIGNAL(triggered()),this,SLOT(displaySetTextDialog()));
     signalMapper->setMapping(attributeStateAction,StateID::AddAttributeState);
     QAction* entityStateAction = this->actionMap->getQAction(ActionData::EntityState);
     connect(entityStateAction,SIGNAL(triggered()),signalMapper,SLOT(map()));
+    connect(entityStateAction,SIGNAL(triggered()),this,SLOT(displaySetTextDialog()));
     signalMapper->setMapping(entityStateAction,StateID::AddEntityState);
     QAction* relationShipStateAction = this->actionMap->getQAction(ActionData::RelationShipState);
     connect(relationShipStateAction,SIGNAL(triggered()),signalMapper,SLOT(map()));
+    connect(relationShipStateAction,SIGNAL(triggered()),this,SLOT(displaySetTextDialog()));
     signalMapper->setMapping(relationShipStateAction,StateID::AddRelationShipState);
     connect (signalMapper, SIGNAL(mapped(int)), this, SLOT(switchState(int))) ;
 }
@@ -134,19 +137,8 @@ void GraphicalUI::close(){
 
 void GraphicalUI::switchState(int stateID){
     this->graphicalPresentation->switchState(stateID);
-    //display input dialog
-    if(stateID >= StateID::AddAttributeState && stateID <= StateID::AddRelationShipState){
-        bool isOK;
-        QString text = QInputDialog::getText(NULL,QString(DialogSetting::Title.c_str()),QString(DialogSetting::Text.c_str()),QLineEdit::Normal,"",&isOK);
-        if(isOK){
-            ComponentData* componentData = this->graphicalPresentation->getComponentDataForPreview();
-            componentData->setName(text.toStdString());
-        }
-        else {
-            this->graphicalPresentation->switchState(StateID::PointerState);
-        }
-    }
 }
+
 //execute sunchronization event that are mapped.
 void GraphicalUI::executeSync(string syncEventType){
     if(this->syncMap.containsKey(syncEventType)){
@@ -164,4 +156,16 @@ void GraphicalUI::setKeyCtrlPressed(QKeyEvent* keyEvent){
     bool isCtrlPressed = keyEvent->key() == Key_Control;
     isCtrlPressed &= keyEvent->type() == QEvent::KeyPress;
     this->graphicalPresentation->setKeyCtrlState(isCtrlPressed);
+}
+
+void GraphicalUI::displaySetTextDialog(){
+    bool isOK;
+    QString text = QInputDialog::getText(NULL,QString(DialogSetting::Title.c_str()),QString(DialogSetting::Text.c_str()),QLineEdit::Normal,"",&isOK);
+    if(isOK){
+        ComponentData* componentData = this->graphicalPresentation->getComponentDataForPreview();
+        componentData->setName(text.toStdString());
+    }
+    else {
+        this->graphicalPresentation->switchState(StateID::PointerState);
+    }
 }

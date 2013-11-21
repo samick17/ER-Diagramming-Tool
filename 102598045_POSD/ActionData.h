@@ -22,4 +22,12 @@ public:
     static const string EntityIconPath;
     static const string RelationShipState;
     static const string RelationShipIconPath;
+    static const string PrimaryKeyState;
+    static const string PrimaryKeyIconPath;
+    static const string Undo;
+    static const string UndoIconPath;
+    static const string Redo;
+    static const string RedoIconPath;
+    static const string DeleteComponent;
+    static const string DeleteComponentIconPath;
 };

@@ -58,4 +58,5 @@ private slots:
     void close();
     void switchState(int stateID);
     void executeSync(string syncEventType);
+    void displaySetTextDialog();
 };

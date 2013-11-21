@@ -508,6 +508,9 @@
     <ClCompile Include="ConnectorData.cpp">
       <Filter>Source Files\Struct</Filter>
     </ClCompile>
+    <ClCompile Include="SetPrimaryKeyState.cpp">
+      <Filter>Source Files\View\GUI\State</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Attribute.h">
@@ -759,9 +762,6 @@
     <ClInclude Include="FileToolBar.h">
       <Filter>Header Files\View\GUI\ToolBar</Filter>
     </ClInclude>
-    <ClInclude Include="AddDrawableToolBar.h">
-      <Filter>Header Files\View\GUI\ToolBar</Filter>
-    </ClInclude>
     <ClInclude Include="ToolBarWidget.h">
       <Filter>Header Files\View\GUI\GUIWidget\ToolBarWidget</Filter>
     </ClInclude>
@@ -825,6 +825,9 @@
     <ClInclude Include="ConnectorData.h">
       <Filter>Header Files\Struct</Filter>
     </ClInclude>
+    <ClInclude Include="SetPrimaryKeyState.h">
+      <Filter>Header Files\View\GUI\State</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="GraphicalUI.h">
@@ -841,6 +844,9 @@
     </CustomBuild>
     <CustomBuild Include="GUIScene.h">
       <Filter>Header Files\View\GUI\GUIWidget</Filter>
+    </CustomBuild>
+    <CustomBuild Include="AddDrawableToolBar.h">
+      <Filter>Header Files\View\GUI\ToolBar</Filter>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
@@ -863,6 +869,21 @@
       <Filter>Resource Files</Filter>
     </None>
     <None Include="Resources\relationship.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Resources\edittext.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Resources\delete.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Resources\key.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Resources\redo.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Resources\undo.png">
       <Filter>Resource Files</Filter>
     </None>
   </ItemGroup>

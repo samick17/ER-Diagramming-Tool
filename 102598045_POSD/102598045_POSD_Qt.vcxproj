@@ -97,6 +97,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="MenuSetting.cpp" />
+    <ClCompile Include="SetPrimaryKeyState.cpp" />
     <ClCompile Include="Subject.cpp" />
     <ClCompile Include="ConnectorWidget.cpp" />
     <ClCompile Include="ConnectState.cpp" />
@@ -197,7 +198,22 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ActionData.h" />
-    <ClInclude Include="AddDrawableToolBar.h" />
+    <CustomBuild Include="AddDrawableToolBar.h">
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(AdditionalInputs)</AdditionalInputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(AdditionalInputs)</AdditionalInputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+      </Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+      </Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+      </Command>
+    </CustomBuild>
     <ClInclude Include="AddMenuItem.h" />
     <ClInclude Include="AddNodeCommand.h" />
     <ClInclude Include="AddNodeInstruction.h" />
@@ -215,6 +231,7 @@
     <ClInclude Include="ConnectorData.h" />
     <ClInclude Include="DialogSetting.h" />
     <ClInclude Include="MenuSetting.h" />
+    <ClInclude Include="SetPrimaryKeyState.h" />
     <ClInclude Include="Subject.h" />
     <ClInclude Include="ConnectorWidget.h" />
     <ClInclude Include="ConnectState.h" />
@@ -369,12 +386,17 @@
     <None Include="Resources\attribute.png" />
     <None Include="Resources\connector.png" />
     <None Include="Resources\cursor.png" />
+    <None Include="Resources\delete.png" />
+    <None Include="Resources\edittext.png" />
     <None Include="Resources\entity.png" />
     <None Include="Resources\exit.png" />
+    <None Include="Resources\key.png" />
     <None Include="Resources\open.png">
       <FileType>Document</FileType>
     </None>
+    <None Include="Resources\redo.png" />
     <None Include="Resources\relationship.png" />
+    <None Include="Resources\undo.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

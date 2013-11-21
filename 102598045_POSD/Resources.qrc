@@ -8,5 +8,10 @@
         <file>Resources/entity.png</file>
         <file>Resources/relationship.png</file>
         <file>Resources/application.png</file>
+        <file>Resources/edittext.png</file>
+        <file>Resources/delete.png</file>
+        <file>Resources/key.png</file>
+        <file>Resources/redo.png</file>
+        <file>Resources/undo.png</file>
     </qresource>
 </RCC>
