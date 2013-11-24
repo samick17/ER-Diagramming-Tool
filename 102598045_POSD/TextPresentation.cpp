@@ -5,6 +5,7 @@
 #include "Connector.h"
 #include "ERModel.h"
 #include "ComponentUtil.h"
+#include "StringUtil.h"
 #include "NullPointerException.h"
 #include "EmptyCollectionException.h"
 #include "ComponentType.h"
@@ -20,6 +21,7 @@ TextPresentation::TextPresentation(Presentation* presentation) : presentation(pr
     this->instructionMenu = new InstructionMenu();
     this->textUIPresenter = new TextUIPresenter(this);
     this->initialSyncMap();
+    this->initialCardinalityInputMap();
 }
 
 TextPresentation::~TextPresentation(){
@@ -30,7 +32,7 @@ TextPresentation::~TextPresentation(){
 string TextPresentation::getInput(){
     string input;
     while(input.empty()){
-        cout<<">"<<endl;
+        cout<<">";
         getline(cin,input);
     }
     return input;
@@ -102,6 +104,12 @@ HashMap<string,Component*> TextPresentation::getEntityAttributes(Entity* entity)
     return ComponentUtil::toComponentHashMap<Attribute>(attributeMap);
 }
 
+string TextPresentation::getCardinality(string input){
+    if(this->cardinalityInputMap.containsKey(input))
+        return this->cardinalityInputMap.get(input);
+    return StringSymbol::Empty;
+}
+
 Component* TextPresentation::findComponent(){
     Component* find = NULL;
     while(!find){
@@ -151,9 +159,9 @@ int TextPresentation::connectTwoNodes(Component* firstNode,Component* secondNode
     return result;
 }
 
-void TextPresentation::setCardinality(Component* firstNode,Component* secondNode,string relationName){
+void TextPresentation::setCardinality(Component* firstNode,Component* secondNode,string cardinality){
     Connector* connection = this->presentation->getNodesConnector(firstNode,secondNode);
-    connection->setName(relationName);
+    this->presentation->setCardinality(connection,cardinality);
 }
 
 void TextPresentation::redo(){
@@ -183,6 +191,14 @@ void TextPresentation::initialSyncMap(){
     this->syncMap.put(ControllerEvent::DisplayTable,&TextUIPresenter::displayTable);
     this->syncMap.put(ControllerEvent::Undo,&TextUIPresenter::displayDiagram);
     this->syncMap.put(ControllerEvent::Redo,&TextUIPresenter::displayDiagram);
+}
+
+void TextPresentation::initialCardinalityInputMap(){
+    unsigned int index = 0;
+    for each(string cardinality in this->presentation->getCardinalityVector()){
+        this->cardinalityInputMap.put(StringUtil::intToString(index),cardinality);
+        index++;
+    }
 }
 
 void TextPresentation::executeSync(string syncEventType){

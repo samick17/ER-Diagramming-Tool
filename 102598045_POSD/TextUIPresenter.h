@@ -17,6 +17,6 @@ public:
     void displayDiagram();
     void displayStringWithComma(string strStart,vector<string> stringVector,string strEnd);
 private:
-    TextPresentation* textPresentation;
     void displayComponentMap(HashMap<string,Component*> componentMap);
+    TextPresentation* textPresentation;
 };

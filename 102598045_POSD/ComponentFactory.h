@@ -21,11 +21,12 @@ public:
     Component* createComponent(string componentType,string name = StringSymbol::Empty);
     void resetFactory();
 private:
-    static int count;
-    HashMap<string,NewComponentFunction> newComponentMap;
-    NewComponentFunction findNewComponentFunction(string componentType);
     template <typename Type>
     static Component* newComponent(string componentID,string name);
+
+    NewComponentFunction findNewComponentFunction(string componentType);
+    static int count;
+    HashMap<string,NewComponentFunction> newComponentMap;
 };
 
 template <typename Type>

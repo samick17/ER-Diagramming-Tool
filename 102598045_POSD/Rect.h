@@ -41,8 +41,8 @@ public:
 
     bool operator==(const Rect& rectToCompare) const;
 private:
-    static const int CenterLeft,CenterRight,CenterTop,CenterBottom;
     void updateControlPoints();
+    static const int CenterLeft,CenterRight,CenterTop,CenterBottom;
     vector<Point> controlPoints;
     Point position;
     Size size;

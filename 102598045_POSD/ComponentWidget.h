@@ -19,8 +19,6 @@ public:
     void updateWidget();
     ComponentData* getComponentData();
 protected:
-    GraphicalPresentation* graphicalPresentation;
-    ComponentData* componentData;
     string getText();
     void setText(string text);
     void setRect(QRectF rect);
@@ -28,6 +26,8 @@ protected:
     void setUnderLine(bool isUnderLine);
     virtual void doPaint(QPainter* painter);
     virtual void doUpdateWidget();
+    GraphicalPresentation* graphicalPresentation;
+    ComponentData* componentData;
 private:
     void drawSelectedFrame(QPainter* painter);
     string componentID;

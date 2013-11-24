@@ -38,6 +38,13 @@ protected:
     void keyPressEvent(QKeyEvent* keyEvent);
     void keyReleaseEvent(QKeyEvent* keyEvent);
 private:
+    void initialGraphicView();
+    void initialAllAction();
+    void initialMenuBar();
+    void initialToolBar();
+    void initialSyncMap();
+    void refreshAllWidgets();
+    void setKeyCtrlPressed(QKeyEvent* keyEvent);
     GraphicalPresentation* graphicalPresentation;
     FileMenuItem* fileMenuItem;
     AddMenuItem* addMenuItem;
@@ -50,14 +57,6 @@ private:
     QActionMap* actionMap;
     typedef void (GraphicalUI::*ViewSyncFunction)();
     HashMap<string,ViewSyncFunction> syncMap;
-
-    void initialGraphicView();
-    void initialAllAction();
-    void initialMenuBar();
-    void initialToolBar();
-    void initialSyncMap();
-    void refreshAllWidgets();
-    void setKeyCtrlPressed(QKeyEvent* keyEvent);
 private slots:
     void openFile();
     void close();

@@ -18,14 +18,12 @@ public:
 
     void parseModelToFile(string filePath);
 private:
-    HashMap<string,Component*> componentMap;
-    HashMap<string,string> reorderedIDMap;
-
     void writeAllComponentsToDoc(Document& doc,HashMap<string,Component*> componentMap);
     void writeAllConnectorsToDoc(Document& doc,HashMap<string,Component*> componentMap);
     void writeAllPrimaryKeyToDoc(Document& doc,HashMap<string,Component*> componentMap);
-
     string serializeComponentToString(Component* component);
     string serializeEntityToString(Entity* entity);
     string serializeConnectorToString(Connector* connector);
+    HashMap<string,Component*> componentMap;
+    HashMap<string,string> reorderedIDMap;
 };

@@ -40,12 +40,20 @@ void Presentation::undo(){
     this->erModel->undo();
 }
 
+void Presentation::setCardinality(Connector* connector,string cardinality){
+    this->erModel->setCardinality(connector,cardinality);
+}
+
 Component* Presentation::getComponentByID(string id){
     return this->erModel->getComponentByID(id);
 }
 
 Connector* Presentation::getNodesConnector(Component* firstNode,Component* secondNode){
     return this->erModel->getNodesConnector(firstNode,secondNode);
+}
+
+vector<string> Presentation::getCardinalityVector(){
+    return this->erModel->getCardinalityVector();
 }
 
 HashMap<string,Component*> Presentation::getAllComponents(){

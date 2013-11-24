@@ -17,6 +17,7 @@ int ERModel::relationShipCount = 0;
 
 ERModel::ERModel(){
     this->initialCountMap();
+    this->initialCardinalityVector();
 }
 
 ERModel::~ERModel(){
@@ -82,6 +83,14 @@ void ERModel::undo(){
     this->notify();
 }
 
+void ERModel::setCardinality(Connector* connector,string cardinality){
+    auto iterator = find(this->cardinalityVector.begin(),this->cardinalityVector.end(),cardinality);
+    if(iterator != this->cardinalityVector.end())
+        connector->setName(cardinality);
+    else
+        throw Exception("The cardinality you entered doesn't exist. Please entered a valid one again");
+}
+
 void ERModel::openFile(string filePath){
     InputFileParser inputFileParser;
     inputFileParser.parseFileToModel(filePath,this);
@@ -108,14 +117,18 @@ Connector* ERModel::getNodesConnector(Component* firstNode,Component* secondNode
         for each(Connector* connector in connections){
             if(connector->isNodesConnection(firstNode,secondNode)){
                 connection = connector;
-                return connection;
+                break;
             }
         }
     }
-    throw NullPointerException();
+    return connection;
 }
 
-HashMap<string,Component*>& ERModel::getAllComponents(){
+vector<string> ERModel::getCardinalityVector(){
+    return this->cardinalityVector;
+}
+
+HashMap<string,Component*> ERModel::getAllComponents(){
     return this->componentMap;
 }
 
@@ -177,6 +190,10 @@ void ERModel::initialCountMap(){
     this->componentTypeCountMap.put(ComponentType::TypeAttribute,&ERModel::attributeCount);
     this->componentTypeCountMap.put(ComponentType::TypeEntity,&ERModel::entityCount);
     this->componentTypeCountMap.put(ComponentType::TypeRelationShip,&ERModel::relationShipCount);
+}
+
+void ERModel::initialCardinalityVector(){
+    this->cardinalityVector.push_back(RelationType::OneToOne);
 }
 
 void ERModel::resetCounting(){

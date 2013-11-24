@@ -13,6 +13,6 @@ public:
 
     QAction* getQAction(unsigned int index);
 private:
-    HashMap<unsigned int,QAction*> actionMap;
     void putQAction(QActionData qActionData,GraphicalUI* graphicalUI);
+    HashMap<unsigned int,QAction*> actionMap;
 };

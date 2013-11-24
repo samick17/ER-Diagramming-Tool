@@ -19,10 +19,11 @@ public:
 
     ComponentWidget* createComponentWidget(ComponentData* componentData,GraphicalPresentation* graphicalPresentation);
 private:
-    HashMap<string,NewComponentWidgetFunction> newComponentWidgetMap;
-    NewComponentWidgetFunction findNewComponentWidgetFunction(string componentType);
     template<typename Type>
     static ComponentWidget* newComponentWidget(ComponentData* componentData,GraphicalPresentation* graphicalPresentation);
+
+    NewComponentWidgetFunction findNewComponentWidgetFunction(string componentType);
+    HashMap<string,NewComponentWidgetFunction> newComponentWidgetMap;
 };
 
 template<typename Type>

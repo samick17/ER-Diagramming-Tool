@@ -41,12 +41,14 @@ public:
     int addConnection(Component* firstNode,Component* secondNode);
     void redo();
     void undo();
+    void setCardinality(Connector* connector,string cardinality);
     void openFile(string filePath);
     void saveFile(string filePath);
 
     Component* getComponentByID(string id);
     Connector* getNodesConnector(Component* firstNode,Component* secondNode);
-    HashMap<string,Component*>& getAllComponents();
+    vector<string> getCardinalityVector();
+    HashMap<string,Component*> getAllComponents();
     HashMap<string,Attribute*> getAllAttributes();
     HashMap<string,Entity*> getAllEntities();
     HashMap<string,RelationShip*> getAllRelationShips();
@@ -59,12 +61,14 @@ public:
     void sync(string syncEventType);
 private:
     void initialCountMap();
+    void initialCardinalityVector();
     void resetCounting();
     void setNodePosition(string componentType,Node* node);
-    HashMap<string,Component*> componentMap;
-    vector<ISynchronizer*> synchronizerVector;
     static int attributeCount,entityCount,relationShipCount;
     HashMap<string,int*> componentTypeCountMap;
+    HashMap<string,Component*> componentMap;
+    vector<string> cardinalityVector;
+    vector<ISynchronizer*> synchronizerVector;
     unordered_map<string,double> componentTypeMapOffsetX;
     CommandManager commandManager;
     TableManager tableManager;

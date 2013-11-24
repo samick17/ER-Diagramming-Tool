@@ -17,12 +17,12 @@ public:
     HashMap<string,InstructionData*> getInstructionDataMap();
     InstructionData* getInstructionDataByKey(string key);
 private:
-    HashMap<string,InstructionData*> instructionDataMap;
-    TextPresentation* textPresentation;
-    void insertInstructionData(InstructionData* instructionData);
-
     template<typename Type>
     static TextInstruction* newTextInstruction();
+
+    void insertInstructionData(InstructionData* instructionData);
+    HashMap<string,InstructionData*> instructionDataMap;
+    TextPresentation* textPresentation;
 };
 
 template<typename Type>

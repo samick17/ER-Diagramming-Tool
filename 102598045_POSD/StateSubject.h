@@ -18,6 +18,6 @@ public:
     State* getState() const;
     void switchState(int stateID,GraphicalPresentation* graphicalPresentation);
 private:
-    State* state;
     void deleteState();
+    State* state;
 };

@@ -30,9 +30,11 @@ public:
     int addConnection(Component* firstNode,Component* secondNode);
     void redo();
     void undo();
+    void setCardinality(Connector* connector,string cardinality);
 
     Component* getComponentByID(string id);
     Connector* getNodesConnector(Component* firstNode,Component* secondNode);
+    vector<string> getCardinalityVector();
     HashMap<string,Component*> getAllComponents();
     HashMap<string,Attribute*> getAllAttributes();
     HashMap<string,Entity*> getAllEntities();

@@ -14,10 +14,11 @@ public:
 
     State* createState(int stateID,GraphicalPresentation* graphicalPresentation);
 private:
-    HashMap<int,NewStateFunction> newStateMap;
-    NewStateFunction findNewStateFunction(int stateID);
     template <typename Type>
     static State* newState(int stateID,GraphicalPresentation* graphicalPresentation);
+
+    NewStateFunction findNewStateFunction(int stateID);
+    HashMap<int,NewStateFunction> newStateMap;
 };
 
 template <typename Type>

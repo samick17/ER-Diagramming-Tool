@@ -19,13 +19,13 @@ protected:
     void doExecute();
     void doUnExecute();
 private:
+    void saveConnectionData(Connector* connector);
+    void clearConnectionDataMap();
+    void removeAndDisconnectComponents();
+    void reConnectComponents(ConnectionData* connectionData,Connector* connector);
     ERModel* erModel;
     Component* component;
     HashMap<string,Connector*> connectionMap;
     HashMap<string,ConnectionData*> connectionDataMap;
     HashMap<string,unsigned int> componentIndexMap;
-    void saveConnectionData(Connector* connector);
-    void clearConnectionDataMap();
-    void removeAndDisconnectComponents();
-    void reConnectComponents(ConnectionData* connectionData,Connector* connector);
 };

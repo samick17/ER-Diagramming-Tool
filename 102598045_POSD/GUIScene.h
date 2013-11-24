@@ -27,12 +27,12 @@ protected:
     void mouseMoveEvent(QGraphicsSceneMouseEvent* mouseEvent);
     void mouseReleaseEvent(QGraphicsSceneMouseEvent* mouseEvent);
 private:
-    GraphicalUI* graphicalUI;
-    GraphicalPresentation* graphicalPresentation;
     ComponentData* getComponentDataAtPosition(QPointF qPosition);
     pair<Point,ComponentData*> getPointComponentPair(QGraphicsSceneMouseEvent* mouseEvent);
     void addWidget(ComponentData* componentData);
     void updateAll();
+    GraphicalUI* graphicalUI;
+    GraphicalPresentation* graphicalPresentation;
 private slots:
     void executeNotify();
 };

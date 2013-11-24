@@ -16,13 +16,12 @@ public:
     void mouseMoveEvent(Point position);
     void mouseReleaseEvent(Point position);
 protected:
-    GraphicalPresentation* graphicalPresentation;
-
     Point getDeltaPosition();
     virtual void doMousePressEvent(Point position) = 0;
     virtual void doMouseMoveEvent(Point position) = 0;
     virtual void doMouseDragEvent(Point position) = 0;
     virtual void doMouseReleaseEvent(Point position) = 0;
+    GraphicalPresentation* graphicalPresentation;
 private:
     int stateID;
     bool isMousePressed;

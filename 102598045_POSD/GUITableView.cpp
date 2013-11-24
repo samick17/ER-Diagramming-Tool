@@ -30,7 +30,6 @@ GUITableView::~GUITableView(){
 
 void GUITableView::notify(ISubject* subject){
     this->tableWidget->clearContents();
-
     HashMap<string,ComponentData*> componentDataMap = this->graphicalPresentation->getAllComponentDataMap();
     this->tableWidget->setRowCount(componentDataMap.size());
     unsigned int index = 0;

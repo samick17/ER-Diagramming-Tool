@@ -24,15 +24,13 @@ public:
 
     void parseFileToModel(string filePath,ERModel* erModel);
 private:
-    ERModel* erModel;
-
-    queue<StringPair> componentDataQueue;
-    queue<ConnectionData> connectionDataQueue;
-
     void loadAllComponentsFromDoc(Document& document);
     void loadAllConnectorsFromDoc(Document& document);
     void loadAllPrimaryKeyAndSetUpFromDoc(Document& document);
     void addAllComponentToERModel();
     void addConnector(ConnectionData connectionData,string connectionName);
     bool isQueueArriveConnectionDataID(int id);
+    ERModel* erModel;
+    queue<StringPair> componentDataQueue;
+    queue<ConnectionData> connectionDataQueue;
 };

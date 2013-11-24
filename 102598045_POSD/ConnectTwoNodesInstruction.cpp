@@ -16,22 +16,25 @@ void ConnectTwoNodesInstruction::execute(TextPresentation* textPresentation,Text
         this->setCardinality(firstNode,secondNode,textPresentation);
     else if(result == NodeConnectionType::ValidConnect)
         cout<<"The node '"+firstNode->getID()+"' has been connected to the node '"+secondNode->getID()+"' successfully!"<<endl;
-	textPresentation->sync(ControllerEvent::ConnectTwoNodes);
+    textPresentation->sync(ControllerEvent::ConnectTwoNodes);
 }
 
 void ConnectTwoNodesInstruction::setCardinality(Component* firstNode,Component* secondNode,TextPresentation* textPresentation){
-    HashMap<string,string> cardinalityPairMap;
-    cardinalityPairMap.put("0",RelationType::OneToOne);
+    cout<<"The node '"+firstNode->getID()+"' has been connected to the node '"+secondNode->getID()+"'."<<endl;
     cout<<"Enter the type of the cardinality: "<<endl;
     cout<<"[0]1 [1]N"<<endl;
-    cout<<"The node '"+firstNode->getID()+"' has been connected to the node '"+secondNode->getID()+"'."<<endl;
-    string input = textPresentation->getInput();
 
-    while(!cardinalityPairMap.containsKey(input)){
-        cout<<"the cardinality you entered doesn't exist. Please entered a valid one again"<<endl;
-        input = textPresentation->getInput();
+    string cardinality;
+    while(true){
+        try{
+            string input = textPresentation->getInput();
+            cardinality = textPresentation->getCardinality(input);
+            textPresentation->setCardinality(firstNode,secondNode,cardinality);
+            break;
+        }
+        catch(Exception& exception){
+            cout<<exception.getMessage()<<endl;
+        }
     }
-    string relationName = cardinalityPairMap.get(input);
-    textPresentation->setCardinality(firstNode,secondNode,relationName);
-    cout<<"Its cardinality of the relationship is '"+relationName+"'."<<endl;
+    cout<<"Its cardinality of the relationship is '"+cardinality+"'."<<endl;
 }

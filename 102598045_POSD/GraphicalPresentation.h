@@ -63,6 +63,8 @@ protected:
     void doRegisterObserver(IObserver* observer);
     void doUnregisterObserver(IObserver* observer);
 private:
+    Component* getComponentByComponentData(ComponentData* componentData);
+    void deleteComponentDataForPreview();
     Presentation* presentation;
     set<string> selectedWidgetSet;
     HashMap<string,ComponentData*> componentDataMap;
@@ -73,6 +75,4 @@ private:
     Component* lastPressedComponent;
     Component* lastMovedComponent;
     Component* lastReleasedComponent;
-    Component* getComponentByComponentData(ComponentData* componentData);
-    void deleteComponentDataForPreview();
 };

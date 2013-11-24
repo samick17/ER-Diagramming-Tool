@@ -28,6 +28,7 @@ public:
     HashMap<string,Connector*> getAllConnections();
     HashMap<string,Component*> getAllEntities();
     HashMap<string,Component*> getEntityAttributes(Entity* entity);
+    string getCardinality(string input);
 
     Component* findComponent();
     Entity* findEntity();
@@ -38,7 +39,7 @@ public:
     Node* addNode(string nodeType);
     void deleteComponent(Component* componentToDelete);
     int connectTwoNodes(Component* firstNode,Component* secondNode);
-    void setCardinality(Component* firstNode,Component* secondNode,string relationName);
+    void setCardinality(Component* firstNode,Component* secondNode,string cardinality);
     void redo();
     void undo();
     void registerSynchronizer(ISynchronizer* synchronizer);
@@ -46,10 +47,12 @@ public:
     void sync(string syncEventType);
     void executeSync(string syncEventType);
 private:
+    void initialSyncMap();
+    void initialCardinalityInputMap();
     Presentation* presentation;
     TextUIPresenter* textUIPresenter;
     InstructionMenu* instructionMenu;
     typedef void (TextUIPresenter::*ViewSyncFunction)();
     HashMap<string,ViewSyncFunction> syncMap;
-    void initialSyncMap();
+    HashMap<string,string> cardinalityInputMap;
 };

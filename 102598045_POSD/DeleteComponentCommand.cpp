@@ -25,7 +25,7 @@ void DeleteComponentCommand::doExecute(){
 
 void DeleteComponentCommand::doUnExecute(){
     //insert All connectors to ERModel at origin index
-    for(HashMap<string,Connector*>::reverse_iterator connectorIterator = this->connectionMap.rbegin(); connectorIterator!= this->connectionMap.rend(); connectorIterator++){
+    for(auto connectorIterator = this->connectionMap.rbegin(); connectorIterator!= this->connectionMap.rend(); connectorIterator++){
         Connector* connector = *connectorIterator;
         this->erModel->insertComponentAt(connector,this->componentIndexMap.get(connector->getID()));
     }
