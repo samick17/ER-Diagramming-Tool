@@ -23,7 +23,6 @@ void ConnectTwoNodesInstruction::setCardinality(Component* firstNode,Component* 
     cout<<"The node '"+firstNode->getID()+"' has been connected to the node '"+secondNode->getID()+"'."<<endl;
     cout<<"Enter the type of the cardinality: "<<endl;
     cout<<"[0]1 [1]N"<<endl;
-
     string cardinality;
     while(true){
         try{

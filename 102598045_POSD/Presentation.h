@@ -26,7 +26,7 @@ public:
     void close();
 
     Node* addNode(string componentType);
-    void deleteComponent(Component* component);
+    void deleteComponent(string componentID);
     int addConnection(Component* firstNode,Component* secondNode);
     void redo();
     void undo();

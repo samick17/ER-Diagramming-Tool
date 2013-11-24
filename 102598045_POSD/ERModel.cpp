@@ -52,9 +52,10 @@ void ERModel::eraseComponent(Component* component){
     this->componentMap.remove(component->getID());
 }
 
-void ERModel::deleteComponent(Component* component){
+void ERModel::deleteComponent(string componentID){
+    Component* componentToDelete = this->getComponentByID(componentID);
     CommandFactory commandFactory;
-    Command* deleteComponentCommand = commandFactory.createDeleteComponentCommand(this,component);
+    Command* deleteComponentCommand = commandFactory.createDeleteComponentCommand(this,componentToDelete);
     this->commandManager.execute(deleteComponentCommand);
 }
 //return: NodeConnectionType
@@ -87,8 +88,6 @@ void ERModel::setCardinality(Connector* connector,string cardinality){
     auto iterator = find(this->cardinalityVector.begin(),this->cardinalityVector.end(),cardinality);
     if(iterator != this->cardinalityVector.end())
         connector->setName(cardinality);
-    else
-        throw Exception("The cardinality you entered doesn't exist. Please entered a valid one again");
 }
 
 void ERModel::openFile(string filePath){

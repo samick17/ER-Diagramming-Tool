@@ -37,7 +37,7 @@ public:
     void insertComponent(Component* component);
     void insertComponentAt(Component* component,unsigned int index);
     void eraseComponent(Component* component);
-    void deleteComponent(Component* component);
+    void deleteComponent(string componentID);
     int addConnection(Component* firstNode,Component* secondNode);
     void redo();
     void undo();

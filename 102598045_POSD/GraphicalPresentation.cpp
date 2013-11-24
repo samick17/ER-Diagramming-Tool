@@ -71,13 +71,13 @@ void GraphicalPresentation::addNode(string nodeType,string nodeName,Point center
 }
 
 void GraphicalPresentation::addConnection(Component* sourceComponent,Component* targetComponent){
+    this->setComponentDataForPreview(NULL);
     try{
         this->presentation->addConnection(sourceComponent,targetComponent);
+        this->presentation->sync(ControllerEvent::ConnectTwoNodes);
     }
     catch(Exception&){
     }
-    this->setComponentDataForPreview(NULL);
-    this->presentation->sync(ControllerEvent::ConnectTwoNodes);
 }
 
 void GraphicalPresentation::openFile(string filePath){
@@ -97,6 +97,7 @@ void GraphicalPresentation::close(){
 void GraphicalPresentation::undo(){
     try{
         this->presentation->undo();
+        this->sync(ControllerEvent::Undo);
     }
     catch(Exception&){
     }
@@ -105,16 +106,23 @@ void GraphicalPresentation::undo(){
 void GraphicalPresentation::redo(){
     try{
         this->presentation->redo();
+        this->sync(ControllerEvent::Redo);
     }
     catch(Exception&){
     }
 }
 
 void GraphicalPresentation::deleteComponent(){
+    for each(string selectedID in this->selectedWidgetVector){
+        this->presentation->deleteComponent(selectedID);
+    }
+    this->unSelectAll();
+    this->sync(ControllerEvent::DeleteComponent);
 }
 //is widget being selected?
 bool GraphicalPresentation::isWidgetSelected(string componentID){
-    if(this->selectedWidgetSet.find(componentID) != this->selectedWidgetSet.end())
+    auto iterator = find(this->selectedWidgetVector.begin(),this->selectedWidgetVector.end(),componentID);
+    if(iterator != this->selectedWidgetVector.end())
         return true;
     return false;
 }
@@ -127,28 +135,22 @@ void GraphicalPresentation::selectWidget(){
     string lastPressedComponentID = this->lastPressedComponent->getID();
     bool isSelected = this->isWidgetSelected(lastPressedComponentID);
     if(!this->isCtrlPressed)
-        this->selectedWidgetSet.clear();
-    this->revertSelectWidget(isSelected,lastPressedComponentID);
+        this->selectedWidgetVector.clear();
+    if(!isSelected)
+        this->selectedWidgetVector.push_back(lastPressedComponentID);
 }
 
 void GraphicalPresentation::selectLastPressedWidget(){
     if(!this->lastPressedComponent)
         return;
     string lastPressedComponentID = this->lastPressedComponent->getID();
-    if(this->selectedWidgetSet.find(lastPressedComponentID) == this->selectedWidgetSet.end())
-        this->selectedWidgetSet.insert(lastPressedComponentID);
-}
-
-void GraphicalPresentation::revertSelectWidget(bool isSelected,string componentID){
-    if(isSelected)
-        this->selectedWidgetSet.erase(componentID);
-    else 
-        this->selectedWidgetSet.insert(componentID);
+    if(!this->isWidgetSelected(lastPressedComponentID))
+        this->selectedWidgetVector.push_back(lastPressedComponentID);
 }
 
 void GraphicalPresentation::moveSelectedWidget(Point deltaPosition){
     HashMap<string,Component*> componentMap = this->presentation->getAllComponents();
-    for each(string componentID in this->selectedWidgetSet){
+    for each(string componentID in this->selectedWidgetVector){
         if(!componentMap.containsKey(componentID))
             continue;
         Component* component = componentMap.get(componentID);
@@ -158,7 +160,7 @@ void GraphicalPresentation::moveSelectedWidget(Point deltaPosition){
 }
 
 void GraphicalPresentation::unSelectAll(){
-    this->selectedWidgetSet.clear();
+    this->selectedWidgetVector.clear();
 }
 
 void GraphicalPresentation::switchState(int stateID){

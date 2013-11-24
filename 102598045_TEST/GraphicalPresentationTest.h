@@ -11,4 +11,5 @@ protected:
     GraphicalPresentation* graphicalPresentation;
     virtual void SetUp();
     virtual void TearDown();
+    vector<string>::iterator findComponentIDInVector(vector<string>& componentIDVector,string componentID);
 };

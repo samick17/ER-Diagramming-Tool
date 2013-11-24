@@ -242,8 +242,8 @@ TEST_F(ERModelTest,testGetNodesConnector){
     //revert argument order
     ASSERT_EQ(connectorPC,this->erModel.getNodesConnector(attributePC_ID,entityPC));
 
-    ASSERT_THROW(this->erModel.getNodesConnector(entityEngineer,attributePC_ID),NullPointerException);
-    ASSERT_THROW(this->erModel.getNodesConnector(entityPC,attributeEmployeeID),NullPointerException);
+    ASSERT_EQ(NULL,this->erModel.getNodesConnector(entityEngineer,attributePC_ID));
+    ASSERT_EQ(NULL,this->erModel.getNodesConnector(entityPC,attributeEmployeeID));
 }
 
 TEST_F(ERModelTest,testGetAllComponents){
@@ -389,7 +389,7 @@ TEST_F(ERModelTest,testUndoDeleteComponent){
     ASSERT_EQ(entityTest,this->erModel.componentMap.get(entityTest->getID()));
     ASSERT_EQ(16,this->erModel.componentMap.size());
 
-    this->erModel.deleteComponent(entityTest);
+    this->erModel.deleteComponent(entityTest->getID());
         
     ASSERT_THROW(this->erModel.componentMap.get(entityTest->getID()),NoSuchKeyException);
     ASSERT_EQ(15,this->erModel.componentMap.size());
@@ -521,24 +521,24 @@ TEST_F(ERModelTest,testCommonUsage){
     ASSERT_EQ(attributeWD_ID,entityWorkDiary->getPrimaryKeyAttributes().get(attributeWD_ID->getID()));
     ASSERT_EQ("WD_ID",entityWorkDiary->getPrimaryKeyAttributes().get(attributeWD_ID->getID())->getName());
 
-    this->erModel.deleteComponent(entityWorkDiary);
+    this->erModel.deleteComponent(entityWorkDiary->getID());
 
     //Assert there is no such node "Work Diary"
     ASSERT_THROW(this->erModel.getComponentByID(entityWorkDiary->getID()),NoSuchNodeException);
     //ASSERT there is no connection between node 15 and 16
-    ASSERT_THROW(this->erModel.getNodesConnector(entityWorkDiary,node16),NullPointerException);
+    ASSERT_EQ(NULL,this->erModel.getNodesConnector(entityWorkDiary,node16));
     ASSERT_EQ(false,entityWorkDiary->hasConnectedTo(node16));
     ASSERT_EQ(false,node16->hasConnectedTo(entityWorkDiary));
     //ASSERT there is no connection between node 15 and 19
-    ASSERT_THROW(this->erModel.getNodesConnector(entityWorkDiary,node19),NullPointerException);
+    ASSERT_EQ(NULL,this->erModel.getNodesConnector(entityWorkDiary,node19));
     ASSERT_EQ(false,entityWorkDiary->hasConnectedTo(node19));
     ASSERT_EQ(false,node19->hasConnectedTo(entityWorkDiary));
     //ASSERT there is no connection between node 15 and 20
-    ASSERT_THROW(this->erModel.getNodesConnector(entityWorkDiary,node20),NullPointerException);
+    ASSERT_EQ(NULL,this->erModel.getNodesConnector(entityWorkDiary,node20));
     ASSERT_EQ(false,entityWorkDiary->hasConnectedTo(node20));
     ASSERT_EQ(false,node20->hasConnectedTo(entityWorkDiary));
     //ASSERT there is no connection between node 15 and 21
-    ASSERT_THROW(this->erModel.getNodesConnector(entityWorkDiary,node21),NullPointerException);
+    ASSERT_EQ(NULL,this->erModel.getNodesConnector(entityWorkDiary,node21));
     ASSERT_EQ(false,entityWorkDiary->hasConnectedTo(node21));
     ASSERT_EQ(false,node21->hasConnectedTo(entityWorkDiary));
     //ASSERT table

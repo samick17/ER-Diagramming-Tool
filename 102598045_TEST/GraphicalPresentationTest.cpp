@@ -14,6 +14,10 @@ void GraphicalPresentationTest::TearDown(){
     delete this->presentation;
 }
 
+vector<string>::iterator GraphicalPresentationTest::findComponentIDInVector(vector<string>& componentIDVector,string componentID){
+    return find(componentIDVector.begin(),componentIDVector.end(),componentID);
+}
+
 TEST_F(GraphicalPresentationTest,testDeleteComponentDataForPreview){
     ASSERT_EQ(NULL,this->graphicalPresentation->componentDataForPreview);
     this->graphicalPresentation->componentDataForPreview = new ComponentData(ComponentType::TypeAttribute,StringSymbol::Empty);
@@ -22,15 +26,15 @@ TEST_F(GraphicalPresentationTest,testDeleteComponentDataForPreview){
 }
 
 TEST_F(GraphicalPresentationTest,testUpdateAllComponentData){
-    ASSERT_EQ(0,this->graphicalPresentation->componentDataSet.size());
+    ASSERT_EQ(0,this->graphicalPresentation->getAllComponentDataMap().size());
     this->presentation->addNode(ComponentType::TypeAttribute);
     this->presentation->addNode(ComponentType::TypeEntity);
     this->presentation->addNode(ComponentType::TypeRelationShip);
     this->graphicalPresentation->updateAllComponentData();
-    ASSERT_EQ(3,this->graphicalPresentation->componentDataSet.size());
+    ASSERT_EQ(3,this->graphicalPresentation->getAllComponentDataMap().size());
     this->graphicalPresentation->componentDataForPreview = new ComponentData(ComponentType::TypeConnector,"4");
     this->graphicalPresentation->updateAllComponentData();
-    ASSERT_EQ(4,this->graphicalPresentation->componentDataSet.size());
+    ASSERT_EQ(3,this->graphicalPresentation->getAllComponentDataMap().size());
 }
 
 TEST_F(GraphicalPresentationTest,testAddNode){
@@ -65,67 +69,56 @@ TEST_F(GraphicalPresentationTest,testAddConnection){
 }
 
 TEST_F(GraphicalPresentationTest,testIsWidgetSelected){
-    set<string>& selectedWidgetSet = this->graphicalPresentation->selectedWidgetSet;
-    ASSERT_EQ(0,selectedWidgetSet.size());
+    vector<string>& selectedWidgetVector = this->graphicalPresentation->selectedWidgetVector;
+    ASSERT_EQ(0,selectedWidgetVector.size());
     string selectedID = "0";
     ASSERT_EQ(false,this->graphicalPresentation->isWidgetSelected(selectedID));
-    selectedWidgetSet.insert(selectedID);
+    selectedWidgetVector.push_back(selectedID);
     ASSERT_EQ(true,this->graphicalPresentation->isWidgetSelected(selectedID));
 }
 
 TEST_F(GraphicalPresentationTest,testSelectWidget){
-    set<string>& selectedWidgetSet = this->graphicalPresentation->selectedWidgetSet;
-    selectedWidgetSet.insert("1");
+    vector<string>& selectedWidgetVector = this->graphicalPresentation->selectedWidgetVector;
+    selectedWidgetVector.push_back("1");
     //test last Pressed Component is NULL
     this->graphicalPresentation->selectWidget();
-    ASSERT_EQ(0,selectedWidgetSet.size());
+    ASSERT_EQ(0,selectedWidgetVector.size());
     //test last Pressed Component not NULL
     Component* attribute = new Attribute("5");
     //test select widget without ctrl pressed
     this->graphicalPresentation->lastPressedComponent = attribute;
     this->graphicalPresentation->selectWidget();
-    ASSERT_EQ(1,selectedWidgetSet.size());
+    ASSERT_EQ(1,selectedWidgetVector.size());
     //ASSERT Find attribute's ID
-    ASSERT_NE(selectedWidgetSet.end(),selectedWidgetSet.find(attribute->getID()));
+    ASSERT_NE(selectedWidgetVector.end(),this->findComponentIDInVector(selectedWidgetVector,attribute->getID()));
     //test select widget again without ctrl pressed
     this->graphicalPresentation->selectWidget();
-    ASSERT_EQ(0,selectedWidgetSet.size());
+    ASSERT_EQ(0,selectedWidgetVector.size());
     //test select widget with ctrl pressed
     this->graphicalPresentation->isCtrlPressed = true;
     this->graphicalPresentation->selectWidget();
-    ASSERT_EQ(1,selectedWidgetSet.size());
-    ASSERT_NE(selectedWidgetSet.end(),selectedWidgetSet.find(attribute->getID()));
+    ASSERT_EQ(1,selectedWidgetVector.size());
+    ASSERT_NE(selectedWidgetVector.end(),this->findComponentIDInVector(selectedWidgetVector,attribute->getID()));
     Component* entity = new Entity("7");
     this->graphicalPresentation->lastPressedComponent = entity;
     this->graphicalPresentation->selectWidget();
-    ASSERT_EQ(2,selectedWidgetSet.size());
-    ASSERT_NE(selectedWidgetSet.end(),selectedWidgetSet.find(entity->getID()));
+    ASSERT_EQ(2,selectedWidgetVector.size());
+    ASSERT_NE(selectedWidgetVector.end(),this->findComponentIDInVector(selectedWidgetVector,entity->getID()));
     delete attribute;
     delete entity;
 }
 
 TEST_F(GraphicalPresentationTest,testSelectLastPressedWidget){
-    set<string>& selectedWidgetSet = this->graphicalPresentation->selectedWidgetSet;
+    vector<string>& selectedWidgetVector = this->graphicalPresentation->selectedWidgetVector;
     Component* connector = new Connector("12");
     this->graphicalPresentation->selectLastPressedWidget();
-    ASSERT_EQ(0,selectedWidgetSet.size());
+    ASSERT_EQ(0,selectedWidgetVector.size());
     this->graphicalPresentation->lastPressedComponent = connector;
     this->graphicalPresentation->selectLastPressedWidget();
-    ASSERT_EQ(1,selectedWidgetSet.size());
+    ASSERT_EQ(1,selectedWidgetVector.size());
     this->graphicalPresentation->selectLastPressedWidget();
-    ASSERT_EQ(1,selectedWidgetSet.size());
+    ASSERT_EQ(1,selectedWidgetVector.size());
     delete connector;
-}
-
-TEST_F(GraphicalPresentationTest,testRevertSelectWidget){
-    set<string>& selectedWidgetSet = this->graphicalPresentation->selectedWidgetSet;
-    string selectWidgetID = "70";
-    this->graphicalPresentation->revertSelectWidget(false,selectWidgetID);	
-    ASSERT_EQ(1,selectedWidgetSet.size());
-    ASSERT_NE(selectedWidgetSet.end(),selectedWidgetSet.find(selectWidgetID));
-    this->graphicalPresentation->revertSelectWidget(true,selectWidgetID);
-    ASSERT_EQ(0,selectedWidgetSet.size());
-    ASSERT_EQ(selectedWidgetSet.end(),selectedWidgetSet.find(selectWidgetID));
 }
 
 TEST_F(GraphicalPresentationTest,testMoveSelectedWidget){
@@ -140,11 +133,11 @@ TEST_F(GraphicalPresentationTest,testMoveSelectedWidget){
     Point relationShipPosition = relationShip->getRect().getPosition();
     Point connectorPosition = connector->getRect().getPosition();
 
-    this->graphicalPresentation->selectedWidgetSet.insert(attribute->getID());
-    this->graphicalPresentation->selectedWidgetSet.insert(entity->getID());
-    this->graphicalPresentation->selectedWidgetSet.insert(relationShip->getID());
-    this->graphicalPresentation->selectedWidgetSet.insert(connector->getID());
-    this->graphicalPresentation->selectedWidgetSet.insert("test");
+    this->graphicalPresentation->selectedWidgetVector.push_back(attribute->getID());
+    this->graphicalPresentation->selectedWidgetVector.push_back(entity->getID());
+    this->graphicalPresentation->selectedWidgetVector.push_back(relationShip->getID());
+    this->graphicalPresentation->selectedWidgetVector.push_back(connector->getID());
+    this->graphicalPresentation->selectedWidgetVector.push_back("test");
 
     Point deltaPosition = Point(120,201);
     this->graphicalPresentation->moveSelectedWidget(deltaPosition);
@@ -155,11 +148,11 @@ TEST_F(GraphicalPresentationTest,testMoveSelectedWidget){
 }
 
 TEST_F(GraphicalPresentationTest,testUnSelectAll){
-    set<string>& selectedWidgetSet = this->graphicalPresentation->selectedWidgetSet;
-    selectedWidgetSet.insert("test");
-    selectedWidgetSet.insert("7");
+    vector<string>& selectedWidgetVector = this->graphicalPresentation->selectedWidgetVector;
+    selectedWidgetVector.push_back("test");
+    selectedWidgetVector.push_back("7");
     this->graphicalPresentation->unSelectAll();
-    ASSERT_EQ(0,selectedWidgetSet.size());
+    ASSERT_EQ(0,selectedWidgetVector.size());
 }
 
 TEST_F(GraphicalPresentationTest,testSwitchState){

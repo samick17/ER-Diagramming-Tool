@@ -37,7 +37,7 @@ public:
     void saveFile(string filePath);
     void close();
     Node* addNode(string nodeType);
-    void deleteComponent(Component* componentToDelete);
+    void deleteComponent(string componentID);
     int connectTwoNodes(Component* firstNode,Component* secondNode);
     void setCardinality(Component* firstNode,Component* secondNode,string cardinality);
     void redo();

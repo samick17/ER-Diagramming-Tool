@@ -105,9 +105,12 @@ HashMap<string,Component*> TextPresentation::getEntityAttributes(Entity* entity)
 }
 
 string TextPresentation::getCardinality(string input){
-    if(this->cardinalityInputMap.containsKey(input))
+    try{
         return this->cardinalityInputMap.get(input);
-    return StringSymbol::Empty;
+    }
+    catch(Exception&){
+        throw Exception("The cardinality you entered doesn't exist. Please entered a valid one again");
+    }
 }
 
 Component* TextPresentation::findComponent(){
@@ -150,8 +153,8 @@ Node* TextPresentation::addNode(string nodeType){
     return node;
 }
 
-void TextPresentation::deleteComponent(Component* componentToDelete){
-    this->presentation->deleteComponent(componentToDelete);
+void TextPresentation::deleteComponent(string componentID){
+    this->presentation->deleteComponent(componentID);
 }
 
 int TextPresentation::connectTwoNodes(Component* firstNode,Component* secondNode){
@@ -202,10 +205,13 @@ void TextPresentation::initialCardinalityInputMap(){
 }
 
 void TextPresentation::executeSync(string syncEventType){
+    if(!syncMap.containsKey(syncEventType))
+        return;
     try{
         ViewSyncFunction syncFunction = syncMap.get(syncEventType);
         (this->textUIPresenter->*syncFunction)();
     }
-    catch(Exception&){
+    catch(Exception& exception){
+        cout<<exception.getMessage()<<endl;
     }
 }

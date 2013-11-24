@@ -14,7 +14,6 @@ class GraphicalPresentation : public Subject{
     FRIEND_TEST(GraphicalPresentationTest,testIsWidgetSelected);
     FRIEND_TEST(GraphicalPresentationTest,testSelectWidget);
     FRIEND_TEST(GraphicalPresentationTest,testSelectLastPressedWidget);
-    FRIEND_TEST(GraphicalPresentationTest,testRevertSelectWidget);
     FRIEND_TEST(GraphicalPresentationTest,testMoveSelectedWidget);
     FRIEND_TEST(GraphicalPresentationTest,testUnSelectAll);
     FRIEND_TEST(GraphicalPresentationTest,testSwitchState);
@@ -45,7 +44,6 @@ public:
     bool isWidgetSelected(string componentID);
     void selectWidget();
     void selectLastPressedWidget();
-    void revertSelectWidget(bool isSelected,string componentID);
     void moveSelectedWidget(Point position);
     void unSelectAll();
     void switchState(int stateID);
@@ -66,7 +64,7 @@ private:
     Component* getComponentByComponentData(ComponentData* componentData);
     void deleteComponentDataForPreview();
     Presentation* presentation;
-    set<string> selectedWidgetSet;
+    vector<string> selectedWidgetVector;
     HashMap<string,ComponentData*> componentDataMap;
     ComponentData* componentDataForPreview;
     bool isCtrlPressed;

@@ -2,6 +2,8 @@
 #include "WidgetDefaultSetting.h"
 #include "Number.h"
 
+const Size Size::Zero = Size(0,0);
+
 Size::Size(double width,double height) : width(width),height(height){
 }
 

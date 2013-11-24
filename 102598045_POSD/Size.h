@@ -14,6 +14,8 @@ public:
     double getHalfHeight();
 
     bool operator==(const Size& sizeToCompare) const;
+
+    static const Size Zero;
 private:
     double width;
     double height;

@@ -34,7 +34,7 @@ void TextUIPresenter::displayMenu(){
 }
 
 void TextUIPresenter::displayTable(){
-	HashMap<string,Table*> tableMap = this->textPresentation->getAllTables();
+    HashMap<string,Table*> tableMap = this->textPresentation->getAllTables();
     cout<<" +----------------+--------------------------------------------------"<<endl;
     cout<<" |    Entity      |  Attributes"<<endl;
     cout<<" +----------------+--------------------------------------------------"<<endl;

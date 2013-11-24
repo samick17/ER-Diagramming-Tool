@@ -24,8 +24,8 @@ Node* Presentation::addNode(string componentType){
     return this->erModel->addNode(componentType);
 }
 
-void Presentation::deleteComponent(Component* component){
-    this->erModel->deleteComponent(component);
+void Presentation::deleteComponent(string componentID){
+    this->erModel->deleteComponent(componentID);
 }
 
 int Presentation::addConnection(Component* firstNode,Component* secondNode){

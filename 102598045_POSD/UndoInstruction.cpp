@@ -4,5 +4,5 @@
 void UndoInstruction::execute(TextPresentation* textPresentation,TextUIPresenter* textUIPresenter){
     textPresentation->undo();
     cout<<"Undo succeed."<<endl;
-	textPresentation->sync(ControllerEvent::DisplayDiagram);
+    textPresentation->sync(ControllerEvent::Undo);
 }

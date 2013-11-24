@@ -30,16 +30,16 @@ void ConnectState::doMouseMoveEvent(Point position){
 void ConnectState::doMouseDragEvent(Point position){
     ComponentData* componentData = this->graphicalPresentation->getComponentDataForPreview();
     ConnectorData* connectorData = dynamic_cast<ConnectorData*>(componentData);
-    if(connectorData){
-        connectorData->setTargetPoint(position);
-        Component* sourceComponent = this->graphicalPresentation->getLastPressedComponent();
-        Component* targetComponent = this->graphicalPresentation->getLastMovedComponent();
-        Rect sourceRect = sourceComponent->getRect();
-        Rect targetRect = Rect(position,Size(0,0));
-        if(targetComponent)
-            targetRect = targetComponent->getRect();
-        connectorData->setPointPair(sourceRect.getMinDistanceToRectPoint(targetRect));
-    }
+    if(!connectorData)
+        return;
+    connectorData->setTargetPoint(position);
+    Component* sourceComponent = this->graphicalPresentation->getLastPressedComponent();
+    Component* targetComponent = this->graphicalPresentation->getLastMovedComponent();
+    Rect sourceRect = sourceComponent->getRect();
+    Rect targetRect = Rect(position,Size::Zero);
+    if(targetComponent)
+        targetRect = targetComponent->getRect();
+    connectorData->setPointPair(sourceRect.getMinDistanceToRectPoint(targetRect));
 }
 
 void ConnectState::doMouseReleaseEvent(Point position){
