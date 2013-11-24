@@ -22,7 +22,8 @@ ComponentFactory::~ComponentFactory(){
 //return component pointer, if doesn't has such type, throw exception
 Component* ComponentFactory::createComponent(string componentType,string name){
     NewComponentFunction newComponentFunctiontion = findNewComponentFunction(componentType);
-    Component* component = newComponentFunctiontion(StringUtil::intToString(count),name);
+    string componentID = StringUtil::intToString(count);
+    Component* component = newComponentFunctiontion(componentID,name);
     ComponentFactory::count++;
     return component;
 }

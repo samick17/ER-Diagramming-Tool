@@ -96,6 +96,7 @@
     <ClCompile Include="GeneratedFiles\Release\moc_GUIScene.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="GUITableView.cpp" />
     <ClCompile Include="MenuSetting.cpp" />
     <ClCompile Include="SetPrimaryKeyState.cpp" />
     <ClCompile Include="Subject.cpp" />
@@ -230,6 +231,7 @@
     <ClInclude Include="CommandFactory.h" />
     <ClInclude Include="ConnectorData.h" />
     <ClInclude Include="DialogSetting.h" />
+    <ClInclude Include="GUITableView.h" />
     <ClInclude Include="MenuSetting.h" />
     <ClInclude Include="SetPrimaryKeyState.h" />
     <ClInclude Include="Subject.h" />

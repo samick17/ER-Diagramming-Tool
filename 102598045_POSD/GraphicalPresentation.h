@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Component.h"
-#include <set>
+#include "HashMap.h"
 #include "Presentation.h"
 #include "StateSubject.h"
 
@@ -24,7 +24,7 @@ public:
     ~GraphicalPresentation();
 
     StateSubject* getStateSubject();
-    set<ComponentData*> getAllComponentDataSet();
+    HashMap<string,ComponentData*> getAllComponentDataMap();
     ComponentData* getComponentDataForPreview();
     void setComponentDataForPreview(ComponentData* componentDataForPreview);
 
@@ -65,7 +65,7 @@ protected:
 private:
     Presentation* presentation;
     set<string> selectedWidgetSet;
-    set<ComponentData*> componentDataSet;
+    HashMap<string,ComponentData*> componentDataMap;
     ComponentData* componentDataForPreview;
     bool isCtrlPressed;
     StateSubject stateSubject;

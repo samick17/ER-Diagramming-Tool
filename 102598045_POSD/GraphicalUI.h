@@ -5,6 +5,7 @@
 #include <QMenuBar>
 #include <QToolBar>
 #include "GUIScene.h"
+#include "GUITableView.h"
 #include "FileMenuItem.h"
 #include "AddMenuItem.h"
 #include "FileToolBar.h"
@@ -12,6 +13,9 @@
 #include "QActionMap.h"
 #include "ISynchronizer.h"
 #include "Component.h"
+
+#define COMPONENT_VIEW_STRETCH      3
+#define TABLE_VIEW_STRETCH          1
 
 class GraphicalPresentation;
 class SelectedFrameWidget;
@@ -42,6 +46,7 @@ private:
     QMenuBar* menuBar;
     QGraphicsView* view;
     GUIScene* scene;
+    GUITableView* tableView;
     QActionMap* actionMap;
     typedef void (GraphicalUI::*ViewSyncFunction)();
     HashMap<string,ViewSyncFunction> syncMap;

@@ -19,8 +19,8 @@ StateSubject* GraphicalPresentation::getStateSubject(){
     return &this->stateSubject;
 }
 
-set<ComponentData*> GraphicalPresentation::getAllComponentDataSet(){
-    return this->componentDataSet;
+HashMap<string,ComponentData*> GraphicalPresentation::getAllComponentDataMap(){
+    return this->componentDataMap;
 }
 
 ComponentData* GraphicalPresentation::getComponentDataForPreview(){
@@ -30,7 +30,6 @@ ComponentData* GraphicalPresentation::getComponentDataForPreview(){
 void GraphicalPresentation::setComponentDataForPreview(ComponentData* componentDataForPreview){
     this->deleteComponentDataForPreview();
     this->componentDataForPreview = componentDataForPreview;
-    this->notify();
 }
 
 void GraphicalPresentation::deleteComponentDataForPreview(){
@@ -41,11 +40,9 @@ void GraphicalPresentation::deleteComponentDataForPreview(){
 }
 
 void GraphicalPresentation::updateAllComponentData(){
-    this->componentDataSet.clear();
+    this->componentDataMap.clear();
     for each(Component* component in this->presentation->getAllComponents())
-        this->componentDataSet.insert(component->getComponentData());
-    if(this->componentDataForPreview)
-        this->componentDataSet.insert(componentDataForPreview);
+        this->componentDataMap.put(component->getID(),component->getComponentData());
 }
 
 Node* GraphicalPresentation::getLastAddedNode(){

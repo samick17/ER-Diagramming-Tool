@@ -51,13 +51,13 @@ void TextUIPresenter::displayTable(){
 }
 
 void TextUIPresenter::displayComponents(){
-	HashMap<string,Component*> componentMap = this->textPresentation->getAllComponents();
+    HashMap<string,Component*> componentMap = this->textPresentation->getAllComponents();
     this->displayTitle("Components");
     this->displayComponentMap(componentMap);
 }
 
 void TextUIPresenter::displayConnections(){
-	HashMap<string,Connector*> connectorMap = this->textPresentation->getAllConnections();
+    HashMap<string,Connector*> connectorMap = this->textPresentation->getAllConnections();
     this->displayTitle("Connections");
     cout<<" +----------------------------------------------"<<endl;
     cout<<"    Connectors   |     Node1     |     Node2"<<endl;

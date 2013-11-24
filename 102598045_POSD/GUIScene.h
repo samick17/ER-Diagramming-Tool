@@ -31,7 +31,7 @@ private:
     GraphicalPresentation* graphicalPresentation;
     ComponentData* getComponentDataAtPosition(QPointF qPosition);
     pair<Point,ComponentData*> getPointComponentPair(QGraphicsSceneMouseEvent* mouseEvent);
-    void addWidget(ComponentWidget* widget);
+    void addWidget(ComponentData* componentData);
     void updateAll();
 private slots:
     void executeNotify();

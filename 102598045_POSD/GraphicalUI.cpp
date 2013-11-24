@@ -59,7 +59,7 @@ void GraphicalUI::setTitle(string title,string iconPath){
 }
 
 void GraphicalUI::initialGraphicView(){
-    QHBoxLayout* layout = new QHBoxLayout();	
+    QHBoxLayout* layout = new QHBoxLayout();
     QWidget* centralWidget = new QWidget();
     centralWidget->setLayout(layout);
     this->setCentralWidget(centralWidget);
@@ -69,17 +69,11 @@ void GraphicalUI::initialGraphicView(){
     this->view->setScene(this->scene);
     this->view->setMouseTracking(true);
     layout->addWidget(this->view);
-    layout->setStretchFactor(this->view,5);
+    layout->setStretchFactor(this->view,COMPONENT_VIEW_STRETCH);
 
-    QTableWidget* tableWidget = new QTableWidget();
-    layout->addWidget(tableWidget);
-    layout->setStretchFactor(tableWidget,2);
-    QStringList list;
-    list.append("Type");
-    list.append("Text");
-    tableWidget->setRowCount(10);
-    tableWidget->setColumnCount(2);
-    tableWidget->setHorizontalHeaderLabels(list);
+    this->tableView = new GUITableView(this->graphicalPresentation);
+    layout->addWidget(this->tableView);
+    layout->setStretchFactor(this->tableView,TABLE_VIEW_STRETCH);
 }
 
 void GraphicalUI::initialAllAction(){
@@ -178,7 +172,7 @@ void GraphicalUI::executeSync(string syncEventType){
 
 void GraphicalUI::refreshAllWidgets(){
     this->graphicalPresentation->updateAllComponentData();
-    this->scene->refreshAllWidgets();
+    this->graphicalPresentation->notify();
 }
 
 void GraphicalUI::setKeyCtrlPressed(QKeyEvent* keyEvent){
@@ -193,6 +187,7 @@ void GraphicalUI::displaySetTextDialog(){
     if(isOKClicked){
         ComponentData* componentData = this->graphicalPresentation->getComponentDataForPreview();
         componentData->setName(text.toStdString());
+        this->graphicalPresentation->notify();
     }
     else {
         this->graphicalPresentation->switchState(StateID::PointerState);
