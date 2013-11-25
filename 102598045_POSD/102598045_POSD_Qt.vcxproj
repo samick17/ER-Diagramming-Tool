@@ -90,6 +90,7 @@
     <ClCompile Include="CommandFactory.cpp" />
     <ClCompile Include="ConnectorData.cpp" />
     <ClCompile Include="DialogSetting.cpp" />
+    <ClCompile Include="EditTextOfComponentsCommand.cpp" />
     <ClCompile Include="GeneratedFiles\Debug\moc_GUIScene.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
@@ -98,6 +99,7 @@
     </ClCompile>
     <ClCompile Include="GUITableView.cpp" />
     <ClCompile Include="MenuSetting.cpp" />
+    <ClCompile Include="SetPrimaryKeyCommand.cpp" />
     <ClCompile Include="SetPrimaryKeyState.cpp" />
     <ClCompile Include="Subject.cpp" />
     <ClCompile Include="ConnectorWidget.cpp" />
@@ -231,8 +233,10 @@
     <ClInclude Include="CommandFactory.h" />
     <ClInclude Include="ConnectorData.h" />
     <ClInclude Include="DialogSetting.h" />
+    <ClInclude Include="EditTextOfComponentsCommand.h" />
     <ClInclude Include="GUITableView.h" />
     <ClInclude Include="MenuSetting.h" />
+    <ClInclude Include="SetPrimaryKeyCommand.h" />
     <ClInclude Include="SetPrimaryKeyState.h" />
     <ClInclude Include="Subject.h" />
     <ClInclude Include="ConnectorWidget.h" />

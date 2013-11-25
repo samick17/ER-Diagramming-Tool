@@ -497,9 +497,7 @@ TEST_F(ERModelTest,testCommonUsage){
     ASSERT_EQ(true,node15->hasConnectedTo(node21));
     ASSERT_EQ(true,node21->hasConnectedTo(node15));
     //Set Work Diary primary key "WD_ID" , ASSERT
-    vector<string> workdiaryPrimaryKey;
-    workdiaryPrimaryKey.push_back(attributeWD_ID->getID());
-    entityWorkDiary->setPrimaryKey(workdiaryPrimaryKey);
+    entityWorkDiary->setPrimaryKey(attributeWD_ID->getID());
     ASSERT_EQ(1,entityWorkDiary->getPrimaryKeyAttributes().size());
     ASSERT_EQ(attributeWD_ID,entityWorkDiary->getPrimaryKeyAttributes().get(attributeWD_ID->getID()));
     ASSERT_EQ("WD_ID",entityWorkDiary->getPrimaryKeyAttributes().get(attributeWD_ID->getID())->getName());

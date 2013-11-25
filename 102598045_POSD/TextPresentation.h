@@ -40,6 +40,7 @@ public:
     void deleteComponent(string componentID);
     int connectTwoNodes(Component* firstNode,Component* secondNode);
     void setCardinality(Component* firstNode,Component* secondNode,string cardinality);
+    void setPrimaryKey(string componentID);
     void redo();
     void undo();
     void registerSynchronizer(ISynchronizer* synchronizer);

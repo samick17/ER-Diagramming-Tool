@@ -44,6 +44,10 @@ void Presentation::setCardinality(Connector* connector,string cardinality){
     this->erModel->setCardinality(connector,cardinality);
 }
 
+void Presentation::setPrimaryKey(string componentID){
+    this->erModel->setPrimaryKey(componentID);
+}
+
 Component* Presentation::getComponentByID(string id){
     return this->erModel->getComponentByID(id);
 }

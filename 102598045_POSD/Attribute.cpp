@@ -33,3 +33,8 @@ void Attribute::setAsPrimaryKey(){
     this->componentData->setIsUnderLine(true);
     this->attributeType = AttributeType::PrimaryKey;
 }
+
+void Attribute::setAsDefaultKey(){
+    this->componentData->setIsUnderLine(false);
+    this->attributeType = AttributeType::Default;
+}

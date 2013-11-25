@@ -79,11 +79,13 @@ TEST_F(GraphicalPresentationTest,testIsWidgetSelected){
 
 TEST_F(GraphicalPresentationTest,testSelectWidget){
     vector<string>& selectedWidgetVector = this->graphicalPresentation->selectedWidgetVector;
+    this->graphicalPresentation->isCtrlPressed = false;
     selectedWidgetVector.push_back("1");
-    //test last Pressed Component is NULL
+    selectedWidgetVector.push_back("3");
+    //test lastPressedComponent == NULL
     this->graphicalPresentation->selectWidget();
     ASSERT_EQ(0,selectedWidgetVector.size());
-    //test last Pressed Component not NULL
+    //test lastPressedComponent != NULL
     Component* attribute = new Attribute("5");
     //test select widget without ctrl pressed
     this->graphicalPresentation->lastPressedComponent = attribute;
@@ -103,7 +105,26 @@ TEST_F(GraphicalPresentationTest,testSelectWidget){
     this->graphicalPresentation->lastPressedComponent = entity;
     this->graphicalPresentation->selectWidget();
     ASSERT_EQ(2,selectedWidgetVector.size());
+    ASSERT_NE(selectedWidgetVector.end(),this->findComponentIDInVector(selectedWidgetVector,attribute->getID()));
     ASSERT_NE(selectedWidgetVector.end(),this->findComponentIDInVector(selectedWidgetVector,entity->getID()));
+    //test select again with ctrl pressed
+    this->graphicalPresentation->selectWidget();
+    ASSERT_EQ(1,selectedWidgetVector.size());
+    ASSERT_NE(selectedWidgetVector.end(),this->findComponentIDInVector(selectedWidgetVector,attribute->getID()));
+    //test select widget with ctrl pressed & lastPressedComponent == NULL
+    this->graphicalPresentation->selectWidget();
+    ASSERT_EQ(2,selectedWidgetVector.size());
+    ASSERT_NE(selectedWidgetVector.end(),this->findComponentIDInVector(selectedWidgetVector,attribute->getID()));
+    ASSERT_NE(selectedWidgetVector.end(),this->findComponentIDInVector(selectedWidgetVector,entity->getID()));
+    this->graphicalPresentation->lastPressedComponent = NULL;
+    this->graphicalPresentation->selectWidget();
+    ASSERT_EQ(2,selectedWidgetVector.size());
+    ASSERT_NE(selectedWidgetVector.end(),this->findComponentIDInVector(selectedWidgetVector,attribute->getID()));
+    ASSERT_NE(selectedWidgetVector.end(),this->findComponentIDInVector(selectedWidgetVector,entity->getID()));
+    //test without ctrl pressed & lastPressedComponent == NULL, should unselect all
+    this->graphicalPresentation->isCtrlPressed = false;
+    this->graphicalPresentation->selectWidget();
+    ASSERT_EQ(0,selectedWidgetVector.size());
     delete attribute;
     delete entity;
 }

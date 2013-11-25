@@ -8,6 +8,7 @@
 #include "NoSuchNodeException.h"
 #include "NullPointerException.h"
 #include "InvalidConnectException.h"
+#include "NoConnectionException.h"
 #include "InputFileParser.h"
 #include "OutputFileParser.h"
 
@@ -88,6 +89,24 @@ void ERModel::setCardinality(Connector* connector,string cardinality){
     auto iterator = find(this->cardinalityVector.begin(),this->cardinalityVector.end(),cardinality);
     if(iterator != this->cardinalityVector.end())
         connector->setName(cardinality);
+}
+
+void ERModel::setPrimaryKey(string componentID){
+    //make sure there has such component
+    Attribute* attribute = dynamic_cast<Attribute*>(this->getComponentByID(componentID));
+    //find entity & set its primary key
+    HashMap<string,Entity*> entityMap = this->getAllEntities();
+    Entity* connectedEntity = NULL;
+    for each(Entity* entity in entityMap){
+        if(entity->getConnectedAttributes().containsKey(componentID))
+            connectedEntity = entity;
+    }
+    if(!connectedEntity)
+        throw NoConnectionException(componentID);
+
+    CommandFactory commandFactory;
+    Command* setPrimaryKeyCommand = commandFactory.createSetPrimaryKeyCommand(this,attribute);
+    this->commandManager.execute(setPrimaryKeyCommand);
 }
 
 void ERModel::openFile(string filePath){
@@ -172,8 +191,7 @@ void ERModel::registerSynchronizer(ISynchronizer* synchronizer){
 }
 
 void ERModel::unregisterSynchronizer(ISynchronizer* synchronizer){
-    vector<ISynchronizer*>::iterator synchronizerIterator;
-    synchronizerIterator = find(synchronizerVector.begin(),synchronizerVector.end(),synchronizer);
+    auto synchronizerIterator = find(synchronizerVector.begin(),synchronizerVector.end(),synchronizer);
     synchronizerVector.erase(synchronizerIterator);
 }
 

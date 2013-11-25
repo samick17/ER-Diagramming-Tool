@@ -15,5 +15,5 @@ public:
     HashMap<string,Attribute*> getConnectedAttributes();
     Attribute* getAttributeByID(string id);
     HashMap<string,Attribute*> getPrimaryKeyAttributes();
-    void setPrimaryKey(vector<string> primaryKeyIDVector);
+    void setPrimaryKey(string componentID);
 };

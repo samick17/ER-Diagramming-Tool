@@ -14,6 +14,7 @@ public:
     bool hasSizeToConnect();
     bool isPrimaryKey();
     void setAsPrimaryKey();
+    void setAsDefaultKey();
 private:
     int attributeType;
 };

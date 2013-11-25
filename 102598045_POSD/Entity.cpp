@@ -34,8 +34,7 @@ Attribute* Entity::getAttributeByID(string id){
     for each(Attribute* attribute in attributeMap)
         if(attribute->getID() == id)
             return attribute;
-
-    throw NoConnectionException(id,this->getID());
+    throw NoConnectionException(id);
 }
 
 HashMap<string,Attribute*> Entity::getPrimaryKeyAttributes(){
@@ -46,12 +45,8 @@ HashMap<string,Attribute*> Entity::getPrimaryKeyAttributes(){
     }
     return attributeMap;
 }
-//set this primary key by primary key collection, if doesn't has such attribute, throw exception
-void Entity::setPrimaryKey(vector<string> primaryKeyIDVector){
-    for each(string attributeID in primaryKeyIDVector)
-        this->getAttributeByID(attributeID);
-    for each(string attributeID in primaryKeyIDVector){
-        Attribute* attribute = this->getAttributeByID(attributeID);
-        attribute->setAsPrimaryKey();
-    }
+
+void Entity::setPrimaryKey(string componentID){
+    Attribute* attribute = this->getAttributeByID(componentID);
+    attribute->setAsPrimaryKey();
 }

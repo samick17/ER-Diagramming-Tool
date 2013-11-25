@@ -4,6 +4,7 @@
 #include <string>
 #include "Attribute.h"
 #include "Entity.h"
+#include "Connector.h"
 
 class ComponentUtil{
 public:
@@ -14,8 +15,8 @@ public:
     template<typename Type>
     static HashMap<string,Component*> toComponentHashMap(HashMap<string,Type*> typeHashMap);
     
-    static void connectWithEachOther(Component* firstNode,Component* secondNode,Component* connector);
-    static void disconnectWithEachOther(Component* firstNode,Component* secondNode,Component* connector);
+    static void connectWithEachOther(Component* firstNode,Component* secondNode,Connector* connector);
+    static void disconnectWithEachOther(Component* firstNode,Component* secondNode,Connector* connector);
 };
 //get component's connected node set by type
 template<typename Type>
@@ -24,7 +25,7 @@ static HashMap<string,Type*> ComponentUtil::getConnectedNodeHashMapByType(HashMa
     for each(Component* connection in connectionHashMap)
         for each(Component* connectedNode in connection->getAllConnections())
             if(typeid(*connectedNode).name() == typeid(Type).name())
-                typeHashMap.put(connectedNode->getID(),static_cast<Type*>(connectedNode));    
+                typeHashMap.put(connectedNode->getID(),static_cast<Type*>(connectedNode));
     return typeHashMap;
 }
 //convert all concrete component to base class

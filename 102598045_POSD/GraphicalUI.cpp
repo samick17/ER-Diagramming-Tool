@@ -3,7 +3,6 @@
 #include <QFileDialog>
 #include <QSignalMapper>
 #include <QInputDialog>
-#include <QTableWidget>
 #include <QHBoxLayout>
 #include "GraphicalPresentation.h"
 #include "ApplicationSetting.h"

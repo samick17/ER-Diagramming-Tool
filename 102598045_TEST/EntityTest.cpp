@@ -65,26 +65,20 @@ TEST_F(EntityTest,testGetPrimaryKeyAttributes){
 
     ASSERT_EQ(0,this->entity->getPrimaryKeyAttributes().size());
 
-    vector<string> primaryKeyID;
-    primaryKeyID.push_back("0");
-    this->entity->setPrimaryKey(primaryKeyID);
+    this->entity->setPrimaryKey("0");
 
     ASSERT_EQ(1,this->entity->getPrimaryKeyAttributes().size());
     ASSERT_EQ(this->attribute,this->entity->getPrimaryKeyAttributes().get(this->attribute->getID()));
 }
 
 TEST_F(EntityTest,testSetPrimaryKey){
-    vector<string> primaryKeyID;
-    primaryKeyID.push_back("1");
-    ASSERT_THROW(this->entity->setPrimaryKey(primaryKeyID),NoConnectionException);
+    ASSERT_THROW(this->entity->setPrimaryKey("1"),NoConnectionException);
     Connector connector1("3");
     ComponentUtil::connectWithEachOther(this->entity,this->attribute,&connector1);
 
     ASSERT_EQ(false,(static_cast<Attribute*>(this->attribute)->isPrimaryKey()));
 
-    ASSERT_THROW(this->entity->setPrimaryKey(primaryKeyID),NoConnectionException);
-    primaryKeyID.clear();
-    primaryKeyID.push_back("0");
-    this->entity->setPrimaryKey(primaryKeyID);
+    ASSERT_THROW(this->entity->setPrimaryKey("1"),NoConnectionException);
+    this->entity->setPrimaryKey(this->attribute->getID());
     ASSERT_EQ(true,(static_cast<Attribute*>(this->attribute)->isPrimaryKey()));
 }

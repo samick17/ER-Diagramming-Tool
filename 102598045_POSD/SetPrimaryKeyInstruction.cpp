@@ -23,7 +23,9 @@ vector<string> SetPrimaryKeyInstruction::setEntityAttributesPrimaryKey(Entity* e
         try{
             string input = textPresentation->getInput();
             attributeIDVector = StringUtil::split(input,CharSymbol::Comma);
-            entity->setPrimaryKey(attributeIDVector);
+            for each(string id in attributeIDVector){
+                textPresentation->setPrimaryKey(id);
+            }
             break;
         }
         catch(Exception& exception){

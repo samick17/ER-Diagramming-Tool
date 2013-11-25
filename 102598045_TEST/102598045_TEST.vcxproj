@@ -117,6 +117,7 @@
     <ClCompile Include="..\102598045_POSD\DisplayTableInstruction.cpp" />
     <ClCompile Include="..\102598045_POSD\Document.cpp" />
     <ClCompile Include="..\102598045_POSD\DuplicatedKeyException.cpp" />
+    <ClCompile Include="..\102598045_POSD\EditTextOfComponentsCommand.cpp" />
     <ClCompile Include="..\102598045_POSD\EmptyCollectionException.cpp" />
     <ClCompile Include="..\102598045_POSD\Entity.cpp" />
     <ClCompile Include="..\102598045_POSD\ERModel.cpp" />
@@ -147,6 +148,7 @@
     <ClCompile Include="..\102598045_POSD\RelationType.cpp" />
     <ClCompile Include="..\102598045_POSD\ReorderComponentsUtil.cpp" />
     <ClCompile Include="..\102598045_POSD\SaveFileInstruction.cpp" />
+    <ClCompile Include="..\102598045_POSD\SetPrimaryKeyCommand.cpp" />
     <ClCompile Include="..\102598045_POSD\SetPrimaryKeyInstruction.cpp" />
     <ClCompile Include="..\102598045_POSD\SetPrimaryKeyState.cpp" />
     <ClCompile Include="..\102598045_POSD\Size.cpp" />

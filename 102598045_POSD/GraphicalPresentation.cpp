@@ -81,13 +81,17 @@ void GraphicalPresentation::addConnection(Component* sourceComponent,Component* 
 }
 
 void GraphicalPresentation::openFile(string filePath){
-    this->presentation->openFile(filePath);
-    this->unSelectAll();
-    this->presentation->sync(ControllerEvent::DisplayDiagram);
+    try{
+        this->presentation->openFile(filePath);
+        this->unSelectAll();
+        this->presentation->sync(ControllerEvent::DisplayDiagram);
+    }
+    catch(Exception&){
+    }
 }
 
 void GraphicalPresentation::saveFile(string filePath){
-    this->presentation->saveFile(filePath);
+        this->presentation->saveFile(filePath);
 }
 //close & exit application
 void GraphicalPresentation::close(){
@@ -114,7 +118,11 @@ void GraphicalPresentation::redo(){
 
 void GraphicalPresentation::deleteComponent(){
     for each(string selectedID in this->selectedWidgetVector){
-        this->presentation->deleteComponent(selectedID);
+        try{
+            this->presentation->deleteComponent(selectedID);
+        }
+        catch(Exception&){
+        }
     }
     this->unSelectAll();
     this->sync(ControllerEvent::DeleteComponent);
@@ -129,7 +137,8 @@ bool GraphicalPresentation::isWidgetSelected(string componentID){
 //select widget : highlight/unhilight selected,notify all
 void GraphicalPresentation::selectWidget(){
     if(!this->lastPressedComponent){
-        this->unSelectAll();
+        if(!this->isCtrlPressed)
+            this->unSelectAll();
         return;
     }
     string lastPressedComponentID = this->lastPressedComponent->getID();
@@ -138,6 +147,11 @@ void GraphicalPresentation::selectWidget(){
         this->selectedWidgetVector.clear();
     if(!isSelected)
         this->selectedWidgetVector.push_back(lastPressedComponentID);
+    else {
+        auto iterator = find(this->selectedWidgetVector.begin(),this->selectedWidgetVector.end(),lastPressedComponentID);
+        if(iterator != this->selectedWidgetVector.end())
+        this->selectedWidgetVector.erase(iterator);
+    }
 }
 
 void GraphicalPresentation::selectLastPressedWidget(){

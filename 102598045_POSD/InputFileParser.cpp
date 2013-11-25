@@ -68,7 +68,9 @@ void InputFileParser::loadAllPrimaryKeyAndSetUpFromDoc(Document& doc){
         //set primary key
         Entity* entity = static_cast<Entity*>(this->erModel->getComponentByID(entityID));
         vector<string> primaryKeyAttributeIDVector = StringUtil::split(primaryKeyAttributeID,CharSymbol::Comma);
-        entity->setPrimaryKey(primaryKeyAttributeIDVector);
+        for each(string primaryKeyAttributeID in primaryKeyAttributeIDVector){
+            entity->setPrimaryKey(primaryKeyAttributeID);
+        }
     }
 }
 

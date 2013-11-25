@@ -39,7 +39,7 @@ private:
 
 template<typename Key,typename Value>
 Value HashMap<Key,Value>::put(Key key,Value value){
-    unordered_map<Key,Value>::iterator hashmapIterator = hashmap.find(key);
+    auto hashmapIterator = hashmap.find(key);
     //contains Key
     if(hashmapIterator != hashmap.end())
         throw DuplicatedKeyException(CollectionType::TypeHashMap);
@@ -50,7 +50,7 @@ Value HashMap<Key,Value>::put(Key key,Value value){
 //Insert Value at index
 template<typename Key,typename Value>
 Value HashMap<Key,Value>::insertAt(Key key,Value value,unsigned int index){
-    unordered_map<Key,Value>::iterator hashmapIterator = hashmap.find(key);
+    auto hashmapIterator = hashmap.find(key);
     //contains Key
     if(hashmapIterator != hashmap.end())
         throw DuplicatedKeyException(CollectionType::TypeHashMap);
@@ -62,7 +62,7 @@ Value HashMap<Key,Value>::insertAt(Key key,Value value,unsigned int index){
 
 template<typename Key,typename Value>
 Value HashMap<Key,Value>::get(Key key){
-    unordered_map<Key,Value>::iterator hashmapIterator = hashmap.find(key);
+    auto hashmapIterator = hashmap.find(key);
     //no such key
     if(hashmapIterator == hashmap.end())
         throw NoSuchKeyException(CollectionType::TypeHashMap);
@@ -73,14 +73,14 @@ Value HashMap<Key,Value>::get(Key key){
 
 template<typename Key,typename Value>
 Value HashMap<Key,Value>::remove(Key key){
-    unordered_map<Key,Value>::iterator hashmapIterator = hashmap.find(key);
+    auto hashmapIterator = hashmap.find(key);
     //no such key
     if(hashmapIterator == hashmap.end())
         throw NoSuchKeyException(CollectionType::TypeHashMap);
     Value value = hashmapIterator->second;
     hashmap.erase(hashmapIterator);
 
-    vector<Value>::iterator valueIterator = find(valueVector.begin(),valueVector.end(),value);
+    auto valueIterator = find(valueVector.begin(),valueVector.end(),value);
     valueVector.erase(valueIterator);
 
     return value;
@@ -93,7 +93,7 @@ unsigned int HashMap<Key,Value>::size(){
 
 template<typename Key,typename Value>
 bool HashMap<Key,Value>::containsKey(Key key){
-    unordered_map<Key,Value>::iterator hashmapIterator = hashmap.find(key);
+    auto hashmapIterator = hashmap.find(key);
     if(hashmapIterator == hashmap.end())
         return false;
     return true;
@@ -101,7 +101,7 @@ bool HashMap<Key,Value>::containsKey(Key key){
 
 template<typename Key,typename Value>
 bool HashMap<Key,Value>::containsValue(Value value){
-    vector<Value>::iterator iteratorFind = find(this->valueVector.begin(),this->valueVector.end(),value);
+    auto iteratorFind = find(this->valueVector.begin(),this->valueVector.end(),value);
     if(iteratorFind != this->valueVector.end())
         return true;
     return false;
@@ -116,7 +116,7 @@ Value HashMap<Key,Value>::getValueByIndex(unsigned int index){
 //get Value's index in hashmap
 template<typename Key,typename Value>
 unsigned int HashMap<Key,Value>::getValueIndex(Value value){
-    vector<Value>::iterator valueIterator = find(valueVector.begin(),valueVector.end(),value);
+    auto valueIterator = find(valueVector.begin(),valueVector.end(),value);
     return distance(valueVector.begin(),valueIterator);
 }
 

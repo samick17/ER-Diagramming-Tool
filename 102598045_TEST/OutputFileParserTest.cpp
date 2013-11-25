@@ -124,9 +124,7 @@ TEST_F(OutputFileParserTest,testWriteAllPrimaryKeyToDoc){
     Entity* entityAccount = static_cast<Entity*>(this->componentMap.get("7"));
     Entity* entityAddress = static_cast<Entity*>(this->componentMap.get("17"));
 
-    vector<string> characterPrimaryKeyVector;
-    characterPrimaryKeyVector.push_back("1");
-    entityCharacter->setPrimaryKey(characterPrimaryKeyVector);
+    entityCharacter->setPrimaryKey("1");
 
     delete this->document;
     this->document = new Document("testDoc");

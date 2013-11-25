@@ -528,6 +528,12 @@
     <ClCompile Include="..\102598045_POSD\SetPrimaryKeyState.cpp">
       <Filter>Source Files\View\GUI\State</Filter>
     </ClCompile>
+    <ClCompile Include="..\102598045_POSD\SetPrimaryKeyCommand.cpp">
+      <Filter>Source Files\Command</Filter>
+    </ClCompile>
+    <ClCompile Include="..\102598045_POSD\EditTextOfComponentsCommand.cpp">
+      <Filter>Source Files\Command</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DirectoryUtil.h">

@@ -8,6 +8,8 @@ SetPrimaryKeyState::~SetPrimaryKeyState(){
 }
 
 void SetPrimaryKeyState::doMousePressEvent(Point position){
+    Component* component = this->graphicalPresentation->getLastPressedComponent();
+	
 }
 
 void SetPrimaryKeyState::doMouseMoveEvent(Point position){

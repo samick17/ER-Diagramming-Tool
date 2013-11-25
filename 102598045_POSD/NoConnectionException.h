@@ -4,6 +4,6 @@
 
 class NoConnectionException : public ComponentException{
 public:
-    NoConnectionException(string firstNodeID,string secondNodeID);
+    NoConnectionException(string componentID);
     ~NoConnectionException();
 };

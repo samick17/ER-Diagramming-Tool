@@ -514,6 +514,12 @@
     <ClCompile Include="GUITableView.cpp">
       <Filter>Source Files\View\GUI\GUIWidget</Filter>
     </ClCompile>
+    <ClCompile Include="SetPrimaryKeyCommand.cpp">
+      <Filter>Source Files\Command</Filter>
+    </ClCompile>
+    <ClCompile Include="EditTextOfComponentsCommand.cpp">
+      <Filter>Source Files\Command</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Attribute.h">
@@ -833,6 +839,12 @@
     </ClInclude>
     <ClInclude Include="GUITableView.h">
       <Filter>Header Files\View\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="SetPrimaryKeyCommand.h">
+      <Filter>Header Files\Command</Filter>
+    </ClInclude>
+    <ClInclude Include="EditTextOfComponentsCommand.h">
+      <Filter>Header Files\Command</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -15,5 +15,5 @@ protected:
     void doUnExecute();
 private:
     ERModel* erModel;
-    Component* node;
+    Node* node;
 };

@@ -167,6 +167,10 @@ void TextPresentation::setCardinality(Component* firstNode,Component* secondNode
     this->presentation->setCardinality(connection,cardinality);
 }
 
+void TextPresentation::setPrimaryKey(string componentID){
+    this->presentation->setPrimaryKey(componentID);
+}
+
 void TextPresentation::redo(){
     this->presentation->redo();
 }
