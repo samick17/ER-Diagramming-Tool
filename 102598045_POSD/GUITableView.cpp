@@ -3,6 +3,8 @@
 #include <QVBoxLayout>
 #include <QKeyEvent>
 #include "GraphicalPresentation.h"
+#include "EditableTableWidgetItem.h"
+#include <iostream>
 
 const int GUITableView::TableSize = 2;
 const string GUITableView::TableColumnTypeName = "Type";
@@ -12,9 +14,7 @@ GUITableView::GUITableView(GraphicalPresentation* graphicalPresentation) : QTabl
     this->setColumnCount(TableSize);
     this->setHorizontalHeaderLabels(QStringList() << TableColumnTypeName.c_str() << TableColumnTextName.c_str());
     this->horizontalHeader()->setResizeMode(QHeaderView::Stretch);
-
     this->graphicalPresentation->registerObserver(this);
-    connect(this,SIGNAL(itemChanged(QTableWidgetItem*)),this,SLOT(onItemChanged()));
 }
 
 GUITableView::~GUITableView(){
@@ -30,11 +30,18 @@ void GUITableView::notify(ISubject* subject){
         QTableWidgetItem* itemType = new QTableWidgetItem(componentData->getType().c_str());
         itemType->setFlags(itemType->flags() ^ Qt::ItemIsEditable);
         this->setItem(index,0,itemType);
-        QTableWidgetItem* itemText = new QTableWidgetItem(componentData->getName().c_str());
+        QTableWidgetItem* itemText = new EditableTableWidgetItem(componentData,componentData->getName());
         this->setItem(index,1,itemText);
         index++;
     }
 }
 
-void GUITableView::onItemChanged(){
+void GUITableView::keyPressEvent(QKeyEvent* keyEvent){
+    if(keyEvent->key() == Qt::Key_Enter || keyEvent->key() == Qt::Key_Return){
+        EditableTableWidgetItem* tableWidgetItem = dynamic_cast<EditableTableWidgetItem*>(this->currentItem());
+        if(!tableWidgetItem)
+            return;
+        cout<<tableWidgetItem->getComponentData()->getName();
+
+    }
 }

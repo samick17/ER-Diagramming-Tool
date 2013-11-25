@@ -520,11 +520,8 @@
     <ClCompile Include="EditTextOfComponentsCommand.cpp">
       <Filter>Source Files\Command</Filter>
     </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_GUITableView.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_GUITableView.cpp">
-      <Filter>Generated Files\Release</Filter>
+    <ClCompile Include="EditableTableWidgetItem.cpp">
+      <Filter>Source Files\View\GUI\GUIWidget</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -848,6 +845,9 @@
     </ClInclude>
     <ClInclude Include="EditTextOfComponentsCommand.h">
       <Filter>Header Files\Command</Filter>
+    </ClInclude>
+    <ClInclude Include="EditableTableWidgetItem.h">
+      <Filter>Source Files\View\GUI\GUIWidget</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
