@@ -116,6 +116,14 @@ void GraphicalPresentation::redo(){
     }
 }
 
+void GraphicalPresentation::setPrimaryKey(string componentID){
+    try{
+        this->presentation->setPrimaryKey(componentID);
+    }
+    catch(Exception&){
+    }
+}
+
 void GraphicalPresentation::deleteComponent(){
     for each(string selectedID in this->selectedWidgetVector){
         try{

@@ -16,8 +16,8 @@ public:
     ~CommandManager();
 
     void execute(Command* command);
-    void redo();
     void undo();
+    void redo();
 
     void popAllStack();
 private:

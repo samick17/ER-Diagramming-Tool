@@ -39,8 +39,8 @@ public:
     void eraseComponent(Component* component);
     void deleteComponent(string componentID);
     int addConnection(Component* firstNode,Component* secondNode);
-    void redo();
     void undo();
+    void redo();
     void setCardinality(Connector* connector,string cardinality);
     void setPrimaryKey(string componentID);
     void openFile(string filePath);

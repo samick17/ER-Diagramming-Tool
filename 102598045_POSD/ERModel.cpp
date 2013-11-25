@@ -75,13 +75,13 @@ int ERModel::addConnection(Component* firstNode,Component* secondNode){
     return result;
 }
 
-void ERModel::redo(){
-    this->commandManager.redo();
+void ERModel::undo(){
+    this->commandManager.undo();
     this->notify();
 }
 
-void ERModel::undo(){
-    this->commandManager.undo();
+void ERModel::redo(){
+    this->commandManager.redo();
     this->notify();
 }
 

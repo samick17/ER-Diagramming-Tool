@@ -40,6 +40,7 @@ public:
     void close();
     void undo();
     void redo();
+    void setPrimaryKey(string componentID);
     void deleteComponent();
     bool isWidgetSelected(string componentID);
     void selectWidget();
