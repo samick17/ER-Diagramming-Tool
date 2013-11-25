@@ -107,6 +107,10 @@ void ERModel::setPrimaryKey(string componentID){
     this->commandManager.execute(setPrimaryKeyCommand);
 }
 
+void ERModel::setComponentText(string componentID,string text){
+    
+}
+
 void ERModel::openFile(string filePath){
     InputFileParser inputFileParser;
     inputFileParser.parseFileToModel(filePath,this);

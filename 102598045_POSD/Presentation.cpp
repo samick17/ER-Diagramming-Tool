@@ -48,6 +48,10 @@ void Presentation::setPrimaryKey(string componentID){
     this->erModel->setPrimaryKey(componentID);
 }
 
+void Presentation::setComponentText(string componentID,string text){
+    this->erModel->setComponentText(componentID,text);
+}
+
 Component* Presentation::getComponentByID(string id){
     return this->erModel->getComponentByID(id);
 }

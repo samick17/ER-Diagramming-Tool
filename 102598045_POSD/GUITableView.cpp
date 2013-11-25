@@ -36,12 +36,13 @@ void GUITableView::notify(ISubject* subject){
     }
 }
 
-void GUITableView::keyPressEvent(QKeyEvent* keyEvent){
+void GUITableView::keyReleaseEvent(QKeyEvent* keyEvent){
     if(keyEvent->key() == Qt::Key_Enter || keyEvent->key() == Qt::Key_Return){
         EditableTableWidgetItem* tableWidgetItem = dynamic_cast<EditableTableWidgetItem*>(this->currentItem());
         if(!tableWidgetItem)
             return;
-        cout<<tableWidgetItem->getComponentData()->getName();
-
+        ComponentData* componentData = tableWidgetItem->getComponentData();
+        string text = tableWidgetItem->text().toStdString();
+        this->graphicalPresentation->setComponentText(componentData->getID(),text);
     }
 }

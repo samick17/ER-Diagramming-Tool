@@ -32,6 +32,7 @@ public:
     void undo();
     void setCardinality(Connector* connector,string cardinality);
     void setPrimaryKey(string componentID);
+    void setComponentText(string componentID,string text);
 
     Component* getComponentByID(string id);
     Connector* getNodesConnector(Component* firstNode,Component* secondNode);

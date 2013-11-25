@@ -43,6 +43,7 @@ public:
     void redo();
     void setCardinality(Connector* connector,string cardinality);
     void setPrimaryKey(string componentID);
+    void setComponentText(string componentID,string text);
     void openFile(string filePath);
     void saveFile(string filePath);
 

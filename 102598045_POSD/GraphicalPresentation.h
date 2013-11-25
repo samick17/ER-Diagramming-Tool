@@ -41,6 +41,7 @@ public:
     void undo();
     void redo();
     void setPrimaryKey(string componentID);
+    void setComponentText(string componentID,string text);
     void deleteComponent();
     bool isWidgetSelected(string componentID);
     void selectWidget();

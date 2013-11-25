@@ -125,6 +125,10 @@ void GraphicalPresentation::setPrimaryKey(string componentID){
     }
 }
 
+void GraphicalPresentation::setComponentText(string componentID,string text){
+    this->presentation->setComponentText(componentID,text);
+}
+
 void GraphicalPresentation::deleteComponent(){
     for each(string selectedID in this->selectedWidgetVector){
         try{
