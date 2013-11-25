@@ -17,7 +17,7 @@ void StateSubject::switchState(int stateID,GraphicalPresentation* graphicalPrese
     this->deleteState();
     StateFactory stateFactory;
     this->state = stateFactory.createState(stateID,graphicalPresentation);
-    notify();
+    this->notify();
     this->state->onCreate();
 }
 

@@ -77,12 +77,10 @@ int ERModel::addConnection(Component* firstNode,Component* secondNode){
 
 void ERModel::undo(){
     this->commandManager.undo();
-    this->notify();
 }
 
 void ERModel::redo(){
     this->commandManager.redo();
-    this->notify();
 }
 
 void ERModel::setCardinality(Connector* connector,string cardinality){

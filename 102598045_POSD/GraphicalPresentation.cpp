@@ -77,6 +77,7 @@ void GraphicalPresentation::addConnection(Component* sourceComponent,Component* 
         this->presentation->sync(ControllerEvent::ConnectTwoNodes);
     }
     catch(Exception&){
+        this->notify();
     }
 }
 
@@ -228,7 +229,6 @@ void GraphicalPresentation::mouseMoveEvent(Point position,ComponentData* compone
 void GraphicalPresentation::mouseReleaseEvent(Point position,ComponentData* componentData){
     this->lastReleasedComponent = this->getComponentByComponentData(componentData);
     this->stateSubject.getState()->mouseReleaseEvent(position);
-    this->notify();
 }
 
 Component* GraphicalPresentation::getComponentByComponentData(ComponentData* componentData){

@@ -1,27 +1,20 @@
 #include "GUITableView.h"
 #include <QHeaderView>
 #include <QVBoxLayout>
+#include <QKeyEvent>
 #include "GraphicalPresentation.h"
 
-const string GUITableView::TableTitle = "Components";
 const int GUITableView::TableSize = 2;
 const string GUITableView::TableColumnTypeName = "Type";
 const string GUITableView::TableColumnTextName = "Text";
 
-GUITableView::GUITableView(GraphicalPresentation* graphicalPresentation) : QWidget(),graphicalPresentation(graphicalPresentation){
-    QVBoxLayout* layout = new QVBoxLayout();
-    this->setLayout(layout);
+GUITableView::GUITableView(GraphicalPresentation* graphicalPresentation) : QTableWidget(),graphicalPresentation(graphicalPresentation){
+    this->setColumnCount(TableSize);
+    this->setHorizontalHeaderLabels(QStringList() << TableColumnTypeName.c_str() << TableColumnTextName.c_str());
+    this->horizontalHeader()->setResizeMode(QHeaderView::Stretch);
 
-    this->titleLabel = new QLabel(TableTitle.c_str());
-    this->titleLabel->setAlignment(Qt::AlignCenter);
-    this->tableWidget = new QTableWidget();
-    this->tableWidget->setColumnCount(TableSize);
-    this->tableWidget->setHorizontalHeaderLabels(QStringList() << TableColumnTypeName.c_str() << TableColumnTextName.c_str());
-    this->tableWidget->horizontalHeader()->setResizeMode(QHeaderView::Stretch);
-
-    layout->addWidget(this->titleLabel);
-    layout->addWidget(this->tableWidget);
     this->graphicalPresentation->registerObserver(this);
+    connect(this,SIGNAL(itemChanged(QTableWidgetItem*)),this,SLOT(onItemChanged()));
 }
 
 GUITableView::~GUITableView(){
@@ -29,13 +22,19 @@ GUITableView::~GUITableView(){
 }
 
 void GUITableView::notify(ISubject* subject){
-    this->tableWidget->clearContents();
+    this->clearContents();
     HashMap<string,ComponentData*> componentDataMap = this->graphicalPresentation->getAllComponentDataMap();
-    this->tableWidget->setRowCount(componentDataMap.size());
+    this->setRowCount(componentDataMap.size());
     unsigned int index = 0;
     for each(ComponentData* componentData in componentDataMap){
-        this->tableWidget->setItem(index,0,new QTableWidgetItem(componentData->getType().c_str()));
-        this->tableWidget->setItem(index,1,new QTableWidgetItem(componentData->getName().c_str()));
+        QTableWidgetItem* itemType = new QTableWidgetItem(componentData->getType().c_str());
+        itemType->setFlags(itemType->flags() ^ Qt::ItemIsEditable);
+        this->setItem(index,0,itemType);
+        QTableWidgetItem* itemText = new QTableWidgetItem(componentData->getName().c_str());
+        this->setItem(index,1,itemText);
         index++;
     }
+}
+
+void GUITableView::onItemChanged(){
 }

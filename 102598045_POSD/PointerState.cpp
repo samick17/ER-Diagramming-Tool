@@ -9,6 +9,7 @@ PointerState::~PointerState(){
 
 void PointerState::doMousePressEvent(Point position){
     this->graphicalPresentation->selectWidget();
+    this->graphicalPresentation->notify();
 }
 
 void PointerState::doMouseMoveEvent(Point position){
