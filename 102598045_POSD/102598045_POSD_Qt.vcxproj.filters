@@ -185,6 +185,12 @@
     <Filter Include="Header Files\Observer">
       <UniqueIdentifier>{70023ca4-13af-4db2-a9b8-d91264864f77}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Model\Component">
+      <UniqueIdentifier>{96eecfc7-8052-4a2f-9495-544f7bebfd70}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Model\Component">
+      <UniqueIdentifier>{311816ab-8122-4d89-bf94-5a39633e197e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -195,9 +201,6 @@
     </ClCompile>
     <ClCompile Include="GeneratedFiles\Release\moc_GraphicalUI.cpp">
       <Filter>Generated Files\Release</Filter>
-    </ClCompile>
-    <ClCompile Include="..\102598045_POSD\Attribute.cpp">
-      <Filter>Source Files\Model</Filter>
     </ClCompile>
     <ClCompile Include="..\102598045_POSD\AttributeType.cpp">
       <Filter>Source Files\Constants</Filter>
@@ -223,9 +226,6 @@
     <ClCompile Include="..\102598045_POSD\ComponentType.cpp">
       <Filter>Source Files\Constants</Filter>
     </ClCompile>
-    <ClCompile Include="..\102598045_POSD\Component.cpp">
-      <Filter>Source Files\Model</Filter>
-    </ClCompile>
     <ClCompile Include="..\102598045_POSD\ConnectionData.cpp">
       <Filter>Source Files\Struct</Filter>
     </ClCompile>
@@ -237,12 +237,6 @@
     </ClCompile>
     <ClCompile Include="..\102598045_POSD\Document.cpp">
       <Filter>Source Files\Parser</Filter>
-    </ClCompile>
-    <ClCompile Include="..\102598045_POSD\Connector.cpp">
-      <Filter>Source Files\Model</Filter>
-    </ClCompile>
-    <ClCompile Include="..\102598045_POSD\Entity.cpp">
-      <Filter>Source Files\Model</Filter>
     </ClCompile>
     <ClCompile Include="..\102598045_POSD\ERModel.cpp">
       <Filter>Source Files\Model</Filter>
@@ -264,12 +258,6 @@
     </ClCompile>
     <ClCompile Include="..\102598045_POSD\ComponentUtil.cpp">
       <Filter>Source Files\Util</Filter>
-    </ClCompile>
-    <ClCompile Include="..\102598045_POSD\Node.cpp">
-      <Filter>Source Files\Model</Filter>
-    </ClCompile>
-    <ClCompile Include="..\102598045_POSD\RelationShip.cpp">
-      <Filter>Source Files\Model</Filter>
     </ClCompile>
     <ClCompile Include="..\102598045_POSD\Table.cpp">
       <Filter>Source Files\Model</Filter>
@@ -526,21 +514,27 @@
     <ClCompile Include="Cardinality.cpp">
       <Filter>Source Files\Model</Filter>
     </ClCompile>
+    <ClCompile Include="..\102598045_POSD\Attribute.cpp">
+      <Filter>Source Files\Model\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="..\102598045_POSD\Component.cpp">
+      <Filter>Source Files\Model\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="..\102598045_POSD\Connector.cpp">
+      <Filter>Source Files\Model\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="..\102598045_POSD\Entity.cpp">
+      <Filter>Source Files\Model\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="..\102598045_POSD\Node.cpp">
+      <Filter>Source Files\Model\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="..\102598045_POSD\RelationShip.cpp">
+      <Filter>Source Files\Model\Component</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Attribute.h">
-      <Filter>Header Files\Model</Filter>
-    </ClInclude>
-    <ClInclude Include="Connector.h">
-      <Filter>Header Files\Model</Filter>
-    </ClInclude>
     <ClInclude Include="ERModel.h">
-      <Filter>Header Files\Model</Filter>
-    </ClInclude>
-    <ClInclude Include="Entity.h">
-      <Filter>Header Files\Model</Filter>
-    </ClInclude>
-    <ClInclude Include="Node.h">
       <Filter>Header Files\Model</Filter>
     </ClInclude>
     <ClInclude Include="Table.h">
@@ -576,9 +570,6 @@
     <ClInclude Include="ComponentConnectionSize.h">
       <Filter>Header Files\Constants</Filter>
     </ClInclude>
-    <ClInclude Include="Component.h">
-      <Filter>Header Files\Model</Filter>
-    </ClInclude>
     <ClInclude Include="ComponentUtil.h">
       <Filter>Header Files\Util</Filter>
     </ClInclude>
@@ -611,9 +602,6 @@
     </ClInclude>
     <ClInclude Include="HashMap.h">
       <Filter>Header Files\Collection</Filter>
-    </ClInclude>
-    <ClInclude Include="RelationShip.h">
-      <Filter>Header Files\Model</Filter>
     </ClInclude>
     <ClInclude Include="NullPointerException.h">
       <Filter>Header Files\Exception</Filter>
@@ -854,6 +842,24 @@
     </ClInclude>
     <ClInclude Include="Cardinality.h">
       <Filter>Header Files\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="Component.h">
+      <Filter>Header Files\Model\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="Connector.h">
+      <Filter>Header Files\Model\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="Attribute.h">
+      <Filter>Header Files\Model\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="Entity.h">
+      <Filter>Header Files\Model\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="RelationShip.h">
+      <Filter>Header Files\Model\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="Node.h">
+      <Filter>Header Files\Model\Component</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -3,13 +3,9 @@
 #include "EmptyCollectionException.h"
 
 void AddNodeCommandTest::SetUp(){
-    this->presentation = new Presentation(&this->erModel);
-    this->textPresentation = new TextPresentation(this->presentation);
 }
 
 void AddNodeCommandTest::TearDown(){
-    delete this->presentation;
-    delete this->textPresentation;
 }
 
 TEST_F(AddNodeCommandTest,testAddNodeCommand){

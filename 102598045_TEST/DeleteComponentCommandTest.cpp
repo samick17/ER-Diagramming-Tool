@@ -4,8 +4,6 @@
 #include "ComponentType.h"
 
 void DeleteComponentCommandTest::SetUp(){
-    this->presentation = new Presentation(&this->erModel);
-    this->textPresentation = new TextPresentation(this->presentation);
     Component* entity1 = this->erModel.addNode(ComponentType::TypeEntity);
     Component* attribute1 = this->erModel.addNode(ComponentType::TypeAttribute);
     Component* attribute2 = this->erModel.addNode(ComponentType::TypeAttribute);
@@ -29,8 +27,6 @@ void DeleteComponentCommandTest::SetUp(){
 }
 
 void DeleteComponentCommandTest::TearDown(){
-    delete this->presentation;
-    delete this->textPresentation;
 }
 
 TEST_F(DeleteComponentCommandTest,testDeleteComponentCommand){

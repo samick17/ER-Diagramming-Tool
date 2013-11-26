@@ -145,30 +145,18 @@
     <Filter Include="Source Files\MockObject">
       <UniqueIdentifier>{2750ec86-be0c-4ac3-86c3-d98dcee584bc}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\ModelTest\Component">
+      <UniqueIdentifier>{17cff8f5-416f-47f1-960d-1844b043a395}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Unit Testing Files\ModelTest\Component">
+      <UniqueIdentifier>{35828936-14bf-43c5-9239-fba75a013efc}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MainTest.cpp">
       <Filter>Unit Testing Files</Filter>
     </ClCompile>
-    <ClCompile Include="ComponentTest.cpp">
-      <Filter>Unit Testing Files\ModelTest</Filter>
-    </ClCompile>
-    <ClCompile Include="ConnectorTest.cpp">
-      <Filter>Unit Testing Files\ModelTest</Filter>
-    </ClCompile>
     <ClCompile Include="ERModelTest.cpp">
-      <Filter>Unit Testing Files\ModelTest</Filter>
-    </ClCompile>
-    <ClCompile Include="AttributeTest.cpp">
-      <Filter>Unit Testing Files\ModelTest</Filter>
-    </ClCompile>
-    <ClCompile Include="EntityTest.cpp">
-      <Filter>Unit Testing Files\ModelTest</Filter>
-    </ClCompile>
-    <ClCompile Include="RelationShipTest.cpp">
-      <Filter>Unit Testing Files\ModelTest</Filter>
-    </ClCompile>
-    <ClCompile Include="NodeTest.cpp">
       <Filter>Unit Testing Files\ModelTest</Filter>
     </ClCompile>
     <ClCompile Include="TableTest.cpp">
@@ -540,30 +528,39 @@
     <ClCompile Include="CardinalityTest.cpp">
       <Filter>Unit Testing Files\ModelTest</Filter>
     </ClCompile>
+    <ClCompile Include="SetPrimaryKeyCommandTest.cpp">
+      <Filter>Unit Testing Files\CommandTest</Filter>
+    </ClCompile>
+    <ClCompile Include="EditTextOfComponentsCommandTest.cpp">
+      <Filter>Unit Testing Files\CommandTest</Filter>
+    </ClCompile>
+    <ClCompile Include="AttributeTest.cpp">
+      <Filter>Unit Testing Files\ModelTest\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="ComponentTest.cpp">
+      <Filter>Unit Testing Files\ModelTest\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="ConnectorTest.cpp">
+      <Filter>Unit Testing Files\ModelTest\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="EntityTest.cpp">
+      <Filter>Unit Testing Files\ModelTest\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="NodeTest.cpp">
+      <Filter>Unit Testing Files\ModelTest\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="RelationShipTest.cpp">
+      <Filter>Unit Testing Files\ModelTest\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="ConnectorDataTest.cpp">
+      <Filter>Unit Testing Files\StructTest</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DirectoryUtil.h">
       <Filter>Header Files\TestingUtils</Filter>
     </ClInclude>
-    <ClInclude Include="ComponentTest.h">
-      <Filter>Header Files\ModelTest</Filter>
-    </ClInclude>
     <ClInclude Include="ERModelTest.h">
-      <Filter>Header Files\ModelTest</Filter>
-    </ClInclude>
-    <ClInclude Include="ConnectorTest.h">
-      <Filter>Header Files\ModelTest</Filter>
-    </ClInclude>
-    <ClInclude Include="AttributeTest.h">
-      <Filter>Header Files\ModelTest</Filter>
-    </ClInclude>
-    <ClInclude Include="EntityTest.h">
-      <Filter>Header Files\ModelTest</Filter>
-    </ClInclude>
-    <ClInclude Include="RelationShipTest.h">
-      <Filter>Header Files\ModelTest</Filter>
-    </ClInclude>
-    <ClInclude Include="NodeTest.h">
       <Filter>Header Files\ModelTest</Filter>
     </ClInclude>
     <ClInclude Include="TableTest.h">
@@ -676,6 +673,33 @@
     </ClInclude>
     <ClInclude Include="CardinalityTest.h">
       <Filter>Header Files\ModelTest</Filter>
+    </ClInclude>
+    <ClInclude Include="SetPrimaryKeyCommandTest.h">
+      <Filter>Header Files\CommandTest</Filter>
+    </ClInclude>
+    <ClInclude Include="EditTextOfComponentsCommandTest.h">
+      <Filter>Header Files\CommandTest</Filter>
+    </ClInclude>
+    <ClInclude Include="AttributeTest.h">
+      <Filter>Header Files\ModelTest\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="ComponentTest.h">
+      <Filter>Header Files\ModelTest\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="ConnectorTest.h">
+      <Filter>Header Files\ModelTest\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="EntityTest.h">
+      <Filter>Header Files\ModelTest\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="NodeTest.h">
+      <Filter>Header Files\ModelTest\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="RelationShipTest.h">
+      <Filter>Header Files\ModelTest\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="ConnectorDataTest.h">
+      <Filter>Header Files\StructTest</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

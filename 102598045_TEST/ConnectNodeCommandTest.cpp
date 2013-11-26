@@ -3,8 +3,6 @@
 #include "ComponentType.h"
 
 void ConnectNodeCommandTest::SetUp(){
-    this->presentation = new Presentation(&this->erModel);
-    this->textPresentation = new TextPresentation(this->presentation);
     this->entity = static_cast<Entity*>(this->erModel.addNode(ComponentType::TypeEntity));
     this->attribute = static_cast<Attribute*>(this->erModel.addNode(ComponentType::TypeAttribute));
     this->relationShip = static_cast<RelationShip*>(this->erModel.addNode(ComponentType::TypeRelationShip));
@@ -12,8 +10,6 @@ void ConnectNodeCommandTest::SetUp(){
 }
 
 void ConnectNodeCommandTest::TearDown(){
-    delete this->presentation;
-    delete this->textPresentation;
 }
 
 TEST_F(ConnectNodeCommandTest,testConnectNodeCommand){

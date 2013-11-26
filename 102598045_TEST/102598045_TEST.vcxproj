@@ -174,8 +174,10 @@
     <ClCompile Include="CardinalityTest.cpp" />
     <ClCompile Include="CommandFactoryTest.cpp" />
     <ClCompile Include="CommandManagerTest.cpp" />
+    <ClCompile Include="ConnectorDataTest.cpp" />
     <ClCompile Include="ConnectStateTest.cpp" />
     <ClCompile Include="DirectoryUtil.cpp" />
+    <ClCompile Include="EditTextOfComponentsCommandTest.cpp" />
     <ClCompile Include="FileCreator.cpp" />
     <ClCompile Include="GraphicalPresentationTest.cpp" />
     <ClCompile Include="InstructionMenuTest.cpp" />
@@ -198,6 +200,7 @@
     <ClCompile Include="PointerStateTest.cpp" />
     <ClCompile Include="RelationShipTest.cpp" />
     <ClCompile Include="ReorderComponentsUtilTest.cpp" />
+    <ClCompile Include="SetPrimaryKeyCommandTest.cpp" />
     <ClCompile Include="StackUtilTest.cpp" />
     <ClCompile Include="StateFactoryTest.cpp" />
     <ClCompile Include="StateSubjectTest.cpp" />
@@ -222,7 +225,9 @@
     <ClInclude Include="CardinalityTest.h" />
     <ClInclude Include="CommandFactoryTest.h" />
     <ClInclude Include="CommandManagerTest.h" />
+    <ClInclude Include="ConnectorDataTest.h" />
     <ClInclude Include="ConnectStateTest.h" />
+    <ClInclude Include="EditTextOfComponentsCommandTest.h" />
     <ClInclude Include="FileCreator.h" />
     <ClInclude Include="GraphicalPresentationTest.h" />
     <ClInclude Include="InstructionMenuTest.h" />
@@ -245,6 +250,7 @@
     <ClInclude Include="PointerStateTest.h" />
     <ClInclude Include="RelationShipTest.h" />
     <ClInclude Include="ReorderComponentsUtilTest.h" />
+    <ClInclude Include="SetPrimaryKeyCommandTest.h" />
     <ClInclude Include="StackUtilTest.h" />
     <ClInclude Include="StateFactoryTest.h" />
     <ClInclude Include="StateSubjectTest.h" />
