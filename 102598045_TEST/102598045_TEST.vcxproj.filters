@@ -555,6 +555,9 @@
     <ClCompile Include="ConnectorDataTest.cpp">
       <Filter>Unit Testing Files\StructTest</Filter>
     </ClCompile>
+    <ClCompile Include="SetPrimaryKeyStateTest.cpp">
+      <Filter>Unit Testing Files\StateTest</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DirectoryUtil.h">
@@ -700,6 +703,9 @@
     </ClInclude>
     <ClInclude Include="ConnectorDataTest.h">
       <Filter>Header Files\StructTest</Filter>
+    </ClInclude>
+    <ClInclude Include="SetPrimaryKeyStateTest.h">
+      <Filter>Header Files\StateTest</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -17,7 +17,7 @@ class GraphicalPresentation : public Subject{
     FRIEND_TEST(GraphicalPresentationTest,testMoveSelectedWidget);
     FRIEND_TEST(GraphicalPresentationTest,testUnSelectAll);
     FRIEND_TEST(GraphicalPresentationTest,testSwitchState);
-    FRIEND_TEST(GraphicalPresentationTest,getComponentByComponentData);
+    FRIEND_TEST(GraphicalPresentationTest,testGetComponentByComponentData);
 public:
     GraphicalPresentation(Presentation* presentation);
     ~GraphicalPresentation();

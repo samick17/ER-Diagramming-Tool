@@ -184,7 +184,7 @@ TEST_F(GraphicalPresentationTest,testSwitchState){
     ASSERT_EQ(typeid(*stateSubject->getState()).name(),typeid(ConnectState).name());
 }
 
-TEST_F(GraphicalPresentationTest,getComponentByComponentData){
+TEST_F(GraphicalPresentationTest,testGetComponentByComponentData){
     ComponentData* componentData = NULL;
     ASSERT_EQ(NULL,this->graphicalPresentation->getComponentByComponentData(componentData));
     Component* relationShip = this->presentation->addNode(ComponentType::TypeRelationShip);

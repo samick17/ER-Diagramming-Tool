@@ -201,6 +201,7 @@
     <ClCompile Include="RelationShipTest.cpp" />
     <ClCompile Include="ReorderComponentsUtilTest.cpp" />
     <ClCompile Include="SetPrimaryKeyCommandTest.cpp" />
+    <ClCompile Include="SetPrimaryKeyStateTest.cpp" />
     <ClCompile Include="StackUtilTest.cpp" />
     <ClCompile Include="StateFactoryTest.cpp" />
     <ClCompile Include="StateSubjectTest.cpp" />
@@ -251,6 +252,7 @@
     <ClInclude Include="RelationShipTest.h" />
     <ClInclude Include="ReorderComponentsUtilTest.h" />
     <ClInclude Include="SetPrimaryKeyCommandTest.h" />
+    <ClInclude Include="SetPrimaryKeyStateTest.h" />
     <ClInclude Include="StackUtilTest.h" />
     <ClInclude Include="StateFactoryTest.h" />
     <ClInclude Include="StateSubjectTest.h" />

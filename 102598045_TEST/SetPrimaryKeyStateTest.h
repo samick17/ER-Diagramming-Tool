@@ -1,9 +1,9 @@
 #pragma once
 
-#include "Cardinality.h"
+#include "SetPrimaryKeyState.h"
 #include <gtest/gtest.h>
 
-class CardinalityTest : public testing::Test{
+class SetPrimaryKeyStateTest : public testing::Test{
 protected:
     virtual void SetUp();
     virtual void TearDown();

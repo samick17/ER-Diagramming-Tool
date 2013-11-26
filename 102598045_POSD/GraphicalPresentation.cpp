@@ -7,6 +7,7 @@
 GraphicalPresentation::GraphicalPresentation(Presentation* presentation) : presentation(presentation){
     this->isCtrlPressed = false;
     this->lastPressedComponent = NULL;
+    this->lastMovedComponent = NULL;
     this->lastReleasedComponent = NULL;
     this->componentDataForPreview = NULL;
 }
@@ -238,11 +239,9 @@ void GraphicalPresentation::mouseReleaseEvent(Point position,ComponentData* comp
 }
 
 Component* GraphicalPresentation::getComponentByComponentData(ComponentData* componentData){
-    if(!componentData)
-        return NULL;
     HashMap<string,Component*> componentMap = this->presentation->getAllComponents();
-    string componentID = componentData->getID();
-    if(componentMap.containsKey(componentID))
-        return componentMap.get(componentID);
+    for each(Component* component in componentMap)
+        if(component->getComponentData() == componentData)
+            return component;
     return NULL;
 }

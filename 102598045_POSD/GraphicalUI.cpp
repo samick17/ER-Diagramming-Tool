@@ -63,9 +63,8 @@ void GraphicalUI::initialGraphicView(){
     centralWidget->setLayout(layout);
     this->setCentralWidget(centralWidget);
 
-    this->view = new QGraphicsView(this);
     this->scene = new GUIScene(this);
-    this->view->setScene(this->scene);
+    this->view = new QGraphicsView(this->scene,this);
     this->view->setMouseTracking(true);
     layout->addWidget(this->view);
     layout->setStretchFactor(this->view,COMPONENT_VIEW_STRETCH);
@@ -175,7 +174,7 @@ void GraphicalUI::refreshAllWidgets(){
 }
 
 void GraphicalUI::setKeyCtrlPressed(QKeyEvent* keyEvent){
-    bool isCtrlPressed = keyEvent->key() == Key_Control;
+    bool isCtrlPressed = (keyEvent->key() == Key_Control);
     isCtrlPressed &= keyEvent->type() == QEvent::KeyPress;
     this->graphicalPresentation->setKeyCtrlState(isCtrlPressed);
 }

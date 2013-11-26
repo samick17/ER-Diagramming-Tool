@@ -3,9 +3,9 @@
 #include "ActionData.h"
 
 QActionMap::QActionMap(GraphicalUI* graphicalUI){
-    for (unsigned int index = 0;index < ActionData::ActionLength;index++){
+    //initial all action
+    for (unsigned int index = 0;index < ActionData::ActionLength;index++)
         this->putQAction(QActionData(index),graphicalUI);
-    }
 }
 
 QActionMap::~QActionMap(){
