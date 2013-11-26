@@ -7,7 +7,7 @@
 class DeleteComponentCommandTest : public testing::Test{
 protected:
     ERModel erModel;
-	Presentation* presentation;
+    Presentation* presentation;
     TextPresentation* textPresentation;
     virtual void SetUp();
     virtual void TearDown();

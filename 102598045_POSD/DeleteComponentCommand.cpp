@@ -65,7 +65,7 @@ void DeleteComponentCommand::removeAndDisconnectComponents(){
     this-> erModel->eraseComponent(this->component);
     //save connectionData & remove connectionSet from ERModel
     for each(Connector* connector in this->connectionMap){
-        saveConnectionData(connector);
+        this->saveConnectionData(connector);
         //save index & remove connector from ERModel
         componentIndexMap.put(connector->getID(),this->erModel->getAllComponents().getValueIndex(connector));
         this->erModel->eraseComponent(connector);

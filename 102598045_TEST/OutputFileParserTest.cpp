@@ -82,7 +82,7 @@ void OutputFileParserTest::SetUp(){
 void OutputFileParserTest::TearDown(){
     delete this->document;
     for each(Component* component in this->componentMap)
-        delete component;    
+        delete component;
     this->componentMap.clear();
     delete this->outputFileParser;
 }
@@ -91,12 +91,12 @@ void OutputFileParserTest::insertComponentMap(Component* component){
     this->componentMap.put(component->getID(),component);
 }
 
-TEST_F(OutputFileParserTest,testWriteAllComponentsToDoc){    
+TEST_F(OutputFileParserTest,testWriteAllComponentsToDoc){
     this->outputFileParser->writeAllComponentsToDoc(*this->document,this->componentMap);
     ASSERT_EQ(28,this->document->rwBuffer.size());
 
     unsigned int index = 0;
-    for each(Component* component in this->componentMap){        
+    for each(Component* component in this->componentMap){
         ASSERT_EQ(this->outputFileParser->serializeComponentToString(component)+StringSymbol::NextLine,this->document->readLine());
         ASSERT_EQ(this->outputFileParser->serializeComponentToString(component)+StringSymbol::NextLine,this->document->rwBuffer[index]);
         index++;

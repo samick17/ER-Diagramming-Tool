@@ -83,3 +83,7 @@ TEST_F(ConnectorTest,testIsNodesConnection){
     ASSERT_EQ(true,this->connector->isNodesConnection(this->attribute,this->entity));
     ASSERT_EQ(true,this->connector->isNodesConnection(this->entity,this->attribute));
 }
+
+TEST_F(ConnectorTest,testIsCardinalityConnector){
+
+}

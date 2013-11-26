@@ -171,6 +171,7 @@
     <ClCompile Include="AddNodeCommandTest.cpp" />
     <ClCompile Include="AddNodeStateTest.cpp" />
     <ClCompile Include="AttributeTest.cpp" />
+    <ClCompile Include="CardinalityTest.cpp" />
     <ClCompile Include="CommandFactoryTest.cpp" />
     <ClCompile Include="CommandManagerTest.cpp" />
     <ClCompile Include="ConnectStateTest.cpp" />
@@ -218,6 +219,7 @@
     <ClInclude Include="AddNodeCommandTest.h" />
     <ClInclude Include="AddNodeStateTest.h" />
     <ClInclude Include="AttributeTest.h" />
+    <ClInclude Include="CardinalityTest.h" />
     <ClInclude Include="CommandFactoryTest.h" />
     <ClInclude Include="CommandManagerTest.h" />
     <ClInclude Include="ConnectStateTest.h" />

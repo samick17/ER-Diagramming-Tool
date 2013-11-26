@@ -16,6 +16,6 @@ void AddNodeCommand::doExecute(){
 }
 
 void AddNodeCommand::doUnExecute(){
-    //remove node    
+    //remove node
     this->erModel->eraseComponent(this->node);
 }

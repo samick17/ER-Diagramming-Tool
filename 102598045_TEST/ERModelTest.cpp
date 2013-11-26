@@ -198,6 +198,18 @@ TEST_F(ERModelTest,testAddConnection){
     ASSERT_EQ(false,hasConnected(relationShipWorkOn,attributeDepartmentName));
 }
 
+TEST_F(ERModelTest,testSetCardinality){
+
+}
+
+TEST_F(ERModelTest,testSetPrimaryKey){
+
+}
+
+TEST_F(ERModelTest,testSetComponentText){
+
+}
+
 TEST_F(ERModelTest,testOpenFile){
     string filePath = FileCreator::createDefaultFile();
 

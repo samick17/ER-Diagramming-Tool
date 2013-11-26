@@ -81,12 +81,12 @@ void ERModel::undo(){
 void ERModel::redo(){
     this->commandManager.redo();
 }
-
+//set cardinality without undo/redo
 void ERModel::setCardinality(Connector* connector,string cardinality){
     if(this->cardinality.hasCardinality(cardinality))
         connector->setName(cardinality);
 }
-
+//set primarykey by its 'id',Exception Case : NoSuchNode,NoConnection
 void ERModel::setPrimaryKey(string componentID){
     //make sure there has such component
     Attribute* attribute = dynamic_cast<Attribute*>(this->getComponentByID(componentID));
@@ -104,10 +104,10 @@ void ERModel::setPrimaryKey(string componentID){
     Command* setPrimaryKeyCommand = commandFactory.createSetPrimaryKeyCommand(this,attribute);
     this->commandManager.execute(setPrimaryKeyCommand);
 }
-
+//set component text & cardinality with undo/redo,Exception Case : NoSuchNode
 void ERModel::setComponentText(string componentID,string text){
     Component* component = this->getComponentByID(componentID);
-
+    //if is connector,determine this operation is valid
     Connector* connector = dynamic_cast<Connector*>(component);
     if(connector && (!connector->isCardinalityConnector() || !this->cardinality.hasCardinality(text)))
         return;

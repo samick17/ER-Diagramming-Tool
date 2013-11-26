@@ -537,6 +537,9 @@
     <ClCompile Include="..\102598045_POSD\Cardinality.cpp">
       <Filter>Source Files\Model</Filter>
     </ClCompile>
+    <ClCompile Include="CardinalityTest.cpp">
+      <Filter>Unit Testing Files\ModelTest</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DirectoryUtil.h">
@@ -670,6 +673,9 @@
     </ClInclude>
     <ClInclude Include="MockIObserver.h">
       <Filter>Header Files\MockObject</Filter>
+    </ClInclude>
+    <ClInclude Include="CardinalityTest.h">
+      <Filter>Header Files\ModelTest</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

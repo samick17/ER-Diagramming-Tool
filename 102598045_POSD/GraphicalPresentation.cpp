@@ -163,7 +163,7 @@ void GraphicalPresentation::selectWidget(){
     else {
         auto iterator = find(this->selectedWidgetVector.begin(),this->selectedWidgetVector.end(),lastPressedComponentID);
         if(iterator != this->selectedWidgetVector.end())
-        this->selectedWidgetVector.erase(iterator);
+            this->selectedWidgetVector.erase(iterator);
     }
 }
 
