@@ -16,6 +16,6 @@ public:
     Command* createAddNodeCommand(ERModel* erModel,Node* node);
     Command* createConnectNodeCommand(ERModel* erModel,Component* firstNode,Component* secondNode,Connector* connector);
     Command* createDeleteComponentCommand(ERModel* erModel,Component* component);
-    Command* createSetPrimaryKeyCommand(ERModel* erModel,Attribute* attribute);
-    Command* createEditTextOfComponentsCommand(ERModel* erModel,Component* component,string text);
+    Command* createSetPrimaryKeyCommand(Attribute* attribute);
+    Command* createEditTextOfComponentsCommand(Component* component,string text);
 };

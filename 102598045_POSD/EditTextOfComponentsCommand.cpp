@@ -2,7 +2,7 @@
 #include "ERModel.h"
 #include "Component.h"
 
-EditTextOfComponentsCommand::EditTextOfComponentsCommand(ERModel* erModel,Component* component,string text) : erModel(erModel),component(component){
+EditTextOfComponentsCommand::EditTextOfComponentsCommand(Component* component,string text) : component(component){
     this->originText = component->getName();
     this->textToSet = text;
 }

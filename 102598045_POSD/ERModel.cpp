@@ -101,7 +101,7 @@ void ERModel::setPrimaryKey(string componentID){
         throw NoConnectionException(componentID);
 
     CommandFactory commandFactory;
-    Command* setPrimaryKeyCommand = commandFactory.createSetPrimaryKeyCommand(this,attribute);
+    Command* setPrimaryKeyCommand = commandFactory.createSetPrimaryKeyCommand(attribute);
     this->commandManager.execute(setPrimaryKeyCommand);
 }
 //set component text & cardinality with undo/redo,Exception Case : NoSuchNode
@@ -113,7 +113,7 @@ void ERModel::setComponentText(string componentID,string text){
         return;
 
     CommandFactory commandFactory;
-    Command* editTextOfComponentsCommand = commandFactory.createEditTextOfComponentsCommand(this,component,text);
+    Command* editTextOfComponentsCommand = commandFactory.createEditTextOfComponentsCommand(component,text);
     this->commandManager.execute(editTextOfComponentsCommand);
 }
 

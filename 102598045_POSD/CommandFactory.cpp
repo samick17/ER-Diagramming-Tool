@@ -20,10 +20,10 @@ Command* CommandFactory::createDeleteComponentCommand(ERModel* erModel,Component
     return new DeleteComponentCommand(erModel,component);
 }
 
-Command* CommandFactory::createSetPrimaryKeyCommand(ERModel* erModel,Attribute* attribute){
-    return new SetPrimaryKeyCommand(erModel,attribute);
+Command* CommandFactory::createSetPrimaryKeyCommand(Attribute* attribute){
+    return new SetPrimaryKeyCommand(attribute);
 }
 
-Command* CommandFactory::createEditTextOfComponentsCommand(ERModel* erModel,Component* component,string text){
-    return new EditTextOfComponentsCommand(erModel,component,text);
+Command* CommandFactory::createEditTextOfComponentsCommand(Component* component,string text){
+    return new EditTextOfComponentsCommand(component,text);
 }
