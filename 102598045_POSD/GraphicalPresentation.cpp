@@ -120,6 +120,7 @@ void GraphicalPresentation::redo(){
 void GraphicalPresentation::setPrimaryKey(string componentID){
     try{
         this->presentation->setPrimaryKey(componentID);
+        this->sync(ControllerEvent::DisplayTable);
     }
     catch(Exception&){
     }
@@ -127,18 +128,19 @@ void GraphicalPresentation::setPrimaryKey(string componentID){
 
 void GraphicalPresentation::setComponentText(string componentID,string text){
     this->presentation->setComponentText(componentID,text);
+    this->sync(ControllerEvent::DisplayDiagram);
 }
 
 void GraphicalPresentation::deleteComponent(){
     for each(string selectedID in this->selectedWidgetVector){
         try{
             this->presentation->deleteComponent(selectedID);
+            this->sync(ControllerEvent::DeleteComponent);
         }
         catch(Exception&){
         }
     }
     this->unSelectAll();
-    this->sync(ControllerEvent::DeleteComponent);
 }
 //is widget being selected?
 bool GraphicalPresentation::isWidgetSelected(string componentID){

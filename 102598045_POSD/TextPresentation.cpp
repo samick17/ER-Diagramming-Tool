@@ -193,6 +193,7 @@ void TextPresentation::sync(string syncEventType){
 void TextPresentation::initialSyncMap(){
     this->syncMap.put(ControllerEvent::OpenFile,&TextUIPresenter::displayDiagram);
     this->syncMap.put(ControllerEvent::AddNode,&TextUIPresenter::displayComponents);
+    this->syncMap.put(ControllerEvent::DeleteComponent,&TextUIPresenter::displayComponents);
     this->syncMap.put(ControllerEvent::ConnectTwoNodes,&TextUIPresenter::displayConnections);
     this->syncMap.put(ControllerEvent::DisplayDiagram,&TextUIPresenter::displayDiagram);
     this->syncMap.put(ControllerEvent::DisplayTable,&TextUIPresenter::displayTable);
