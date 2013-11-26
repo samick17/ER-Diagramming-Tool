@@ -1,4 +1,5 @@
 #include "SetPrimaryKeyCommand.h"
+#include "ERModel.h"
 #include "Attribute.h"
 
 SetPrimaryKeyCommand::SetPrimaryKeyCommand(ERModel* erModel,Attribute* attribute) : erModel(erModel),attribute(attribute){

@@ -1,6 +1,10 @@
 #pragma once
 
 #include "Command.h"
+#include <gtest/gtest_prod.h> 
+
+class ERModel;
+class Node;
 
 class AddNodeCommand : public Command{
     friend class CommandManagerTest;

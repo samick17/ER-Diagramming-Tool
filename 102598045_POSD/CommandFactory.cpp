@@ -3,6 +3,7 @@
 #include "ConnectNodeCommand.h"
 #include "DeleteComponentCommand.h"
 #include "SetPrimaryKeyCommand.h"
+#include "EditTextOfComponentsCommand.h"
 #include "ERModel.h"
 #include "Node.h"
 #include "Connector.h"
@@ -21,4 +22,8 @@ Command* CommandFactory::createDeleteComponentCommand(ERModel* erModel,Component
 
 Command* CommandFactory::createSetPrimaryKeyCommand(ERModel* erModel,Attribute* attribute){
     return new SetPrimaryKeyCommand(erModel,attribute);
+}
+
+Command* CommandFactory::createEditTextOfComponentsCommand(ERModel* erModel,Component* component,string text){
+    return new EditTextOfComponentsCommand(erModel,component,text);
 }

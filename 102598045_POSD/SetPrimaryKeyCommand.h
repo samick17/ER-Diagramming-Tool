@@ -1,6 +1,10 @@
 #pragma once
 
 #include "Command.h"
+#include <gtest/gtest_prod.h>
+
+class ERModel;
+class Attribute;
 
 class SetPrimaryKeyCommand : public Command{
 public:

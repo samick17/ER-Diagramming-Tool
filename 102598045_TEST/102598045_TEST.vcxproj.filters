@@ -534,6 +534,9 @@
     <ClCompile Include="..\102598045_POSD\EditTextOfComponentsCommand.cpp">
       <Filter>Source Files\Command</Filter>
     </ClCompile>
+    <ClCompile Include="..\102598045_POSD\Cardinality.cpp">
+      <Filter>Source Files\Model</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DirectoryUtil.h">

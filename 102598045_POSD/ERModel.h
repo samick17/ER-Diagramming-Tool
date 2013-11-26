@@ -7,6 +7,7 @@
 #include "CommandManager.h"
 #include "ISyncable.h"
 #include "Subject.h"
+#include "Cardinality.h"
 
 class ERModel : public ISyncable,public Subject{
     friend class ERModelTest;
@@ -63,13 +64,14 @@ public:
     void sync(string syncEventType);
 private:
     void initialCountMap();
-    void initialCardinalityVector();
+    void initialCardinality();
     void resetCounting();
     void setNodePosition(string componentType,Node* node);
     static int attributeCount,entityCount,relationShipCount;
     HashMap<string,int*> componentTypeCountMap;
     HashMap<string,Component*> componentMap;
-    vector<string> cardinalityVector;
+    Cardinality cardinality;
+    //vector<string> cardinalityVector;
     vector<ISynchronizer*> synchronizerVector;
     unordered_map<string,double> componentTypeMapOffsetX;
     CommandManager commandManager;

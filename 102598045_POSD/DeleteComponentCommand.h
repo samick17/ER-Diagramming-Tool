@@ -1,9 +1,13 @@
 #pragma once
 
 #include "Command.h"
-#include "Connector.h"
 #include "ConnectionData.h"
 #include "HashMap.h"
+#include <gtest/gtest_prod.h> 
+
+class ERModel;
+class Component;
+class Connector;
 
 class DeleteComponentCommand : public Command{
     friend class DeleteComponentCommandTest;

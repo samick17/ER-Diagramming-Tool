@@ -523,6 +523,9 @@
     <ClCompile Include="EditableTableWidgetItem.cpp">
       <Filter>Source Files\View\GUI\GUIWidget</Filter>
     </ClCompile>
+    <ClCompile Include="Cardinality.cpp">
+      <Filter>Source Files\Model</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Attribute.h">
@@ -848,6 +851,9 @@
     </ClInclude>
     <ClInclude Include="EditableTableWidgetItem.h">
       <Filter>Source Files\View\GUI\GUIWidget</Filter>
+    </ClInclude>
+    <ClInclude Include="Cardinality.h">
+      <Filter>Header Files\Model</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

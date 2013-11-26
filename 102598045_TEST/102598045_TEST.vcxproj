@@ -89,6 +89,7 @@
     <ClCompile Include="..\102598045_POSD\ApplicationSetting.cpp" />
     <ClCompile Include="..\102598045_POSD\Attribute.cpp" />
     <ClCompile Include="..\102598045_POSD\AttributeType.cpp" />
+    <ClCompile Include="..\102598045_POSD\Cardinality.cpp" />
     <ClCompile Include="..\102598045_POSD\CharSymbol.cpp" />
     <ClCompile Include="..\102598045_POSD\CloseInstruction.cpp" />
     <ClCompile Include="..\102598045_POSD\CollectionException.cpp" />

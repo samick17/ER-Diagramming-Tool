@@ -1,7 +1,6 @@
 #include "AddNodeCommand.h"
 #include "ERModel.h"
-
-using namespace std;
+#include "Node.h"
 
 AddNodeCommand::AddNodeCommand(ERModel* erModel,Node* node) : erModel(erModel),node(node){
 }

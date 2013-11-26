@@ -11,6 +11,8 @@
 #include "ComponentType.h"
 #include "InputFileParser.h"
 #include "FileCreator.h"
+#include "Presentation.h"
+#include "TextPresentation.h"
 
 void ERModelTest::SetUp(){
     this->presentation = new Presentation(&this->erModel);

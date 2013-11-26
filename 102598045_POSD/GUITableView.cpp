@@ -44,5 +44,6 @@ void GUITableView::keyReleaseEvent(QKeyEvent* keyEvent){
         ComponentData* componentData = tableWidgetItem->getComponentData();
         string text = tableWidgetItem->text().toStdString();
         this->graphicalPresentation->setComponentText(componentData->getID(),text);
+        this->graphicalPresentation->notify();
     }
 }

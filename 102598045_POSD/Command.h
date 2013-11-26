@@ -1,15 +1,5 @@
 #pragma once
 
-#include <string>
-#include "Component.h"
-#include "TextPresentation.h"
-
-using namespace std;
-
-class Presentation;
-class TextUI;
-class ERModel;
-
 class Command{
 public:
     Command();

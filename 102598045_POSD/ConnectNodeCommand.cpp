@@ -1,5 +1,7 @@
 #include "ConnectNodeCommand.h"
 #include "ERModel.h"
+#include "Component.h"
+#include "Connector.h"
 #include "ComponentUtil.h"
 
 using namespace std;

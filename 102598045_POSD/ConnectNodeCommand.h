@@ -1,8 +1,11 @@
 #pragma once
 
 #include "Command.h"
-#include "Node.h"
-#include "Connector.h"
+#include <gtest/gtest_prod.h> 
+
+class ERModel;
+class Component;
+class Connector;
 
 class ConnectNodeCommand : public Command{
     friend class CommandManagerTest;

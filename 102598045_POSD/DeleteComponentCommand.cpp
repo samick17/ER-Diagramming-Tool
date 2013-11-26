@@ -1,5 +1,6 @@
 #include "DeleteComponentCommand.h"
 #include "ERModel.h"
+#include "Component.h"
 #include "ERModelUtil.h"
 #include "ComponentUtil.h"
 
