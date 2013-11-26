@@ -66,9 +66,9 @@ TEST_F(ComponentFactoryTest,testFindNewComponentFunction){
     ASSERT_EQ("Owns",relationShip->getName());
     //test new connector
     NewComponentFunction newConnectorFunction = this->componentFactory.findNewComponentFunction(ComponentType::TypeConnector);
-    Component* connector = newConnectorFunction("315",RelationType::OneToOne);
+    Component* connector = newConnectorFunction("315",RelationType::One);
     ASSERT_EQ(typeid(Connector).name(),typeid(*connector).name());
     ASSERT_EQ(ComponentType::TypeConnector,connector->getType());
     ASSERT_EQ("315",connector->getID());
-    ASSERT_EQ(RelationType::OneToOne,connector->getName());
+    ASSERT_EQ(RelationType::One,connector->getName());
 }

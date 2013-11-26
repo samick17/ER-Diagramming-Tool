@@ -20,14 +20,14 @@ void TableUtil::insertAllEntitiesToTable(TableManager& tableManager,HashMap<stri
         }
         catch(Exception&){
         }
-        tableManager.insertTable(table);            
+        tableManager.insertTable(table);
     }
 }
 
 HashMap<string,RelationShip*> TableUtil::getOneToOneRelationShips(HashMap<string,RelationShip*> relationShipMap){
     HashMap<string,RelationShip*> oneToOneRelationShipsMap;
     for each(RelationShip* relationShip in relationShipMap){
-        if(relationShip->isRelationType(RelationType::OneToOne))        
+        if(relationShip->isRelationType(RelationType::One))
             oneToOneRelationShipsMap.put(relationShip->getID(),relationShip);
     }
     return oneToOneRelationShipsMap;
@@ -36,7 +36,7 @@ HashMap<string,RelationShip*> TableUtil::getOneToOneRelationShips(HashMap<string
 void TableUtil::insertAllForeignKeyToTable(TableManager& tableManager,RelationShip* ontToOneRelationShip){
     //convert relationship data & insert data to table
     Entity* firstEntity = *ontToOneRelationShip->getConnectedEntities().begin();
-    Entity* secondEntity = *(--ontToOneRelationShip->getConnectedEntities().end());        
+    Entity* secondEntity = *(--ontToOneRelationShip->getConnectedEntities().end());
     HashMap<string,Attribute*> primaryKeyAttributeMap;
     //find pk set & find table to insert pk
     Table* table = NULL;

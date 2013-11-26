@@ -71,7 +71,6 @@ private:
     HashMap<string,int*> componentTypeCountMap;
     HashMap<string,Component*> componentMap;
     Cardinality cardinality;
-    //vector<string> cardinalityVector;
     vector<ISynchronizer*> synchronizerVector;
     unordered_map<string,double> componentTypeMapOffsetX;
     CommandManager commandManager;

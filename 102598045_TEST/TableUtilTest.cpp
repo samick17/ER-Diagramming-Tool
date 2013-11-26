@@ -86,11 +86,11 @@ TEST_F(TableUtilTest,testConvertToTableMap){
     ASSERT_EQ(0,this->tableManager.getAllTables().get("4")->getAllForeignKeyAttributesNameVector().size());
     ASSERT_EQ(0,this->tableManager.getAllTables().get("19")->getAllForeignKeyAttributesNameVector().size());
 
-    this->connectorMap.get("8")->setName(RelationType::OneToOne);
-    this->connectorMap.get("9")->setName(RelationType::OneToOne);
-    this->connectorMap.get("17")->setName(RelationType::OneToOne);
-    this->connectorMap.get("18")->setName(RelationType::OneToOne);
-    this->attributeMap.get("1")->setAsPrimaryKey();    
+    this->connectorMap.get("8")->setName(RelationType::One);
+    this->connectorMap.get("9")->setName(RelationType::One);
+    this->connectorMap.get("17")->setName(RelationType::One);
+    this->connectorMap.get("18")->setName(RelationType::One);
+    this->attributeMap.get("1")->setAsPrimaryKey();
     this->attributeMap.get("10")->setAsPrimaryKey();
     TableUtil::convertToTableMap(this->tableManager,this->entityMap,this->relationShipMap);
 
@@ -131,13 +131,13 @@ TEST_F(TableUtilTest,testInsertAllEntitiesToTable){
 TEST_F(TableUtilTest,testGetOneToOneRelationShips){
     HashMap<string,RelationShip*> relationMapToAssert = TableUtil::getOneToOneRelationShips(this->relationShipMap);
     ASSERT_EQ(0,relationMapToAssert.size());
-    this->connectorMap.get("8")->setName(RelationType::OneToOne);
-    this->connectorMap.get("9")->setName(RelationType::OneToOne);
+    this->connectorMap.get("8")->setName(RelationType::One);
+    this->connectorMap.get("9")->setName(RelationType::One);
     relationMapToAssert = TableUtil::getOneToOneRelationShips(this->relationShipMap);
     ASSERT_EQ(1,relationMapToAssert.size());
     ASSERT_EQ(this->relationShipMap.get("7"),relationMapToAssert.get("7"));
-    this->connectorMap.get("17")->setName(RelationType::OneToOne);
-    this->connectorMap.get("18")->setName(RelationType::OneToOne);
+    this->connectorMap.get("17")->setName(RelationType::One);
+    this->connectorMap.get("18")->setName(RelationType::One);
     relationMapToAssert = TableUtil::getOneToOneRelationShips(this->relationShipMap);
     ASSERT_EQ(2,relationMapToAssert.size());
     ASSERT_EQ(this->relationShipMap.get("7"),relationMapToAssert.get("7"));
@@ -147,13 +147,13 @@ TEST_F(TableUtilTest,testGetOneToOneRelationShips){
 TEST_F(TableUtilTest,testInsertAllForeignKeyToTable){
     HashMap<string,RelationShip*> relationMapToAssert = TableUtil::getOneToOneRelationShips(this->relationShipMap);
     ASSERT_EQ(0,relationMapToAssert.size());
-    this->connectorMap.get("8")->setName(RelationType::OneToOne);
-    this->connectorMap.get("9")->setName(RelationType::OneToOne);
+    this->connectorMap.get("8")->setName(RelationType::One);
+    this->connectorMap.get("9")->setName(RelationType::One);
     relationMapToAssert = TableUtil::getOneToOneRelationShips(this->relationShipMap);
     ASSERT_EQ(1,relationMapToAssert.size());
     ASSERT_EQ(this->relationShipMap.get("7"),relationMapToAssert.get("7"));
-    this->connectorMap.get("17")->setName(RelationType::OneToOne);
-    this->connectorMap.get("18")->setName(RelationType::OneToOne);
+    this->connectorMap.get("17")->setName(RelationType::One);
+    this->connectorMap.get("18")->setName(RelationType::One);
     relationMapToAssert = TableUtil::getOneToOneRelationShips(this->relationShipMap);
     ASSERT_EQ(2,relationMapToAssert.size());
     ASSERT_EQ(this->relationShipMap.get("7"),relationMapToAssert.get("7"));

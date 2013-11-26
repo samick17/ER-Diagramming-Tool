@@ -5,6 +5,7 @@
 #include "ComponentConnectionSize.h"
 #include "StringSymbol.h"
 #include "ConnectorData.h"
+#include "Number.h"
 
 Connector::Connector(string componentID,string componentName){
     ComponentData componentData = ComponentData(ComponentType::TypeConnector,componentID,componentName);
@@ -74,4 +75,20 @@ bool Connector::isNodesConnection(Component* firstNode,Component* secondNode){
     isConnection &= connections.containsKey(secondNode->getID());
 
     return isConnection;
+}
+
+bool Connector::isCardinalityConnector(){
+    if(this->hasSizeToConnect())
+        return false;
+    HashMap<string,int*> countingMap;
+    int attributeCount = 0,entityCount = 0,relationShipCount = 0;
+    countingMap.put(ComponentType::TypeAttribute,&attributeCount);
+    countingMap.put(ComponentType::TypeEntity,&entityCount);
+    countingMap.put(ComponentType::TypeRelationShip,&relationShipCount);
+    for each(Component* connection in this->getAllConnections()){
+        (*countingMap.get(connection->getType()))++;
+    }
+    if(entityCount == Number::One && relationShipCount == Number::One)
+        return true;
+    return false;
 }

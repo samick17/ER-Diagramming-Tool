@@ -54,8 +54,8 @@ void ERModelTest::SetUp(){
     ASSERT_EQ("",this->erModel.componentMap.get("8")->getName());
     ASSERT_EQ("",this->erModel.componentMap.get("9")->getName());
     ASSERT_EQ("",this->erModel.componentMap.get("10")->getName());
-    ASSERT_EQ(RelationType::OneToOne,this->erModel.componentMap.get("11")->getName());
-    ASSERT_EQ(RelationType::OneToOne,this->erModel.componentMap.get("12")->getName());
+    ASSERT_EQ(RelationType::One,this->erModel.componentMap.get("11")->getName());
+    ASSERT_EQ(RelationType::One,this->erModel.componentMap.get("12")->getName());
     ASSERT_EQ("Department",this->erModel.componentMap.get("13")->getName());
     ASSERT_EQ("",this->erModel.componentMap.get("14")->getName());
     //Assert all component's connections is correct
@@ -450,7 +450,7 @@ TEST_F(ERModelTest,testCommonUsage){
     //set cardinality as 1
     Connector* connectorNode0AndNode6 = this->erModel.getNodesConnector(node0,node16);
     ASSERT_EQ(18,this->erModel.componentMap.size());
-    connectorNode0AndNode6->setName(RelationType::OneToOne);
+    connectorNode0AndNode6->setName(RelationType::One);
     //ASSERT 0 & 16 has connected    
     ASSERT_EQ(true,node0->hasConnectedTo(node16));
     ASSERT_EQ(true,node16->hasConnectedTo(node0));

@@ -6,7 +6,6 @@
 #include "CommandFactory.h"
 #include "CommandManager.h"
 #include "NoSuchNodeException.h"
-#include "NullPointerException.h"
 #include "InvalidConnectException.h"
 #include "NoConnectionException.h"
 #include "InputFileParser.h"
@@ -109,7 +108,8 @@ void ERModel::setPrimaryKey(string componentID){
 void ERModel::setComponentText(string componentID,string text){
     Component* component = this->getComponentByID(componentID);
 
-    if(typeid(*component).name() ==typeid(Connector).name() && !this->cardinality.hasCardinality(text))
+    Connector* connector = dynamic_cast<Connector*>(component);
+    if(connector && (!connector->isCardinalityConnector() || !this->cardinality.hasCardinality(text)))
         return;
 
     CommandFactory commandFactory;
@@ -125,7 +125,7 @@ void ERModel::openFile(string filePath){
 }
 
 void ERModel::saveFile(string filePath){
-    OutputFileParser outputFileParser = OutputFileParser(this->getAllComponents());
+    OutputFileParser outputFileParser = OutputFileParser(this->componentMap);
     outputFileParser.parseModelToFile(filePath);
 }
 //if doesn't contains such component, throw exception
@@ -218,7 +218,8 @@ void ERModel::initialCountMap(){
 }
 
 void ERModel::initialCardinality(){
-    this->cardinality.insertCardinality(RelationType::OneToOne);
+    this->cardinality.insertCardinality(RelationType::One);
+    this->cardinality.insertCardinality(RelationType::Many);
 }
 
 void ERModel::resetCounting(){

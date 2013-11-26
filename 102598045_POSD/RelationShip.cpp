@@ -34,9 +34,9 @@ bool RelationShip::isRelationType(string relationType){
         return false;
     
     bool isRType = true;
-    if(relationType == RelationType::OneToOne){
+    if(relationType == RelationType::One){
         for each(Component* component in this->getAllConnections())
-            isRType &= (component->getName() == RelationType::OneToOne);
+            isRType &= (component->getName() == RelationType::One);
     }
     else{
         isRType = false;
