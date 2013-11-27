@@ -1,9 +1,7 @@
 #include "TextPresentation.h"
 #include <iostream>
-#include "Node.h"
 #include "Entity.h"
 #include "Connector.h"
-#include "ERModel.h"
 #include "ComponentUtil.h"
 #include "StringUtil.h"
 #include "NullPointerException.h"

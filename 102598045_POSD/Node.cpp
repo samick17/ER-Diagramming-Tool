@@ -1,5 +1,5 @@
 #include "Node.h"
-#include "ERModel.h"
+#include "Connector.h"
 #include "ComponentType.h"
 #include "InvalidConnectException.h"
 #include "ConnectedSelfException.h"

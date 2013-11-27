@@ -1,8 +1,6 @@
 #include "Component.h"
 #include "StringUtil.h"
-#include "ComponentType.h"
 #include "CharSymbol.h"
-#include "StringSymbol.h"
 
 Component::Component(){
 }

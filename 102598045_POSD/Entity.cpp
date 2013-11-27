@@ -1,13 +1,9 @@
 #include "Entity.h"
-#include "ERModel.h"
 #include "Attribute.h"
 #include "RelationShip.h"
 #include "ComponentUtil.h"
 #include "ComponentType.h"
-#include "StringUtil.h"
 #include "NoConnectionException.h"
-#include "EmptyCollectionException.h"
-#include "StringSymbol.h"
 
 Entity::Entity(string componentID,string componentName) : Node(ComponentType::TypeEntity,componentID,componentName){
 }

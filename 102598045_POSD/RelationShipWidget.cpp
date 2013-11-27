@@ -1,7 +1,4 @@
 #include "RelationShipWidget.h"
-#include <QPainter>
-
-using namespace Qt;
 
 RelationShipWidget::RelationShipWidget(ComponentData* componentData,GraphicalPresentation* graphicalPresentation) : NodeWidget(componentData,graphicalPresentation){
 }

@@ -3,7 +3,6 @@
 #include "InvalidConnectException.h"
 #include "ComponentUtil.h"
 #include "ComponentConnectionSize.h"
-#include "StringSymbol.h"
 #include "ConnectorData.h"
 #include "Number.h"
 

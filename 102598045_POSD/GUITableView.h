@@ -15,8 +15,6 @@ public:
     ~GUITableView();
 
     void notify(ISubject* subject);
-protected:
-    void keyReleaseEvent(QKeyEvent* keyEvent);
 private:
     static const string TableTitle;
     static const int TableSize;

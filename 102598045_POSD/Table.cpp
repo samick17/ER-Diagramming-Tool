@@ -1,6 +1,4 @@
 #include "Table.h"
-#include "ComponentUtil.h"
-#include "StringUtil.h"
 
 Table::Table(Entity* entity) : entity(entity){
 }
@@ -10,13 +8,13 @@ Table::~Table(){
 //all entity attribute (pk and attributes)
 void Table::insertAllAttributes(HashMap<string,Attribute*> attributeMap){
     for each(Attribute* attribute in attributeMap){
-        this->attributeMap.put(attribute->getID(),attribute);    
+        this->attributeMap.put(attribute->getID(),attribute);
     }    
 }
 //all foreign key attribute
 void Table::insertAllForeignKeyAttributes(HashMap<string,Attribute*> foreignKeyAttributeMap){
     for each(Attribute* attribute in foreignKeyAttributeMap){
-        this->foreignKeyAttributeMap.put(attribute->getID(),attribute);    
+        this->foreignKeyAttributeMap.put(attribute->getID(),attribute);
     }    
 }
 

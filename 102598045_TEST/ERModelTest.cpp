@@ -118,7 +118,7 @@ TEST_F(ERModelTest,testAddNode){
     ASSERT_EQ(ComponentType::TypeRelationShip,nodeToAdd->getType());
     ASSERT_EQ(18,this->erModel.componentMap.size());
     //test add connector
-    ASSERT_EQ(NULL,this->erModel.addNode(ComponentType::TypeConnector));
+    ASSERT_THROW(this->erModel.addNode(ComponentType::TypeConnector),InvalidNodeTypeException);
     ASSERT_EQ(18,this->erModel.componentMap.size());
 }
 

@@ -1,9 +1,7 @@
 #include "Document.h"
 #include <algorithm>
 #include "FileNotFoundException.h"
-#include "CharSymbol.h"
 #include "StringSymbol.h"
-#include "StringUtil.h"
 
 Document::Document(string filePath) : filePath(filePath){
     readIndex = 0;

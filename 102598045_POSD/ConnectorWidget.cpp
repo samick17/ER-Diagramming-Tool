@@ -1,8 +1,5 @@
 #include "ConnectorWidget.h"
-#include <QPainter>
 #include "ConnectorData.h"
-
-using namespace Qt;
 
 ConnectorWidget::ConnectorWidget(ComponentData* componentData,GraphicalPresentation* graphicalPresentation) : ComponentWidget(componentData,graphicalPresentation){
     this->updateWidget();

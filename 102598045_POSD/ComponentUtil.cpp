@@ -1,5 +1,4 @@
 #include "ComponentUtil.h"
-#include "NoSuchNodeException.h"
 
 void ComponentUtil::connectWithEachOther(Component* firstNode,Component* secondNode,Connector* connector){
     firstNode->connectTo(connector);

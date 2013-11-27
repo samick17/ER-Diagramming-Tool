@@ -1,14 +1,20 @@
 #pragma once
 
-#include <QTableWidgetItem>
+#include <QLineEdit>
 #include "ComponentData.h"
 
-class EditableTableWidgetItem : public QTableWidgetItem{
+class GraphicalPresentation;
+
+class EditableTableWidgetItem : public QLineEdit{
+    Q_OBJECT
 public:
-    EditableTableWidgetItem(ComponentData* componentData,string text);
+    EditableTableWidgetItem(GraphicalPresentation* graphicalPresentation,ComponentData* componentData,string text);
     ~EditableTableWidgetItem();
 
     ComponentData* getComponentData() const;
 private:
+    GraphicalPresentation* graphicalPresentation;
     ComponentData* componentData;
+private slots:
+    void onEditingFinished();
 };

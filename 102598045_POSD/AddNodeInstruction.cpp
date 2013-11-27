@@ -25,8 +25,6 @@ Node* AddNodeInstruction::addNode(TextPresentation* textPresentation){
     while(!node){
         try{
             string input = textPresentation->getInput();
-            if(input == ComponentType::TypeConnector)
-                throw InvalidNodeTypeException();
             node = textPresentation->addNode(input);
         }
         catch(Exception& exception){

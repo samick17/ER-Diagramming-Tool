@@ -1,5 +1,4 @@
 #include "Size.h"
-#include "WidgetDefaultSetting.h"
 #include "Number.h"
 
 const Size Size::Zero = Size(0,0);

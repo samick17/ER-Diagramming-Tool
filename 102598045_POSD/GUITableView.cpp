@@ -4,7 +4,6 @@
 #include <QKeyEvent>
 #include "GraphicalPresentation.h"
 #include "EditableTableWidgetItem.h"
-#include <iostream>
 
 const int GUITableView::TableSize = 2;
 const string GUITableView::TableColumnTypeName = "Type";
@@ -30,20 +29,8 @@ void GUITableView::notify(ISubject* subject){
         QTableWidgetItem* itemType = new QTableWidgetItem(componentData->getType().c_str());
         itemType->setFlags(itemType->flags() ^ Qt::ItemIsEditable);
         this->setItem(index,0,itemType);
-        QTableWidgetItem* itemText = new EditableTableWidgetItem(componentData,componentData->getName());
-        this->setItem(index,1,itemText);
+        QWidget* itemText = new EditableTableWidgetItem(this->graphicalPresentation,componentData,componentData->getName());
+        this->setCellWidget(index,1,itemText);
         index++;
-    }
-}
-
-void GUITableView::keyReleaseEvent(QKeyEvent* keyEvent){
-    if(keyEvent->key() == Qt::Key_Enter || keyEvent->key() == Qt::Key_Return){
-        EditableTableWidgetItem* tableWidgetItem = dynamic_cast<EditableTableWidgetItem*>(this->currentItem());
-        if(!tableWidgetItem)
-            return;
-        ComponentData* componentData = tableWidgetItem->getComponentData();
-        string text = tableWidgetItem->text().toStdString();
-        this->graphicalPresentation->setComponentText(componentData->getID(),text);
-        this->graphicalPresentation->notify();
     }
 }

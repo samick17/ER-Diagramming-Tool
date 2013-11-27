@@ -1,6 +1,4 @@
 #include "AttributeWidget.h"
-#include <QPainter>
-#include "Attribute.h"
 
 using namespace Qt;
 

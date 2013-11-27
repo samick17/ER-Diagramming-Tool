@@ -532,6 +532,12 @@
     <ClCompile Include="..\102598045_POSD\RelationShip.cpp">
       <Filter>Source Files\Model\Component</Filter>
     </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_EditableTableWidgetItem.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_EditableTableWidgetItem.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ERModel.h">
@@ -837,9 +843,6 @@
     <ClInclude Include="EditTextOfComponentsCommand.h">
       <Filter>Header Files\Command</Filter>
     </ClInclude>
-    <ClInclude Include="EditableTableWidgetItem.h">
-      <Filter>Source Files\View\GUI\GUIWidget</Filter>
-    </ClInclude>
     <ClInclude Include="Cardinality.h">
       <Filter>Header Files\Model</Filter>
     </ClInclude>
@@ -881,8 +884,11 @@
     <CustomBuild Include="AddDrawableToolBar.h">
       <Filter>Header Files\View\GUI\ToolBar</Filter>
     </CustomBuild>
+    <CustomBuild Include="EditableTableWidgetItem.h">
+      <Filter>Header Files\View\GUI\GUIWidget</Filter>
+    </CustomBuild>
     <CustomBuild Include="GUITableView.h">
-      <Filter>Header Files\View\GUI</Filter>
+      <Filter>Header Files\View\GUI\GUIWidget</Filter>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>

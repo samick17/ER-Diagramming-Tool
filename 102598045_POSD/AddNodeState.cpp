@@ -1,8 +1,6 @@
 #include "AddNodeState.h"
 #include "StateID.h"
 #include "ComponentType.h"
-#include "Node.h"
-#include "DialogSetting.h"
 #include "GraphicalPresentation.h"
 
 AddNodeState::AddNodeState(int stateID,GraphicalPresentation* graphicalPresentation) : State(stateID,graphicalPresentation){

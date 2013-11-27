@@ -28,7 +28,6 @@ public:
     void setComponentDataForPreview(ComponentData* componentDataForPreview);
 
     void updateAllComponentData();
-    Node* getLastAddedNode();
     Component* getLastPressedComponent();
     Component* getLastMovedComponent();
     Component* getLastReleasedComponent();

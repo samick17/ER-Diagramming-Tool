@@ -5,7 +5,7 @@
 //convert int to string
 string StringUtil::intToString(int number){
     stringstream strStream; 
-    strStream << number;    
+    strStream << number;
     string str = strStream.str();
     return str;
 }

@@ -1,8 +1,4 @@
 #include "InstructionMenu.h"
-#include "TextUIPresenter.h"
-#include "AddNodeCommand.h"
-#include "ConnectNodeCommand.h"
-#include "DeleteComponentCommand.h"
 #include "NullPointerException.h"
 #include "InstructionData.h"
 #include "OpenFileInstruction.h"

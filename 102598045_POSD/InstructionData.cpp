@@ -1,5 +1,4 @@
 #include "InstructionData.h"
-#include "TextInstruction.h"
 
 InstructionData::InstructionData(string key,string info,NewInstructionFunction newInstructionFunction) : key(key),info(info),newInstructionFunction(newInstructionFunction){
 }

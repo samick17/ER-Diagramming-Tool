@@ -55,7 +55,7 @@ ComponentData* ComponentWidget::getComponentData(){
 }
 
 string ComponentWidget::getText(){
-	return this->text;
+    return this->text;
 }
 
 void ComponentWidget::setText(string text){

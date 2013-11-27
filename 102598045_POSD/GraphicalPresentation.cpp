@@ -1,7 +1,6 @@
 #include "GraphicalPresentation.h"
 #include "Node.h"
 #include "ControllerEvent.h"
-#include "ERModelUtil.h"
 #include "StateID.h"
 
 GraphicalPresentation::GraphicalPresentation(Presentation* presentation) : presentation(presentation){
@@ -46,10 +45,6 @@ void GraphicalPresentation::updateAllComponentData(){
         this->componentDataMap.put(component->getID(),component->getComponentData());
 }
 
-Node* GraphicalPresentation::getLastAddedNode(){
-    return this->lastAddedNode;
-}
-
 Component* GraphicalPresentation::getLastPressedComponent(){
     return this->lastPressedComponent;
 }
@@ -64,9 +59,9 @@ Component* GraphicalPresentation::getLastReleasedComponent(){
 
 void GraphicalPresentation::addNode(string nodeType,string nodeName,Point centerPosition){
     Node* node = this->presentation->addNode(nodeType);
-    this->lastAddedNode = node;
     node->setName(nodeName);
     node->setCenterPosition(centerPosition);
+    //preview should be invisible
     this->setComponentDataForPreview(NULL);
     this->presentation->sync(ControllerEvent::DisplayDiagram);
 }

@@ -1,13 +1,13 @@
 #include "ERModel.h"
 #include "ERModelUtil.h"
 #include "TableUtil.h"
-#include "ComponentUtil.h"
 #include "ComponentFactory.h"
 #include "CommandFactory.h"
 #include "CommandManager.h"
 #include "NoSuchNodeException.h"
 #include "InvalidConnectException.h"
 #include "NoConnectionException.h"
+#include "InvalidNodeTypeException.h"
 #include "InputFileParser.h"
 #include "OutputFileParser.h"
 
@@ -26,7 +26,7 @@ ERModel::~ERModel(){
 
 Node* ERModel::addNode(string componentType){
     if(componentType == ComponentType::TypeConnector)
-        return NULL;
+        throw InvalidNodeTypeException();
     ComponentFactory componentFactory;
     Node* node = static_cast<Node*>(componentFactory.createComponent(componentType));
     CommandFactory commandFactory;

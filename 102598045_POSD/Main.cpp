@@ -3,7 +3,6 @@
 #include "TextPresentation.h"
 #include "GraphicalPresentation.h"
 #include "ERModel.h"
-#include "CommandManager.h"
 #include "TextUI.h"
 #include <QApplication>
 
