@@ -29,6 +29,15 @@ void DeleteComponentCommandTest::SetUp(){
 void DeleteComponentCommandTest::TearDown(){
 }
 
+
+TEST_F(DeleteComponentCommandTest,testExecute){
+    
+}
+
+TEST_F(DeleteComponentCommandTest,testUnexecute){
+    
+}
+
 TEST_F(DeleteComponentCommandTest,testDeleteComponentCommand){
     //delete entity
     DeleteComponentCommand deleteComponnentCommand1 = DeleteComponentCommand(&this->erModel,this->erModel.getComponentByID("0"));

@@ -1,14 +1,16 @@
 #include "Cardinality.h"
 #include <algorithm>
+#include <RelationType.h>
 
 using namespace std;
 
-vector<string> Cardinality::getCardinalityVector() const{
-    return this->cardinalityVector;
+Cardinality::Cardinality(){
+    this->cardinalityVector.push_back(RelationType::One);
+    this->cardinalityVector.push_back(RelationType::Many);
 }
 
-void Cardinality::insertCardinality(string cardinality){
-    this->cardinalityVector.push_back(cardinality);
+vector<string> Cardinality::getCardinalityVector() const{
+    return this->cardinalityVector;
 }
 
 bool Cardinality::hasCardinality(string cardinality){

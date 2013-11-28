@@ -1,6 +1,12 @@
 #pragma once
 
+#include <gtest/gtest_prod.h> 
+
 class Command{
+    friend class AddNodeCommandTest;
+    FRIEND_TEST(AddNodeCommandTest,testUnexecute);
+    friend class ConnectNodeCommandTest;
+    FRIEND_TEST(ConnectNodeCommandTest,testUnexecute);
 public:
     Command();
     virtual ~Command();

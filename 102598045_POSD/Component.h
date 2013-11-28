@@ -20,7 +20,7 @@ public:
     string getID();
     string getType();
     string getName();
-    void setName(string);
+    void setName(string name);
     string getClassName();
     Rect getRect();
     virtual void setPosition(Point position) = 0;

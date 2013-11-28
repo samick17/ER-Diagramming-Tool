@@ -70,32 +70,11 @@
     <Filter Include="Source Files\View\TextUI">
       <UniqueIdentifier>{e885d042-611d-47a7-9af6-ada92ef872cd}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\View\GUI">
-      <UniqueIdentifier>{ab2d53e0-7a67-40df-9a68-b75931024646}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\View\GUI\GUIWidget">
-      <UniqueIdentifier>{59cf8c24-363d-4586-b188-154cb7d1248f}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\Command">
       <UniqueIdentifier>{62ffcf58-8aad-42b2-a11f-30c949609b70}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\View\TextUI\TextInstruction">
       <UniqueIdentifier>{10d47808-3981-430c-82e5-76b8a8bddd19}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\View\GUI\GUIWidget\ModelWidget">
-      <UniqueIdentifier>{ff1f06c7-d88a-4f19-9ffe-8865e63a4f16}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\View\GUI\MenuItem">
-      <UniqueIdentifier>{ad0dd498-fdd5-4ca5-afcf-9c56339e769b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\View\GUI\ToolBar">
-      <UniqueIdentifier>{95ea280b-014c-4adf-9cae-615db7b410fd}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\View\GUI\GUIWidget\ToolBarWidget">
-      <UniqueIdentifier>{86f8a5fb-10d8-4334-a928-1a8fa86562d3}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\View\GUI\State">
-      <UniqueIdentifier>{16cc152a-dc5d-432a-baa8-94ee3eb07c7a}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\Observer">
       <UniqueIdentifier>{ce060f33-126d-4cba-86bb-563ad14d91d6}</UniqueIdentifier>
@@ -190,6 +169,27 @@
     </Filter>
     <Filter Include="Source Files\Model\Component">
       <UniqueIdentifier>{311816ab-8122-4d89-bf94-5a39633e197e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\View\GUI">
+      <UniqueIdentifier>{ab2d53e0-7a67-40df-9a68-b75931024646}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\View\GUI\GUIWidget">
+      <UniqueIdentifier>{59cf8c24-363d-4586-b188-154cb7d1248f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\View\GUI\GUIWidget\ModelWidget">
+      <UniqueIdentifier>{ff1f06c7-d88a-4f19-9ffe-8865e63a4f16}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\View\GUI\GUIWidget\ToolBarWidget">
+      <UniqueIdentifier>{86f8a5fb-10d8-4334-a928-1a8fa86562d3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\View\GUI\MenuItem">
+      <UniqueIdentifier>{ad0dd498-fdd5-4ca5-afcf-9c56339e769b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\View\GUI\ToolBar">
+      <UniqueIdentifier>{95ea280b-014c-4adf-9cae-615db7b410fd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\View\GUI\State">
+      <UniqueIdentifier>{16cc152a-dc5d-432a-baa8-94ee3eb07c7a}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

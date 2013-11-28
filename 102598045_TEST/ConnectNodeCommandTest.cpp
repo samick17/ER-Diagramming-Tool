@@ -12,6 +12,60 @@ void ConnectNodeCommandTest::SetUp(){
 void ConnectNodeCommandTest::TearDown(){
 }
 
+
+TEST_F(ConnectNodeCommandTest,testExecute){
+    Connector* connector1 = new Connector("3");
+    ConnectNodeCommand connectNodeCommand = ConnectNodeCommand(&this->erModel,this->entity,this->attribute,connector1);
+
+    connectNodeCommand.execute();
+    ASSERT_EQ(1,connectNodeCommand.firstNode->getAllConnections().size());
+    ASSERT_EQ(1,connectNodeCommand.secondNode->getAllConnections().size());
+    ASSERT_EQ(true,connectNodeCommand.firstNode->hasConnectedTo(connectNodeCommand.secondNode));
+    ASSERT_EQ(true,connectNodeCommand.secondNode->hasConnectedTo(connectNodeCommand.firstNode));
+    ASSERT_EQ(4,this->erModel.getAllComponents().size());
+    //execute again,it should be no change
+    connectNodeCommand.execute();
+    ASSERT_EQ(1,connectNodeCommand.firstNode->getAllConnections().size());
+    ASSERT_EQ(1,connectNodeCommand.secondNode->getAllConnections().size());
+    ASSERT_EQ(true,connectNodeCommand.firstNode->hasConnectedTo(connectNodeCommand.secondNode));
+    ASSERT_EQ(true,connectNodeCommand.secondNode->hasConnectedTo(connectNodeCommand.firstNode));
+    ASSERT_EQ(4,this->erModel.getAllComponents().size());
+}
+
+TEST_F(ConnectNodeCommandTest,testUnexecute){
+    Connector* connector1 = new Connector("3");
+    ConnectNodeCommand connectNodeCommand = ConnectNodeCommand(&this->erModel,this->entity,this->attribute,connector1);
+    connectNodeCommand.executionFlag = true;
+
+    //pretent to execute
+    this->erModel.componentMap.put(connector1->getID(),connector1);
+    this->entity->connectTo(connector1);
+    this->attribute->connectTo(connector1);
+    connector1->connectTo(entity);
+    connector1->connectTo(attribute);
+    //ASSERT
+    ASSERT_EQ(1,connectNodeCommand.firstNode->getAllConnections().size());
+    ASSERT_EQ(1,connectNodeCommand.secondNode->getAllConnections().size());
+    ASSERT_EQ(true,connectNodeCommand.firstNode->hasConnectedTo(connectNodeCommand.secondNode));
+    ASSERT_EQ(true,connectNodeCommand.secondNode->hasConnectedTo(connectNodeCommand.firstNode));
+    ASSERT_EQ(4,this->erModel.componentMap.size());
+    //test for unexecute
+
+    connectNodeCommand.unExecute();
+    ASSERT_EQ(0,connectNodeCommand.firstNode->getAllConnections().size());
+    ASSERT_EQ(0,connectNodeCommand.secondNode->getAllConnections().size());
+    ASSERT_EQ(false,connectNodeCommand.firstNode->hasConnectedTo(connectNodeCommand.secondNode));
+    ASSERT_EQ(false,connectNodeCommand.secondNode->hasConnectedTo(connectNodeCommand.firstNode));
+    ASSERT_EQ(3,this->erModel.componentMap.size());
+    //unexecute again it should be no change
+    connectNodeCommand.unExecute();
+    ASSERT_EQ(0,connectNodeCommand.firstNode->getAllConnections().size());
+    ASSERT_EQ(0,connectNodeCommand.secondNode->getAllConnections().size());
+    ASSERT_EQ(false,connectNodeCommand.firstNode->hasConnectedTo(connectNodeCommand.secondNode));
+    ASSERT_EQ(false,connectNodeCommand.secondNode->hasConnectedTo(connectNodeCommand.firstNode));
+    ASSERT_EQ(3,this->erModel.componentMap.size());
+}
+
 TEST_F(ConnectNodeCommandTest,testConnectNodeCommand){
     Connector* connector1 = new Connector("3");
     ConnectNodeCommand connectNodeCommand1 = ConnectNodeCommand(&this->erModel,this->entity,this->attribute,connector1);

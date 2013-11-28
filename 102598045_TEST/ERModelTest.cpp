@@ -3,6 +3,7 @@
 #include "InvalidNodeTypeException.h"
 #include "NullPointerException.h"
 #include "NoSuchNodeException.h"
+#include "NoConnectionException.h"
 #include "HasConnectedException.h"
 #include "InvalidConnectException.h"
 #include "EmptyCollectionException.h"
@@ -144,7 +145,9 @@ TEST_F(ERModelTest,testInsertComponent){
     ASSERT_EQ(connector,this->erModel.componentMap.get("18"));
 }
 
-TEST_F(ERModelTest,testInsertComponentAt){}
+TEST_F(ERModelTest,testInsertComponentAt){
+
+}
 
 TEST_F(ERModelTest,testEraseComponent){
     Component* componentToDelete1 = this->erModel.getComponentByID("0");
@@ -199,15 +202,78 @@ TEST_F(ERModelTest,testAddConnection){
 }
 
 TEST_F(ERModelTest,testSetCardinality){
+    Connector* connector = static_cast<Connector*>(this->erModel.getComponentByID("9"));
 
+    string expectedCardinality = RelationType::One;
+    ASSERT_EQ(true,this->erModel.setCardinality(connector,expectedCardinality));
+    ASSERT_EQ(expectedCardinality,connector->getName());
+    expectedCardinality = RelationType::Many;
+    ASSERT_EQ(true,this->erModel.setCardinality(connector,expectedCardinality));
+    ASSERT_EQ(expectedCardinality,connector->getName());
+    expectedCardinality = "WrongCardinality";
+    string originConnectorName = connector->getName();
+    ASSERT_EQ(false,this->erModel.setCardinality(connector,expectedCardinality));
+    ASSERT_EQ(originConnectorName,connector->getName());
 }
 
 TEST_F(ERModelTest,testSetPrimaryKey){
+    //test set primaryKey to Attribute,which is not exists
+    ASSERT_THROW(this->erModel.setPrimaryKey("X"),NoSuchNodeException);
+    //test set primaryKey to Attribute,which is connected to an Entity
+    Attribute* attribute = static_cast<Attribute*>(this->erModel.getComponentByID("1"));
+    bool isPrimaryKey = attribute->isPrimaryKey();
 
+    //test set primaryKey
+    this->erModel.setPrimaryKey(attribute->getID());
+    ASSERT_EQ(!isPrimaryKey,attribute->isPrimaryKey());
+    //test set primaryKey again
+    this->erModel.setPrimaryKey(attribute->getID());
+    ASSERT_EQ(isPrimaryKey,attribute->isPrimaryKey());
+
+    //test set primaryKey to Attribute, which is 'not' connected to an Entity
+    attribute = static_cast<Attribute*>(this->erModel.addNode(ComponentType::TypeAttribute));
+    isPrimaryKey = attribute->isPrimaryKey();
+    //test set primaryKey
+    ASSERT_THROW(this->erModel.setPrimaryKey(attribute->getID()),NoConnectionException);
 }
 
 TEST_F(ERModelTest,testSetComponentText){
+    //test set component,which is not exists
 
+    ASSERT_THROW(this->erModel.setComponentText("X","testTextX"),NoSuchNodeException);
+    ASSERT_THROW(this->erModel.setComponentText("Y","testTestTestY"),NoSuchNodeException);
+
+    //test set attribute text
+    Component* attribute = this->erModel.getComponentByID("4");
+    this->erModel.setComponentText(attribute->getID(),"testAttributeText");
+    ASSERT_EQ("testAttributeText",attribute->getName());
+    //test set entity text
+    Component* entity = this->erModel.getComponentByID("5");
+    this->erModel.setComponentText(entity->getID(),"testEntityText");
+    ASSERT_EQ("testEntityText",entity->getName());
+    //test set relationShip text
+    Component* relationShip = this->erModel.getComponentByID("3");
+    this->erModel.setComponentText(relationShip->getID(),"testRelationShipText");
+    ASSERT_EQ("testRelationShipText",relationShip->getName());
+    //test set connector text,with right cadinality
+    Component* connector = this->erModel.getComponentByID("12");
+    this->erModel.setComponentText(connector->getID(),RelationType::One);
+    ASSERT_EQ(RelationType::One,connector->getName());
+    //test set connector text,with right cadinality
+    this->erModel.setComponentText(connector->getID(),RelationType::Many);
+    ASSERT_EQ(RelationType::Many,connector->getName());
+    //test set connector text,with wrong cadinality
+    this->erModel.setComponentText(connector->getID(),"X");
+    ASSERT_EQ(RelationType::Many,connector->getName());
+    //test set connector text,which is connected to attribute & entity
+    connector = this->erModel.getComponentByID("8");
+    string originConnectorName = connector->getName();
+    this->erModel.setComponentText(connector->getID(),RelationType::One);
+    ASSERT_EQ(originConnectorName,connector->getName());
+    this->erModel.setComponentText(connector->getID(),RelationType::Many);
+    ASSERT_EQ(originConnectorName,connector->getName());
+    this->erModel.setComponentText(connector->getID(),"X");
+    ASSERT_EQ(originConnectorName,connector->getName());
 }
 
 TEST_F(ERModelTest,testOpenFile){

@@ -7,8 +7,8 @@ using namespace std;
 
 class Cardinality{
 public:
+    Cardinality();
     vector<string> getCardinalityVector() const;
-    void insertCardinality(string cardinality);
     bool hasCardinality(string cardinality);
 private:
     vector<string> cardinalityVector;

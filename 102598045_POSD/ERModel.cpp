@@ -17,7 +17,6 @@ int ERModel::relationShipCount = 0;
 
 ERModel::ERModel(){
     this->initialCountMap();
-    this->initialCardinality();
 }
 
 ERModel::~ERModel(){
@@ -81,11 +80,7 @@ void ERModel::undo(){
 void ERModel::redo(){
     this->commandManager.redo();
 }
-//set cardinality without undo/redo
-void ERModel::setCardinality(Connector* connector,string cardinality){
-    if(this->cardinality.hasCardinality(cardinality))
-        connector->setName(cardinality);
-}
+
 //set primarykey by its 'id',Exception Case : NoSuchNode,NoConnection
 void ERModel::setPrimaryKey(string componentID){
     //make sure there has such component
@@ -104,12 +99,21 @@ void ERModel::setPrimaryKey(string componentID){
     Command* setPrimaryKeyCommand = commandFactory.createSetPrimaryKeyCommand(attribute);
     this->commandManager.execute(setPrimaryKeyCommand);
 }
+
+//set cardinality without undo/redo
+bool ERModel::setCardinality(Connector* connector,string cardinality){
+    if(this->cardinality.hasCardinality(cardinality)){
+        connector->setName(cardinality);
+        return true;
+    }
+    return false;
+}
 //set component text & cardinality with undo/redo,Exception Case : NoSuchNode
 void ERModel::setComponentText(string componentID,string text){
     Component* component = this->getComponentByID(componentID);
-    //if is connector,determine this operation is valid
+
     Connector* connector = dynamic_cast<Connector*>(component);
-    if(connector && (!connector->isCardinalityConnector() || !this->cardinality.hasCardinality(text)))
+    if(connector && (!this->cardinality.hasCardinality(text) || !connector->isCardinalityConnector()))
         return;
 
     CommandFactory commandFactory;
@@ -215,11 +219,6 @@ void ERModel::initialCountMap(){
     this->componentTypeCountMap.put(ComponentType::TypeAttribute,&ERModel::attributeCount);
     this->componentTypeCountMap.put(ComponentType::TypeEntity,&ERModel::entityCount);
     this->componentTypeCountMap.put(ComponentType::TypeRelationShip,&ERModel::relationShipCount);
-}
-
-void ERModel::initialCardinality(){
-    this->cardinality.insertCardinality(RelationType::One);
-    this->cardinality.insertCardinality(RelationType::Many);
 }
 
 void ERModel::resetCounting(){

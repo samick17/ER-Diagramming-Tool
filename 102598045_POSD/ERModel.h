@@ -30,6 +30,10 @@ class ERModel : public ISyncable,public Subject{
     friend class CommandManagerTest;
     FRIEND_TEST(CommandManagerTest,testCommandManager);
     FRIEND_TEST(CommandManagerTest,testRedoUndo);
+    friend class AddNodeCommandTest;
+    FRIEND_TEST(AddNodeCommandTest,testUnexecute);
+    friend class ConnectNodeCommandTest;
+    FRIEND_TEST(ConnectNodeCommandTest,testUnexecute);
 public:
     ERModel();
     ~ERModel();
@@ -42,8 +46,8 @@ public:
     int addConnection(Component* firstNode,Component* secondNode);
     void undo();
     void redo();
-    void setCardinality(Connector* connector,string cardinality);
     void setPrimaryKey(string componentID);
+    bool setCardinality(Connector* connector,string cardinality);
     void setComponentText(string componentID,string text);
     void openFile(string filePath);
     void saveFile(string filePath);
@@ -64,7 +68,6 @@ public:
     void sync(string syncEventType);
 private:
     void initialCountMap();
-    void initialCardinality();
     void resetCounting();
     void setNodePosition(string componentType,Node* node);
     static int attributeCount,entityCount,relationShipCount;

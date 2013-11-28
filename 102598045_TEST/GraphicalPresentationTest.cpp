@@ -176,14 +176,6 @@ TEST_F(GraphicalPresentationTest,testUnSelectAll){
     ASSERT_EQ(0,selectedWidgetVector.size());
 }
 
-TEST_F(GraphicalPresentationTest,testSwitchState){
-    this->graphicalPresentation->componentDataForPreview = new ComponentData(ComponentType::TypeConnector,"3");
-    this->graphicalPresentation->switchState(StateID::ConnectState);
-    ASSERT_EQ(NULL,this->graphicalPresentation->componentDataForPreview);
-    StateSubject* stateSubject = this->graphicalPresentation->getStateSubject();
-    ASSERT_EQ(typeid(*stateSubject->getState()).name(),typeid(ConnectState).name());
-}
-
 TEST_F(GraphicalPresentationTest,testGetComponentByComponentData){
     ComponentData* componentData = NULL;
     ASSERT_EQ(NULL,this->graphicalPresentation->getComponentByComponentData(componentData));
