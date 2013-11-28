@@ -146,7 +146,16 @@ TEST_F(ERModelTest,testInsertComponent){
 }
 
 TEST_F(ERModelTest,testInsertComponentAt){
+    Component* lastComponent = this->erModel.getComponentByID("14");
+    this->erModel.eraseComponent(lastComponent);
 
+    this->erModel.insertComponentAt(lastComponent,0);
+    ASSERT_EQ(lastComponent,*this->erModel.getAllComponents().begin());
+
+    this->erModel.eraseComponent(lastComponent);
+
+    this->erModel.insertComponentAt(lastComponent,this->erModel.getAllComponents().size());
+    ASSERT_EQ(lastComponent,*--this->erModel.getAllComponents().end());
 }
 
 TEST_F(ERModelTest,testEraseComponent){

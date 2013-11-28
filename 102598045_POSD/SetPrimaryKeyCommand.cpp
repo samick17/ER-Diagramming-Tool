@@ -2,7 +2,7 @@
 #include "Attribute.h"
 
 SetPrimaryKeyCommand::SetPrimaryKeyCommand(Attribute* attribute) : attribute(attribute){
-    isPrimaryKey = attribute->isPrimaryKey();
+    this->isPrimaryKey = attribute->isPrimaryKey();
 }
 
 SetPrimaryKeyCommand::~SetPrimaryKeyCommand(){
@@ -11,13 +11,13 @@ SetPrimaryKeyCommand::~SetPrimaryKeyCommand(){
 void SetPrimaryKeyCommand::doExecute(){
     if(isPrimaryKey)
         attribute->setAsDefaultKey();
-    else 
+    else
         attribute->setAsPrimaryKey();
 }
 
 void SetPrimaryKeyCommand::doUnExecute(){
     if(isPrimaryKey)
         attribute->setAsPrimaryKey();
-    else 
+    else
         attribute->setAsDefaultKey();
 }

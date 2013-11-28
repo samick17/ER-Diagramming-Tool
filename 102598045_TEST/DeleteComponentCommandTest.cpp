@@ -31,11 +31,64 @@ void DeleteComponentCommandTest::TearDown(){
 
 
 TEST_F(DeleteComponentCommandTest,testExecute){
-    
+    //test delete attribute
+    DeleteComponentCommand deleteAttributeCommand = DeleteComponentCommand(&this->erModel,this->erModel.getComponentByID("1"));
+    deleteAttributeCommand.execute();
+    ASSERT_EQ(17,this->erModel.getAllComponents().size());
+    //test delete entity
+    DeleteComponentCommand deleteEntityCommand = DeleteComponentCommand(&this->erModel,this->erModel.getComponentByID("0"));
+    deleteEntityCommand.execute();
+    ASSERT_EQ(13,this->erModel.getAllComponents().size());
+    //test delete relationShip
+    DeleteComponentCommand deleteRelationShipCommand = DeleteComponentCommand(&this->erModel,this->erModel.getComponentByID("7"));
+    deleteRelationShipCommand.execute();
+    ASSERT_EQ(11,this->erModel.getAllComponents().size());
+    //test delete connector
+    DeleteComponentCommand deleteConnectorCommand = DeleteComponentCommand(&this->erModel,this->erModel.getComponentByID("15"));
+    deleteConnectorCommand.execute();
+    ASSERT_EQ(10,this->erModel.getAllComponents().size());
 }
 
 TEST_F(DeleteComponentCommandTest,testUnexecute){
-    
+    //test delete attribute
+    DeleteComponentCommand deleteAttributeCommand = DeleteComponentCommand(&this->erModel,this->erModel.getComponentByID("1"));
+    deleteAttributeCommand.clearConnectionDataMap();
+    deleteAttributeCommand.removeAndDisconnectComponents();
+    ASSERT_EQ(17,this->erModel.getAllComponents().size());
+    //test unexecute
+    deleteAttributeCommand.executionFlag = true;
+    deleteAttributeCommand.unExecute();
+    ASSERT_EQ(19,this->erModel.getAllComponents().size());
+
+    //test delete entity
+    DeleteComponentCommand deleteEntityCommand = DeleteComponentCommand(&this->erModel,this->erModel.getComponentByID("0"));
+    deleteEntityCommand.clearConnectionDataMap();
+    deleteEntityCommand.removeAndDisconnectComponents();
+    ASSERT_EQ(14,this->erModel.getAllComponents().size());
+    //test unexecute
+    deleteEntityCommand.executionFlag = true;
+    deleteEntityCommand.unExecute();
+    ASSERT_EQ(19,this->erModel.getAllComponents().size());
+
+    //test delete relationShip
+    DeleteComponentCommand deleteRelationShipCommand = DeleteComponentCommand(&this->erModel,this->erModel.getComponentByID("7"));
+    deleteRelationShipCommand.clearConnectionDataMap();
+    deleteRelationShipCommand.removeAndDisconnectComponents();
+    ASSERT_EQ(16,this->erModel.getAllComponents().size());
+    //test unexecute
+    deleteRelationShipCommand.executionFlag = true;
+    deleteRelationShipCommand.unExecute();
+    ASSERT_EQ(19,this->erModel.getAllComponents().size());
+
+    //test delete connector
+    DeleteComponentCommand deleteConnectorCommand = DeleteComponentCommand(&this->erModel,this->erModel.getComponentByID("15"));
+    deleteConnectorCommand.clearConnectionDataMap();
+    deleteConnectorCommand.removeAndDisconnectComponents();
+    ASSERT_EQ(18,this->erModel.getAllComponents().size());
+    //test unexecute
+    deleteConnectorCommand.executionFlag = true;
+    deleteConnectorCommand.unExecute();
+    ASSERT_EQ(19,this->erModel.getAllComponents().size());
 }
 
 TEST_F(DeleteComponentCommandTest,testDeleteComponentCommand){

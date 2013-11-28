@@ -81,6 +81,7 @@ void GraphicalPresentation::openFile(string filePath){
     try{
         this->presentation->openFile(filePath);
         this->unSelectAll();
+        this->setComponentDataForPreview(NULL);
         this->presentation->sync(ControllerEvent::DisplayDiagram);
     }
     catch(Exception&){

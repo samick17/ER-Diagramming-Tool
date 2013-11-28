@@ -29,13 +29,13 @@ void TableTest::SetUp(){
     ASSERT_EQ(2,table->foreignKeyAttributeMap.size());
 }
 
-void TableTest::TearDown(){    
+void TableTest::TearDown(){
     delete this->entity;
     delete this->table;
     this->deleteAndClearHashMap(this->attributeMap);
-    this->deleteAndClearHashMap(this->foreignKeyAttributeMap);    
+    this->deleteAndClearHashMap(this->foreignKeyAttributeMap);
     ASSERT_EQ(0,this->attributeMap.size());
-    ASSERT_EQ(0,this->foreignKeyAttributeMap.size());    
+    ASSERT_EQ(0,this->foreignKeyAttributeMap.size());
 }
 
 void TableTest::deleteAndClearHashMap(HashMap<string,Attribute*>& attributeMap){

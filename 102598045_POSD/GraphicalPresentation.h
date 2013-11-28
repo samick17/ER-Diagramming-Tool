@@ -11,6 +11,7 @@ class GraphicalPresentation : public Subject{
     FRIEND_TEST(GraphicalPresentationTest,testUpdateAllComponentData);
     FRIEND_TEST(GraphicalPresentationTest,testAddNode);
     FRIEND_TEST(GraphicalPresentationTest,testAddConnection);
+    FRIEND_TEST(GraphicalPresentationTest,testOpenFile);
     FRIEND_TEST(GraphicalPresentationTest,testIsWidgetSelected);
     FRIEND_TEST(GraphicalPresentationTest,testSelectWidget);
     FRIEND_TEST(GraphicalPresentationTest,testSelectLastPressedWidget);

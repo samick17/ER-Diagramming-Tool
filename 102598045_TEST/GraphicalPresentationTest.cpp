@@ -3,6 +3,7 @@
 #include "ComponentType.h"
 #include "StateID.h"
 #include "ConnectState.h"
+#include "FileCreator.h"
 
 void GraphicalPresentationTest::SetUp(){
     this->presentation = new Presentation(&this->erModel);
@@ -66,6 +67,20 @@ TEST_F(GraphicalPresentationTest,testAddConnection){
     ASSERT_EQ(true,sourceComponent->hasConnectedTo(targetComponent));
     ASSERT_EQ(true,targetComponent->hasConnectedTo(sourceComponent));
     ASSERT_EQ(NULL,this->graphicalPresentation->componentDataForPreview);
+}
+
+TEST_F(GraphicalPresentationTest,testOpenFile){
+   string filePath = FileCreator::createDefaultFile();
+
+   this->graphicalPresentation->componentDataForPreview = new ComponentData(ComponentType::TypeAttribute,"Preview");
+
+    this->graphicalPresentation->openFile(filePath);
+
+    this->graphicalPresentation->updateAllComponentData();
+    ASSERT_EQ(15,this->graphicalPresentation->getAllComponentDataMap().size());
+    ASSERT_EQ(NULL,this->graphicalPresentation->componentDataForPreview);
+
+    FileCreator::deleteDefaultFile();
 }
 
 TEST_F(GraphicalPresentationTest,testIsWidgetSelected){

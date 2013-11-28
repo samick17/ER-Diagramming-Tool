@@ -11,6 +11,7 @@ class Connector;
 
 class DeleteComponentCommand : public Command{
     friend class DeleteComponentCommandTest;
+    FRIEND_TEST(DeleteComponentCommandTest,testUnexecute);
     FRIEND_TEST(DeleteComponentCommandTest,testDeleteComponentCommand);
     FRIEND_TEST(DeleteComponentCommandTest,testSaveConnectionData);
     FRIEND_TEST(DeleteComponentCommandTest,testClearConnectionDataMap);
