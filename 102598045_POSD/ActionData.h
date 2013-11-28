@@ -9,6 +9,7 @@ public:
     static const string ActionName[];
     static const string ActionIconPath[];
     static const string ActionShortCutKey[];
+
     static const unsigned int ActionLength;
     static const unsigned int OpenFile;
     static const unsigned int Exit;

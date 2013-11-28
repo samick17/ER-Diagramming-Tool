@@ -85,5 +85,9 @@ TEST_F(ConnectorTest,testIsNodesConnection){
 }
 
 TEST_F(ConnectorTest,testIsCardinalityConnector){
+    ASSERT_EQ(false,this->connector->isCardinalityConnector());
 
+    Connector* connectorER = new Connector("3");
+    ComponentUtil::connectWithEachOther(this->entity,this->relationShip,connectorER);
+    ASSERT_EQ(true,connectorER->isCardinalityConnector());
 }

@@ -1,7 +1,5 @@
 #include "GUITableView.h"
 #include <QHeaderView>
-#include <QVBoxLayout>
-#include <QKeyEvent>
 #include "GraphicalPresentation.h"
 #include "EditableTableWidgetItem.h"
 
@@ -14,13 +12,15 @@ GUITableView::GUITableView(GraphicalPresentation* graphicalPresentation) : QTabl
     this->setHorizontalHeaderLabels(QStringList() << TableColumnTypeName.c_str() << TableColumnTextName.c_str());
     this->horizontalHeader()->setResizeMode(QHeaderView::Stretch);
     this->graphicalPresentation->registerObserver(this);
+    this->connect(this,SIGNAL(itemChanged(QTableWidgetItem*)),this,SLOT(onItemChanged(QTableWidgetItem*)));
 }
 
 GUITableView::~GUITableView(){
     this->graphicalPresentation->unregisterObserver(this);
 }
-
+//disconnect signal & onItemChanged to avoid loop,finally reconnect them
 void GUITableView::notify(ISubject* subject){
+    disconnect(this,SIGNAL(itemChanged(QTableWidgetItem*)),this,SLOT(onItemChanged(QTableWidgetItem*)));
     this->clearContents();
     HashMap<string,ComponentData*> componentDataMap = this->graphicalPresentation->getAllComponentDataMap();
     this->setRowCount(componentDataMap.size());
@@ -29,8 +29,17 @@ void GUITableView::notify(ISubject* subject){
         QTableWidgetItem* itemType = new QTableWidgetItem(componentData->getType().c_str());
         itemType->setFlags(itemType->flags() ^ Qt::ItemIsEditable);
         this->setItem(index,0,itemType);
-        QWidget* itemText = new EditableTableWidgetItem(this->graphicalPresentation,componentData,componentData->getName());
-        this->setCellWidget(index,1,itemText);
+        EditableTableWidgetItem* itemText = new EditableTableWidgetItem(componentData,componentData->getName());
+        this->setItem(index,1,itemText);
         index++;
+    }
+    connect(this,SIGNAL(itemChanged(QTableWidgetItem*)),this,SLOT(onItemChanged(QTableWidgetItem*)));
+}
+//itemChanged,call presentation updateComponentText
+void GUITableView::onItemChanged(QTableWidgetItem* tableWidgetItem){
+    EditableTableWidgetItem* itemText = dynamic_cast<EditableTableWidgetItem*>(tableWidgetItem);
+    if(itemText){
+        ComponentData* componentData = itemText->getComponentData();
+        this->graphicalPresentation->setComponentText(componentData->getID(),tableWidgetItem->text().toStdString());
     }
 }

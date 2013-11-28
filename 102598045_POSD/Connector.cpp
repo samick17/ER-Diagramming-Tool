@@ -77,16 +77,13 @@ bool Connector::isNodesConnection(Component* firstNode,Component* secondNode){
 }
 
 bool Connector::isCardinalityConnector(){
-    if(this->hasSizeToConnect())
-        return false;
-    HashMap<string,int*> countingMap;
     int attributeCount = 0,entityCount = 0,relationShipCount = 0;
+    HashMap<string,int*> countingMap;
     countingMap.put(ComponentType::TypeAttribute,&attributeCount);
     countingMap.put(ComponentType::TypeEntity,&entityCount);
     countingMap.put(ComponentType::TypeRelationShip,&relationShipCount);
-    for each(Component* connection in this->getAllConnections()){
+    for each(Component* connection in this->getAllConnections())
         (*countingMap.get(connection->getType()))++;
-    }
     if(entityCount == Number::One && relationShipCount == Number::One)
         return true;
     return false;

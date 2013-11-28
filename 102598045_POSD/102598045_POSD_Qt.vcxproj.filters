@@ -532,10 +532,10 @@
     <ClCompile Include="..\102598045_POSD\RelationShip.cpp">
       <Filter>Source Files\Model\Component</Filter>
     </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_EditableTableWidgetItem.cpp">
+    <ClCompile Include="GeneratedFiles\Debug\moc_GUITableView.cpp">
       <Filter>Generated Files\Debug</Filter>
     </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_EditableTableWidgetItem.cpp">
+    <ClCompile Include="GeneratedFiles\Release\moc_GUITableView.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
   </ItemGroup>

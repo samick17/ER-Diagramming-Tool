@@ -5,7 +5,7 @@
 #include "HasConnectedException.h"
 #include "ComponentUtil.h"
 
-void AttributeTest::SetUp(){    
+void AttributeTest::SetUp(){
     this->attribute = new Attribute("0","Name");
     this->relationShip = new RelationShip("1","Has");
     this->entity = new Entity("2","Engineer");

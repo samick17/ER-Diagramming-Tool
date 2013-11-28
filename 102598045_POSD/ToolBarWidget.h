@@ -1,9 +1,9 @@
 #pragma once
 
 #include <QToolButton>
-#include "QActionMap.h"
 
 class AddDrawableToolBar;
+class QActionMap;
 
 class ToolBarWidget : public QToolButton{
 public:
