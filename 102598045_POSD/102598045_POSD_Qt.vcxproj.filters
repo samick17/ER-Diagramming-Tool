@@ -421,9 +421,6 @@
     <ClCompile Include="Number.cpp">
       <Filter>Source Files\Constants</Filter>
     </ClCompile>
-    <ClCompile Include="NodeWidget.cpp">
-      <Filter>Source Files\View\GUI\GUIWidget\ModelWidget</Filter>
-    </ClCompile>
     <ClCompile Include="FileMenuItem.cpp">
       <Filter>Source Files\View\GUI\MenuItem</Filter>
     </ClCompile>
@@ -761,9 +758,6 @@
     </ClInclude>
     <ClInclude Include="ControllerEvent.h">
       <Filter>Header Files\Constants</Filter>
-    </ClInclude>
-    <ClInclude Include="NodeWidget.h">
-      <Filter>Header Files\View\GUI\GUIWidget\ModelWidget</Filter>
     </ClInclude>
     <ClInclude Include="FileMenuItem.h">
       <Filter>Header Files\View\GUI\MenuItem</Filter>

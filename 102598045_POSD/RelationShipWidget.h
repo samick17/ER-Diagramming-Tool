@@ -1,8 +1,8 @@
 #pragma once
 
-#include "NodeWidget.h"
+#include "ComponentWidget.h"
 
-class RelationShipWidget : public NodeWidget{
+class RelationShipWidget : public ComponentWidget{
 public:
     RelationShipWidget(ComponentData* componentData,GraphicalPresentation* graphicalPresentation);
     ~RelationShipWidget();

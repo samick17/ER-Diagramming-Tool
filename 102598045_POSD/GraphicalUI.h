@@ -65,5 +65,5 @@ private slots:
     void deleteComponent();
     void switchState(int stateID);
     void executeSync(string syncEventType);
-    void displaySetTextDialog();
+    void displayEditTextDialog();
 };

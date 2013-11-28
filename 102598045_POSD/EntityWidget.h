@@ -1,8 +1,8 @@
 #pragma once
 
-#include "NodeWidget.h"
+#include "ComponentWidget.h"
 
-class EntityWidget : public NodeWidget{
+class EntityWidget : public ComponentWidget{
 public:
     EntityWidget(ComponentData* componentData,GraphicalPresentation* graphicalPresentation);
     ~EntityWidget();

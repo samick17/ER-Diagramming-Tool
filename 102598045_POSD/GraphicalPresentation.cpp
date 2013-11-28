@@ -127,7 +127,7 @@ void GraphicalPresentation::setComponentText(string componentID,string text){
     this->presentation->setComponentText(componentID,text);
     this->sync(ControllerEvent::DisplayDiagram);
 }
-
+//delete all selected components
 void GraphicalPresentation::deleteComponent(){
     for each(string selectedID in this->selectedWidgetVector){
         try{
@@ -165,7 +165,7 @@ void GraphicalPresentation::selectWidget(){
             this->selectedWidgetVector.erase(iterator);
     }
 }
-
+//set last pressed widget be selected
 void GraphicalPresentation::selectLastPressedWidget(){
     if(!this->lastPressedComponent)
         return;
@@ -173,7 +173,7 @@ void GraphicalPresentation::selectLastPressedWidget(){
     if(!this->isWidgetSelected(lastPressedComponentID))
         this->selectedWidgetVector.push_back(lastPressedComponentID);
 }
-
+//move all selected widget
 void GraphicalPresentation::moveSelectedWidget(Point deltaPosition){
     HashMap<string,Component*> componentMap = this->presentation->getAllComponents();
     for each(string componentID in this->selectedWidgetVector){

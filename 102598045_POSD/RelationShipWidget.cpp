@@ -1,6 +1,6 @@
 #include "RelationShipWidget.h"
 
-RelationShipWidget::RelationShipWidget(ComponentData* componentData,GraphicalPresentation* graphicalPresentation) : NodeWidget(componentData,graphicalPresentation){
+RelationShipWidget::RelationShipWidget(ComponentData* componentData,GraphicalPresentation* graphicalPresentation) : ComponentWidget(componentData,graphicalPresentation){
 }
 
 RelationShipWidget::~RelationShipWidget(){

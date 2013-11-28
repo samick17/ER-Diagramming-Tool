@@ -2,7 +2,7 @@
 
 using namespace Qt;
 
-AttributeWidget::AttributeWidget(ComponentData* componentData,GraphicalPresentation* graphicalPresentation) : NodeWidget(componentData,graphicalPresentation){
+AttributeWidget::AttributeWidget(ComponentData* componentData,GraphicalPresentation* graphicalPresentation) : ComponentWidget(componentData,graphicalPresentation){
 }
 
 AttributeWidget::~AttributeWidget(){

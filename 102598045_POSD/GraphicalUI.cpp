@@ -94,7 +94,7 @@ void GraphicalUI::initialAllAction(){
         QAction* pointerStateAction = this->actionMap->getQAction(index);
         connect(pointerStateAction,SIGNAL(triggered()),signalMapper,SLOT(map()));
         if(stateID >= StateID::AddAttributeState && stateID <= StateID::AddRelationShipState)
-            connect(pointerStateAction,SIGNAL(triggered()),this,SLOT(displaySetTextDialog()));
+            connect(pointerStateAction,SIGNAL(triggered()),this,SLOT(displayEditTextDialog()));
         signalMapper->setMapping(pointerStateAction,stateID);
         stateID++;
     }
@@ -174,12 +174,14 @@ void GraphicalUI::refreshAllWidgets(){
 }
 
 void GraphicalUI::setKeyCtrlPressed(QKeyEvent* keyEvent){
-    bool isCtrlPressed = (keyEvent->key() == Key_Control);
-    isCtrlPressed &= keyEvent->type() == QEvent::KeyPress;
-    this->graphicalPresentation->setKeyCtrlState(isCtrlPressed);
+    bool isCtrlKey = (keyEvent->key() == Key_Control);
+    bool isKeyPressed = keyEvent->type() == QEvent::KeyPress;
+
+    bool isCtrlKeyPressed = isCtrlKey && isKeyPressed;
+    this->graphicalPresentation->setKeyCtrlState(isCtrlKeyPressed);
 }
 
-void GraphicalUI::displaySetTextDialog(){
+void GraphicalUI::displayEditTextDialog(){
     bool isOKClicked;
     QString text = QInputDialog::getText(NULL,QString(DialogSetting::Title.c_str()),QString(DialogSetting::Text.c_str()),QLineEdit::Normal,StringSymbol::Empty.c_str(),&isOKClicked);
     if(isOKClicked){
