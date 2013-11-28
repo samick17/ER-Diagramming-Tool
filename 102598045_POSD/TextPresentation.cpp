@@ -127,7 +127,7 @@ Component* TextPresentation::findComponent(){
 
 Entity* TextPresentation::findEntity(){
     Component* find = this->findComponent();
-    while(typeid(*find).name() != typeid(Entity).name()){
+    while(!find->isTypeOf<Entity>()){
         cout<<"The node '"+find->getID()+"' is not an entity. Please enter a valid one again."<<endl;
         find = this->findComponent();
     }

@@ -25,6 +25,9 @@ TEST_F(ComponentTest,testGetClassName){
     ASSERT_EQ(ComponentType::TypeConnectorName,this->connector->getClassName());
 }
 
+TEST_F(ComponentTest,testIsTypeOf){
+}
+
 TEST_F(ComponentTest,testConnectTo){
     ASSERT_EQ(1,this->attribute->getAllConnections().size());
     ASSERT_EQ(true,this->attribute->getAllConnections().containsKey("3"));
@@ -48,4 +51,7 @@ TEST_F(ComponentTest,testDisconnectTo){
 
     this->attribute->disconnectTo(this->connector);
     ASSERT_EQ(0,this->attribute->getAllConnections().size());
+}
+
+TEST_F(ComponentTest,testHasConnectedTo){
 }

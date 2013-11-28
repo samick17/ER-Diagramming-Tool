@@ -1,6 +1,7 @@
 #include "Attribute.h"
 #include "RelationShip.h"
 #include "ComponentType.h"
+#include "AttributeType.h"
 #include "InvalidConnectException.h"
 #include "ComponentConnectionSize.h"
 
@@ -14,7 +15,7 @@ Attribute::~Attribute(){
 int Attribute::canConnectTo(Component* target){
     int canConnect = Node::canConnectTo(target);
 
-    if(typeid(*target).name() == typeid(RelationShip).name())
+    if(target->isTypeOf<RelationShip>())
         throw InvalidConnectException(this->getID(),target->getID());
 
     return canConnect;

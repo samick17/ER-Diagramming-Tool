@@ -27,6 +27,10 @@ public:
     virtual void setCenterPosition(Point position) = 0;
     void setSize(Size size);
     ComponentData* getComponentData();
+    HashMap<string,Component*> getAllConnections();
+
+    template<typename Type>
+    bool isTypeOf();
 
     void connectTo(Component* target);
     void disconnectTo(Component* target);
@@ -34,10 +38,13 @@ public:
     virtual int canConnectTo(Component* target) = 0;
     virtual bool hasSizeToConnect();
     bool hasConnectedTo(Component* target);
-
-    HashMap<string,Component*> getAllConnections();
 protected:
     ComponentData* componentData;
 private:
     HashMap<string,Component*> connectionMap;
 };
+
+template<typename Type>
+bool Component::isTypeOf(){
+    return typeid(*this).name() == typeid(Type).name();
+}

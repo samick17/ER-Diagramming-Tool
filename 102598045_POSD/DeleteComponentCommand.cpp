@@ -35,7 +35,7 @@ void DeleteComponentCommand::doUnExecute(){
     //reconnect all
     for each(Connector* connector in this->connectionMap)
         reConnectComponents(this->connectionDataMap.get(connector->getID()),connector);
-    if(typeid(*this->component).name() == typeid(Connector).name())
+    if(this->component->isTypeOf<Connector>())
         reConnectComponents(this->connectionDataMap.get(this->component->getID()),static_cast<Connector*>(component));
 }
 
@@ -58,7 +58,7 @@ void DeleteComponentCommand::removeAndDisconnectComponents(){
     //save to variable - save connected connections
     this->connectionMap = ERModelUtil::convertComponentHashMapToTypeHashMap<Connector>(this->component->getAllConnections());
     //if is connector,save to connection data
-    if(typeid(*this->component).name() == typeid(Connector).name())
+    if(this->component->isTypeOf<Connector>())
         this->saveConnectionData(static_cast<Connector*>(this->component));
     //save index & remove component from ERModel
     componentIndexMap.put(this->component->getID(),this->erModel->getAllComponents().getValueIndex(this->component));

@@ -2,10 +2,11 @@
 
 #include "Component.h"
 #include "Node.h"
-#include "AttributeType.h"
-#include "StringSymbol.h"
 
 class Attribute : public Node{
+    friend class AttributeTest;
+    FRIEND_TEST(AttributeTest,testSetAsPrimaryKey);
+    FRIEND_TEST(AttributeTest,testSetAsDefaultKey);
 public:
     Attribute(string componentID,string componentName = StringSymbol::Empty);
     ~Attribute();

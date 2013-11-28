@@ -17,10 +17,10 @@ RelationShip::~RelationShip(){
 int RelationShip::canConnectTo(Component* target){
     int canConnect = Node::canConnectTo(target);
 
-    if(typeid(*target).name() == typeid(Attribute).name())
-        throw InvalidConnectException(this->getID(),target->getID());    
-    else if(typeid(*target).name() == typeid(Entity).name())
-        canConnect = NodeConnectionType::ConnectEntityAndRelation;    
+    if(target->isTypeOf<Attribute>())
+        throw InvalidConnectException(this->getID(),target->getID());
+    else if(target->isTypeOf<Entity>())
+        canConnect = NodeConnectionType::ConnectEntityAndRelation;
 
     return canConnect;
 }

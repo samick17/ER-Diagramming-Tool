@@ -45,6 +45,10 @@ ComponentData* Component::getComponentData(){
     return this->componentData;
 }
 
+HashMap<string,Component*> Component::getAllConnections(){
+    return this->connectionMap;
+}
+
 //if no such connection in set, connect to target
 void Component::connectTo(Component* target){
     if(!this->connectionMap.containsKey(target->getID()))
@@ -71,8 +75,4 @@ bool Component::hasConnectedTo(Component* target){
             return true;
     }
     return false;
-}
-
-HashMap<string,Component*> Component::getAllConnections(){
-    return this->connectionMap;
 }

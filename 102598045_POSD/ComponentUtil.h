@@ -24,7 +24,7 @@ static HashMap<string,Type*> ComponentUtil::getConnectedNodeHashMapByType(HashMa
     HashMap<string,Type*> typeHashMap;
     for each(Component* connection in connectionHashMap)
         for each(Component* connectedNode in connection->getAllConnections())
-            if(typeid(*connectedNode).name() == typeid(Type).name())
+            if(connectedNode->isTypeOf<Type>())
                 typeHashMap.put(connectedNode->getID(),static_cast<Type*>(connectedNode));
     return typeHashMap;
 }
@@ -34,7 +34,7 @@ static HashMap<string,Component*> ComponentUtil::toComponentHashMap(HashMap<stri
     HashMap<string,Component*> componentHashMap;
     for each(Type* typePointer in typeHashMap){
         Component* component = typePointer;
-        componentHashMap.put(component->getID(),component);    
+        componentHashMap.put(component->getID(),component);
     }
     return componentHashMap;
 }

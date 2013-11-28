@@ -4,6 +4,7 @@
 #include "ConnectedSelfException.h"
 #include "HasConnectedException.h"
 #include "ComponentUtil.h"
+#include "AttributeType.h"
 
 void AttributeTest::SetUp(){
     this->attribute = new Attribute("0","Name");
@@ -48,7 +49,13 @@ TEST_F(AttributeTest,testIsPrimaryKey){
 }
 
 TEST_F(AttributeTest,testSetAsPrimaryKey){
-    ASSERT_EQ(false,this->attribute->isPrimaryKey());
+    ASSERT_EQ(AttributeType::Default,this->attribute->attributeType);
     this->attribute->setAsPrimaryKey();
-    ASSERT_EQ(true,this->attribute->isPrimaryKey());
+    ASSERT_EQ(AttributeType::PrimaryKey,this->attribute->attributeType);
+}
+
+TEST_F(AttributeTest,testSetAsDefaultKey){
+    this->attribute->attributeType = AttributeType::PrimaryKey;
+    this->attribute->setAsDefaultKey();
+    ASSERT_EQ(AttributeType::Default,this->attribute->attributeType);
 }

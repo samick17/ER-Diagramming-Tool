@@ -13,10 +13,10 @@ Entity::~Entity(){
 
 int Entity::canConnectTo(Component* target){
     int canConnect = Node::canConnectTo(target);
-    
-    if(typeid(*target).name() == typeid(RelationShip).name())
+
+    if(target->isTypeOf<RelationShip>())
         canConnect = NodeConnectionType::ConnectEntityAndRelation;
-    
+
     return canConnect;
 }
 

@@ -15,7 +15,7 @@ template<typename Type>
 static HashMap<string,Type*> ERModelUtil::convertComponentHashMapToTypeHashMap(HashMap<string,Component*> componentHashMap){
     HashMap<string,Type*> typeHashMap;
     for each(Component* component in componentHashMap)
-        if(typeid(*component).name() == typeid(Type).name())
+        if(component->isTypeOf<Type>())
             typeHashMap.put(component->getID(),static_cast<Type*>(component));
     return typeHashMap;
 }
