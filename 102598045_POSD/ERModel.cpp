@@ -23,15 +23,15 @@ ERModel::~ERModel(){
     this->resetERModel();
 }
 
-Node* ERModel::addNode(string componentType){
-    if(componentType == ComponentType::TypeConnector)
+Node* ERModel::addNode(string nodeType){
+    if(nodeType == ComponentType::TypeConnector)
         throw InvalidNodeTypeException();
     ComponentFactory componentFactory;
-    Node* node = static_cast<Node*>(componentFactory.createComponent(componentType));
+    Node* node = static_cast<Node*>(componentFactory.createComponent(nodeType));
     CommandFactory commandFactory;
     Command* addNodeCommand = commandFactory.createAddNodeCommand(this,node);
     this->commandManager.execute(addNodeCommand);
-    this->setNodePosition(componentType,node);
+    this->setNodePosition(nodeType,node);
     return node;
 }
 //insert component in componentMap, if no such key

@@ -38,7 +38,7 @@ public:
     ERModel();
     ~ERModel();
 
-    Node* addNode(string componentType);
+    Node* addNode(string nodeType);
     void insertComponent(Component* component);
     void insertComponentAt(Component* component,unsigned int index);
     void eraseComponent(Component* component);

@@ -20,8 +20,8 @@ void Presentation::close(){
     exit(0);
 }
 
-Node* Presentation::addNode(string componentType){
-    return this->erModel->addNode(componentType);
+Node* Presentation::addNode(string nodeType){
+    return this->erModel->addNode(nodeType);
 }
 
 void Presentation::deleteComponent(string componentID){

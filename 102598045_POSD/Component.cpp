@@ -17,16 +17,16 @@ string Component::getType(){
     return this->componentData->getType();
 }
 
+string Component::getClassName(){
+    return this->componentData->getClassName();
+}
+
 string Component::getName(){
     return this->componentData->getName();
 }
 
 void Component::setName(string name){
     this->componentData->setName(name);
-}
-
-string Component::getClassName(){
-    return StringUtil::split(typeid(*this).name(),CharSymbol::Space)[1];
 }
 
 Rect Component::getRect(){

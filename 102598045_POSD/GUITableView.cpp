@@ -26,7 +26,7 @@ void GUITableView::notify(ISubject* subject){
     this->setRowCount(componentDataMap.size());
     unsigned int index = 0;
     for each(ComponentData* componentData in componentDataMap){
-        QTableWidgetItem* itemType = new QTableWidgetItem(componentData->getType().c_str());
+        QTableWidgetItem* itemType = new QTableWidgetItem(componentData->getClassName().c_str());
         itemType->setFlags(itemType->flags() ^ Qt::ItemIsEditable);
         this->setItem(index,0,itemType);
         EditableTableWidgetItem* itemText = new EditableTableWidgetItem(componentData,componentData->getName());

@@ -16,6 +16,7 @@ public:
     string getName();
     void setName(string name);
     string getType();
+    string getClassName();
     bool getIsUnderLine();
     void setIsUnderLine(bool isUnderLine);
     Rect getRect();
@@ -28,6 +29,7 @@ private:
     string id;
     string name;
     string type;
+    string className;
     bool isUnderLine;
     Rect rect;
 };

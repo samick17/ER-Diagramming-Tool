@@ -6,6 +6,8 @@ using namespace std;
 
 class ComponentType{
 public:
+    static string getClassName(string type);
+
     static const string TypeComponent;
     static const string TypeNode;
     static const string TypeAttribute;

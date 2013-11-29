@@ -19,9 +19,9 @@ public:
 
     string getID();
     string getType();
+    string getClassName();
     string getName();
     void setName(string name);
-    string getClassName();
     Rect getRect();
     virtual void setPosition(Point position) = 0;
     virtual void setCenterPosition(Point position) = 0;

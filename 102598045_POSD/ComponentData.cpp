@@ -1,8 +1,10 @@
 #include "ComponentData.h"
 #include "Number.h"
+#include "ComponentType.h"
 
 ComponentData::ComponentData(string type,string id,string name) : type(type),id(id),name(name){
     this->isUnderLine = false;
+    this->className = ComponentType::getClassName(type);
 }
 
 ComponentData::~ComponentData(){
@@ -26,6 +28,10 @@ void ComponentData::setName(string name){
 
 string ComponentData::getType(){
     return this->type;
+}
+
+string ComponentData::getClassName(){
+    return this->className;
 }
 
 bool ComponentData::getIsUnderLine(){

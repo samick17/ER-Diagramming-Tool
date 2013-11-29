@@ -16,7 +16,7 @@ void ConnectState::doMousePressEvent(Point position){
     Component* sourceComponent = this->graphicalPresentation->getLastPressedComponent();
     if(!sourceComponent)
         return;
-    ComponentData componentData = ComponentData(ComponentType::TypeConnector,WidgetDefaultSetting::PreviewWidgetID);
+    ComponentData componentData = ComponentData(ComponentType::TypeConnector,ComponentType::TypeConnectorName,WidgetDefaultSetting::PreviewWidgetID);
     ConnectorData* connectorData = new ConnectorData(componentData,position,position);
     Rect rect = sourceComponent->getRect();
     connectorData->setPointPair(rect.getMinDistanceToRectPoint(Rect(position)));

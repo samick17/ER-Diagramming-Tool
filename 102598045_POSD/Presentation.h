@@ -25,7 +25,7 @@ public:
     void saveFile(string filePath);
     void close();
 
-    Node* addNode(string componentType);
+    Node* addNode(string nodeType);
     void deleteComponent(string componentID);
     int addConnection(Component* firstNode,Component* secondNode);
     void redo();
