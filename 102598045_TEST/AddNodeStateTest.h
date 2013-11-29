@@ -8,6 +8,7 @@
 
 class AddNodeStateTest : public testing::Test{
 protected:
+    AddNodeState* addNodeState;
     ERModel erModel;
     Presentation* presentation;
     GraphicalPresentation* graphicalPresentation;

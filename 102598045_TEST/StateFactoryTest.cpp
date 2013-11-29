@@ -5,6 +5,7 @@
 #include "AddNodeState.h"
 #include "PointerState.h"
 #include "ConnectState.h"
+#include "SetPrimaryKeyState.h"
 
 void StateFactoryTest::SetUp(){
 }
@@ -31,5 +32,8 @@ TEST_F(StateFactoryTest,testCreateState){
     delete state;
     state = this->stateFactory.createState(StateID::PointerState,&graphicalPresentation);
     ASSERT_EQ(typeid(PointerState).name(),typeid(*state).name());
+    delete state;
+    state = this->stateFactory.createState(StateID::SetPrimaryKeyState,&graphicalPresentation);
+    ASSERT_EQ(typeid(SetPrimaryKeyState).name(),typeid(*state).name());
     delete state;
 }

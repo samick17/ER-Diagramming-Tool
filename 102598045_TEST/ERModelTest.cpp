@@ -293,11 +293,16 @@ TEST_F(ERModelTest,testOpenFile){
     ASSERT_THROW(this->erModel.commandManager.redo(),Exception);
     ASSERT_THROW(this->erModel.commandManager.undo(),Exception);
 
+    //test openfile again
+    this->erModel.openFile(filePath);
+    ASSERT_EQ(15,this->erModel.getAllComponents().size());
+    ASSERT_THROW(this->erModel.commandManager.redo(),Exception);
+    ASSERT_THROW(this->erModel.commandManager.undo(),Exception);
+
     FileCreator::deleteDefaultFile();
 }
 
 TEST_F(ERModelTest,testSaveFile){
-
 }
 
 TEST_F(ERModelTest,testGetComponentByID){

@@ -1,14 +1,14 @@
 #pragma once
 
-#include "SetPrimaryKeyState.h"
+#include "State.h"
 #include "ERModel.h"
 #include "Presentation.h"
 #include "GraphicalPresentation.h"
 #include <gtest/gtest.h>
 
-class SetPrimaryKeyStateTest : public testing::Test{
+class StateTest : public testing::Test{
 protected:
-    SetPrimaryKeyState* setPrimaryKeyState;
+    State* state;
     ERModel erModel;
     Presentation* presentation;
     GraphicalPresentation* graphicalPresentation;
