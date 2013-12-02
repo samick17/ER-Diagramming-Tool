@@ -13,7 +13,7 @@ OutputFileParser::~OutputFileParser(){
 }
 
 void OutputFileParser::parseModelToFile(string filePath){
-    Document doc(filePath);        
+    Document doc(filePath);
     //write all
     this->writeAllComponentsToDoc(doc,componentMap);
     this->writeAllConnectorsToDoc(doc,componentMap);

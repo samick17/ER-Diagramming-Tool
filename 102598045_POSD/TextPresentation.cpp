@@ -1,5 +1,4 @@
 #include "TextPresentation.h"
-#include <iostream>
 #include "Entity.h"
 #include "Connector.h"
 #include "ComponentUtil.h"
@@ -30,7 +29,7 @@ TextPresentation::~TextPresentation(){
 string TextPresentation::getInput(){
     string input;
     while(input.empty()){
-        cout<<">";
+        this->textUIPresenter->logMessage(">");
         getline(cin,input);
     }
     return input;
@@ -59,10 +58,10 @@ void TextPresentation::processCommand(){
         textInstruction->execute(this,this->textUIPresenter);
     }
     catch(NullPointerException){
-        cout<<"wrong command,please input correct command."<<endl;
+        this->textUIPresenter->logMessage("wrong command,please input correct command.");
     }
     catch(Exception& exception){
-        cout<<exception.getMessage()<<endl;
+        this->textUIPresenter->logMessage(exception.getMessage());
         delete textInstruction;
     }
 }
@@ -119,7 +118,7 @@ Component* TextPresentation::findComponent(){
             find = this->presentation->getComponentByID(input);
         }
         catch(Exception& exception){
-            cout<<exception.getMessage()<<endl;
+            this->textUIPresenter->logMessage(exception.getMessage());
         }
     }
     return find;
@@ -128,7 +127,7 @@ Component* TextPresentation::findComponent(){
 Entity* TextPresentation::findEntity(){
     Component* find = this->findComponent();
     while(!find->isTypeOf<Entity>()){
-        cout<<"The node '"+find->getID()+"' is not an entity. Please enter a valid one again."<<endl;
+        this->textUIPresenter->logMessage("The node '"+find->getID()+"' is not an entity. Please enter a valid one again.");
         find = this->findComponent();
     }
     return static_cast<Entity*>(find);
@@ -215,6 +214,6 @@ void TextPresentation::executeSync(string syncEventType){
         (this->textUIPresenter->*syncFunction)();
     }
     catch(Exception& exception){
-        cout<<exception.getMessage()<<endl;
+        this->textUIPresenter->logMessage(exception.getMessage());
     }
 }

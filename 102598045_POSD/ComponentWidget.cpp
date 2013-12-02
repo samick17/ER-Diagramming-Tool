@@ -59,19 +59,19 @@ string ComponentWidget::getText(){
 }
 
 void ComponentWidget::setText(string text){
-	this->text = text;
+    this->text = text;
 }
 
 void ComponentWidget::setRect(QRectF rect){
-	this->rect = rect;
+    this->rect = rect;
 }
 
 bool ComponentWidget::getIsUnderLine(){
-	return this->isUnderLine;
+    return this->isUnderLine;
 }
 
 void ComponentWidget::setUnderLine(bool isUnderLine){
-	this->isUnderLine = isUnderLine;
+    this->isUnderLine = isUnderLine;
 }
 
 void ComponentWidget::doUpdateWidget(){

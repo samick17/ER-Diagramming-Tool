@@ -16,6 +16,7 @@ public:
     void displayEntityAttributes(Entity* entity);
     void displayDiagram();
     void displayStringWithComma(string strStart,vector<string> stringVector,string strEnd);
+    void logMessage(string message);
 private:
     void displayComponentMap(HashMap<string,Component*> componentMap);
     TextPresentation* textPresentation;

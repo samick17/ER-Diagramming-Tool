@@ -65,7 +65,7 @@ ComponentData* GUIScene::getComponentDataAtPosition(QPointF qPosition){
         componentData = widget->getComponentData();
     return componentData;
 }
-
+//add Widget and update
 void GUIScene::addWidget(ComponentData* componentData){
     WidgetFactory widgetFactory;
     ComponentWidget* componentWidget = widgetFactory.createComponentWidget(componentData,this->graphicalPresentation);

@@ -1,6 +1,5 @@
 #include "Presentation.h"
 #include "ERModel.h"
-#include "IObserver.h"
 
 Presentation::Presentation(ERModel* erModel) : erModel(erModel){
 }

@@ -1,6 +1,5 @@
 #include "StateSubject.h"
 #include "StateFactory.h"
-#include "IObserver.h"
 
 StateSubject::StateSubject(State* state) : state(state){
 }

@@ -17,7 +17,7 @@ void AddNodeState::onCreate(){
     ComponentData* componentData = new ComponentData(nodeType,WidgetDefaultSetting::PreviewWidgetID);
     this->graphicalPresentation->setComponentDataForPreview(componentData);
 }
-
+//add node
 void AddNodeState::doMousePressEvent(Point position){
     ComponentData* componentData = this->graphicalPresentation->getComponentDataForPreview();
     string nodeType = componentData->getType();
@@ -26,7 +26,7 @@ void AddNodeState::doMousePressEvent(Point position){
     this->graphicalPresentation->addNode(nodeType,nodeName,position);
     this->graphicalPresentation->switchState(StateID::PointerState);
 }
-
+//update preview node
 void AddNodeState::doMouseMoveEvent(Point position){
     ComponentData* componentData = this->graphicalPresentation->getComponentDataForPreview();
     componentData->setCenterPosition(position);

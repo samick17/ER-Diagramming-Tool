@@ -2,6 +2,7 @@
 #include <QHeaderView>
 #include "GraphicalPresentation.h"
 #include "EditableTableWidgetItem.h"
+#include "Number.h"
 
 const int GUITableView::TableSize = 2;
 const string GUITableView::TableColumnTypeName = "Type";
@@ -28,9 +29,9 @@ void GUITableView::notify(ISubject* subject){
     for each(ComponentData* componentData in componentDataMap){
         QTableWidgetItem* itemType = new QTableWidgetItem(componentData->getClassName().c_str());
         itemType->setFlags(itemType->flags() ^ Qt::ItemIsEditable);
-        this->setItem(index,0,itemType);
+        this->setItem(index,Number::Zero,itemType);
         EditableTableWidgetItem* itemText = new EditableTableWidgetItem(componentData,componentData->getName());
-        this->setItem(index,1,itemText);
+        this->setItem(index,Number::One,itemText);
         index++;
     }
     connect(this,SIGNAL(itemChanged(QTableWidgetItem*)),this,SLOT(onItemChanged(QTableWidgetItem*)));

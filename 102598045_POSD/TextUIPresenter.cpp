@@ -109,3 +109,7 @@ void TextUIPresenter::displayStringWithComma(string strStart,vector<string> stri
     cout<<stringWithComma;
     cout<<strEnd;
 }
+
+void TextUIPresenter::logMessage(string message){
+    cout<<message<<endl;
+}

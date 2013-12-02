@@ -1,5 +1,4 @@
 #include "Document.h"
-#include <algorithm>
 #include "FileNotFoundException.h"
 #include "StringSymbol.h"
 

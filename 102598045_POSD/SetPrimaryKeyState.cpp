@@ -9,8 +9,9 @@ SetPrimaryKeyState::~SetPrimaryKeyState(){
 
 void SetPrimaryKeyState::doMousePressEvent(Point position){
     Component* component = this->graphicalPresentation->getLastPressedComponent();
-    if(component)
-        this->graphicalPresentation->setPrimaryKey(component->getID());
+    if(!component)
+        return;
+    this->graphicalPresentation->setPrimaryKey(component->getID());
 }
 
 void SetPrimaryKeyState::doMouseMoveEvent(Point position){

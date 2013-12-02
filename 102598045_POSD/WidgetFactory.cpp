@@ -1,6 +1,5 @@
 #include "WidgetFactory.h"
 #include "ComponentType.h"
-#include "GraphicalPresentation.h"
 
 WidgetFactory::WidgetFactory(){
     this->newComponentWidgetMap.put(ComponentType::TypeAttribute,newComponentWidget<AttributeWidget>);

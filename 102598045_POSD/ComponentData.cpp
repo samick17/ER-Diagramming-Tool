@@ -1,5 +1,4 @@
 #include "ComponentData.h"
-#include "Number.h"
 #include "ComponentType.h"
 
 ComponentData::ComponentData(string type,string id,string name) : type(type),id(id),name(name){

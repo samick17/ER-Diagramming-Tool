@@ -11,7 +11,7 @@ string StringUtil::intToString(int number){
 }
 //split string with char
 vector<string> StringUtil::split(const string &str,char delim){
-    vector<string> elements;  
+    vector<string> elements;
     stringstream strStream(str);
     string line;
     while (getline(strStream,line,delim))
@@ -36,7 +36,7 @@ string &StringUtil::trim(string &str){
 string StringUtil::appendWithComma(vector<string> stringVector){
     string result;
     for each(string str in stringVector){
-        result += str;    
+        result += str;
         if(str != *(--stringVector.end()))
             result += StringSymbol::Comma;
     }

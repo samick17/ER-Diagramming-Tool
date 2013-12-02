@@ -15,7 +15,6 @@ public:
 
     void notify(ISubject* subject);
 private:
-    static const string TableTitle;
     static const int TableSize;
     static const string TableColumnTypeName;
     static const string TableColumnTextName;

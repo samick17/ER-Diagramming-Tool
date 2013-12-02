@@ -4,9 +4,6 @@
 #include "DeleteComponentCommand.h"
 #include "SetPrimaryKeyCommand.h"
 #include "EditTextOfComponentsCommand.h"
-#include "ERModel.h"
-#include "Node.h"
-#include "Connector.h"
 
 Command* CommandFactory::createAddNodeCommand(ERModel* erModel,Node* node){
     return new AddNodeCommand(erModel,node);
