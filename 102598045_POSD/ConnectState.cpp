@@ -9,9 +9,6 @@ ConnectState::ConnectState(int stateID,GraphicalPresentation* graphicalPresentat
 ConnectState::~ConnectState(){
 }
 
-void ConnectState::onCreate(){
-}
-
 void ConnectState::doMousePressEvent(Point position){
     Component* sourceComponent = this->graphicalPresentation->getLastPressedComponent();
     if(!sourceComponent)

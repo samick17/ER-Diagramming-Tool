@@ -9,3 +9,15 @@ void AddNodeStateTest::TearDown(){
     delete this->presentation;
     delete this->graphicalPresentation;
 }
+
+TEST_F(AddNodeStateTest,testOnCreate){
+
+}
+
+TEST_F(AddNodeStateTest,testDoMousePressEvent){
+
+}
+
+TEST_F(AddNodeStateTest,testDoMouseMoveEvent){
+
+}

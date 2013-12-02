@@ -6,7 +6,6 @@ class ConnectState : public State{
 public:
     ConnectState(int stateID,GraphicalPresentation* graphicalPresentation);
     ~ConnectState();
-    void onCreate();
 protected:
    void doMousePressEvent(Point position);
    void doMouseMoveEvent(Point position);
