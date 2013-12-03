@@ -14,8 +14,7 @@ void ConnectState::doMousePressEvent(Point position){
     if(!sourceComponent || sourceComponent->isTypeOf<Connector>())
         return;
     //set preview connector
-    ComponentData componentData = ComponentData(ComponentType::TypeConnector,ComponentType::TypeConnectorName,WidgetDefaultSetting::PreviewWidgetID);
-    ConnectorData* connectorData = new ConnectorData(componentData,position,position);
+    ConnectorData* connectorData = new ConnectorData(WidgetDefaultSetting::PreviewWidgetID,WidgetDefaultSetting::PreviewWidgetID,position,position);
     Rect rect = sourceComponent->getRect();
     pair<Point,Point> minDistainceToRectPoint = rect.getMinDistanceToRectPoint(Rect(position));
     connectorData->setPointPair(minDistainceToRectPoint);

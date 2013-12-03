@@ -11,6 +11,7 @@
 #include "TextUIPresenter.h"
 #include "ApplicationSetting.h"
 #include "ControllerEvent.h"
+#include "Cardinality.h"
 
 TextPresentation::TextPresentation(Presentation* presentation) : presentation(presentation){
     string title = "Title "+ApplicationSetting::Title;
@@ -200,8 +201,9 @@ void TextPresentation::initialSyncMap(){
 
 void TextPresentation::initialCardinalityInputMap(){
     unsigned int index = 0;
-    for each(string cardinality in this->presentation->getCardinalityVector()){
-        this->cardinalityInputMap.put(StringUtil::intToString(index),cardinality);
+    Cardinality* cardinality = this->presentation->getCardinality();
+    for each(string cardinalityValue in cardinality->getCardinalityVector()){
+        this->cardinalityInputMap.put(StringUtil::intToString(index),cardinalityValue);
         index++;
     }
 }

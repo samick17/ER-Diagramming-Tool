@@ -4,7 +4,7 @@
 
 struct ConnectorData : public ComponentData{
 public:
-    ConnectorData(ComponentData componentData,Point sourcePoint = Point(),Point targetPoint = Point());
+    ConnectorData(string id,string name = StringSymbol::Empty,Point sourcePoint = Point(),Point targetPoint = Point());
     ~ConnectorData();
 
     Point getSourcePoint();

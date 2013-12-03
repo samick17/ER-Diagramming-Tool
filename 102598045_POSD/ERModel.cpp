@@ -153,8 +153,8 @@ Connector* ERModel::getNodesConnector(Component* firstNode,Component* secondNode
     return connection;
 }
 
-vector<string> ERModel::getCardinalityVector(){
-    return this->cardinality.getCardinalityVector();
+Cardinality* ERModel::getCardinality(){
+    return &this->cardinality;
 }
 
 HashMap<string,Component*> ERModel::getAllComponents(){

@@ -42,7 +42,7 @@ TEST_F(ConnectStateTest,testDoMouseDragEvent){
     Component* entity = this->presentation->addNode(ComponentType::TypeEntity);
     this->presentation->addConnection(attribute,entity);
 
-    this->graphicalPresentation->componentDataForPreview = new ConnectorData(ComponentData(ComponentType::TypeConnector,"test"));
+    this->graphicalPresentation->componentDataForPreview = new ConnectorData("test");
     this->graphicalPresentation->lastPressedComponent = attribute;
     //test drag to null
     ConnectState connectState = ConnectState(StateID::ConnectState,this->graphicalPresentation);

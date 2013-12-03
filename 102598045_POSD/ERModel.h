@@ -54,7 +54,7 @@ public:
 
     Component* getComponentByID(string id);
     Connector* getNodesConnector(Component* firstNode,Component* secondNode);
-    vector<string> getCardinalityVector();
+    Cardinality* getCardinality();
     HashMap<string,Component*> getAllComponents();
     HashMap<string,Attribute*> getAllAttributes();
     HashMap<string,Entity*> getAllEntities();

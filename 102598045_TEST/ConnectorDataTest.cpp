@@ -8,7 +8,7 @@ void ConnectorDataTest::TearDown(){
 }
 
 TEST_F(ConnectorDataTest,testSetPointPair){
-    ConnectorData connectorData = ConnectorData(ComponentData("test","testClass","0"));
+    ConnectorData connectorData = ConnectorData("testConnector");
     Point sourcePoint = Point(-100,-150);
     Point targetPoint = Point(203,300);
     pair<Point,Point> pointPair = pair<Point,Point>(sourcePoint,targetPoint);

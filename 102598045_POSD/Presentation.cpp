@@ -59,8 +59,8 @@ Connector* Presentation::getNodesConnector(Component* firstNode,Component* secon
     return this->erModel->getNodesConnector(firstNode,secondNode);
 }
 
-vector<string> Presentation::getCardinalityVector(){
-    return this->erModel->getCardinalityVector();
+Cardinality* Presentation::getCardinality(){
+    return this->erModel->getCardinality();
 }
 
 HashMap<string,Component*> Presentation::getAllComponents(){

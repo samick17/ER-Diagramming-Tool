@@ -7,8 +7,7 @@
 #include "Number.h"
 
 Connector::Connector(string componentID,string componentName){
-    ComponentData componentData = ComponentData(ComponentType::TypeConnector,componentID,componentName);
-    this->componentData = new ConnectorData(componentData);
+    this->componentData = new ConnectorData(componentID,componentName);
 }
 
 Connector::~Connector(){
