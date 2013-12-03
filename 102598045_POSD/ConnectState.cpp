@@ -11,7 +11,7 @@ ConnectState::~ConnectState(){
 
 void ConnectState::doMousePressEvent(Point position){
     Component* sourceComponent = this->graphicalPresentation->getLastPressedComponent();
-    if(!sourceComponent)
+    if(!sourceComponent || sourceComponent->isTypeOf<Connector>())
         return;
     //set preview connector
     ComponentData componentData = ComponentData(ComponentType::TypeConnector,ComponentType::TypeConnectorName,WidgetDefaultSetting::PreviewWidgetID);
@@ -28,15 +28,16 @@ void ConnectState::doMouseMoveEvent(Point position){
 //update preview connector
 void ConnectState::doMouseDragEvent(Point position){
     ComponentData* componentData = this->graphicalPresentation->getComponentDataForPreview();
+    //cast to connectorData
     ConnectorData* connectorData = dynamic_cast<ConnectorData*>(componentData);
-    if(!connectorData)
-        return;
+    //set connectorData Position
     connectorData->setTargetPoint(position);
     Component* sourceComponent = this->graphicalPresentation->getLastPressedComponent();
     Component* targetComponent = this->graphicalPresentation->getLastMovedComponent();
     Rect sourceRect = sourceComponent->getRect();
     Rect targetRect = Rect(position,Size::Zero);
-    if(targetComponent)
+    //if target is connector, do nothing
+    if(targetComponent && !targetComponent->isTypeOf<Connector>())
         targetRect = targetComponent->getRect();
     connectorData->setPointPair(sourceRect.getMinDistanceToRectPoint(targetRect));
 }

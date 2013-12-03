@@ -561,6 +561,9 @@
     <ClCompile Include="StateTest.cpp">
       <Filter>Unit Testing Files\StateTest</Filter>
     </ClCompile>
+    <ClCompile Include="MockState.cpp">
+      <Filter>Source Files\MockObject</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DirectoryUtil.h">
@@ -712,6 +715,9 @@
     </ClInclude>
     <ClInclude Include="StateTest.h">
       <Filter>Header Files\StateTest</Filter>
+    </ClInclude>
+    <ClInclude Include="MockState.h">
+      <Filter>Header Files\MockObject</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

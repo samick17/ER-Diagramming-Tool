@@ -1,10 +1,18 @@
 #pragma once
 
 #include "Point.h"
+#include <gtest/gtest_prod.h> 
 
 class GraphicalPresentation;
 
 class State{
+    friend class StateTest;
+    FRIEND_TEST(StateTest,testMousePressEvent);
+    FRIEND_TEST(StateTest,testMouseMoveEvent);
+    FRIEND_TEST(StateTest,testMouseDragEvent);
+    FRIEND_TEST(StateTest,testMouseReleaseEvent);
+    friend class ConnectStateTest;
+    FRIEND_TEST(ConnectStateTest,testDoMouseDragEvent);
 public:
     State(int stateID,GraphicalPresentation* graphicalPresentation);
     virtual ~State();
