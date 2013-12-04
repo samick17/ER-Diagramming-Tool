@@ -49,13 +49,10 @@ void TextPresentation::displayMenu(){
 }
 
 void TextPresentation::processCommand(){
-    string commandKey = this->getInput();
+    string instructionKey = this->getInput();
     TextInstruction* textInstruction = NULL;
     try{
-        InstructionData* instructionData = this->instructionMenu->getInstructionDataByKey(commandKey);
-        //get new Command Function From Command Data
-        NewInstructionFunction newInstructionFunction = instructionData->getNewInstructionFunction();
-        textInstruction = newInstructionFunction();
+        textInstruction = this->instructionMenu->createInstruction(instructionKey);
         textInstruction->execute(this,this->textUIPresenter);
     }
     catch(NullPointerException){
@@ -63,8 +60,9 @@ void TextPresentation::processCommand(){
     }
     catch(Exception& exception){
         this->textUIPresenter->logMessage(exception.getMessage());
-        delete textInstruction;
     }
+    if(textInstruction)
+        delete textInstruction;
 }
 
 HashMap<string,Table*> TextPresentation::getAllTables(){

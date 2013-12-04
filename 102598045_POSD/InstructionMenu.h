@@ -15,7 +15,7 @@ public:
     ~InstructionMenu();
 
     HashMap<string,InstructionData*> getInstructionDataMap();
-    InstructionData* getInstructionDataByKey(string key);
+    TextInstruction* createInstruction(string instructionKey);
 private:
     template<typename Type>
     static TextInstruction* newTextInstruction();

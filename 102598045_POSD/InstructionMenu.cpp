@@ -37,9 +37,11 @@ HashMap<string,InstructionData*> InstructionMenu::getInstructionDataMap(){
     return this->instructionDataMap;
 }
 
-InstructionData* InstructionMenu::getInstructionDataByKey(string key){
-    if(this->instructionDataMap.containsKey(key)){
-        return this->instructionDataMap.get(key);
+TextInstruction* InstructionMenu::createInstruction(string instructionKey){
+    if(this->instructionDataMap.containsKey(instructionKey)){
+        InstructionData* instructionData = this->instructionDataMap.get(instructionKey);
+        NewInstructionFunction newInstructionFunction = instructionData->getNewInstructionFunction();
+        return newInstructionFunction();
     }
     throw NullPointerException();
 }
