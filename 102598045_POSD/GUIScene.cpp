@@ -15,7 +15,7 @@ GUIScene::~GUIScene(){
     this->graphicalPresentation->unregisterObserver(this);
 }
 
-void GUIScene::notify(ISubject* subject){
+void GUIScene::notify(Subject* subject){
     this->onNotifyEvent();
 }
 

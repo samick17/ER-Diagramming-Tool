@@ -1,4 +1,4 @@
 #include "MockIObserver.h"
 
-void MockIObserver::notify(ISubject* subject){
+void MockIObserver::notify(Subject* subject){
 }

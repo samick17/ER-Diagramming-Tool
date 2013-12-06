@@ -1,12 +1,13 @@
 #pragma once
 
-#include "ISubject.h"
 #include <set>
 #include <gtest/gtest_prod.h>
 
+class IObserver;
+
 using namespace std;
 
-class Subject : public ISubject{
+class Subject{
     friend class SubjectTest;
     FRIEND_TEST(SubjectTest,testRegisterObserver);
     FRIEND_TEST(SubjectTest,testUnregisterObserver);

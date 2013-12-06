@@ -13,7 +13,7 @@ public:
     GUITableView(GraphicalPresentation* graphicalPresentation);
     ~GUITableView();
 
-    void notify(ISubject* subject);
+    void notify(Subject* subject);
 private:
     static const int TableSize;
     static const string TableColumnTypeName;

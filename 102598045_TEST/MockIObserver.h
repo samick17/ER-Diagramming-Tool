@@ -4,5 +4,5 @@
 
 class MockIObserver : public IObserver{
 public:
-    void notify(ISubject* subject);
+    void notify(Subject* subject);
 };

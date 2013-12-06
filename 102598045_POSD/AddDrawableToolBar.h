@@ -15,7 +15,7 @@ public:
     ~AddDrawableToolBar();
 
     void selectToolButton(int stateID);
-    void notify(ISubject* subject);
+    void notify(Subject* subject);
 private:
     ToolBarWidget* currentFocusedWidget;
     StateSubject* stateSubject;

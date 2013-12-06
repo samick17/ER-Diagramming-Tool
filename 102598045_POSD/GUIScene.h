@@ -20,7 +20,7 @@ public:
     GUIScene(GraphicalUI* graphicalUI);
     ~GUIScene();
 
-    void notify(ISubject* subject);
+    void notify(Subject* subject);
     void refreshAllWidgets();
 protected:
     void mousePressEvent(QGraphicsSceneMouseEvent* mouseEvent);

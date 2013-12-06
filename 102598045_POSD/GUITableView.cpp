@@ -20,7 +20,7 @@ GUITableView::~GUITableView(){
     this->graphicalPresentation->unregisterObserver(this);
 }
 //disconnect signal & onItemChanged to avoid loop,finally reconnect them
-void GUITableView::notify(ISubject* subject){
+void GUITableView::notify(Subject* subject){
     disconnect(this,SIGNAL(itemChanged(QTableWidgetItem*)),this,SLOT(onItemChanged(QTableWidgetItem*)));
     this->clearContents();
     HashMap<string,ComponentData*> componentDataMap = this->graphicalPresentation->getAllComponentDataMap();

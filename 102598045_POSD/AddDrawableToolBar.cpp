@@ -34,7 +34,7 @@ void AddDrawableToolBar::selectToolButton(int stateID){
     this->currentFocusedWidget = nextSelectToolButton;
 }
 
-void AddDrawableToolBar::notify(ISubject* subject){
+void AddDrawableToolBar::notify(Subject* subject){
     //update widget according to StateSubject
     State* state = this->stateSubject->getState();
     this->selectToolButton(state->getStateID());
