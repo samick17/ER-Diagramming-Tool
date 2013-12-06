@@ -570,6 +570,12 @@
     <ClCompile Include="..\102598045_POSD\ActionData.cpp">
       <Filter>Source Files\Constants</Filter>
     </ClCompile>
+    <ClCompile Include="CommandTest.cpp">
+      <Filter>Unit Testing Files\CommandTest</Filter>
+    </ClCompile>
+    <ClCompile Include="MockCommand.cpp">
+      <Filter>Source Files\MockObject</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DirectoryUtil.h">
@@ -723,6 +729,12 @@
       <Filter>Header Files\StateTest</Filter>
     </ClInclude>
     <ClInclude Include="MockState.h">
+      <Filter>Header Files\MockObject</Filter>
+    </ClInclude>
+    <ClInclude Include="CommandTest.h">
+      <Filter>Header Files\CommandTest</Filter>
+    </ClInclude>
+    <ClInclude Include="MockCommand.h">
       <Filter>Header Files\MockObject</Filter>
     </ClInclude>
   </ItemGroup>

@@ -176,6 +176,7 @@
     <ClCompile Include="CardinalityTest.cpp" />
     <ClCompile Include="CommandFactoryTest.cpp" />
     <ClCompile Include="CommandManagerTest.cpp" />
+    <ClCompile Include="CommandTest.cpp" />
     <ClCompile Include="ConnectorDataTest.cpp" />
     <ClCompile Include="ConnectStateTest.cpp" />
     <ClCompile Include="DirectoryUtil.cpp" />
@@ -196,6 +197,7 @@
     <ClCompile Include="InputFileParserTest.cpp" />
     <ClCompile Include="HashMapTest.cpp" />
     <ClCompile Include="MainTest.cpp" />
+    <ClCompile Include="MockCommand.cpp" />
     <ClCompile Include="MockIObserver.cpp" />
     <ClCompile Include="MockState.cpp" />
     <ClCompile Include="NodeTest.cpp" />
@@ -230,6 +232,7 @@
     <ClInclude Include="CardinalityTest.h" />
     <ClInclude Include="CommandFactoryTest.h" />
     <ClInclude Include="CommandManagerTest.h" />
+    <ClInclude Include="CommandTest.h" />
     <ClInclude Include="ConnectorDataTest.h" />
     <ClInclude Include="ConnectStateTest.h" />
     <ClInclude Include="EditTextOfComponentsCommandTest.h" />
@@ -249,6 +252,7 @@
     <ClInclude Include="ERModelUtilTest.h" />
     <ClInclude Include="InputFileParserTest.h" />
     <ClInclude Include="HashMapTest.h" />
+    <ClInclude Include="MockCommand.h" />
     <ClInclude Include="MockIObserver.h" />
     <ClInclude Include="MockState.h" />
     <ClInclude Include="NodeTest.h" />
