@@ -8,8 +8,8 @@ StateSubject::~StateSubject(){
     this->deleteState();
 }
 
-State* StateSubject::getState() const{
-    return this->state;
+int StateSubject::getStateID(){
+    return this->state->getStateID();
 }
 
 void StateSubject::switchState(int stateID,GraphicalPresentation* graphicalPresentation){
@@ -18,6 +18,18 @@ void StateSubject::switchState(int stateID,GraphicalPresentation* graphicalPrese
     this->state = stateFactory.createState(stateID,graphicalPresentation);
     this->notify();
     this->state->onCreate();
+}
+
+void StateSubject::mousePressEvent(Point position){
+    this->state->mousePressEvent(position);
+}
+
+void StateSubject::mouseMoveEvent(Point position){
+    this->state->mouseMoveEvent(position);
+}
+
+void StateSubject::mouseReleaseEvent(Point position){
+    this->state->mouseReleaseEvent(position);
 }
 
 void StateSubject::deleteState(){

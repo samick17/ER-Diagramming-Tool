@@ -37,8 +37,7 @@ TEST_F(AddNodeStateTest,testDoMousePressEvent){
     addNodeState.mousePressEvent(Point(800,-1));
     ASSERT_EQ(1,this->presentation->getAllComponents().size());
     ASSERT_EQ(ComponentType::TypeAttribute,this->presentation->getAllComponents().get("0")->getType());
-    ASSERT_EQ(typeid(PointerState).name(),typeid(*this->graphicalPresentation->getStateSubject()->getState()).name());
-    ASSERT_EQ(StateID::PointerState,this->graphicalPresentation->getStateSubject()->getState()->getStateID());
+    ASSERT_EQ(StateID::PointerState,this->graphicalPresentation->getStateSubject()->getStateID());
 }
 
 TEST_F(AddNodeStateTest,testDoMouseMoveEvent){

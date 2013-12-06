@@ -228,17 +228,17 @@ void GraphicalPresentation::notify(IObserver* observer){
 
 void GraphicalPresentation::mousePressEvent(Point position,ComponentData* componentData){
     this->lastPressedComponent = this->getComponentByComponentData(componentData);
-    this->stateSubject.getState()->mousePressEvent(position);
+    this->stateSubject.mousePressEvent(position);
 }
 
 void GraphicalPresentation::mouseMoveEvent(Point position,ComponentData* componentData){
     this->lastMovedComponent = this->getComponentByComponentData(componentData);
-    this->stateSubject.getState()->mouseMoveEvent(position);
+    this->stateSubject.mouseMoveEvent(position);
 }
 
 void GraphicalPresentation::mouseReleaseEvent(Point position,ComponentData* componentData){
     this->lastReleasedComponent = this->getComponentByComponentData(componentData);
-    this->stateSubject.getState()->mouseReleaseEvent(position);
+    this->stateSubject.mouseReleaseEvent(position);
 }
 
 Component* GraphicalPresentation::getComponentByComponentData(ComponentData* componentData){

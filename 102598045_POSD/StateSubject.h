@@ -15,8 +15,12 @@ public:
     StateSubject(State* state = NULL);
     ~StateSubject();
 
-    State* getState() const;
+    int getStateID();
     void switchState(int stateID,GraphicalPresentation* graphicalPresentation);
+
+    void mousePressEvent(Point position);
+    void mouseMoveEvent(Point position);
+    void mouseReleaseEvent(Point position);
 private:
     void deleteState();
     State* state;
