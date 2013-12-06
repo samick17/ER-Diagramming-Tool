@@ -39,6 +39,7 @@ void ConnectState::doMouseDragEvent(Point position){
     if(targetComponent && !targetComponent->isTypeOf<Connector>())
         targetRect = targetComponent->getRect();
     connectorData->setPointPair(sourceRect.getMinDistanceToRectPoint(targetRect));
+    this->graphicalPresentation->notify();
 }
 //add connection
 void ConnectState::doMouseReleaseEvent(Point position){

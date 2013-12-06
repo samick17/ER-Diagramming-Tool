@@ -5,7 +5,7 @@
 #include "Presentation.h"
 #include "StateSubject.h"
 
-class GraphicalPresentation : public Subject{
+class GraphicalPresentation{
     friend class GraphicalPresentation;
     FRIEND_TEST(GraphicalPresentationTest,testDeleteComponentDataForPreview);
     FRIEND_TEST(GraphicalPresentationTest,testUpdateAllComponentData);
@@ -56,14 +56,15 @@ public:
     void registerSynchronizer(ISynchronizer* synchronizer);
     void unregisterSynchronizer(ISynchronizer* synchronizer);
     void sync(string syncEventType);
+    //observer pattern
+    void registerObserver(IObserver* observer);
+    void unregisterObserver(IObserver* observer);
+    void notify();
+    void notify(IObserver* observer);
 
     void mousePressEvent(Point position,ComponentData* componentData);
     void mouseMoveEvent(Point position,ComponentData* componentData);
     void mouseReleaseEvent(Point position,ComponentData* componentData);
-protected:
-    //observer
-    void doRegisterObserver(IObserver* observer);
-    void doUnregisterObserver(IObserver* observer);
 private:
     Component* getComponentByComponentData(ComponentData* componentData);
     void deleteComponentDataForPreview();

@@ -564,6 +564,12 @@
     <ClCompile Include="MockState.cpp">
       <Filter>Source Files\MockObject</Filter>
     </ClCompile>
+    <ClCompile Include="..\102598045_POSD\QActionData.cpp">
+      <Filter>Source Files\Struct</Filter>
+    </ClCompile>
+    <ClCompile Include="..\102598045_POSD\ActionData.cpp">
+      <Filter>Source Files\Constants</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DirectoryUtil.h">

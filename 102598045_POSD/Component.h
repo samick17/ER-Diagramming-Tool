@@ -4,7 +4,7 @@
 #include "HashMap.h"
 #include "ComponentData.h"
 #include "NodeConnectionType.h"
-#include <gtest/gtest_prod.h> 
+#include <gtest/gtest_prod.h>
 
 using namespace std;
 

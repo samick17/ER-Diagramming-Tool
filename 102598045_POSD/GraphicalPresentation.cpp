@@ -210,12 +210,20 @@ void GraphicalPresentation::sync(string syncEventType){
     this->presentation->sync(syncEventType);
 }
 
-void GraphicalPresentation::doRegisterObserver(IObserver* observer){
-    this->presentation->registerObserver(observer);
+void GraphicalPresentation::registerObserver(IObserver* observer){
+    this->presentation->registerObserver( observer);
 }
 
-void GraphicalPresentation::doUnregisterObserver(IObserver* observer){
-    this->presentation->unregisterObserver(observer);
+void GraphicalPresentation::unregisterObserver(IObserver* observer){
+    this->presentation->unregisterObserver( observer);
+}
+
+void GraphicalPresentation::notify(){
+    this->presentation->notify();
+}
+
+void GraphicalPresentation::notify(IObserver* observer){
+    this->presentation->notify(observer);
 }
 
 void GraphicalPresentation::mousePressEvent(Point position,ComponentData* componentData){

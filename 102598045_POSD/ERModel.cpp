@@ -10,12 +10,11 @@
 #include "InputFileParser.h"
 #include "OutputFileParser.h"
 
-int ERModel::attributeCount = 0;
-int ERModel::entityCount = 0;
-int ERModel::relationShipCount = 0;
-
 ERModel::ERModel(){
     this->initialCountMap();
+    this->attributeCount = 0;
+    this->entityCount = 0;
+    this->relationShipCount = 0;
 }
 
 ERModel::~ERModel(){
@@ -215,15 +214,15 @@ void ERModel::initialCountMap(){
     this->componentTypeMapOffsetX.insert(pair<string,double>(ComponentType::TypeAttribute,WidgetDefaultSetting::AttributeOffsetX));
     this->componentTypeMapOffsetX.insert(pair<string,double>(ComponentType::TypeEntity,WidgetDefaultSetting::EntityOffsetX));
     this->componentTypeMapOffsetX.insert(pair<string,double>(ComponentType::TypeRelationShip,WidgetDefaultSetting::RelationShipOffsetX));
-    this->componentTypeCountMap.put(ComponentType::TypeAttribute,&ERModel::attributeCount);
-    this->componentTypeCountMap.put(ComponentType::TypeEntity,&ERModel::entityCount);
-    this->componentTypeCountMap.put(ComponentType::TypeRelationShip,&ERModel::relationShipCount);
+    this->componentTypeCountMap.put(ComponentType::TypeAttribute,&this->attributeCount);
+    this->componentTypeCountMap.put(ComponentType::TypeEntity,&this->entityCount);
+    this->componentTypeCountMap.put(ComponentType::TypeRelationShip,&this->relationShipCount);
 }
 
 void ERModel::resetCounting(){
-    ERModel::attributeCount = 0;
-    ERModel::entityCount = 0;
-    ERModel::relationShipCount = 0;
+    this->attributeCount = 0;
+    this->entityCount = 0;
+    this->relationShipCount = 0;
 }
 
 void ERModel::setNodePosition(string componentType,Node* node){

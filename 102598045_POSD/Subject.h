@@ -15,9 +15,6 @@ public:
     void unregisterObserver(IObserver* observer);
     void notify();
     void notify(IObserver* observer);
-protected:
-    virtual void doRegisterObserver(IObserver* observer);
-    virtual void doUnregisterObserver(IObserver* observer);
 private:
     set<IObserver*> observerSet;
 };

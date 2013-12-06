@@ -83,6 +83,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\102598045_POSD\ActionData.cpp" />
     <ClCompile Include="..\102598045_POSD\AddNodeCommand.cpp" />
     <ClCompile Include="..\102598045_POSD\AddNodeInstruction.cpp" />
     <ClCompile Include="..\102598045_POSD\AddNodeState.cpp" />
@@ -143,6 +144,7 @@
     <ClCompile Include="..\102598045_POSD\Point.cpp" />
     <ClCompile Include="..\102598045_POSD\PointerState.cpp" />
     <ClCompile Include="..\102598045_POSD\Presentation.cpp" />
+    <ClCompile Include="..\102598045_POSD\QActionData.cpp" />
     <ClCompile Include="..\102598045_POSD\Rect.cpp" />
     <ClCompile Include="..\102598045_POSD\RedoInstruction.cpp" />
     <ClCompile Include="..\102598045_POSD\RelationShip.cpp" />

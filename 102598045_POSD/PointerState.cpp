@@ -18,6 +18,7 @@ void PointerState::doMouseMoveEvent(Point position){
 void PointerState::doMouseDragEvent(Point position){
     this->graphicalPresentation->selectLastPressedWidget();
     this->graphicalPresentation->moveSelectedWidget(this->getDeltaPosition());
+    this->graphicalPresentation->notify();
 }
 
 void PointerState::doMouseReleaseEvent(Point position){

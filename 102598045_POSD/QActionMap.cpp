@@ -17,6 +17,7 @@ QAction* QActionMap::getQAction(unsigned int index){
 
 void QActionMap::putQAction(QActionData qActionData,GraphicalUI* graphicalUI){
     QAction* openFileAction = new QAction(QIcon(QString(qActionData.getIconPath().c_str())),QString(qActionData.getActionText().c_str()),graphicalUI);
+    openFileAction->setToolTip(qActionData.getToolTip().c_str());
     QKeySequence keySequence = QKeySequence(qActionData.getKeySequence().c_str());
     openFileAction->setShortcut(keySequence);
     this->actionMap.put(qActionData.getActionIndex(),openFileAction);

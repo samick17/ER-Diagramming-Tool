@@ -30,6 +30,7 @@ void AddNodeState::doMousePressEvent(Point position){
 void AddNodeState::doMouseMoveEvent(Point position){
     ComponentData* componentData = this->graphicalPresentation->getComponentDataForPreview();
     componentData->setCenterPosition(position);
+    this->graphicalPresentation->notify();
 }
 
 void AddNodeState::doMouseDragEvent(Point position){

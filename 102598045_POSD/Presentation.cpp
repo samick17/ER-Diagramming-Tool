@@ -106,3 +106,11 @@ void Presentation::registerObserver(IObserver* observer){
 void Presentation::unregisterObserver(IObserver* observer){
     this->erModel->unregisterObserver(observer);
 }
+
+void Presentation::notify(){
+    this->erModel->notify();
+}
+
+void Presentation::notify(IObserver* observer){
+    this->erModel->notify(observer);
+}

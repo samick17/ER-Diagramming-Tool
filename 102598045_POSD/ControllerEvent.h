@@ -16,5 +16,5 @@ public:
     static const string DeleteComponent;
     static const string Undo;
     static const string Redo;
-    static const string Close;
+    static const string Close;;
 };

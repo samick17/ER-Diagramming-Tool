@@ -38,7 +38,6 @@ void GUIScene::mousePressEvent(QGraphicsSceneMouseEvent* mouseEvent){
 void GUIScene::mouseMoveEvent(QGraphicsSceneMouseEvent* mouseEvent){
     pair<Point,ComponentData*> pointComponentPair = this->getPointComponentPair(mouseEvent);
     this->graphicalPresentation->mouseMoveEvent(pointComponentPair.first,pointComponentPair.second);
-    this->updateAll();
 }
 
 void GUIScene::mouseReleaseEvent(QGraphicsSceneMouseEvent* mouseEvent){
@@ -71,10 +70,5 @@ void GUIScene::addWidget(ComponentData* componentData){
     ComponentWidget* componentWidget = widgetFactory.createComponentWidget(componentData,this->graphicalPresentation);
     this->addItem(componentWidget);
     componentWidget->updateWidget();
-}
-//update all widget
-void GUIScene::updateAll(){
-    for each(ComponentWidget* widget in this->items())
-        widget->updateWidget();
     this->update();
 }

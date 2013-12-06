@@ -6,8 +6,8 @@
 #include "HashMap.h"
 #include "CommandManager.h"
 #include "ISyncable.h"
-#include "Subject.h"
 #include "Cardinality.h"
+#include "Subject.h"
 
 class ERModel : public ISyncable,public Subject{
     friend class ERModelTest;
@@ -70,7 +70,7 @@ private:
     void initialCountMap();
     void resetCounting();
     void setNodePosition(string componentType,Node* node);
-    static int attributeCount,entityCount,relationShipCount;
+    int attributeCount,entityCount,relationShipCount;
     HashMap<string,int*> componentTypeCountMap;
     HashMap<string,Component*> componentMap;
     Cardinality cardinality;
