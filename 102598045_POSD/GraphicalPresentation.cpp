@@ -2,9 +2,11 @@
 #include "Node.h"
 #include "ControllerEvent.h"
 #include "StateID.h"
+#include "Connector.h"
 
 GraphicalPresentation::GraphicalPresentation(Presentation* presentation) : presentation(presentation){
     this->isCtrlPressed = false;
+    this->lastAddedConnector = NULL;
     this->lastPressedComponent = NULL;
     this->lastMovedComponent = NULL;
     this->lastReleasedComponent = NULL;
@@ -70,6 +72,7 @@ void GraphicalPresentation::addConnection(Component* sourceComponent,Component* 
     this->setComponentDataForPreview(NULL);
     try{
         this->presentation->addConnection(sourceComponent,targetComponent);
+        this->lastAddedConnector = this->presentation->getNodesConnector(sourceComponent,targetComponent);
         this->presentation->sync(ControllerEvent::ConnectTwoNodes);
     }
     catch(Exception&){
@@ -195,6 +198,21 @@ void GraphicalPresentation::switchState(int stateID){
 //key pressed
 void GraphicalPresentation::setKeyCtrlState(bool isCtrlPressed){
     this->isCtrlPressed = isCtrlPressed;
+}
+
+bool GraphicalPresentation::needToSetCardinality(){
+    return this->lastAddedConnector != NULL;
+}
+
+bool GraphicalPresentation::setCardinality(string cardinality){
+    bool isSetCardinality = this->presentation->setCardinality(this->lastAddedConnector,cardinality);
+
+    if(isSetCardinality){
+        this->lastAddedConnector = NULL;
+        this->notify();
+    }
+
+    return isSetCardinality;
 }
 
 //synchronized view

@@ -31,7 +31,7 @@ public:
     int addConnection(Component* firstNode,Component* secondNode);
     void redo();
     void undo();
-    void setCardinality(Connector* connector,string cardinality);
+    bool setCardinality(Connector* connector,string cardinality);
     void setPrimaryKey(string componentID);
     void setComponentText(string componentID,string text);
 

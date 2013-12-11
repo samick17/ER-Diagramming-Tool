@@ -5,6 +5,8 @@
 #include "Presentation.h"
 #include "StateSubject.h"
 
+class Connector;
+
 class GraphicalPresentation{
     friend class GraphicalPresentation;
     FRIEND_TEST(GraphicalPresentationTest,testDeleteComponentDataForPreview);
@@ -21,11 +23,11 @@ class GraphicalPresentation{
     friend class ConnectStateTest;
     FRIEND_TEST(ConnectStateTest,testDoMousePressEvent);
     FRIEND_TEST(ConnectStateTest,testDoMouseDragEvent);
+    friend class SetPrimaryKeyStateTest;
+    FRIEND_TEST(SetPrimaryKeyStateTest,testDoMousePressEvent);
     friend class PointerStateTest;
     FRIEND_TEST(PointerStateTest,testDoMousePressEvent);
     FRIEND_TEST(PointerStateTest,testDoMouseDragEvent);
-	friend class SetPrimaryKeyStateTest;
-	FRIEND_TEST(SetPrimaryKeyStateTest,testDoMousePressEvent);
 public:
     GraphicalPresentation(Presentation* presentation);
     ~GraphicalPresentation();
@@ -57,6 +59,9 @@ public:
     void unSelectAll();
     void switchState(int stateID);
     void setKeyCtrlState(bool isCtrlPressed);
+    //cardinality
+    bool needToSetCardinality();
+    bool setCardinality(string cardinality);
     //synchronize view
     void registerSynchronizer(ISynchronizer* synchronizer);
     void unregisterSynchronizer(ISynchronizer* synchronizer);
@@ -79,7 +84,7 @@ private:
     ComponentData* componentDataForPreview;
     bool isCtrlPressed;
     StateSubject stateSubject;
-    Node* lastAddedNode;
+    Connector* lastAddedConnector;
     Component* lastPressedComponent;
     Component* lastMovedComponent;
     Component* lastReleasedComponent;

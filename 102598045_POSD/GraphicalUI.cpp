@@ -91,11 +91,11 @@ void GraphicalUI::initialAllAction(){
     QSignalMapper* signalMapper = new QSignalMapper(this);
     int stateID = StateID::PointerState;
     for(unsigned int index = ActionData::PointerState;index <= ActionData::SetPrimaryKeyState;index++){
-        QAction* stateAction = this->actionMap->getQAction(index);
-        connect(stateAction,SIGNAL(triggered()),signalMapper,SLOT(map()));
+        QAction* pointerStateAction = this->actionMap->getQAction(index);
+        connect(pointerStateAction,SIGNAL(triggered()),signalMapper,SLOT(map()));
         if(stateID >= StateID::AddAttributeState && stateID <= StateID::AddRelationShipState)
-            connect(stateAction,SIGNAL(triggered()),this,SLOT(displayEditTextDialog()));
-        signalMapper->setMapping(stateAction,stateID);
+            connect(pointerStateAction,SIGNAL(triggered()),this,SLOT(displayEditTextDialog()));
+        signalMapper->setMapping(pointerStateAction,stateID);
         stateID++;
     }
     connect (signalMapper, SIGNAL(mapped(int)), this, SLOT(switchState(int))) ;

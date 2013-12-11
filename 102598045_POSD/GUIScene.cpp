@@ -43,6 +43,7 @@ void GUIScene::mouseMoveEvent(QGraphicsSceneMouseEvent* mouseEvent){
 void GUIScene::mouseReleaseEvent(QGraphicsSceneMouseEvent* mouseEvent){
     pair<Point,ComponentData*> pointComponentPair = this->getPointComponentPair(mouseEvent);
     this->graphicalPresentation->mouseReleaseEvent(pointComponentPair.first,pointComponentPair.second);
+
 }
 //get component from widget
 pair<Point,ComponentData*> GUIScene::getPointComponentPair(QGraphicsSceneMouseEvent* mouseEvent){

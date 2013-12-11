@@ -22,4 +22,5 @@ void PointerState::doMouseDragEvent(Point position){
 }
 
 void PointerState::doMouseReleaseEvent(Point position){
+    this->graphicalPresentation->notify();
 }

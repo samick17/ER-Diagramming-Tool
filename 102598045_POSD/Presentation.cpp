@@ -39,8 +39,8 @@ void Presentation::undo(){
     this->erModel->undo();
 }
 
-void Presentation::setCardinality(Connector* connector,string cardinality){
-    this->erModel->setCardinality(connector,cardinality);
+bool Presentation::setCardinality(Connector* connector,string cardinality){
+    return this->erModel->setCardinality(connector,cardinality);
 }
 
 void Presentation::setPrimaryKey(string componentID){

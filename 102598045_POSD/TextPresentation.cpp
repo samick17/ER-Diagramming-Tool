@@ -30,7 +30,7 @@ TextPresentation::~TextPresentation(){
 string TextPresentation::getInput(){
     string input;
     while(input.empty()){
-        this->textUIPresenter->logMessage(">");
+        this->textUIPresenter->logMessage(">",false);
         getline(cin,input);
     }
     return input;
@@ -56,10 +56,10 @@ void TextPresentation::processCommand(){
         textInstruction->execute(this,this->textUIPresenter);
     }
     catch(NullPointerException){
-        this->textUIPresenter->logMessage("wrong command,please input correct command.");
+        this->textUIPresenter->logMessage("wrong command,please input correct command.",true);
     }
     catch(Exception& exception){
-        this->textUIPresenter->logMessage(exception.what());
+        this->textUIPresenter->logMessage(exception.what(),true);
     }
     if(textInstruction)
         delete textInstruction;
@@ -117,7 +117,7 @@ Component* TextPresentation::findComponent(){
             find = this->presentation->getComponentByID(input);
         }
         catch(Exception& exception){
-            this->textUIPresenter->logMessage(exception.what());
+            this->textUIPresenter->logMessage(exception.what(),true);
         }
     }
     return find;
@@ -126,7 +126,7 @@ Component* TextPresentation::findComponent(){
 Entity* TextPresentation::findEntity(){
     Component* find = this->findComponent();
     while(!find->isTypeOf<Entity>()){
-        this->textUIPresenter->logMessage("The node '"+find->getID()+"' is not an entity. Please enter a valid one again.");
+        this->textUIPresenter->logMessage("The node '"+find->getID()+"' is not an entity. Please enter a valid one again.",true);
         find = this->findComponent();
     }
     return static_cast<Entity*>(find);
@@ -214,6 +214,6 @@ void TextPresentation::executeSync(string syncEventType){
         (this->textUIPresenter->*syncFunction)();
     }
     catch(Exception& exception){
-        this->textUIPresenter->logMessage(exception.what());
+        this->textUIPresenter->logMessage(exception.what(),true);
     }
 }

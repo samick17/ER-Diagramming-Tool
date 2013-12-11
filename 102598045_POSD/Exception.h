@@ -1,7 +1,7 @@
 #pragma once
 
+#include <exception>
 #include <string>
-#include <exception.h>
 
 using namespace std;
 
@@ -11,7 +11,7 @@ public:
     Exception(string message);
     virtual ~Exception();
 
-    const char* what() const;
+    const char* what();
 protected:
     string message;
 };

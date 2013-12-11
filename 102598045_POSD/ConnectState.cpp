@@ -29,6 +29,8 @@ void ConnectState::doMouseDragEvent(Point position){
     ComponentData* componentData = this->graphicalPresentation->getComponentDataForPreview();
     //cast to connectorData
     ConnectorData* connectorData = dynamic_cast<ConnectorData*>(componentData);
+    if(!connectorData)
+        return;
     //set connectorData Position
     connectorData->setTargetPoint(position);
     Component* sourceComponent = this->graphicalPresentation->getLastPressedComponent();
