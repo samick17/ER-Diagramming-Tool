@@ -3,6 +3,9 @@
 #include <gtest/gtest_prod.h> 
 
 class Command{
+    friend class CommandTest;
+    FRIEND_TEST(CommandTest,testExecute);
+    FRIEND_TEST(CommandTest,testUnExecute);
     friend class AddNodeCommandTest;
     FRIEND_TEST(AddNodeCommandTest,testUnexecute);
     friend class ConnectNodeCommandTest;
