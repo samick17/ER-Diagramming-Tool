@@ -111,7 +111,7 @@ void TextUIPresenter::displayStringWithComma(string strStart,vector<string> stri
 }
 
 void TextUIPresenter::logMessage(string message,bool endWithLine){
-    cout<<message<<endl;
+    cout<<message;
     if(endWithLine)
         cout<<endl;
 }
