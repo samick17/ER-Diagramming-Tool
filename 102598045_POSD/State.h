@@ -13,6 +13,8 @@ class State{
     FRIEND_TEST(StateTest,testMouseReleaseEvent);
     friend class ConnectStateTest;
     FRIEND_TEST(ConnectStateTest,testDoMouseDragEvent);
+    friend class PointerStateTest;
+    FRIEND_TEST(PointerStateTest,testDoMouseDragEvent);
 public:
     State(int stateID,GraphicalPresentation* graphicalPresentation);
     virtual ~State();

@@ -242,6 +242,8 @@ TEST_F(ERModelTest,testSetPrimaryKey){
     //test set primaryKey to Attribute, which is 'not' connected to an Entity
     attribute = static_cast<Attribute*>(this->erModel.addNode(ComponentType::TypeAttribute));
     isPrimaryKey = attribute->isPrimaryKey();
+    //test setPrimaryKey with no such node
+    ASSERT_THROW(this->erModel.setPrimaryKey("X"),NoSuchNodeException);
     //test set primaryKey
     ASSERT_THROW(this->erModel.setPrimaryKey(attribute->getID()),NoConnectionException);
 }

@@ -21,6 +21,11 @@ class GraphicalPresentation{
     friend class ConnectStateTest;
     FRIEND_TEST(ConnectStateTest,testDoMousePressEvent);
     FRIEND_TEST(ConnectStateTest,testDoMouseDragEvent);
+    friend class PointerStateTest;
+    FRIEND_TEST(PointerStateTest,testDoMousePressEvent);
+    FRIEND_TEST(PointerStateTest,testDoMouseDragEvent);
+	friend class SetPrimaryKeyStateTest;
+	FRIEND_TEST(SetPrimaryKeyStateTest,testDoMousePressEvent);
 public:
     GraphicalPresentation(Presentation* presentation);
     ~GraphicalPresentation();
