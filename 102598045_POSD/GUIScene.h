@@ -30,6 +30,7 @@ private:
     ComponentData* getComponentDataAtPosition(QPointF qPosition);
     pair<Point,ComponentData*> getPointComponentPair(QGraphicsSceneMouseEvent* mouseEvent);
     void addWidget(ComponentData* componentData);
+    void processSetCardinality();
     GraphicalUI* graphicalUI;
     GraphicalPresentation* graphicalPresentation;
 private slots:

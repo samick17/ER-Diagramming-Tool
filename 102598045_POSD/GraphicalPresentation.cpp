@@ -201,7 +201,9 @@ void GraphicalPresentation::setKeyCtrlState(bool isCtrlPressed){
 }
 
 bool GraphicalPresentation::needToSetCardinality(){
-    return this->lastAddedConnector != NULL;
+    if(this->lastAddedConnector == NULL)
+        return false;
+    return this->lastAddedConnector->isCardinalityConnector();
 }
 
 bool GraphicalPresentation::setCardinality(string cardinality){

@@ -4,6 +4,8 @@
 #include <QGraphicsSceneMouseEvent>
 #include "GraphicalPresentation.h"
 #include "WidgetFactory.h"
+#include <QInputDialog>
+#include "DialogSetting.h"
 
 GUIScene::GUIScene(GraphicalUI* graphicalUI) : QGraphicsScene(graphicalUI),graphicalUI(graphicalUI){
     this->graphicalPresentation = this->graphicalUI->getGraphicalPresentation();
@@ -43,6 +45,9 @@ void GUIScene::mouseMoveEvent(QGraphicsSceneMouseEvent* mouseEvent){
 void GUIScene::mouseReleaseEvent(QGraphicsSceneMouseEvent* mouseEvent){
     pair<Point,ComponentData*> pointComponentPair = this->getPointComponentPair(mouseEvent);
     this->graphicalPresentation->mouseReleaseEvent(pointComponentPair.first,pointComponentPair.second);
+    if(this->graphicalPresentation->needToSetCardinality()){
+        this->processSetCardinality();
+    }
 
 }
 //get component from widget
@@ -72,4 +77,12 @@ void GUIScene::addWidget(ComponentData* componentData){
     this->addItem(componentWidget);
     componentWidget->updateWidget();
     this->update();
+}
+
+void GUIScene::processSetCardinality(){
+    bool isSetCardinality = false;
+    while(!isSetCardinality){
+        QString text = QInputDialog::getText(NULL,QString(DialogSetting::Title.c_str()),QString(DialogSetting::SetCardinalityText.c_str()),QLineEdit::Normal,StringSymbol::Empty.c_str());
+        isSetCardinality = this->graphicalPresentation->setCardinality(text.toStdString());
+    }
 }
