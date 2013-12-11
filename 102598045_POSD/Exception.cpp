@@ -9,6 +9,6 @@ Exception::Exception(string message) : message(message){
 Exception::~Exception(){
 }
 
-string Exception::getMessage(){
-    return this->message;
+const char* Exception::what() const{
+    return this->message.c_str();
 }

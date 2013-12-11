@@ -28,7 +28,7 @@ Node* AddNodeInstruction::addNode(TextPresentation* textPresentation){
             node = textPresentation->addNode(input);
         }
         catch(Exception& exception){
-            cout<<exception.getMessage()<<endl;
+            cout<<exception.what()<<endl;
         }
     }
     return node;

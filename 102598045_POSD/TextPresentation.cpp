@@ -59,7 +59,7 @@ void TextPresentation::processCommand(){
         this->textUIPresenter->logMessage("wrong command,please input correct command.");
     }
     catch(Exception& exception){
-        this->textUIPresenter->logMessage(exception.getMessage());
+        this->textUIPresenter->logMessage(exception.what());
     }
     if(textInstruction)
         delete textInstruction;
@@ -117,7 +117,7 @@ Component* TextPresentation::findComponent(){
             find = this->presentation->getComponentByID(input);
         }
         catch(Exception& exception){
-            this->textUIPresenter->logMessage(exception.getMessage());
+            this->textUIPresenter->logMessage(exception.what());
         }
     }
     return find;
@@ -214,6 +214,6 @@ void TextPresentation::executeSync(string syncEventType){
         (this->textUIPresenter->*syncFunction)();
     }
     catch(Exception& exception){
-        this->textUIPresenter->logMessage(exception.getMessage());
+        this->textUIPresenter->logMessage(exception.what());
     }
 }

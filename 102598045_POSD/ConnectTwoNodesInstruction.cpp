@@ -32,7 +32,7 @@ void ConnectTwoNodesInstruction::setCardinality(Component* firstNode,Component* 
             break;
         }
         catch(Exception& exception){
-            cout<<exception.getMessage()<<endl;
+            cout<<exception.what()<<endl;
         }
     }
     cout<<"Its cardinality of the relationship is '"+cardinality+"'."<<endl;

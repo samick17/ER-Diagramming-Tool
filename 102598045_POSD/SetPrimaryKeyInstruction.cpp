@@ -29,7 +29,7 @@ vector<string> SetPrimaryKeyInstruction::setEntityAttributesPrimaryKey(Entity* e
             break;
         }
         catch(Exception& exception){
-            cout<<exception.getMessage()<<endl;
+            cout<<exception.what()<<endl;
         }
     }
     return  attributeIDVector;

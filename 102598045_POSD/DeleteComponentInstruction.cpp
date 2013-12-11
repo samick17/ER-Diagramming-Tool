@@ -13,7 +13,7 @@ void DeleteComponentInstruction::execute(TextPresentation* textPresentation,Text
             break;
         }
         catch(Exception& exception){
-            cout<<exception.getMessage()<<endl;
+            cout<<exception.what()<<endl;
         }
     }
     cout<<"The component '"+componentID+"' has been deleted. "<<endl;

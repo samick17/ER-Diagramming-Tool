@@ -1,16 +1,17 @@
 #pragma once
 
 #include <string>
+#include <exception.h>
 
 using namespace std;
 
-class Exception{
+class Exception : public exception{
 public:
     Exception();
     Exception(string message);
     virtual ~Exception();
 
-    string getMessage();
+    const char* what() const;
 protected:
     string message;
 };
