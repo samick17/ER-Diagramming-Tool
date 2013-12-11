@@ -1,15 +1,9 @@
 #pragma once
 
-#include "ERModel.h"
-#include "Presentation.h"
-#include "GraphicalPresentation.h"
-#include <gtest/gtest.h>
+#include "StateTest.h"
 
-class AddNodeStateTest : public testing::Test{
+class AddNodeStateTest : public StateTest{
 protected:
-    ERModel erModel;
-    Presentation* presentation;
-    GraphicalPresentation* graphicalPresentation;
     virtual void SetUp();
     virtual void TearDown();
 };
