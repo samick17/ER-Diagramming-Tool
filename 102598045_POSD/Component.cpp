@@ -59,6 +59,10 @@ void Component::connectTo(Component* target){
 void Component::disconnectTo(Component* target){
     if(this->connectionMap.containsKey(target->getID()))
         this->connectionMap.remove(target->getID());
+    this->postDisconnect();
+}
+
+void Component::postDisconnect(){
 }
 
 bool Component::hasSizeToConnect(){

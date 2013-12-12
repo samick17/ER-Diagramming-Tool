@@ -210,6 +210,26 @@ TEST_F(GraphicalPresentationTest,testNeedToSetCardinality){
 }
 
 TEST_F(GraphicalPresentationTest,testSetCardinality){
+    ASSERT_EQ(NULL,this->graphicalPresentation->lastAddedConnector);
+    ASSERT_EQ(false,this->graphicalPresentation->setCardinality("1"));
+    ASSERT_EQ(false,this->graphicalPresentation->setCardinality("X"));
+
+    Component* attribute = this->presentation->addNode(ComponentType::TypeAttribute);
+    Component* entity = this->presentation->addNode(ComponentType::TypeEntity);
+    Component* relationShip = this->presentation->addNode(ComponentType::TypeRelationShip);
+    this->presentation->addConnection(attribute,entity);
+    this->presentation->addConnection(entity,relationShip);
+
+    this->graphicalPresentation->lastAddedConnector = dynamic_cast<Connector*>(this->presentation->getComponentByID("3"));
+    ASSERT_EQ(false,this->graphicalPresentation->setCardinality("1"));
+    ASSERT_EQ(false,this->graphicalPresentation->setCardinality("N"));
+
+    this->graphicalPresentation->lastAddedConnector = dynamic_cast<Connector*>(this->presentation->getComponentByID("4"));
+    ASSERT_EQ(true,this->graphicalPresentation->setCardinality("1"));
+    ASSERT_EQ(NULL,this->graphicalPresentation->lastAddedConnector);
+    this->graphicalPresentation->lastAddedConnector = dynamic_cast<Connector*>(this->presentation->getComponentByID("4"));
+    ASSERT_EQ(true,this->graphicalPresentation->setCardinality("N"));
+    ASSERT_EQ(NULL,this->graphicalPresentation->lastAddedConnector);
 }
 
 

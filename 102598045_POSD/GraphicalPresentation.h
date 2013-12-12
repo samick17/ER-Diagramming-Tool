@@ -21,6 +21,7 @@ class GraphicalPresentation{
     FRIEND_TEST(GraphicalPresentationTest,testUnSelectAll);
     FRIEND_TEST(GraphicalPresentationTest,testGetComponentByComponentData);
     FRIEND_TEST(GraphicalPresentationTest,testNeedToSetCardinality);
+    FRIEND_TEST(GraphicalPresentationTest,testSetCardinality);
     friend class ConnectStateTest;
     FRIEND_TEST(ConnectStateTest,testDoMousePressEvent);
     FRIEND_TEST(ConnectStateTest,testDoMouseDragEvent);

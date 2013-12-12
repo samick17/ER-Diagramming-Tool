@@ -12,6 +12,10 @@ Attribute::Attribute(string componentID,string componentName) : Node(ComponentTy
 Attribute::~Attribute(){
 }
 
+void Attribute::postDisconnect(){
+    this->setAsDefaultKey();
+}
+
 int Attribute::canConnectTo(Component* target){
     int canConnect = Node::canConnectTo(target);
 

@@ -34,6 +34,7 @@ public:
 
     void connectTo(Component* target);
     void disconnectTo(Component* target);
+    virtual void postDisconnect();
     virtual void breakAllConnections() = 0;
     virtual int canConnectTo(Component* target) = 0;
     virtual bool hasSizeToConnect();
