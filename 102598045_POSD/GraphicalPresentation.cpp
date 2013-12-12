@@ -207,14 +207,14 @@ bool GraphicalPresentation::needToSetCardinality(){
 }
 
 bool GraphicalPresentation::setCardinality(string cardinality){
-    bool isSetCardinality = this->presentation->setCardinality(this->lastAddedConnector,cardinality);
-
-    if(isSetCardinality){
+    if(!this->needToSetCardinality())
+        return false;
+    bool isSetCardinalitySucceed = this->presentation->setCardinality(this->lastAddedConnector,cardinality);
+    if(isSetCardinalitySucceed){
         this->lastAddedConnector = NULL;
         this->notify();
     }
-
-    return isSetCardinality;
+    return isSetCardinalitySucceed;
 }
 
 //synchronized view

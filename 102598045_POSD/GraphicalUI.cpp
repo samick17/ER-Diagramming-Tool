@@ -58,20 +58,20 @@ void GraphicalUI::setTitle(string title,string iconPath){
 }
 
 void GraphicalUI::initialGraphicView(){
-    QHBoxLayout* layout = new QHBoxLayout();
+    QHBoxLayout* horizontalBoxLayout = new QHBoxLayout();
     QWidget* centralWidget = new QWidget();
-    centralWidget->setLayout(layout);
+    centralWidget->setLayout(horizontalBoxLayout);
     this->setCentralWidget(centralWidget);
-
+    //initial left part view
     this->scene = new GUIScene(this);
     this->view = new QGraphicsView(this->scene,this);
     this->view->setMouseTracking(true);
-    layout->addWidget(this->view);
-    layout->setStretchFactor(this->view,COMPONENT_VIEW_STRETCH);
-
+    horizontalBoxLayout->addWidget(this->view);
+    horizontalBoxLayout->setStretchFactor(this->view,COMPONENT_VIEW_STRETCH);
+    //initial right part view
     this->tableView = new GUITableView(this->graphicalPresentation);
-    layout->addWidget(this->tableView);
-    layout->setStretchFactor(this->tableView,TABLE_VIEW_STRETCH);
+    horizontalBoxLayout->addWidget(this->tableView);
+    horizontalBoxLayout->setStretchFactor(this->tableView,TABLE_VIEW_STRETCH);
 }
 
 void GraphicalUI::initialAllAction(){
@@ -91,11 +91,11 @@ void GraphicalUI::initialAllAction(){
     QSignalMapper* signalMapper = new QSignalMapper(this);
     int stateID = StateID::PointerState;
     for(unsigned int index = ActionData::PointerState;index <= ActionData::SetPrimaryKeyState;index++){
-        QAction* pointerStateAction = this->actionMap->getQAction(index);
-        connect(pointerStateAction,SIGNAL(triggered()),signalMapper,SLOT(map()));
+        QAction* stateAction = this->actionMap->getQAction(index);
+        connect(stateAction,SIGNAL(triggered()),signalMapper,SLOT(map()));
         if(stateID >= StateID::AddAttributeState && stateID <= StateID::AddRelationShipState)
-            connect(pointerStateAction,SIGNAL(triggered()),this,SLOT(displayEditTextDialog()));
-        signalMapper->setMapping(pointerStateAction,stateID);
+            connect(stateAction,SIGNAL(triggered()),this,SLOT(displayEditTextDialog()));
+        signalMapper->setMapping(stateAction,stateID);
         stateID++;
     }
     connect (signalMapper, SIGNAL(mapped(int)), this, SLOT(switchState(int))) ;

@@ -191,6 +191,28 @@ TEST_F(GraphicalPresentationTest,testUnSelectAll){
     ASSERT_EQ(0,selectedWidgetVector.size());
 }
 
+TEST_F(GraphicalPresentationTest,testNeedToSetCardinality){
+    //test lastAddedConnector is NULL & is need to set Cardinality
+    ASSERT_EQ(NULL,this->graphicalPresentation->lastAddedConnector);
+    ASSERT_EQ(false,this->graphicalPresentation->needToSetCardinality());
+
+    Component* attribute = this->presentation->addNode(ComponentType::TypeAttribute);
+    Component* entity = this->presentation->addNode(ComponentType::TypeEntity);
+    Component* relationShip = this->presentation->addNode(ComponentType::TypeRelationShip);
+    this->presentation->addConnection(attribute,entity);
+    this->presentation->addConnection(entity,relationShip);
+
+    this->graphicalPresentation->lastAddedConnector = dynamic_cast<Connector*>(this->presentation->getComponentByID("3"));
+    ASSERT_EQ(false,this->graphicalPresentation->needToSetCardinality());
+
+    this->graphicalPresentation->lastAddedConnector = dynamic_cast<Connector*>(this->presentation->getComponentByID("4"));
+    ASSERT_EQ(true,this->graphicalPresentation->needToSetCardinality());
+}
+
+TEST_F(GraphicalPresentationTest,testSetCardinality){
+}
+
+
 TEST_F(GraphicalPresentationTest,testGetComponentByComponentData){
     ComponentData* componentData = NULL;
     ASSERT_EQ(NULL,this->graphicalPresentation->getComponentByComponentData(componentData));
