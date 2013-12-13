@@ -20,5 +20,5 @@ private:
     static const string TableColumnTextName;
     GraphicalPresentation* graphicalPresentation;
 private slots:
-    void onItemChanged(QTableWidgetItem*);
+    void onItemChanged(QTableWidgetItem* tableWidgetItem);
 };
