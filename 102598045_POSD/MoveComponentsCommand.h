@@ -14,5 +14,5 @@ protected:
     void doUnExecute();
 private:
     HashMap<string,Component*> selectedComponentMap;
-    Point mousePressPosition,mouseReleasePosition;
+    Point mousePressPosition,mouseReleasePosition,deltaPosition;
 };
