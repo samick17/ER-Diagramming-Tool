@@ -4,6 +4,14 @@
 #include <QSignalMapper>
 #include <QInputDialog>
 #include <QHBoxLayout>
+#include <QMenuBar>
+#include "FileMenuItem.h"
+#include "AddMenuItem.h"
+#include "EditMenuItem.h"
+#include "HelpMenuItem.h"
+#include "FileToolBar.h"
+#include "EditToolBar.h"
+#include "AddDrawableToolBar.h"
 #include "GraphicalPresentation.h"
 #include "ApplicationSetting.h"
 #include "ActionData.h"
@@ -24,12 +32,11 @@ GraphicalUI::GraphicalUI(GraphicalPresentation* graphicalPresentation): graphica
     connect(this,SIGNAL(onSyncEvent(string)),this,SLOT(executeSync(string)));
     this->switchState(StateID::PointerState);
     this->graphicalPresentation->registerSynchronizer(this);
+    this->graphicalPresentation->notify();
 }
 
 GraphicalUI::~GraphicalUI(){
     this->graphicalPresentation->unregisterSynchronizer(this);
-    delete this->fileMenuItem;
-    delete this->addMenuItem;
 }
 
 GraphicalPresentation* GraphicalUI::getGraphicalPresentation(){
@@ -86,7 +93,7 @@ void GraphicalUI::initialAllAction(){
     connect(redoAction,SIGNAL(triggered()),this,SLOT(redo()));
     QAction* deleteComponentAction = this->actionMap->getQAction(ActionData::Delete);
     connect(deleteComponentAction,SIGNAL(triggered()),this,SLOT(deleteComponent()));
-    
+
     //Set State Action : use signal mapper to pass state argument
     QSignalMapper* signalMapper = new QSignalMapper(this);
     int stateID = StateID::PointerState;
@@ -99,22 +106,30 @@ void GraphicalUI::initialAllAction(){
         stateID++;
     }
     connect (signalMapper, SIGNAL(mapped(int)), this, SLOT(switchState(int))) ;
+
+    QAction* copyAction = this->actionMap->getQAction(ActionData::Copy);
+    connect(copyAction,SIGNAL(triggered()),this,SLOT(copyComponents()));
+    QAction* pasteAction = this->actionMap->getQAction(ActionData::Paste);
+    connect(pasteAction,SIGNAL(triggered()),this,SLOT(pasteComponents()));
+    QAction* cutAction = this->actionMap->getQAction(ActionData::Cut);
+    connect(cutAction,SIGNAL(triggered()),this,SLOT(cutComponents()));
+    QAction* aboutAction = this->actionMap->getQAction(ActionData::About);
+    connect(aboutAction,SIGNAL(triggered()),this,SLOT(displayAbout()));
 }
 
 void GraphicalUI::initialMenuBar(){
-    this->menuBar = new QMenuBar(this);
-    this->fileMenuItem = new FileMenuItem(this->actionMap,this);
-    this->addMenuItem = new AddMenuItem(this->actionMap,this);
-    this->menuBar->addMenu(this->fileMenuItem);
-    this->menuBar->addMenu(this->addMenuItem);
-    this->setMenuBar(this->menuBar);
+    QMenuBar* menuBar = new QMenuBar(this);
+    menuBar->addMenu(new FileMenuItem(this->actionMap,this));
+    menuBar->addMenu(new AddMenuItem(this->actionMap,this));
+    menuBar->addMenu(new EditMenuItem(this->actionMap,this));
+    menuBar->addMenu(new HelpMenuItem(this->actionMap,this));
+    this->setMenuBar(menuBar);
 }
 
 void GraphicalUI::initialToolBar(){
-    this->fileToolBar = new FileToolBar(this->actionMap,this);
-    this->addToolBar(this->fileToolBar);
-    this->addDrawableToolBar = new AddDrawableToolBar(this,this->actionMap);
-    this->addToolBar(this->addDrawableToolBar);
+    this->addToolBar(new FileToolBar(this,this->actionMap));
+    this->addToolBar(new EditToolBar(this,this->actionMap));
+    this->addToolBar(new AddDrawableToolBar(this,this->actionMap));
 }
 
 void GraphicalUI::initialSyncMap(){
@@ -192,4 +207,16 @@ void GraphicalUI::displayEditTextDialog(){
     else {
         this->graphicalPresentation->switchState(StateID::PointerState);
     }
+}
+
+void GraphicalUI::copyComponents(){
+}
+
+void GraphicalUI::pasteComponents(){
+}
+
+void GraphicalUI::cutComponents(){
+}
+
+void GraphicalUI::displayAbout(){
 }

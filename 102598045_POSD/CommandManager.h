@@ -19,6 +19,8 @@ public:
     ~CommandManager();
 
     void execute(Command* command);
+    bool canUndo();
+    bool canRedo();
     void undo();
     void redo();
 

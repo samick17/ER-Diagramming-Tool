@@ -30,6 +30,14 @@ void CommandManager::redo(){
     }
 }
 
+bool CommandManager::canUndo(){
+    return !this->undoCommandsStack.empty();
+}
+
+bool CommandManager::canRedo(){
+    return !this->redoCommandsStack.empty();
+}
+
 void CommandManager::undo(){
     try{
         //pop from undo Stack

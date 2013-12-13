@@ -92,7 +92,9 @@
     <ClCompile Include="ConnectorData.cpp" />
     <ClCompile Include="DialogSetting.cpp" />
     <ClCompile Include="EditableTableWidgetItem.cpp" />
+    <ClCompile Include="EditMenuItem.cpp" />
     <ClCompile Include="EditTextOfComponentsCommand.cpp" />
+    <ClCompile Include="EditToolBar.cpp" />
     <ClCompile Include="GeneratedFiles\Debug\moc_GUIScene.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
@@ -106,7 +108,9 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="GUITableView.cpp" />
+    <ClCompile Include="HelpMenuItem.cpp" />
     <ClCompile Include="MenuSetting.cpp" />
+    <ClCompile Include="MoveComponentsCommand.cpp" />
     <ClCompile Include="SetPrimaryKeyCommand.cpp" />
     <ClCompile Include="SetPrimaryKeyState.cpp" />
     <ClCompile Include="Subject.cpp" />
@@ -257,6 +261,7 @@
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
       </Command>
     </CustomBuild>
+    <ClInclude Include="EditMenuItem.h" />
     <ClInclude Include="EditTextOfComponentsCommand.h" />
     <CustomBuild Include="GUITableView.h">
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath);%(AdditionalInputs)</AdditionalInputs>
@@ -268,7 +273,10 @@
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DQT_DLL -DQT_NO_DEBUG -DNDEBUG -DQT_CORE_LIB -DQT_GUI_LIB "-I." "-I$(QTDIR)\include" "-I.\GeneratedFiles\$(ConfigurationName)\." "-I$(QTDIR)\include\QtCore" "-I$(QTDIR)\include\QtGui"</Command>
     </CustomBuild>
+    <ClInclude Include="EditToolBar.h" />
+    <ClInclude Include="HelpMenuItem.h" />
     <ClInclude Include="MenuSetting.h" />
+    <ClInclude Include="MoveComponentsCommand.h" />
     <ClInclude Include="SetPrimaryKeyCommand.h" />
     <ClInclude Include="SetPrimaryKeyState.h" />
     <ClInclude Include="Subject.h" />
@@ -420,17 +428,23 @@
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\GeneratedFiles\qrc_%(Filename).cpp;%(Outputs)</Outputs>
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"$(QTDIR)\bin\rcc.exe" -name "%(Filename)" -no-compress "%(FullPath)" -o .\GeneratedFiles\qrc_%(Filename).cpp</Command>
     </CustomBuild>
+    <None Include="Resources\about.png" />
     <None Include="Resources\attribute.png" />
     <None Include="Resources\connector.png" />
+    <None Include="Resources\copy.png" />
     <None Include="Resources\cursor.png" />
+    <None Include="Resources\cut.png" />
     <None Include="Resources\delete.png" />
     <None Include="Resources\edittext.png" />
     <None Include="Resources\entity.png" />
     <None Include="Resources\exit.png" />
+    <None Include="Resources\foreign_key.png" />
     <None Include="Resources\key.png" />
     <None Include="Resources\open.png">
       <FileType>Document</FileType>
     </None>
+    <None Include="Resources\paste.png" />
+    <None Include="Resources\primary_key.png" />
     <None Include="Resources\redo.png" />
     <None Include="Resources\relationship.png" />
     <None Include="Resources\undo.png" />

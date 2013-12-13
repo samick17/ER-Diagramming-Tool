@@ -1,6 +1,8 @@
 #pragma once
 
 #include <string>
+#include <vector>
+#include "Point.h"
 #include "HashMap.h"
 #include "ISynchronizer.h"
 
@@ -29,11 +31,14 @@ public:
     Node* addNode(string nodeType);
     void deleteComponent(string componentID);
     int addConnection(Component* firstNode,Component* secondNode);
+    bool canRedo();
+    bool canUndo();
     void redo();
     void undo();
     bool setCardinality(Connector* connector,string cardinality);
     void setPrimaryKey(string componentID);
     void setComponentText(string componentID,string text);
+    void moveSelectedComponent(vector<string> selectedComponentsIDVector,Point mousePressPosition,Point mouseReleasePosition);
 
     Component* getComponentByID(string id);
     Connector* getNodesConnector(Component* firstNode,Component* secondNode);

@@ -11,4 +11,6 @@ protected:
    void doMouseMoveEvent(Point position);
    void doMouseDragEvent(Point position);
    void doMouseReleaseEvent(Point position);
+private:
+    Point mousePressPosition,mouseReleasePosition;
 };

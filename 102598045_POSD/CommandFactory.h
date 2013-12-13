@@ -1,6 +1,8 @@
 #pragma once
 
 #include <string>
+#include "Point.h"
+#include "HashMap.h"
 
 class Command;
 class ERModel;
@@ -18,4 +20,5 @@ public:
     Command* createDeleteComponentCommand(ERModel* erModel,Component* component);
     Command* createSetPrimaryKeyCommand(Attribute* attribute);
     Command* createEditTextOfComponentsCommand(Component* component,string text);
+    Command* createMoveComponentsCommand(HashMap<string,Component*> selectedComponentMap,Point mousePressPosition,Point mouseReleasePosition);
 };

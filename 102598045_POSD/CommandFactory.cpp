@@ -4,6 +4,7 @@
 #include "DeleteComponentCommand.h"
 #include "SetPrimaryKeyCommand.h"
 #include "EditTextOfComponentsCommand.h"
+#include "MoveComponentsCommand.h"
 
 Command* CommandFactory::createAddNodeCommand(ERModel* erModel,Node* node){
     return new AddNodeCommand(erModel,node);
@@ -23,4 +24,8 @@ Command* CommandFactory::createSetPrimaryKeyCommand(Attribute* attribute){
 
 Command* CommandFactory::createEditTextOfComponentsCommand(Component* component,string text){
     return new EditTextOfComponentsCommand(component,text);
+}
+
+Command* CommandFactory::createMoveComponentsCommand(HashMap<string,Component*> selectedComponentMap,Point mousePressPosition,Point mouseReleasePosition){
+    return new MoveComponentsCommand(selectedComponentMap,mousePressPosition,mouseReleasePosition);
 }

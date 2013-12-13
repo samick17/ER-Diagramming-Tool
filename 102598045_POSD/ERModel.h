@@ -44,11 +44,14 @@ public:
     void eraseComponent(Component* component);
     void deleteComponent(string componentID);
     int addConnection(Component* firstNode,Component* secondNode);
+    bool canUndo();
+    bool canRedo();
     void undo();
     void redo();
     void setPrimaryKey(string componentID);
     bool setCardinality(Connector* connector,string cardinality);
     void setComponentText(string componentID,string text);
+    void moveSelectedComponent(vector<string> selectedComponentsIDVector,Point mousePressPosition,Point mouseReleasePosition);
     void openFile(string filePath);
     void saveFile(string filePath);
 

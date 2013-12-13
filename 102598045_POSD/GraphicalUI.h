@@ -2,14 +2,8 @@
 
 #include <QMainWindow>
 #include <QGraphicsView>
-#include <QMenuBar>
-#include <QToolBar>
 #include "GUIScene.h"
 #include "GUITableView.h"
-#include "FileMenuItem.h"
-#include "AddMenuItem.h"
-#include "FileToolBar.h"
-#include "AddDrawableToolBar.h"
 #include "QActionMap.h"
 #include "ISynchronizer.h"
 #include "Component.h"
@@ -46,11 +40,6 @@ private:
     void refreshAllWidgets();
     void setKeyCtrlPressed(QKeyEvent* keyEvent);
     GraphicalPresentation* graphicalPresentation;
-    FileMenuItem* fileMenuItem;
-    AddMenuItem* addMenuItem;
-    FileToolBar* fileToolBar;
-    AddDrawableToolBar* addDrawableToolBar;
-    QMenuBar* menuBar;
     QGraphicsView* view;
     GUIScene* scene;
     GUITableView* tableView;
@@ -66,4 +55,8 @@ private slots:
     void switchState(int stateID);
     void executeSync(string syncEventType);
     void displayEditTextDialog();
+    void copyComponents();
+    void pasteComponents();
+    void cutComponents();
+    void displayAbout();
 };

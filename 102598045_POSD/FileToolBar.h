@@ -3,8 +3,10 @@
 #include <QToolBar>
 #include "QActionMap.h"
 
+class GraphicalUI;
+
 class FileToolBar : public QToolBar{
 public:
-    FileToolBar(QActionMap* actionMap,QWidget* parent = NULL);
+    FileToolBar(GraphicalUI* graphicalUI,QActionMap* actionMap);
     ~FileToolBar();
 };

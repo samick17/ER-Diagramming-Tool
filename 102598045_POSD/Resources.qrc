@@ -1,17 +1,24 @@
 <RCC>
     <qresource prefix="/res">
-        <file>Resources/exit.png</file>
-        <file>Resources/open.png</file>
+        <file>Resources/application.png</file>
         <file>Resources/attribute.png</file>
         <file>Resources/connector.png</file>
+        <file>Resources/copy.png</file>
         <file>Resources/cursor.png</file>
-        <file>Resources/entity.png</file>
-        <file>Resources/relationship.png</file>
-        <file>Resources/application.png</file>
-        <file>Resources/edittext.png</file>
+        <file>Resources/cut.png</file>
         <file>Resources/delete.png</file>
+        <file>Resources/edit_text.png</file>
+        <file>Resources/entity.png</file>
+        <file>Resources/exit.png</file>
+        <file>Resources/foreign_key.png</file>
         <file>Resources/key.png</file>
+        <file>Resources/open.png</file>
+        <file>Resources/paste.png</file>
+        <file>Resources/primary_key.png</file>
         <file>Resources/redo.png</file>
+        <file>Resources/relationship.png</file>
+        <file>Resources/save.png</file>
         <file>Resources/undo.png</file>
+        <file>Resources/about.png</file>
     </qresource>
 </RCC>

@@ -31,6 +31,14 @@ int Presentation::addConnection(Component* firstNode,Component* secondNode){
     return this->erModel->addConnection(firstNode,secondNode);
 }
 
+bool Presentation::canRedo(){
+    return this->erModel->canRedo();
+}
+
+bool Presentation::canUndo(){
+    return this->erModel->canUndo();
+}
+
 void Presentation::redo(){
     this->erModel->redo();
 }
@@ -49,6 +57,10 @@ void Presentation::setPrimaryKey(string componentID){
 
 void Presentation::setComponentText(string componentID,string text){
     this->erModel->setComponentText(componentID,text);
+}
+
+void Presentation::moveSelectedComponent(vector<string> selectedComponentsIDVector,Point mousePressPosition,Point mouseReleasePosition){
+    this->erModel->moveSelectedComponent(selectedComponentsIDVector,mousePressPosition,mouseReleasePosition);
 }
 
 Component* Presentation::getComponentByID(string id){

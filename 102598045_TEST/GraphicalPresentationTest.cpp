@@ -175,8 +175,10 @@ TEST_F(GraphicalPresentationTest,testMoveSelectedWidget){
     this->graphicalPresentation->selectedWidgetVector.push_back(connector->getID());
     this->graphicalPresentation->selectedWidgetVector.push_back("test");
 
-    Point deltaPosition = Point(120,201);
-    this->graphicalPresentation->moveSelectedWidget(deltaPosition);
+    Point mousePressPosition = Point(0,0);
+    Point mouseReleasePosition = Point(120,201);
+    Point deltaPosition = mouseReleasePosition-mousePressPosition;
+    this->graphicalPresentation->moveSelectedWidget(mousePressPosition,mouseReleasePosition);
 
     ASSERT_EQ(attributePosition+deltaPosition,attribute->getRect().getPosition());
     ASSERT_EQ(entityPosition+deltaPosition,entity->getRect().getPosition());

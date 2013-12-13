@@ -71,6 +71,14 @@ int ERModel::addConnection(Component* firstNode,Component* secondNode){
     return result;
 }
 
+bool ERModel::canUndo(){
+    return this->commandManager.canUndo();
+}
+
+bool ERModel::canRedo(){
+    return this->commandManager.canRedo();
+}
+
 void ERModel::undo(){
     this->commandManager.undo();
 }
@@ -117,6 +125,18 @@ void ERModel::setComponentText(string componentID,string text){
     CommandFactory commandFactory;
     Command* editTextOfComponentsCommand = commandFactory.createEditTextOfComponentsCommand(component,text);
     this->commandManager.execute(editTextOfComponentsCommand);
+}
+
+void ERModel::moveSelectedComponent(vector<string> selectedComponentsIDVector,Point mousePressPosition,Point mouseReleasePosition){
+    HashMap<string,Component*> selectedComponentMap;
+    for each(string componentID in selectedComponentsIDVector){
+        if(this->componentMap.containsKey(componentID))
+            selectedComponentMap.put(componentID,this->componentMap.get(componentID));
+    }
+
+    CommandFactory commandFactory;
+    Command* moveComponentsCommand = commandFactory.createMoveComponentsCommand(selectedComponentMap,mousePressPosition,mouseReleasePosition);
+    this->commandManager.execute(moveComponentsCommand);
 }
 
 void ERModel::openFile(string filePath){

@@ -535,6 +535,18 @@
     <ClCompile Include="GeneratedFiles\Release\moc_GUITableView.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
+    <ClCompile Include="EditMenuItem.cpp">
+      <Filter>Source Files\View\GUI\MenuItem</Filter>
+    </ClCompile>
+    <ClCompile Include="HelpMenuItem.cpp">
+      <Filter>Source Files\View\GUI\MenuItem</Filter>
+    </ClCompile>
+    <ClCompile Include="EditToolBar.cpp">
+      <Filter>Source Files\View\GUI\ToolBar</Filter>
+    </ClCompile>
+    <ClCompile Include="MoveComponentsCommand.cpp">
+      <Filter>Source Files\Command</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ERModel.h">
@@ -855,6 +867,18 @@
     <ClInclude Include="Node.h">
       <Filter>Header Files\Model\Component</Filter>
     </ClInclude>
+    <ClInclude Include="EditMenuItem.h">
+      <Filter>Header Files\View\GUI\MenuItem</Filter>
+    </ClInclude>
+    <ClInclude Include="HelpMenuItem.h">
+      <Filter>Header Files\View\GUI\MenuItem</Filter>
+    </ClInclude>
+    <ClInclude Include="EditToolBar.h">
+      <Filter>Header Files\View\GUI\ToolBar</Filter>
+    </ClInclude>
+    <ClInclude Include="MoveComponentsCommand.h">
+      <Filter>Header Files\Command</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="GraphicalUI.h">
@@ -917,6 +941,24 @@
       <Filter>Resource Files</Filter>
     </None>
     <None Include="Resources\undo.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Resources\copy.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Resources\cut.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Resources\foreign_key.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Resources\paste.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Resources\primary_key.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Resources\about.png">
       <Filter>Resource Files</Filter>
     </None>
   </ItemGroup>

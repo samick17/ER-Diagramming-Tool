@@ -99,6 +99,14 @@ void GraphicalPresentation::close(){
     this->presentation->close();
 }
 
+bool GraphicalPresentation::canUndo(){
+    return this->presentation->canUndo();
+}
+
+bool GraphicalPresentation::canRedo(){
+    return this->presentation->canRedo();
+}
+
 void GraphicalPresentation::undo(){
     try{
         this->presentation->undo();
@@ -129,6 +137,10 @@ void GraphicalPresentation::setPrimaryKey(string componentID){
 void GraphicalPresentation::setComponentText(string componentID,string text){
     this->presentation->setComponentText(componentID,text);
     this->sync(ControllerEvent::DisplayDiagram);
+}
+
+bool GraphicalPresentation::isSelectAnyWidgets(){
+    return !this->selectedWidgetVector.empty();
 }
 //delete all selected components
 void GraphicalPresentation::deleteComponent(){
@@ -176,16 +188,21 @@ void GraphicalPresentation::selectLastPressedWidget(){
     if(!this->isWidgetSelected(lastPressedComponentID))
         this->selectedWidgetVector.push_back(lastPressedComponentID);
 }
-//move all selected widget
-void GraphicalPresentation::moveSelectedWidget(Point deltaPosition){
+
+void GraphicalPresentation::previewMoveSelectedWidget(Point deltaPosition){
     HashMap<string,Component*> componentMap = this->presentation->getAllComponents();
     for each(string componentID in this->selectedWidgetVector){
-        if(!componentMap.containsKey(componentID))
-            continue;
-        Component* component = componentMap.get(componentID);
-        Point position = component->getRect().getPosition();
-        component->setPosition(position+deltaPosition);
+         if(!componentMap.containsKey(componentID))
+             continue;
+         Component* component = componentMap.get(componentID);
+         Point position = component->getRect().getPosition();
+         component->setPosition(position+deltaPosition);
     }
+}
+//move all selected widget
+void GraphicalPresentation::moveSelectedWidget(Point mousePressPosition,Point mouseReleasePosition){
+    HashMap<string,Component*> componentMap = this->presentation->getAllComponents();
+    this->presentation->moveSelectedComponent(this->selectedWidgetVector,mousePressPosition,mouseReleasePosition);
 }
 
 void GraphicalPresentation::unSelectAll(){

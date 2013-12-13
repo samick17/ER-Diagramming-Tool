@@ -1,8 +1,9 @@
 #include "FileToolBar.h"
 #include "ActionData.h"
+#include "GraphicalUI.h"
 
-FileToolBar::FileToolBar(QActionMap* actionMap,QWidget* parent) : QToolBar(parent){
-    for(unsigned int actionIndex = ActionData::OpenFile;actionIndex <= ActionData::Delete;actionIndex++){
+FileToolBar::FileToolBar(GraphicalUI* graphicalUI,QActionMap* actionMap) : QToolBar(graphicalUI){
+    for(unsigned int actionIndex = ActionData::OpenFile;actionIndex <= ActionData::Exit;actionIndex++){
         QAction* openFileAction = actionMap->getQAction(actionIndex);
         this->addAction(openFileAction);
     }

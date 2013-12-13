@@ -132,6 +132,7 @@
     <ClCompile Include="..\102598045_POSD\InstructionMenu.cpp" />
     <ClCompile Include="..\102598045_POSD\InvalidConnectException.cpp" />
     <ClCompile Include="..\102598045_POSD\InvalidNodeTypeException.cpp" />
+    <ClCompile Include="..\102598045_POSD\MoveComponentsCommand.cpp" />
     <ClCompile Include="..\102598045_POSD\NoConnectionException.cpp" />
     <ClCompile Include="..\102598045_POSD\Node.cpp" />
     <ClCompile Include="..\102598045_POSD\NodeConnectionType.cpp" />

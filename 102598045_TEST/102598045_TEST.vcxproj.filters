@@ -576,6 +576,9 @@
     <ClCompile Include="MockCommand.cpp">
       <Filter>Source Files\MockObject</Filter>
     </ClCompile>
+    <ClCompile Include="..\102598045_POSD\MoveComponentsCommand.cpp">
+      <Filter>Source Files\Command</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DirectoryUtil.h">
