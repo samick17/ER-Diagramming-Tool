@@ -11,7 +11,6 @@ public:
     Attribute(string componentID,string componentName = StringSymbol::Empty);
     ~Attribute();
 
-    void postDisconnect();
     int canConnectTo(Component* target);
     bool hasSizeToConnect();
     bool isPrimaryKey();

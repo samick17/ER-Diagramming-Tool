@@ -16,7 +16,7 @@ void TableManager::insertTable(Table* table){
     }
 }
 
-Table* TableManager::getTableByID(string id){    
+Table* TableManager::getTableByID(string id){
     return this->tableMap.get(id);
 }
 

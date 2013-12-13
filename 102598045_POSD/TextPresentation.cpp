@@ -7,7 +7,6 @@
 #include "EmptyCollectionException.h"
 #include "ComponentType.h"
 #include "InstructionMenu.h"
-#include "InstructionData.h"
 #include "TextUIPresenter.h"
 #include "ApplicationSetting.h"
 #include "ControllerEvent.h"
@@ -53,16 +52,18 @@ void TextPresentation::processCommand(){
     TextInstruction* textInstruction = NULL;
     try{
         textInstruction = this->instructionMenu->createInstruction(instructionKey);
-        textInstruction->execute(this,this->textUIPresenter);
     }
     catch(NullPointerException){
         this->textUIPresenter->logMessage("wrong command,please input correct command.",true);
+        return;
     }
-    catch(Exception& exception){
+	try{
+		textInstruction->execute(this,this->textUIPresenter);
+	}
+	catch(Exception& exception){
         this->textUIPresenter->logMessage(exception.what(),true);
     }
-    if(textInstruction)
-        delete textInstruction;
+	delete textInstruction;
 }
 
 HashMap<string,Table*> TextPresentation::getAllTables(){
@@ -124,12 +125,12 @@ Component* TextPresentation::findComponent(){
 }
 
 Entity* TextPresentation::findEntity(){
-    Component* find = this->findComponent();
-    while(!find->isTypeOf<Entity>()){
+    Entity* find = dynamic_cast<Entity*>(this->findComponent());
+    while(!find){
         this->textUIPresenter->logMessage("The node '"+find->getID()+"' is not an entity. Please enter a valid one again.",true);
-        find = this->findComponent();
+        find = dynamic_cast<Entity*>(this->findComponent());
     }
-    return static_cast<Entity*>(find);
+    return find;
 }
 
 void TextPresentation::openFile(string filePath){
