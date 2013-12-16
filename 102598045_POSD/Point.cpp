@@ -1,7 +1,10 @@
 #include "Point.h"
 #include <math.h>
 
-Point::Point(double coordinateX,double coordinateY) : coordinateX(coordinateX),coordinateY(coordinateY){}
+const Point Point::Zero = Point();
+
+Point::Point(double coordinateX,double coordinateY) : coordinateX(coordinateX),coordinateY(coordinateY){
+}
 
 double Point::getX(){
     return this->coordinateX;

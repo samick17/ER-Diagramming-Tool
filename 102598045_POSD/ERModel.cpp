@@ -128,11 +128,16 @@ void ERModel::setComponentText(string componentID,string text){
 }
 
 void ERModel::moveSelectedComponent(vector<string> selectedComponentsIDVector,Point mousePressPosition,Point mouseReleasePosition){
+    if(mousePressPosition-mouseReleasePosition == Point::Zero)
+        return;
+
     HashMap<string,Component*> selectedComponentMap;
-    for each(string componentID in selectedComponentsIDVector){
+    for each(string componentID in selectedComponentsIDVector)
         if(this->componentMap.containsKey(componentID))
             selectedComponentMap.put(componentID,this->componentMap.get(componentID));
-    }
+
+    if(selectedComponentMap.empty())
+        return;
 
     CommandFactory commandFactory;
     Command* moveComponentsCommand = commandFactory.createMoveComponentsCommand(selectedComponentMap,mousePressPosition,mouseReleasePosition);

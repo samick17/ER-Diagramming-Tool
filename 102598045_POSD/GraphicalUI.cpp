@@ -5,6 +5,7 @@
 #include <QInputDialog>
 #include <QHBoxLayout>
 #include <QMenuBar>
+#include <QMessageBox>
 #include "FileMenuItem.h"
 #include "AddMenuItem.h"
 #include "EditMenuItem.h"
@@ -18,6 +19,7 @@
 #include "ControllerEvent.h"
 #include "StateID.h"
 #include "DialogSetting.h"
+#include <iostream>
 
 GraphicalUI::GraphicalUI(GraphicalPresentation* graphicalPresentation): graphicalPresentation(graphicalPresentation),QMainWindow(){
     this->setTitle(ApplicationSetting::Title,ApplicationSetting::IconPath);
@@ -107,14 +109,14 @@ void GraphicalUI::initialAllAction(){
     }
     connect (signalMapper, SIGNAL(mapped(int)), this, SLOT(switchState(int))) ;
 
-    QAction* copyAction = this->actionMap->getQAction(ActionData::Copy);
+    /*QAction* copyAction = this->actionMap->getQAction(ActionData::Copy);
     connect(copyAction,SIGNAL(triggered()),this,SLOT(copyComponents()));
     QAction* pasteAction = this->actionMap->getQAction(ActionData::Paste);
     connect(pasteAction,SIGNAL(triggered()),this,SLOT(pasteComponents()));
     QAction* cutAction = this->actionMap->getQAction(ActionData::Cut);
     connect(cutAction,SIGNAL(triggered()),this,SLOT(cutComponents()));
     QAction* aboutAction = this->actionMap->getQAction(ActionData::About);
-    connect(aboutAction,SIGNAL(triggered()),this,SLOT(displayAbout()));
+    connect(aboutAction,SIGNAL(triggered()),this,SLOT(displayAbout()));*/
 }
 
 void GraphicalUI::initialMenuBar(){
@@ -198,7 +200,7 @@ void GraphicalUI::setKeyCtrlPressed(QKeyEvent* keyEvent){
 
 void GraphicalUI::displayEditTextDialog(){
     bool isOKClicked;
-    QString text = QInputDialog::getText(NULL,QString(DialogSetting::Title.c_str()),QString(DialogSetting::Text.c_str()),QLineEdit::Normal,StringSymbol::Empty.c_str(),&isOKClicked);
+    QString text = QInputDialog::getText(this,QString(DialogSetting::Title.c_str()),QString(DialogSetting::Text.c_str()),QLineEdit::Normal,StringSymbol::Empty.c_str(),&isOKClicked);
     if(isOKClicked){
         ComponentData* componentData = this->graphicalPresentation->getComponentDataForPreview();
         componentData->setName(text.toStdString());
@@ -210,14 +212,6 @@ void GraphicalUI::displayEditTextDialog(){
     }
 }
 
-void GraphicalUI::copyComponents(){
-}
-
-void GraphicalUI::pasteComponents(){
-}
-
-void GraphicalUI::cutComponents(){
-}
-
 void GraphicalUI::displayAbout(){
+    QMessageBox::about(this,ApplicationSetting::AboutTitle.c_str(),ApplicationSetting::AboutText.c_str());
 }

@@ -19,6 +19,8 @@ public:
     Point& operator+=(const Point& pointToOperate);
     Point operator+(const Point& pointToOperate);
     Point operator-(const Point& pointToOperate);
+
+    const static Point Zero;
 private:
     double coordinateX;
     double coordinateY;

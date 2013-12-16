@@ -45,9 +45,8 @@ void GUIScene::mouseMoveEvent(QGraphicsSceneMouseEvent* mouseEvent){
 void GUIScene::mouseReleaseEvent(QGraphicsSceneMouseEvent* mouseEvent){
     pair<Point,ComponentData*> pointComponentPair = this->getPointComponentPair(mouseEvent);
     this->graphicalPresentation->mouseReleaseEvent(pointComponentPair.first,pointComponentPair.second);
-    if(this->graphicalPresentation->needToSetCardinality()){
+    if(this->graphicalPresentation->needToSetCardinality())
         this->processSetCardinality();
-    }
 
 }
 //get component from widget

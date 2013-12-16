@@ -159,6 +159,7 @@ bool GraphicalPresentation::canUndo(){
 bool GraphicalPresentation::canRedo(){
     return this->presentation->canRedo();
 }
+
 //is widget being selected?
 bool GraphicalPresentation::isWidgetSelected(string componentID){
     auto iterator = find(this->selectedWidgetVector.begin(),this->selectedWidgetVector.end(),componentID);
@@ -206,9 +207,6 @@ void GraphicalPresentation::previewMoveSelectedWidget(Point deltaPosition){
 }
 //move all selected widget
 void GraphicalPresentation::moveSelectedWidget(Point mousePressPosition,Point mouseReleasePosition){
-    HashMap<string,Component*> componentMap = this->presentation->getAllComponents();
-    if(componentMap.empty())
-        return;
     this->presentation->moveSelectedComponent(this->selectedWidgetVector,mousePressPosition,mouseReleasePosition);
 }
 

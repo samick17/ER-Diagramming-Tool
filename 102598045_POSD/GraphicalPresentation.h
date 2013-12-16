@@ -75,7 +75,7 @@ public:
     void registerSynchronizer(ISynchronizer* synchronizer);
     void unregisterSynchronizer(ISynchronizer* synchronizer);
     void sync(string syncEventType);
-    //observer pattern
+    //observer pattern-delegate to presentation
     void registerObserver(IObserver* observer);
     void unregisterObserver(IObserver* observer);
     void notify();
