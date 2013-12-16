@@ -49,14 +49,17 @@ public:
     void openFile(string filePath);
     void saveFile(string filePath);
     void close();
-    bool canUndo();
-    bool canRedo();
     void undo();
     void redo();
     void setPrimaryKey(string componentID);
     void setComponentText(string componentID,string text);
-    bool isSelectAnyWidgets();
     void deleteComponent();
+    //is some funtionality available
+    bool isSelectAnyWidgets();
+    bool canPasteWidgets();
+    bool canUndo();
+    bool canRedo();
+
     bool isWidgetSelected(string componentID);
     void selectWidget();
     void selectLastPressedWidget();

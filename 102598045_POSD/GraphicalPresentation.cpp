@@ -99,14 +99,6 @@ void GraphicalPresentation::close(){
     this->presentation->close();
 }
 
-bool GraphicalPresentation::canUndo(){
-    return this->presentation->canUndo();
-}
-
-bool GraphicalPresentation::canRedo(){
-    return this->presentation->canRedo();
-}
-
 void GraphicalPresentation::undo(){
     try{
         this->presentation->undo();
@@ -139,9 +131,6 @@ void GraphicalPresentation::setComponentText(string componentID,string text){
     this->sync(ControllerEvent::DisplayDiagram);
 }
 
-bool GraphicalPresentation::isSelectAnyWidgets(){
-    return !this->selectedWidgetVector.empty();
-}
 //delete all selected components
 void GraphicalPresentation::deleteComponent(){
     for each(string selectedID in this->selectedWidgetVector){
@@ -153,6 +142,22 @@ void GraphicalPresentation::deleteComponent(){
         }
     }
     this->unSelectAll();
+}
+
+bool GraphicalPresentation::isSelectAnyWidgets(){
+    return !this->selectedWidgetVector.empty();
+}
+
+bool GraphicalPresentation::canPasteWidgets(){
+    return false;
+}
+
+bool GraphicalPresentation::canUndo(){
+    return this->presentation->canUndo();
+}
+
+bool GraphicalPresentation::canRedo(){
+    return this->presentation->canRedo();
 }
 //is widget being selected?
 bool GraphicalPresentation::isWidgetSelected(string componentID){

@@ -23,4 +23,5 @@ void EditToolBar::notify(Subject* subject){
     this->actions().at(ActionData::Delete-offset)->setEnabled(this->graphicalPresentation->isSelectAnyWidgets());
     this->actions().at(ActionData::Cut-offset)->setEnabled(this->graphicalPresentation->isSelectAnyWidgets());
     this->actions().at(ActionData::Copy-offset)->setEnabled(this->graphicalPresentation->isSelectAnyWidgets());
+    this->actions().at(ActionData::Paste-offset)->setEnabled(this->graphicalPresentation->canPasteWidgets());
 }
