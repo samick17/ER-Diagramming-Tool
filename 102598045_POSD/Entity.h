@@ -17,5 +17,5 @@ public:
     HashMap<string,Attribute*> getPrimaryKeyAttributes();
     void setPrimaryKey(string componentID);
 
-    Component* clone();
+    Component* clone() const;
 };

@@ -204,7 +204,8 @@ void GraphicalUI::displayEditTextDialog(){
         componentData->setName(text.toStdString());
         this->graphicalPresentation->notify();
     }
-    else {
+    else{
+        this->graphicalPresentation->setComponentDataForPreview(NULL);
         this->graphicalPresentation->switchState(StateID::PointerState);
     }
 }

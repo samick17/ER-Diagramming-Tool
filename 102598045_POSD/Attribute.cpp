@@ -39,6 +39,6 @@ void Attribute::setAsDefaultKey(){
     this->attributeType = AttributeType::Default;
 }
 
-Component* Attribute::clone(){
+Component* Attribute::clone() const{
     return new Attribute(*this);
 }

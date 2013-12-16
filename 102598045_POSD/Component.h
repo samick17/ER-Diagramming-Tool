@@ -39,7 +39,7 @@ public:
     virtual bool hasSizeToConnect();
     bool hasConnectedTo(Component* target);
 
-    virtual Component* clone() = 0;
+    virtual Component* clone() const = 0;
 protected:
     ComponentData* componentData;
 private:

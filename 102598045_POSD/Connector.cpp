@@ -88,6 +88,6 @@ bool Connector::isCardinalityConnector(){
     return false;
 }
 
-Component* Connector::clone(){
+Component* Connector::clone() const{
     return new Connector(*this);
 }

@@ -22,5 +22,5 @@ public:
     bool isNodesConnection(Component* firstNode,Component* secondNode);
     bool isCardinalityConnector();
 
-    Component* clone();
+    Component* clone() const;
 };

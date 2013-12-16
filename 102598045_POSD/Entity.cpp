@@ -47,6 +47,6 @@ void Entity::setPrimaryKey(string componentID){
     attribute->setAsPrimaryKey();
 }
 
-Component* Entity::clone(){
+Component* Entity::clone() const{
     return new Entity(*this);
 }

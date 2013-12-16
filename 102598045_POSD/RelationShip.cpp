@@ -49,6 +49,6 @@ HashMap<string,Entity*> RelationShip::getConnectedEntities(){
     return ComponentUtil::getConnectedNodeHashMapByType<Entity>(this->getAllConnections());
 }
 
-Component* RelationShip::clone(){
+Component* RelationShip::clone() const{
     return new RelationShip(*this);
 }

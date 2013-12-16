@@ -18,5 +18,5 @@ public:
 
     HashMap<string,Entity*> getConnectedEntities();
 
-    Component* clone();
+    Component* clone() const;
 };

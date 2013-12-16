@@ -207,6 +207,8 @@ void GraphicalPresentation::previewMoveSelectedWidget(Point deltaPosition){
 //move all selected widget
 void GraphicalPresentation::moveSelectedWidget(Point mousePressPosition,Point mouseReleasePosition){
     HashMap<string,Component*> componentMap = this->presentation->getAllComponents();
+    if(componentMap.empty())
+        return;
     this->presentation->moveSelectedComponent(this->selectedWidgetVector,mousePressPosition,mouseReleasePosition);
 }
 
