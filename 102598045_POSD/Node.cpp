@@ -1,6 +1,5 @@
 #include "Node.h"
 #include "Connector.h"
-#include "ComponentType.h"
 #include "InvalidConnectException.h"
 #include "ConnectedSelfException.h"
 #include "HasConnectedException.h"
@@ -33,10 +32,6 @@ void Node::updateConnectorsPosition(){
 void Node::breakAllConnections(){
     for each(Component* connector in this->getAllConnections())
         connector->breakAllConnections();
-}
-
-bool Node::hasSizeToConnect(){
-    return true;
 }
 //@return NodeConnectionType's value
 int Node::canConnectTo(Component* target){

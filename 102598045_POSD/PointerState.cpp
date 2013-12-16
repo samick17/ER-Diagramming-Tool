@@ -24,6 +24,8 @@ void PointerState::doMouseDragEvent(Point position){
 
 void PointerState::doMouseReleaseEvent(Point position){
     this->mouseReleasePosition = position;
+    Point deltaPosition = this->mousePressPosition - this->mouseReleasePosition;
+    this->graphicalPresentation->previewMoveSelectedWidget(deltaPosition);
     this->graphicalPresentation->moveSelectedWidget(this->mousePressPosition,this->mouseReleasePosition);
     this->graphicalPresentation->notify();
 }

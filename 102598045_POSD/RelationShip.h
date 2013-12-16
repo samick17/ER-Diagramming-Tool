@@ -17,4 +17,6 @@ public:
     bool isRelationType(string relationType);
 
     HashMap<string,Entity*> getConnectedEntities();
+
+    Component* clone();
 };

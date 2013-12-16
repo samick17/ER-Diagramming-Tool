@@ -29,17 +29,6 @@ TEST_F(AddNodeStateTest,testOnCreate){
     ASSERT_EQ(ComponentType::TypeRelationShip,this->graphicalPresentation->getComponentDataForPreview()->getType());
 }
 
-TEST_F(AddNodeStateTest,testDoMousePressEvent){
-    AddNodeState addNodeState = AddNodeState(StateID::AddAttributeState,this->graphicalPresentation);
-    this->graphicalPresentation->setComponentDataForPreview(new ComponentData(ComponentType::TypeAttribute,"test"));
-
-    ASSERT_EQ(0,this->graphicalPresentation->getAllComponentDataMap().size());
-    addNodeState.mousePressEvent(Point(800,-1));
-    ASSERT_EQ(1,this->presentation->getAllComponents().size());
-    ASSERT_EQ(ComponentType::TypeAttribute,this->presentation->getAllComponents().get("0")->getType());
-    ASSERT_EQ(StateID::PointerState,this->graphicalPresentation->getStateSubject()->getStateID());
-}
-
 TEST_F(AddNodeStateTest,testDoMouseMoveEvent){
     //ASSERT Preview Component's position
     AddNodeState addNodeState = AddNodeState(StateID::AddEntityState,this->graphicalPresentation);
@@ -58,4 +47,15 @@ TEST_F(AddNodeStateTest,testDoMouseMoveEvent){
     movePosition = Point(0,0);
     addNodeState.mouseMoveEvent(movePosition);
     ASSERT_EQ(movePosition,componentDataForPreview->getRect().getCenterPosition());
+}
+
+TEST_F(AddNodeStateTest,testDoMouseReleaseEvent){
+    AddNodeState addNodeState = AddNodeState(StateID::AddAttributeState,this->graphicalPresentation);
+    this->graphicalPresentation->setComponentDataForPreview(new ComponentData(ComponentType::TypeAttribute,"test"));
+
+    ASSERT_EQ(0,this->graphicalPresentation->getAllComponentDataMap().size());
+    addNodeState.mouseReleaseEvent(Point(800,-1));
+    ASSERT_EQ(1,this->presentation->getAllComponents().size());
+    ASSERT_EQ(ComponentType::TypeAttribute,this->presentation->getAllComponents().get("0")->getType());
+    ASSERT_EQ(StateID::PointerState,this->graphicalPresentation->getStateSubject()->getStateID());
 }

@@ -38,3 +38,7 @@ void Attribute::setAsDefaultKey(){
     this->componentData->setIsUnderLine(false);
     this->attributeType = AttributeType::Default;
 }
+
+Component* Attribute::clone(){
+    return new Attribute(*this);
+}

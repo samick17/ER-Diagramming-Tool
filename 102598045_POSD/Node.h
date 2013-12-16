@@ -12,7 +12,6 @@ public:
 
     void breakAllConnections();
     int canConnectTo(Component* target);
-    bool hasSizeToConnect();
 private:
     void updateConnectorsPosition();
 };

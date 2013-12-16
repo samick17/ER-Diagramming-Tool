@@ -38,6 +38,8 @@ public:
     virtual int canConnectTo(Component* target) = 0;
     virtual bool hasSizeToConnect();
     bool hasConnectedTo(Component* target);
+
+    virtual Component* clone() = 0;
 protected:
     ComponentData* componentData;
 private:

@@ -46,3 +46,7 @@ void Entity::setPrimaryKey(string componentID){
     Attribute* attribute = this->getAttributeByID(componentID);
     attribute->setAsPrimaryKey();
 }
+
+Component* Entity::clone(){
+    return new Entity(*this);
+}
