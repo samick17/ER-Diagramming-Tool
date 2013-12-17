@@ -26,6 +26,10 @@ HashMap<string,ComponentData*> GraphicalPresentation::getAllComponentDataMap(){
     return this->componentDataMap;
 }
 
+HashMap<string,Table*> GraphicalPresentation::getAllTables(){
+    return this->presentation->getAllTables();
+}
+
 ComponentData* GraphicalPresentation::getComponentDataForPreview(){
     return this->componentDataForPreview;
 }

@@ -36,6 +36,7 @@ public:
 
     StateSubject* getStateSubject();
     HashMap<string,ComponentData*> getAllComponentDataMap();
+    HashMap<string,Table*> getAllTables();
     ComponentData* getComponentDataForPreview();
     void setComponentDataForPreview(ComponentData* componentDataForPreview);
 

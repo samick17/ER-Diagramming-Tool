@@ -246,10 +246,6 @@ void GraphicalUI::pasteComponents(){
 void GraphicalUI::displayDBTable(){
     this->graphicalPresentation->switchDisplayDBTable();
     this->graphicalPresentation->notify();
-    /*if(this->graphicalPresentation->getIsDisplayDBTable())
-        this->tableView->show();
-    else
-        this->tableView->hide();*/
 }
 
 void GraphicalUI::displayAbout(){
