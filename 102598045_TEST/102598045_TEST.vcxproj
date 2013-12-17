@@ -115,6 +115,7 @@
     <ClCompile Include="..\102598045_POSD\ControllerEvent.cpp" />
     <ClCompile Include="..\102598045_POSD\DeleteComponentCommand.cpp" />
     <ClCompile Include="..\102598045_POSD\DeleteComponentInstruction.cpp" />
+    <ClCompile Include="..\102598045_POSD\DeleteComponentsCommand.cpp" />
     <ClCompile Include="..\102598045_POSD\DisplayDiagramInstruction.cpp" />
     <ClCompile Include="..\102598045_POSD\DisplayTableInstruction.cpp" />
     <ClCompile Include="..\102598045_POSD\Document.cpp" />

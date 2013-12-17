@@ -11,6 +11,7 @@
 #include "ApplicationSetting.h"
 #include "ControllerEvent.h"
 #include "Cardinality.h"
+#include "CharSymbol.h"
 
 TextPresentation::TextPresentation(Presentation* presentation) : presentation(presentation){
     string title = "Title "+ApplicationSetting::Title;
@@ -57,13 +58,13 @@ void TextPresentation::processCommand(){
         this->textUIPresenter->logMessage("wrong command,please input correct command.",true);
         return;
     }
-	try{
-		textInstruction->execute(this,this->textUIPresenter);
-	}
-	catch(Exception& exception){
+    try{
+        textInstruction->execute(this,this->textUIPresenter);
+    }
+    catch(Exception& exception){
         this->textUIPresenter->logMessage(exception.what(),true);
     }
-	delete textInstruction;
+    delete textInstruction;
 }
 
 HashMap<string,Table*> TextPresentation::getAllTables(){
@@ -150,8 +151,9 @@ Node* TextPresentation::addNode(string nodeType){
     return node;
 }
 
-void TextPresentation::deleteComponent(string componentID){
-    this->presentation->deleteComponent(componentID);
+void TextPresentation::deleteComponent(string input){
+    vector<string> componentIDVector = StringUtil::split(input,CharSymbol::Comma);
+    this->presentation->deleteComponent(componentIDVector);
 }
 
 int TextPresentation::connectTwoNodes(Component* firstNode,Component* secondNode){

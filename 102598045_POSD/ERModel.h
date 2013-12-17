@@ -42,7 +42,7 @@ public:
     void insertComponent(Component* component);
     void insertComponentAt(Component* component,unsigned int index);
     void eraseComponent(Component* component);
-    void deleteComponent(string componentID);
+    void deleteComponent(vector<string> componentIDVector);
     int addConnection(Component* firstNode,Component* secondNode);
     bool canUndo();
     bool canRedo();

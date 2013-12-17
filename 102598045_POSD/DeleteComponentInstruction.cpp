@@ -5,17 +5,17 @@ void DeleteComponentInstruction::execute(TextPresentation* textPresentation,Text
     textUIPresenter->displayComponents();
     //find node to be connect
     cout<<"Please enter the component ID"<<endl;
-    string componentID;
+    string input;
     while(true){
         try{
-            componentID = textPresentation->getInput();
-            textPresentation->deleteComponent(componentID);
+            input = textPresentation->getInput();
+            textPresentation->deleteComponent(input);
             break;
         }
         catch(Exception& exception){
             cout<<exception.what()<<endl;
         }
     }
-    cout<<"The component '"+componentID+"' has been deleted. "<<endl;
+    cout<<"The component '"+input+"' has been deleted. "<<endl;
     textPresentation->sync(ControllerEvent::DeleteComponent);
 }

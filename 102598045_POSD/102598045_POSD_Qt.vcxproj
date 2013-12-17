@@ -90,6 +90,7 @@
     <ClCompile Include="CloseInstruction.cpp" />
     <ClCompile Include="CommandFactory.cpp" />
     <ClCompile Include="ConnectorData.cpp" />
+    <ClCompile Include="DeleteComponentsCommand.cpp" />
     <ClCompile Include="DialogSetting.cpp" />
     <ClCompile Include="EditableTableWidgetItem.cpp" />
     <ClCompile Include="EditMenuItem.cpp" />
@@ -244,6 +245,7 @@
     <ClInclude Include="Command.h" />
     <ClInclude Include="CommandFactory.h" />
     <ClInclude Include="ConnectorData.h" />
+    <ClInclude Include="DeleteComponentsCommand.h" />
     <ClInclude Include="DialogSetting.h" />
     <CustomBuild Include="EditableTableWidgetItem.h">
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(AdditionalInputs)</AdditionalInputs>

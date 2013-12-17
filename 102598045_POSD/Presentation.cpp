@@ -23,8 +23,8 @@ Node* Presentation::addNode(string nodeType){
     return this->erModel->addNode(nodeType);
 }
 
-void Presentation::deleteComponent(string componentID){
-    this->erModel->deleteComponent(componentID);
+void Presentation::deleteComponent(vector<string> componentIDVector){
+    this->erModel->deleteComponent(componentIDVector);
 }
 
 int Presentation::addConnection(Component* firstNode,Component* secondNode){

@@ -49,10 +49,9 @@ void ERModel::eraseComponent(Component* component){
     this->componentMap.remove(component->getID());
 }
 
-void ERModel::deleteComponent(string componentID){
-    Component* componentToDelete = this->getComponentByID(componentID);
+void ERModel::deleteComponent(vector<string> componentIDVector){
     CommandFactory commandFactory;
-    Command* deleteComponentCommand = commandFactory.createDeleteComponentCommand(this,componentToDelete);
+    Command* deleteComponentCommand = commandFactory.createDeleteComponentsCommand(this,componentIDVector);
     this->commandManager.execute(deleteComponentCommand);
 }
 //return: NodeConnectionType

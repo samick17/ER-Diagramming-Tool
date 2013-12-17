@@ -488,7 +488,9 @@ TEST_F(ERModelTest,testUndoDeleteComponent){
     ASSERT_EQ(entityTest,this->erModel.componentMap.get(entityTest->getID()));
     ASSERT_EQ(16,this->erModel.componentMap.size());
 
-    this->erModel.deleteComponent(entityTest->getID());
+    vector<string> componentVector;
+    componentVector.push_back(entityTest->getID());
+    this->erModel.deleteComponent(componentVector);
         
     ASSERT_THROW(this->erModel.componentMap.get(entityTest->getID()),NoSuchKeyException);
     ASSERT_EQ(15,this->erModel.componentMap.size());
@@ -618,7 +620,9 @@ TEST_F(ERModelTest,testCommonUsage){
     ASSERT_EQ(attributeWD_ID,entityWorkDiary->getPrimaryKeyAttributes().get(attributeWD_ID->getID()));
     ASSERT_EQ("WD_ID",entityWorkDiary->getPrimaryKeyAttributes().get(attributeWD_ID->getID())->getName());
 
-    this->erModel.deleteComponent(entityWorkDiary->getID());
+    vector<string> componentVector;
+    componentVector.push_back(entityWorkDiary->getID());
+    this->erModel.deleteComponent(componentVector);
 
     //Assert there is no such node "Work Diary"
     ASSERT_THROW(this->erModel.getComponentByID(entityWorkDiary->getID()),NoSuchNodeException);

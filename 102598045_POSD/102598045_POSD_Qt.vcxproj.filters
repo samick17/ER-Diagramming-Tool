@@ -547,6 +547,9 @@
     <ClCompile Include="MoveComponentsCommand.cpp">
       <Filter>Source Files\Command</Filter>
     </ClCompile>
+    <ClCompile Include="DeleteComponentsCommand.cpp">
+      <Filter>Source Files\Command</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ERModel.h">
@@ -877,6 +880,9 @@
       <Filter>Header Files\View\GUI\ToolBar</Filter>
     </ClInclude>
     <ClInclude Include="MoveComponentsCommand.h">
+      <Filter>Header Files\Command</Filter>
+    </ClInclude>
+    <ClInclude Include="DeleteComponentsCommand.h">
       <Filter>Header Files\Command</Filter>
     </ClInclude>
   </ItemGroup>

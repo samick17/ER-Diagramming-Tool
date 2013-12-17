@@ -29,7 +29,7 @@ public:
     void close();
 
     Node* addNode(string nodeType);
-    void deleteComponent(string componentID);
+    void deleteComponent(vector<string> componentIDVector);
     int addConnection(Component* firstNode,Component* secondNode);
     bool canRedo();
     bool canUndo();
