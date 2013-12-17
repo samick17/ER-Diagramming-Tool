@@ -107,16 +107,16 @@ void GraphicalUI::initialAllAction(){
         signalMapper->setMapping(stateAction,stateID);
         stateID++;
     }
-    connect (signalMapper, SIGNAL(mapped(int)), this, SLOT(switchState(int))) ;
+    connect (signalMapper,SIGNAL(mapped(int)),this,SLOT(switchState(int)));
 
-    /*QAction* copyAction = this->actionMap->getQAction(ActionData::Copy);
+    QAction* cutAction = this->actionMap->getQAction(ActionData::Cut);
+    connect(cutAction,SIGNAL(triggered()),this,SLOT(cutComponents()));
+    QAction* copyAction = this->actionMap->getQAction(ActionData::Copy);
     connect(copyAction,SIGNAL(triggered()),this,SLOT(copyComponents()));
     QAction* pasteAction = this->actionMap->getQAction(ActionData::Paste);
     connect(pasteAction,SIGNAL(triggered()),this,SLOT(pasteComponents()));
-    QAction* cutAction = this->actionMap->getQAction(ActionData::Cut);
-    connect(cutAction,SIGNAL(triggered()),this,SLOT(cutComponents()));
     QAction* aboutAction = this->actionMap->getQAction(ActionData::About);
-    connect(aboutAction,SIGNAL(triggered()),this,SLOT(displayAbout()));*/
+    connect(aboutAction,SIGNAL(triggered()),this,SLOT(displayAbout()));
 }
 
 void GraphicalUI::initialMenuBar(){
@@ -210,6 +210,15 @@ void GraphicalUI::displayEditTextDialog(){
         this->graphicalPresentation->setComponentDataForPreview(NULL);
         this->graphicalPresentation->switchState(StateID::PointerState);
     }
+}
+
+void GraphicalUI::cutComponents(){
+}
+
+void GraphicalUI::copyComponents(){
+}
+
+void GraphicalUI::pasteComponents(){
 }
 
 void GraphicalUI::displayAbout(){
