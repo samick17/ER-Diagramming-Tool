@@ -559,6 +559,9 @@
     <ClCompile Include="GUITableView.cpp">
       <Filter>Source Files\View\GUI\GUIWidget</Filter>
     </ClCompile>
+    <ClCompile Include="TableWidget.cpp">
+      <Filter>Source Files\View\GUI\GUIWidget\ModelWidget</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ERModel.h">
@@ -902,6 +905,9 @@
     </ClInclude>
     <ClInclude Include="GUITableView.h">
       <Filter>Header Files\View\GUI\GUIWidget</Filter>
+    </ClInclude>
+    <ClInclude Include="TableWidget.h">
+      <Filter>Header Files\View\GUI\GUIWidget\ModelWidget</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

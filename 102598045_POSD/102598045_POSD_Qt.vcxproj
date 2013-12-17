@@ -206,6 +206,7 @@
     <ClCompile Include="StateFactory.cpp" />
     <ClCompile Include="StateID.cpp" />
     <ClCompile Include="StateSubject.cpp" />
+    <ClCompile Include="TableWidget.cpp" />
     <ClCompile Include="TextPresentation.cpp" />
     <ClCompile Include="TextUIPresenter.cpp" />
     <ClCompile Include="TextUIProcess.cpp" />
@@ -325,6 +326,7 @@
     <ClInclude Include="StateFactory.h" />
     <ClInclude Include="StateID.h" />
     <ClInclude Include="StateSubject.h" />
+    <ClInclude Include="TableWidget.h" />
     <ClInclude Include="TextInstruction.h" />
     <ClInclude Include="InstructionData.h" />
     <ClInclude Include="CommandManager.h" />

@@ -46,7 +46,7 @@ void ComponentWidget::updateWidget(){
     Point position = componentRect.getPosition();
     this->setText(this->componentData->getName());
     this->componentID = this->componentData->getID();
-    this->setRect(QRectF(position.getX(),position.getY(),componentRect.getWidth(),componentRect.getHeight()));
+    this->rect = QRectF(position.getX(),position.getY(),componentRect.getWidth(),componentRect.getHeight());
     this->doUpdateWidget();
 }
 
@@ -60,10 +60,6 @@ string ComponentWidget::getText(){
 
 void ComponentWidget::setText(string text){
     this->text = text;
-}
-
-void ComponentWidget::setRect(QRectF rect){
-    this->rect = rect;
 }
 
 bool ComponentWidget::getIsUnderLine(){

@@ -6,3 +6,7 @@ GUITableScene::GUITableScene(GraphicalUI* graphicalUI) : QGraphicsScene(graphica
 
 GUITableScene::~GUITableScene(){
 }
+
+void GUITableScene::notify(Subject* subject){
+    
+}
