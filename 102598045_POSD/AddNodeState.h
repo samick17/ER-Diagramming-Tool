@@ -14,5 +14,6 @@ protected:
    void doMouseDragEvent(Point position);
    void doMouseReleaseEvent(Point position);
 private:
+    inline void previewAddedNode(Point position);
     HashMap<int,string> stateToNodeTypeMap;
 };

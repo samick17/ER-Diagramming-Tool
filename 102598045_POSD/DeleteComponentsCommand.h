@@ -1,5 +1,6 @@
 #pragma once
 
+#include <stack>
 #include <vector>
 #include "Command.h"
 
@@ -18,5 +19,5 @@ protected:
 private:
     ERModel* erModel;
     vector<string> componentIDVector;
-    vector<Command*> deleteCommandVector;
+    stack<Command*> deleteCommandStack;
 };

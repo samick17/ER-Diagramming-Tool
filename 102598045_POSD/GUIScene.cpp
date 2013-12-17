@@ -9,12 +9,12 @@
 
 GUIScene::GUIScene(GraphicalUI* graphicalUI) : QGraphicsScene(graphicalUI),graphicalUI(graphicalUI){
     this->graphicalPresentation = this->graphicalUI->getGraphicalPresentation();
-    this->graphicalPresentation->registerObserver(this);
+    this->graphicalPresentation->registerObserverToModel(this);
     this->connect(this,SIGNAL(onNotifyEvent()),this,SLOT(executeNotify()));
 }
 
 GUIScene::~GUIScene(){
-    this->graphicalPresentation->unregisterObserver(this);
+    this->graphicalPresentation->unregisterObserverToModel(this);
 }
 
 void GUIScene::notify(Subject* subject){

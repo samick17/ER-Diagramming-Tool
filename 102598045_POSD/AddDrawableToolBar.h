@@ -14,9 +14,9 @@ public:
     AddDrawableToolBar(GraphicalUI* graphicalUI,QActionMap* actionMap);
     ~AddDrawableToolBar();
 
-    void selectToolButton(int stateID);
     void notify(Subject* subject);
 private:
+    void selectToolButton(int stateID);
     ToolBarWidget* currentFocusedWidget;
     StateSubject* stateSubject;
     HashMap<int,ToolBarWidget*> toolBarWidgetMap;

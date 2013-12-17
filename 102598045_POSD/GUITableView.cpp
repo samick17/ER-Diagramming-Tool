@@ -12,12 +12,12 @@ GUITableView::GUITableView(GraphicalPresentation* graphicalPresentation) : QTabl
     this->setColumnCount(TableSize);
     this->setHorizontalHeaderLabels(QStringList() << TableColumnTypeName.c_str() << TableColumnTextName.c_str());
     this->horizontalHeader()->setResizeMode(QHeaderView::Stretch);
-    this->graphicalPresentation->registerObserver(this);
+    this->graphicalPresentation->registerObserverToModel(this);
     this->connect(this,SIGNAL(itemChanged(QTableWidgetItem*)),this,SLOT(onItemChanged(QTableWidgetItem*)));
 }
 
 GUITableView::~GUITableView(){
-    this->graphicalPresentation->unregisterObserver(this);
+    this->graphicalPresentation->unregisterObserverToModel(this);
 }
 //disconnect signal & onItemChanged to avoid loop,finally reconnect them
 void GUITableView::notify(Subject* subject){

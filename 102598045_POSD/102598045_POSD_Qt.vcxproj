@@ -86,6 +86,7 @@
     <ClCompile Include="AddNodeInstruction.cpp" />
     <ClCompile Include="AddNodeState.cpp" />
     <ClCompile Include="AttributeWidget.cpp" />
+    <ClCompile Include="BrowseToolBar.cpp" />
     <ClCompile Include="Cardinality.cpp" />
     <ClCompile Include="CloseInstruction.cpp" />
     <ClCompile Include="CommandFactory.cpp" />
@@ -237,6 +238,7 @@
     <ClInclude Include="Attribute.h" />
     <ClInclude Include="AttributeType.h" />
     <ClInclude Include="AttributeWidget.h" />
+    <ClInclude Include="BrowseToolBar.h" />
     <ClInclude Include="Cardinality.h" />
     <ClInclude Include="CharSymbol.h" />
     <ClInclude Include="CloseInstruction.h" />
@@ -432,6 +434,7 @@
     </CustomBuild>
     <None Include="Resources\about.png" />
     <None Include="Resources\attribute.png" />
+    <None Include="Resources\browseDB.png" />
     <None Include="Resources\connector.png" />
     <None Include="Resources\copy.png" />
     <None Include="Resources\cursor.png" />

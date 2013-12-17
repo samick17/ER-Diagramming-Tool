@@ -9,11 +9,11 @@ EditToolBar::EditToolBar(GraphicalUI* graphicalUI,QActionMap* actionMap) : QTool
         this->addAction(openFileAction);
     }
     this->graphicalPresentation = graphicalUI->getGraphicalPresentation();
-    this->graphicalPresentation->registerObserver(this);
+    this->graphicalPresentation->registerObserverToModel(this);
 }
 
 EditToolBar::~EditToolBar(){
-    this->graphicalPresentation->unregisterObserver(this);
+    this->graphicalPresentation->unregisterObserverToModel(this);
 }
 
 void EditToolBar::notify(Subject* subject){

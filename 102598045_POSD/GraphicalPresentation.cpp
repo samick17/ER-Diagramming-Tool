@@ -59,6 +59,10 @@ Component* GraphicalPresentation::getLastReleasedComponent(){
     return this->lastReleasedComponent;
 }
 
+bool GraphicalPresentation::getIsDisplayDBTable(){
+    return this->isDisplayDBTable;
+}
+
 void GraphicalPresentation::addNode(string nodeType,string nodeName,Point centerPosition){
     Node* node = this->presentation->addNode(nodeType);
     node->setName(nodeName);
@@ -211,6 +215,10 @@ void GraphicalPresentation::unSelectAll(){
 void GraphicalPresentation::switchState(int stateID){
     this->stateSubject.switchState(stateID,this);
 }
+
+void GraphicalPresentation::switchDisplayDBTable(){
+    this->isDisplayDBTable = !this->isDisplayDBTable;
+}
 //key pressed
 void GraphicalPresentation::setKeyCtrlState(bool isCtrlPressed){
     this->isCtrlPressed = isCtrlPressed;
@@ -246,12 +254,12 @@ void GraphicalPresentation::sync(string syncEventType){
     this->presentation->sync(syncEventType);
 }
 
-void GraphicalPresentation::registerObserver(IObserver* observer){
-    this->presentation->registerObserver( observer);
+void GraphicalPresentation::registerObserverToModel(IObserver* observer){
+    this->presentation->registerObserverToModel(observer);
 }
 
-void GraphicalPresentation::unregisterObserver(IObserver* observer){
-    this->presentation->unregisterObserver( observer);
+void GraphicalPresentation::unregisterObserverToModel(IObserver* observer){
+    this->presentation->unregisterObserverToModel(observer);
 }
 
 void GraphicalPresentation::notify(){

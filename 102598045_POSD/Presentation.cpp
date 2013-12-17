@@ -111,11 +111,11 @@ void Presentation::sync(string syncEventType){
     this->erModel->sync(syncEventType);
 }
 
-void Presentation::registerObserver(IObserver* observer){
+void Presentation::registerObserverToModel(IObserver* observer){
     this->erModel->registerObserver(observer);
 }
 
-void Presentation::unregisterObserver(IObserver* observer){
+void Presentation::unregisterObserverToModel(IObserver* observer){
     this->erModel->unregisterObserver(observer);
 }
 

@@ -54,8 +54,8 @@ public:
     void unregisterSynchronizer(ISynchronizer* synchronizer);
     void sync(string syncEventType);
 
-    void registerObserver(IObserver* observer);
-    void unregisterObserver(IObserver* observer);
+    void registerObserverToModel(IObserver* observer);
+    void unregisterObserverToModel(IObserver* observer);
     void notify();
     void notify(IObserver* observer);
 private:

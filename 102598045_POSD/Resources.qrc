@@ -20,5 +20,6 @@
         <file>Resources/save.png</file>
         <file>Resources/undo.png</file>
         <file>Resources/about.png</file>
+        <file>Resources/browseDB.png</file>
     </qresource>
 </RCC>

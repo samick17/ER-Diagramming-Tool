@@ -22,15 +22,11 @@ void AddNodeState::doMousePressEvent(Point position){
 }
 //update preview node
 void AddNodeState::doMouseMoveEvent(Point position){
-    ComponentData* componentData = this->graphicalPresentation->getComponentDataForPreview();
-    componentData->setCenterPosition(position);
-    this->graphicalPresentation->notify();
+    this->previewAddedNode(position);
 }
 
 void AddNodeState::doMouseDragEvent(Point position){
-    ComponentData* componentData = this->graphicalPresentation->getComponentDataForPreview();
-    componentData->setCenterPosition(position);
-    this->graphicalPresentation->notify();
+    this->previewAddedNode(position);
 }
 //get preview's type & name ,then add real node to erModel
 void AddNodeState::doMouseReleaseEvent(Point position){
@@ -40,4 +36,10 @@ void AddNodeState::doMouseReleaseEvent(Point position){
 
     this->graphicalPresentation->addNode(nodeType,nodeName,position);
     this->graphicalPresentation->switchState(StateID::PointerState);
+}
+
+void AddNodeState::previewAddedNode(Point position){
+    ComponentData* componentData = this->graphicalPresentation->getComponentDataForPreview();
+    componentData->setCenterPosition(position);
+    this->graphicalPresentation->notify();
 }

@@ -43,6 +43,7 @@ public:
     Component* getLastPressedComponent();
     Component* getLastMovedComponent();
     Component* getLastReleasedComponent();
+    bool getIsDisplayDBTable();
 
     void addNode(string nodeType,string nodeName,Point centerPosition);
     void addConnection(Component* sourceComponent,Component* targetComponent);
@@ -67,6 +68,7 @@ public:
     void moveSelectedWidget(Point mousePressPosition,Point mouseReleasePosition);
     void unSelectAll();
     void switchState(int stateID);
+    void switchDisplayDBTable();
     void setKeyCtrlState(bool isCtrlPressed);
     //cardinality
     bool needToSetCardinality();
@@ -76,8 +78,8 @@ public:
     void unregisterSynchronizer(ISynchronizer* synchronizer);
     void sync(string syncEventType);
     //observer pattern-delegate to presentation
-    void registerObserver(IObserver* observer);
-    void unregisterObserver(IObserver* observer);
+    void registerObserverToModel(IObserver* observer);
+    void unregisterObserverToModel(IObserver* observer);
     void notify();
     void notify(IObserver* observer);
 
@@ -92,6 +94,7 @@ private:
     HashMap<string,ComponentData*> componentDataMap;
     ComponentData* componentDataForPreview;
     bool isCtrlPressed;
+    bool isDisplayDBTable;
     StateSubject stateSubject;
     Connector* lastAddedConnector;
     Component* lastPressedComponent;

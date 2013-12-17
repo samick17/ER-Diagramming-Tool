@@ -6,6 +6,7 @@
 #include <QHBoxLayout>
 #include <QMenuBar>
 #include <QMessageBox>
+#include <QSplitter>
 #include "FileMenuItem.h"
 #include "AddMenuItem.h"
 #include "EditMenuItem.h"
@@ -13,13 +14,13 @@
 #include "FileToolBar.h"
 #include "EditToolBar.h"
 #include "AddDrawableToolBar.h"
+#include "BrowseToolBar.h"
 #include "GraphicalPresentation.h"
 #include "ApplicationSetting.h"
 #include "ActionData.h"
 #include "ControllerEvent.h"
 #include "StateID.h"
 #include "DialogSetting.h"
-#include <iostream>
 
 GraphicalUI::GraphicalUI(GraphicalPresentation* graphicalPresentation): graphicalPresentation(graphicalPresentation),QMainWindow(){
     this->setTitle(ApplicationSetting::Title,ApplicationSetting::IconPath);
@@ -68,19 +69,34 @@ void GraphicalUI::setTitle(string title,string iconPath){
 
 void GraphicalUI::initialGraphicView(){
     QHBoxLayout* horizontalBoxLayout = new QHBoxLayout();
-    QWidget* centralWidget = new QWidget();
+    QWidget* centralWidget = new QWidget(this);
     centralWidget->setLayout(horizontalBoxLayout);
     this->setCentralWidget(centralWidget);
-    //initial left part view
+
     this->scene = new GUIScene(this);
     this->view = new QGraphicsView(this->scene,this);
     this->view->setMouseTracking(true);
-    horizontalBoxLayout->addWidget(this->view);
-    horizontalBoxLayout->setStretchFactor(this->view,COMPONENT_VIEW_STRETCH);
-    //initial right part view
-    this->tableView = new GUITableView(this->graphicalPresentation);
-    horizontalBoxLayout->addWidget(this->tableView);
-    horizontalBoxLayout->setStretchFactor(this->tableView,TABLE_VIEW_STRETCH);
+    this->componentTableView = new GUITableView(this->graphicalPresentation);
+    QGraphicsView* tableSchemaView = new QGraphicsView();
+
+    QSplitter* viewSplitterWidget = new QSplitter(Qt::Horizontal);
+    QSplitter* leftViewSplitterWidget = new QSplitter(Qt::Vertical);
+
+    QVBoxLayout* verticalBoxLayout = new QVBoxLayout();
+    QWidget* viewWidget = new QWidget(centralWidget);
+    viewWidget->setLayout(verticalBoxLayout);
+
+    horizontalBoxLayout->addWidget(viewSplitterWidget);
+    verticalBoxLayout->addWidget(leftViewSplitterWidget);
+    leftViewSplitterWidget->addWidget(this->view);
+    leftViewSplitterWidget->addWidget(tableSchemaView);
+    leftViewSplitterWidget->setStretchFactor(leftViewSplitterWidget->indexOf(this->view),COMPONENT_VIEW_STRETCH);
+
+    viewSplitterWidget->addWidget(leftViewSplitterWidget);
+    viewSplitterWidget->addWidget(this->componentTableView);
+    viewSplitterWidget->setStretchFactor(viewSplitterWidget->indexOf(leftViewSplitterWidget),COMPONENT_VIEW_STRETCH);
+    horizontalBoxLayout->setStretchFactor(viewWidget,COMPONENT_VIEW_STRETCH);
+    horizontalBoxLayout->setStretchFactor(this->componentTableView,TABLE_VIEW_STRETCH);
 }
 
 void GraphicalUI::initialAllAction(){
@@ -115,6 +131,10 @@ void GraphicalUI::initialAllAction(){
     connect(copyAction,SIGNAL(triggered()),this,SLOT(copyComponents()));
     QAction* pasteAction = this->actionMap->getQAction(ActionData::Paste);
     connect(pasteAction,SIGNAL(triggered()),this,SLOT(pasteComponents()));
+
+    QAction* browseDBAction = this->actionMap->getQAction(ActionData::BrowseDB);
+    connect(browseDBAction,SIGNAL(triggered()),this,SLOT(displayDBTable()));
+
     QAction* aboutAction = this->actionMap->getQAction(ActionData::About);
     connect(aboutAction,SIGNAL(triggered()),this,SLOT(displayAbout()));
 }
@@ -132,6 +152,7 @@ void GraphicalUI::initialToolBar(){
     this->addToolBar(new FileToolBar(this,this->actionMap));
     this->addToolBar(new EditToolBar(this,this->actionMap));
     this->addToolBar(new AddDrawableToolBar(this,this->actionMap));
+    this->addToolBar(new BrowseToolBar(this,this->actionMap));
 }
 
 void GraphicalUI::initialSyncMap(){
@@ -219,6 +240,10 @@ void GraphicalUI::copyComponents(){
 }
 
 void GraphicalUI::pasteComponents(){
+}
+
+void GraphicalUI::displayDBTable(){
+    this->graphicalPresentation->switchDisplayDBTable();
 }
 
 void GraphicalUI::displayAbout(){

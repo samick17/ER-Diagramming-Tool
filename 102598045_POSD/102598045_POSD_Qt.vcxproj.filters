@@ -550,6 +550,9 @@
     <ClCompile Include="DeleteComponentsCommand.cpp">
       <Filter>Source Files\Command</Filter>
     </ClCompile>
+    <ClCompile Include="BrowseToolBar.cpp">
+      <Filter>Source Files\View\GUI\ToolBar</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ERModel.h">
@@ -885,6 +888,9 @@
     <ClInclude Include="DeleteComponentsCommand.h">
       <Filter>Header Files\Command</Filter>
     </ClInclude>
+    <ClInclude Include="BrowseToolBar.h">
+      <Filter>Header Files\View\GUI\ToolBar</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="GraphicalUI.h">
@@ -965,6 +971,9 @@
       <Filter>Resource Files</Filter>
     </None>
     <None Include="Resources\about.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Resources\browseDB.png">
       <Filter>Resource Files</Filter>
     </None>
   </ItemGroup>

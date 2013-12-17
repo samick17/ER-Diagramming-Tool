@@ -25,5 +25,6 @@ public:
     static const unsigned int AddEntityState;
     static const unsigned int AddRelationShipState;
     static const unsigned int SetPrimaryKeyState;
+    static const unsigned int BrowseDB;
     static const unsigned int About;
 };

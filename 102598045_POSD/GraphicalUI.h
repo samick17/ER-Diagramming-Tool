@@ -42,7 +42,7 @@ private:
     GraphicalPresentation* graphicalPresentation;
     QGraphicsView* view;
     GUIScene* scene;
-    GUITableView* tableView;
+    GUITableView* componentTableView;
     QActionMap* actionMap;
     typedef void (GraphicalUI::*ViewSyncFunction)();
     HashMap<string,ViewSyncFunction> syncMap;
@@ -58,5 +58,6 @@ private slots:
     void cutComponents();
     void copyComponents();
     void pasteComponents();
+    void displayDBTable();
     void displayAbout();
 };
