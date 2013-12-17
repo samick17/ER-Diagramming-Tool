@@ -41,5 +41,5 @@ void AddNodeState::doMouseReleaseEvent(Point position){
 void AddNodeState::previewAddedNode(Point position){
     ComponentData* componentData = this->graphicalPresentation->getComponentDataForPreview();
     componentData->setCenterPosition(position);
-    this->graphicalPresentation->notify();
+    this->graphicalPresentation->notifyModel();
 }

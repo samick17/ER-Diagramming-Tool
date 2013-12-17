@@ -8,9 +8,11 @@ BrowseToolBar::BrowseToolBar(GraphicalUI* graphicalUI,QActionMap* actionMap) : Q
     this->browseDBTableWidget = new ToolBarWidget(this,actionMap,ActionData::BrowseDB);
     this->addWidget(this->browseDBTableWidget);
     this->graphicalPresentation = graphicalUI->getGraphicalPresentation();
+    this->graphicalPresentation->registerObserver(this);
 }
 
 BrowseToolBar::~BrowseToolBar(){
+    this->graphicalPresentation->unregisterObserver(this);
 }
 
 void BrowseToolBar::notify(Subject* subject){

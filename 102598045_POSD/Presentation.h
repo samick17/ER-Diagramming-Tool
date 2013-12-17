@@ -56,8 +56,7 @@ public:
 
     void registerObserverToModel(IObserver* observer);
     void unregisterObserverToModel(IObserver* observer);
-    void notify();
-    void notify(IObserver* observer);
+    void notifyModel();
 private:
     ERModel* erModel;
 };

@@ -7,7 +7,7 @@
 
 class Connector;
 
-class GraphicalPresentation{
+class GraphicalPresentation : public Subject{
     friend class GraphicalPresentation;
     FRIEND_TEST(GraphicalPresentationTest,testDeleteComponentDataForPreview);
     FRIEND_TEST(GraphicalPresentationTest,testUpdateAllComponentData);
@@ -80,8 +80,7 @@ public:
     //observer pattern-delegate to presentation
     void registerObserverToModel(IObserver* observer);
     void unregisterObserverToModel(IObserver* observer);
-    void notify();
-    void notify(IObserver* observer);
+    void notifyModel();
 
     void mousePressEvent(Point position,ComponentData* componentData);
     void mouseMoveEvent(Point position,ComponentData* componentData);

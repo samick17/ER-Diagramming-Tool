@@ -1,24 +1,16 @@
 #pragma once
 
-#include <QTableWidget>
+#include <QGraphicsView>
 #include "IObserver.h"
 
 class GraphicalPresentation;
 
-using namespace std;
-
-class GUITableView : public QTableWidget,public IObserver{
-    Q_OBJECT
+class GUITableView : public QGraphicsView,public IObserver{
 public:
-    GUITableView(GraphicalPresentation* graphicalPresentation);
+    GUITableView(GraphicalPresentation* graphicalPresentation,QGraphicsScene* scene,QWidget* parent = NULL);
     ~GUITableView();
 
     void notify(Subject* subject);
 private:
-    static const int TableSize;
-    static const string TableColumnTypeName;
-    static const string TableColumnTextName;
     GraphicalPresentation* graphicalPresentation;
-private slots:
-    void onItemChanged(QTableWidgetItem* tableWidgetItem);
 };

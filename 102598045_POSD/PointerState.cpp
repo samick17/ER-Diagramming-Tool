@@ -10,7 +10,7 @@ PointerState::~PointerState(){
 void PointerState::doMousePressEvent(Point position){
     this->graphicalPresentation->selectWidget();
     this->mousePressPosition = position;
-    this->graphicalPresentation->notify();
+    this->graphicalPresentation->notifyModel();
 }
 
 void PointerState::doMouseMoveEvent(Point position){
@@ -19,7 +19,7 @@ void PointerState::doMouseMoveEvent(Point position){
 void PointerState::doMouseDragEvent(Point position){
     this->graphicalPresentation->selectLastPressedWidget();
     this->graphicalPresentation->previewMoveSelectedWidget(this->getDeltaPosition());
-    this->graphicalPresentation->notify();
+    this->graphicalPresentation->notifyModel();
 }
 
 void PointerState::doMouseReleaseEvent(Point position){
@@ -27,5 +27,5 @@ void PointerState::doMouseReleaseEvent(Point position){
     Point deltaPosition = this->mousePressPosition - this->mouseReleasePosition;
     this->graphicalPresentation->previewMoveSelectedWidget(deltaPosition);
     this->graphicalPresentation->moveSelectedWidget(this->mousePressPosition,this->mouseReleasePosition);
-    this->graphicalPresentation->notify();
+    this->graphicalPresentation->notifyModel();
 }

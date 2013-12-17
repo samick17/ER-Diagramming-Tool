@@ -496,9 +496,6 @@
     <ClCompile Include="SetPrimaryKeyState.cpp">
       <Filter>Source Files\View\GUI\State</Filter>
     </ClCompile>
-    <ClCompile Include="GUITableView.cpp">
-      <Filter>Source Files\View\GUI\GUIWidget</Filter>
-    </ClCompile>
     <ClCompile Include="SetPrimaryKeyCommand.cpp">
       <Filter>Source Files\Command</Filter>
     </ClCompile>
@@ -529,12 +526,6 @@
     <ClCompile Include="..\102598045_POSD\RelationShip.cpp">
       <Filter>Source Files\Model\Component</Filter>
     </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_GUITableView.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_GUITableView.cpp">
-      <Filter>Generated Files\Release</Filter>
-    </ClCompile>
     <ClCompile Include="EditMenuItem.cpp">
       <Filter>Source Files\View\GUI\MenuItem</Filter>
     </ClCompile>
@@ -552,6 +543,21 @@
     </ClCompile>
     <ClCompile Include="BrowseToolBar.cpp">
       <Filter>Source Files\View\GUI\ToolBar</Filter>
+    </ClCompile>
+    <ClCompile Include="GUITableScene.cpp">
+      <Filter>Source Files\View\GUI\GUIWidget</Filter>
+    </ClCompile>
+    <ClCompile Include="GUIComponentTableView.cpp">
+      <Filter>Source Files\View\GUI\GUIWidget</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_GUIComponentTableView.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_GUIComponentTableView.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GUITableView.cpp">
+      <Filter>Source Files\View\GUI\GUIWidget</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -891,6 +897,12 @@
     <ClInclude Include="BrowseToolBar.h">
       <Filter>Header Files\View\GUI\ToolBar</Filter>
     </ClInclude>
+    <ClInclude Include="GUITableScene.h">
+      <Filter>Header Files\View\GUI\GUIWidget</Filter>
+    </ClInclude>
+    <ClInclude Include="GUITableView.h">
+      <Filter>Header Files\View\GUI\GUIWidget</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="GraphicalUI.h">
@@ -914,7 +926,7 @@
     <CustomBuild Include="EditableTableWidgetItem.h">
       <Filter>Header Files\View\GUI\GUIWidget</Filter>
     </CustomBuild>
-    <CustomBuild Include="GUITableView.h">
+    <CustomBuild Include="GUIComponentTableView.h">
       <Filter>Header Files\View\GUI\GUIWidget</Filter>
     </CustomBuild>
   </ItemGroup>

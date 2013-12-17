@@ -2,11 +2,11 @@
 
 #include <QToolBar>
 #include "QActionMap.h"
-#include "ToolBarWidget.h"
 #include "IObserver.h"
 
 class GraphicalUI;
 class GraphicalPresentation;
+class ToolBarWidget;
 
 class BrowseToolBar : public QToolBar,public IObserver{
 public:

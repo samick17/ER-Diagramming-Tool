@@ -35,6 +35,7 @@ GraphicalUI::GraphicalUI(GraphicalPresentation* graphicalPresentation): graphica
     connect(this,SIGNAL(onSyncEvent(string)),this,SLOT(executeSync(string)));
     this->switchState(StateID::PointerState);
     this->graphicalPresentation->registerSynchronizer(this);
+    this->graphicalPresentation->notifyModel();
     this->graphicalPresentation->notify();
 }
 
@@ -76,9 +77,9 @@ void GraphicalUI::initialGraphicView(){
     this->scene = new GUIScene(this);
     this->view = new QGraphicsView(this->scene,this);
     this->view->setMouseTracking(true);
-    this->componentTableView = new GUITableView(this->graphicalPresentation);
-    QGraphicsView* tableSchemaView = new QGraphicsView();
-
+    this->componentTableView = new GUIComponentTableView(this->graphicalPresentation);
+    this->tableScene = new GUITableScene(this);
+    this->tableView = new GUITableView(this->graphicalPresentation,this->tableScene,this);
     QSplitter* viewSplitterWidget = new QSplitter(Qt::Horizontal);
     QSplitter* leftViewSplitterWidget = new QSplitter(Qt::Vertical);
 
@@ -89,8 +90,9 @@ void GraphicalUI::initialGraphicView(){
     horizontalBoxLayout->addWidget(viewSplitterWidget);
     verticalBoxLayout->addWidget(leftViewSplitterWidget);
     leftViewSplitterWidget->addWidget(this->view);
-    leftViewSplitterWidget->addWidget(tableSchemaView);
+    leftViewSplitterWidget->addWidget(this->tableView);
     leftViewSplitterWidget->setStretchFactor(leftViewSplitterWidget->indexOf(this->view),COMPONENT_VIEW_STRETCH);
+    leftViewSplitterWidget->setStretchFactor(leftViewSplitterWidget->indexOf(this->tableView),TABLE_VIEW_STRETCH);
 
     viewSplitterWidget->addWidget(leftViewSplitterWidget);
     viewSplitterWidget->addWidget(this->componentTableView);
@@ -134,7 +136,6 @@ void GraphicalUI::initialAllAction(){
 
     QAction* browseDBAction = this->actionMap->getQAction(ActionData::BrowseDB);
     connect(browseDBAction,SIGNAL(triggered()),this,SLOT(displayDBTable()));
-
     QAction* aboutAction = this->actionMap->getQAction(ActionData::About);
     connect(aboutAction,SIGNAL(triggered()),this,SLOT(displayAbout()));
 }
@@ -208,7 +209,7 @@ void GraphicalUI::executeSync(string syncEventType){
 
 void GraphicalUI::refreshAllWidgets(){
     this->graphicalPresentation->updateAllComponentData();
-    this->graphicalPresentation->notify();
+    this->graphicalPresentation->notifyModel();
 }
 
 void GraphicalUI::setKeyCtrlPressed(QKeyEvent* keyEvent){
@@ -225,7 +226,7 @@ void GraphicalUI::displayEditTextDialog(){
     if(isOKClicked){
         ComponentData* componentData = this->graphicalPresentation->getComponentDataForPreview();
         componentData->setName(text.toStdString());
-        this->graphicalPresentation->notify();
+        this->graphicalPresentation->notifyModel();
     }
     else{
         this->graphicalPresentation->setComponentDataForPreview(NULL);
@@ -244,6 +245,11 @@ void GraphicalUI::pasteComponents(){
 
 void GraphicalUI::displayDBTable(){
     this->graphicalPresentation->switchDisplayDBTable();
+    this->graphicalPresentation->notify();
+    /*if(this->graphicalPresentation->getIsDisplayDBTable())
+        this->tableView->show();
+    else
+        this->tableView->hide();*/
 }
 
 void GraphicalUI::displayAbout(){

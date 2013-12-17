@@ -1,10 +1,10 @@
 #include "GUIScene.h"
+#include <QGraphicsSceneMouseEvent>
+#include <QInputDialog>
 #include "GraphicalUI.h"
 #include "ComponentWidget.h"
-#include <QGraphicsSceneMouseEvent>
 #include "GraphicalPresentation.h"
 #include "WidgetFactory.h"
-#include <QInputDialog>
 #include "DialogSetting.h"
 
 GUIScene::GUIScene(GraphicalUI* graphicalUI) : QGraphicsScene(graphicalUI),graphicalUI(graphicalUI){
@@ -47,7 +47,6 @@ void GUIScene::mouseReleaseEvent(QGraphicsSceneMouseEvent* mouseEvent){
     this->graphicalPresentation->mouseReleaseEvent(pointComponentPair.first,pointComponentPair.second);
     if(this->graphicalPresentation->needToSetCardinality())
         this->processSetCardinality();
-
 }
 //get component from widget
 pair<Point,ComponentData*> GUIScene::getPointComponentPair(QGraphicsSceneMouseEvent* mouseEvent){

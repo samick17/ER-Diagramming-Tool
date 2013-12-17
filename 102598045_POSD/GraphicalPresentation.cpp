@@ -6,6 +6,7 @@
 
 GraphicalPresentation::GraphicalPresentation(Presentation* presentation) : presentation(presentation){
     this->isCtrlPressed = false;
+    this->isDisplayDBTable = false;
     this->lastAddedConnector = NULL;
     this->lastPressedComponent = NULL;
     this->lastMovedComponent = NULL;
@@ -80,13 +81,14 @@ void GraphicalPresentation::addConnection(Component* sourceComponent,Component* 
         this->presentation->sync(ControllerEvent::ConnectTwoNodes);
     }
     catch(Exception&){
-        this->notify();
+        this->notifyModel();
     }
 }
 
 void GraphicalPresentation::openFile(string filePath){
     try{
         this->presentation->openFile(filePath);
+        this->isDisplayDBTable = false;
         this->unSelectAll();
         this->setComponentDataForPreview(NULL);
         this->presentation->sync(ControllerEvent::DisplayDiagram);
@@ -236,7 +238,7 @@ bool GraphicalPresentation::setCardinality(string cardinality){
     bool isSetCardinalitySucceed = this->presentation->setCardinality(this->lastAddedConnector,cardinality);
     if(isSetCardinalitySucceed){
         this->lastAddedConnector = NULL;
-        this->notify();
+        this->notifyModel();
     }
     return isSetCardinalitySucceed;
 }
@@ -262,12 +264,8 @@ void GraphicalPresentation::unregisterObserverToModel(IObserver* observer){
     this->presentation->unregisterObserverToModel(observer);
 }
 
-void GraphicalPresentation::notify(){
-    this->presentation->notify();
-}
-
-void GraphicalPresentation::notify(IObserver* observer){
-    this->presentation->notify(observer);
+void GraphicalPresentation::notifyModel(){
+    this->presentation->notifyModel();
 }
 
 void GraphicalPresentation::mousePressEvent(Point position,ComponentData* componentData){

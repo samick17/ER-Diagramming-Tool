@@ -119,10 +119,6 @@ void Presentation::unregisterObserverToModel(IObserver* observer){
     this->erModel->unregisterObserver(observer);
 }
 
-void Presentation::notify(){
+void Presentation::notifyModel(){
     this->erModel->notify();
-}
-
-void Presentation::notify(IObserver* observer){
-    this->erModel->notify(observer);
 }
