@@ -134,8 +134,8 @@ void GraphicalPresentation::setComponentText(string componentID,string text){
 //delete all selected components
 void GraphicalPresentation::deleteComponent(){
     this->presentation->deleteComponent(this->selectedWidgetVector);
-    this->sync(ControllerEvent::DeleteComponent);
     this->unSelectAll();
+    this->sync(ControllerEvent::DeleteComponent);
 }
 
 bool GraphicalPresentation::isSelectAnyWidgets(){
