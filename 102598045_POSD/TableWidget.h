@@ -11,7 +11,7 @@ public :
 
     QRectF boundingRect() const;
     void paint(QPainter* painter,const QStyleOptionGraphicsItem* option, QWidget* widget = 0);
-    void updateWidget();
+    void updateWidget(unsigned int index);
 private:
     QRectF rect;
     Table* table;

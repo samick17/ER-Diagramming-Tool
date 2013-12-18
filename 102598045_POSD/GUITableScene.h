@@ -18,7 +18,7 @@ public:
     void notify(Subject* subject);
     void refresh();
 private:
-    void addWidget(Table* table);
+    void addWidget(Table* table,unsigned int index);
     GraphicalUI* graphicalUI;
     GraphicalPresentation* graphicalPresentation;
 private slots:

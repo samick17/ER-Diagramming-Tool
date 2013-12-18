@@ -22,13 +22,13 @@ void GUITableScene::refresh(){
     //display all
     HashMap<string,Table*> tableMap = this->graphicalPresentation->getAllTables();
     for each(Table* table in tableMap)
-        this->addWidget(table);
+        this->addWidget(table,tableMap.getValueIndex(table));
 }
 
-void GUITableScene::addWidget(Table* table){
+void GUITableScene::addWidget(Table* table,unsigned int index){
     TableWidget* tableWidget = new TableWidget(table);
     this->addItem(tableWidget);
-    tableWidget->updateWidget();
+    tableWidget->updateWidget(index);
     this->update();
 }
 
