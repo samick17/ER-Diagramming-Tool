@@ -4,7 +4,7 @@ void TableTest::SetUp(){
     entity = new Entity("0","Engineer");
     table = new Table(entity);
 
-    ASSERT_EQ(0,table->attributeMap.size());
+	ASSERT_EQ(0,table->allAttributeMap.size());
     ASSERT_EQ(0,table->foreignKeyAttributeMap.size());
 
     Attribute* attributeName = new Attribute("1","Name");
@@ -22,10 +22,10 @@ void TableTest::SetUp(){
     this->foreignKeyAttributeMap.put(attributePC_ID->getID(),attributePC_ID);
     this->foreignKeyAttributeMap.put(attributeValue->getID(),attributeValue);
 
-    this->table->attributeMap = this->attributeMap;
+    this->table->allAttributeMap = this->attributeMap;
     this->table->foreignKeyAttributeMap = this->foreignKeyAttributeMap;
 
-    ASSERT_EQ(3,table->attributeMap.size());
+    ASSERT_EQ(3,table->allAttributeMap.size());
     ASSERT_EQ(2,table->foreignKeyAttributeMap.size());
 }
 
@@ -55,11 +55,11 @@ TEST_F(TableTest,testInsertAllAttributes){
     attributeMapInsert.put(attributeWeight->getID(),attributeWeight);
     this->table->insertAllAttributes(attributeMapInsert);
 
-    ASSERT_EQ(6,this->table->attributeMap.size());
+    ASSERT_EQ(6,this->table->allAttributeMap.size());
 
-    ASSERT_EQ(attributeSex,this->table->attributeMap.get("6"));
-    ASSERT_EQ(attributeDepartment,this->table->attributeMap.get("8"));
-    ASSERT_EQ(attributeWeight,this->table->attributeMap.get("13"));
+    ASSERT_EQ(attributeSex,this->table->allAttributeMap.get("6"));
+    ASSERT_EQ(attributeDepartment,this->table->allAttributeMap.get("8"));
+    ASSERT_EQ(attributeWeight,this->table->allAttributeMap.get("13"));
 }
 
 TEST_F(TableTest,testInsertAllForeignKeyAttributes){

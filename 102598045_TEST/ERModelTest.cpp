@@ -392,12 +392,12 @@ TEST_F(ERModelTest,testGetAllTables){
 
     Component* entityEngineer = this->erModel.getComponentByID("0");
     Table* tableEngineer = tableMap.get(entityEngineer->getID());
-    ASSERT_EQ(3,tableEngineer->attributeMap.size());
+    ASSERT_EQ(3,tableEngineer->allAttributeMap.size());
     ASSERT_EQ(entityEngineer,tableEngineer->entity);
     
     Component* entityPC = this->erModel.getComponentByID("4");
     Table* tablePC = tableMap.get(entityPC->getID());
-    ASSERT_EQ(2,tablePC->attributeMap.size());
+    ASSERT_EQ(2,tablePC->allAttributeMap.size());
     ASSERT_EQ(entityPC,tablePC->entity);
 }
 

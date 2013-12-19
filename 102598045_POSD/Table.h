@@ -22,14 +22,16 @@ public:
     string getEntityID();
     string getEntityName();
 
-    HashMap<string,Attribute*> getAttributeMap();
-    HashMap<string,Attribute*> getForeignKeyAttributeMap();
+    HashMap<string,Attribute*> getAllAttributeMap();
+    int getAttributeType(Attribute* attribute);
 
     vector<string> getAllPrimaryKeyAttributesNameVector();
     vector<string> getAllDefaultKeyAttributesNameVector();
     vector<string> getAllForeignKeyAttributesNameVector();
 private:
     Entity* entity;
-    HashMap<string,Attribute*> attributeMap;
+    HashMap<string,Attribute*> allAttributeMap;
+    HashMap<string,Attribute*> primaryKeyAttributeMap;
+    HashMap<string,Attribute*> defaultAttributeMap;
     HashMap<string,Attribute*> foreignKeyAttributeMap;
 };
