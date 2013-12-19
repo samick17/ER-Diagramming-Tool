@@ -26,9 +26,8 @@ void DeleteComponentsCommand::doExecute(){
 
 void DeleteComponentsCommand::doUnExecute(){
     while(!this->deleteCommandStack.empty()){
-        Command* command = this->deleteCommandStack.top();
+        Command* command = StackUtil::pop(this->deleteCommandStack);
         command->unExecute();
-        this->deleteCommandStack.pop();
         delete command;
     }
 }

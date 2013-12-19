@@ -930,6 +930,9 @@
     <ClInclude Include="GUITableView.h">
       <Filter>Header Files\View\GUI\GUIView</Filter>
     </ClInclude>
+    <ClInclude Include="HashMapUtil.h">
+      <Filter>Header Files\Util</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="GraphicalUI.h">

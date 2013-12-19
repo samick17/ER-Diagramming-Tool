@@ -174,12 +174,11 @@ void GraphicalUI::initialSyncMap(){
 }
 
 void GraphicalUI::openFile(){
-    QFileDialog* openFileDialog = new QFileDialog(NULL,QString(ActionData::ActionName[ActionData::OpenFile].c_str()),QString(ApplicationSetting::FilePath.c_str()),QString(ApplicationSetting::FileExtension.c_str()));
+    QFileDialog* openFileDialog = new QFileDialog(this,QString(ActionData::ActionName[ActionData::OpenFile].c_str()),QString(ApplicationSetting::FilePath.c_str()),QString(ApplicationSetting::FileExtension.c_str()));
     if(openFileDialog->exec()){
         QString filePath = openFileDialog->selectedFiles().first();
         this->graphicalPresentation->openFile(filePath.toStdString());
     }
-    delete openFileDialog;
 }
 
 void GraphicalUI::close(){

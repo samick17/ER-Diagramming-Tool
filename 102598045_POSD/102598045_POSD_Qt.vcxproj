@@ -300,6 +300,7 @@
     </CustomBuild>
     <ClInclude Include="GUITableView.h" />
     <ClInclude Include="GUIScrollView.h" />
+    <ClInclude Include="HashMapUtil.h" />
     <ClInclude Include="HelpMenuItem.h" />
     <ClInclude Include="MenuSetting.h" />
     <ClInclude Include="MoveComponentsCommand.h" />

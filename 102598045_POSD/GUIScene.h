@@ -1,7 +1,6 @@
 #pragma once
 
 #include <QGraphicsScene>
-#include <utility>
 #include "IObserver.h"
 #include "Point.h"
 

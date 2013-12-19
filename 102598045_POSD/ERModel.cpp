@@ -9,6 +9,7 @@
 #include "InvalidNodeTypeException.h"
 #include "InputFileParser.h"
 #include "OutputFileParser.h"
+#include "HashMapUtil.h"
 
 ERModel::ERModel(){
     this->initialCountMap();
@@ -214,10 +215,7 @@ void ERModel::resetERModel(){
     this->commandManager.popAllStack();
     this->resetCounting();
 
-    for each(Component* component in this->componentMap)
-        delete component;
-
-    this->componentMap.clear();
+    HashMapUtil::deleteAll(this->componentMap);
 }
 
 void ERModel::registerSynchronizer(ISynchronizer* synchronizer){

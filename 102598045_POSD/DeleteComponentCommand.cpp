@@ -2,6 +2,7 @@
 #include "ERModel.h"
 #include "ERModelUtil.h"
 #include "ComponentUtil.h"
+#include "HashMapUtil.h"
 
 DeleteComponentCommand::DeleteComponentCommand(ERModel* erModel,Component* component) : erModel(erModel),component(component){
 }
@@ -9,8 +10,7 @@ DeleteComponentCommand::DeleteComponentCommand(ERModel* erModel,Component* compo
 DeleteComponentCommand::~DeleteComponentCommand(){
     if(this->getExecutionFalg()){
         //delete connectionSet
-        for each(Connector* connector in this->connectionMap)
-            delete connector;
+        HashMapUtil::deleteAll(this->connectionMap);
         //delete component
         if(this->component)
             delete this->component;
@@ -47,9 +47,7 @@ void DeleteComponentCommand::saveConnectionData(Connector* connector){
 }
 
 void DeleteComponentCommand::clearConnectionDataMap(){
-    for each(ConnectionData* connectionData in this->connectionDataMap)
-        delete connectionData;
-    this->connectionDataMap.clear();
+    HashMapUtil::deleteAll(this->connectionDataMap);
     this->componentIndexMap.clear();
 }
 //remove component from ERMol & disconnect it

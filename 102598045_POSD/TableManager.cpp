@@ -1,4 +1,5 @@
 #include "TableManager.h"
+#include "HashMapUtil.h"
 
 TableManager::TableManager(){
 }
@@ -21,9 +22,7 @@ Table* TableManager::getTableByID(string id){
 }
 
 void TableManager::clearAll(){
-    for each(Table* table in this->tableMap)
-        delete table;
-    this->tableMap.clear();
+    HashMapUtil::deleteAll(this->tableMap);
 }
 
 HashMap<string,Table*> TableManager::getAllTables(){

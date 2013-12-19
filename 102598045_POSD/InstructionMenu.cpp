@@ -13,6 +13,7 @@
 #include "RedoInstruction.h"
 #include "CloseInstruction.h"
 #include "ControllerEvent.h"
+#include "HashMapUtil.h"
 
 InstructionMenu::InstructionMenu(){
     this->insertInstructionData(new InstructionData(ControllerEvent::OpenFile,"Load ER diagram file",newTextInstruction<OpenFileInstruction>));
@@ -29,8 +30,7 @@ InstructionMenu::InstructionMenu(){
 }
 
 InstructionMenu::~InstructionMenu(){
-    for each(InstructionData* instructionData in this->instructionDataMap)
-        delete instructionData;
+    HashMapUtil::deleteAll(this->instructionDataMap);
 }
 
 HashMap<string,InstructionData*> InstructionMenu::getInstructionDataMap(){
