@@ -7,6 +7,10 @@
 #include <QMenuBar>
 #include <QMessageBox>
 #include <QSplitter>
+#include "GUIScene.h"
+#include "GUITableScene.h"
+#include "GUITableView.h"
+#include "GUIComponentTableView.h"
 #include "FileMenuItem.h"
 #include "AddMenuItem.h"
 #include "EditMenuItem.h"
@@ -74,12 +78,12 @@ void GraphicalUI::initialGraphicView(){
     centralWidget->setLayout(horizontalBoxLayout);
     this->setCentralWidget(centralWidget);
 
-    this->scene = new GUIScene(this);
-    this->view = new QGraphicsView(this->scene,this);
-    this->view->setMouseTracking(true);
-    this->componentTableView = new GUIComponentTableView(this->graphicalPresentation);
-    this->tableScene = new GUITableScene(this);
-    this->tableView = new GUITableView(this->graphicalPresentation,this->tableScene,this);
+    QGraphicsScene* scene = new GUIScene(this);
+    QGraphicsView* view = new GUIScrollView(scene,this);
+    view->setMouseTracking(true);
+    QTableWidget* componentTableView = new GUIComponentTableView(this->graphicalPresentation);
+    QGraphicsScene* tableScene = new GUITableScene(this);
+    QGraphicsView* tableView = new GUITableView(this->graphicalPresentation,tableScene,this);
     QSplitter* viewSplitterWidget = new QSplitter(Qt::Horizontal);
     QSplitter* leftViewSplitterWidget = new QSplitter(Qt::Vertical);
 
@@ -89,16 +93,16 @@ void GraphicalUI::initialGraphicView(){
 
     horizontalBoxLayout->addWidget(viewSplitterWidget);
     verticalBoxLayout->addWidget(leftViewSplitterWidget);
-    leftViewSplitterWidget->addWidget(this->view);
-    leftViewSplitterWidget->addWidget(this->tableView);
-    leftViewSplitterWidget->setStretchFactor(leftViewSplitterWidget->indexOf(this->view),COMPONENT_VIEW_STRETCH);
-    leftViewSplitterWidget->setStretchFactor(leftViewSplitterWidget->indexOf(this->tableView),TABLE_VIEW_STRETCH);
+    leftViewSplitterWidget->addWidget(view);
+    leftViewSplitterWidget->addWidget(tableView);
+    leftViewSplitterWidget->setStretchFactor(leftViewSplitterWidget->indexOf(view),COMPONENT_VIEW_STRETCH);
+    leftViewSplitterWidget->setStretchFactor(leftViewSplitterWidget->indexOf(tableView),TABLE_VIEW_STRETCH);
 
     viewSplitterWidget->addWidget(leftViewSplitterWidget);
-    viewSplitterWidget->addWidget(this->componentTableView);
+    viewSplitterWidget->addWidget(componentTableView);
     viewSplitterWidget->setStretchFactor(viewSplitterWidget->indexOf(leftViewSplitterWidget),COMPONENT_VIEW_STRETCH);
     horizontalBoxLayout->setStretchFactor(viewWidget,COMPONENT_VIEW_STRETCH);
-    horizontalBoxLayout->setStretchFactor(this->componentTableView,TABLE_VIEW_STRETCH);
+    horizontalBoxLayout->setStretchFactor(componentTableView,TABLE_VIEW_STRETCH);
 }
 
 void GraphicalUI::initialAllAction(){
@@ -173,7 +177,6 @@ void GraphicalUI::openFile(){
     QFileDialog* openFileDialog = new QFileDialog(NULL,QString(ActionData::ActionName[ActionData::OpenFile].c_str()),QString(ApplicationSetting::FilePath.c_str()),QString(ApplicationSetting::FileExtension.c_str()));
     if(openFileDialog->exec()){
         QString filePath = openFileDialog->selectedFiles().first();
-        this->scene->clear();
         this->graphicalPresentation->openFile(filePath.toStdString());
     }
     delete openFileDialog;
@@ -229,7 +232,6 @@ void GraphicalUI::displayEditTextDialog(){
         this->graphicalPresentation->notifyModel();
     }
     else{
-        this->graphicalPresentation->setComponentDataForPreview(NULL);
         this->graphicalPresentation->switchState(StateID::PointerState);
     }
 }

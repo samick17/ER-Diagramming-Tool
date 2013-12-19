@@ -1,6 +1,6 @@
 #include "ActionData.h"
 
-const string ActionData::ActionName[] = {"Open...","Exit","Undo","Redo","Delete","Cut","Copy","Paste","Pointer","AddConnector","AddAttribute","AddEntity","AddRelationShip","SetPrimaryKey","browseTable","About"};
+const string ActionData::ActionName[] = {"Open...","Exit","Undo","Redo","Delete","Cut","Copy","Paste","Pointer","AddConnector","AddAttribute","AddEntity","AddRelationShip","SetPrimaryKey","BrowseTable","About"};
 const string ActionData::ActionIconPath[] = {":/res/Resources/open.png",":/res/Resources/exit.png",":/res/Resources/undo.png",":/res/Resources/redo.png",
                                              ":/res/Resources/delete",":/res/Resources/cut",":/res/Resources/copy",":/res/Resources/paste",
                                              ":/res/Resources/cursor.png",":/res/Resources/connector.png",":/res/Resources/attribute.png",

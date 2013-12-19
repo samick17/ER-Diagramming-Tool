@@ -191,6 +191,18 @@
     <Filter Include="Source Files\View\GUI\State">
       <UniqueIdentifier>{16cc152a-dc5d-432a-baa8-94ee3eb07c7a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\View\GUI\GUIView">
+      <UniqueIdentifier>{2be94050-ada5-43c5-a4d3-b93c96ee5ad1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\View\GUI\GUIScene">
+      <UniqueIdentifier>{a986a1f8-a4d3-48ea-960b-7229140d48c1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\View\GUI\GUIView">
+      <UniqueIdentifier>{11ee18ff-7b98-41d1-97de-a7c6b7116134}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\View\GUI\GUIScene">
+      <UniqueIdentifier>{d8e9d83d-592b-4eb2-92c3-b8bfa31da7e1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -451,9 +463,6 @@
     <ClCompile Include="StateFactory.cpp">
       <Filter>Source Files\Factory</Filter>
     </ClCompile>
-    <ClCompile Include="GUIScene.cpp">
-      <Filter>Source Files\View\GUI\GUIWidget</Filter>
-    </ClCompile>
     <ClCompile Include="Rect.cpp">
       <Filter>Source Files\Struct</Filter>
     </ClCompile>
@@ -544,20 +553,11 @@
     <ClCompile Include="BrowseToolBar.cpp">
       <Filter>Source Files\View\GUI\ToolBar</Filter>
     </ClCompile>
-    <ClCompile Include="GUITableScene.cpp">
-      <Filter>Source Files\View\GUI\GUIWidget</Filter>
-    </ClCompile>
-    <ClCompile Include="GUIComponentTableView.cpp">
-      <Filter>Source Files\View\GUI\GUIWidget</Filter>
-    </ClCompile>
     <ClCompile Include="GeneratedFiles\Debug\moc_GUIComponentTableView.cpp">
       <Filter>Generated Files\Debug</Filter>
     </ClCompile>
     <ClCompile Include="GeneratedFiles\Release\moc_GUIComponentTableView.cpp">
       <Filter>Generated Files\Release</Filter>
-    </ClCompile>
-    <ClCompile Include="GUITableView.cpp">
-      <Filter>Source Files\View\GUI\GUIWidget</Filter>
     </ClCompile>
     <ClCompile Include="TableWidget.cpp">
       <Filter>Source Files\View\GUI\GUIWidget\ModelWidget</Filter>
@@ -567,6 +567,21 @@
     </ClCompile>
     <ClCompile Include="GeneratedFiles\Release\moc_GUITableScene.cpp">
       <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GUIScrollView.cpp">
+      <Filter>Source Files\View\GUI\GUIView</Filter>
+    </ClCompile>
+    <ClCompile Include="GUITableView.cpp">
+      <Filter>Source Files\View\GUI\GUIView</Filter>
+    </ClCompile>
+    <ClCompile Include="GUIComponentTableView.cpp">
+      <Filter>Source Files\View\GUI\GUIView</Filter>
+    </ClCompile>
+    <ClCompile Include="GUITableScene.cpp">
+      <Filter>Source Files\View\GUI\GUIScene</Filter>
+    </ClCompile>
+    <ClCompile Include="GUIScene.cpp">
+      <Filter>Source Files\View\GUI\GUIScene</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -906,11 +921,14 @@
     <ClInclude Include="BrowseToolBar.h">
       <Filter>Header Files\View\GUI\ToolBar</Filter>
     </ClInclude>
-    <ClInclude Include="GUITableView.h">
-      <Filter>Header Files\View\GUI\GUIWidget</Filter>
-    </ClInclude>
     <ClInclude Include="TableWidget.h">
       <Filter>Header Files\View\GUI\GUIWidget\ModelWidget</Filter>
+    </ClInclude>
+    <ClInclude Include="GUIScrollView.h">
+      <Filter>Header Files\View\GUI\GUIView</Filter>
+    </ClInclude>
+    <ClInclude Include="GUITableView.h">
+      <Filter>Header Files\View\GUI\GUIView</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -926,9 +944,6 @@
     <CustomBuild Include="TextUIProcess.h">
       <Filter>Header Files\Process</Filter>
     </CustomBuild>
-    <CustomBuild Include="GUIScene.h">
-      <Filter>Header Files\View\GUI\GUIWidget</Filter>
-    </CustomBuild>
     <CustomBuild Include="AddDrawableToolBar.h">
       <Filter>Header Files\View\GUI\ToolBar</Filter>
     </CustomBuild>
@@ -936,10 +951,13 @@
       <Filter>Header Files\View\GUI\GUIWidget</Filter>
     </CustomBuild>
     <CustomBuild Include="GUIComponentTableView.h">
-      <Filter>Header Files\View\GUI\GUIWidget</Filter>
+      <Filter>Header Files\View\GUI\GUIView</Filter>
     </CustomBuild>
     <CustomBuild Include="GUITableScene.h">
-      <Filter>Header Files\View\GUI\GUIWidget</Filter>
+      <Filter>Header Files\View\GUI\GUIScene</Filter>
+    </CustomBuild>
+    <CustomBuild Include="GUIScene.h">
+      <Filter>Header Files\View\GUI\GUIScene</Filter>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>

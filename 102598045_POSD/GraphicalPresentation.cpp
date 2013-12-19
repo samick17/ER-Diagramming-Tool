@@ -219,6 +219,7 @@ void GraphicalPresentation::unSelectAll(){
 }
 
 void GraphicalPresentation::switchState(int stateID){
+    this->setComponentDataForPreview(NULL);
     this->stateSubject.switchState(stateID,this);
 }
 

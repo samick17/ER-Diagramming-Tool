@@ -118,6 +118,7 @@
     <ClCompile Include="GUITableScene.cpp" />
     <ClCompile Include="GUIComponentTableView.cpp" />
     <ClCompile Include="GUITableView.cpp" />
+    <ClCompile Include="GUIScrollView.cpp" />
     <ClCompile Include="HelpMenuItem.cpp" />
     <ClCompile Include="MenuSetting.cpp" />
     <ClCompile Include="MoveComponentsCommand.cpp" />
@@ -298,6 +299,7 @@
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DQT_DLL -DQT_NO_DEBUG -DNDEBUG -DQT_CORE_LIB -DQT_GUI_LIB "-I." "-I$(QTDIR)\include" "-I.\GeneratedFiles\$(ConfigurationName)\." "-I$(QTDIR)\include\QtCore" "-I$(QTDIR)\include\QtGui"</Command>
     </CustomBuild>
     <ClInclude Include="GUITableView.h" />
+    <ClInclude Include="GUIScrollView.h" />
     <ClInclude Include="HelpMenuItem.h" />
     <ClInclude Include="MenuSetting.h" />
     <ClInclude Include="MoveComponentsCommand.h" />

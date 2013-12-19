@@ -1,11 +1,6 @@
 #pragma once
 
 #include <QMainWindow>
-#include <QGraphicsView>
-#include "GUIScene.h"
-#include "GUITableScene.h"
-#include "GUITableView.h"
-#include "GUIComponentTableView.h"
 #include "QActionMap.h"
 #include "ISynchronizer.h"
 #include "Component.h"
@@ -42,11 +37,6 @@ private:
     void refreshAllWidgets();
     void setKeyCtrlPressed(QKeyEvent* keyEvent);
     GraphicalPresentation* graphicalPresentation;
-    QGraphicsView* view;
-    GUITableView* tableView;
-    GUITableScene* tableScene;
-    GUIScene* scene;
-    GUIComponentTableView* componentTableView;
     QActionMap* actionMap;
     typedef void (GraphicalUI::*ViewSyncFunction)();
     HashMap<string,ViewSyncFunction> syncMap;

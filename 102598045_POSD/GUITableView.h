@@ -1,11 +1,11 @@
 #pragma once
 
-#include <QGraphicsView>
+#include "GUIScrollView.h"
 #include "IObserver.h"
 
 class GraphicalPresentation;
 
-class GUITableView : public QGraphicsView,public IObserver{
+class GUITableView : public GUIScrollView,public IObserver{
 public:
     GUITableView(GraphicalPresentation* graphicalPresentation,QGraphicsScene* scene,QWidget* parent = NULL);
     ~GUITableView();
