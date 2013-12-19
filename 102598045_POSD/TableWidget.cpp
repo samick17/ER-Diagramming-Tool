@@ -15,9 +15,10 @@ QRectF TableWidget::boundingRect() const{
 }
 
 void TableWidget::updateWidget(unsigned int index){
-    this->rect = QRectF(0,index*120,200,36);
+    this->rect = QRectF(0,index*60,240,36);
 }
 
 void TableWidget::paint(QPainter* painter,const QStyleOptionGraphicsItem* option, QWidget* widget){
+	painter->drawText(QRectF(this->rect.topLeft().x(),this->rect.topLeft().y()-18,80,24),table->getEntityName().c_str());
     painter->drawRect(this->boundingRect());
 }

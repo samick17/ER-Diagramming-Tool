@@ -104,6 +104,7 @@ bool ERModelTest::hasConnected(Component* firstComponent,Component* secondCompon
 TEST_F(ERModelTest,testAddNode){
     //test add unknown
     ASSERT_THROW(this->erModel.addNode("X"),InvalidNodeTypeException);
+    ASSERT_EQ(15,this->erModel.componentMap.size());
     ASSERT_THROW(this->erModel.addNode("Q"),InvalidNodeTypeException);
     ASSERT_EQ(15,this->erModel.componentMap.size());
     //test add attribute
