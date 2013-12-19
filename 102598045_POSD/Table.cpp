@@ -15,7 +15,7 @@ void Table::insertAllAttributes(HashMap<string,Attribute*> attributeMap){
 void Table::insertAllForeignKeyAttributes(HashMap<string,Attribute*> foreignKeyAttributeMap){
     for each(Attribute* attribute in foreignKeyAttributeMap){
         this->foreignKeyAttributeMap.put(attribute->getID(),attribute);
-    }    
+    }
 }
 
 string Table::getEntityID(){
@@ -24,6 +24,14 @@ string Table::getEntityID(){
 
 string Table::getEntityName(){
     return this->entity->getName();
+}
+
+HashMap<string,Attribute*> Table::getAttributeMap(){
+    return this->attributeMap;
+}
+
+HashMap<string,Attribute*> Table::getForeignKeyAttributeMap(){
+    return this->foreignKeyAttributeMap;
 }
 
 vector<string> Table::getAllPrimaryKeyAttributesNameVector(){

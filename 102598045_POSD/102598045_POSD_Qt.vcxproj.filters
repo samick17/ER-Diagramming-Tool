@@ -583,6 +583,12 @@
     <ClCompile Include="GUIScene.cpp">
       <Filter>Source Files\View\GUI\GUIScene</Filter>
     </ClCompile>
+    <ClCompile Include="TableAttributeWidget.cpp">
+      <Filter>Source Files\View\GUI\GUIWidget\ModelWidget</Filter>
+    </ClCompile>
+    <ClCompile Include="IconPath.cpp">
+      <Filter>Source Files\Constants</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ERModel.h">
@@ -932,6 +938,12 @@
     </ClInclude>
     <ClInclude Include="HashMapUtil.h">
       <Filter>Header Files\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="IconPath.h">
+      <Filter>Header Files\Constants</Filter>
+    </ClInclude>
+    <ClInclude Include="TableAttributeWidget.h">
+      <Filter>Header Files\View\GUI\GUIWidget\ModelWidget</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

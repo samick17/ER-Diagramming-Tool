@@ -120,6 +120,7 @@
     <ClCompile Include="GUITableView.cpp" />
     <ClCompile Include="GUIScrollView.cpp" />
     <ClCompile Include="HelpMenuItem.cpp" />
+    <ClCompile Include="IconPath.cpp" />
     <ClCompile Include="MenuSetting.cpp" />
     <ClCompile Include="MoveComponentsCommand.cpp" />
     <ClCompile Include="SetPrimaryKeyCommand.cpp" />
@@ -213,6 +214,7 @@
     <ClCompile Include="StateFactory.cpp" />
     <ClCompile Include="StateID.cpp" />
     <ClCompile Include="StateSubject.cpp" />
+    <ClCompile Include="TableAttributeWidget.cpp" />
     <ClCompile Include="TableWidget.cpp" />
     <ClCompile Include="TextPresentation.cpp" />
     <ClCompile Include="TextUIPresenter.cpp" />
@@ -302,6 +304,7 @@
     <ClInclude Include="GUIScrollView.h" />
     <ClInclude Include="HashMapUtil.h" />
     <ClInclude Include="HelpMenuItem.h" />
+    <ClInclude Include="IconPath.h" />
     <ClInclude Include="MenuSetting.h" />
     <ClInclude Include="MoveComponentsCommand.h" />
     <ClInclude Include="SetPrimaryKeyCommand.h" />
@@ -344,6 +347,7 @@
     <ClInclude Include="StateFactory.h" />
     <ClInclude Include="StateID.h" />
     <ClInclude Include="StateSubject.h" />
+    <ClInclude Include="TableAttributeWidget.h" />
     <ClInclude Include="TableWidget.h" />
     <ClInclude Include="TextInstruction.h" />
     <ClInclude Include="InstructionData.h" />

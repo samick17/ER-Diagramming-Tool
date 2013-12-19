@@ -22,6 +22,9 @@ public:
     string getEntityID();
     string getEntityName();
 
+    HashMap<string,Attribute*> getAttributeMap();
+    HashMap<string,Attribute*> getForeignKeyAttributeMap();
+
     vector<string> getAllPrimaryKeyAttributesNameVector();
     vector<string> getAllDefaultKeyAttributesNameVector();
     vector<string> getAllForeignKeyAttributesNameVector();
