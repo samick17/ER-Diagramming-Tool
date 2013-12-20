@@ -9,10 +9,10 @@ class Component;
 
 using namespace std;
 
-class DeleteComponentsCommand : public Command{
+class DeleteMultiComponentCommand : public Command{
 public:
-    DeleteComponentsCommand(ERModel* erModel,vector<string> componentIDVector);
-    ~DeleteComponentsCommand();
+    DeleteMultiComponentCommand(ERModel* erModel,vector<string> componentIDVector);
+    ~DeleteMultiComponentCommand();
 protected:
     void doExecute();
     void doUnExecute();

@@ -2,7 +2,7 @@
 #include "ERModel.h"
 #include "AddNodeCommand.h"
 #include "ConnectNodeCommand.h"
-#include "DeleteComponentsCommand.h"
+#include "DeleteMultiComponentCommand.h"
 
 void CommandFactoryTest::SetUp(){
 }
@@ -36,7 +36,7 @@ TEST_F(CommandFactoryTest,testCreateDeleteComponentCommand){
 
     vector<string> componentVector;
     componentVector.push_back(attribute->getID());
-    Command* command = this->commandFactory.createDeleteComponentsCommand(&erModel,componentVector);
-    ASSERT_EQ(typeid(DeleteComponentsCommand).name(),typeid(*command).name());
+    Command* command = this->commandFactory.createDeleteMultiComponentCommand(&erModel,componentVector);
+    ASSERT_EQ(typeid(DeleteMultiComponentCommand).name(),typeid(*command).name());
     delete attribute;
 }

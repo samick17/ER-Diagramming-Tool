@@ -35,21 +35,11 @@ string &StringUtil::trim(string &str){
 //e.g. convert "a b c" to "a,b,c"
 string StringUtil::appendWithComma(vector<string> stringVector){
     string result = StringSymbol::Empty;
-	for (auto iterator = stringVector.begin();iterator < stringVector.end();iterator++){
-		string str = *iterator;
-		if(str == StringSymbol::Empty)
-			continue;
-		result += str;
-		if(iterator != --stringVector.end())
-			result += StringSymbol::Comma;
-	}
-	return result;
-    /*for each(string str in stringVector){
-        if(StringUtil::trim(str) == StringSymbol::Empty)
+    for each(string str in stringVector){
+        if(str == StringSymbol::Empty)
             continue;
-        result += str;
-        if(str != *(--stringVector.end()))
-            result += StringSymbol::Comma;
+        result += str + StringSymbol::Comma;
     }
-    return result;*/
+    result = result.substr(0,result.length()-1);
+    return result;
 }

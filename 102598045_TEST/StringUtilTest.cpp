@@ -52,11 +52,15 @@ TEST_F(StringUtilTest,testAppendWithComma){
     vector<string> stringVector;
     stringVector.push_back("first");
     stringVector.push_back("second,");
-    stringVector.push_back(",third,");    
+    stringVector.push_back(",third,");
     ASSERT_EQ("first,second,,,third,",StringUtil::appendWithComma(stringVector));
     stringVector.clear();
     stringVector.push_back(" testA ");
     stringVector.push_back(" testB ");
-    stringVector.push_back(" testC ");    
+    stringVector.push_back(" testC ");
     ASSERT_EQ(" testA , testB , testC ",StringUtil::appendWithComma(stringVector));
+    stringVector.clear();
+    stringVector.push_back("abc");
+    stringVector.push_back("");
+    ASSERT_EQ("abc",StringUtil::appendWithComma(stringVector));
 }

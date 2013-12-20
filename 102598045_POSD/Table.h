@@ -16,6 +16,10 @@ class Table{
     FRIEND_TEST(ERModelTest,testCommonUsage);
     FRIEND_TEST(ERModelTest,testIsPrimaryExist);
     friend class TableTest;
+    FRIEND_TEST(TableTest,testInsertAllAttributes);
+    FRIEND_TEST(TableTest,testInsertAllForeignKeyAttributes);
+    FRIEND_TEST(TableTest,testToString);
+    FRIEND_TEST(TableTest,testAppendAttributeToString);
     friend class TableUtilTest;
     FRIEND_TEST(TableUtilTest,testConvertToTableMap);
     FRIEND_TEST(TableUtilTest,testInsertAllEntitiesToTable);

@@ -203,6 +203,12 @@
     <Filter Include="Header Files\View\GUI\GUIScene">
       <UniqueIdentifier>{d8e9d83d-592b-4eb2-92c3-b8bfa31da7e1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Visitor">
+      <UniqueIdentifier>{d08058d0-a269-4878-9588-283aeff02f43}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Visitor">
+      <UniqueIdentifier>{5221a53c-2259-4138-b20d-b0c075b04d29}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -547,9 +553,6 @@
     <ClCompile Include="MoveComponentsCommand.cpp">
       <Filter>Source Files\Command</Filter>
     </ClCompile>
-    <ClCompile Include="DeleteComponentsCommand.cpp">
-      <Filter>Source Files\Command</Filter>
-    </ClCompile>
     <ClCompile Include="BrowseToolBar.cpp">
       <Filter>Source Files\View\GUI\ToolBar</Filter>
     </ClCompile>
@@ -588,6 +591,24 @@
     </ClCompile>
     <ClCompile Include="IconPath.cpp">
       <Filter>Source Files\Constants</Filter>
+    </ClCompile>
+    <ClCompile Include="DeleteMultiComponentCommand.cpp">
+      <Filter>Source Files\Command</Filter>
+    </ClCompile>
+    <ClCompile Include="PasteComponentsCommand.cpp">
+      <Filter>Source Files\Command</Filter>
+    </ClCompile>
+    <ClCompile Include="CutComponentsCommand.cpp">
+      <Filter>Source Files\Command</Filter>
+    </ClCompile>
+    <ClCompile Include="SaveComponentVisitor.cpp">
+      <Filter>Source Files\Visitor</Filter>
+    </ClCompile>
+    <ClCompile Include="SaveXmlComponentVisitor.cpp">
+      <Filter>Source Files\Visitor</Filter>
+    </ClCompile>
+    <ClCompile Include="ComponentVisitor.cpp">
+      <Filter>Source Files\Visitor</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -921,9 +942,6 @@
     <ClInclude Include="MoveComponentsCommand.h">
       <Filter>Header Files\Command</Filter>
     </ClInclude>
-    <ClInclude Include="DeleteComponentsCommand.h">
-      <Filter>Header Files\Command</Filter>
-    </ClInclude>
     <ClInclude Include="BrowseToolBar.h">
       <Filter>Header Files\View\GUI\ToolBar</Filter>
     </ClInclude>
@@ -944,6 +962,24 @@
     </ClInclude>
     <ClInclude Include="TableAttributeWidget.h">
       <Filter>Header Files\View\GUI\GUIWidget\ModelWidget</Filter>
+    </ClInclude>
+    <ClInclude Include="DeleteMultiComponentCommand.h">
+      <Filter>Header Files\Command</Filter>
+    </ClInclude>
+    <ClInclude Include="PasteComponentsCommand.h">
+      <Filter>Header Files\Command</Filter>
+    </ClInclude>
+    <ClInclude Include="CutComponentsCommand.h">
+      <Filter>Header Files\Command</Filter>
+    </ClInclude>
+    <ClInclude Include="SaveComponentVisitor.h">
+      <Filter>Header Files\Visitor</Filter>
+    </ClInclude>
+    <ClInclude Include="SaveXmlComponentVisitor.h">
+      <Filter>Header Files\Visitor</Filter>
+    </ClInclude>
+    <ClInclude Include="ComponentVisitor.h">
+      <Filter>Header Files\Visitor</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

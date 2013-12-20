@@ -1,17 +1,17 @@
-#include "DeleteComponentsCommand.h"
+#include "DeleteMultiComponentCommand.h"
 #include "DeleteComponentCommand.h"
 #include "ERModel.h"
 #include "Component.h"
 #include "StackUtil.h"
 
-DeleteComponentsCommand::DeleteComponentsCommand(ERModel* erModel,vector<string> componentIDVector) : erModel(erModel),componentIDVector(componentIDVector){
+DeleteMultiComponentCommand::DeleteMultiComponentCommand(ERModel* erModel,vector<string> componentIDVector) : erModel(erModel),componentIDVector(componentIDVector){
 }
 
-DeleteComponentsCommand::~DeleteComponentsCommand(){
+DeleteMultiComponentCommand::~DeleteMultiComponentCommand(){
     StackUtil::deleteAllElementsInStack(this->deleteCommandStack);
 }
 
-void DeleteComponentsCommand::doExecute(){
+void DeleteMultiComponentCommand::doExecute(){
     for each(string componentID in this->componentIDVector){
         try{
             Component* component = this->erModel->getComponentByID(componentID);
@@ -24,7 +24,7 @@ void DeleteComponentsCommand::doExecute(){
     }
 }
 
-void DeleteComponentsCommand::doUnExecute(){
+void DeleteMultiComponentCommand::doUnExecute(){
     while(!this->deleteCommandStack.empty()){
         Command* command = StackUtil::pop(this->deleteCommandStack);
         command->unExecute();

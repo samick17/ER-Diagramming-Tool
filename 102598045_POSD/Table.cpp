@@ -56,9 +56,9 @@ int Table::getAttributeType(Attribute* attribute){
 
 string Table::toString(){
     vector<string> stringVector;
-    stringVector.push_back(this->appendAttributeToString(this->primaryKeyAttributeMap,"PK(",")"));
+    stringVector.push_back(this->appendAttributeToString(this->primaryKeyAttributeMap," PK(",")"));
     stringVector.push_back(this->appendAttributeToString(this->defaultAttributeMap));
-    stringVector.push_back(this->appendAttributeToString(this->foreignKeyAttributeMap,"FK(",")"));
+    stringVector.push_back(this->appendAttributeToString(this->foreignKeyAttributeMap," FK(",")"));
     return StringUtil::appendWithComma(stringVector);
 }
 

@@ -17,7 +17,7 @@ class CommandFactory{
 public:
     Command* createAddNodeCommand(ERModel* erModel,Node* node);
     Command* createConnectNodeCommand(ERModel* erModel,Component* firstNode,Component* secondNode,Connector* connector);
-    Command* createDeleteComponentsCommand(ERModel* erModel,vector<string> componentIDVector);
+    Command* createDeleteMultiComponentCommand(ERModel* erModel,vector<string> componentIDVector);
     Command* createSetPrimaryKeyCommand(Attribute* attribute);
     Command* createEditTextOfComponentsCommand(Component* component,string text);
     Command* createMoveComponentsCommand(HashMap<string,Component*> selectedComponentMap,Point mousePressPosition,Point mouseReleasePosition);

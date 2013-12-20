@@ -1,7 +1,7 @@
 #include "CommandFactory.h"
 #include "AddNodeCommand.h"
 #include "ConnectNodeCommand.h"
-#include "DeleteComponentsCommand.h"
+#include "DeleteMultiComponentCommand.h"
 #include "SetPrimaryKeyCommand.h"
 #include "EditTextOfComponentsCommand.h"
 #include "MoveComponentsCommand.h"
@@ -14,8 +14,8 @@ Command* CommandFactory::createConnectNodeCommand(ERModel* erModel,Component* fi
     return new ConnectNodeCommand(erModel,firstNode,secondNode,connector);
 }
 
-Command* CommandFactory::createDeleteComponentsCommand(ERModel* erModel,vector<string> componentIDVector){
-    return new DeleteComponentsCommand(erModel,componentIDVector);
+Command* CommandFactory::createDeleteMultiComponentCommand(ERModel* erModel,vector<string> componentIDVector){
+    return new DeleteMultiComponentCommand(erModel,componentIDVector);
 }
 
 Command* CommandFactory::createSetPrimaryKeyCommand(Attribute* attribute){

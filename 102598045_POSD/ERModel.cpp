@@ -52,7 +52,7 @@ void ERModel::eraseComponent(Component* component){
 
 void ERModel::deleteComponent(vector<string> componentIDVector){
     CommandFactory commandFactory;
-    Command* deleteComponentCommand = commandFactory.createDeleteComponentsCommand(this,componentIDVector);
+    Command* deleteComponentCommand = commandFactory.createDeleteMultiComponentCommand(this,componentIDVector);
     this->commandManager.execute(deleteComponentCommand);
 }
 //return: NodeConnectionType

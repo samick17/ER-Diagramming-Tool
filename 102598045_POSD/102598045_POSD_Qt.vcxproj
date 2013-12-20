@@ -90,8 +90,10 @@
     <ClCompile Include="Cardinality.cpp" />
     <ClCompile Include="CloseInstruction.cpp" />
     <ClCompile Include="CommandFactory.cpp" />
+    <ClCompile Include="ComponentVisitor.cpp" />
     <ClCompile Include="ConnectorData.cpp" />
-    <ClCompile Include="DeleteComponentsCommand.cpp" />
+    <ClCompile Include="CutComponentsCommand.cpp" />
+    <ClCompile Include="DeleteMultiComponentCommand.cpp" />
     <ClCompile Include="DialogSetting.cpp" />
     <ClCompile Include="EditableTableWidgetItem.cpp" />
     <ClCompile Include="EditMenuItem.cpp" />
@@ -123,6 +125,9 @@
     <ClCompile Include="IconPath.cpp" />
     <ClCompile Include="MenuSetting.cpp" />
     <ClCompile Include="MoveComponentsCommand.cpp" />
+    <ClCompile Include="PasteComponentsCommand.cpp" />
+    <ClCompile Include="SaveComponentVisitor.cpp" />
+    <ClCompile Include="SaveXmlComponentVisitor.cpp" />
     <ClCompile Include="SetPrimaryKeyCommand.cpp" />
     <ClCompile Include="SetPrimaryKeyState.cpp" />
     <ClCompile Include="Subject.cpp" />
@@ -258,8 +263,10 @@
     <ClInclude Include="CollectionType.h" />
     <ClInclude Include="Command.h" />
     <ClInclude Include="CommandFactory.h" />
+    <ClInclude Include="ComponentVisitor.h" />
     <ClInclude Include="ConnectorData.h" />
-    <ClInclude Include="DeleteComponentsCommand.h" />
+    <ClInclude Include="CutComponentsCommand.h" />
+    <ClInclude Include="DeleteMultiComponentCommand.h" />
     <ClInclude Include="DialogSetting.h" />
     <CustomBuild Include="EditableTableWidgetItem.h">
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(AdditionalInputs)</AdditionalInputs>
@@ -307,6 +314,9 @@
     <ClInclude Include="IconPath.h" />
     <ClInclude Include="MenuSetting.h" />
     <ClInclude Include="MoveComponentsCommand.h" />
+    <ClInclude Include="PasteComponentsCommand.h" />
+    <ClInclude Include="SaveComponentVisitor.h" />
+    <ClInclude Include="SaveXmlComponentVisitor.h" />
     <ClInclude Include="SetPrimaryKeyCommand.h" />
     <ClInclude Include="SetPrimaryKeyState.h" />
     <ClInclude Include="Subject.h" />

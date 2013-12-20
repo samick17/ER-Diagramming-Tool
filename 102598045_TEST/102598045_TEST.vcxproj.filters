@@ -73,9 +73,6 @@
     <Filter Include="Source Files\Constants">
       <UniqueIdentifier>{f1814239-90bd-4f16-9a85-2622334e7224}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Command">
-      <UniqueIdentifier>{dcb63c53-f7ea-4342-aa7e-73b00070dd2f}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\Exception">
       <UniqueIdentifier>{ee2b8b49-1f0f-4228-a502-5ad8c70a0ad0}</UniqueIdentifier>
     </Filter>
@@ -150,6 +147,18 @@
     </Filter>
     <Filter Include="Unit Testing Files\ModelTest\Component">
       <UniqueIdentifier>{35828936-14bf-43c5-9239-fba75a013efc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Command">
+      <UniqueIdentifier>{dcb63c53-f7ea-4342-aa7e-73b00070dd2f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Visitor">
+      <UniqueIdentifier>{d92757e9-6636-430e-821a-4b2d770218a7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Visitor">
+      <UniqueIdentifier>{aa12ab1f-287c-4238-96fd-93a6b4b45566}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Unit Testing Files\Visitor">
+      <UniqueIdentifier>{407602e5-0c21-449e-bdf7-a7018095b26d}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -579,8 +588,32 @@
     <ClCompile Include="..\102598045_POSD\MoveComponentsCommand.cpp">
       <Filter>Source Files\Command</Filter>
     </ClCompile>
-    <ClCompile Include="..\102598045_POSD\DeleteComponentsCommand.cpp">
+    <ClCompile Include="DeleteMultiComponentCommandTest.cpp">
       <Filter>Unit Testing Files\CommandTest</Filter>
+    </ClCompile>
+    <ClCompile Include="..\102598045_POSD\DeleteMultiComponentCommand.cpp">
+      <Filter>Source Files\Command</Filter>
+    </ClCompile>
+    <ClCompile Include="CutComponentsCommandTest.cpp">
+      <Filter>Unit Testing Files\CommandTest</Filter>
+    </ClCompile>
+    <ClCompile Include="PasteComponentsCommandTest.cpp">
+      <Filter>Unit Testing Files\CommandTest</Filter>
+    </ClCompile>
+    <ClCompile Include="..\102598045_POSD\SaveComponentVisitor.cpp">
+      <Filter>Source Files\Visitor</Filter>
+    </ClCompile>
+    <ClCompile Include="..\102598045_POSD\SaveXmlComponentVisitor.cpp">
+      <Filter>Source Files\Visitor</Filter>
+    </ClCompile>
+    <ClCompile Include="SaveComponentVisitorTest.cpp">
+      <Filter>Unit Testing Files\Visitor</Filter>
+    </ClCompile>
+    <ClCompile Include="SaveXmlComponentVisitorTest.cpp">
+      <Filter>Unit Testing Files\Visitor</Filter>
+    </ClCompile>
+    <ClCompile Include="..\102598045_POSD\ComponentVisitor.cpp">
+      <Filter>Source Files\Visitor</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -742,6 +775,21 @@
     </ClInclude>
     <ClInclude Include="MockCommand.h">
       <Filter>Header Files\MockObject</Filter>
+    </ClInclude>
+    <ClInclude Include="DeleteMultiComponentCommandTest.h">
+      <Filter>Header Files\CommandTest</Filter>
+    </ClInclude>
+    <ClInclude Include="CutComponentsCommandTest.h">
+      <Filter>Header Files\CommandTest</Filter>
+    </ClInclude>
+    <ClInclude Include="PasteComponentsCommandTest.h">
+      <Filter>Header Files\CommandTest</Filter>
+    </ClInclude>
+    <ClInclude Include="SaveXmlComponentVisitorTest.h">
+      <Filter>Header Files\Visitor</Filter>
+    </ClInclude>
+    <ClInclude Include="SaveComponentVisitorTest.h">
+      <Filter>Header Files\Visitor</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
