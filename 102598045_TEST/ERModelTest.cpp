@@ -393,12 +393,15 @@ TEST_F(ERModelTest,testGetAllTables){
     Component* entityEngineer = this->erModel.getComponentByID("0");
     Table* tableEngineer = tableMap.get(entityEngineer->getID());
     ASSERT_EQ(3,tableEngineer->allAttributeMap.size());
-    ASSERT_EQ(entityEngineer,tableEngineer->entity);
+    ASSERT_EQ(entityEngineer,tableEngineer->node);
     
     Component* entityPC = this->erModel.getComponentByID("4");
     Table* tablePC = tableMap.get(entityPC->getID());
-    ASSERT_EQ(2,tablePC->allAttributeMap.size());
-    ASSERT_EQ(entityPC,tablePC->entity);
+    ASSERT_EQ(1,tablePC->defaultAttributeMap.size());
+    ASSERT_EQ(1,tablePC->primaryKeyAttributeMap.size());
+    ASSERT_EQ(2,tablePC->foreignKeyAttributeMap.size());
+    ASSERT_EQ(4,tablePC->allAttributeMap.size());
+    ASSERT_EQ(entityPC,tablePC->node);
 }
 
 TEST_F(ERModelTest,testResetERModel){
@@ -433,12 +436,12 @@ TEST_F(ERModelTest,testIsPrimaryExist){
     //ASSERT table
     HashMap<string,Table*> tableMap = this->erModel.getAllTables();
     ASSERT_EQ(2,tableMap.size());
-    ASSERT_EQ(1,tableMap.get("0")->getAllDefaultKeyAttributesNameVector().size());
-    ASSERT_EQ(2,tableMap.get("0")->getAllPrimaryKeyAttributesNameVector().size());
-    ASSERT_EQ(0,tableMap.get("0")->getAllForeignKeyAttributesNameVector().size());
-    ASSERT_EQ(1,tableMap.get("4")->getAllDefaultKeyAttributesNameVector().size());
-    ASSERT_EQ(1,tableMap.get("4")->getAllPrimaryKeyAttributesNameVector().size());
-    ASSERT_EQ(2,tableMap.get("4")->getAllForeignKeyAttributesNameVector().size());
+    ASSERT_EQ(1,tableMap.get("0")->defaultAttributeMap.size());
+    ASSERT_EQ(2,tableMap.get("0")->primaryKeyAttributeMap.size());
+    ASSERT_EQ(0,tableMap.get("0")->foreignKeyAttributeMap.size());
+    ASSERT_EQ(1,tableMap.get("4")->defaultAttributeMap.size());
+    ASSERT_EQ(1,tableMap.get("4")->primaryKeyAttributeMap.size());
+    ASSERT_EQ(2,tableMap.get("4")->foreignKeyAttributeMap.size());
 
     Attribute* attributeEmp_ID = static_cast<Attribute*>(this->erModel.componentMap.get("1"));
     Attribute* attributeName = static_cast<Attribute*>(this->erModel.componentMap.get("3"));
@@ -606,15 +609,15 @@ TEST_F(ERModelTest,testCommonUsage){
     //ASSERT table
     HashMap<string,Table*> tableMap = this->erModel.getAllTables();
     ASSERT_EQ(3,tableMap.size());
-    ASSERT_EQ(1,tableMap.get("0")->getAllDefaultKeyAttributesNameVector().size());
-    ASSERT_EQ(2,tableMap.get("0")->getAllPrimaryKeyAttributesNameVector().size());
-    ASSERT_EQ(0,tableMap.get("0")->getAllForeignKeyAttributesNameVector().size());
-    ASSERT_EQ(1,tableMap.get("4")->getAllDefaultKeyAttributesNameVector().size());
-    ASSERT_EQ(1,tableMap.get("4")->getAllPrimaryKeyAttributesNameVector().size());
-    ASSERT_EQ(2,tableMap.get("4")->getAllForeignKeyAttributesNameVector().size());
-    ASSERT_EQ(2,tableMap.get("15")->getAllDefaultKeyAttributesNameVector().size());
-    ASSERT_EQ(1,tableMap.get("15")->getAllPrimaryKeyAttributesNameVector().size());
-    ASSERT_EQ(0,tableMap.get("15")->getAllForeignKeyAttributesNameVector().size());
+    ASSERT_EQ(1,tableMap.get("0")->defaultAttributeMap.size());
+    ASSERT_EQ(2,tableMap.get("0")->primaryKeyAttributeMap.size());
+    ASSERT_EQ(0,tableMap.get("0")->foreignKeyAttributeMap.size());
+    ASSERT_EQ(1,tableMap.get("4")->defaultAttributeMap.size());
+    ASSERT_EQ(1,tableMap.get("4")->primaryKeyAttributeMap.size());
+    ASSERT_EQ(2,tableMap.get("4")->foreignKeyAttributeMap.size());
+    ASSERT_EQ(2,tableMap.get("15")->defaultAttributeMap.size());
+    ASSERT_EQ(1,tableMap.get("15")->primaryKeyAttributeMap.size());
+    ASSERT_EQ(0,tableMap.get("15")->foreignKeyAttributeMap.size());
     //Assert "Work Diary" exists
     ASSERT_EQ(entityWorkDiary,this->erModel.getComponentByID(entityWorkDiary->getID()));
     //Assert "Work Diary" primary key is "WD_ID"
@@ -646,12 +649,12 @@ TEST_F(ERModelTest,testCommonUsage){
     //ASSERT table
     tableMap = this->erModel.getAllTables();
     ASSERT_EQ(2,tableMap.size());
-    ASSERT_EQ(1,tableMap.get("0")->getAllDefaultKeyAttributesNameVector().size());
-    ASSERT_EQ(2,tableMap.get("0")->getAllPrimaryKeyAttributesNameVector().size());
-    ASSERT_EQ(0,tableMap.get("0")->getAllForeignKeyAttributesNameVector().size());
-    ASSERT_EQ(1,tableMap.get("4")->getAllDefaultKeyAttributesNameVector().size());
-    ASSERT_EQ(1,tableMap.get("4")->getAllPrimaryKeyAttributesNameVector().size());
-    ASSERT_EQ(2,tableMap.get("4")->getAllForeignKeyAttributesNameVector().size());
+    ASSERT_EQ(1,tableMap.get("0")->defaultAttributeMap.size());
+    ASSERT_EQ(2,tableMap.get("0")->primaryKeyAttributeMap.size());
+    ASSERT_EQ(0,tableMap.get("0")->foreignKeyAttributeMap.size());
+    ASSERT_EQ(1,tableMap.get("4")->defaultAttributeMap.size());
+    ASSERT_EQ(1,tableMap.get("4")->primaryKeyAttributeMap.size());
+    ASSERT_EQ(2,tableMap.get("4")->foreignKeyAttributeMap.size());
     //Assert there is no such node "Work Diary"
     ASSERT_THROW(this->erModel.getComponentByID(entityWorkDiary->getID()),NoSuchNodeException);
     //Assert Engineer's primary key is "Name" and "Emp_ID"
@@ -663,15 +666,15 @@ TEST_F(ERModelTest,testCommonUsage){
     //ASSERT table
     tableMap = this->erModel.getAllTables();
     ASSERT_EQ(3,tableMap.size());
-    ASSERT_EQ(1,tableMap.get("0")->getAllDefaultKeyAttributesNameVector().size());
-    ASSERT_EQ(2,tableMap.get("0")->getAllPrimaryKeyAttributesNameVector().size());
-    ASSERT_EQ(0,tableMap.get("0")->getAllForeignKeyAttributesNameVector().size());
-    ASSERT_EQ(1,tableMap.get("4")->getAllDefaultKeyAttributesNameVector().size());
-    ASSERT_EQ(1,tableMap.get("4")->getAllPrimaryKeyAttributesNameVector().size());
-    ASSERT_EQ(2,tableMap.get("4")->getAllForeignKeyAttributesNameVector().size());
-    ASSERT_EQ(2,tableMap.get("15")->getAllDefaultKeyAttributesNameVector().size());
-    ASSERT_EQ(1,tableMap.get("15")->getAllPrimaryKeyAttributesNameVector().size());
-    ASSERT_EQ(0,tableMap.get("15")->getAllForeignKeyAttributesNameVector().size());
+    ASSERT_EQ(1,tableMap.get("0")->defaultAttributeMap.size());
+    ASSERT_EQ(2,tableMap.get("0")->primaryKeyAttributeMap.size());
+    ASSERT_EQ(0,tableMap.get("0")->foreignKeyAttributeMap.size());
+    ASSERT_EQ(1,tableMap.get("4")->defaultAttributeMap.size());
+    ASSERT_EQ(1,tableMap.get("4")->primaryKeyAttributeMap.size());
+    ASSERT_EQ(2,tableMap.get("4")->foreignKeyAttributeMap.size());
+    ASSERT_EQ(2,tableMap.get("15")->defaultAttributeMap.size());
+    ASSERT_EQ(1,tableMap.get("15")->primaryKeyAttributeMap.size());
+    ASSERT_EQ(0,tableMap.get("15")->foreignKeyAttributeMap.size());
     //Assert "Work Diary" primary key is "WD_ID"
     ASSERT_EQ(attributeWD_ID,entityWorkDiary->getPrimaryKeyAttributes().get(attributeWD_ID->getID()));
     ASSERT_EQ("WD_ID",entityWorkDiary->getPrimaryKeyAttributes().get(attributeWD_ID->getID())->getName());

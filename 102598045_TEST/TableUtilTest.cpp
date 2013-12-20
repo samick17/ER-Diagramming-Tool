@@ -81,10 +81,10 @@ void TableUtilTest::clearAllMap(){
 TEST_F(TableUtilTest,testConvertToTableMap){
     TableUtil::convertToTableMap(this->tableManager,this->entityMap,this->relationShipMap);
     ASSERT_EQ(4,this->tableManager.getAllTables().size());
-    ASSERT_EQ(0,this->tableManager.getAllTables().get("0")->getAllForeignKeyAttributesNameVector().size());
-    ASSERT_EQ(0,this->tableManager.getAllTables().get("2")->getAllForeignKeyAttributesNameVector().size());
-    ASSERT_EQ(0,this->tableManager.getAllTables().get("4")->getAllForeignKeyAttributesNameVector().size());
-    ASSERT_EQ(0,this->tableManager.getAllTables().get("19")->getAllForeignKeyAttributesNameVector().size());
+    ASSERT_EQ(0,this->tableManager.getAllTables().get("0")->foreignKeyAttributeMap.size());
+    ASSERT_EQ(0,this->tableManager.getAllTables().get("2")->foreignKeyAttributeMap.size());
+    ASSERT_EQ(0,this->tableManager.getAllTables().get("4")->foreignKeyAttributeMap.size());
+    ASSERT_EQ(0,this->tableManager.getAllTables().get("19")->foreignKeyAttributeMap.size());
 
     this->connectorMap.get("8")->setName(RelationType::One);
     this->connectorMap.get("9")->setName(RelationType::One);
@@ -95,20 +95,20 @@ TEST_F(TableUtilTest,testConvertToTableMap){
     TableUtil::convertToTableMap(this->tableManager,this->entityMap,this->relationShipMap);
 
     ASSERT_EQ(4,this->tableManager.getAllTables().size());
-    ASSERT_EQ(0,this->tableManager.getAllTables().get("0")->getAllForeignKeyAttributesNameVector().size());
-    ASSERT_EQ(1,this->tableManager.getAllTables().get("2")->getAllForeignKeyAttributesNameVector().size());
-    ASSERT_EQ(1,this->tableManager.getAllTables().get("4")->getAllForeignKeyAttributesNameVector().size());
-    ASSERT_EQ(0,this->tableManager.getAllTables().get("19")->getAllForeignKeyAttributesNameVector().size());
+    ASSERT_EQ(0,this->tableManager.getAllTables().get("0")->foreignKeyAttributeMap.size());
+    ASSERT_EQ(1,this->tableManager.getAllTables().get("2")->foreignKeyAttributeMap.size());
+    ASSERT_EQ(1,this->tableManager.getAllTables().get("4")->foreignKeyAttributeMap.size());
+    ASSERT_EQ(0,this->tableManager.getAllTables().get("19")->foreignKeyAttributeMap.size());
 
     
     this->attributeMap.get("11")->setAsPrimaryKey();
     this->attributeMap.get("3")->setAsPrimaryKey();
     TableUtil::convertToTableMap(this->tableManager,this->entityMap,this->relationShipMap);
     ASSERT_EQ(4,this->tableManager.getAllTables().size());
-    ASSERT_EQ(0,this->tableManager.getAllTables().get("0")->getAllForeignKeyAttributesNameVector().size());
-    ASSERT_EQ(2,this->tableManager.getAllTables().get("2")->getAllForeignKeyAttributesNameVector().size());
-    ASSERT_EQ(2,this->tableManager.getAllTables().get("4")->getAllForeignKeyAttributesNameVector().size());
-    ASSERT_EQ(0,this->tableManager.getAllTables().get("19")->getAllForeignKeyAttributesNameVector().size());
+    ASSERT_EQ(0,this->tableManager.getAllTables().get("0")->foreignKeyAttributeMap.size());
+    ASSERT_EQ(2,this->tableManager.getAllTables().get("2")->foreignKeyAttributeMap.size());
+    ASSERT_EQ(2,this->tableManager.getAllTables().get("4")->foreignKeyAttributeMap.size());
+    ASSERT_EQ(0,this->tableManager.getAllTables().get("19")->foreignKeyAttributeMap.size());
 }
 
 TEST_F(TableUtilTest,testConvertEmptyMap){
@@ -122,10 +122,10 @@ TEST_F(TableUtilTest,testInsertAllEntitiesToTable){
     ASSERT_EQ(0,this->tableManager.getAllTables().size());
     TableUtil::insertAllEntitiesToTable(this->tableManager,this->entityMap);
     ASSERT_EQ(4,this->tableManager.getAllTables().size());
-    ASSERT_EQ(this->entityMap.get("0"),this->tableManager.getAllTables().get("0")->entity);
-    ASSERT_EQ(this->entityMap.get("2"),this->tableManager.getAllTables().get("2")->entity);
-    ASSERT_EQ(this->entityMap.get("4"),this->tableManager.getAllTables().get("4")->entity);
-    ASSERT_EQ(this->entityMap.get("19"),this->tableManager.getAllTables().get("19")->entity);
+    ASSERT_EQ(this->entityMap.get("0"),this->tableManager.getAllTables().get("0")->node);
+    ASSERT_EQ(this->entityMap.get("2"),this->tableManager.getAllTables().get("2")->node);
+    ASSERT_EQ(this->entityMap.get("4"),this->tableManager.getAllTables().get("4")->node);
+    ASSERT_EQ(this->entityMap.get("19"),this->tableManager.getAllTables().get("19")->node);
 }
 
 TEST_F(TableUtilTest,testGetOneToOneRelationShips){
@@ -166,10 +166,10 @@ TEST_F(TableUtilTest,testInsertAllForeignKeyToTable){
     }
 
     ASSERT_EQ(4,this->tableManager.getAllTables().size());
-    ASSERT_EQ(0,this->tableManager.getAllTables().get("0")->getAllForeignKeyAttributesNameVector().size());
-    ASSERT_EQ(0,this->tableManager.getAllTables().get("2")->getAllForeignKeyAttributesNameVector().size());
-    ASSERT_EQ(0,this->tableManager.getAllTables().get("4")->getAllForeignKeyAttributesNameVector().size());
-    ASSERT_EQ(0,this->tableManager.getAllTables().get("19")->getAllForeignKeyAttributesNameVector().size());
+    ASSERT_EQ(0,this->tableManager.getAllTables().get("0")->foreignKeyAttributeMap.size());
+    ASSERT_EQ(0,this->tableManager.getAllTables().get("2")->foreignKeyAttributeMap.size());
+    ASSERT_EQ(0,this->tableManager.getAllTables().get("4")->foreignKeyAttributeMap.size());
+    ASSERT_EQ(0,this->tableManager.getAllTables().get("19")->foreignKeyAttributeMap.size());
 
     this->tableManager = TableManager();
     TableUtil::insertAllEntitiesToTable(this->tableManager,this->entityMap);
@@ -184,8 +184,8 @@ TEST_F(TableUtilTest,testInsertAllForeignKeyToTable){
     }
 
     ASSERT_EQ(4,this->tableManager.getAllTables().size());
-    ASSERT_EQ(0,this->tableManager.getAllTables().get("0")->getAllForeignKeyAttributesNameVector().size());
-    ASSERT_EQ(2,this->tableManager.getAllTables().get("2")->getAllForeignKeyAttributesNameVector().size());
-    ASSERT_EQ(2,this->tableManager.getAllTables().get("4")->getAllForeignKeyAttributesNameVector().size());
-    ASSERT_EQ(0,this->tableManager.getAllTables().get("19")->getAllForeignKeyAttributesNameVector().size());
+    ASSERT_EQ(0,this->tableManager.getAllTables().get("0")->foreignKeyAttributeMap.size());
+    ASSERT_EQ(2,this->tableManager.getAllTables().get("2")->foreignKeyAttributeMap.size());
+    ASSERT_EQ(2,this->tableManager.getAllTables().get("4")->foreignKeyAttributeMap.size());
+    ASSERT_EQ(0,this->tableManager.getAllTables().get("19")->foreignKeyAttributeMap.size());
 }

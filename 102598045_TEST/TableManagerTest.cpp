@@ -1,13 +1,14 @@
 #include "TableManagerTest.h"
 #include "NoSuchKeyException.h"
+#include "Entity.h"
 
 void TableManagerTest::SetUp(){
 }
 
-void TableManagerTest::TearDown(){    
+void TableManagerTest::TearDown(){
 }
 
-TEST_F(TableManagerTest,testInsertTable){    
+TEST_F(TableManagerTest,testInsertTable){
     //insert & assert size
     ASSERT_EQ(0,this->tableManager.getAllTables().size());
     this->tableManager.insertTable(new Table(&Entity("0","Character")));
@@ -41,9 +42,9 @@ TEST_F(TableManagerTest,testGetTableByID){
     this->tableManager.insertTable(tableGuide);
     ASSERT_EQ(3,this->tableManager.getAllTables().size());
     
-    ASSERT_EQ(tableCharacter,this->tableManager.getTableByID(tableCharacter->getEntityID()));
-    ASSERT_EQ(tableAccount,this->tableManager.getTableByID(tableAccount->getEntityID()));
-    ASSERT_EQ(tableGuide,this->tableManager.getTableByID(tableGuide->getEntityID()));
+    ASSERT_EQ(tableCharacter,this->tableManager.getTableByID(tableCharacter->getTableID()));
+    ASSERT_EQ(tableAccount,this->tableManager.getTableByID(tableAccount->getTableID()));
+    ASSERT_EQ(tableGuide,this->tableManager.getTableByID(tableGuide->getTableID()));
     ASSERT_THROW(this->tableManager.getTableByID("NoSuchKeyTableID"),NoSuchKeyException);
 
     delete entityCharacter;

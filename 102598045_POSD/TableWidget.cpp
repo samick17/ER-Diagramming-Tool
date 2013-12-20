@@ -35,7 +35,7 @@ void TableWidget::updateWidget(unsigned int index){
         attributeIndex++;
     }
     this->rect = QRectF(leftTop,QSize(totalWidth,WidgetDefaultSetting::TableWidgetHeight));
-    this->textRect = QRectF(this->rect.topLeft().x(),this->rect.topLeft().y()+WidgetDefaultSetting::TableElementMargin,this->table->getEntityName().length()*WidgetDefaultSetting::TableUnitTextWidth,WidgetDefaultSetting::TableTitleHeight);
+	this->textRect = QRectF(this->rect.topLeft().x(),this->rect.topLeft().y()+WidgetDefaultSetting::TableElementMargin,this->table->getTableName().length()*WidgetDefaultSetting::TableUnitTextWidth,WidgetDefaultSetting::TableTitleHeight);
     this->rowRect = QRectF(leftTop.x(),leftTop.y()+WidgetDefaultSetting::TableWidgetTop,totalWidth,WidgetDefaultSetting::TableWidgetHeight);
 }
 
@@ -47,6 +47,6 @@ void TableWidget::paint(QPainter* painter,const QStyleOptionGraphicsItem* option
     font.setBold(true);
     painter->setFont(font);
 
-    painter->drawText(textRect,table->getEntityName().c_str());
+    painter->drawText(textRect,table->getTableName().c_str());
     painter->drawRect(this->rowRect);
 }

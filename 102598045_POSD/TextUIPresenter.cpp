@@ -4,6 +4,7 @@
 #include "InstructionMenu.h"
 #include "InstructionData.h"
 #include "Table.h"
+#include "Entity.h"
 #include "Connector.h"
 #include "StringSymbol.h"
 #include "StringUtil.h"
@@ -39,13 +40,10 @@ void TextUIPresenter::displayTable(){
     cout<<" |    Entity      |  Attributes"<<endl;
     cout<<" +----------------+--------------------------------------------------"<<endl;
     for each(Table* table in tableMap){
-        string entityName = table->getEntityName();
+        string entityName = table->getTableName();
         int len = TABLE_WIDTH-entityName.size();
         cout<<"   "<<entityName<<setw(len)<<"|";
-        this->displayStringWithComma(" PK(",table->getAllPrimaryKeyAttributesNameVector(),")");
-        this->displayStringWithComma(StringSymbol::Space,table->getAllDefaultKeyAttributesNameVector(),StringSymbol::Empty);
-        this->displayStringWithComma(" FK(",table->getAllForeignKeyAttributesNameVector(),")");
-        cout<<endl;
+        cout<<table->toString()<<endl;
     }
     cout<<" +----------------+--------------------------------------------------"<<endl;
 }
@@ -99,15 +97,6 @@ void TextUIPresenter::displayComponentMap(HashMap<string,Component*> componentMa
         cout<<"|  "<<component->getName()<<endl;        
     }
     cout<<" +-----------------------------------------------------"<<endl;
-}
-
-void TextUIPresenter::displayStringWithComma(string strStart,vector<string> stringVector,string strEnd){
-    if(stringVector.empty())
-        return;
-    cout<<strStart;
-    string stringWithComma = StringUtil::appendWithComma(stringVector);
-    cout<<stringWithComma;
-    cout<<strEnd;
 }
 
 void TextUIPresenter::logMessage(string message,bool endWithLine){
