@@ -209,6 +209,9 @@
     <Filter Include="Source Files\Visitor">
       <UniqueIdentifier>{5221a53c-2259-4138-b20d-b0c075b04d29}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\View\GUI\Dialog">
+      <UniqueIdentifier>{cac2506a-d154-4ecd-a11d-a87dd990661b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -1067,6 +1070,12 @@
       <Filter>Resource Files</Filter>
     </None>
     <None Include="Resources\browseDB.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Resources\save.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Resources\save_as.png">
       <Filter>Resource Files</Filter>
     </None>
   </ItemGroup>

@@ -1,10 +1,10 @@
 #include "TextUIProcess.h"
+#include <QApplication>
 #include "GraphicalUI.h"
 #include "TextPresentation.h"
 #include "GraphicalPresentation.h"
 #include "ERModel.h"
 #include "TextUI.h"
-#include <QApplication>
 
 int main(int argc,char *argv[]){
     QApplication  app(argc,argv);

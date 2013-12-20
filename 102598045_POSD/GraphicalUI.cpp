@@ -27,7 +27,7 @@
 #include "DialogSetting.h"
 
 GraphicalUI::GraphicalUI(GraphicalPresentation* graphicalPresentation): graphicalPresentation(graphicalPresentation),QMainWindow(){
-    this->setTitle(ApplicationSetting::Title,ApplicationSetting::IconPath);
+    this->setTitle(ApplicationSetting::Title);
     this->resize(ApplicationSetting::DefaultWidth,ApplicationSetting::DefaultHeight);
     this->initialGraphicView();
     this->initialAllAction();
@@ -109,6 +109,10 @@ void GraphicalUI::initialAllAction(){
     this->actionMap = new QActionMap(this);
     QAction* openFileAction = this->actionMap->getQAction(ActionData::OpenFile);
     connect(openFileAction,SIGNAL(triggered()),this,SLOT(openFile()));
+    QAction* saveFileAction = this->actionMap->getQAction(ActionData::SaveFile);
+    connect(saveFileAction,SIGNAL(triggered()),this,SLOT(saveFile()));
+    QAction* saveXmlFileAction = this->actionMap->getQAction(ActionData::SaveXmlFile);
+    connect(saveXmlFileAction,SIGNAL(triggered()),this,SLOT(saveXmlFile()));
     QAction* exitAction = this->actionMap->getQAction(ActionData::Exit);
     connect(exitAction,SIGNAL(triggered()),this,SLOT(close()));
     QAction* undoAction = this->actionMap->getQAction(ActionData::Undo);
@@ -179,6 +183,12 @@ void GraphicalUI::openFile(){
         QString filePath = openFileDialog->selectedFiles().first();
         this->graphicalPresentation->openFile(filePath.toStdString());
     }
+}
+
+void GraphicalUI::saveFile(){
+}
+
+void GraphicalUI::saveXmlFile(){
 }
 
 void GraphicalUI::close(){

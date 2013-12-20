@@ -15,7 +15,7 @@ TableAttributeWidget::TableAttributeWidget(QPointF position,Attribute* attribute
     this->iconRect = QRectF(position.x()+WidgetDefaultSetting::TableElementIconMargin,position.y()+WidgetDefaultSetting::TableElementIconMargin,WidgetDefaultSetting::TableElementIconWidth,WidgetDefaultSetting::TableElementIconHeight);
     //initial textrect
     this->textRect = QRect(position.x()+this->iconRect.width()+WidgetDefaultSetting::TableElementIconMargin*Number::Two,position.y(),textWidth,WidgetDefaultSetting::TableElementHeight);
-    this->rect = QRectF(position.x(),position.y(),textWidth+this->icon.width()+WidgetDefaultSetting::TableElementIconMargin*Number::Two,WidgetDefaultSetting::TableElementHeight);
+    this->rect = QRectF(position.x(),position.y(),textWidth+this->iconRect.width()+WidgetDefaultSetting::TableElementIconMargin*Number::Two,WidgetDefaultSetting::TableElementHeight);
 }
 
 TableAttributeWidget::~TableAttributeWidget(){

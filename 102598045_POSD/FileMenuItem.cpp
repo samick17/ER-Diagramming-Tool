@@ -4,11 +4,8 @@
 
 FileMenuItem::FileMenuItem(QActionMap* actionMap,QWidget* parent) : QMenu(parent){
     this->setTitle(QString(MenuSetting::File.c_str()));
-    QAction* openFileAction = actionMap->getQAction(ActionData::OpenFile);
-    QAction* exitAction = actionMap->getQAction(ActionData::Exit);
-
-    this->addAction(openFileAction);
-    this->addAction(exitAction);
+    for(unsigned int actionIndex = ActionData::OpenFile;actionIndex <= ActionData::Exit;actionIndex++)
+        this->addAction(actionMap->getQAction(actionIndex));
 }
 
 FileMenuItem::~FileMenuItem(){

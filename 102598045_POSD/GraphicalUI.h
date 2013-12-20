@@ -4,6 +4,7 @@
 #include "QActionMap.h"
 #include "ISynchronizer.h"
 #include "Component.h"
+#include "ApplicationSetting.h"
 
 #define COMPONENT_VIEW_STRETCH      3
 #define TABLE_VIEW_STRETCH          1
@@ -23,7 +24,7 @@ public:
 
     GraphicalPresentation* getGraphicalPresentation();
     void sync(string syncEventType);
-    void setTitle(string title,string iconPath);
+    void setTitle(string title,string iconPath = ApplicationSetting::IconPath);
 protected:
     void closeEvent(QCloseEvent* closeEvent);
     void keyPressEvent(QKeyEvent* keyEvent);
@@ -42,6 +43,8 @@ private:
     HashMap<string,ViewSyncFunction> syncMap;
 private slots:
     void openFile();
+    void saveFile();
+    void saveXmlFile();
     void close();
     void undo();
     void redo();

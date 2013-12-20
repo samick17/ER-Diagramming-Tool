@@ -11,5 +11,6 @@ void TextUIProcess::run(){
     while(true){
         this->textUI->displayMenu();
         this->textUI->processCommand();
+        sleep(SLEEP_TIME);
     }
 }

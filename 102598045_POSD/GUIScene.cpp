@@ -30,6 +30,7 @@ void GUIScene::refreshAllWidgets(){
     ComponentData* componentDataForPreview = this->graphicalPresentation->getComponentDataForPreview();
     if(componentDataForPreview)
         this->addWidget(componentDataForPreview);
+    this->update();
 }
 
 void GUIScene::mousePressEvent(QGraphicsSceneMouseEvent* mouseEvent){
@@ -74,7 +75,6 @@ void GUIScene::addWidget(ComponentData* componentData){
     ComponentWidget* componentWidget = widgetFactory.createComponentWidget(componentData,this->graphicalPresentation);
     this->addItem(componentWidget);
     componentWidget->updateWidget();
-    this->update();
 }
 
 void GUIScene::processSetCardinality(){

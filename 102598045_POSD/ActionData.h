@@ -12,6 +12,8 @@ public:
 
     static const unsigned int ActionLength;
     static const unsigned int OpenFile;
+    static const unsigned int SaveFile;
+    static const unsigned int SaveXmlFile;
     static const unsigned int Exit;
     static const unsigned int Undo;
     static const unsigned int Redo;

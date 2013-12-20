@@ -490,6 +490,8 @@
     <None Include="Resources\primary_key.png" />
     <None Include="Resources\redo.png" />
     <None Include="Resources\relationship.png" />
+    <None Include="Resources\save.png" />
+    <None Include="Resources\save_as.png" />
     <None Include="Resources\undo.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

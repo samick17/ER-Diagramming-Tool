@@ -1,6 +1,7 @@
 #pragma once
 
 #include "ComponentVisitor.h"
+#include "Document.h"
 
 class SaveComponentVisitor : public ComponentVisitor{
 public:
