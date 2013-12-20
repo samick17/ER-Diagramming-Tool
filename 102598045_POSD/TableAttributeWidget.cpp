@@ -2,18 +2,20 @@
 #include <QPainter>
 #include "Attribute.h"
 #include "IconPath.h"
+#include "WidgetDefaultSetting.h"
+#include "Number.h"
 
 using namespace Qt;
 
 TableAttributeWidget::TableAttributeWidget(QPointF position,Attribute* attribute,int attributeType) : attribute(attribute){
     this->icon = QImage(IconPath::AttributeIcon[attributeType].c_str());
     //initial width
-    double width = this->attribute->getName().length()*12;
+    double textWidth = this->attribute->getName().length()*WidgetDefaultSetting::TableUnitTextWidth;
     //initial icon rect
-    this->iconRect = QRectF(position.x()+2,position.y()+2,20,20);
+    this->iconRect = QRectF(position.x()+WidgetDefaultSetting::TableElementIconMargin,position.y()+WidgetDefaultSetting::TableElementIconMargin,WidgetDefaultSetting::TableElementIconWidth,WidgetDefaultSetting::TableElementIconHeight);
     //initial textrect
-    this->textRect = QRect(position.x()+24,position.y(),width-12,28);
-    this->rect = QRectF(position.x(),position.y(),12+width,28);
+    this->textRect = QRect(position.x()+this->iconRect.width()+WidgetDefaultSetting::TableElementIconMargin*Number::Two,position.y(),textWidth,WidgetDefaultSetting::TableElementHeight);
+    this->rect = QRectF(position.x(),position.y(),textWidth+this->icon.width()+WidgetDefaultSetting::TableElementIconMargin*Number::Two,WidgetDefaultSetting::TableElementHeight);
 }
 
 TableAttributeWidget::~TableAttributeWidget(){
@@ -27,7 +29,7 @@ double TableAttributeWidget::getWidth(){
     return this->rect.width();
 }
 
-void TableAttributeWidget::paint(QPainter* painter,const QStyleOptionGraphicsItem* option, QWidget* widget){
+void TableAttributeWidget::paint(QPainter* painter,const QStyleOptionGraphicsItem* option,QWidget* widget){
     //set anti-aliasing & pen width
     painter->setRenderHint(QPainter::Antialiasing);
     painter->setPen(QPen(black,WidgetDefaultSetting::WidgetLineWidth));

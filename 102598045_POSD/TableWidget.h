@@ -10,9 +10,9 @@ public :
     ~TableWidget();
 
     QRectF boundingRect() const;
-    void paint(QPainter* painter,const QStyleOptionGraphicsItem* option, QWidget* widget = 0);
+    void paint(QPainter* painter,const QStyleOptionGraphicsItem* option,QWidget* widget = 0);
     void updateWidget(unsigned int index);
 private:
-    QRectF rect;
+    QRectF rect,rowRect,textRect;
     Table* table;
 };

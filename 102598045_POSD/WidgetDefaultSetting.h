@@ -17,4 +17,15 @@ public:
     static const double RelationShipOffsetX;
     static const double WidgetStartY;
     static const double WidgetOffsetY;
+
+    static const double TableWidgetTop;
+    static const double TableWidgetHeight;
+    static const double TableRowHeight;
+    static const double TableUnitTextWidth;
+    static const double TableTitleHeight;
+    static const double TableElementMargin;
+    static const double TableElementHeight;
+    static const double TableElementIconMargin;
+    static const double TableElementIconWidth;
+    static const double TableElementIconHeight;
 };
