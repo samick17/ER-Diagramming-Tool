@@ -11,6 +11,15 @@ Node::Node(string type,string componentID,string componentName){
 Node::~Node(){
 }
 
+void Node::setName(string name){
+    this->Component::setName(name);
+    //adjust rect width7
+    double width = max(name.length()*WidgetDefaultSetting::UnitTextWidth,WidgetDefaultSetting::Width);
+    Size size = Size(width,this->getRect().getHeight());
+    this->setSize(size);
+    this->updateConnectorsPosition();
+}
+
 void Node::setPosition(Point position){
     this->componentData->setPosition(position);
     this->updateConnectorsPosition();

@@ -21,7 +21,7 @@ public:
     string getType();
     string getClassName();
     string getName();
-    void setName(string name);
+    virtual void setName(string name);
     Rect getRect();
     virtual void setPosition(Point position) = 0;
     virtual void setCenterPosition(Point position) = 0;

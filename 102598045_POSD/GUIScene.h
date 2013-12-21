@@ -1,6 +1,7 @@
 #pragma once
 
 #include <QGraphicsScene>
+#include <QMutex>
 #include "IObserver.h"
 #include "Point.h"
 
@@ -20,18 +21,19 @@ public:
     ~GUIScene();
 
     void notify(Subject* subject);
-    void refreshAllWidgets();
 protected:
     void mousePressEvent(QGraphicsSceneMouseEvent* mouseEvent);
     void mouseMoveEvent(QGraphicsSceneMouseEvent* mouseEvent);
     void mouseReleaseEvent(QGraphicsSceneMouseEvent* mouseEvent);
 private:
+    void refresh();
     ComponentData* getComponentDataAtPosition(QPointF qPosition);
     pair<Point,ComponentData*> getPointComponentPair(QGraphicsSceneMouseEvent* mouseEvent);
     void addWidget(ComponentData* componentData);
     void processSetCardinality();
     GraphicalUI* graphicalUI;
     GraphicalPresentation* graphicalPresentation;
+    QMutex mutex;
 private slots:
     void executeNotify();
 };

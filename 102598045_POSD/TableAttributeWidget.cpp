@@ -10,7 +10,7 @@ using namespace Qt;
 TableAttributeWidget::TableAttributeWidget(QPointF position,Attribute* attribute,int attributeType) : attribute(attribute){
     this->icon = QImage(IconPath::AttributeIcon[attributeType].c_str());
     //initial width
-    double textWidth = this->attribute->getName().length()*WidgetDefaultSetting::TableUnitTextWidth;
+    double textWidth = this->attribute->getName().length()*WidgetDefaultSetting::UnitTextWidth;
     //initial icon rect
     this->iconRect = QRectF(position.x()+WidgetDefaultSetting::TableElementIconMargin,position.y()+WidgetDefaultSetting::TableElementIconMargin,WidgetDefaultSetting::TableElementIconWidth,WidgetDefaultSetting::TableElementIconHeight);
     //initial textrect

@@ -21,7 +21,7 @@ void GUIScene::notify(Subject* subject){
     this->onNotifyEvent();
 }
 
-void GUIScene::refreshAllWidgets(){
+void GUIScene::refresh(){
     this->clear();
     //display all
     HashMap<string,ComponentData*> componentDataMap = this->graphicalPresentation->getAllComponentDataMap();
@@ -58,7 +58,9 @@ pair<Point,ComponentData*> GUIScene::getPointComponentPair(QGraphicsSceneMouseEv
 }
 
 void GUIScene::executeNotify(){
-    this->refreshAllWidgets();
+    this->mutex.lock();
+    this->refresh();
+    this->mutex.unlock();
 }
 
 ComponentData* GUIScene::getComponentDataAtPosition(QPointF qPosition){

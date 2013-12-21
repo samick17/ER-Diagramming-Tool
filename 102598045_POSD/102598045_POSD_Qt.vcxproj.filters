@@ -954,9 +954,6 @@
     <ClInclude Include="GUIScrollView.h">
       <Filter>Header Files\View\GUI\GUIView</Filter>
     </ClInclude>
-    <ClInclude Include="GUITableView.h">
-      <Filter>Header Files\View\GUI\GUIView</Filter>
-    </ClInclude>
     <ClInclude Include="HashMapUtil.h">
       <Filter>Header Files\Util</Filter>
     </ClInclude>
@@ -1012,6 +1009,9 @@
     </CustomBuild>
     <CustomBuild Include="GUIScene.h">
       <Filter>Header Files\View\GUI\GUIScene</Filter>
+    </CustomBuild>
+    <CustomBuild Include="GUITableView.h">
+      <Filter>Header Files\View\GUI\GUIView</Filter>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>

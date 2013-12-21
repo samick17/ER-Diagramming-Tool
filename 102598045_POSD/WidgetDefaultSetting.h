@@ -6,8 +6,8 @@ using namespace std;
 
 class WidgetDefaultSetting{
 public:
-    static const int Width;
-    static const int Height;
+    static const double Width;
+    static const double Height;
     static const double WidgetLineWidth;
     static const double ConnectorWidth;
     static const int SelectedFrameLineWidth;
@@ -17,11 +17,11 @@ public:
     static const double RelationShipOffsetX;
     static const double WidgetStartY;
     static const double WidgetOffsetY;
+    static const double UnitTextWidth;
 
     static const double TableWidgetTop;
     static const double TableWidgetHeight;
     static const double TableRowHeight;
-    static const double TableUnitTextWidth;
     static const double TableTitleHeight;
     static const double TableElementMargin;
     static const double TableElementHeight;

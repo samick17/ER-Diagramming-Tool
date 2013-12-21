@@ -14,6 +14,7 @@ GUIComponentTableView::GUIComponentTableView(GraphicalPresentation* graphicalPre
     this->horizontalHeader()->setResizeMode(QHeaderView::Stretch);
     this->graphicalPresentation->registerObserverToModel(this);
     this->connect(this,SIGNAL(itemChanged(QTableWidgetItem*)),this,SLOT(onItemChanged(QTableWidgetItem*)));
+    this->connect(this,SIGNAL(onNotifyEvent()),this,SLOT(executeNotify()));
 }
 
 GUIComponentTableView::~GUIComponentTableView(){
@@ -21,6 +22,10 @@ GUIComponentTableView::~GUIComponentTableView(){
 }
 //disconnect signal & onItemChanged to avoid loop,finally reconnect them
 void GUIComponentTableView::notify(Subject* subject){
+    this->onNotifyEvent();
+}
+
+void GUIComponentTableView::refresh(){
     disconnect(this,SIGNAL(itemChanged(QTableWidgetItem*)),this,SLOT(onItemChanged(QTableWidgetItem*)));
     this->clearContents();
     HashMap<string,ComponentData*> componentDataMap = this->graphicalPresentation->getAllComponentDataMap();
@@ -36,6 +41,7 @@ void GUIComponentTableView::notify(Subject* subject){
     }
     connect(this,SIGNAL(itemChanged(QTableWidgetItem*)),this,SLOT(onItemChanged(QTableWidgetItem*)));
 }
+
 //itemChanged,call presentation updateComponentText
 void GUIComponentTableView::onItemChanged(QTableWidgetItem* tableWidgetItem){
     EditableTableWidgetItem* itemText = dynamic_cast<EditableTableWidgetItem*>(tableWidgetItem);
@@ -43,4 +49,10 @@ void GUIComponentTableView::onItemChanged(QTableWidgetItem* tableWidgetItem){
         ComponentData* componentData = itemText->getComponentData();
         this->graphicalPresentation->setComponentText(componentData->getID(),tableWidgetItem->text().toStdString());
     }
+}
+
+void GUIComponentTableView::executeNotify(){
+    this->mutex.lock();
+    this->refresh();
+    this->mutex.unlock();
 }

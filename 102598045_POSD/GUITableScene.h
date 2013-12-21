@@ -1,6 +1,7 @@
 #pragma once
 
 #include <QGraphicsScene>
+#include <QMutex>
 #include "IObserver.h"
 
 class GraphicalUI;
@@ -16,11 +17,12 @@ public:
     ~GUITableScene();
 
     void notify(Subject* subject);
-    void refresh();
 private:
+    void refresh();
     void addWidget(Table* table,unsigned int index);
     GraphicalUI* graphicalUI;
     GraphicalPresentation* graphicalPresentation;
+    QMutex mutex;
 private slots:
     void executeNotify();
 };

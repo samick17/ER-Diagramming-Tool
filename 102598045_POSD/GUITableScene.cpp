@@ -33,5 +33,7 @@ void GUITableScene::addWidget(Table* table,unsigned int index){
 }
 
 void GUITableScene::executeNotify(){
+    this->mutex.lock();
     this->refresh();
+    this->mutex.unlock();
 }

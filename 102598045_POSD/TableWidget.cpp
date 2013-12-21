@@ -35,7 +35,7 @@ void TableWidget::updateWidget(unsigned int index){
         attributeIndex++;
     }
     this->rect = QRectF(leftTop,QSize(totalWidth,WidgetDefaultSetting::TableWidgetHeight));
-    this->textRect = QRectF(this->rect.topLeft().x(),this->rect.topLeft().y()+WidgetDefaultSetting::TableElementMargin,this->table->getTableName().length()*WidgetDefaultSetting::TableUnitTextWidth,WidgetDefaultSetting::TableTitleHeight);
+    this->textRect = QRectF(this->rect.topLeft().x(),this->rect.topLeft().y()+WidgetDefaultSetting::TableElementMargin,this->table->getTableName().length()*WidgetDefaultSetting::UnitTextWidth,WidgetDefaultSetting::TableTitleHeight);
     this->rowRect = QRectF(leftTop.x(),leftTop.y()+WidgetDefaultSetting::TableWidgetTop,totalWidth,WidgetDefaultSetting::TableWidgetHeight);
 }
 
