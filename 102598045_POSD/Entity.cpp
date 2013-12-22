@@ -4,6 +4,7 @@
 #include "ComponentUtil.h"
 #include "ComponentType.h"
 #include "NoConnectionException.h"
+#include "ComponentVisitor.h"
 
 Entity::Entity(string componentID,string componentName) : Node(ComponentType::TypeEntity,componentID,componentName){
 }
@@ -45,6 +46,10 @@ HashMap<string,Attribute*> Entity::getPrimaryKeyAttributes(){
 void Entity::setPrimaryKey(string componentID){
     Attribute* attribute = this->getAttributeByID(componentID);
     attribute->setAsPrimaryKey();
+}
+
+void Entity::accept(ComponentVisitor* visitor){
+    visitor->visit(this);
 }
 
 Component* Entity::clone() const{

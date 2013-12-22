@@ -4,6 +4,7 @@
 #include "AttributeType.h"
 #include "InvalidConnectException.h"
 #include "ComponentConnectionSize.h"
+#include "ComponentVisitor.h"
 
 Attribute::Attribute(string componentID,string componentName) : Node(ComponentType::TypeAttribute,componentID,componentName){
     this->attributeType = AttributeType::Default;
@@ -37,6 +38,10 @@ void Attribute::setAsPrimaryKey(){
 void Attribute::setAsDefaultKey(){
     this->componentData->setIsUnderLine(false);
     this->attributeType = AttributeType::Default;
+}
+
+void Attribute::accept(ComponentVisitor* visitor){
+    visitor->visit(this);
 }
 
 Component* Attribute::clone() const{

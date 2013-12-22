@@ -6,6 +6,8 @@
 #include "NodeConnectionType.h"
 #include <gtest/gtest_prod.h>
 
+class ComponentVisitor;
+
 using namespace std;
 
 class Component{
@@ -38,6 +40,8 @@ public:
     virtual int canConnectTo(Component* target) = 0;
     virtual bool hasSizeToConnect();
     bool hasConnectedTo(Component* target);
+
+    virtual void accept(ComponentVisitor* visitor) = 0;
 
     virtual Component* clone() const = 0;
 protected:

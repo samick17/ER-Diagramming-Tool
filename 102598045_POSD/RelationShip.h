@@ -11,12 +11,14 @@ class RelationShip : public Node{
 public:
     RelationShip(string componentID,string componentName = StringSymbol::Empty);
     ~RelationShip();
-        
+
+    HashMap<string,Entity*> getConnectedEntities();
+
     int canConnectTo(Component* target);
     bool hasSizeToConnect();
     bool isRelationType(string relationType);
 
-    HashMap<string,Entity*> getConnectedEntities();
+    void accept(ComponentVisitor* visitor);
 
     Component* clone() const;
 };

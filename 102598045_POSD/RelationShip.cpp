@@ -7,11 +7,17 @@
 #include "ComponentType.h"
 #include "InvalidConnectException.h"
 #include "ComponentConnectionSize.h"
+#include "ComponentVisitor.h"
 
 RelationShip::RelationShip(string componentID,string componentName) : Node(ComponentType::TypeRelationShip,componentID,componentName){
 }
 
 RelationShip::~RelationShip(){
+}
+
+//get related Entity
+HashMap<string,Entity*> RelationShip::getConnectedEntities(){
+    return ComponentUtil::getConnectedNodeHashMapByType<Entity>(this->getAllConnections());
 }
 
 int RelationShip::canConnectTo(Component* target){
@@ -44,9 +50,9 @@ bool RelationShip::isRelationType(string relationType){
     
     return isRType;
 }
-//get related Entity
-HashMap<string,Entity*> RelationShip::getConnectedEntities(){
-    return ComponentUtil::getConnectedNodeHashMapByType<Entity>(this->getAllConnections());
+
+void RelationShip::accept(ComponentVisitor* visitor){
+    visitor->visit(this);
 }
 
 Component* RelationShip::clone() const{

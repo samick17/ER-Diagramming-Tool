@@ -5,6 +5,7 @@
 #include "ComponentConnectionSize.h"
 #include "ConnectorData.h"
 #include "Number.h"
+#include "ComponentVisitor.h"
 
 Connector::Connector(string componentID,string componentName){
     this->componentData = new ConnectorData(componentID,componentName);
@@ -86,6 +87,10 @@ bool Connector::isCardinalityConnector(){
     if(entityCount == Number::One && relationShipCount == Number::One)
         return true;
     return false;
+}
+
+void Connector::accept(ComponentVisitor* visitor){
+    visitor->visit(this);
 }
 
 Component* Connector::clone() const{
