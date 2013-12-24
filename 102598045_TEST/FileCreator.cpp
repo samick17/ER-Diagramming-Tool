@@ -10,7 +10,7 @@ string FileCreator::createDefaultFile(){
     _mkdir(directory.c_str());
     //save file to directory
     string filePath = directory+"/test_file1.erd";
-    Document doc(filePath);    
+    Document doc(filePath);
     string fileData[] = {
         "E, Engineer","A, Emp_ID","R, Has","A, Name","E, PC","A, PC_ID","A, Purchase_Date","C","C","C","C","C, 1","C, 1","A, Department","C",
         "",

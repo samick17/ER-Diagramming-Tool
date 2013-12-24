@@ -99,6 +99,7 @@
     <ClCompile Include="EditMenuItem.cpp" />
     <ClCompile Include="EditTextOfComponentsCommand.cpp" />
     <ClCompile Include="EditToolBar.cpp" />
+    <ClCompile Include="ERDDocument.cpp" />
     <ClCompile Include="GeneratedFiles\Debug\moc_EditToolBar.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
@@ -234,9 +235,11 @@
     <ClCompile Include="UndoInstruction.cpp" />
     <ClCompile Include="WidgetDefaultSetting.cpp" />
     <ClCompile Include="WidgetFactory.cpp" />
+    <ClCompile Include="XmlDocument.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ActionData.h" />
+    <ClInclude Include="XmlDocument.h" />
     <CustomBuild Include="AddDrawableToolBar.h">
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(AdditionalInputs)</AdditionalInputs>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -338,6 +341,7 @@
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
       </Command>
     </CustomBuild>
+    <ClInclude Include="ERDDocument.h" />
     <ClInclude Include="GUIScrollView.h" />
     <ClInclude Include="HashMapUtil.h" />
     <ClInclude Include="HelpMenuItem.h" />

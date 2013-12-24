@@ -124,6 +124,7 @@
     <ClCompile Include="..\102598045_POSD\EditTextOfComponentsCommand.cpp" />
     <ClCompile Include="..\102598045_POSD\EmptyCollectionException.cpp" />
     <ClCompile Include="..\102598045_POSD\Entity.cpp" />
+    <ClCompile Include="..\102598045_POSD\ERDDocument.cpp" />
     <ClCompile Include="..\102598045_POSD\ERModel.cpp" />
     <ClCompile Include="..\102598045_POSD\Exception.cpp" />
     <ClCompile Include="..\102598045_POSD\FileNotFoundException.cpp" />
@@ -175,6 +176,7 @@
     <ClCompile Include="..\102598045_POSD\TextUIPresenter.cpp" />
     <ClCompile Include="..\102598045_POSD\UndoInstruction.cpp" />
     <ClCompile Include="..\102598045_POSD\WidgetDefaultSetting.cpp" />
+    <ClCompile Include="..\102598045_POSD\XmlDocument.cpp" />
     <ClCompile Include="AddNodeCommandTest.cpp" />
     <ClCompile Include="AddNodeStateTest.cpp" />
     <ClCompile Include="AttributeTest.cpp" />

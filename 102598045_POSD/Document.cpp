@@ -1,9 +1,12 @@
 #include "Document.h"
 #include "FileNotFoundException.h"
 #include "StringSymbol.h"
+#include "StringUtil.h"
+#include "CharSymbol.h"
 
-Document::Document(string filePath) : filePath(filePath){
-    readIndex = 0;
+Document::Document(string fileName,string fileExtension) : fileName(fileName),fileExtension(fileExtension){
+    this->readIndex = 0;
+    this->filePath = this->fileName+this->fileExtension;
 }
 
 Document::~Document(){
@@ -29,8 +32,10 @@ void Document::openFile(){
 }
 //write all text from buffer, and save file
 void Document::saveFile(){
+    this->doSaveFile();
+
     this->outputStream = ofstream(this->filePath);
-    
+
     vector<string> dataToWrite = this->rwBuffer;
     if(this->outputStream.is_open()){
         while(!dataToWrite.empty()){
@@ -52,4 +57,7 @@ string Document::readLine(){
         readIndex++;
     }
     return line;
+}
+
+void Document::doSaveFile(){
 }

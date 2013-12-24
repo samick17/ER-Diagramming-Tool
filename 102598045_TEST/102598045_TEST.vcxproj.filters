@@ -615,6 +615,12 @@
     <ClCompile Include="..\102598045_POSD\OutputFileProcess.cpp">
       <Filter>Source Files\Process</Filter>
     </ClCompile>
+    <ClCompile Include="..\102598045_POSD\XmlDocument.cpp">
+      <Filter>Source Files\Parser</Filter>
+    </ClCompile>
+    <ClCompile Include="..\102598045_POSD\ERDDocument.cpp">
+      <Filter>Source Files\Parser</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DirectoryUtil.h">
