@@ -32,6 +32,19 @@ string &StringUtil::trimEnd(string &str){
 string &StringUtil::trim(string &str){
     return trimStart(trimEnd(str));
 }
+
+unsigned int StringUtil::lastIndexOf(string &str,char delim){
+    unsigned int index = -1;
+
+    unsigned int count = 0;
+    for each(char character in str){
+        if(character == delim)
+            index = count;
+        count++;
+    }
+
+    return index;
+}
 //e.g. convert "a b c" to "a,b,c"
 string StringUtil::appendWithComma(vector<string> stringVector){
     string result = StringSymbol::Empty;

@@ -10,4 +10,5 @@ public:
     static const string Space;
     static const string Empty;
     static const string NextLine;
+    static const string Tab;
 };

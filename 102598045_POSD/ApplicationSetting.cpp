@@ -8,3 +8,6 @@ const int ApplicationSetting::DefaultWidth = 1024;
 const int ApplicationSetting::DefaultHeight = 768;
 const string ApplicationSetting::FilePath = "C:\\";
 const string ApplicationSetting::FileExtension = "ERD Files (*.erd)";
+const string ApplicationSetting::ERDFileExtension = ".erd";
+const string ApplicationSetting::XmlFileExtension = ".xml";
+const string ApplicationSetting::ERDPositionFileExtension = ".pos";

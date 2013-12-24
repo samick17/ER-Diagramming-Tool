@@ -17,10 +17,10 @@ void DocumentTest::TearDown(){
 TEST_F(DocumentTest,testDocument){    
     ASSERT_EQ(0,this->document->rwBuffer.size());
     //test write
-    this->document->wirteLine("testLine1");
-    this->document->wirteLine("testXXXXXXX");
-    this->document->wirteLine("Hello~~");
-    this->document->wirteLine("_)*(@&*^@$");
+    this->document->writeLine("testLine1");
+    this->document->writeLine("testXXXXXXX");
+    this->document->writeLine("Hello~~");
+    this->document->writeLine("_)*(@&*^@$");
     ASSERT_EQ(4,this->document->rwBuffer.size());
     //test read
     ASSERT_EQ("testLine1"+StringSymbol::NextLine,this->document->readLine());
@@ -28,10 +28,10 @@ TEST_F(DocumentTest,testDocument){
     ASSERT_EQ("Hello~~"+StringSymbol::NextLine,this->document->readLine());
     ASSERT_EQ("_)*(@&*^@$"+StringSymbol::NextLine,this->document->readLine());
     //test save    
-    this->document->wirteLine("testLine1");
-    this->document->wirteLine("testXXXXXXX");
-    this->document->wirteLine("Hello~~");
-    this->document->wirteLine("_)*(@&*^@$");
+    this->document->writeLine("testLine1");
+    this->document->writeLine("testXXXXXXX");
+    this->document->writeLine("Hello~~");
+    this->document->writeLine("_)*(@&*^@$");
     this->document->saveFile();
     //reconstruct
     delete this->document;

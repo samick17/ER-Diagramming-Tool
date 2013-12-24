@@ -19,7 +19,7 @@ public:
 
     void openFile();
     void saveFile();
-    void wirteLine(string line);
+    void writeLine(string line);
     string readLine();
 private:    
     string filePath;

@@ -19,7 +19,7 @@ string FileCreator::createDefaultFile(){
         "0 1,3","4 5"
     };
     for(int lineIndex = 0;lineIndex<sizeof(fileData)/sizeof(*fileData);lineIndex++)
-        doc.wirteLine(fileData[lineIndex]);
+        doc.writeLine(fileData[lineIndex]);
     doc.saveFile();
     return filePath;
 }

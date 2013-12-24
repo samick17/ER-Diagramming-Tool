@@ -613,6 +613,12 @@
     <ClCompile Include="GeneratedFiles\Release\moc_EditToolBar.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
+    <ClCompile Include="ReorderComponentsUtil.cpp">
+      <Filter>Source Files\Util</Filter>
+    </ClCompile>
+    <ClCompile Include="OutputFileProcess.cpp">
+      <Filter>Source Files\Process</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ERModel.h">
@@ -971,6 +977,12 @@
     </ClInclude>
     <ClInclude Include="ComponentVisitor.h">
       <Filter>Header Files\Visitor</Filter>
+    </ClInclude>
+    <ClInclude Include="ReorderComponentsUtil.h">
+      <Filter>Header Files\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="OutputFileProcess.h">
+      <Filter>Header Files\Process</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

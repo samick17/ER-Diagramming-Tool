@@ -5,21 +5,25 @@
 #include "HashMap.h"
 
 class Component;
+class Node;
 
 class SaveComponentVisitor : public ComponentVisitor{
 public:
-    SaveComponentVisitor();
+    SaveComponentVisitor(HashMap<string,string> reorderedIDMap);
     ~SaveComponentVisitor();
 
     const vector<string> getResult();
-protected:
-    void doVisit(Attribute* attribute);
-    void doVisit(Entity* entity);
-    void doVisit(RelationShip* relationShip);
-    void doVisit(Connector* connector);
+    const vector<string> getPositionInfoVector();
+
+    void visit(Attribute* attribute);
+    void visit(Entity* entity);
+    void visit(RelationShip* relationShip);
+    void visit(Connector* connector);
 private:
     void visitComponent(Component* component);
+    void recordPosition(Node* node);
     vector<string> componentInfoVector;
     vector<string> connectionInfoVector;
     vector<string> primaryKeyInfoVector;
+    vector<string> positionInfoVector;
 };

@@ -4,12 +4,15 @@
 
 class SaveXmlComponentVisitor : public ComponentVisitor{
 public:
-    SaveXmlComponentVisitor();
+    SaveXmlComponentVisitor(HashMap<string,string> reorderedIDMap);
     ~SaveXmlComponentVisitor();
 
-protected:
-    void doVisit(Attribute* attribute);
-    void doVisit(Entity* entity);
-    void doVisit(RelationShip* relationShip);
-    void doVisit(Connector* connector);
+    const vector<string> getResult();
+
+    void visit(Attribute* attribute);
+    void visit(Entity* entity);
+    void visit(RelationShip* relationShip);
+    void visit(Connector* connector);
+private:
+    vector<string> componentInfoVector;
 };

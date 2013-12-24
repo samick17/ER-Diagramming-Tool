@@ -14,4 +14,7 @@ public:
     static const int DefaultHeight;
     static const string FilePath;
     static const string FileExtension;
+    static const string ERDFileExtension;
+    static const string XmlFileExtension;
+    static const string ERDPositionFileExtension;
 };

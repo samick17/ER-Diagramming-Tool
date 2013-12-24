@@ -131,7 +131,9 @@
     <ClCompile Include="IconPath.cpp" />
     <ClCompile Include="MenuSetting.cpp" />
     <ClCompile Include="MoveComponentsCommand.cpp" />
+    <ClCompile Include="OutputFileProcess.cpp" />
     <ClCompile Include="PasteComponentsCommand.cpp" />
+    <ClCompile Include="ReorderComponentsUtil.cpp" />
     <ClCompile Include="SaveComponentVisitor.cpp" />
     <ClCompile Include="SaveXmlComponentVisitor.cpp" />
     <ClCompile Include="SetPrimaryKeyCommand.cpp" />
@@ -342,7 +344,9 @@
     <ClInclude Include="IconPath.h" />
     <ClInclude Include="MenuSetting.h" />
     <ClInclude Include="MoveComponentsCommand.h" />
+    <ClInclude Include="OutputFileProcess.h" />
     <ClInclude Include="PasteComponentsCommand.h" />
+    <ClInclude Include="ReorderComponentsUtil.h" />
     <ClInclude Include="SaveComponentVisitor.h" />
     <ClInclude Include="SaveXmlComponentVisitor.h" />
     <ClInclude Include="SetPrimaryKeyCommand.h" />

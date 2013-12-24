@@ -91,10 +91,10 @@ void GraphicalPresentation::addConnection(Component* sourceComponent,Component* 
 
 void GraphicalPresentation::openFile(string filePath){
     try{
-        this->presentation->openFile(filePath);
         this->isDisplayDBTable = false;
         this->unSelectAll();
-        this->setComponentDataForPreview(NULL);
+        this->switchState(StateID::PointerState);
+        this->presentation->openFile(filePath);
         this->presentation->sync(ControllerEvent::DisplayDiagram);
     }
     catch(Exception&){

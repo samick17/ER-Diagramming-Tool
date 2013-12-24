@@ -160,6 +160,9 @@
     <Filter Include="Unit Testing Files\Visitor">
       <UniqueIdentifier>{407602e5-0c21-449e-bdf7-a7018095b26d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Process">
+      <UniqueIdentifier>{aadfbff0-c83d-48e4-a0f5-7097ee9d8210}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MainTest.cpp">
@@ -603,6 +606,15 @@
     <ClCompile Include="..\102598045_POSD\ComponentVisitor.cpp">
       <Filter>Source Files\Visitor</Filter>
     </ClCompile>
+    <ClCompile Include="ReorderComponentsUtilTest.cpp">
+      <Filter>Unit Testing Files\UtilTest</Filter>
+    </ClCompile>
+    <ClCompile Include="..\102598045_POSD\ReorderComponentsUtil.cpp">
+      <Filter>Source Files\Util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\102598045_POSD\OutputFileProcess.cpp">
+      <Filter>Source Files\Process</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DirectoryUtil.h">
@@ -772,6 +784,9 @@
     </ClInclude>
     <ClInclude Include="SaveComponentVisitorTest.h">
       <Filter>Header Files\Visitor</Filter>
+    </ClInclude>
+    <ClInclude Include="ReorderComponentsUtilTest.h">
+      <Filter>Header Files\UtilTest</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

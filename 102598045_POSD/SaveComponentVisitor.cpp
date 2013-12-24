@@ -7,7 +7,7 @@
 #include "Component.h"
 #include "StringUtil.h"
 
-SaveComponentVisitor::SaveComponentVisitor(){
+SaveComponentVisitor::SaveComponentVisitor(HashMap<string,string> reorderedIDMap) : ComponentVisitor(reorderedIDMap){
 }
 
 SaveComponentVisitor::~SaveComponentVisitor(){
@@ -22,12 +22,18 @@ const vector<string> SaveComponentVisitor::getResult(){
     return result;
 }
 
-void SaveComponentVisitor::doVisit(Attribute* attribute){
-    this->visitComponent(attribute);
+const vector<string> SaveComponentVisitor::getPositionInfoVector(){
+    return this->positionInfoVector;
 }
 
-void SaveComponentVisitor::doVisit(Entity* entity){
+void SaveComponentVisitor::visit(Attribute* attribute){
+    this->visitComponent(attribute);
+    this->recordPosition(attribute);
+}
+
+void SaveComponentVisitor::visit(Entity* entity){
     this->visitComponent(entity);
+    this->recordPosition(entity);
     if(entity->getPrimaryKeyAttributes().empty())
         return;
     string info;
@@ -41,11 +47,12 @@ void SaveComponentVisitor::doVisit(Entity* entity){
 }
 
 
-void SaveComponentVisitor::doVisit(RelationShip* relationShip){
+void SaveComponentVisitor::visit(RelationShip* relationShip){
     this->visitComponent(relationShip);
+    this->recordPosition(relationShip);
 }
 
-void SaveComponentVisitor::doVisit(Connector* connector){
+void SaveComponentVisitor::visit(Connector* connector){
     this->visitComponent(connector);
     string info;
     info.append(this->getTransformedID(connector));
@@ -65,4 +72,11 @@ void SaveComponentVisitor::visitComponent(Component* component){
         info.append(component->getName());
     }
     this->componentInfoVector.push_back(info);
+}
+
+void SaveComponentVisitor::recordPosition(Node* node){
+    string position = StringUtil::intToString(node->getRect().getPosition().getX());
+    position.append(StringSymbol::Space);
+    position.append(StringUtil::intToString(node->getRect().getPosition().getY()));
+    this->positionInfoVector.push_back(position);
 }

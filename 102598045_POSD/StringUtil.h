@@ -13,5 +13,6 @@ public:
     static string &trimStart(string &str);
     static string &trimEnd(string &str);
     static string &trim(string &str);
+    static unsigned int lastIndexOf(string &str,char delim);
     static string appendWithComma(vector<string> stringVector);
 };
