@@ -10,15 +10,15 @@ SaveXmlComponentVisitor::SaveXmlComponentVisitor(){
 SaveXmlComponentVisitor::~SaveXmlComponentVisitor(){
 }
 
-void SaveXmlComponentVisitor::visit(Attribute* attribute){
+void SaveXmlComponentVisitor::doVisit(Attribute* attribute){
 }
 
-void SaveXmlComponentVisitor::visit(Entity* entity){
+void SaveXmlComponentVisitor::doVisit(Entity* entity){
 }
 
 
-void SaveXmlComponentVisitor::visit(RelationShip* relationShip){
+void SaveXmlComponentVisitor::doVisit(RelationShip* relationShip){
 }
 
-void SaveXmlComponentVisitor::visit(Connector* connector){
+void SaveXmlComponentVisitor::doVisit(Connector* connector){
 }

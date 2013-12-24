@@ -201,13 +201,7 @@
     <ClCompile Include="ComponentUtilTest.cpp">
       <Filter>Unit Testing Files\UtilTest</Filter>
     </ClCompile>
-    <ClCompile Include="ReorderComponentsUtilTest.cpp">
-      <Filter>Unit Testing Files\UtilTest</Filter>
-    </ClCompile>
     <ClCompile Include="InputFileParserTest.cpp">
-      <Filter>Unit Testing Files\ParserTest</Filter>
-    </ClCompile>
-    <ClCompile Include="OutputFileParserTest.cpp">
       <Filter>Unit Testing Files\ParserTest</Filter>
     </ClCompile>
     <ClCompile Include="StackUtilTest.cpp">
@@ -357,9 +351,6 @@
     <ClCompile Include="DirectoryUtil.cpp">
       <Filter>Source Files\Util</Filter>
     </ClCompile>
-    <ClCompile Include="..\102598045_POSD\ReorderComponentsUtil.cpp">
-      <Filter>Source Files\Util</Filter>
-    </ClCompile>
     <ClCompile Include="..\102598045_POSD\StringUtil.cpp">
       <Filter>Source Files\Util</Filter>
     </ClCompile>
@@ -367,9 +358,6 @@
       <Filter>Source Files\Util</Filter>
     </ClCompile>
     <ClCompile Include="..\102598045_POSD\InputFileParser.cpp">
-      <Filter>Source Files\Parser</Filter>
-    </ClCompile>
-    <ClCompile Include="..\102598045_POSD\OutputFileParser.cpp">
       <Filter>Source Files\Parser</Filter>
     </ClCompile>
     <ClCompile Include="..\102598045_POSD\Document.cpp">
@@ -656,13 +644,7 @@
     <ClInclude Include="ComponentUtilTest.h">
       <Filter>Header Files\UtilTest</Filter>
     </ClInclude>
-    <ClInclude Include="ReorderComponentsUtilTest.h">
-      <Filter>Header Files\UtilTest</Filter>
-    </ClInclude>
     <ClInclude Include="InputFileParserTest.h">
-      <Filter>Header Files\ParserTest</Filter>
-    </ClInclude>
-    <ClInclude Include="OutputFileParserTest.h">
       <Filter>Header Files\ParserTest</Filter>
     </ClInclude>
     <ClInclude Include="ERModelUtilTest.h">

@@ -143,7 +143,6 @@
     <ClCompile Include="..\102598045_POSD\NullPointerException.cpp" />
     <ClCompile Include="..\102598045_POSD\Number.cpp" />
     <ClCompile Include="..\102598045_POSD\OpenFileInstruction.cpp" />
-    <ClCompile Include="..\102598045_POSD\OutputFileParser.cpp" />
     <ClCompile Include="..\102598045_POSD\Point.cpp" />
     <ClCompile Include="..\102598045_POSD\PointerState.cpp" />
     <ClCompile Include="..\102598045_POSD\Presentation.cpp" />
@@ -152,7 +151,6 @@
     <ClCompile Include="..\102598045_POSD\RedoInstruction.cpp" />
     <ClCompile Include="..\102598045_POSD\RelationShip.cpp" />
     <ClCompile Include="..\102598045_POSD\RelationType.cpp" />
-    <ClCompile Include="..\102598045_POSD\ReorderComponentsUtil.cpp" />
     <ClCompile Include="..\102598045_POSD\SaveComponentVisitor.cpp" />
     <ClCompile Include="..\102598045_POSD\SaveFileInstruction.cpp" />
     <ClCompile Include="..\102598045_POSD\SaveXmlComponentVisitor.cpp" />
@@ -208,11 +206,9 @@
     <ClCompile Include="MockIObserver.cpp" />
     <ClCompile Include="MockState.cpp" />
     <ClCompile Include="NodeTest.cpp" />
-    <ClCompile Include="OutputFileParserTest.cpp" />
     <ClCompile Include="PasteComponentsCommandTest.cpp" />
     <ClCompile Include="PointerStateTest.cpp" />
     <ClCompile Include="RelationShipTest.cpp" />
-    <ClCompile Include="ReorderComponentsUtilTest.cpp" />
     <ClCompile Include="SaveComponentVisitorTest.cpp" />
     <ClCompile Include="SaveXmlComponentVisitorTest.cpp" />
     <ClCompile Include="SetPrimaryKeyCommandTest.cpp" />
@@ -268,11 +264,9 @@
     <ClInclude Include="MockIObserver.h" />
     <ClInclude Include="MockState.h" />
     <ClInclude Include="NodeTest.h" />
-    <ClInclude Include="OutputFileParserTest.h" />
     <ClInclude Include="PasteComponentsCommandTest.h" />
     <ClInclude Include="PointerStateTest.h" />
     <ClInclude Include="RelationShipTest.h" />
-    <ClInclude Include="ReorderComponentsUtilTest.h" />
     <ClInclude Include="SaveComponentVisitorTest.h" />
     <ClInclude Include="SaveXmlComponentVisitorTest.h" />
     <ClInclude Include="SetPrimaryKeyCommandTest.h" />

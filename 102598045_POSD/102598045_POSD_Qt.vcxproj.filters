@@ -274,9 +274,6 @@
     <ClCompile Include="..\102598045_POSD\StringUtil.cpp">
       <Filter>Source Files\Util</Filter>
     </ClCompile>
-    <ClCompile Include="..\102598045_POSD\ReorderComponentsUtil.cpp">
-      <Filter>Source Files\Util</Filter>
-    </ClCompile>
     <ClCompile Include="..\102598045_POSD\ComponentUtil.cpp">
       <Filter>Source Files\Util</Filter>
     </ClCompile>
@@ -284,9 +281,6 @@
       <Filter>Source Files\Model</Filter>
     </ClCompile>
     <ClCompile Include="..\102598045_POSD\InputFileParser.cpp">
-      <Filter>Source Files\Parser</Filter>
-    </ClCompile>
-    <ClCompile Include="..\102598045_POSD\OutputFileParser.cpp">
       <Filter>Source Files\Parser</Filter>
     </ClCompile>
     <ClCompile Include="..\102598045_POSD\StringSymbol.cpp">
@@ -684,9 +678,6 @@
     <ClInclude Include="InputFileParser.h">
       <Filter>Header Files\Parser</Filter>
     </ClInclude>
-    <ClInclude Include="OutputFileParser.h">
-      <Filter>Header Files\Parser</Filter>
-    </ClInclude>
     <ClInclude Include="HashMap.h">
       <Filter>Header Files\Collection</Filter>
     </ClInclude>
@@ -698,9 +689,6 @@
     </ClInclude>
     <ClInclude Include="NodeConnectionType.h">
       <Filter>Header Files\Constants</Filter>
-    </ClInclude>
-    <ClInclude Include="ReorderComponentsUtil.h">
-      <Filter>Header Files\Util</Filter>
     </ClInclude>
     <ClInclude Include="ComponentFactory.h">
       <Filter>Header Files\Factory</Filter>

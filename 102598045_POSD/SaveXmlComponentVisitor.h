@@ -7,8 +7,9 @@ public:
     SaveXmlComponentVisitor();
     ~SaveXmlComponentVisitor();
 
-    void visit(Attribute* attribute);
-    void visit(Entity* entity);
-    void visit(RelationShip* relationShip);
-    void visit(Connector* connector);
+protected:
+    void doVisit(Attribute* attribute);
+    void doVisit(Entity* entity);
+    void doVisit(RelationShip* relationShip);
+    void doVisit(Connector* connector);
 };

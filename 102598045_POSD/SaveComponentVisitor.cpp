@@ -13,35 +13,46 @@ SaveComponentVisitor::SaveComponentVisitor(){
 SaveComponentVisitor::~SaveComponentVisitor(){
 }
 
-void SaveComponentVisitor::visit(Attribute* attribute){
+const vector<string> SaveComponentVisitor::getResult(){
+    vector<string> result = this->componentInfoVector;
+    result.push_back(StringSymbol::Empty);
+    result.insert(result.end(),this->connectionInfoVector.begin(),this->connectionInfoVector.end());
+    result.push_back(StringSymbol::Empty);
+    result.insert(result.end(),this->primaryKeyInfoVector.begin(),this->primaryKeyInfoVector.end());
+    return result;
+}
+
+void SaveComponentVisitor::doVisit(Attribute* attribute){
     this->visitComponent(attribute);
 }
 
-void SaveComponentVisitor::visit(Entity* entity){
+void SaveComponentVisitor::doVisit(Entity* entity){
     this->visitComponent(entity);
+    if(entity->getPrimaryKeyAttributes().empty())
+        return;
     string info;
-    info.append(entity->getID());
+    info.append(this->getTransformedID(entity));
     info.append(StringSymbol::Space);
     vector<string> primaryKeyAttributeIDs;
     for each(Attribute* attribute in entity->getPrimaryKeyAttributes())
-        primaryKeyAttributeIDs.push_back(attribute->getID());
+        primaryKeyAttributeIDs.push_back(this->getTransformedID(attribute));
     info.append(StringUtil::appendWithComma(primaryKeyAttributeIDs));
     this->primaryKeyInfoVector.push_back(info);
 }
 
 
-void SaveComponentVisitor::visit(RelationShip* relationShip){
+void SaveComponentVisitor::doVisit(RelationShip* relationShip){
     this->visitComponent(relationShip);
 }
 
-void SaveComponentVisitor::visit(Connector* connector){
+void SaveComponentVisitor::doVisit(Connector* connector){
     this->visitComponent(connector);
     string info;
-    info.append(connector->getID());
+    info.append(this->getTransformedID(connector));
     info.append(StringSymbol::Space);
-    info.append(connector->getFirstConnectedNode()->getID());
+    info.append(this->getTransformedID(connector->getFirstConnectedNode()));
     info.append(StringSymbol::Comma);
-    info.append(connector->getSecondConnectedNode()->getID());
+    info.append(this->getTransformedID(connector->getSecondConnectedNode()));
     this->connectionInfoVector.push_back(info);
 }
 

@@ -186,11 +186,9 @@
     <ClCompile Include="..\102598045_POSD\NoSuchKeyException.cpp" />
     <ClCompile Include="..\102598045_POSD\NoSuchNodeException.cpp" />
     <ClCompile Include="..\102598045_POSD\NullPointerException.cpp" />
-    <ClCompile Include="..\102598045_POSD\OutputFileParser.cpp" />
     <ClCompile Include="GraphicalPresentation.cpp" />
     <ClCompile Include="..\102598045_POSD\RelationShip.cpp" />
     <ClCompile Include="..\102598045_POSD\RelationType.cpp" />
-    <ClCompile Include="..\102598045_POSD\ReorderComponentsUtil.cpp" />
     <ClCompile Include="..\102598045_POSD\StringSymbol.cpp" />
     <ClCompile Include="..\102598045_POSD\StringUtil.cpp" />
     <ClCompile Include="..\102598045_POSD\Table.cpp" />
@@ -444,7 +442,6 @@
     <ClInclude Include="NoSuchKeyException.h" />
     <ClInclude Include="NoSuchNodeException.h" />
     <ClInclude Include="NullPointerException.h" />
-    <ClInclude Include="OutputFileParser.h" />
     <CustomBuild Include="GraphicalPresentation.h">
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(AdditionalInputs)</AdditionalInputs>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -463,7 +460,6 @@
     </CustomBuild>
     <ClInclude Include="RelationShip.h" />
     <ClInclude Include="RelationType.h" />
-    <ClInclude Include="ReorderComponentsUtil.h" />
     <ClInclude Include="StackUtil.h" />
     <ClInclude Include="StringSymbol.h" />
     <ClInclude Include="StringUtil.h" />

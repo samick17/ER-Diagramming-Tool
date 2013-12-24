@@ -40,6 +40,8 @@ public:
     ComponentData* getComponentDataForPreview();
     void setComponentDataForPreview(ComponentData* componentDataForPreview);
 
+    void reset();
+
     void updateAllComponentData();
     Component* getLastPressedComponent();
     Component* getLastMovedComponent();

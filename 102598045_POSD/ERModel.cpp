@@ -8,7 +8,7 @@
 #include "NoConnectionException.h"
 #include "InvalidNodeTypeException.h"
 #include "InputFileParser.h"
-#include "OutputFileParser.h"
+#include "SaveComponentVisitor.h"
 #include "HashMapUtil.h"
 
 ERModel::ERModel(){
@@ -152,8 +152,14 @@ void ERModel::openFile(string filePath){
 }
 
 void ERModel::saveFile(string filePath){
-    OutputFileParser outputFileParser = OutputFileParser(this->componentMap);
-    outputFileParser.parseModelToFile(filePath);
+    Document doc(filePath);
+    SaveComponentVisitor saveComponentVisitor;
+    //write all
+    for each(Component* component in this->componentMap)
+        component->accept(&saveComponentVisitor);
+    for each(string info in saveComponentVisitor.getResult())
+        doc.wirteLine(info);
+    doc.saveFile();
 }
 //if doesn't contains such component, throw exception
 Component* ERModel::getComponentByID(string id){

@@ -2,6 +2,7 @@
 
 #include "ComponentVisitor.h"
 #include "Document.h"
+#include "HashMap.h"
 
 class Component;
 
@@ -10,10 +11,12 @@ public:
     SaveComponentVisitor();
     ~SaveComponentVisitor();
 
-    void visit(Attribute* attribute);
-    void visit(Entity* entity);
-    void visit(RelationShip* relationShip);
-    void visit(Connector* connector);
+    const vector<string> getResult();
+protected:
+    void doVisit(Attribute* attribute);
+    void doVisit(Entity* entity);
+    void doVisit(RelationShip* relationShip);
+    void doVisit(Connector* connector);
 private:
     void visitComponent(Component* component);
     vector<string> componentInfoVector;
