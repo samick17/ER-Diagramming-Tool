@@ -15,9 +15,9 @@ using namespace std;
 
 class CommandFactory{
 public:
-    Command* createAddNodeCommand(ERModel* erModel,Node* node);
-    Command* createConnectNodeCommand(ERModel* erModel,Component* firstNode,Component* secondNode,Connector* connector);
-    Command* createDeleteMultiComponentCommand(ERModel* erModel,vector<string> componentIDVector);
+    Command* createAddNodeCommand(HashMap<string,Component*>& componentMap,Node* node);
+    Command* createConnectNodeCommand(HashMap<string,Component*>& componentMap,Component* firstNode,Component* secondNode,Connector* connector);
+    Command* createDeleteMultiComponentCommand(HashMap<string,Component*>& componentMap,vector<string> componentIDVector);
     Command* createSetPrimaryKeyCommand(Attribute* attribute);
     Command* createEditTextOfComponentsCommand(Component* component,string text);
     Command* createMoveComponentsCommand(HashMap<string,Component*> selectedComponentMap,Point mousePressPosition,Point mouseReleasePosition);

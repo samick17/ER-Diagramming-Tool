@@ -4,7 +4,7 @@
 
 using namespace std;
 
-ConnectNodeCommand::ConnectNodeCommand(ERModel* erModel,Component* firstNode,Component* secondNode,Connector* connector) : erModel(erModel),firstNode(firstNode),secondNode(secondNode),connector(connector){
+ConnectNodeCommand::ConnectNodeCommand(HashMap<string,Component*>& componentMap,Component* firstNode,Component* secondNode,Connector* connector) : componentMap(componentMap),firstNode(firstNode),secondNode(secondNode),connector(connector){
 }
 
 ConnectNodeCommand::~ConnectNodeCommand(){
@@ -13,12 +13,12 @@ ConnectNodeCommand::~ConnectNodeCommand(){
 }
 
 void ConnectNodeCommand::doExecute(){
-    this->erModel->insertComponent(connector);
+    this->componentMap.put(connector->getID(),connector);
     ComponentUtil::connectWithEachOther(firstNode,secondNode,connector);
 }
 
 void ConnectNodeCommand::doUnExecute(){
     //disconnect node && remove connector from ERModel
     ComponentUtil::disconnectWithEachOther(this->firstNode,this->secondNode,this->connector);
-    this->erModel->eraseComponent(this->connector);
+    this->componentMap.remove(this->connector->getID());
 }

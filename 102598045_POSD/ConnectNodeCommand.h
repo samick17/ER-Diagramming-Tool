@@ -1,9 +1,9 @@
 #pragma once
 
 #include "Command.h"
+#include "HashMap.h"
 #include <gtest/gtest_prod.h> 
 
-class ERModel;
 class Component;
 class Connector;
 
@@ -16,13 +16,13 @@ class ConnectNodeCommand : public Command{
     FRIEND_TEST(ConnectNodeCommandTest,testUnexecute);
     FRIEND_TEST(ConnectNodeCommandTest,testBackupConnector);
 public:
-    ConnectNodeCommand(ERModel* erModel,Component* firstNode,Component* secondNode,Connector* connector);
+    ConnectNodeCommand(HashMap<string,Component*>& componentMap,Component* firstNode,Component* secondNode,Connector* connector);
     ~ConnectNodeCommand();
 protected:
     void doExecute();
     void doUnExecute();
 private:
-    ERModel* erModel;
+    HashMap<string,Component*>& componentMap;
     Component* firstNode;
     Component* secondNode;
     Connector* connector;

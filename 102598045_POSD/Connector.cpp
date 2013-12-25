@@ -94,5 +94,5 @@ void Connector::accept(ComponentVisitor* visitor){
 }
 
 Component* Connector::clone() const{
-    return new Connector(*this);
+    return NULL;
 }

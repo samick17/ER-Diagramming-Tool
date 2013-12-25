@@ -246,12 +246,15 @@ void GraphicalUI::displayEditTextDialog(){
 }
 
 void GraphicalUI::cutComponents(){
+    this->graphicalPresentation->cutComponents();
 }
 
 void GraphicalUI::copyComponents(){
+    this->graphicalPresentation->copyComponents();
 }
 
 void GraphicalUI::pasteComponents(){
+    this->graphicalPresentation->pasteComponents();
 }
 
 void GraphicalUI::displayDBTable(){

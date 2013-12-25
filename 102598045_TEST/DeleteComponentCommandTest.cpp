@@ -32,26 +32,26 @@ void DeleteComponentCommandTest::TearDown(){
 
 TEST_F(DeleteComponentCommandTest,testExecute){
     //test delete attribute
-    DeleteComponentCommand deleteAttributeCommand = DeleteComponentCommand(&this->erModel,this->erModel.getComponentByID("1"));
+    DeleteComponentCommand deleteAttributeCommand = DeleteComponentCommand(this->erModel.componentMap,this->erModel.getComponentByID("1"));
     deleteAttributeCommand.execute();
     ASSERT_EQ(17,this->erModel.getAllComponents().size());
     //test delete entity
-    DeleteComponentCommand deleteEntityCommand = DeleteComponentCommand(&this->erModel,this->erModel.getComponentByID("0"));
+    DeleteComponentCommand deleteEntityCommand = DeleteComponentCommand(this->erModel.componentMap,this->erModel.getComponentByID("0"));
     deleteEntityCommand.execute();
     ASSERT_EQ(13,this->erModel.getAllComponents().size());
     //test delete relationShip
-    DeleteComponentCommand deleteRelationShipCommand = DeleteComponentCommand(&this->erModel,this->erModel.getComponentByID("7"));
+    DeleteComponentCommand deleteRelationShipCommand = DeleteComponentCommand(this->erModel.componentMap,this->erModel.getComponentByID("7"));
     deleteRelationShipCommand.execute();
     ASSERT_EQ(11,this->erModel.getAllComponents().size());
     //test delete connector
-    DeleteComponentCommand deleteConnectorCommand = DeleteComponentCommand(&this->erModel,this->erModel.getComponentByID("15"));
+    DeleteComponentCommand deleteConnectorCommand = DeleteComponentCommand(this->erModel.componentMap,this->erModel.getComponentByID("15"));
     deleteConnectorCommand.execute();
     ASSERT_EQ(10,this->erModel.getAllComponents().size());
 }
 
 TEST_F(DeleteComponentCommandTest,testUnexecute){
     //test delete attribute
-    DeleteComponentCommand deleteAttributeCommand = DeleteComponentCommand(&this->erModel,this->erModel.getComponentByID("1"));
+    DeleteComponentCommand deleteAttributeCommand = DeleteComponentCommand(this->erModel.componentMap,this->erModel.getComponentByID("1"));
     deleteAttributeCommand.clearConnectionDataMap();
     deleteAttributeCommand.removeAndDisconnectComponents();
     ASSERT_EQ(17,this->erModel.getAllComponents().size());
@@ -61,7 +61,7 @@ TEST_F(DeleteComponentCommandTest,testUnexecute){
     ASSERT_EQ(19,this->erModel.getAllComponents().size());
 
     //test delete entity
-    DeleteComponentCommand deleteEntityCommand = DeleteComponentCommand(&this->erModel,this->erModel.getComponentByID("0"));
+    DeleteComponentCommand deleteEntityCommand = DeleteComponentCommand(this->erModel.componentMap,this->erModel.getComponentByID("0"));
     deleteEntityCommand.clearConnectionDataMap();
     deleteEntityCommand.removeAndDisconnectComponents();
     ASSERT_EQ(14,this->erModel.getAllComponents().size());
@@ -71,7 +71,7 @@ TEST_F(DeleteComponentCommandTest,testUnexecute){
     ASSERT_EQ(19,this->erModel.getAllComponents().size());
 
     //test delete relationShip
-    DeleteComponentCommand deleteRelationShipCommand = DeleteComponentCommand(&this->erModel,this->erModel.getComponentByID("7"));
+    DeleteComponentCommand deleteRelationShipCommand = DeleteComponentCommand(this->erModel.componentMap,this->erModel.getComponentByID("7"));
     deleteRelationShipCommand.clearConnectionDataMap();
     deleteRelationShipCommand.removeAndDisconnectComponents();
     ASSERT_EQ(16,this->erModel.getAllComponents().size());
@@ -81,7 +81,7 @@ TEST_F(DeleteComponentCommandTest,testUnexecute){
     ASSERT_EQ(19,this->erModel.getAllComponents().size());
 
     //test delete connector
-    DeleteComponentCommand deleteConnectorCommand = DeleteComponentCommand(&this->erModel,this->erModel.getComponentByID("15"));
+    DeleteComponentCommand deleteConnectorCommand = DeleteComponentCommand(this->erModel.componentMap,this->erModel.getComponentByID("15"));
     deleteConnectorCommand.clearConnectionDataMap();
     deleteConnectorCommand.removeAndDisconnectComponents();
     ASSERT_EQ(18,this->erModel.getAllComponents().size());
@@ -93,7 +93,7 @@ TEST_F(DeleteComponentCommandTest,testUnexecute){
 
 TEST_F(DeleteComponentCommandTest,testDeleteComponentCommand){
     //delete entity
-    DeleteComponentCommand deleteComponnentCommand1 = DeleteComponentCommand(&this->erModel,this->erModel.getComponentByID("0"));
+    DeleteComponentCommand deleteComponnentCommand1 = DeleteComponentCommand(this->erModel.componentMap,this->erModel.getComponentByID("0"));
     ASSERT_EQ(4,deleteComponnentCommand1.component->getAllConnections().size());
     //test execute & unexecute
     deleteComponnentCommand1.execute();
@@ -109,7 +109,7 @@ TEST_F(DeleteComponentCommandTest,testDeleteComponentCommand){
     ASSERT_EQ(19,this->erModel.getAllComponents().size());
     ASSERT_EQ(4,deleteComponnentCommand1.component->getAllConnections().size());
     //use command to delete relationShip
-    DeleteComponentCommand deleteComponnentCommand2 = DeleteComponentCommand(&this->erModel,this->erModel.getComponentByID("7"));
+    DeleteComponentCommand deleteComponnentCommand2 = DeleteComponentCommand(this->erModel.componentMap,this->erModel.getComponentByID("7"));
     ASSERT_EQ(2,deleteComponnentCommand2.component->getAllConnections().size());
     //test execute & unexecute
     deleteComponnentCommand2.execute();
@@ -125,7 +125,7 @@ TEST_F(DeleteComponentCommandTest,testDeleteComponentCommand){
     ASSERT_EQ(19,this->erModel.getAllComponents().size());
     ASSERT_EQ(2,deleteComponnentCommand2.component->getAllConnections().size());
     //use command to delete attribute
-    DeleteComponentCommand deleteComponnentCommand3 = DeleteComponentCommand(&this->erModel,this->erModel.getComponentByID("10"));
+    DeleteComponentCommand deleteComponnentCommand3 = DeleteComponentCommand(this->erModel.componentMap,this->erModel.getComponentByID("10"));
     ASSERT_EQ(1,deleteComponnentCommand3.component->getAllConnections().size());
     //test execute & unexecute
     deleteComponnentCommand3.execute();
@@ -141,7 +141,7 @@ TEST_F(DeleteComponentCommandTest,testDeleteComponentCommand){
     ASSERT_EQ(19,this->erModel.getAllComponents().size());
     ASSERT_EQ(1,deleteComponnentCommand3.component->getAllConnections().size());
     //use command to delete connector
-    DeleteComponentCommand deleteComponnentCommand4 = DeleteComponentCommand(&this->erModel,this->erModel.getComponentByID("16"));
+    DeleteComponentCommand deleteComponnentCommand4 = DeleteComponentCommand(this->erModel.componentMap,this->erModel.getComponentByID("16"));
     deleteComponnentCommand4.component = this->erModel.getComponentByID("16");
     ASSERT_EQ(2,deleteComponnentCommand4.component->getAllConnections().size());
     //test execute & unexecute
@@ -161,7 +161,7 @@ TEST_F(DeleteComponentCommandTest,testDeleteComponentCommand){
 
 TEST_F(DeleteComponentCommandTest,testSaveConnectionData){
     for each(Connector* connector in this->erModel.getAllConnectors()){
-        DeleteComponentCommand deleteComponnentCommand = DeleteComponentCommand(&this->erModel,connector);
+        DeleteComponentCommand deleteComponnentCommand = DeleteComponentCommand(this->erModel.componentMap,connector);
         deleteComponnentCommand.saveConnectionData(connector);
         ConnectionData* connectionData = deleteComponnentCommand.connectionDataMap.get(connector->getID());
         ASSERT_EQ(connectionData->getConnectedFirstNodeID(),connector->getFirstConnectedNode()->getID());
@@ -170,7 +170,7 @@ TEST_F(DeleteComponentCommandTest,testSaveConnectionData){
 }
 
 TEST_F(DeleteComponentCommandTest,testClearConnectionDataMap){
-    DeleteComponentCommand deleteComponnentCommand = DeleteComponentCommand(&this->erModel,this->erModel.getComponentByID("0"));
+    DeleteComponentCommand deleteComponnentCommand = DeleteComponentCommand(this->erModel.componentMap,this->erModel.getComponentByID("0"));
     ASSERT_EQ(0,deleteComponnentCommand.connectionDataMap.size());
 
     deleteComponnentCommand.execute();
@@ -181,7 +181,7 @@ TEST_F(DeleteComponentCommandTest,testClearConnectionDataMap){
 }
 
 TEST_F(DeleteComponentCommandTest,testRemoveAndDisconnectComponents){
-    DeleteComponentCommand deleteComponnentCommand = DeleteComponentCommand(&this->erModel,this->erModel.getComponentByID("0"));
+    DeleteComponentCommand deleteComponnentCommand = DeleteComponentCommand(this->erModel.componentMap,this->erModel.getComponentByID("0"));
 
     ASSERT_EQ(19,this->erModel.getAllComponents().size());
     deleteComponnentCommand.removeAndDisconnectComponents();
@@ -189,7 +189,7 @@ TEST_F(DeleteComponentCommandTest,testRemoveAndDisconnectComponents){
 }
 
 TEST_F(DeleteComponentCommandTest,testReConnectComponents){
-    DeleteComponentCommand deleteComponnentCommand = DeleteComponentCommand(&this->erModel,this->erModel.getComponentByID("0"));
+    DeleteComponentCommand deleteComponnentCommand = DeleteComponentCommand(this->erModel.componentMap,this->erModel.getComponentByID("0"));
 
     ConnectionData connectionData = ConnectionData("0","1","4");
     Connector* connector = this->erModel.getAllConnectors().get("4");

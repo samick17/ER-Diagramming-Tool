@@ -164,6 +164,21 @@ bool GraphicalPresentation::canRedo(){
     return this->presentation->canRedo();
 }
 
+void GraphicalPresentation::cutComponents(){
+	/*HashMap<string,Component*> componentMap = this->presentation->getAllComponents();
+	HashMap<string,Component*> selectedComponents;
+	for each(string componentID in this->selectedWidgetVector){
+		if(componentMap.containsKey(componentID))
+			selectedComponents.put(componentID,componentMap.get(componentID));
+	}*/
+}
+
+void GraphicalPresentation::copyComponents(){
+}
+
+void GraphicalPresentation::pasteComponents(){
+}
+
 //is widget being selected?
 bool GraphicalPresentation::isWidgetSelected(string componentID){
     auto iterator = find(this->selectedWidgetVector.begin(),this->selectedWidgetVector.end(),componentID);

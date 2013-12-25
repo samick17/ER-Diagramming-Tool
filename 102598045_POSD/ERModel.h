@@ -12,8 +12,6 @@
 class ERModel : public ISyncable,public Subject{
     friend class ERModelTest;
     FRIEND_TEST(ERModelTest,testAddNode);
-    FRIEND_TEST(ERModelTest,testInsertComponent);
-    FRIEND_TEST(ERModelTest,testEraseComponent);
     FRIEND_TEST(ERModelTest,testAddConnection);
     FRIEND_TEST(ERModelTest,testOpenFile);
     FRIEND_TEST(ERModelTest,testGetNodesConnector);
@@ -30,18 +28,28 @@ class ERModel : public ISyncable,public Subject{
     friend class CommandManagerTest;
     FRIEND_TEST(CommandManagerTest,testCommandManager);
     FRIEND_TEST(CommandManagerTest,testRedoUndo);
+    FRIEND_TEST(CommandManagerTest,testPopAllStack);
     friend class AddNodeCommandTest;
+    FRIEND_TEST(AddNodeCommandTest,testExecute);
     FRIEND_TEST(AddNodeCommandTest,testUnexecute);
+    FRIEND_TEST(AddNodeCommandTest,testAddNodeCommand);
     friend class ConnectNodeCommandTest;
+    FRIEND_TEST(ConnectNodeCommandTest,testExecute);
     FRIEND_TEST(ConnectNodeCommandTest,testUnexecute);
+    FRIEND_TEST(ConnectNodeCommandTest,testConnectNodeCommand);
+    friend class DeleteComponentCommandTest;
+    FRIEND_TEST(DeleteComponentCommandTest,testExecute);
+    FRIEND_TEST(DeleteComponentCommandTest,testUnexecute);
+    FRIEND_TEST(DeleteComponentCommandTest,testDeleteComponentCommand);
+    FRIEND_TEST(DeleteComponentCommandTest,testSaveConnectionData);
+    FRIEND_TEST(DeleteComponentCommandTest,testClearConnectionDataMap);
+    FRIEND_TEST(DeleteComponentCommandTest,testRemoveAndDisconnectComponents);
+    FRIEND_TEST(DeleteComponentCommandTest,testReConnectComponents);
 public:
     ERModel();
     ~ERModel();
 
     Node* addNode(string nodeType);
-    void insertComponent(Component* component);
-    void insertComponentAt(Component* component,unsigned int index);
-    void eraseComponent(Component* component);
     void deleteComponent(vector<string> componentIDVector);
     int addConnection(Component* firstNode,Component* secondNode);
     bool canUndo();
@@ -54,6 +62,10 @@ public:
     void moveSelectedComponent(vector<string> selectedComponentsIDVector,Point mousePressPosition,Point mouseReleasePosition);
     void openFile(string filePath);
     void saveFile(string filePath);
+    //clip board related
+    void cutComponets();
+    void copyComponets();
+    void pasteComponets();
 
     Component* getComponentByID(string id);
     Connector* getNodesConnector(Component* firstNode,Component* secondNode);

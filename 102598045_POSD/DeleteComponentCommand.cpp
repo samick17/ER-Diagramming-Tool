@@ -4,7 +4,7 @@
 #include "ComponentUtil.h"
 #include "HashMapUtil.h"
 
-DeleteComponentCommand::DeleteComponentCommand(ERModel* erModel,Component* component) : erModel(erModel),component(component){
+DeleteComponentCommand::DeleteComponentCommand(HashMap<string,Component*>& componentMap,Component* component) : componentMap(componentMap),component(component){
 }
 
 DeleteComponentCommand::~DeleteComponentCommand(){
@@ -27,10 +27,10 @@ void DeleteComponentCommand::doUnExecute(){
     //insert All connectors to ERModel at origin index
     for(auto connectorIterator = this->connectionMap.rbegin(); connectorIterator!= this->connectionMap.rend(); connectorIterator++){
         Connector* connector = *connectorIterator;
-        this->erModel->insertComponentAt(connector,this->componentIndexMap.get(connector->getID()));
+        this->componentMap.insertAt(connector->getID(),connector,this->componentIndexMap.get(connector->getID()));
     }
     //insert Component to ERModel at origin index
-    this->erModel->insertComponentAt(this->component,this->componentIndexMap.get(this->component->getID()));
+    this->componentMap.insertAt(this->component->getID(),this->component,this->componentIndexMap.get(this->component->getID()));
     //reconnect all
     for each(Connector* connector in this->connectionMap)
         reConnectComponents(this->connectionDataMap.get(connector->getID()),connector);
@@ -58,22 +58,22 @@ void DeleteComponentCommand::removeAndDisconnectComponents(){
     if(this->component->isTypeOf<Connector>())
         this->saveConnectionData(static_cast<Connector*>(this->component));
     //save index & remove component from ERModel
-    componentIndexMap.put(this->component->getID(),this->erModel->getAllComponents().getValueIndex(this->component));
-    this-> erModel->eraseComponent(this->component);
+    componentIndexMap.put(this->component->getID(),this->componentMap.getValueIndex(this->component));
+    this-> componentMap.remove(this->component->getID());
     //save connectionData & remove connectionSet from ERModel
     for each(Connector* connector in this->connectionMap){
         this->saveConnectionData(connector);
         //save index & remove connector from ERModel
-        componentIndexMap.put(connector->getID(),this->erModel->getAllComponents().getValueIndex(connector));
-        this->erModel->eraseComponent(connector);
+        componentIndexMap.put(connector->getID(),this->componentMap.getValueIndex(connector));
+        this->componentMap.remove(connector->getID());
     }
     //break connections
     this->component->breakAllConnections();
 }
 //undo - reconnect this component & related connector
 void DeleteComponentCommand::reConnectComponents(ConnectionData* connectionData,Connector* connector){
-    Component* firstNode = this->erModel->getComponentByID(connectionData->getConnectedFirstNodeID());
-    Component* secondNode = this->erModel->getComponentByID(connectionData->getConnectedSecondNodeID());
+    Component* firstNode = this->componentMap.get(connectionData->getConnectedFirstNodeID());
+    Component* secondNode = this->componentMap.get(connectionData->getConnectedSecondNodeID());
     //connect with each other
     ComponentUtil::connectWithEachOther(firstNode,secondNode,connector);
 }

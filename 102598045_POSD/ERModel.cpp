@@ -28,31 +28,15 @@ Node* ERModel::addNode(string nodeType){
     ComponentFactory componentFactory;
     Node* node = static_cast<Node*>(componentFactory.createComponent(nodeType));
     CommandFactory commandFactory;
-    Command* addNodeCommand = commandFactory.createAddNodeCommand(this,node);
+    Command* addNodeCommand = commandFactory.createAddNodeCommand(this->componentMap,node);
     this->commandManager.execute(addNodeCommand);
     this->setNodePosition(nodeType,node);
     return node;
 }
-//insert component in componentMap, if no such key
-void ERModel::insertComponent(Component* component){
-    string componentID = component->getID();
-    if(!this->componentMap.containsKey(component->getID()))
-        this->componentMap.put(component->getID(),component);
-}
-//insert component at index argument
-void ERModel::insertComponentAt(Component* component,unsigned int index){
-    string componentID = component->getID();
-    if(!this->componentMap.containsKey(component->getID()))
-        this->componentMap.insertAt(component->getID(),component,index);
-}
-//erase component in componentMap, if contains key
-void ERModel::eraseComponent(Component* component){
-    this->componentMap.remove(component->getID());
-}
 
 void ERModel::deleteComponent(vector<string> componentIDVector){
     CommandFactory commandFactory;
-    Command* deleteComponentCommand = commandFactory.createDeleteMultiComponentCommand(this,componentIDVector);
+    Command* deleteComponentCommand = commandFactory.createDeleteMultiComponentCommand(this->componentMap,componentIDVector);
     this->commandManager.execute(deleteComponentCommand);
 }
 //return: NodeConnectionType
@@ -64,7 +48,7 @@ int ERModel::addConnection(Component* firstNode,Component* secondNode){
         ComponentFactory componentFactory;
         Connector* connector = static_cast<Connector*>(componentFactory.createComponent(ComponentType::TypeConnector));
         CommandFactory commandFactory;
-        Command* connectNodeCommand = commandFactory.createConnectNodeCommand(this,firstNode,secondNode,connector);
+        Command* connectNodeCommand = commandFactory.createConnectNodeCommand(this->componentMap,firstNode,secondNode,connector);
         this->commandManager.execute(connectNodeCommand);
         connector->updateRect();
     }
@@ -154,6 +138,15 @@ void ERModel::openFile(string filePath){
 void ERModel::saveFile(string filePath){
     OutputFileProcess outputFileProcess = OutputFileProcess(filePath,this->componentMap);
     outputFileProcess.saveFile();
+}
+
+void ERModel::cutComponets(){
+}
+
+void ERModel::copyComponets(){
+}
+
+void ERModel::pasteComponets(){
 }
 //if doesn't contains such component, throw exception
 Component* ERModel::getComponentByID(string id){

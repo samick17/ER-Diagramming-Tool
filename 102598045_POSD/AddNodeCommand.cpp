@@ -1,7 +1,7 @@
 #include "AddNodeCommand.h"
-#include "ERModel.h"
+#include "Node.h"
 
-AddNodeCommand::AddNodeCommand(ERModel* erModel,Node* node) : erModel(erModel),node(node){
+AddNodeCommand::AddNodeCommand(HashMap<string,Component*>& componentMap,Node* node) : componentMap(componentMap),node(node){
 }
 
 AddNodeCommand::~AddNodeCommand(){
@@ -11,10 +11,10 @@ AddNodeCommand::~AddNodeCommand(){
 
 //if ERModel doesn't contains this node, add this node to ERModel
 void AddNodeCommand::doExecute(){
-    this->erModel->insertComponent(this->node);
+    componentMap.put(this->node->getID(),this->node);
 }
 
 void AddNodeCommand::doUnExecute(){
     //remove node
-    this->erModel->eraseComponent(this->node);
+    componentMap.remove(this->node->getID());
 }

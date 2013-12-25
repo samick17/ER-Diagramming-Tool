@@ -6,16 +6,16 @@
 #include "EditTextOfComponentsCommand.h"
 #include "MoveComponentsCommand.h"
 
-Command* CommandFactory::createAddNodeCommand(ERModel* erModel,Node* node){
-    return new AddNodeCommand(erModel,node);
+Command* CommandFactory::createAddNodeCommand(HashMap<string,Component*>& componentMap,Node* node){
+    return new AddNodeCommand(componentMap,node);
 }
 
-Command* CommandFactory::createConnectNodeCommand(ERModel* erModel,Component* firstNode,Component* secondNode,Connector* connector){
-    return new ConnectNodeCommand(erModel,firstNode,secondNode,connector);
+Command* CommandFactory::createConnectNodeCommand(HashMap<string,Component*>& componentMap,Component* firstNode,Component* secondNode,Connector* connector){
+    return new ConnectNodeCommand(componentMap,firstNode,secondNode,connector);
 }
 
-Command* CommandFactory::createDeleteMultiComponentCommand(ERModel* erModel,vector<string> componentIDVector){
-    return new DeleteMultiComponentCommand(erModel,componentIDVector);
+Command* CommandFactory::createDeleteMultiComponentCommand(HashMap<string,Component*>& componentMap,vector<string> componentIDVector){
+    return new DeleteMultiComponentCommand(componentMap,componentIDVector);
 }
 
 Command* CommandFactory::createSetPrimaryKeyCommand(Attribute* attribute){

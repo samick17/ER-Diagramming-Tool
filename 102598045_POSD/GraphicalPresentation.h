@@ -63,6 +63,10 @@ public:
     bool canPasteWidgets();
     bool canUndo();
     bool canRedo();
+    //clip board related
+    void cutComponents();
+    void copyComponents();
+    void pasteComponents();
 
     bool isWidgetSelected(string componentID);
     void selectWidget();

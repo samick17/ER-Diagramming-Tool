@@ -5,7 +5,6 @@
 #include "HashMap.h"
 #include <gtest/gtest_prod.h> 
 
-class ERModel;
 class Component;
 class Connector;
 
@@ -18,7 +17,7 @@ class DeleteComponentCommand : public Command{
     FRIEND_TEST(DeleteComponentCommandTest,testRemoveAndDisconnectComponents);
     FRIEND_TEST(DeleteComponentCommandTest,testReConnectComponents);
 public:
-    DeleteComponentCommand(ERModel* erModel,Component* component);
+    DeleteComponentCommand(HashMap<string,Component*>& componentMap,Component* component);
     ~DeleteComponentCommand();
 protected:
     void doExecute();
@@ -28,7 +27,7 @@ private:
     inline void clearConnectionDataMap();
     inline void removeAndDisconnectComponents();
     inline void reConnectComponents(ConnectionData* connectionData,Connector* connector);
-    ERModel* erModel;
+    HashMap<string,Component*>& componentMap;
     Component* component;
     HashMap<string,Connector*> connectionMap;
     HashMap<string,ConnectionData*> connectionDataMap;

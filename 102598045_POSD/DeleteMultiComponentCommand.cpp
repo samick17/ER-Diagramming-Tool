@@ -4,7 +4,7 @@
 #include "Component.h"
 #include "StackUtil.h"
 
-DeleteMultiComponentCommand::DeleteMultiComponentCommand(ERModel* erModel,vector<string> componentIDVector) : erModel(erModel),componentIDVector(componentIDVector){
+DeleteMultiComponentCommand::DeleteMultiComponentCommand(HashMap<string,Component*>& componentMap,vector<string> componentIDVector) : componentMap(componentMap),componentIDVector(componentIDVector){
 }
 
 DeleteMultiComponentCommand::~DeleteMultiComponentCommand(){
@@ -14,8 +14,8 @@ DeleteMultiComponentCommand::~DeleteMultiComponentCommand(){
 void DeleteMultiComponentCommand::doExecute(){
     for each(string componentID in this->componentIDVector){
         try{
-            Component* component = this->erModel->getComponentByID(componentID);
-            Command* command = new DeleteComponentCommand(this->erModel,component);
+            Component* component = this->componentMap.get(componentID);
+            Command* command = new DeleteComponentCommand(this->componentMap,component);
             command->execute();
             this->deleteCommandStack.push(command);
         }

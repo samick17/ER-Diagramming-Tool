@@ -124,55 +124,6 @@ TEST_F(ERModelTest,testAddNode){
     ASSERT_EQ(18,this->erModel.componentMap.size());
 }
 
-TEST_F(ERModelTest,testInsertComponent){
-    Component* attribute = new Attribute("15","Age");
-    this->erModel.insertComponent(attribute);
-    ASSERT_EQ(16,this->erModel.componentMap.size());
-    ASSERT_EQ(attribute,this->erModel.componentMap.get("15"));
-
-    Component* entity = new Entity("16","NoteBook");
-    this->erModel.insertComponent(entity);
-    ASSERT_EQ(17,this->erModel.componentMap.size());
-    ASSERT_EQ(entity,this->erModel.componentMap.get("16"));
-
-    Component* relationShip = new RelationShip("17","Work on");
-    this->erModel.insertComponent(relationShip);
-    ASSERT_EQ(18,this->erModel.componentMap.size());
-    ASSERT_EQ(relationShip,this->erModel.componentMap.get("17"));
-
-    Component* connector = new Connector("18");
-    this->erModel.insertComponent(connector);
-    ASSERT_EQ(19,this->erModel.componentMap.size());
-    ASSERT_EQ(connector,this->erModel.componentMap.get("18"));
-}
-
-TEST_F(ERModelTest,testInsertComponentAt){
-    Component* lastComponent = this->erModel.getComponentByID("14");
-    this->erModel.eraseComponent(lastComponent);
-
-    this->erModel.insertComponentAt(lastComponent,0);
-    ASSERT_EQ(lastComponent,*this->erModel.getAllComponents().begin());
-
-    this->erModel.eraseComponent(lastComponent);
-
-    this->erModel.insertComponentAt(lastComponent,this->erModel.getAllComponents().size());
-    ASSERT_EQ(lastComponent,*--this->erModel.getAllComponents().end());
-}
-
-TEST_F(ERModelTest,testEraseComponent){
-    Component* componentToDelete1 = this->erModel.getComponentByID("0");
-    this->erModel.eraseComponent(componentToDelete1);
-    delete componentToDelete1;
-    ASSERT_EQ(14,this->erModel.componentMap.size());
-    ASSERT_THROW(this->erModel.componentMap.get("0"),NoSuchKeyException);
-
-    Component* componentToDelete2 = this->erModel.getComponentByID("14");
-    this->erModel.eraseComponent(componentToDelete2);
-    delete componentToDelete2;
-    ASSERT_EQ(13,this->erModel.componentMap.size());
-    ASSERT_THROW(this->erModel.componentMap.get("14"),NoSuchKeyException);
-}
-
 TEST_F(ERModelTest,testAddConnection){
     Component* entityNoteBook = this->erModel.addNode(ComponentType::TypeEntity);
     Component* attributeNoteBookID = this->erModel.addNode(ComponentType::TypeAttribute);
