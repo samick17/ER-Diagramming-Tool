@@ -111,15 +111,11 @@ void ERModel::setComponentText(string componentID,string text){
     this->commandManager.execute(editTextOfComponentsCommand);
 }
 
-void ERModel::moveSelectedComponent(vector<string> selectedComponentsIDVector,Point mousePressPosition,Point mouseReleasePosition){
+void ERModel::moveComponents(vector<string> selectedComponentsIDVector,Point mousePressPosition,Point mouseReleasePosition){
     if(mousePressPosition-mouseReleasePosition == Point::Zero)
         return;
 
-    HashMap<string,Component*> selectedComponentMap;
-    for each(string componentID in selectedComponentsIDVector)
-        if(this->componentMap.containsKey(componentID))
-            selectedComponentMap.put(componentID,this->componentMap.get(componentID));
-
+    HashMap<string,Component*> selectedComponentMap = this->getComponentByIDVector(selectedComponentsIDVector);
     if(selectedComponentMap.empty())
         return;
 
@@ -246,4 +242,12 @@ void ERModel::setNodePosition(string componentType,Node* node){
     double positionY = WidgetDefaultSetting::WidgetStartY+(*countIterator)*WidgetDefaultSetting::WidgetOffsetY;
     node->setPosition(Point(positionX,positionY));
     (*countIterator)++;
+}
+
+HashMap<string,Component*> ERModel::getComponentByIDVector(vector<string> componentIDVector){
+    HashMap<string,Component*> resultMap;
+    for each(string componentID in componentIDVector)
+        if(this->componentMap.containsKey(componentID))
+            resultMap.put(componentID,this->componentMap.get(componentID));
+    return resultMap;
 }

@@ -59,8 +59,8 @@ void Presentation::setComponentText(string componentID,string text){
     this->erModel->setComponentText(componentID,text);
 }
 
-void Presentation::moveSelectedComponent(vector<string> selectedComponentsIDVector,Point mousePressPosition,Point mouseReleasePosition){
-    this->erModel->moveSelectedComponent(selectedComponentsIDVector,mousePressPosition,mouseReleasePosition);
+void Presentation::moveComponents(vector<string> selectedComponentsIDVector,Point mousePressPosition,Point mouseReleasePosition){
+    this->erModel->moveComponents(selectedComponentsIDVector,mousePressPosition,mouseReleasePosition);
 }
 
 Component* Presentation::getComponentByID(string id){

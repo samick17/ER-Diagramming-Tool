@@ -226,7 +226,7 @@ void GraphicalPresentation::previewMoveSelectedWidget(Point deltaPosition){
 }
 //move all selected widget
 void GraphicalPresentation::moveSelectedWidget(Point mousePressPosition,Point mouseReleasePosition){
-    this->presentation->moveSelectedComponent(this->selectedWidgetVector,mousePressPosition,mouseReleasePosition);
+    this->presentation->moveComponents(this->selectedWidgetVector,mousePressPosition,mouseReleasePosition);
 }
 
 void GraphicalPresentation::unSelectAll(){
@@ -235,6 +235,7 @@ void GraphicalPresentation::unSelectAll(){
 
 void GraphicalPresentation::switchState(int stateID){
     this->setComponentDataForPreview(NULL);
+    this->notifyModel();
     this->stateSubject.switchState(stateID,this);
 }
 

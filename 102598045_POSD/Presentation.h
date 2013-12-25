@@ -38,7 +38,7 @@ public:
     bool setCardinality(Connector* connector,string cardinality);
     void setPrimaryKey(string componentID);
     void setComponentText(string componentID,string text);
-    void moveSelectedComponent(vector<string> selectedComponentsIDVector,Point mousePressPosition,Point mouseReleasePosition);
+    void moveComponents(vector<string> selectedComponentsIDVector,Point mousePressPosition,Point mouseReleasePosition);
 
     Component* getComponentByID(string id);
     Connector* getNodesConnector(Component* firstNode,Component* secondNode);

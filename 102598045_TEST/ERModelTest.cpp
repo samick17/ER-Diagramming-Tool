@@ -239,7 +239,7 @@ TEST_F(ERModelTest,testSetComponentText){
     ASSERT_EQ(originConnectorName,connector->getName());
 }
 
-TEST_F(ERModelTest,testMoveSelectedComponent){
+TEST_F(ERModelTest,testmoveComponents){
 }
 
 TEST_F(ERModelTest,testOpenFile){

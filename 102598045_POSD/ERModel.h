@@ -59,7 +59,7 @@ public:
     void setPrimaryKey(string componentID);
     bool setCardinality(Connector* connector,string cardinality);
     void setComponentText(string componentID,string text);
-    void moveSelectedComponent(vector<string> selectedComponentsIDVector,Point mousePressPosition,Point mouseReleasePosition);
+    void moveComponents(vector<string> selectedComponentsIDVector,Point mousePressPosition,Point mouseReleasePosition);
     void openFile(string filePath);
     void saveFile(string filePath);
     //clip board related
@@ -85,6 +85,7 @@ private:
     void initialCountMap();
     void resetCounting();
     void setNodePosition(string componentType,Node* node);
+    HashMap<string,Component*> getComponentByIDVector(vector<string> componentIDVector);
     int attributeCount,entityCount,relationShipCount;
     HashMap<string,int*> componentTypeCountMap;
     HashMap<string,Component*> componentMap;
