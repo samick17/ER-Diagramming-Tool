@@ -165,18 +165,15 @@ bool GraphicalPresentation::canRedo(){
 }
 
 void GraphicalPresentation::cutComponents(){
-	/*HashMap<string,Component*> componentMap = this->presentation->getAllComponents();
-	HashMap<string,Component*> selectedComponents;
-	for each(string componentID in this->selectedWidgetVector){
-		if(componentMap.containsKey(componentID))
-			selectedComponents.put(componentID,componentMap.get(componentID));
-	}*/
+    this->presentation->cutComponents(this->selectedWidgetVector);
 }
 
 void GraphicalPresentation::copyComponents(){
+    this->presentation->copyComponents(this->selectedWidgetVector);
 }
 
 void GraphicalPresentation::pasteComponents(){
+    this->presentation->pasteComponents(this->selectedWidgetVector);
 }
 
 //is widget being selected?

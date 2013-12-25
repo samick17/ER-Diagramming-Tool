@@ -63,9 +63,9 @@ public:
     void openFile(string filePath);
     void saveFile(string filePath);
     //clip board related
-    void cutComponets();
-    void copyComponets();
-    void pasteComponets();
+    void cutComponents(vector<string> componentIDVector);
+    void copyComponents(vector<string> componentIDVector);
+    void pasteComponents(vector<string> componentIDVector);
 
     Component* getComponentByID(string id);
     Connector* getNodesConnector(Component* firstNode,Component* secondNode);

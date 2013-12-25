@@ -136,13 +136,16 @@ void ERModel::saveFile(string filePath){
     outputFileProcess.saveFile();
 }
 
-void ERModel::cutComponets(){
+void ERModel::cutComponents(vector<string> componentIDVector){
+    HashMap<string,Component*> selectedComponentMap = this->getComponentByIDVector(componentIDVector);
+    if(selectedComponentMap.empty())
+        return;
 }
 
-void ERModel::copyComponets(){
+void ERModel::copyComponents(vector<string> componentIDVector){
 }
 
-void ERModel::pasteComponets(){
+void ERModel::pasteComponents(vector<string> componentIDVector){
 }
 //if doesn't contains such component, throw exception
 Component* ERModel::getComponentByID(string id){
