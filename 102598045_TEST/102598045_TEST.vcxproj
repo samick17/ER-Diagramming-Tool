@@ -135,9 +135,11 @@
     <ClCompile Include="..\102598045_POSD\ERModel.cpp" />
     <ClCompile Include="..\102598045_POSD\Exception.cpp" />
     <ClCompile Include="..\102598045_POSD\FileNotFoundException.cpp" />
+    <ClCompile Include="..\102598045_POSD\FileProcess.cpp" />
     <ClCompile Include="..\102598045_POSD\GraphicalPresentation.cpp" />
     <ClCompile Include="..\102598045_POSD\HasConnectedException.cpp" />
     <ClCompile Include="..\102598045_POSD\InputFileParser.cpp" />
+    <ClCompile Include="..\102598045_POSD\InputFileProcess.cpp" />
     <ClCompile Include="..\102598045_POSD\InstructionData.cpp" />
     <ClCompile Include="..\102598045_POSD\InstructionMenu.cpp" />
     <ClCompile Include="..\102598045_POSD\InvalidConnectException.cpp" />

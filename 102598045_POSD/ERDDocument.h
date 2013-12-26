@@ -7,7 +7,6 @@ class Component;
 
 class ERDDocument : public Document{
 public:
-    ERDDocument(string fileName);
     ERDDocument(string fileName,HashMap<string,Component*> componentMap);
 protected:
     void doSaveFile();

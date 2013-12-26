@@ -1,13 +1,11 @@
 #pragma once
 
-#include <string>
+#include "FileProcess.h"
 #include "HashMap.h"
 
 class Component;
 
-using namespace std;
-
-class OutputFileProcess{
+class OutputFileProcess : public FileProcess{
 public:
     OutputFileProcess(string filePath,HashMap<string,Component*> componentMap);
     ~OutputFileProcess();
@@ -16,9 +14,7 @@ public:
 private:
     void saveERDFile();
     void saveXmlFile();
-    void extractFileInfo(string filePath);
     typedef void (OutputFileProcess::*SaveFileFunction)();
     HashMap<string,SaveFileFunction> saveFileFunctionMap;
-    string fileName,fileExtension;
     HashMap<string,Component*> componentMap;
 };

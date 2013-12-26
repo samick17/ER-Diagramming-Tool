@@ -13,7 +13,8 @@ public:
     static const int DefaultWidth;
     static const int DefaultHeight;
     static const string FilePath;
-    static const string FileExtension;
+    static const string FullERDFileExtension;
+    static const string FullXmlFileExtension;
     static const string ERDFileExtension;
     static const string XmlFileExtension;
     static const string ERDPositionFileExtension;

@@ -106,6 +106,7 @@
     <ClCompile Include="EditTextOfComponentsCommand.cpp" />
     <ClCompile Include="EditToolBar.cpp" />
     <ClCompile Include="ERDDocument.cpp" />
+    <ClCompile Include="FileProcess.cpp" />
     <ClCompile Include="GeneratedFiles\Debug\moc_EditToolBar.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
@@ -136,6 +137,7 @@
     <ClCompile Include="GUIScrollView.cpp" />
     <ClCompile Include="HelpMenuItem.cpp" />
     <ClCompile Include="IconPath.cpp" />
+    <ClCompile Include="InputFileProcess.cpp" />
     <ClCompile Include="MenuSetting.cpp" />
     <ClCompile Include="MoveComponentsCommand.cpp" />
     <ClCompile Include="NullClipBoardState.cpp" />
@@ -252,6 +254,8 @@
     <ClInclude Include="ClipBoardStateID.h" />
     <ClInclude Include="CopyState.h" />
     <ClInclude Include="CutState.h" />
+    <ClInclude Include="FileProcess.h" />
+    <ClInclude Include="InputFileProcess.h" />
     <ClInclude Include="NullClipBoardState.h" />
     <ClInclude Include="XmlDocument.h" />
     <CustomBuild Include="AddDrawableToolBar.h">

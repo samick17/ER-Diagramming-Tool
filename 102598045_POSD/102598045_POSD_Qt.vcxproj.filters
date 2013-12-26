@@ -658,6 +658,12 @@
     <ClCompile Include="ClipBoardStateFactory.cpp">
       <Filter>Source Files\Factory</Filter>
     </ClCompile>
+    <ClCompile Include="InputFileProcess.cpp">
+      <Filter>Source Files\Process</Filter>
+    </ClCompile>
+    <ClCompile Include="FileProcess.cpp">
+      <Filter>Source Files\Process</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ERModel.h">
@@ -1049,6 +1055,12 @@
     </ClInclude>
     <ClInclude Include="ClipBoardStateFactory.h">
       <Filter>Header Files\Factory</Filter>
+    </ClInclude>
+    <ClInclude Include="InputFileProcess.h">
+      <Filter>Header Files\Process</Filter>
+    </ClInclude>
+    <ClInclude Include="FileProcess.h">
+      <Filter>Header Files\Process</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -10,6 +10,7 @@
 #include "InvalidNodeTypeException.h"
 #include "InputFileParser.h"
 #include "HashMapUtil.h"
+#include "InputFileProcess.h"
 #include "OutputFileProcess.h"
 #include "ClipBoardState.h"
 #include "ClipBoardStateID.h"
@@ -131,8 +132,10 @@ void ERModel::moveComponents(vector<string> selectedComponentsIDVector,Point mou
 }
 
 void ERModel::openFile(string filePath){
-    InputFileParser inputFileParser;
-    inputFileParser.parseFileToModel(filePath,this);
+    InputFileProcess inputFileProcess = InputFileProcess(filePath,this);
+    inputFileProcess.openFile();
+    /*InputFileParser inputFileParser;
+    inputFileParser.parseFileToModel(filePath,this);*/
     //open file should reset undo/redo state
     this->commandManager.popAllStack();
 }

@@ -654,6 +654,12 @@
     <ClCompile Include="..\102598045_POSD\Component.cpp">
       <Filter>Source Files\Model\Component</Filter>
     </ClCompile>
+    <ClCompile Include="..\102598045_POSD\InputFileProcess.cpp">
+      <Filter>Source Files\Process</Filter>
+    </ClCompile>
+    <ClCompile Include="..\102598045_POSD\FileProcess.cpp">
+      <Filter>Source Files\Process</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DirectoryUtil.h">

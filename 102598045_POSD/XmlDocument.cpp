@@ -3,9 +3,6 @@
 #include "SaveXmlComponentVisitor.h"
 #include "ApplicationSetting.h"
 
-XmlDocument::XmlDocument(string fileName) : Document(fileName,ApplicationSetting::XmlFileExtension){
-}
-
 XmlDocument::XmlDocument(string fileName,HashMap<string,Component*> componentMap) : Document(fileName,ApplicationSetting::XmlFileExtension),componentMap(componentMap){
 }
 

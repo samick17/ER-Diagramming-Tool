@@ -3,9 +3,6 @@
 #include "SaveComponentVisitor.h"
 #include "ApplicationSetting.h"
 
-ERDDocument::ERDDocument(string fileName) : Document(fileName,ApplicationSetting::ERDFileExtension){
-}
-
 ERDDocument::ERDDocument(string fileName,HashMap<string,Component*> componentMap) : Document(fileName,ApplicationSetting::ERDFileExtension),componentMap(componentMap){
 }
 
