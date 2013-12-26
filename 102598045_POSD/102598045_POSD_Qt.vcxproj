@@ -88,11 +88,17 @@
     <ClCompile Include="AttributeWidget.cpp" />
     <ClCompile Include="BrowseToolBar.cpp" />
     <ClCompile Include="Cardinality.cpp" />
+    <ClCompile Include="ClipBoard.cpp" />
+    <ClCompile Include="ClipBoardState.cpp" />
+    <ClCompile Include="ClipBoardStateFactory.cpp" />
+    <ClCompile Include="ClipBoardStateID.cpp" />
     <ClCompile Include="CloseInstruction.cpp" />
     <ClCompile Include="CommandFactory.cpp" />
     <ClCompile Include="ComponentVisitor.cpp" />
     <ClCompile Include="ConnectorData.cpp" />
+    <ClCompile Include="CopyState.cpp" />
     <ClCompile Include="CutComponentsCommand.cpp" />
+    <ClCompile Include="CutState.cpp" />
     <ClCompile Include="DeleteMultiComponentCommand.cpp" />
     <ClCompile Include="DialogSetting.cpp" />
     <ClCompile Include="EditableTableWidgetItem.cpp" />
@@ -132,6 +138,7 @@
     <ClCompile Include="IconPath.cpp" />
     <ClCompile Include="MenuSetting.cpp" />
     <ClCompile Include="MoveComponentsCommand.cpp" />
+    <ClCompile Include="NullClipBoardState.cpp" />
     <ClCompile Include="OutputFileProcess.cpp" />
     <ClCompile Include="PasteComponentsCommand.cpp" />
     <ClCompile Include="ReorderComponentsUtil.cpp" />
@@ -239,6 +246,13 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ActionData.h" />
+    <ClInclude Include="ClipBoard.h" />
+    <ClInclude Include="ClipBoardState.h" />
+    <ClInclude Include="ClipBoardStateFactory.h" />
+    <ClInclude Include="ClipBoardStateID.h" />
+    <ClInclude Include="CopyState.h" />
+    <ClInclude Include="CutState.h" />
+    <ClInclude Include="NullClipBoardState.h" />
     <ClInclude Include="XmlDocument.h" />
     <CustomBuild Include="AddDrawableToolBar.h">
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(AdditionalInputs)</AdditionalInputs>

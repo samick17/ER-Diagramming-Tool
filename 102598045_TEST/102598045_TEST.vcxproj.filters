@@ -121,9 +121,6 @@
     <Filter Include="Source Files\View\GUI">
       <UniqueIdentifier>{f7f6b837-b413-44a1-a4a6-dfa05132002e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\View\GUI\State">
-      <UniqueIdentifier>{5087fd86-7840-4682-8bbf-2e9de7ebafb0}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\ObserverTest">
       <UniqueIdentifier>{80b41ee3-2229-4d3d-90e5-7642d7490a07}</UniqueIdentifier>
     </Filter>
@@ -162,6 +159,18 @@
     </Filter>
     <Filter Include="Source Files\Process">
       <UniqueIdentifier>{aadfbff0-c83d-48e4-a0f5-7097ee9d8210}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\State">
+      <UniqueIdentifier>{83958a79-d840-4c8c-a518-017a1ab8ea1b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\State\ViewState">
+      <UniqueIdentifier>{5087fd86-7840-4682-8bbf-2e9de7ebafb0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\State\ClipBoardState">
+      <UniqueIdentifier>{422518bb-6895-4780-9db7-6a10a6765fc9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Model\Component">
+      <UniqueIdentifier>{19c81018-be87-4124-a0bb-e033f009dd54}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -225,9 +234,6 @@
     <ClCompile Include="..\102598045_POSD\ApplicationSetting.cpp">
       <Filter>Source Files\Constants</Filter>
     </ClCompile>
-    <ClCompile Include="..\102598045_POSD\Attribute.cpp">
-      <Filter>Source Files\Model</Filter>
-    </ClCompile>
     <ClCompile Include="..\102598045_POSD\AttributeType.cpp">
       <Filter>Source Files\Constants</Filter>
     </ClCompile>
@@ -290,21 +296,6 @@
     </ClCompile>
     <ClCompile Include="..\102598045_POSD\NullPointerException.cpp">
       <Filter>Source Files\Exception</Filter>
-    </ClCompile>
-    <ClCompile Include="..\102598045_POSD\Component.cpp">
-      <Filter>Source Files\Model</Filter>
-    </ClCompile>
-    <ClCompile Include="..\102598045_POSD\Connector.cpp">
-      <Filter>Source Files\Model</Filter>
-    </ClCompile>
-    <ClCompile Include="..\102598045_POSD\Entity.cpp">
-      <Filter>Source Files\Model</Filter>
-    </ClCompile>
-    <ClCompile Include="..\102598045_POSD\Node.cpp">
-      <Filter>Source Files\Model</Filter>
-    </ClCompile>
-    <ClCompile Include="..\102598045_POSD\RelationShip.cpp">
-      <Filter>Source Files\Model</Filter>
     </ClCompile>
     <ClCompile Include="..\102598045_POSD\ERModel.cpp">
       <Filter>Source Files\Model</Filter>
@@ -469,16 +460,16 @@
       <Filter>Source Files\Constants</Filter>
     </ClCompile>
     <ClCompile Include="..\102598045_POSD\State.cpp">
-      <Filter>Source Files\View\GUI\State</Filter>
+      <Filter>Source Files\State\ViewState</Filter>
     </ClCompile>
     <ClCompile Include="..\102598045_POSD\AddNodeState.cpp">
-      <Filter>Source Files\View\GUI\State</Filter>
+      <Filter>Source Files\State\ViewState</Filter>
     </ClCompile>
     <ClCompile Include="..\102598045_POSD\ConnectState.cpp">
-      <Filter>Source Files\View\GUI\State</Filter>
+      <Filter>Source Files\State\ViewState</Filter>
     </ClCompile>
     <ClCompile Include="..\102598045_POSD\PointerState.cpp">
-      <Filter>Source Files\View\GUI\State</Filter>
+      <Filter>Source Files\State\ViewState</Filter>
     </ClCompile>
     <ClCompile Include="..\102598045_POSD\StateFactory.cpp">
       <Filter>Source Files\Factory</Filter>
@@ -514,7 +505,7 @@
       <Filter>Source Files\MockObject</Filter>
     </ClCompile>
     <ClCompile Include="..\102598045_POSD\SetPrimaryKeyState.cpp">
-      <Filter>Source Files\View\GUI\State</Filter>
+      <Filter>Source Files\State\ViewState</Filter>
     </ClCompile>
     <ClCompile Include="..\102598045_POSD\SetPrimaryKeyCommand.cpp">
       <Filter>Source Files\Command</Filter>
@@ -620,6 +611,48 @@
     </ClCompile>
     <ClCompile Include="..\102598045_POSD\ERDDocument.cpp">
       <Filter>Source Files\Parser</Filter>
+    </ClCompile>
+    <ClCompile Include="..\102598045_POSD\CutComponentsCommand.cpp">
+      <Filter>Source Files\Command</Filter>
+    </ClCompile>
+    <ClCompile Include="..\102598045_POSD\ClipBoardStateFactory.cpp">
+      <Filter>Source Files\Factory</Filter>
+    </ClCompile>
+    <ClCompile Include="..\102598045_POSD\CutState.cpp">
+      <Filter>Source Files\State\ClipBoardState</Filter>
+    </ClCompile>
+    <ClCompile Include="..\102598045_POSD\NullClipBoardState.cpp">
+      <Filter>Source Files\State\ClipBoardState</Filter>
+    </ClCompile>
+    <ClCompile Include="..\102598045_POSD\CopyState.cpp">
+      <Filter>Source Files\State\ClipBoardState</Filter>
+    </ClCompile>
+    <ClCompile Include="..\102598045_POSD\ClipBoardState.cpp">
+      <Filter>Source Files\State\ClipBoardState</Filter>
+    </ClCompile>
+    <ClCompile Include="..\102598045_POSD\ClipBoardStateID.cpp">
+      <Filter>Source Files\Constants</Filter>
+    </ClCompile>
+    <ClCompile Include="..\102598045_POSD\ClipBoard.cpp">
+      <Filter>Source Files\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="..\102598045_POSD\Attribute.cpp">
+      <Filter>Source Files\Model\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="..\102598045_POSD\Entity.cpp">
+      <Filter>Source Files\Model\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="..\102598045_POSD\Node.cpp">
+      <Filter>Source Files\Model\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="..\102598045_POSD\RelationShip.cpp">
+      <Filter>Source Files\Model\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="..\102598045_POSD\Connector.cpp">
+      <Filter>Source Files\Model\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="..\102598045_POSD\Component.cpp">
+      <Filter>Source Files\Model\Component</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

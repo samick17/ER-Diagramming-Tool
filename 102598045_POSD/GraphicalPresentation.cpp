@@ -148,12 +148,12 @@ void GraphicalPresentation::deleteComponent(){
     this->sync(ControllerEvent::DeleteComponent);
 }
 
-bool GraphicalPresentation::isSelectAnyWidgets(){
+bool GraphicalPresentation::isAnyWidgetSelected(){
     return !this->selectedWidgetVector.empty();
 }
 
 bool GraphicalPresentation::canPasteWidgets(){
-    return false;
+    return this->presentation->canPaste();
 }
 
 bool GraphicalPresentation::canUndo(){
@@ -166,14 +166,18 @@ bool GraphicalPresentation::canRedo(){
 
 void GraphicalPresentation::cutComponents(){
     this->presentation->cutComponents(this->selectedWidgetVector);
+    this->unSelectAll();
+    this->notifyModel();
 }
 
 void GraphicalPresentation::copyComponents(){
     this->presentation->copyComponents(this->selectedWidgetVector);
+    this->notifyModel();
 }
 
 void GraphicalPresentation::pasteComponents(){
-    this->presentation->pasteComponents(this->selectedWidgetVector);
+    this->presentation->pasteComponents();
+    this->notifyModel();
 }
 
 //is widget being selected?
@@ -283,6 +287,7 @@ void GraphicalPresentation::unregisterObserverToModel(IObserver* observer){
 }
 
 void GraphicalPresentation::notifyModel(){
+    this->updateAllComponentData();
     this->presentation->notifyModel();
 }
 

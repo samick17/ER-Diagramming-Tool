@@ -5,6 +5,7 @@
 #include "SetPrimaryKeyCommand.h"
 #include "EditTextOfComponentsCommand.h"
 #include "MoveComponentsCommand.h"
+#include "CutComponentsCommand.h"
 
 Command* CommandFactory::createAddNodeCommand(HashMap<string,Component*>& componentMap,Node* node){
     return new AddNodeCommand(componentMap,node);
@@ -28,4 +29,8 @@ Command* CommandFactory::createEditTextOfComponentsCommand(Component* component,
 
 Command* CommandFactory::createMoveComponentsCommand(HashMap<string,Component*> selectedComponentMap,Point mousePressPosition,Point mouseReleasePosition){
     return new MoveComponentsCommand(selectedComponentMap,mousePressPosition,mouseReleasePosition);
+}
+
+Command* CommandFactory::createCutComponentsCommand(HashMap<string,Component*>& componentMap,vector<string> componentIDVector){
+    return new CutComponentsCommand(componentMap,componentIDVector);
 }

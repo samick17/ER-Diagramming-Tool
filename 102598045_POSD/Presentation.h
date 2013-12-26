@@ -40,9 +40,10 @@ public:
     void setComponentText(string componentID,string text);
     void moveComponents(vector<string> selectedComponentsIDVector,Point mousePressPosition,Point mouseReleasePosition);
     //clip board related
+    bool canPaste();
     void cutComponents(vector<string> componentIDVector);
     void copyComponents(vector<string> componentIDVector);
-    void pasteComponents(vector<string> componentIDVector);
+    void pasteComponents();
 
     Component* getComponentByID(string id);
     Connector* getNodesConnector(Component* firstNode,Component* secondNode);

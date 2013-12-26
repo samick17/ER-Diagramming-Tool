@@ -63,6 +63,10 @@ void Presentation::moveComponents(vector<string> selectedComponentsIDVector,Poin
     this->erModel->moveComponents(selectedComponentsIDVector,mousePressPosition,mouseReleasePosition);
 }
 
+bool Presentation::canPaste(){
+    return this->erModel->canPaste();
+}
+
 void Presentation::cutComponents(vector<string> componentIDVector){
     this->erModel->cutComponents(componentIDVector);
 }
@@ -71,8 +75,8 @@ void Presentation::copyComponents(vector<string> componentIDVector){
     this->erModel->copyComponents(componentIDVector);
 }
 
-void Presentation::pasteComponents(vector<string> componentIDVector){
-    this->erModel->pasteComponents(componentIDVector);
+void Presentation::pasteComponents(){
+    this->erModel->pasteComponents();
 }
 
 Component* Presentation::getComponentByID(string id){

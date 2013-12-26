@@ -1,4 +1,5 @@
 #include "MoveComponentsCommand.h"
+#include "Component.h"
 
 MoveComponentsCommand::MoveComponentsCommand(HashMap<string,Component*> selectedComponentMap,Point mousePressPosition,Point mouseReleasePosition) : selectedComponentMap(selectedComponentMap),mousePressPosition(mousePressPosition),mouseReleasePosition(mouseReleasePosition){
     this->deltaPosition = mouseReleasePosition-mousePressPosition;

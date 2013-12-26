@@ -21,4 +21,5 @@ public:
     Command* createSetPrimaryKeyCommand(Attribute* attribute);
     Command* createEditTextOfComponentsCommand(Component* component,string text);
     Command* createMoveComponentsCommand(HashMap<string,Component*> selectedComponentMap,Point mousePressPosition,Point mouseReleasePosition);
+    Command* createCutComponentsCommand(HashMap<string,Component*>& componentMap,vector<string> componentIDVector);
 };

@@ -8,6 +8,9 @@
 #include "ISyncable.h"
 #include "Cardinality.h"
 #include "Subject.h"
+#include "ClipBoard.h"
+
+class ClipBoardState;
 
 class ERModel : public ISyncable,public Subject{
     friend class ERModelTest;
@@ -63,9 +66,11 @@ public:
     void openFile(string filePath);
     void saveFile(string filePath);
     //clip board related
+    bool canPaste();
     void cutComponents(vector<string> componentIDVector);
     void copyComponents(vector<string> componentIDVector);
-    void pasteComponents(vector<string> componentIDVector);
+    void pasteComponents();
+    void switchClipBoardState(int clipBoardState);
 
     Component* getComponentByID(string id);
     Connector* getNodesConnector(Component* firstNode,Component* secondNode);
@@ -87,6 +92,8 @@ private:
     void setNodePosition(string componentType,Node* node);
     HashMap<string,Component*> getComponentByIDVector(vector<string> componentIDVector);
     int attributeCount,entityCount,relationShipCount;
+    ClipBoard clipBoard;
+    ClipBoardState* clipBoardState;
     HashMap<string,int*> componentTypeCountMap;
     HashMap<string,Component*> componentMap;
     Cardinality cardinality;

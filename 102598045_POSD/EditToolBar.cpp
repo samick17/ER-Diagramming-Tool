@@ -26,9 +26,9 @@ void EditToolBar::refresh(){
     int offset = ActionData::Undo;
     this->actions().at(ActionData::Undo-offset)->setEnabled(this->graphicalPresentation->canUndo());
     this->actions().at(ActionData::Redo-offset)->setEnabled(this->graphicalPresentation->canRedo());
-    this->actions().at(ActionData::Delete-offset)->setEnabled(this->graphicalPresentation->isSelectAnyWidgets());
-    this->actions().at(ActionData::Cut-offset)->setEnabled(this->graphicalPresentation->isSelectAnyWidgets());
-    this->actions().at(ActionData::Copy-offset)->setEnabled(this->graphicalPresentation->isSelectAnyWidgets());
+    this->actions().at(ActionData::Delete-offset)->setEnabled(this->graphicalPresentation->isAnyWidgetSelected());
+    this->actions().at(ActionData::Cut-offset)->setEnabled(this->graphicalPresentation->isAnyWidgetSelected());
+    this->actions().at(ActionData::Copy-offset)->setEnabled(this->graphicalPresentation->isAnyWidgetSelected());
     this->actions().at(ActionData::Paste-offset)->setEnabled(this->graphicalPresentation->canPasteWidgets());
 }
 

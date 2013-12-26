@@ -140,9 +140,6 @@
     <Filter Include="Header Files\View\GUI\MenuItem">
       <UniqueIdentifier>{9b230725-bc5b-40d4-ad40-0497f7908410}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\View\GUI\State">
-      <UniqueIdentifier>{5986ac8d-2e58-4bc5-bc44-c07e7a9bc9a2}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\Parser">
       <UniqueIdentifier>{50467b2a-900d-4c40-a9a8-63c8b3e444e7}</UniqueIdentifier>
     </Filter>
@@ -188,9 +185,6 @@
     <Filter Include="Source Files\View\GUI\ToolBar">
       <UniqueIdentifier>{95ea280b-014c-4adf-9cae-615db7b410fd}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\View\GUI\State">
-      <UniqueIdentifier>{16cc152a-dc5d-432a-baa8-94ee3eb07c7a}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\View\GUI\GUIView">
       <UniqueIdentifier>{2be94050-ada5-43c5-a4d3-b93c96ee5ad1}</UniqueIdentifier>
     </Filter>
@@ -211,6 +205,24 @@
     </Filter>
     <Filter Include="Source Files\View\GUI\Dialog">
       <UniqueIdentifier>{cac2506a-d154-4ecd-a11d-a87dd990661b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\State">
+      <UniqueIdentifier>{9fb97ba3-f7ec-40a3-a8c0-5080462f32b6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\State">
+      <UniqueIdentifier>{65909977-3e2c-4085-8a8c-a5c62f0f6994}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\State\ClipBoardState">
+      <UniqueIdentifier>{30fd420b-4ca8-4f1a-ae7e-4b2abbfbf48d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\State\ViewState">
+      <UniqueIdentifier>{5986ac8d-2e58-4bc5-bc44-c07e7a9bc9a2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\State\ViewState">
+      <UniqueIdentifier>{16cc152a-dc5d-432a-baa8-94ee3eb07c7a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\State\ClipBoardState">
+      <UniqueIdentifier>{8a52c6bd-108f-484f-8eec-7a8abdd995c2}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -449,16 +461,16 @@
       <Filter>Source Files\View\GUI\GUIWidget\ToolBarWidget</Filter>
     </ClCompile>
     <ClCompile Include="State.cpp">
-      <Filter>Source Files\View\GUI\State</Filter>
+      <Filter>Source Files\State\ViewState</Filter>
     </ClCompile>
     <ClCompile Include="PointerState.cpp">
-      <Filter>Source Files\View\GUI\State</Filter>
+      <Filter>Source Files\State\ViewState</Filter>
     </ClCompile>
     <ClCompile Include="AddNodeState.cpp">
-      <Filter>Source Files\View\GUI\State</Filter>
+      <Filter>Source Files\State\ViewState</Filter>
     </ClCompile>
     <ClCompile Include="ConnectState.cpp">
-      <Filter>Source Files\View\GUI\State</Filter>
+      <Filter>Source Files\State\ViewState</Filter>
     </ClCompile>
     <ClCompile Include="StateID.cpp">
       <Filter>Source Files\Constants</Filter>
@@ -506,7 +518,7 @@
       <Filter>Source Files\Struct</Filter>
     </ClCompile>
     <ClCompile Include="SetPrimaryKeyState.cpp">
-      <Filter>Source Files\View\GUI\State</Filter>
+      <Filter>Source Files\State\ViewState</Filter>
     </ClCompile>
     <ClCompile Include="SetPrimaryKeyCommand.cpp">
       <Filter>Source Files\Command</Filter>
@@ -624,6 +636,27 @@
     </ClCompile>
     <ClCompile Include="ERDDocument.cpp">
       <Filter>Source Files\Parser</Filter>
+    </ClCompile>
+    <ClCompile Include="ClipBoard.cpp">
+      <Filter>Source Files\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="ClipBoardState.cpp">
+      <Filter>Source Files\State\ClipBoardState</Filter>
+    </ClCompile>
+    <ClCompile Include="CutState.cpp">
+      <Filter>Source Files\State\ClipBoardState</Filter>
+    </ClCompile>
+    <ClCompile Include="CopyState.cpp">
+      <Filter>Source Files\State\ClipBoardState</Filter>
+    </ClCompile>
+    <ClCompile Include="NullClipBoardState.cpp">
+      <Filter>Source Files\State\ClipBoardState</Filter>
+    </ClCompile>
+    <ClCompile Include="ClipBoardStateID.cpp">
+      <Filter>Source Files\Constants</Filter>
+    </ClCompile>
+    <ClCompile Include="ClipBoardStateFactory.cpp">
+      <Filter>Source Files\Factory</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -853,16 +886,16 @@
       <Filter>Header Files\View\GUI\GUIWidget\ToolBarWidget</Filter>
     </ClInclude>
     <ClInclude Include="State.h">
-      <Filter>Header Files\View\GUI\State</Filter>
+      <Filter>Header Files\State\ViewState</Filter>
     </ClInclude>
     <ClInclude Include="PointerState.h">
-      <Filter>Header Files\View\GUI\State</Filter>
+      <Filter>Header Files\State\ViewState</Filter>
     </ClInclude>
     <ClInclude Include="AddNodeState.h">
-      <Filter>Header Files\View\GUI\State</Filter>
+      <Filter>Header Files\State\ViewState</Filter>
     </ClInclude>
     <ClInclude Include="ConnectState.h">
-      <Filter>Header Files\View\GUI\State</Filter>
+      <Filter>Header Files\State\ViewState</Filter>
     </ClInclude>
     <ClInclude Include="StateID.h">
       <Filter>Header Files\Constants</Filter>
@@ -910,7 +943,7 @@
       <Filter>Header Files\Struct</Filter>
     </ClInclude>
     <ClInclude Include="SetPrimaryKeyState.h">
-      <Filter>Header Files\View\GUI\State</Filter>
+      <Filter>Header Files\State\ViewState</Filter>
     </ClInclude>
     <ClInclude Include="SetPrimaryKeyCommand.h">
       <Filter>Header Files\Command</Filter>
@@ -995,6 +1028,27 @@
     </ClInclude>
     <ClInclude Include="XmlDocument.h">
       <Filter>Header Files\Parser</Filter>
+    </ClInclude>
+    <ClInclude Include="ClipBoard.h">
+      <Filter>Header Files\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="ClipBoardState.h">
+      <Filter>Header Files\State\ClipBoardState</Filter>
+    </ClInclude>
+    <ClInclude Include="CutState.h">
+      <Filter>Header Files\State\ClipBoardState</Filter>
+    </ClInclude>
+    <ClInclude Include="CopyState.h">
+      <Filter>Header Files\State\ClipBoardState</Filter>
+    </ClInclude>
+    <ClInclude Include="NullClipBoardState.h">
+      <Filter>Header Files\State\ClipBoardState</Filter>
+    </ClInclude>
+    <ClInclude Include="ClipBoardStateID.h">
+      <Filter>Header Files\Constants</Filter>
+    </ClInclude>
+    <ClInclude Include="ClipBoardStateFactory.h">
+      <Filter>Header Files\Factory</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

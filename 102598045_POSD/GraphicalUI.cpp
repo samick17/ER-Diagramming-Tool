@@ -220,7 +220,6 @@ void GraphicalUI::executeSync(string syncEventType){
 }
 
 void GraphicalUI::refreshAllWidgets(){
-    this->graphicalPresentation->updateAllComponentData();
     this->graphicalPresentation->notifyModel();
 }
 

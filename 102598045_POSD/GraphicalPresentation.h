@@ -42,7 +42,6 @@ public:
 
     void reset();
 
-    void updateAllComponentData();
     Component* getLastPressedComponent();
     Component* getLastMovedComponent();
     Component* getLastReleasedComponent();
@@ -59,7 +58,7 @@ public:
     void setComponentText(string componentID,string text);
     void deleteComponent();
     //is some funtionality available
-    bool isSelectAnyWidgets();
+    bool isAnyWidgetSelected();
     bool canPasteWidgets();
     bool canUndo();
     bool canRedo();
@@ -93,6 +92,7 @@ public:
     void mouseMoveEvent(Point position,ComponentData* componentData);
     void mouseReleaseEvent(Point position,ComponentData* componentData);
 private:
+    void updateAllComponentData();
     Component* getComponentByComponentData(ComponentData* componentData);
     void deleteComponentDataForPreview();
     Presentation* presentation;

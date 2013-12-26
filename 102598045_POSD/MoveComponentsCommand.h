@@ -2,8 +2,10 @@
 
 #include "Command.h"
 #include "HashMap.h"
-#include "Component.h"
+#include "Point.h"
 #include <gtest/gtest_prod.h> 
+
+class Component;
 
 class MoveComponentsCommand : public Command{
 public:
