@@ -1,6 +1,7 @@
 #include "ApplicationSetting.h"
 
 const string ApplicationSetting::Title = "Entity Relation Diagramming Tool";
+const string ApplicationSetting::TitleAlertSave = "Entity Relation Diagramming Tool *";
 const string ApplicationSetting::IconPath = ":/res/Resources/application.png";
 const string ApplicationSetting::AboutTitle = "About ERD Tool";
 const string ApplicationSetting::AboutText = "Entity Relation Diagraming Tool\nVersion 1.0\nAuthor : 102598045@ntut";

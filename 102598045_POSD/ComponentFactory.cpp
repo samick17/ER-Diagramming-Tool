@@ -8,8 +8,6 @@
 
 using namespace std;
 
-int ComponentFactory::count = 0;
-
 ComponentFactory::ComponentFactory(){
     this->newComponentMap.put(ComponentType::TypeAttribute,newComponent<Attribute>);
     this->newComponentMap.put(ComponentType::TypeEntity,newComponent<Entity>);
@@ -20,16 +18,10 @@ ComponentFactory::ComponentFactory(){
 ComponentFactory::~ComponentFactory(){
 }
 //return component pointer, if doesn't has such type, throw exception
-Component* ComponentFactory::createComponent(string componentType,string name){
+Component* ComponentFactory::createComponent(string componentType,string componentID,string name){
     NewComponentFunction newComponentFunctiontion = findNewComponentFunction(componentType);
-    string componentID = StringUtil::intToString(count);
     Component* component = newComponentFunctiontion(componentID,name);
-    ComponentFactory::count++;
     return component;
-}
-//reset factory's ID
-void ComponentFactory::resetFactory(){
-    ComponentFactory::count = 0;
 }
 //return function pointer of new instance, if doesn't has such type, throw exception
 NewComponentFunction ComponentFactory::findNewComponentFunction(string type){

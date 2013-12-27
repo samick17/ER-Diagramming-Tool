@@ -24,7 +24,7 @@ public:
 
     GraphicalPresentation* getGraphicalPresentation();
     void sync(string syncEventType);
-    void setTitle(string title,string iconPath = ApplicationSetting::IconPath);
+    void setTitle(const char* title,string iconPath = ApplicationSetting::IconPath);
 protected:
     void closeEvent(QCloseEvent* closeEvent);
     void keyPressEvent(QKeyEvent* keyEvent);

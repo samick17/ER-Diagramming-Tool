@@ -22,6 +22,7 @@ void GUIScene::notify(Subject* subject){
 }
 
 void GUIScene::refresh(){
+    this->graphicalUI->setTitle(this->graphicalPresentation->getTitle());
     this->clear();
     //display all
     HashMap<string,ComponentData*> componentDataMap = this->graphicalPresentation->getAllComponentDataMap();

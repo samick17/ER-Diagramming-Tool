@@ -6,36 +6,30 @@
 #include "Connector.h"
 
 void ComponentFactoryTest::SetUp(){
-    this->componentFactory.resetFactory();
-    ASSERT_EQ(0,ComponentFactory::count);
 }
 
 void ComponentFactoryTest::TearDown(){
 }
 
 TEST_F(ComponentFactoryTest,testCreateComponent){
-    ASSERT_THROW(this->componentFactory.createComponent("X"),InvalidNodeTypeException);
+    ASSERT_THROW(this->componentFactory.createComponent("X","0"),InvalidNodeTypeException);
 
-    Component* attribute = this->componentFactory.createComponent(ComponentType::TypeAttribute);
-    ASSERT_EQ(1,ComponentFactory::count);
+    Component* attribute = this->componentFactory.createComponent(ComponentType::TypeAttribute,"1");
     ASSERT_EQ(typeid(Attribute).name(),typeid(*attribute).name());
     ASSERT_EQ(ComponentType::TypeAttribute,attribute->getType());
     delete attribute;
 
-    Component* entity = this->componentFactory.createComponent(ComponentType::TypeEntity);
-    ASSERT_EQ(2,ComponentFactory::count);
+    Component* entity = this->componentFactory.createComponent(ComponentType::TypeEntity,"2");
     ASSERT_EQ(typeid(Entity).name(),typeid(*entity).name());
     ASSERT_EQ(ComponentType::TypeEntity,entity->getType());
     delete entity;
 
-    Component* relationShip = this->componentFactory.createComponent(ComponentType::TypeRelationShip);
-    ASSERT_EQ(3,ComponentFactory::count);
+    Component* relationShip = this->componentFactory.createComponent(ComponentType::TypeRelationShip,"3");
     ASSERT_EQ(typeid(RelationShip).name(),typeid(*relationShip).name());
     ASSERT_EQ(ComponentType::TypeRelationShip,relationShip->getType());
     delete relationShip;
 
-    Component* connector = this->componentFactory.createComponent(ComponentType::TypeConnector);
-    ASSERT_EQ(4,ComponentFactory::count);
+    Component* connector = this->componentFactory.createComponent(ComponentType::TypeConnector,"4");
     ASSERT_EQ(typeid(Connector).name(),typeid(*connector).name());
     ASSERT_EQ(ComponentType::TypeConnector,connector->getType());
     delete connector;

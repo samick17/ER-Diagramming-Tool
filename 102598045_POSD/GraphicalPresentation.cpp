@@ -3,6 +3,7 @@
 #include "ControllerEvent.h"
 #include "StateID.h"
 #include "Connector.h"
+#include "ApplicationSetting.h"
 
 GraphicalPresentation::GraphicalPresentation(Presentation* presentation) : presentation(presentation){
     this->isCtrlPressed = false;
@@ -46,6 +47,10 @@ void GraphicalPresentation::updateAllComponentData(){
     this->componentDataMap.clear();
     for each(Component* component in this->presentation->getAllComponents())
         this->componentDataMap.put(component->getID(),component->getComponentData());
+}
+
+const char* GraphicalPresentation::getTitle(){
+    return this->presentation->getTitle();
 }
 
 Component* GraphicalPresentation::getLastPressedComponent(){
@@ -158,6 +163,10 @@ bool GraphicalPresentation::canUndo(){
 
 bool GraphicalPresentation::canRedo(){
     return this->presentation->canRedo();
+}
+
+bool GraphicalPresentation::isNeedToSave(){
+    return this->presentation->isNeedToSave();
 }
 
 void GraphicalPresentation::cutComponents(){

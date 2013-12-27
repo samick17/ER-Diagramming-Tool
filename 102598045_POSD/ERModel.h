@@ -57,6 +57,7 @@ public:
     int addConnection(Component* firstNode,Component* secondNode);
     bool canUndo();
     bool canRedo();
+    bool isNeedToSave();
     void undo();
     void redo();
     void setPrimaryKey(string componentID);
@@ -91,8 +92,11 @@ private:
     void setNodePosition(string componentType,Node* node);
     void switchClipBoardState(int clipBoardStateID);
     void deleteClipBoardState();
+    void executeCommand(Command* command);
     HashMap<string,Component*> getComponentsByIDVector(vector<string> componentIDVector);
     int attributeCount,entityCount,relationShipCount;
+    int newComponentID;
+    bool saveFlag;
     ClipBoard clipBoard;
     ClipBoardState* clipBoardState;
     HashMap<string,int*> componentTypeCountMap;

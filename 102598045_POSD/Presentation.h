@@ -24,6 +24,8 @@ public:
     Presentation(ERModel* erModel);
     virtual ~Presentation();
 
+    const char* getTitle();
+
     void openFile(string filePath);
     void saveFile(string filePath);
     void close();
@@ -33,6 +35,7 @@ public:
     int addConnection(Component* firstNode,Component* secondNode);
     bool canRedo();
     bool canUndo();
+    bool isNeedToSave();
     void redo();
     void undo();
     bool setCardinality(Connector* connector,string cardinality);

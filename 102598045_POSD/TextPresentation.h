@@ -33,6 +33,7 @@ public:
     Component* findComponent();
     Entity* findEntity();
 
+    bool isNeedToSave();
     void openFile(string filePath);
     void saveFile(string filePath);
     void close();

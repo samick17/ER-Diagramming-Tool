@@ -27,7 +27,7 @@
 #include "DialogSetting.h"
 
 GraphicalUI::GraphicalUI(GraphicalPresentation* graphicalPresentation): graphicalPresentation(graphicalPresentation),QMainWindow(){
-    this->setTitle(ApplicationSetting::Title);
+    this->setTitle(this->graphicalPresentation->getTitle());
     this->resize(ApplicationSetting::DefaultWidth,ApplicationSetting::DefaultHeight);
     this->initialGraphicView();
     this->initialAllAction();
@@ -67,8 +67,8 @@ void GraphicalUI::keyReleaseEvent(QKeyEvent* keyEvent){
     this->setKeyCtrlPressed(keyEvent);
 }
 
-void GraphicalUI::setTitle(string title,string iconPath){
-    this->setWindowTitle(QString(title.c_str()));
+void GraphicalUI::setTitle(const char* title,string iconPath){
+    this->setWindowTitle(title);
     this->setWindowIcon(QIcon(iconPath.c_str()));
 }
 
@@ -189,6 +189,7 @@ void GraphicalUI::saveFile(){
     if(!saveFilePath.isEmpty()){
         this->graphicalPresentation->saveFile(saveFilePath.toStdString());
     }
+    this->graphicalPresentation->notifyModel();
 }
 
 void GraphicalUI::saveXmlFile(){
@@ -196,9 +197,16 @@ void GraphicalUI::saveXmlFile(){
     if(!saveFilePath.isEmpty()){
         this->graphicalPresentation->saveFile(saveFilePath.toStdString());
     }
+    this->graphicalPresentation->notifyModel();
 }
 
 void GraphicalUI::close(){
+    if(this->graphicalPresentation->isNeedToSave()){
+        QMessageBox::StandardButton reply;
+        reply = QMessageBox::question(this, ApplicationSetting::Title.c_str(), "Do you want to save file?",QMessageBox::Yes|QMessageBox::No);
+        if (reply == QMessageBox::Yes)
+            this->saveFile();
+    }
     this->graphicalPresentation->close();
 }
 

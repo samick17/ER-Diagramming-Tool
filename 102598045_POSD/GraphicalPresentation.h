@@ -41,8 +41,7 @@ public:
     ComponentData* getComponentDataForPreview();
     void setComponentDataForPreview(ComponentData* componentDataForPreview);
 
-    void reset();
-
+    const char* getTitle();
     Component* getLastPressedComponent();
     Component* getLastMovedComponent();
     Component* getLastReleasedComponent();
@@ -63,6 +62,7 @@ public:
     bool canPasteWidgets();
     bool canUndo();
     bool canRedo();
+    bool isNeedToSave();
     //clip board related
     void cutComponents();
     void copyComponents();

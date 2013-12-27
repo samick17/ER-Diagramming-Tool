@@ -18,14 +18,12 @@ public:
     ComponentFactory();
     ~ComponentFactory();
 
-    Component* createComponent(string componentType,string name = StringSymbol::Empty);
-    void resetFactory();
+    Component* createComponent(string componentType,string componentID,string name = StringSymbol::Empty);
 private:
     template <typename Type>
     static Component* newComponent(string componentID,string name);
 
     NewComponentFunction findNewComponentFunction(string componentType);
-    static int count;
     HashMap<string,NewComponentFunction> newComponentMap;
 };
 

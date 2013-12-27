@@ -7,6 +7,7 @@ using namespace std;
 class ApplicationSetting{
 public:
     static const string Title;
+    static const string TitleAlertSave;
     static const string IconPath;
     static const string AboutTitle;
     static const string AboutText;

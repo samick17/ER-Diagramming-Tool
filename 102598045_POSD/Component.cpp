@@ -13,6 +13,10 @@ string Component::getID(){
     return this->componentData->getID();
 }
 
+void Component::setID(string id){
+    return this->componentData->setID(id);
+}
+
 string Component::getType(){
     return this->componentData->getType();
 }

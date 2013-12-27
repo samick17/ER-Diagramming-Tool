@@ -134,6 +134,10 @@ Entity* TextPresentation::findEntity(){
     return find;
 }
 
+bool TextPresentation::isNeedToSave(){
+    return this->presentation->isNeedToSave();
+}
+
 void TextPresentation::openFile(string filePath){
     this->presentation->openFile(filePath);
 }

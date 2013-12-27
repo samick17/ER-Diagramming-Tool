@@ -14,11 +14,13 @@
 #include "ClipBoardStateID.h"
 #include "ClipBoardState.h"
 #include "ClipBoardStateFactory.h"
+#include "StringUtil.h"
 
 ERModel::ERModel(){
     this->initialCountMap();
     this->resetCounting();
     this->clipBoardState = NULL;
+    this->saveFlag = false;
     this->switchClipBoardState(ClipBoardStateID::NullClipBoardState);
 }
 
@@ -31,10 +33,11 @@ Node* ERModel::addNode(string nodeType){
     if(nodeType == ComponentType::TypeConnector)
         throw InvalidNodeTypeException();
     ComponentFactory componentFactory;
-    Node* node = static_cast<Node*>(componentFactory.createComponent(nodeType));
+    Node* node = static_cast<Node*>(componentFactory.createComponent(nodeType,StringUtil::intToString(this->newComponentID)));
     CommandFactory commandFactory;
     Command* addNodeCommand = commandFactory.createAddNodeCommand(this->componentMap,node);
-    this->commandManager.execute(addNodeCommand);
+    this->executeCommand(addNodeCommand);
+    this->newComponentID++;
     this->setNodePosition(nodeType,node);
     return node;
 }
@@ -45,7 +48,7 @@ void ERModel::deleteComponent(vector<string> componentIDVector){
         return;
     CommandFactory commandFactory;
     Command* deleteComponentCommand = commandFactory.createDeleteMultiComponentCommand(this->componentMap,componentMapToDelete);
-    this->commandManager.execute(deleteComponentCommand);
+    this->executeCommand(deleteComponentCommand);
 }
 //return: NodeConnectionType
 int ERModel::addConnection(Component* firstNode,Component* secondNode){
@@ -54,10 +57,11 @@ int ERModel::addConnection(Component* firstNode,Component* secondNode){
     int result = firstNode->canConnectTo(secondNode);
     if(result == NodeConnectionType::ValidConnect || result == NodeConnectionType::ConnectEntityAndRelation){
         ComponentFactory componentFactory;
-        Connector* connector = static_cast<Connector*>(componentFactory.createComponent(ComponentType::TypeConnector));
+        Connector* connector = static_cast<Connector*>(componentFactory.createComponent(ComponentType::TypeConnector,StringUtil::intToString(this->newComponentID)));
         CommandFactory commandFactory;
         Command* connectNodeCommand = commandFactory.createConnectNodeCommand(this->componentMap,firstNode,secondNode,connector);
-        this->commandManager.execute(connectNodeCommand);
+        this->executeCommand(connectNodeCommand);
+        this->newComponentID++;
         connector->updateRect();
     }
     return result;
@@ -69,6 +73,10 @@ bool ERModel::canUndo(){
 
 bool ERModel::canRedo(){
     return this->commandManager.canRedo();
+}
+
+bool ERModel::isNeedToSave(){
+    return !this->saveFlag && this->commandManager.canUndo();
 }
 
 void ERModel::undo(){
@@ -95,7 +103,7 @@ void ERModel::setPrimaryKey(string componentID){
 
     CommandFactory commandFactory;
     Command* setPrimaryKeyCommand = commandFactory.createSetPrimaryKeyCommand(attribute);
-    this->commandManager.execute(setPrimaryKeyCommand);
+    this->executeCommand(setPrimaryKeyCommand);
 }
 
 //set cardinality without undo/redo
@@ -116,7 +124,7 @@ void ERModel::setComponentText(string componentID,string text){
 
     CommandFactory commandFactory;
     Command* editTextOfComponentsCommand = commandFactory.createEditTextOfComponentsCommand(component,text);
-    this->commandManager.execute(editTextOfComponentsCommand);
+    this->executeCommand(editTextOfComponentsCommand);
 }
 
 void ERModel::moveComponents(vector<string> selectedComponentsIDVector,Point mousePressPosition,Point mouseReleasePosition){
@@ -129,7 +137,7 @@ void ERModel::moveComponents(vector<string> selectedComponentsIDVector,Point mou
 
     CommandFactory commandFactory;
     Command* moveComponentsCommand = commandFactory.createMoveComponentsCommand(selectedComponentMap,mousePressPosition,mouseReleasePosition);
-    this->commandManager.execute(moveComponentsCommand);
+    this->executeCommand(moveComponentsCommand);
 }
 
 void ERModel::openFile(string filePath){
@@ -142,6 +150,7 @@ void ERModel::openFile(string filePath){
 void ERModel::saveFile(string filePath){
     OutputFileProcess outputFileProcess = OutputFileProcess(filePath,this->componentMap);
     outputFileProcess.saveFile();
+    this->saveFlag = true;
 }
 
 bool ERModel::canPaste(){
@@ -155,7 +164,7 @@ void ERModel::cutComponents(vector<string> componentIDVector){
     this->switchClipBoardState(ClipBoardStateID::CutState);
     CommandFactory commandFactory;
     Command* command = commandFactory.createCutComponentsCommand(this->componentMap,&this->clipBoard,componentMapToCut);
-    this->commandManager.execute(command);
+    this->executeCommand(command);
 }
 
 void ERModel::copyComponents(vector<string> componentIDVector){
@@ -164,6 +173,20 @@ void ERModel::copyComponents(vector<string> componentIDVector){
         return;
     //delete all cloned componentMap
     HashMapUtil::deleteAll(this->clonedComponentMap);
+    //clone component to copy
+    HashMap<string,Component*> componentMapToCopyBuffer;
+    int newComponentIDBuffer = this->newComponentID;
+    for each(Node* node in componentMapToCopy){
+        Component* component = node->clone();
+        component->setID(StringUtil::intToString(this->newComponentID));
+        componentMapToCopyBuffer.put(component->getID(),component);
+        this->newComponentID++;
+    }
+    if(componentMapToCopyBuffer.empty()){
+        this->newComponentID = newComponentIDBuffer;
+        return;
+    }
+    this->clonedComponentMap = componentMapToCopyBuffer;
     //set clipBoard data from cloned componentMap
     this->clipBoard.setData(this->clonedComponentMap);
     this->switchClipBoardState(ClipBoardStateID::CopyState);
@@ -241,8 +264,6 @@ HashMap<string,Table*> ERModel::getAllTables(){
 }
 //clear all components & delete it
 void ERModel::resetERModel(){
-    ComponentFactory componentFactory;
-    componentFactory.resetFactory();
     this->commandManager.popAllStack();
     this->resetCounting();
     this->switchClipBoardState(ClipBoardStateID::NullClipBoardState);
@@ -279,6 +300,7 @@ void ERModel::resetCounting(){
     this->attributeCount = 0;
     this->entityCount = 0;
     this->relationShipCount = 0;
+    this->newComponentID = 0;
 }
 
 void ERModel::setNodePosition(string componentType,Node* node){
@@ -294,4 +316,9 @@ void ERModel::deleteClipBoardState(){
         delete clipBoardState;
         this->clipBoardState = NULL;
     }
+}
+
+void ERModel::executeCommand(Command* command){
+    this->commandManager.execute(command);
+    this->saveFlag = false;
 }

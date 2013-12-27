@@ -20,6 +20,7 @@ public:
     virtual ~Component();
 
     string getID();
+    void setID(string id);
     string getType();
     string getClassName();
     string getName();

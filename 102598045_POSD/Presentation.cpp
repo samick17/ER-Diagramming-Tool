@@ -1,10 +1,15 @@
 #include "Presentation.h"
 #include "ERModel.h"
+#include "ApplicationSetting.h"
 
 Presentation::Presentation(ERModel* erModel) : erModel(erModel){
 }
 
 Presentation::~Presentation(){
+}
+
+const char* Presentation::getTitle(){
+    return this->erModel->isNeedToSave()?ApplicationSetting::TitleAlertSave.c_str():ApplicationSetting::Title.c_str();
 }
 
 void Presentation::openFile(string filePath){
@@ -37,6 +42,10 @@ bool Presentation::canRedo(){
 
 bool Presentation::canUndo(){
     return this->erModel->canUndo();
+}
+
+bool Presentation::isNeedToSave(){
+    return this->erModel->isNeedToSave();
 }
 
 void Presentation::redo(){

@@ -10,13 +10,13 @@ void CommandManagerTest::SetUp(){
     this->commandManager = &this->erModel.commandManager;
 
     ComponentFactory componentFactory;
-    this->entityEngineer = static_cast<Node*>(componentFactory.createComponent(ComponentType::TypeEntity));
-    this->entityPC = static_cast<Node*>(componentFactory.createComponent(ComponentType::TypeEntity));
-    this->attributeName = static_cast<Node*>(componentFactory.createComponent(ComponentType::TypeAttribute));
-    this->relationShipHas = static_cast<Node*>(componentFactory.createComponent(ComponentType::TypeRelationShip));
-    this->connectorEngineerName = static_cast<Connector*>(componentFactory.createComponent(ComponentType::TypeConnector));
-    this->connectorHasEngineer = static_cast<Connector*>(componentFactory.createComponent(ComponentType::TypeConnector));
-    this->connectorHasPC = static_cast<Connector*>(componentFactory.createComponent(ComponentType::TypeConnector));
+    this->entityEngineer = static_cast<Node*>(componentFactory.createComponent(ComponentType::TypeEntity,"0"));
+    this->entityPC = static_cast<Node*>(componentFactory.createComponent(ComponentType::TypeEntity,"1"));
+    this->attributeName = static_cast<Node*>(componentFactory.createComponent(ComponentType::TypeAttribute,"2"));
+    this->relationShipHas = static_cast<Node*>(componentFactory.createComponent(ComponentType::TypeRelationShip,"3"));
+    this->connectorEngineerName = static_cast<Connector*>(componentFactory.createComponent(ComponentType::TypeConnector,"4"));
+    this->connectorHasEngineer = static_cast<Connector*>(componentFactory.createComponent(ComponentType::TypeConnector,"5"));
+    this->connectorHasPC = static_cast<Connector*>(componentFactory.createComponent(ComponentType::TypeConnector,"6"));
 
     ASSERT_EQ(0,this->erModel.componentMap.size());
 }
@@ -28,7 +28,7 @@ void CommandManagerTest::executeCommand(){
     ASSERT_THROW(this->commandManager->redo(),Exception);
     ASSERT_THROW(this->commandManager->undo(),Exception);
 
-	this->commandManager->execute(new AddNodeCommand(this->erModel.componentMap,this->entityEngineer));
+    this->commandManager->execute(new AddNodeCommand(this->erModel.componentMap,this->entityEngineer));
     ASSERT_EQ(1,this->erModel.componentMap.size());
     ASSERT_EQ(this->entityEngineer,this->erModel.componentMap.get(this->entityEngineer->getID()));
 
