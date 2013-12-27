@@ -4,9 +4,10 @@
 
 class NullClipBoardState : public ClipBoardState{
 public:
-    NullClipBoardState(ERModel* erModel,HashMap<string,Component*>& componentMap,ClipBoard* clipBoard);
+    NullClipBoardState(HashMap<string,Component*>& componentMap,ClipBoard* clipBoard,vector<string> componentIDVectorToOperate);
     ~NullClipBoardState();
 
     bool canPaste();
+    void copy(CommandManager* commandManager,int* newComponentID);
     void paste(CommandManager* commandManager);
 };

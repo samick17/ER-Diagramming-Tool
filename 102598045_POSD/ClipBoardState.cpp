@@ -1,6 +1,6 @@
 #include "ClipBoardState.h"
 
-ClipBoardState::ClipBoardState(ERModel* erModel,HashMap<string,Component*>& componentMap,ClipBoard* clipBoard) : erModel(erModel),componentMap(componentMap),clipBoard(clipBoard){
+ClipBoardState::ClipBoardState(HashMap<string,Component*>& componentMap,ClipBoard* clipBoard,vector<string> componentIDVectorToOperate) : componentMap(componentMap),clipBoard(clipBoard),componentIDVectorToOperate(componentIDVectorToOperate){
 }
 
 ClipBoardState::~ClipBoardState(){

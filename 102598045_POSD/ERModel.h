@@ -90,7 +90,7 @@ private:
     void initialCountMap();
     void resetCounting();
     void setNodePosition(string componentType,Node* node);
-    void switchClipBoardState(int clipBoardStateID);
+    void switchClipBoardState(int clipBoardStateID,vector<string> componentIDVector);
     void deleteClipBoardState();
     void executeCommand(Command* command);
     HashMap<string,Component*> getComponentsByIDVector(vector<string> componentIDVector);

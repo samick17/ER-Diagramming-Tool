@@ -1,6 +1,6 @@
 #include "NullClipBoardState.h"
 
-NullClipBoardState::NullClipBoardState(ERModel* erModel,HashMap<string,Component*>& componentMap,ClipBoard* clipBoard) : ClipBoardState(erModel,componentMap,clipBoard){
+NullClipBoardState::NullClipBoardState(HashMap<string,Component*>& componentMap,ClipBoard* clipBoard,vector<string> componentIDVectorToOperate) : ClipBoardState(componentMap,clipBoard,componentIDVectorToOperate){
 }
 
 NullClipBoardState::~NullClipBoardState(){
@@ -8,6 +8,9 @@ NullClipBoardState::~NullClipBoardState(){
 
 bool NullClipBoardState::canPaste(){
     return false;
+}
+
+void NullClipBoardState::copy(CommandManager* commandManager,int* newComponentID){
 }
 
 void NullClipBoardState::paste(CommandManager* commandManager){

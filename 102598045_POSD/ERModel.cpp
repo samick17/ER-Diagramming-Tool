@@ -21,7 +21,7 @@ ERModel::ERModel(){
     this->resetCounting();
     this->clipBoardState = NULL;
     this->saveFlag = false;
-    this->switchClipBoardState(ClipBoardStateID::NullClipBoardState);
+    this->switchClipBoardState(ClipBoardStateID::NullClipBoardState,vector<string>());
 }
 
 ERModel::~ERModel(){
@@ -158,48 +158,23 @@ bool ERModel::canPaste(){
 }
 
 void ERModel::cutComponents(vector<string> componentIDVector){
-    HashMap<string,Component*> componentMapToCut = this->getComponentsByIDVector(componentIDVector);
-    if(componentMapToCut.empty())
-        return;
-    this->switchClipBoardState(ClipBoardStateID::CutState);
-    CommandFactory commandFactory;
-    Command* command = commandFactory.createCutComponentsCommand(this->componentMap,&this->clipBoard,componentMapToCut);
-    this->executeCommand(command);
+    this->switchClipBoardState(ClipBoardStateID::CutState,componentIDVector);
+    this->clipBoardState->copy(&this->commandManager,&this->newComponentID);
 }
 
 void ERModel::copyComponents(vector<string> componentIDVector){
-    HashMap<string,Component*> componentMapToCopy = this->getComponentsByIDVector(componentIDVector);
-    if(componentMapToCopy.empty())
-        return;
-    //delete all cloned componentMap
-    HashMapUtil::deleteAll(this->clonedComponentMap);
-    //clone component to copy
-    HashMap<string,Component*> componentMapToCopyBuffer;
-    int newComponentIDBuffer = this->newComponentID;
-    for each(Node* node in componentMapToCopy){
-        Component* component = node->clone();
-        component->setID(StringUtil::intToString(this->newComponentID));
-        componentMapToCopyBuffer.put(component->getID(),component);
-        this->newComponentID++;
-    }
-    if(componentMapToCopyBuffer.empty()){
-        this->newComponentID = newComponentIDBuffer;
-        return;
-    }
-    this->clonedComponentMap = componentMapToCopyBuffer;
-    //set clipBoard data from cloned componentMap
-    this->clipBoard.setData(this->clonedComponentMap);
-    this->switchClipBoardState(ClipBoardStateID::CopyState);
+    this->switchClipBoardState(ClipBoardStateID::CopyState,componentIDVector);
+    this->clipBoardState->copy(&this->commandManager,&this->newComponentID);
 }
 
 void ERModel::pasteComponents(){
     this->clipBoardState->paste(&this->commandManager);
 }
 
-void ERModel::switchClipBoardState(int clipBoardStateID){
+void ERModel::switchClipBoardState(int clipBoardStateID,vector<string> componentIDVector){
     this->deleteClipBoardState();
     ClipBoardStateFactory clipBoardStateFactory;
-    this->clipBoardState = clipBoardStateFactory.createState(clipBoardStateID,this,this->componentMap,&this->clipBoard);
+    this->clipBoardState = clipBoardStateFactory.createState(clipBoardStateID,this->componentMap,&this->clipBoard,componentIDVector);
 }
 //if doesn't contains such component, throw exception
 Component* ERModel::getComponentByID(string id){
@@ -266,7 +241,7 @@ HashMap<string,Table*> ERModel::getAllTables(){
 void ERModel::resetERModel(){
     this->commandManager.popAllStack();
     this->resetCounting();
-    this->switchClipBoardState(ClipBoardStateID::NullClipBoardState);
+    this->switchClipBoardState(ClipBoardStateID::NullClipBoardState,vector<string>());
     this->clipBoard.clearData();
 
     HashMapUtil::deleteAll(this->componentMap);
