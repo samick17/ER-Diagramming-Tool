@@ -4,9 +4,9 @@
 
 class CopyState : public ClipBoardState{
 public:
-    CopyState(ERModel* erModel);
+    CopyState(ERModel* erModel,HashMap<string,Component*>& componentMap,ClipBoard* clipBoard);
     ~CopyState();
 
     bool canPaste();
-    void paste();
+    void paste(CommandManager* commandManager);
 };

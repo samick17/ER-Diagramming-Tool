@@ -11,6 +11,7 @@ public:
 
     void setData(HashMap<string,Component*> componentMap);
     HashMap<string,Component*> getData();
+    void clearData();
 private:
     HashMap<string,Component*> componentMap;
 };

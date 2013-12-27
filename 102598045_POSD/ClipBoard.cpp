@@ -13,3 +13,7 @@ void ClipBoard::setData(HashMap<string,Component*> componentMap){
 HashMap<string,Component*> ClipBoard::getData(){
     return this->componentMap;
 }
+
+void ClipBoard::clearData(){
+    this->componentMap.clear();
+}

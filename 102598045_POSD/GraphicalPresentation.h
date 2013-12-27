@@ -30,11 +30,12 @@ class GraphicalPresentation : public Subject{
     friend class PointerStateTest;
     FRIEND_TEST(PointerStateTest,testDoMousePressEvent);
     FRIEND_TEST(PointerStateTest,testDoMouseDragEvent);
+    friend class AddNodeStateTest;
+    FRIEND_TEST(AddNodeStateTest,testDoMouseReleaseEvent);
 public:
     GraphicalPresentation(Presentation* presentation);
     ~GraphicalPresentation();
 
-    StateSubject* getStateSubject();
     HashMap<string,ComponentData*> getAllComponentDataMap();
     HashMap<string,Table*> getAllTables();
     ComponentData* getComponentDataForPreview();
@@ -87,6 +88,10 @@ public:
     void registerObserverToModel(IObserver* observer);
     void unregisterObserverToModel(IObserver* observer);
     void notifyModel();
+    //register observer to state & state function
+    int getCurrentStateID();
+    void registerObserverToStateSubject(IObserver* observer);
+    void unregisterObserverToStateSubject(IObserver* observer);
 
     void mousePressEvent(Point position,ComponentData* componentData);
     void mouseMoveEvent(Point position,ComponentData* componentData);

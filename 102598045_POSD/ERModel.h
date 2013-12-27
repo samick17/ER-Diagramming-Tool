@@ -70,7 +70,6 @@ public:
     void cutComponents(vector<string> componentIDVector);
     void copyComponents(vector<string> componentIDVector);
     void pasteComponents();
-    void switchClipBoardState(int clipBoardState);
 
     Component* getComponentByID(string id);
     Connector* getNodesConnector(Component* firstNode,Component* secondNode);
@@ -90,12 +89,15 @@ private:
     void initialCountMap();
     void resetCounting();
     void setNodePosition(string componentType,Node* node);
-    HashMap<string,Component*> getComponentByIDVector(vector<string> componentIDVector);
+    void switchClipBoardState(int clipBoardStateID);
+    void deleteClipBoardState();
+    HashMap<string,Component*> getComponentsByIDVector(vector<string> componentIDVector);
     int attributeCount,entityCount,relationShipCount;
     ClipBoard clipBoard;
     ClipBoardState* clipBoardState;
     HashMap<string,int*> componentTypeCountMap;
     HashMap<string,Component*> componentMap;
+    HashMap<string,Component*> clonedComponentMap;
     Cardinality cardinality;
     vector<ISynchronizer*> synchronizerVector;
     unordered_map<string,double> componentTypeMapOffsetX;

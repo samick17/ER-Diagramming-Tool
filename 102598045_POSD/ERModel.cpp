@@ -3,7 +3,6 @@
 #include "TableUtil.h"
 #include "ComponentFactory.h"
 #include "CommandFactory.h"
-#include "ClipBoardStateFactory.h"
 #include "NoSuchNodeException.h"
 #include "InvalidConnectException.h"
 #include "NoConnectionException.h"
@@ -12,21 +11,20 @@
 #include "HashMapUtil.h"
 #include "InputFileProcess.h"
 #include "OutputFileProcess.h"
-#include "ClipBoardState.h"
 #include "ClipBoardStateID.h"
+#include "ClipBoardState.h"
+#include "ClipBoardStateFactory.h"
 
 ERModel::ERModel(){
     this->initialCountMap();
     this->resetCounting();
-    //initialize clipBoard state
     this->clipBoardState = NULL;
     this->switchClipBoardState(ClipBoardStateID::NullClipBoardState);
 }
 
 ERModel::~ERModel(){
     this->resetERModel();
-    if(this->clipBoardState)
-        delete this->clipBoardState;
+    this->deleteClipBoardState();
 }
 
 Node* ERModel::addNode(string nodeType){
@@ -42,8 +40,11 @@ Node* ERModel::addNode(string nodeType){
 }
 
 void ERModel::deleteComponent(vector<string> componentIDVector){
+    HashMap<string,Component*> componentMapToDelete = this->getComponentsByIDVector(componentIDVector);
+    if(componentMapToDelete.empty())
+        return;
     CommandFactory commandFactory;
-    Command* deleteComponentCommand = commandFactory.createDeleteMultiComponentCommand(this->componentMap,componentIDVector);
+    Command* deleteComponentCommand = commandFactory.createDeleteMultiComponentCommand(this->componentMap,componentMapToDelete);
     this->commandManager.execute(deleteComponentCommand);
 }
 //return: NodeConnectionType
@@ -122,7 +123,7 @@ void ERModel::moveComponents(vector<string> selectedComponentsIDVector,Point mou
     if(mousePressPosition-mouseReleasePosition == Point::Zero)
         return;
 
-    HashMap<string,Component*> selectedComponentMap = this->getComponentByIDVector(selectedComponentsIDVector);
+    HashMap<string,Component*> selectedComponentMap = this->getComponentsByIDVector(selectedComponentsIDVector);
     if(selectedComponentMap.empty())
         return;
 
@@ -134,8 +135,6 @@ void ERModel::moveComponents(vector<string> selectedComponentsIDVector,Point mou
 void ERModel::openFile(string filePath){
     InputFileProcess inputFileProcess = InputFileProcess(filePath,this);
     inputFileProcess.openFile();
-    /*InputFileParser inputFileParser;
-    inputFileParser.parseFileToModel(filePath,this);*/
     //open file should reset undo/redo state
     this->commandManager.popAllStack();
 }
@@ -146,35 +145,52 @@ void ERModel::saveFile(string filePath){
 }
 
 bool ERModel::canPaste(){
-    return this->clipBoardState->canPaste();
+    return !this->clipBoard.getData().empty();
 }
 
 void ERModel::cutComponents(vector<string> componentIDVector){
+    HashMap<string,Component*> componentMapToCut = this->getComponentsByIDVector(componentIDVector);
+    if(componentMapToCut.empty())
+        return;
     this->switchClipBoardState(ClipBoardStateID::CutState);
-    this->clipBoard.setData(this->getComponentByIDVector(componentIDVector));
-    this->deleteComponent(componentIDVector);
+    CommandFactory commandFactory;
+    Command* command = commandFactory.createCutComponentsCommand(this->componentMap,&this->clipBoard,componentMapToCut);
+    this->commandManager.execute(command);
 }
 
 void ERModel::copyComponents(vector<string> componentIDVector){
+    HashMap<string,Component*> componentMapToCopy = this->getComponentsByIDVector(componentIDVector);
+    if(componentMapToCopy.empty())
+        return;
+    //delete all cloned componentMap
+    HashMapUtil::deleteAll(this->clonedComponentMap);
+    //set clipBoard data from cloned componentMap
+    this->clipBoard.setData(this->clonedComponentMap);
     this->switchClipBoardState(ClipBoardStateID::CopyState);
-    this->clipBoard.setData(this->getComponentByIDVector(componentIDVector));
 }
 
 void ERModel::pasteComponents(){
-    this->clipBoardState->paste();
+    this->clipBoardState->paste(&this->commandManager);
 }
 
-void ERModel::switchClipBoardState(int clipBoardState){
+void ERModel::switchClipBoardState(int clipBoardStateID){
+    this->deleteClipBoardState();
     ClipBoardStateFactory clipBoardStateFactory;
-    if(this->clipBoardState)
-        delete this->clipBoardState;
-    this->clipBoardState = clipBoardStateFactory.createState(clipBoardState,this);
+    this->clipBoardState = clipBoardStateFactory.createState(clipBoardStateID,this,this->componentMap,&this->clipBoard);
 }
 //if doesn't contains such component, throw exception
 Component* ERModel::getComponentByID(string id){
     if(this->componentMap.containsKey(id))
         return this->componentMap.get(id);
     throw NoSuchNodeException(id);
+}
+
+HashMap<string,Component*> ERModel::getComponentsByIDVector(vector<string> componentIDVector){
+    HashMap<string,Component*> resultMap;
+    for each(string componentID in componentIDVector)
+        if(this->componentMap.containsKey(componentID))
+            resultMap.put(componentID,this->componentMap.get(componentID));
+    return resultMap;
 }
 //return: firstNode & secondNode's connector
 Connector* ERModel::getNodesConnector(Component* firstNode,Component* secondNode){
@@ -230,8 +246,10 @@ void ERModel::resetERModel(){
     this->commandManager.popAllStack();
     this->resetCounting();
     this->switchClipBoardState(ClipBoardStateID::NullClipBoardState);
+    this->clipBoard.clearData();
 
     HashMapUtil::deleteAll(this->componentMap);
+    HashMapUtil::deleteAll(this->clonedComponentMap);
 }
 
 void ERModel::registerSynchronizer(ISynchronizer* synchronizer){
@@ -271,10 +289,9 @@ void ERModel::setNodePosition(string componentType,Node* node){
     (*countIterator)++;
 }
 
-HashMap<string,Component*> ERModel::getComponentByIDVector(vector<string> componentIDVector){
-    HashMap<string,Component*> resultMap;
-    for each(string componentID in componentIDVector)
-        if(this->componentMap.containsKey(componentID))
-            resultMap.put(componentID,this->componentMap.get(componentID));
-    return resultMap;
+void ERModel::deleteClipBoardState(){
+    if(this->clipBoardState){
+        delete clipBoardState;
+        this->clipBoardState = NULL;
+    }
 }

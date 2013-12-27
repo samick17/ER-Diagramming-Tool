@@ -4,7 +4,7 @@
 #include "Component.h"
 #include "StackUtil.h"
 
-DeleteMultiComponentCommand::DeleteMultiComponentCommand(HashMap<string,Component*>& componentMap,vector<string> componentIDVector) : componentMap(componentMap),componentIDVector(componentIDVector){
+DeleteMultiComponentCommand::DeleteMultiComponentCommand(HashMap<string,Component*>& componentMap,HashMap<string,Component*> componentMapToDelete) : componentMap(componentMap),componentMapToDelete(componentMapToDelete){
 }
 
 DeleteMultiComponentCommand::~DeleteMultiComponentCommand(){
@@ -12,15 +12,12 @@ DeleteMultiComponentCommand::~DeleteMultiComponentCommand(){
 }
 
 void DeleteMultiComponentCommand::doExecute(){
-    for each(string componentID in this->componentIDVector){
-        try{
-            Component* component = this->componentMap.get(componentID);
-            Command* command = new DeleteComponentCommand(this->componentMap,component);
-            command->execute();
-            this->deleteCommandStack.push(command);
-        }
-        catch(Exception&){
-        }
+    for each(Component* component in this->componentMapToDelete){
+        if(!this->componentMap.containsValue(component))
+            continue;
+        Command* command = new DeleteComponentCommand(this->componentMap,component);
+        command->execute();
+        this->deleteCommandStack.push(command);
     }
 }
 

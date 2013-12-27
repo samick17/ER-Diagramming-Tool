@@ -10,13 +10,13 @@ using namespace std;
 
 class DeleteMultiComponentCommand : public Command{
 public:
-    DeleteMultiComponentCommand(HashMap<string,Component*>& componentMap,vector<string> componentIDVector);
+    DeleteMultiComponentCommand(HashMap<string,Component*>& componentMap,HashMap<string,Component*> componentMapToDelete);
     ~DeleteMultiComponentCommand();
 protected:
     void doExecute();
     void doUnExecute();
 private:
     HashMap<string,Component*>& componentMap;
-    vector<string> componentIDVector;
+    HashMap<string,Component*> componentMapToDelete;
     stack<Command*> deleteCommandStack;
 };

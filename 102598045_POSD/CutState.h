@@ -4,9 +4,9 @@
 
 class CutState : public ClipBoardState{
 public:
-    CutState(ERModel* erModel);
+    CutState(ERModel* erModel,HashMap<string,Component*>& componentMap,ClipBoard* clipBoard);
     ~CutState();
 
     bool canPaste();
-    void paste();
+    void paste(CommandManager* commandManager);
 };

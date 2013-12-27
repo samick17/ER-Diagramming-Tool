@@ -17,13 +17,12 @@ AddDrawableToolBar::AddDrawableToolBar(GraphicalUI* graphicalUI,QActionMap* acti
         actionIndex++;
     }
     //initial state subject
-    GraphicalPresentation* graphicalPresentation = graphicalUI->getGraphicalPresentation();
-    this->stateSubject = graphicalPresentation->getStateSubject();
-    this->stateSubject->registerObserver(this);
+    this->graphicalPresentation = graphicalUI->getGraphicalPresentation();
+    this->graphicalPresentation->registerObserverToStateSubject(this);
 }
 
 AddDrawableToolBar::~AddDrawableToolBar(){
-    this->stateSubject->unregisterObserver(this);
+    this->graphicalPresentation->unregisterObserverToStateSubject(this);
 }
 
 void AddDrawableToolBar::selectToolButton(int stateID){
@@ -36,5 +35,5 @@ void AddDrawableToolBar::selectToolButton(int stateID){
 
 void AddDrawableToolBar::notify(Subject* subject){
     //update widget according to StateSubject
-    this->selectToolButton(this->stateSubject->getStateID());
+    this->selectToolButton(this->graphicalPresentation->getCurrentStateID());
 }

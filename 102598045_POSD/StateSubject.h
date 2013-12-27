@@ -2,7 +2,6 @@
 
 #include "Subject.h"
 #include "State.h"
-#include <set>
 
 class GraphicalPresentation;
 class IObserver;

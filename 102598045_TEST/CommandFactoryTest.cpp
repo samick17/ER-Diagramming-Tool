@@ -36,10 +36,8 @@ TEST_F(CommandFactoryTest,testCreateDeleteComponentCommand){
     ERModel erModel;
     Attribute* attribute = new Attribute("testAttribute");
 
-    vector<string> componentVector;
-    componentVector.push_back(attribute->getID());
     HashMap<string,Component*> componentMap;
-    Command* command = this->commandFactory.createDeleteMultiComponentCommand(componentMap,componentVector);
+    Command* command = this->commandFactory.createDeleteMultiComponentCommand(componentMap,componentMap);
     ASSERT_EQ(typeid(DeleteMultiComponentCommand).name(),typeid(*command).name());
     delete attribute;
 }

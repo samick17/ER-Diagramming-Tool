@@ -18,10 +18,6 @@ GraphicalPresentation::~GraphicalPresentation(){
     this->deleteComponentDataForPreview();
 }
 
-StateSubject* GraphicalPresentation::getStateSubject(){
-    return &this->stateSubject;
-}
-
 HashMap<string,ComponentData*> GraphicalPresentation::getAllComponentDataMap(){
     return this->componentDataMap;
 }
@@ -289,6 +285,18 @@ void GraphicalPresentation::unregisterObserverToModel(IObserver* observer){
 void GraphicalPresentation::notifyModel(){
     this->updateAllComponentData();
     this->presentation->notifyModel();
+}
+
+int GraphicalPresentation::getCurrentStateID(){
+    return this->stateSubject.getStateID();
+}
+
+void GraphicalPresentation::registerObserverToStateSubject(IObserver* observer){
+    this->stateSubject.registerObserver(observer);
+}
+
+void GraphicalPresentation::unregisterObserverToStateSubject(IObserver* observer){
+    this->stateSubject.unregisterObserver(observer);
 }
 
 void GraphicalPresentation::mousePressEvent(Point position,ComponentData* componentData){

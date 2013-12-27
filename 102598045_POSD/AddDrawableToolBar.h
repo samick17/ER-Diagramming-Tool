@@ -8,6 +8,7 @@
 
 class StateSubject;
 class GraphicalUI;
+class GraphicalPresentation;
 
 class AddDrawableToolBar : public QToolBar,public IObserver{
 public:
@@ -18,6 +19,6 @@ public:
 private:
     void selectToolButton(int stateID);
     ToolBarWidget* currentFocusedWidget;
-    StateSubject* stateSubject;
+    GraphicalPresentation* graphicalPresentation;
     HashMap<int,ToolBarWidget*> toolBarWidgetMap;
 };

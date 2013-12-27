@@ -6,6 +6,7 @@
 #include "EditTextOfComponentsCommand.h"
 #include "MoveComponentsCommand.h"
 #include "CutComponentsCommand.h"
+#include "PasteComponentsCommand.h"
 
 Command* CommandFactory::createAddNodeCommand(HashMap<string,Component*>& componentMap,Node* node){
     return new AddNodeCommand(componentMap,node);
@@ -15,8 +16,8 @@ Command* CommandFactory::createConnectNodeCommand(HashMap<string,Component*>& co
     return new ConnectNodeCommand(componentMap,firstNode,secondNode,connector);
 }
 
-Command* CommandFactory::createDeleteMultiComponentCommand(HashMap<string,Component*>& componentMap,vector<string> componentIDVector){
-    return new DeleteMultiComponentCommand(componentMap,componentIDVector);
+Command* CommandFactory::createDeleteMultiComponentCommand(HashMap<string,Component*>& componentMap,HashMap<string,Component*> componentMapToDelete){
+    return new DeleteMultiComponentCommand(componentMap,componentMapToDelete);
 }
 
 Command* CommandFactory::createSetPrimaryKeyCommand(Attribute* attribute){
@@ -31,6 +32,10 @@ Command* CommandFactory::createMoveComponentsCommand(HashMap<string,Component*> 
     return new MoveComponentsCommand(selectedComponentMap,mousePressPosition,mouseReleasePosition);
 }
 
-Command* CommandFactory::createCutComponentsCommand(HashMap<string,Component*>& componentMap,vector<string> componentIDVector){
-    return new CutComponentsCommand(componentMap,componentIDVector);
+Command* CommandFactory::createCutComponentsCommand(HashMap<string,Component*>& componentMap,ClipBoard* clipBoard,HashMap<string,Component*> componentMapToCut){
+    return new CutComponentsCommand(componentMap,clipBoard,componentMapToCut);
+}
+
+Command* CommandFactory::createPasteComponentsCommand(HashMap<string,Component*>& componentMap,ClipBoard* clipBoard){
+    return new PasteComponentsCommand(componentMap,clipBoard);
 }

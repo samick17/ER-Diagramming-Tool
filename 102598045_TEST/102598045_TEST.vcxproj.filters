@@ -166,11 +166,11 @@
     <Filter Include="Source Files\State\ViewState">
       <UniqueIdentifier>{5087fd86-7840-4682-8bbf-2e9de7ebafb0}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\State\ClipBoardState">
-      <UniqueIdentifier>{422518bb-6895-4780-9db7-6a10a6765fc9}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\Model\Component">
       <UniqueIdentifier>{19c81018-be87-4124-a0bb-e033f009dd54}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\State\ClipBoardState">
+      <UniqueIdentifier>{ed996f02-3049-48df-9802-e3f963d67b71}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -615,21 +615,6 @@
     <ClCompile Include="..\102598045_POSD\CutComponentsCommand.cpp">
       <Filter>Source Files\Command</Filter>
     </ClCompile>
-    <ClCompile Include="..\102598045_POSD\ClipBoardStateFactory.cpp">
-      <Filter>Source Files\Factory</Filter>
-    </ClCompile>
-    <ClCompile Include="..\102598045_POSD\CutState.cpp">
-      <Filter>Source Files\State\ClipBoardState</Filter>
-    </ClCompile>
-    <ClCompile Include="..\102598045_POSD\NullClipBoardState.cpp">
-      <Filter>Source Files\State\ClipBoardState</Filter>
-    </ClCompile>
-    <ClCompile Include="..\102598045_POSD\CopyState.cpp">
-      <Filter>Source Files\State\ClipBoardState</Filter>
-    </ClCompile>
-    <ClCompile Include="..\102598045_POSD\ClipBoardState.cpp">
-      <Filter>Source Files\State\ClipBoardState</Filter>
-    </ClCompile>
     <ClCompile Include="..\102598045_POSD\ClipBoardStateID.cpp">
       <Filter>Source Files\Constants</Filter>
     </ClCompile>
@@ -659,6 +644,24 @@
     </ClCompile>
     <ClCompile Include="..\102598045_POSD\FileProcess.cpp">
       <Filter>Source Files\Process</Filter>
+    </ClCompile>
+    <ClCompile Include="..\102598045_POSD\ClipBoardStateFactory.cpp">
+      <Filter>Source Files\Factory</Filter>
+    </ClCompile>
+    <ClCompile Include="..\102598045_POSD\CutState.cpp">
+      <Filter>Source Files\State\ClipBoardState</Filter>
+    </ClCompile>
+    <ClCompile Include="..\102598045_POSD\CopyState.cpp">
+      <Filter>Source Files\State\ClipBoardState</Filter>
+    </ClCompile>
+    <ClCompile Include="..\102598045_POSD\ClipBoardState.cpp">
+      <Filter>Source Files\State\ClipBoardState</Filter>
+    </ClCompile>
+    <ClCompile Include="..\102598045_POSD\NullClipBoardState.cpp">
+      <Filter>Source Files\State\ClipBoardState</Filter>
+    </ClCompile>
+    <ClCompile Include="..\102598045_POSD\PasteComponentsCommand.cpp">
+      <Filter>Source Files\Command</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

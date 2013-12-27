@@ -13,9 +13,9 @@ ClipBoardStateFactory::ClipBoardStateFactory(){
 ClipBoardStateFactory::~ClipBoardStateFactory(){
 }
 
-ClipBoardState* ClipBoardStateFactory::createState(int clipBoardStateID,ERModel* erModel){
+ClipBoardState* ClipBoardStateFactory::createState(int clipBoardStateID,ERModel* erModel,HashMap<string,Component*>& componentMap,ClipBoard* clipBoard){
     NewClipBoardStateFunction newStateFunction = this->findNewStateFunction(clipBoardStateID);
-    return newStateFunction(clipBoardStateID,erModel);
+    return newStateFunction(clipBoardStateID,erModel,componentMap,clipBoard);
 }
 
 NewClipBoardStateFunction ClipBoardStateFactory::findNewStateFunction(int clipBoardStateID){

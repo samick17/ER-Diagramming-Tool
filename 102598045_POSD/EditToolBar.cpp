@@ -10,7 +10,6 @@ EditToolBar::EditToolBar(GraphicalUI* graphicalUI,QActionMap* actionMap) : QTool
     }
     this->graphicalPresentation = graphicalUI->getGraphicalPresentation();
     this->graphicalPresentation->registerObserverToModel(this);
-    this->connect(this,SIGNAL(onNotifyEvent()),this,SLOT(executeNotify()));
 }
 
 EditToolBar::~EditToolBar(){
@@ -18,8 +17,7 @@ EditToolBar::~EditToolBar(){
 }
 
 void EditToolBar::notify(Subject* subject){
-    this->onNotifyEvent();
-
+    this->refresh();
 }
 
 void EditToolBar::refresh(){
@@ -30,10 +28,4 @@ void EditToolBar::refresh(){
     this->actions().at(ActionData::Cut-offset)->setEnabled(this->graphicalPresentation->isAnyWidgetSelected());
     this->actions().at(ActionData::Copy-offset)->setEnabled(this->graphicalPresentation->isAnyWidgetSelected());
     this->actions().at(ActionData::Paste-offset)->setEnabled(this->graphicalPresentation->canPasteWidgets());
-}
-
-void EditToolBar::executeNotify(){
-    this->mutex.lock();
-    this->refresh();
-    this->mutex.unlock();
 }

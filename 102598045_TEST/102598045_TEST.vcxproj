@@ -155,6 +155,7 @@
     <ClCompile Include="..\102598045_POSD\Number.cpp" />
     <ClCompile Include="..\102598045_POSD\OpenFileInstruction.cpp" />
     <ClCompile Include="..\102598045_POSD\OutputFileProcess.cpp" />
+    <ClCompile Include="..\102598045_POSD\PasteComponentsCommand.cpp" />
     <ClCompile Include="..\102598045_POSD\Point.cpp" />
     <ClCompile Include="..\102598045_POSD\PointerState.cpp" />
     <ClCompile Include="..\102598045_POSD\Presentation.cpp" />
