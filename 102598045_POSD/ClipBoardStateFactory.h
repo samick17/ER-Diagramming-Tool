@@ -6,23 +6,10 @@
 class Component;
 class ClipBoard;
 
-typedef ClipBoardState* (*NewClipBoardStateFunction)(int clipBoardStateID,HashMap<string,Component*>& componentMap,ClipBoard* clipBoard,vector<string> componentIDVector);
-
 class ClipBoardStateFactory{
 public:
     ClipBoardStateFactory();
     ~ClipBoardStateFactory();
 
-    ClipBoardState* createState(int clipBoardStateID,HashMap<string,Component*>& componentMap,ClipBoard* clipBoard,vector<string> componentIDVector);
-private:
-    template <typename Type>
-    static ClipBoardState* newState(int clipBoardStateID,HashMap<string,Component*>& componentMap,ClipBoard* clipBoard,vector<string> componentIDVector);
-
-    NewClipBoardStateFunction findNewStateFunction(int clipBoardStateID);
-    HashMap<int,NewClipBoardStateFunction> newStateMap;
+    ClipBoardState* createState(int clipBoardStateID,ClipBoard* clipBoard,HashMap<string,Component*>& componentMap,vector<string> componentIDVector);
 };
-
-template <typename Type>
-ClipBoardState* ClipBoardStateFactory::newState(int clipBoardStateID,HashMap<string,Component*>& componentMap,ClipBoard* clipBoard,vector<string> componentIDVector){
-    return new Type(componentMap,clipBoard,componentIDVector);
-}

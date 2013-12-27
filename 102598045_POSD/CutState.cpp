@@ -3,7 +3,7 @@
 #include "ClipBoardStateID.h"
 #include "CommandFactory.h"
 
-CutState::CutState(HashMap<string,Component*>& componentMap,ClipBoard* clipBoard,vector<string> componentIDVectorToOperate) : ClipBoardState(componentMap,clipBoard,componentIDVectorToOperate){
+CutState::CutState(ClipBoard* clipBoard,HashMap<string,Component*>& componentMap,vector<string> componentIDVectorToOperate) : ClipBoardState(clipBoard,componentMap,componentIDVectorToOperate){
     for each(string componentID in componentIDVectorToOperate){
         if(componentMap.containsKey(componentID))
             this->componentMapToCut.put(componentID,componentMap.get(componentID));
@@ -13,11 +13,7 @@ CutState::CutState(HashMap<string,Component*>& componentMap,ClipBoard* clipBoard
 CutState::~CutState(){
 }
 
-bool CutState::canPaste(){
-    return true;
-}
-
-void CutState::copy(CommandManager* commandManager,int* newComponentID){
+void CutState::copy(CommandManager* commandManager){
     if(componentMapToCut.empty())
         return;
     clipBoard->setData(this->componentMapToCut);

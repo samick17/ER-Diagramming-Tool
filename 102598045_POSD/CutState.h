@@ -4,11 +4,10 @@
 
 class CutState : public ClipBoardState{
 public:
-    CutState(HashMap<string,Component*>& componentMap,ClipBoard* clipBoard,vector<string> componentIDVectorToOperate);
+    CutState(ClipBoard* clipBoard,HashMap<string,Component*>& componentMap,vector<string> componentIDVectorToOperate);
     ~CutState();
 
-    bool canPaste();
-    void copy(CommandManager* commandManager,int* newComponentID);
+    void copy(CommandManager* commandManager);
     void paste(CommandManager* commandManager);
 private:
     HashMap<string,Component*> componentMapToCut;

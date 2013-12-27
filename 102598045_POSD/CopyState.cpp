@@ -6,12 +6,13 @@
 #include "Node.h"
 #include "StringUtil.h"
 
-CopyState::CopyState(HashMap<string,Component*>& componentMap,ClipBoard* clipBoard,vector<string> componentIDVectorToOperate) : ClipBoardState(componentMap,clipBoard,componentIDVectorToOperate){
+CopyState::CopyState(ClipBoard* clipBoard,HashMap<string,Component*>& componentMap,vector<string> componentIDVectorToOperate) : ClipBoardState(clipBoard,componentMap,componentIDVectorToOperate){
     for each(string componentID in componentIDVectorToOperate){
         if(componentMap.containsKey(componentID))
             this->componentMapToCopy.put(componentID,componentMap.get(componentID));
     }
     this->flag = false;
+    this->executeCount = 0;
 }
 
 CopyState::~CopyState(){
@@ -19,26 +20,17 @@ CopyState::~CopyState(){
         HashMapUtil::deleteAll(this->clonedComponentMap);
 }
 
-bool CopyState::canPaste(){
-    return true;
-}
-
-void CopyState::copy(CommandManager* commandManager,int* newComponentID){
-    this->newComponentID = newComponentID;
+void CopyState::copy(CommandManager* commandManager){
+    this->executeCount++;
     if(componentMapToCopy.empty())
         return;
     //clone component to copy
     HashMap<string,Component*> componentMapToCopyBuffer;
-    int newComponentIDBuffer = *newComponentID;
     for each(Node* node in this->componentMapToCopy){
         Component* component = node->clone();
-        component->setID(StringUtil::intToString(*this->newComponentID));
+        Point currentPosition = node->getRect().getPosition();
+        component->setPosition(Point(currentPosition.getX()+20*this->executeCount,currentPosition.getY()+20*this->executeCount));
         componentMapToCopyBuffer.put(component->getID(),component);
-        this->newComponentID++;
-    }
-    if(componentMapToCopyBuffer.empty()){
-        *this->newComponentID = newComponentIDBuffer;
-        return;
     }
     this->clonedComponentMap = componentMapToCopyBuffer;
     //set clipBoard data from cloned componentMap
@@ -50,6 +42,7 @@ void CopyState::paste(CommandManager* commandManager){
     CommandFactory commandFactory;
     Command* command = commandFactory.createPasteComponentsCommand(this->componentMap,clipBoard);
     commandManager->execute(command);
-    this->copy(commandManager,this->newComponentID);
+    this->clonedComponentMap.clear();
+    this->copy(commandManager);
     this->flag = true;
 }

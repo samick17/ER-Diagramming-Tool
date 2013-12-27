@@ -45,8 +45,6 @@ void Attribute::accept(ComponentVisitor* visitor){
 }
 
 Component* Attribute::clone() const{
-    Attribute* attribute = new Attribute("",this->componentData->getName());
-    Point newPosition = Point(this->componentData->getRect().getPosition().getX()+20,this->componentData->getRect().getPosition().getY()+20);
-    attribute->setPosition(newPosition);
+    Attribute* attribute = new Attribute(this->componentData->getID(),this->componentData->getName());
     return attribute;
 }

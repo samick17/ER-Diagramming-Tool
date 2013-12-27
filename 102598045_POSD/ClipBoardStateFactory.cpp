@@ -5,19 +5,15 @@
 #include "CopyState.h"
 
 ClipBoardStateFactory::ClipBoardStateFactory(){
-    this->newStateMap.put(ClipBoardStateID::NullClipBoardState,newState<NullClipBoardState>);
-    this->newStateMap.put(ClipBoardStateID::CutState,newState<CutState>);
-    this->newStateMap.put(ClipBoardStateID::CopyState,newState<CopyState>);
 }
 
 ClipBoardStateFactory::~ClipBoardStateFactory(){
 }
 
-ClipBoardState* ClipBoardStateFactory::createState(int clipBoardStateID,HashMap<string,Component*>& componentMap,ClipBoard* clipBoard,vector<string> componentIDVector){
-    NewClipBoardStateFunction newStateFunction = this->findNewStateFunction(clipBoardStateID);
-    return newStateFunction(clipBoardStateID,componentMap,clipBoard,componentIDVector);
-}
-
-NewClipBoardStateFunction ClipBoardStateFactory::findNewStateFunction(int clipBoardStateID){
-    return this->newStateMap.get(clipBoardStateID);
+ClipBoardState* ClipBoardStateFactory::createState(int clipBoardStateID,ClipBoard* clipBoard,HashMap<string,Component*>& componentMap,vector<string> componentIDVector){
+    if(clipBoardStateID == ClipBoardStateID::CutState)
+        return new CutState(clipBoard,componentMap,componentIDVector);
+    else if(clipBoardStateID == ClipBoardStateID::CopyState)
+        return new CopyState(clipBoard,componentMap,componentIDVector);
+    return new NullClipBoardState(clipBoard,componentMap,componentIDVector);
 }

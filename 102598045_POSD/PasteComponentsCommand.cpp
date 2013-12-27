@@ -20,5 +20,4 @@ void PasteComponentsCommand::doExecute(){
 void PasteComponentsCommand::doUnExecute(){
     for each(Component* component in this->componentMapToCopy)
         this->componentMap.remove(component->getID());
-    this->clipBoard->setData(this->componentMapToCopy);
 }

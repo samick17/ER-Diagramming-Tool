@@ -11,14 +11,13 @@ using namespace std;
 
 class ClipBoardState{
 public:
-    ClipBoardState(HashMap<string,Component*>& componentMap,ClipBoard* clipBoard,vector<string> componentIDVectorToOperate);
+    ClipBoardState(ClipBoard* clipBoard,HashMap<string,Component*>& componentMap,vector<string> componentIDVectorToOperate);
     virtual ~ClipBoardState();
 
-    virtual bool canPaste() = 0;
-    virtual void copy(CommandManager* commandManager,int* newComponentID) = 0;
+    virtual void copy(CommandManager* commandManager) = 0;
     virtual void paste(CommandManager* commandManager) = 0;
 protected:
-    HashMap<string,Component*>& componentMap;
     ClipBoard* clipBoard;
+    HashMap<string,Component*>& componentMap;
     vector<string> componentIDVectorToOperate;
 };
