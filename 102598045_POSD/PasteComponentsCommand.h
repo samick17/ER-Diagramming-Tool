@@ -5,10 +5,11 @@
 
 class Component;
 class ClipBoard;
+class ClipBoardState;
 
 class PasteComponentsCommand : public Command{
 public:
-    PasteComponentsCommand(HashMap<string,Component*>& componentMap,ClipBoard* clipBoard);
+    PasteComponentsCommand(HashMap<string,Component*>& componentMap,ClipBoard* clipBoard,ClipBoardState* clipBoardState,int* newComponentID);
     ~PasteComponentsCommand();
 protected:
     void doExecute();
@@ -16,5 +17,7 @@ protected:
 private:
     HashMap<string,Component*>& componentMap;
     ClipBoard* clipBoard;
+    ClipBoardState* clipBoardState;
     HashMap<string,Component*> componentMapToCopy;
+    int* newComponentID;
 };

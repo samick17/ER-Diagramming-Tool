@@ -11,14 +11,14 @@ MoveComponentsCommand::~MoveComponentsCommand(){
 
 void MoveComponentsCommand::doExecute(){
     for each(Component* component in selectedComponentMap){
-        Point position = component->getRect().getPosition();
+        Point position = component->getPosition();
         component->setPosition(position+this->deltaPosition);
     }
 }
 
 void MoveComponentsCommand::doUnExecute(){
     for each(Component* component in selectedComponentMap){
-        Point position = component->getRect().getPosition();
+        Point position = component->getPosition();
         component->setPosition(position-this->deltaPosition);
     }
 }

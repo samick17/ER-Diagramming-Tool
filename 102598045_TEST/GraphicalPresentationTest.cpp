@@ -164,10 +164,10 @@ TEST_F(GraphicalPresentationTest,testMoveSelectedWidget){
     this->presentation->addConnection(entity,attribute);
     Component* connector = this->presentation->getNodesConnector(entity,attribute);
 
-    Point attributePosition = attribute->getRect().getPosition();
-    Point entityPosition = entity->getRect().getPosition();
-    Point relationShipPosition = relationShip->getRect().getPosition();
-    Point connectorPosition = connector->getRect().getPosition();
+    Point attributePosition = attribute->getPosition();
+    Point entityPosition = entity->getPosition();
+    Point relationShipPosition = relationShip->getPosition();
+    Point connectorPosition = connector->getPosition();
 
     this->graphicalPresentation->selectedWidgetVector.push_back(attribute->getID());
     this->graphicalPresentation->selectedWidgetVector.push_back(entity->getID());

@@ -54,5 +54,7 @@ void Entity::accept(ComponentVisitor* visitor){
 
 Component* Entity::clone() const{
     Entity* entity = new Entity(this->componentData->getID(),this->componentData->getName());
+    entity->componentData->setPosition(this->componentData->getPosition());
+    entity->componentData->setSize(this->componentData->getSize());
     return entity;
 }

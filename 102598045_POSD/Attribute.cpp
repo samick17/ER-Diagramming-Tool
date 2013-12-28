@@ -46,5 +46,7 @@ void Attribute::accept(ComponentVisitor* visitor){
 
 Component* Attribute::clone() const{
     Attribute* attribute = new Attribute(this->componentData->getID(),this->componentData->getName());
+    attribute->componentData->setPosition(this->componentData->getPosition());
+    attribute->componentData->setSize(this->componentData->getSize());
     return attribute;
 }

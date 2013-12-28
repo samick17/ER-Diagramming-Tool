@@ -226,7 +226,7 @@ void GraphicalPresentation::previewMoveSelectedWidget(Point deltaPosition){
          if(!componentMap.containsKey(componentID))
              continue;
          Component* component = componentMap.get(componentID);
-         Point position = component->getRect().getPosition();
+         Point position = component->getPosition();
          component->setPosition(position+deltaPosition);
     }
 }

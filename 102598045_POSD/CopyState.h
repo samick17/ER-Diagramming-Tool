@@ -9,8 +9,8 @@ public:
     CopyState(ClipBoard* clipBoard,HashMap<string,Component*>& componentMap,vector<string> componentIDVectorToOperate);
     ~CopyState();
 
-    void copy(CommandManager* commandManager);
-    void paste(CommandManager* commandManager);
+    void copy();
+    void paste();
 private:
     HashMap<string,Component*> componentMapToCopy;
     HashMap<string,Component*> clonedComponentMap;

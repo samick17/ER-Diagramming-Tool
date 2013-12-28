@@ -6,9 +6,9 @@ NullClipBoardState::NullClipBoardState(ClipBoard* clipBoard,HashMap<string,Compo
 NullClipBoardState::~NullClipBoardState(){
 }
 
-void NullClipBoardState::copy(CommandManager* commandManager){
+void NullClipBoardState::copy(){
 }
 
-void NullClipBoardState::paste(CommandManager* commandManager){
+void NullClipBoardState::paste(){
     //this is null object, do nothing
 }

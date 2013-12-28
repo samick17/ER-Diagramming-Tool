@@ -19,6 +19,8 @@ public:
     string getClassName();
     bool getIsUnderLine();
     void setIsUnderLine(bool isUnderLine);
+    Point getPosition();
+    Size getSize();
     Rect getRect();
     void setPosition(Point position);
     void setCenterPosition(Point position);

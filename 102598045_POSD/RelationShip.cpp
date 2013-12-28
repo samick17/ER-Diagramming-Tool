@@ -57,5 +57,7 @@ void RelationShip::accept(ComponentVisitor* visitor){
 
 Component* RelationShip::clone() const{
     RelationShip* relationShip = new RelationShip(this->componentData->getID(),this->componentData->getName());
+    relationShip->componentData->setPosition(this->componentData->getPosition());
+    relationShip->componentData->setSize(this->componentData->getSize());
     return relationShip;
 }

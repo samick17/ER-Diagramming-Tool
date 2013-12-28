@@ -26,6 +26,8 @@ public:
     string getName();
     virtual void setName(string name);
     Rect getRect();
+    Point getPosition();
+    Size getSize();
     virtual void setPosition(Point position) = 0;
     virtual void setCenterPosition(Point position) = 0;
     void setSize(Size size);

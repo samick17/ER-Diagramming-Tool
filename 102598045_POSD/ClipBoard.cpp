@@ -1,4 +1,6 @@
 #include "ClipBoard.h"
+#include "Node.h"
+#include "HashMapUtil.h"
 
 ClipBoard::ClipBoard(){
 }

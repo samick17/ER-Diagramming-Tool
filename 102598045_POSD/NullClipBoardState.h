@@ -7,6 +7,6 @@ public:
     NullClipBoardState(ClipBoard* clipBoard,HashMap<string,Component*>& componentMap,vector<string> componentIDVectorToOperate);
     ~NullClipBoardState();
 
-    void copy(CommandManager* commandManager);
-    void paste(CommandManager* commandManager);
+    void copy();
+    void paste();
 };

@@ -11,6 +11,7 @@ class Node;
 class Connector;
 class Component;
 class ClipBoard;
+class ClipBoardState;
 
 using namespace std;
 
@@ -23,5 +24,5 @@ public:
     Command* createEditTextOfComponentsCommand(Component* component,string text);
     Command* createMoveComponentsCommand(HashMap<string,Component*> selectedComponentMap,Point mousePressPosition,Point mouseReleasePosition);
     Command* createCutComponentsCommand(HashMap<string,Component*>& componentMap,ClipBoard* clipBoard,HashMap<string,Component*> componentMapToCut);
-    Command* createPasteComponentsCommand(HashMap<string,Component*>& componentMap,ClipBoard* clipBoard);
+    Command* createPasteComponentsCommand(HashMap<string,Component*>& componentMap,ClipBoard* clipBoard,ClipBoardState* clipBoardState,int* newComponentID);
 };

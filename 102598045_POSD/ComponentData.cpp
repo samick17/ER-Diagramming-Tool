@@ -41,6 +41,14 @@ void ComponentData::setIsUnderLine(bool isUnderLine){
     this->isUnderLine = isUnderLine;
 }
 
+Point ComponentData::getPosition(){
+    return this->rect.getPosition();
+}
+
+Size ComponentData::getSize(){
+    return this->rect.getSize();
+}
+
 Rect ComponentData::getRect(){
     return this->rect;
 }

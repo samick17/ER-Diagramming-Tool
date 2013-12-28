@@ -5,7 +5,6 @@
 
 class Component;
 class ClipBoard;
-class CommandManager;
 
 using namespace std;
 
@@ -14,8 +13,8 @@ public:
     ClipBoardState(ClipBoard* clipBoard,HashMap<string,Component*>& componentMap,vector<string> componentIDVectorToOperate);
     virtual ~ClipBoardState();
 
-    virtual void copy(CommandManager* commandManager) = 0;
-    virtual void paste(CommandManager* commandManager) = 0;
+    virtual void copy() = 0;
+    virtual void paste() = 0;
 protected:
     ClipBoard* clipBoard;
     HashMap<string,Component*>& componentMap;

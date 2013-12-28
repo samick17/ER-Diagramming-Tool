@@ -37,6 +37,13 @@ Rect Component::getRect(){
     return this->componentData->getRect();
 }
 
+Point Component::getPosition(){
+    return this->componentData->getRect().getPosition();
+}
+Size Component::getSize(){
+    return this->componentData->getRect().getSize();
+}
+
 void Component::setCenterPosition(Point position){
     this->componentData->setCenterPosition(position);
 }

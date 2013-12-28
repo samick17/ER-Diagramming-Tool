@@ -156,24 +156,24 @@ void ERModel::saveFile(string filePath){
 bool ERModel::canPaste(){
     return !this->clipBoard.getData().empty();
 }
-//待修正 改用command執行state
+
 void ERModel::cutComponents(vector<string> componentIDVector){
     this->switchClipBoardState(ClipBoardStateID::CutState,componentIDVector);
-    this->clipBoardState->copy(&this->commandManager);
+    CommandFactory commandFactory;
+    Command* command = commandFactory.createCutComponentsCommand(this->componentMap,&this->clipBoard,this->getComponentsByIDVector(componentIDVector));
+    this->commandManager.execute(command);
 }
 
 void ERModel::copyComponents(vector<string> componentIDVector){
     this->switchClipBoardState(ClipBoardStateID::CopyState,componentIDVector);
-    this->clipBoardState->copy(&this->commandManager);
+    this->clipBoardState->copy();
+    this->clipBoard.setData(this->getComponentsByIDVector(componentIDVector));
 }
 
 void ERModel::pasteComponents(){
-    HashMap<string,Component*> componentMapToPaste = this->clipBoard.getData();
-    for each(Component* component in componentMapToPaste){
-        component->setID(StringUtil::intToString(this->newComponentID));
-        this->newComponentID++;
-    }
-    this->clipBoardState->paste(&this->commandManager);
+    CommandFactory commandFactory;
+    Command* command = commandFactory.createPasteComponentsCommand(this->componentMap,&this->clipBoard,this->clipBoardState,&this->newComponentID);
+    this->commandManager.execute(command);
 }
 
 void ERModel::switchClipBoardState(int clipBoardStateID,vector<string> componentIDVector){

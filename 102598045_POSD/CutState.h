@@ -7,8 +7,8 @@ public:
     CutState(ClipBoard* clipBoard,HashMap<string,Component*>& componentMap,vector<string> componentIDVectorToOperate);
     ~CutState();
 
-    void copy(CommandManager* commandManager);
-    void paste(CommandManager* commandManager);
+    void copy();
+    void paste();
 private:
     HashMap<string,Component*> componentMapToCut;
 };
