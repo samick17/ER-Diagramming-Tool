@@ -171,9 +171,12 @@ void ERModel::copyComponents(vector<string> componentIDVector){
 }
 
 void ERModel::pasteComponents(){
+    //while call this function, delegate state to command, and switch clipBoardState to nullclipboardstate
     CommandFactory commandFactory;
     Command* command = commandFactory.createPasteComponentsCommand(this->componentMap,&this->clipBoard,this->clipBoardState,&this->newComponentID);
     this->commandManager.execute(command);
+    this->clipBoardState = NULL;
+    this->switchClipBoardState(ClipBoardStateID::NullClipBoardState,vector<string>());
 }
 
 void ERModel::switchClipBoardState(int clipBoardStateID,vector<string> componentIDVector){

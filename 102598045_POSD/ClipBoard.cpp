@@ -6,10 +6,13 @@ ClipBoard::ClipBoard(){
 }
 
 ClipBoard::~ClipBoard(){
+    HashMapUtil::deleteAll(this->componentMap);
 }
 
 void ClipBoard::setData(HashMap<string,Component*> componentMap){
-    this->componentMap = componentMap;
+    HashMapUtil::deleteAll(this->componentMap);
+    for each(Component* component in componentMap)
+        this->componentMap.put(component->getID(),component->clone());
 }
 
 HashMap<string,Component*> ClipBoard::getData(){
@@ -17,5 +20,5 @@ HashMap<string,Component*> ClipBoard::getData(){
 }
 
 void ClipBoard::clearData(){
-    this->componentMap.clear();
+    HashMapUtil::deleteAll(this->componentMap);
 }

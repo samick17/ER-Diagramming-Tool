@@ -14,9 +14,6 @@ CutState::~CutState(){
 }
 
 void CutState::copy(){
-    if(componentMapToCut.empty())
-        return;
-    clipBoard->setData(this->componentMapToCut);
 }
 
 void CutState::paste(){

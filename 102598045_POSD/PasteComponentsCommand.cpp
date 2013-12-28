@@ -14,16 +14,17 @@ PasteComponentsCommand::PasteComponentsCommand(HashMap<string,Component*>& compo
 PasteComponentsCommand::~PasteComponentsCommand(){
     if(!this->getExecutionFalg()){
         for each(Component* component in this->componentMapToCopy)
-            *this->newComponentID--;
+            (*this->newComponentID)--;
         HashMapUtil::deleteAll(this->componentMapToCopy);
     }
+    delete clipBoardState;
 }
 
 void PasteComponentsCommand::doExecute(){
     for each(Component* component in this->componentMapToCopy){
         component->setID(StringUtil::intToString(*this->newComponentID));
         this->componentMap.put(component->getID(),component);
-        *this->newComponentID++;
+        (*this->newComponentID)++;
     }
     this->clipBoardState->paste();
 }
@@ -31,6 +32,7 @@ void PasteComponentsCommand::doExecute(){
 void PasteComponentsCommand::doUnExecute(){
     for each(Component* component in this->componentMapToCopy){
         this->componentMap.remove(component->getID());
-        *this->newComponentID--;
+        (*this->newComponentID)--;
     }
+    this->clipBoardState->copy();
 }
