@@ -2,12 +2,17 @@
 #include "Component.h"
 #include "ClipBoard.h"
 #include "HashMapUtil.h"
-#include "ClipBoardState.h"
 #include "StringUtil.h"
+#include "WidgetDefaultSetting.h"
 
-PasteComponentsCommand::PasteComponentsCommand(HashMap<string,Component*>& componentMap,ClipBoard* clipBoard,ClipBoardState* clipBoardState,int* newComponentID) : componentMap(componentMap),clipBoard(clipBoard),clipBoardState(clipBoardState),newComponentID(newComponentID){
+PasteComponentsCommand::PasteComponentsCommand(HashMap<string,Component*>& componentMap,ClipBoard* clipBoard,int* newComponentID,int pasteCount) : componentMap(componentMap),clipBoard(clipBoard),newComponentID(newComponentID){
     for each(Component* component in this->clipBoard->getData()){
-        this->componentMapToCopy.put(component->getID(),component->clone());
+        //set component position
+        Component* clonedComponent = component->clone();
+        Point currentPosition = clonedComponent->getPosition();
+        Point newPosition = Point(currentPosition.getX()+pasteCount*WidgetDefaultSetting::CloneOffsetX,currentPosition.getY()+pasteCount*WidgetDefaultSetting::CloneOffsetY);
+        clonedComponent->setPosition(newPosition);
+        this->componentMapToCopy.put(component->getID(),clonedComponent);
     }
 }
 
@@ -17,7 +22,6 @@ PasteComponentsCommand::~PasteComponentsCommand(){
             (*this->newComponentID)--;
         HashMapUtil::deleteAll(this->componentMapToCopy);
     }
-    delete clipBoardState;
 }
 
 void PasteComponentsCommand::doExecute(){
@@ -26,7 +30,6 @@ void PasteComponentsCommand::doExecute(){
         this->componentMap.put(component->getID(),component);
         (*this->newComponentID)++;
     }
-    this->clipBoardState->paste();
 }
 
 void PasteComponentsCommand::doUnExecute(){
@@ -34,5 +37,4 @@ void PasteComponentsCommand::doUnExecute(){
         this->componentMap.remove(component->getID());
         (*this->newComponentID)--;
     }
-    this->clipBoardState->copy();
 }

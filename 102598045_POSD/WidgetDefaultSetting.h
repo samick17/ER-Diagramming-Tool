@@ -18,6 +18,8 @@ public:
     static const double WidgetStartY;
     static const double WidgetOffsetY;
     static const double UnitTextWidth;
+    static const double CloneOffsetX;
+    static const double CloneOffsetY;
 
     static const double TableWidgetTop;
     static const double TableWidgetHeight;

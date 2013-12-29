@@ -11,22 +11,17 @@
 #include "HashMapUtil.h"
 #include "InputFileProcess.h"
 #include "OutputFileProcess.h"
-#include "ClipBoardStateID.h"
-#include "ClipBoardState.h"
-#include "ClipBoardStateFactory.h"
 #include "StringUtil.h"
 
 ERModel::ERModel(){
     this->initialCountMap();
     this->resetCounting();
-    this->clipBoardState = NULL;
     this->saveFlag = false;
-    this->switchClipBoardState(ClipBoardStateID::NullClipBoardState,vector<string>());
+    this->pasteCount = 0;
 }
 
 ERModel::~ERModel(){
     this->resetERModel();
-    this->deleteClipBoardState();
 }
 
 Node* ERModel::addNode(string nodeType){
@@ -158,31 +153,23 @@ bool ERModel::canPaste(){
 }
 
 void ERModel::cutComponents(vector<string> componentIDVector){
-    this->switchClipBoardState(ClipBoardStateID::CutState,componentIDVector);
+    this->pasteCount = 0;
     CommandFactory commandFactory;
     Command* command = commandFactory.createCutComponentsCommand(this->componentMap,&this->clipBoard,this->getComponentsByIDVector(componentIDVector));
     this->commandManager.execute(command);
 }
 
 void ERModel::copyComponents(vector<string> componentIDVector){
-    this->switchClipBoardState(ClipBoardStateID::CopyState,componentIDVector);
-    this->clipBoardState->copy();
+    this->pasteCount = 0;
     this->clipBoard.setData(this->getComponentsByIDVector(componentIDVector));
 }
 
 void ERModel::pasteComponents(){
-    //while call this function, delegate state to command, and switch clipBoardState to nullclipboardstate
+    this->pasteCount++;
     CommandFactory commandFactory;
-    Command* command = commandFactory.createPasteComponentsCommand(this->componentMap,&this->clipBoard,this->clipBoardState,&this->newComponentID);
+	Command* command = commandFactory.createPasteComponentsCommand(this->componentMap,&this->clipBoard,&this->newComponentID,this->pasteCount);
     this->commandManager.execute(command);
-    this->clipBoardState = NULL;
-    this->switchClipBoardState(ClipBoardStateID::NullClipBoardState,vector<string>());
-}
 
-void ERModel::switchClipBoardState(int clipBoardStateID,vector<string> componentIDVector){
-    this->deleteClipBoardState();
-    ClipBoardStateFactory clipBoardStateFactory;
-    this->clipBoardState = clipBoardStateFactory.createState(clipBoardStateID,&this->clipBoard,this->componentMap,componentIDVector);
 }
 //if doesn't contains such component, throw exception
 Component* ERModel::getComponentByID(string id){
@@ -249,8 +236,8 @@ HashMap<string,Table*> ERModel::getAllTables(){
 void ERModel::resetERModel(){
     this->commandManager.popAllStack();
     this->resetCounting();
-    this->switchClipBoardState(ClipBoardStateID::NullClipBoardState,vector<string>());
     this->clipBoard.clearData();
+    this->pasteCount = 0;
 
     HashMapUtil::deleteAll(this->componentMap);
     HashMapUtil::deleteAll(this->clonedComponentMap);
@@ -292,13 +279,6 @@ void ERModel::setNodePosition(string componentType,Node* node){
     double positionY = WidgetDefaultSetting::WidgetStartY+(*countIterator)*WidgetDefaultSetting::WidgetOffsetY;
     node->setPosition(Point(positionX,positionY));
     (*countIterator)++;
-}
-
-void ERModel::deleteClipBoardState(){
-    if(this->clipBoardState){
-        delete clipBoardState;
-        this->clipBoardState = NULL;
-    }
 }
 
 void ERModel::executeCommand(Command* command){

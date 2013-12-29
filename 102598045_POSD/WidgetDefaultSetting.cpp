@@ -12,6 +12,8 @@ const double WidgetDefaultSetting::RelationShipOffsetX = -120;
 const double WidgetDefaultSetting::WidgetStartY = 0;
 const double WidgetDefaultSetting::WidgetOffsetY = 60;
 const double WidgetDefaultSetting::UnitTextWidth = 7.5;
+const double WidgetDefaultSetting::CloneOffsetX = 20;
+const double WidgetDefaultSetting::CloneOffsetY = 20;
 
 const double WidgetDefaultSetting::TableWidgetTop = 24;
 const double WidgetDefaultSetting::TableWidgetHeight = 32;

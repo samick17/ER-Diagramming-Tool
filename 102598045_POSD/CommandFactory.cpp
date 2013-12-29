@@ -7,7 +7,6 @@
 #include "MoveComponentsCommand.h"
 #include "CutComponentsCommand.h"
 #include "PasteComponentsCommand.h"
-#include "ClipBoardState.h"
 
 Command* CommandFactory::createAddNodeCommand(HashMap<string,Component*>& componentMap,Node* node){
     return new AddNodeCommand(componentMap,node);
@@ -37,6 +36,6 @@ Command* CommandFactory::createCutComponentsCommand(HashMap<string,Component*>& 
     return new CutComponentsCommand(componentMap,clipBoard,componentMapToCut);
 }
 
-Command* CommandFactory::createPasteComponentsCommand(HashMap<string,Component*>& componentMap,ClipBoard* clipBoard,ClipBoardState* clipBoardState,int* newComponentID){
-    return new PasteComponentsCommand(componentMap,clipBoard,clipBoardState,newComponentID);
+Command* CommandFactory::createPasteComponentsCommand(HashMap<string,Component*>& componentMap,ClipBoard* clipBoard,int* newComponentID,int pasteCount){
+    return new PasteComponentsCommand(componentMap,clipBoard,newComponentID,pasteCount);
 }

@@ -218,12 +218,6 @@
     <Filter Include="Source Files\State\ViewState">
       <UniqueIdentifier>{16cc152a-dc5d-432a-baa8-94ee3eb07c7a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\State\ClipBoardState">
-      <UniqueIdentifier>{daec09d2-9397-4d78-8f84-7ba92efafa0d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\State\ClipBoardState">
-      <UniqueIdentifier>{95e6189a-bee6-4b5a-89c3-224e1a12bfe8}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -634,29 +628,11 @@
     <ClCompile Include="ClipBoard.cpp">
       <Filter>Source Files\Model</Filter>
     </ClCompile>
-    <ClCompile Include="ClipBoardStateID.cpp">
-      <Filter>Source Files\Constants</Filter>
-    </ClCompile>
     <ClCompile Include="InputFileProcess.cpp">
       <Filter>Source Files\Process</Filter>
     </ClCompile>
     <ClCompile Include="FileProcess.cpp">
       <Filter>Source Files\Process</Filter>
-    </ClCompile>
-    <ClCompile Include="ClipBoardState.cpp">
-      <Filter>Source Files\State\ClipBoardState</Filter>
-    </ClCompile>
-    <ClCompile Include="CopyState.cpp">
-      <Filter>Source Files\State\ClipBoardState</Filter>
-    </ClCompile>
-    <ClCompile Include="CutState.cpp">
-      <Filter>Source Files\State\ClipBoardState</Filter>
-    </ClCompile>
-    <ClCompile Include="NullClipBoardState.cpp">
-      <Filter>Source Files\State\ClipBoardState</Filter>
-    </ClCompile>
-    <ClCompile Include="ClipBoardStateFactory.cpp">
-      <Filter>Source Files\Factory</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1032,29 +1008,11 @@
     <ClInclude Include="ClipBoard.h">
       <Filter>Header Files\Model</Filter>
     </ClInclude>
-    <ClInclude Include="ClipBoardStateID.h">
-      <Filter>Header Files\Constants</Filter>
-    </ClInclude>
     <ClInclude Include="InputFileProcess.h">
       <Filter>Header Files\Process</Filter>
     </ClInclude>
     <ClInclude Include="FileProcess.h">
       <Filter>Header Files\Process</Filter>
-    </ClInclude>
-    <ClInclude Include="ClipBoardState.h">
-      <Filter>Header Files\State\ClipBoardState</Filter>
-    </ClInclude>
-    <ClInclude Include="NullClipBoardState.h">
-      <Filter>Header Files\State\ClipBoardState</Filter>
-    </ClInclude>
-    <ClInclude Include="CutState.h">
-      <Filter>Header Files\State\ClipBoardState</Filter>
-    </ClInclude>
-    <ClInclude Include="CopyState.h">
-      <Filter>Header Files\State\ClipBoardState</Filter>
-    </ClInclude>
-    <ClInclude Include="ClipBoardStateFactory.h">
-      <Filter>Header Files\Factory</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

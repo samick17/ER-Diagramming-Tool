@@ -10,8 +10,6 @@
 #include "Subject.h"
 #include "ClipBoard.h"
 
-class ClipBoardState;
-
 class ERModel : public ISyncable,public Subject{
     friend class ERModelTest;
     FRIEND_TEST(ERModelTest,testAddNode);
@@ -90,15 +88,12 @@ private:
     void initialCountMap();
     void resetCounting();
     void setNodePosition(string componentType,Node* node);
-    void switchClipBoardState(int clipBoardStateID,vector<string> componentIDVector);
-    void deleteClipBoardState();
     void executeCommand(Command* command);
     HashMap<string,Component*> getComponentsByIDVector(vector<string> componentIDVector);
-    int attributeCount,entityCount,relationShipCount;
+    int attributeCount,entityCount,relationShipCount,pasteCount;
     int newComponentID;
     bool saveFlag;
     ClipBoard clipBoard;
-    ClipBoardState* clipBoardState;
     HashMap<string,int*> componentTypeCountMap;
     HashMap<string,Component*> componentMap;
     HashMap<string,Component*> clonedComponentMap;
