@@ -30,22 +30,6 @@ class ERModel : public ISyncable,public Subject{
     FRIEND_TEST(CommandManagerTest,testCommandManager);
     FRIEND_TEST(CommandManagerTest,testRedoUndo);
     FRIEND_TEST(CommandManagerTest,testPopAllStack);
-    friend class AddNodeCommandTest;
-    FRIEND_TEST(AddNodeCommandTest,testExecute);
-    FRIEND_TEST(AddNodeCommandTest,testUnexecute);
-    FRIEND_TEST(AddNodeCommandTest,testAddNodeCommand);
-    friend class ConnectNodeCommandTest;
-    FRIEND_TEST(ConnectNodeCommandTest,testExecute);
-    FRIEND_TEST(ConnectNodeCommandTest,testUnexecute);
-    FRIEND_TEST(ConnectNodeCommandTest,testConnectNodeCommand);
-    friend class DeleteComponentCommandTest;
-    FRIEND_TEST(DeleteComponentCommandTest,testExecute);
-    FRIEND_TEST(DeleteComponentCommandTest,testUnexecute);
-    FRIEND_TEST(DeleteComponentCommandTest,testDeleteComponentCommand);
-    FRIEND_TEST(DeleteComponentCommandTest,testSaveConnectionData);
-    FRIEND_TEST(DeleteComponentCommandTest,testClearConnectionDataMap);
-    FRIEND_TEST(DeleteComponentCommandTest,testRemoveAndDisconnectComponents);
-    FRIEND_TEST(DeleteComponentCommandTest,testReConnectComponents);
 public:
     ERModel();
     ~ERModel();

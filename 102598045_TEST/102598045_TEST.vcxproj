@@ -186,6 +186,7 @@
     <ClCompile Include="AddNodeStateTest.cpp" />
     <ClCompile Include="AttributeTest.cpp" />
     <ClCompile Include="CardinalityTest.cpp" />
+    <ClCompile Include="ClipBoardTest.cpp" />
     <ClCompile Include="CommandFactoryTest.cpp" />
     <ClCompile Include="CommandManagerTest.cpp" />
     <ClCompile Include="CommandTest.cpp" />
@@ -214,9 +215,11 @@
     <ClCompile Include="MockCommand.cpp" />
     <ClCompile Include="MockIObserver.cpp" />
     <ClCompile Include="MockState.cpp" />
+    <ClCompile Include="MoveComponentsCommandTest.cpp" />
     <ClCompile Include="NodeTest.cpp" />
     <ClCompile Include="PasteComponentsCommandTest.cpp" />
     <ClCompile Include="PointerStateTest.cpp" />
+    <ClCompile Include="PresentationTest.cpp" />
     <ClCompile Include="RelationShipTest.cpp" />
     <ClCompile Include="ReorderComponentsUtilTest.cpp" />
     <ClCompile Include="SaveComponentVisitorTest.cpp" />
@@ -246,6 +249,7 @@
     <ClInclude Include="AddNodeStateTest.h" />
     <ClInclude Include="AttributeTest.h" />
     <ClInclude Include="CardinalityTest.h" />
+    <ClInclude Include="ClipBoardTest.h" />
     <ClInclude Include="CommandFactoryTest.h" />
     <ClInclude Include="CommandManagerTest.h" />
     <ClInclude Include="CommandTest.h" />
@@ -273,9 +277,11 @@
     <ClInclude Include="MockCommand.h" />
     <ClInclude Include="MockIObserver.h" />
     <ClInclude Include="MockState.h" />
+    <ClInclude Include="MoveComponentsCommandTest.h" />
     <ClInclude Include="NodeTest.h" />
     <ClInclude Include="PasteComponentsCommandTest.h" />
     <ClInclude Include="PointerStateTest.h" />
+    <ClInclude Include="PresentationTest.h" />
     <ClInclude Include="RelationShipTest.h" />
     <ClInclude Include="ReorderComponentsUtilTest.h" />
     <ClInclude Include="SaveComponentVisitorTest.h" />

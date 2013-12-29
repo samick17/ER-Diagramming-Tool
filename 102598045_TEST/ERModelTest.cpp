@@ -162,6 +162,15 @@ TEST_F(ERModelTest,testAddConnection){
     ASSERT_EQ(false,hasConnected(relationShipWorkOn,attributeDepartmentName));
 }
 
+TEST_F(ERModelTest,testCanUndo){
+}
+
+TEST_F(ERModelTest,testCanRedo){
+}
+
+TEST_F(ERModelTest,testIsNeedToSave){
+}
+
 TEST_F(ERModelTest,testSetCardinality){
     Connector* connector = static_cast<Connector*>(this->erModel.getComponentByID("9"));
 
@@ -260,6 +269,18 @@ TEST_F(ERModelTest,testOpenFile){
 }
 
 TEST_F(ERModelTest,testSaveFile){
+}
+
+TEST_F(ERModelTest,testCanPaste){
+}
+
+TEST_F(ERModelTest,testCutComponents){
+}
+
+TEST_F(ERModelTest,testCopyComponents){
+}
+
+TEST_F(ERModelTest,testPasteComponents){
 }
 
 TEST_F(ERModelTest,testGetComponentByID){

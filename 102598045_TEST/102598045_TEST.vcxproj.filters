@@ -151,9 +151,6 @@
     <Filter Include="Source Files\Visitor">
       <UniqueIdentifier>{d92757e9-6636-430e-821a-4b2d770218a7}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Visitor">
-      <UniqueIdentifier>{aa12ab1f-287c-4238-96fd-93a6b4b45566}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Unit Testing Files\Visitor">
       <UniqueIdentifier>{407602e5-0c21-449e-bdf7-a7018095b26d}</UniqueIdentifier>
     </Filter>
@@ -168,6 +165,9 @@
     </Filter>
     <Filter Include="Source Files\Model\Component">
       <UniqueIdentifier>{19c81018-be87-4124-a0bb-e033f009dd54}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\UtilTest\Visitor">
+      <UniqueIdentifier>{aa12ab1f-287c-4238-96fd-93a6b4b45566}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -642,6 +642,15 @@
     <ClCompile Include="..\102598045_POSD\PasteComponentsCommand.cpp">
       <Filter>Source Files\Command</Filter>
     </ClCompile>
+    <ClCompile Include="ClipBoardTest.cpp">
+      <Filter>Unit Testing Files\ModelTest</Filter>
+    </ClCompile>
+    <ClCompile Include="PresentationTest.cpp">
+      <Filter>Unit Testing Files\PresentationTest</Filter>
+    </ClCompile>
+    <ClCompile Include="MoveComponentsCommandTest.cpp">
+      <Filter>Unit Testing Files\CommandTest</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DirectoryUtil.h">
@@ -807,13 +816,22 @@
       <Filter>Header Files\CommandTest</Filter>
     </ClInclude>
     <ClInclude Include="SaveXmlComponentVisitorTest.h">
-      <Filter>Header Files\Visitor</Filter>
+      <Filter>Header Files\UtilTest\Visitor</Filter>
     </ClInclude>
     <ClInclude Include="SaveComponentVisitorTest.h">
-      <Filter>Header Files\Visitor</Filter>
+      <Filter>Header Files\UtilTest\Visitor</Filter>
     </ClInclude>
     <ClInclude Include="ReorderComponentsUtilTest.h">
       <Filter>Header Files\UtilTest</Filter>
+    </ClInclude>
+    <ClInclude Include="ClipBoardTest.h">
+      <Filter>Header Files\ModelTest</Filter>
+    </ClInclude>
+    <ClInclude Include="PresentationTest.h">
+      <Filter>Header Files\PresentationTest</Filter>
+    </ClInclude>
+    <ClInclude Include="MoveComponentsCommandTest.h">
+      <Filter>Header Files\CommandTest</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
