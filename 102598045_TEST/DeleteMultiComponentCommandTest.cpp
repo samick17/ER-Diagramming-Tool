@@ -6,3 +6,12 @@ void DeleteMultiComponentCommandTest::SetUp(){
 
 void DeleteMultiComponentCommandTest::TearDown(){
 }
+
+TEST_F(DeleteMultiComponentCommandTest,testExecute){
+}
+
+TEST_F(DeleteMultiComponentCommandTest,testUnexecute){
+}
+
+TEST_F(DeleteMultiComponentCommandTest,testDeleteMultiComponentCommand){
+}

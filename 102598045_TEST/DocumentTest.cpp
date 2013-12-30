@@ -14,7 +14,7 @@ void DocumentTest::TearDown(){
     delete this->document;
 }
 
-TEST_F(DocumentTest,testDocument){    
+TEST_F(DocumentTest,testDocument){
     ASSERT_EQ(0,this->document->rwBuffer.size());
     //test write
     this->document->writeLine("testLine1");

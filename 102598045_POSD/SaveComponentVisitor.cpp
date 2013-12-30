@@ -75,8 +75,8 @@ void SaveComponentVisitor::visitComponent(Component* component){
 }
 
 void SaveComponentVisitor::recordPosition(Node* node){
-    string position = StringUtil::intToString(node->getRect().getPosition().getX());
+    string position = StringUtil::doubleToString(node->getRect().getPosition().getX());
     position.append(StringSymbol::Space);
-    position.append(StringUtil::intToString(node->getRect().getPosition().getY()));
+    position.append(StringUtil::doubleToString(node->getRect().getPosition().getY()));
     this->positionInfoVector.push_back(position);
 }

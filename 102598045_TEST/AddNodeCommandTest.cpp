@@ -55,7 +55,6 @@ TEST_F(AddNodeCommandTest,testAddNodeCommand){
     addNodeCommand1.execute();
     ASSERT_EQ(1,this->componentMap.size());
 
-    
     Node* attribute = new Attribute("1","ID");
     AddNodeCommand addNodeCommand2 = AddNodeCommand(this->componentMap,attribute);
 

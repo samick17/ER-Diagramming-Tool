@@ -169,6 +169,12 @@
     <Filter Include="Header Files\UtilTest\Visitor">
       <UniqueIdentifier>{aa12ab1f-287c-4238-96fd-93a6b4b45566}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Process">
+      <UniqueIdentifier>{53f86268-b713-406c-a6c2-29c67c0175ea}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Unit Testing Files\Process">
+      <UniqueIdentifier>{d87e9f15-50ab-4eb5-9a80-62d63df0af3a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MainTest.cpp">
@@ -651,6 +657,9 @@
     <ClCompile Include="MoveComponentsCommandTest.cpp">
       <Filter>Unit Testing Files\CommandTest</Filter>
     </ClCompile>
+    <ClCompile Include="FileProcessTest.cpp">
+      <Filter>Unit Testing Files\Process</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DirectoryUtil.h">
@@ -832,6 +841,9 @@
     </ClInclude>
     <ClInclude Include="MoveComponentsCommandTest.h">
       <Filter>Header Files\CommandTest</Filter>
+    </ClInclude>
+    <ClInclude Include="FileProcessTest.h">
+      <Filter>Header Files\Process</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

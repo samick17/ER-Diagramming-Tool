@@ -197,6 +197,7 @@
     <ClCompile Include="DirectoryUtil.cpp" />
     <ClCompile Include="EditTextOfComponentsCommandTest.cpp" />
     <ClCompile Include="FileCreator.cpp" />
+    <ClCompile Include="FileProcessTest.cpp" />
     <ClCompile Include="GraphicalPresentationTest.cpp" />
     <ClCompile Include="InstructionMenuTest.cpp" />
     <ClCompile Include="ComponentFactoryTest.cpp" />
@@ -259,6 +260,7 @@
     <ClInclude Include="DeleteMultiComponentCommandTest.h" />
     <ClInclude Include="EditTextOfComponentsCommandTest.h" />
     <ClInclude Include="FileCreator.h" />
+    <ClInclude Include="FileProcessTest.h" />
     <ClInclude Include="GraphicalPresentationTest.h" />
     <ClInclude Include="InstructionMenuTest.h" />
     <ClInclude Include="ComponentFactoryTest.h" />

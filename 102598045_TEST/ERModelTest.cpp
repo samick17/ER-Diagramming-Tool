@@ -211,7 +211,6 @@ TEST_F(ERModelTest,testSetPrimaryKey){
 
 TEST_F(ERModelTest,testSetComponentText){
     //test set component,which is not exists
-
     ASSERT_THROW(this->erModel.setComponentText("X","testTextX"),NoSuchNodeException);
     ASSERT_THROW(this->erModel.setComponentText("Y","testTestTestY"),NoSuchNodeException);
 

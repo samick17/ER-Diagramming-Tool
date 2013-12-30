@@ -4,17 +4,22 @@
 
 //convert int to string
 string StringUtil::intToString(int number){
-    stringstream strStream; 
-    strStream << number;
-    string str = strStream.str();
-    return str;
+    stringstream stringStream;
+    stringStream<<number;
+    return stringStream.str();
+}
+
+string StringUtil::doubleToString(double number){
+    ostringstream stringStream;
+    stringStream<<number;
+    return stringStream.str();
 }
 //split string with char
 vector<string> StringUtil::split(const string &str,char delim){
     vector<string> elements;
-    stringstream strStream(str);
+    stringstream stringStream(str);
     string line;
-    while (getline(strStream,line,delim))
+    while (getline(stringStream,line,delim))
         elements.push_back(line);
     return elements;
 }
