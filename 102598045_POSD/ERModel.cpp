@@ -166,10 +166,10 @@ void ERModel::copyComponents(vector<string> componentIDVector){
 
 void ERModel::pasteComponents(){
     this->pasteCount++;
+    //process clipBoard Data
     CommandFactory commandFactory;
-	Command* command = commandFactory.createPasteComponentsCommand(this->componentMap,&this->clipBoard,&this->newComponentID,this->pasteCount);
+    Command* command = commandFactory.createPasteComponentsCommand(this->componentMap,&this->clipBoard,&this->newComponentID,this->pasteCount);
     this->commandManager.execute(command);
-
 }
 //if doesn't contains such component, throw exception
 Component* ERModel::getComponentByID(string id){

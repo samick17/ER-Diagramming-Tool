@@ -178,14 +178,20 @@ void GraphicalUI::initialSyncMap(){
 }
 
 void GraphicalUI::openFile(){
-    QString openFilePath = QFileDialog::getOpenFileName(this,QString(ActionData::ActionName[ActionData::SaveFile].c_str()),QString(ApplicationSetting::FilePath.c_str()),QString(ApplicationSetting::FullERDFileExtension.c_str()));
+    QString openFileCaption = QString(ActionData::ActionName[ActionData::OpenFile].c_str());
+    QString defaultFileDir = QString(ApplicationSetting::FilePath.c_str());
+    QString openFileFilter = QString(ApplicationSetting::FullERDFileExtension.c_str());
+    QString openFilePath = QFileDialog::getOpenFileName(this,openFileCaption,defaultFileDir,openFileFilter);
     if(!openFilePath.isEmpty()){
         this->graphicalPresentation->openFile(openFilePath.toStdString());
     }
 }
 
 void GraphicalUI::saveFile(){
-    QString saveFilePath = QFileDialog::getSaveFileName(this,QString(ActionData::ActionName[ActionData::SaveFile].c_str()),QString(ApplicationSetting::FilePath.c_str()),QString(ApplicationSetting::FullERDFileExtension.c_str()));
+    QString saveFileCaption = QString(ActionData::ActionName[ActionData::SaveFile].c_str());
+    QString defaultFileDir = QString(ApplicationSetting::FilePath.c_str());
+    QString saveFileFilter = QString((ApplicationSetting::FullERDFileExtension+";;"+ApplicationSetting::FullXmlFileExtension).c_str());
+    QString saveFilePath = QFileDialog::getSaveFileName(this,saveFileCaption,defaultFileDir,saveFileFilter);
     if(!saveFilePath.isEmpty()){
         this->graphicalPresentation->saveFile(saveFilePath.toStdString());
     }
