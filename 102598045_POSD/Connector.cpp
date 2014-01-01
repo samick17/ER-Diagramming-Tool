@@ -94,5 +94,8 @@ void Connector::accept(ComponentVisitor* visitor){
 }
 
 Component* Connector::clone() const{
-    return NULL;
+    string id = this->componentData->getID();
+    string name = this->componentData->getName();
+    Connector* connector = new Connector(id,name);
+    return connector;
 }

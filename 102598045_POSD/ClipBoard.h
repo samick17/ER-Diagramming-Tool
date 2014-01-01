@@ -13,5 +13,6 @@ public:
     HashMap<string,Component*> getData();
     void clearData();
 private:
+    HashMap<string,Component*> clonedAllComponents(HashMap<string,Component*> componentMap);
     HashMap<string,Component*> componentMap;
 };
