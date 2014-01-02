@@ -8,7 +8,6 @@
 PasteComponentsCommand::PasteComponentsCommand(HashMap<string,Component*>& componentMap,ClipBoard* clipBoard,int* newComponentID,int pasteCount) : componentMap(componentMap),clipBoard(clipBoard),newComponentID(newComponentID){
     for each(Component* component in this->clipBoard->getData()){
         //set component position
-        //Component* clonedComponent = component->clone();
         Point currentPosition = component->getPosition();
         Point newPosition = Point(currentPosition.getX()+pasteCount*WidgetDefaultSetting::CloneOffsetX,currentPosition.getY()+pasteCount*WidgetDefaultSetting::CloneOffsetY);
         component->setPosition(newPosition);
@@ -18,8 +17,6 @@ PasteComponentsCommand::PasteComponentsCommand(HashMap<string,Component*>& compo
 
 PasteComponentsCommand::~PasteComponentsCommand(){
     if(!this->getExecutionFalg()){
-        for each(Component* component in this->componentMapToCopy)
-            (*this->newComponentID)--;
         HashMapUtil::deleteAll(this->componentMapToCopy);
     }
 }
