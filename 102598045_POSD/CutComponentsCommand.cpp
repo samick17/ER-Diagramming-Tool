@@ -4,7 +4,7 @@
 #include "ClipBoard.h"
 
 CutComponentsCommand::CutComponentsCommand(HashMap<string,Component*>& componentMap,ClipBoard* clipBoard,HashMap<string,Component*> componentMapToCut) : componentMap(componentMap),clipBoard(clipBoard),componentMapToCut(componentMapToCut){
-    this->deleteMultiComponentCommand = NULL;
+    this->deleteMultiComponentCommand = new DeleteMultiComponentCommand(this->componentMap,this->componentMapToCut);
 }
 
 CutComponentsCommand::~CutComponentsCommand(){
@@ -13,8 +13,6 @@ CutComponentsCommand::~CutComponentsCommand(){
 }
 
 void CutComponentsCommand::doExecute(){
-    if(this->deleteMultiComponentCommand == NULL)
-        this->deleteMultiComponentCommand = new DeleteMultiComponentCommand(this->componentMap,this->componentMapToCut);
     //set clipboard data
     this->clipBoard->setData(componentMapToCut);
     //cut components

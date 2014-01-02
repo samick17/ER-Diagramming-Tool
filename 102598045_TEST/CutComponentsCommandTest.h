@@ -1,11 +1,13 @@
 #pragma once
 
 #include <gtest/gtest.h>
-#include "ERModel.h"
+#include "HashMap.h"
+
+class Component;
 
 class CutComponentsCommandTest : public testing::Test{
 protected:
-    ERModel erModel;
+    HashMap<string,Component*> componentMap;
     virtual void SetUp();
     virtual void TearDown();
 };

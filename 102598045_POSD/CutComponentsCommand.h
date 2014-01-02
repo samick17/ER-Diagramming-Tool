@@ -9,6 +9,8 @@ class DeleteMultiComponentCommand;
 class ClipBoard;
 
 class CutComponentsCommand : public Command{
+    friend class CutComponentsCommandTest;
+    FRIEND_TEST(CutComponentsCommandTest,testUnexecute);
 public:
     CutComponentsCommand(HashMap<string,Component*>& componentMap,ClipBoard* clipBoard,HashMap<string,Component*> componentMapToCut);
     ~CutComponentsCommand();
