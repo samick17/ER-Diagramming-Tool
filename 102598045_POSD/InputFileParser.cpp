@@ -2,6 +2,9 @@
 #include "StringUtil.h"
 #include "StringSymbol.h"
 #include "CharSymbol.h"
+#include "ApplicationSetting.h"
+#include "Node.h"
+#include "ERModelUtil.h"
 
 InputFileParser::InputFileParser(){
     this->erModel = NULL;
@@ -10,9 +13,9 @@ InputFileParser::InputFileParser(){
 InputFileParser::~InputFileParser(){
 }
 
-void InputFileParser::parseFileToModel(string filePath,ERModel* erModel){
+void InputFileParser::parseFileToModel(string fileName,string fileExtension,ERModel* erModel){
     //load all file
-    Document doc(filePath);
+    Document doc(fileName,fileExtension);
     doc.openFile();
 
     this->erModel = erModel;
@@ -23,6 +26,8 @@ void InputFileParser::parseFileToModel(string filePath,ERModel* erModel){
     this->addAllComponentToERModel();
     //load all Primary Key
     this->loadAllPrimaryKeyAndSetUpFromDoc(doc);
+    //load pos file
+    this->loadPosDocAndSetComponentsPosition(fileName);
 }
 
 void InputFileParser::loadAllComponentsFromDoc(Document& doc){
@@ -115,4 +120,29 @@ bool InputFileParser::isQueueArriveConnectionDataID(int id){
         return true;
 
     return false;
+}
+
+void InputFileParser::loadPosDocAndSetComponentsPosition(string fileName){
+    Document posDoc(fileName,ApplicationSetting::ERDPositionFileExtension);
+    try{
+        posDoc.openFile();
+        vector<Point> positionVector;
+        string line;
+        while(StringUtil::trim((line = posDoc.readLine())) != StringSymbol::Empty){
+            vector<string> pointVector = StringUtil::split(line,CharSymbol::Space);
+            double positionX = StringUtil::stringToInt(pointVector[0]);
+            double positionY = StringUtil::stringToInt(pointVector[1]);
+            positionVector.push_back(Point(positionX,positionY));
+        }
+
+        HashMap<string,Node*> nodeMap = ERModelUtil::convertComponentHashMapToTypeHashMap<Node>(this->erModel->getAllComponents());
+        for(unsigned int index = 0;index<nodeMap.size();index++){
+            Node* node = nodeMap.getValueByIndex(index);
+            Point position = positionVector[index];
+            node->setPosition(position);
+        }
+    }
+    catch(Exception&){
+    }
+    //set all nodes position
 }

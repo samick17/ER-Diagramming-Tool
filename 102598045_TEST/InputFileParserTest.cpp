@@ -40,7 +40,7 @@ void InputFileParserTest::TearDown(){
     delete this->document;
 }
 
-TEST_F(InputFileParserTest,testLoadAllComponentsFromDoc){    
+TEST_F(InputFileParserTest,testLoadAllComponentsFromDoc){
     ASSERT_EQ(true,this->inputFileParser.componentDataQueue.empty());
     this->inputFileParser.loadAllComponentsFromDoc(*this->document);
     ASSERT_EQ(15,this->inputFileParser.componentDataQueue.size());

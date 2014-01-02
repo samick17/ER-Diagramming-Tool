@@ -1,6 +1,7 @@
 #include "ClipBoard.h"
 #include "HashMapUtil.h"
 #include "Connector.h"
+#include "Node.h"
 #include "ComponentUtil.h"
 #include "ERModelUtil.h"
 
@@ -14,7 +15,7 @@ ClipBoard::~ClipBoard(){
 void ClipBoard::setData(HashMap<string,Component*> componentMap){
     //clean up
     HashMapUtil::deleteAll(this->componentMap);
-    //separate connector and componentMap
+    //clone all components, if component can be cloned(consider connector)
     this->componentMap = this->clonedAllComponents(componentMap);
 }
 
@@ -28,25 +29,18 @@ void ClipBoard::clearData(){
 
 HashMap<string,Component*> ClipBoard::clonedAllComponents(HashMap<string,Component*> componentMap){
     HashMap<string,Component*> clonedComponentMap;
-
-    HashMap<string,Connector*> connectorMap;
-    for each(Connector* connector in ERModelUtil::convertComponentHashMapToTypeHashMap<Connector>(componentMap)){
-        string connectorID = connector->getID();
-        connectorMap.put(connectorID,connector);
-    }
-
-    for each(Connector* connector in connectorMap){
-        componentMap.remove(connector->getID());
-    }
-
-    for each(Component* component in componentMap)
+    //separate connector and componentMap
+    HashMap<string,Connector*> connectorMap = ERModelUtil::convertComponentHashMapToTypeHashMap<Connector>(componentMap);
+    HashMap<string,Node*> nodeMap = ERModelUtil::convertComponentHashMapToTypeHashMap<Node>(componentMap);
+    //clone component to result(except connector)
+    for each(Component* component in nodeMap)
         clonedComponentMap.put(component->getID(),component->clone());
     //if contains connector's connection , then put connector to componentMap
     for each(Connector* connector in connectorMap){
         string firstConnectedID = connector->getFirstConnectedNode()->getID();
         string secondConnectedID = connector->getSecondConnectedNode()->getID();
-        if(componentMap.containsKey(firstConnectedID) &&
-            componentMap.containsKey(secondConnectedID)){
+        if(nodeMap.containsKey(firstConnectedID) &&
+            nodeMap.containsKey(secondConnectedID)){
                 Connector* clonedConnector = static_cast<Connector*>(connector->clone());
                 clonedComponentMap.put(connector->getID(),clonedConnector);
                 Component* firstNodeInComponentMap = clonedComponentMap.get(firstConnectedID);

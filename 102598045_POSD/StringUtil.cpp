@@ -9,6 +9,14 @@ string StringUtil::intToString(int number){
     return stringStream.str();
 }
 
+int StringUtil::stringToInt(string str){
+    int covertedInt;
+    stringstream stringStream;
+    stringStream.str(str);
+    stringStream >> covertedInt;
+    return covertedInt;
+}
+
 string StringUtil::doubleToString(double number){
     ostringstream stringStream;
     stringStream<<number;

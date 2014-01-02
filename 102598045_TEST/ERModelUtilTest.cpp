@@ -38,10 +38,10 @@ TEST_F(ERModelUtilTest,testConvertComponentHashMapToTypeHashMap){
     componentMap.put(entity3->getID(),entity3);
     
     HashMap<string,Component*> componentMapConvert = ERModelUtil::convertComponentHashMapToTypeHashMap<Component>(componentMap);
-    ASSERT_EQ(0,componentMapConvert.size());
+    ASSERT_EQ(11,componentMapConvert.size());
 
     HashMap<string,Node*> nodeMapConvert = ERModelUtil::convertComponentHashMapToTypeHashMap<Node>(componentMap);
-    ASSERT_EQ(0,nodeMapConvert.size());
+    ASSERT_EQ(7,nodeMapConvert.size());
     
     HashMap<string,Attribute*> attributeMapConvert = ERModelUtil::convertComponentHashMapToTypeHashMap<Attribute>(componentMap);
     ASSERT_EQ(2,attributeMapConvert.size());
@@ -55,18 +55,18 @@ TEST_F(ERModelUtilTest,testConvertComponentHashMapToTypeHashMap){
     ASSERT_EQ(entity3,entityMapConvert.get("13"));
 
     HashMap<string,RelationShip*> relaitonShipMapConvert = ERModelUtil::convertComponentHashMapToTypeHashMap<RelationShip>(componentMap);
-    ASSERT_EQ(2,relaitonShipMapConvert.size());    
+    ASSERT_EQ(2,relaitonShipMapConvert.size());
     ASSERT_EQ(relationShip1,relaitonShipMapConvert.get("15"));
     ASSERT_EQ(relationShip2,relaitonShipMapConvert.get("39"));
 
     HashMap<string,Connector*> connectorMapConvert = ERModelUtil::convertComponentHashMapToTypeHashMap<Connector>(componentMap);
-    ASSERT_EQ(4,connectorMapConvert.size());    
+    ASSERT_EQ(4,connectorMapConvert.size());
     ASSERT_EQ(connector1,connectorMapConvert.get("1"));
     ASSERT_EQ(connector2,connectorMapConvert.get("17"));
     ASSERT_EQ(connector3,connectorMapConvert.get("6"));
     ASSERT_EQ(connector4,connectorMapConvert.get("48"));
 
     for each(Component* component in componentMap)
-        delete component;    
+        delete component;
     componentMap.clear();
 }

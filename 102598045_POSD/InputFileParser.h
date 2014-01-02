@@ -22,7 +22,7 @@ public:
     InputFileParser();
     ~InputFileParser();
 
-    void parseFileToModel(string filePath,ERModel* erModel);
+    void parseFileToModel(string fileName,string fileExtension,ERModel* erModel);
 private:
     void loadAllComponentsFromDoc(Document& document);
     void loadAllConnectorsFromDoc(Document& document);
@@ -30,6 +30,7 @@ private:
     void addAllComponentToERModel();
     void addConnector(ConnectionData connectionData,string connectionName);
     bool isQueueArriveConnectionDataID(int id);
+    void loadPosDocAndSetComponentsPosition(string fileName);
     ERModel* erModel;
     queue<StringPair> componentDataQueue;
     queue<ConnectionData> connectionDataQueue;
