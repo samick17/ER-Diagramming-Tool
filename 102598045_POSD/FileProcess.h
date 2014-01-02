@@ -11,10 +11,11 @@ class FileProcess{
 public:
     FileProcess(string filePath);
     virtual ~FileProcess();
+
+    static pair<string,string> extractFileInfo(string filePath);
 protected:
     string getFileName();
     string getFileExtension();
 private:
-    void extractFileInfo(string filePath);
     string fileName,fileExtension;
 };

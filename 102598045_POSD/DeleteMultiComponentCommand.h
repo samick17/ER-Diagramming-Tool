@@ -9,6 +9,8 @@ class Component;
 using namespace std;
 
 class DeleteMultiComponentCommand : public Command{
+    friend class DeleteMultiComponentCommandTest;
+    FRIEND_TEST(DeleteMultiComponentCommandTest,testUnexecute);
 public:
     DeleteMultiComponentCommand(HashMap<string,Component*>& componentMap,HashMap<string,Component*> componentMapToDelete);
     ~DeleteMultiComponentCommand();

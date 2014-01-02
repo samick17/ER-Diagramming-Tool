@@ -5,6 +5,7 @@
 #include "ApplicationSetting.h"
 #include "Node.h"
 #include "ERModelUtil.h"
+#include "FileProcess.h"
 
 InputFileParser::InputFileParser(){
     this->erModel = NULL;
@@ -13,9 +14,9 @@ InputFileParser::InputFileParser(){
 InputFileParser::~InputFileParser(){
 }
 
-void InputFileParser::parseFileToModel(string fileName,string fileExtension,ERModel* erModel){
+void InputFileParser::parseFileToModel(string filePath,ERModel* erModel){
     //load all file
-    Document doc(fileName,fileExtension);
+    Document doc(filePath);
     doc.openFile();
 
     this->erModel = erModel;
@@ -27,7 +28,7 @@ void InputFileParser::parseFileToModel(string fileName,string fileExtension,ERMo
     //load all Primary Key
     this->loadAllPrimaryKeyAndSetUpFromDoc(doc);
     //load pos file
-    this->loadPosDocAndSetComponentsPosition(fileName);
+	this->loadPosDocAndSetComponentsPosition(FileProcess::extractFileInfo(filePath).first);
 }
 
 void InputFileParser::loadAllComponentsFromDoc(Document& doc){
@@ -144,5 +145,4 @@ void InputFileParser::loadPosDocAndSetComponentsPosition(string fileName){
     }
     catch(Exception&){
     }
-    //set all nodes position
 }

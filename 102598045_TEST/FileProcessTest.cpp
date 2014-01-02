@@ -14,9 +14,9 @@ TEST_F(FileProcessTest,testExtractFileInfo){
     ASSERT_EQ("C:\\ERD\\test",fileProcess.fileName);
     ASSERT_EQ(".erd",fileProcess.fileExtension);
 
-    fileProcess.extractFileInfo("C:\\ERD\\TestFile\\test.1.erd");
-    ASSERT_EQ("C:\\ERD\\TestFile\\test.1",fileProcess.fileName);
-    ASSERT_EQ(".erd",fileProcess.fileExtension);
+    pair<string,string> fileInfoPair = fileProcess.extractFileInfo("C:\\ERD\\TestFile\\test.1.erd");
+    ASSERT_EQ("C:\\ERD\\TestFile\\test.1",fileInfoPair.first);
+    ASSERT_EQ(".erd",fileInfoPair.second);
 
     ASSERT_THROW(fileProcess.extractFileInfo("abcd"),Exception);
 }

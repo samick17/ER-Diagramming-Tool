@@ -16,6 +16,10 @@ class Command{
     FRIEND_TEST(EditTextOfComponentsCommandTest,testUnexecute);
     friend class SetPrimaryKeyCommandTest;
     FRIEND_TEST(SetPrimaryKeyCommandTest,testUnexecute);
+    friend class DeleteMultiComponentCommandTest;
+    FRIEND_TEST(DeleteMultiComponentCommandTest,testUnexecute);
+    friend class MoveComponentsCommandTest;
+    FRIEND_TEST(MoveComponentsCommandTest,testUnexecute);
 public:
     Command();
     virtual ~Command();

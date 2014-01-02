@@ -3,7 +3,6 @@
 
 MoveComponentsCommand::MoveComponentsCommand(HashMap<string,Component*> selectedComponentMap,Point mousePressPosition,Point mouseReleasePosition) : selectedComponentMap(selectedComponentMap),mousePressPosition(mousePressPosition),mouseReleasePosition(mouseReleasePosition){
     this->deltaPosition = mouseReleasePosition-mousePressPosition;
-    //this->doUnExecute();
 }
 
 MoveComponentsCommand::~MoveComponentsCommand(){

@@ -4,7 +4,9 @@
 #include "Exception.h"
 
 FileProcess::FileProcess(string filePath){
-    this->extractFileInfo(filePath);
+    pair<string,string> fileInfoPair = this->extractFileInfo(filePath);
+    this->fileName = fileInfoPair.first;
+    this->fileExtension = fileInfoPair.second;
 }
 
 FileProcess::~FileProcess(){
@@ -18,10 +20,12 @@ string FileProcess::getFileExtension(){
     return this->fileExtension;
 }
 
-void FileProcess::extractFileInfo(string filePath){
+pair<string,string> FileProcess::extractFileInfo(string filePath){
     unsigned int lastIndex = StringUtil::lastIndexOf(filePath,CharSymbol::Dot);
     if(lastIndex == -1)
         throw Exception("Please enter correct format!");
-    this->fileName = filePath.substr(0,lastIndex);
-    this->fileExtension = filePath.substr(lastIndex);
+    string fileName = filePath.substr(0,lastIndex);
+    string fileExtension = filePath.substr(lastIndex);
+    pair<string,string> fileInfoPair(fileName,fileExtension);
+    return fileInfoPair;
 }

@@ -17,5 +17,5 @@ void InputFileProcess::openFile(){
 
 void InputFileProcess::openERDFile(){
     InputFileParser inputFileParser;
-    inputFileParser.parseFileToModel(this->getFileName(),this->getFileExtension(),this->erModel);
+    inputFileParser.parseFileToModel(this->getFileName()+this->getFileExtension(),this->erModel);
 }

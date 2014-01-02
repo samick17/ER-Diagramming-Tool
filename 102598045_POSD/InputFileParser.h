@@ -22,7 +22,7 @@ public:
     InputFileParser();
     ~InputFileParser();
 
-    void parseFileToModel(string fileName,string fileExtension,ERModel* erModel);
+    void parseFileToModel(string filePath,ERModel* erModel);
 private:
     void loadAllComponentsFromDoc(Document& document);
     void loadAllConnectorsFromDoc(Document& document);
