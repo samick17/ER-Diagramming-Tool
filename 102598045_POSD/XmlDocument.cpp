@@ -13,9 +13,6 @@ void XmlDocument::doSaveFile(){
     for each(Component* component in this->componentMap)
         component->accept(&saveXmlComponentVisitor);
     //save erd file
-    this->writeLine("<?xml version=\"1.0\"?>");
-    this->writeLine("<ERDiagram>");
     for each(string info in saveXmlComponentVisitor.getResult())
         this->writeLine(info);
-    this->writeLine("</ERDiagram>");
 }

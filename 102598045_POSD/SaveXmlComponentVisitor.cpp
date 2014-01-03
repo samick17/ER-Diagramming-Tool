@@ -6,6 +6,8 @@
 #include "StringSymbol.h"
 #include "StringUtil.h"
 
+const string SaveXmlComponentVisitor::XmlStart = "<?xml version=\"1.0\"?>";
+const string SaveXmlComponentVisitor::ERDiagramStart = "<ERDiagram>",SaveXmlComponentVisitor::ERDiagramEnd = "</ERDiagram>";
 const string SaveXmlComponentVisitor::AttributeStart = "<Attribute>",SaveXmlComponentVisitor::AttributeEnd = "</Attribute>";
 const string SaveXmlComponentVisitor::EntityStart = "<Entity>",SaveXmlComponentVisitor::EntityEnd = "</Entity>";
 const string SaveXmlComponentVisitor::RelationShipStart = "<RelationShip>",SaveXmlComponentVisitor::RelationShipEnd = "</RelationShip>";
@@ -25,7 +27,13 @@ SaveXmlComponentVisitor::~SaveXmlComponentVisitor(){
 }
 
 const vector<string> SaveXmlComponentVisitor::getResult(){
-    return this->componentInfoVector;
+    vector<string> result;
+    result.push_back(XmlStart);
+    result.push_back(ERDiagramStart);
+    for each(string componentInfo in this->componentInfoVector)
+        result.push_back(componentInfo);
+    result.push_back(ERDiagramEnd);
+    return result;
 }
 
 void SaveXmlComponentVisitor::visit(Attribute* attribute){

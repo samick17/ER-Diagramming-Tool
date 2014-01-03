@@ -21,6 +21,8 @@ public:
     void visit(Connector* connector);
 private:
     vector<string> componentInfoVector;
+    static const string XmlStart;
+    static const string ERDiagramStart,ERDiagramEnd;
     static const string AttributeStart,AttributeEnd;
     static const string EntityStart,EntityEnd;
     static const string RelationShipStart,RelationShipEnd;
