@@ -6,6 +6,7 @@
 #include "Connector.h"
 #include "Component.h"
 #include "ClipBoard.h"
+#include "StringUtil.h"
 
 void PasteComponentsCommandTest::SetUp(){
     Component* attribute = new Attribute("0");
@@ -104,4 +105,30 @@ TEST_F(PasteComponentsCommandTest,testExecutePasteNodeAndConnector){
 }
 
 TEST_F(PasteComponentsCommandTest,testUnexecute){
+    ClipBoard clipBoard;
+    int count = 4,pasteCount = 0;
+    HashMap<string,Component*> componentMapToPaste;
+    Component* attribute = this->componentMap.get("0");
+    Component* entity = this->componentMap.get("1");
+    Component* relationShip = this->componentMap.get("2");
+    Component* connector = this->componentMap.get("3");
+    componentMapToPaste.put(attribute->getID(),attribute);
+    componentMapToPaste.put(entity->getID(),entity);
+    componentMapToPaste.put(relationShip->getID(),relationShip);
+    componentMapToPaste.put(connector->getID(),connector);
+    clipBoard.setData(componentMapToPaste);
+    PasteComponentsCommand pasteComponentsCommand(this->componentMap,&clipBoard,&count,pasteCount);
+    for each(Component* component in clipBoard.getData()){
+        component->setID(StringUtil::intToString(count));
+        this->componentMap.put(component->getID(),component);
+        count++;
+    }
+    ASSERT_EQ(8,count);
+    ASSERT_EQ(8,this->componentMap.size());
+
+    pasteComponentsCommand.executionFlag = true;
+    pasteComponentsCommand.unExecute();
+
+    ASSERT_EQ(4,count);
+    ASSERT_EQ(4,this->componentMap.size());
 }

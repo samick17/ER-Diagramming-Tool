@@ -20,6 +20,8 @@ class Command{
     FRIEND_TEST(DeleteMultiComponentCommandTest,testUnexecute);
     friend class MoveComponentsCommandTest;
     FRIEND_TEST(MoveComponentsCommandTest,testUnexecute);
+    friend class PasteComponentsCommand;
+    FRIEND_TEST(PasteComponentsCommandTest,testUnexecute);
 public:
     Command();
     virtual ~Command();

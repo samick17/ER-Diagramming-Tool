@@ -6,6 +6,7 @@
 #include <gtest/gtest_prod.h> 
 
 class Component;
+class Attribute;
 class Connector;
 
 class DeleteComponentCommand : public Command{
@@ -24,12 +25,14 @@ protected:
     void doUnExecute();
 private:
     inline void saveConnectionData(Connector* connector);
+    inline void saveAttributeKeyAndSetAsDefaultKey(HashMap<string,Attribute*> connectedAttributeMap);
     inline void clearConnectionDataMap();
     inline void removeAndDisconnectComponents();
     inline void reConnectComponents(ConnectionData* connectionData,Connector* connector);
     HashMap<string,Component*>& componentMap;
     Component* component;
     HashMap<string,Connector*> connectionMap;
+    HashMap<string,Attribute*> attributePrimaryKeyMap;
     HashMap<string,ConnectionData*> connectionDataMap;
     HashMap<string,unsigned int> componentIndexMap;
 };
