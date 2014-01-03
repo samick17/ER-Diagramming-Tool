@@ -14,6 +14,7 @@
 #include "FileCreator.h"
 #include "Presentation.h"
 #include "TextPresentation.h"
+#include "MockCommand.h"
 
 void ERModelTest::SetUp(){
     this->presentation = new Presentation(&this->erModel);
@@ -162,13 +163,15 @@ TEST_F(ERModelTest,testAddConnection){
     ASSERT_EQ(false,hasConnected(relationShipWorkOn,attributeDepartmentName));
 }
 
-TEST_F(ERModelTest,testCanUndo){
-}
-
-TEST_F(ERModelTest,testCanRedo){
-}
-
 TEST_F(ERModelTest,testIsNeedToSave){
+    ERModel erModelTest;
+    ASSERT_EQ(false,erModelTest.isNeedToSave());
+    erModelTest.commandManager.execute(new MockCommand());
+    ASSERT_EQ(true,erModelTest.isNeedToSave());
+    erModelTest.saveFlag = true;
+    ASSERT_EQ(false,erModelTest.isNeedToSave());
+    erModelTest.commandManager.undo();
+    ASSERT_EQ(false,erModelTest.isNeedToSave());
 }
 
 TEST_F(ERModelTest,testSetCardinality){
@@ -247,9 +250,6 @@ TEST_F(ERModelTest,testSetComponentText){
     ASSERT_EQ(originConnectorName,connector->getName());
 }
 
-TEST_F(ERModelTest,testmoveComponents){
-}
-
 TEST_F(ERModelTest,testOpenFile){
     string filePath = FileCreator::createDefaultFile();
 
@@ -265,21 +265,6 @@ TEST_F(ERModelTest,testOpenFile){
     ASSERT_THROW(this->erModel.commandManager.undo(),Exception);
 
     FileCreator::deleteDefaultFile();
-}
-
-TEST_F(ERModelTest,testSaveFile){
-}
-
-TEST_F(ERModelTest,testCanPaste){
-}
-
-TEST_F(ERModelTest,testCutComponents){
-}
-
-TEST_F(ERModelTest,testCopyComponents){
-}
-
-TEST_F(ERModelTest,testPasteComponents){
 }
 
 TEST_F(ERModelTest,testGetComponentByID){

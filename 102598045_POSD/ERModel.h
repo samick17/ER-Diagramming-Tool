@@ -26,6 +26,7 @@ class ERModel : public ISyncable,public Subject{
     FRIEND_TEST(ERModelTest,testUndoDeleteComponent);
     FRIEND_TEST(ERModelTest,testRedoConnectComponent);
     FRIEND_TEST(ERModelTest,testCommonUsage);
+    FRIEND_TEST(ERModelTest,testIsNeedToSave);
     friend class CommandManagerTest;
     FRIEND_TEST(CommandManagerTest,testCommandManager);
     FRIEND_TEST(CommandManagerTest,testRedoUndo);
