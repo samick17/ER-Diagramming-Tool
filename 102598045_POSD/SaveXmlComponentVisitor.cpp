@@ -38,7 +38,7 @@ const vector<string> SaveXmlComponentVisitor::getResult(){
 
 void SaveXmlComponentVisitor::visit(Attribute* attribute){
     this->componentInfoVector.push_back(StringSymbol::Tab+AttributeStart);
-    this->componentInfoVector.push_back(StringSymbol::Tab+StringSymbol::Tab+IdStart+attribute->getID()+IdEnd);
+    this->componentInfoVector.push_back(StringSymbol::Tab+StringSymbol::Tab+IdStart+this->getTransformedID(attribute)+IdEnd);
     this->componentInfoVector.push_back(StringSymbol::Tab+StringSymbol::Tab+TextStart+attribute->getName()+TextEnd);
     this->componentInfoVector.push_back(StringSymbol::Tab+StringSymbol::Tab+PositionXStart+StringUtil::doubleToString(attribute->getRect().getPosition().getX())+PositionXEnd);
     this->componentInfoVector.push_back(StringSymbol::Tab+StringSymbol::Tab+PositionYStart+StringUtil::doubleToString(attribute->getRect().getPosition().getY())+PositionYEnd);
@@ -47,10 +47,10 @@ void SaveXmlComponentVisitor::visit(Attribute* attribute){
 
 void SaveXmlComponentVisitor::visit(Entity* entity){
     this->componentInfoVector.push_back(StringSymbol::Tab+EntityStart);
-    this->componentInfoVector.push_back(StringSymbol::Tab+StringSymbol::Tab+IdStart+entity->getID()+IdEnd);
+    this->componentInfoVector.push_back(StringSymbol::Tab+StringSymbol::Tab+IdStart+this->getTransformedID(entity)+IdEnd);
     this->componentInfoVector.push_back(StringSymbol::Tab+StringSymbol::Tab+TextStart+entity->getName()+TextEnd);
     for each(Attribute* attribute in entity->getPrimaryKeyAttributes())
-        this->componentInfoVector.push_back(StringSymbol::Tab+StringSymbol::Tab+PrimaryKeyStart+attribute->getID()+PrimaryKeyEnd);
+        this->componentInfoVector.push_back(StringSymbol::Tab+StringSymbol::Tab+PrimaryKeyStart+this->getTransformedID(attribute)+PrimaryKeyEnd);
     this->componentInfoVector.push_back(StringSymbol::Tab+StringSymbol::Tab+PositionXStart+StringUtil::doubleToString(entity->getRect().getPosition().getX())+PositionXEnd);
     this->componentInfoVector.push_back(StringSymbol::Tab+StringSymbol::Tab+PositionYStart+StringUtil::doubleToString(entity->getRect().getPosition().getY())+PositionYEnd);
     this->componentInfoVector.push_back(StringSymbol::Tab+EntityEnd);
@@ -58,7 +58,7 @@ void SaveXmlComponentVisitor::visit(Entity* entity){
 
 void SaveXmlComponentVisitor::visit(RelationShip* relationShip){
     this->componentInfoVector.push_back(StringSymbol::Tab+RelationShipStart);
-    this->componentInfoVector.push_back(StringSymbol::Tab+StringSymbol::Tab+IdStart+relationShip->getID()+IdEnd);
+    this->componentInfoVector.push_back(StringSymbol::Tab+StringSymbol::Tab+IdStart+this->getTransformedID(relationShip)+IdEnd);
     this->componentInfoVector.push_back(StringSymbol::Tab+StringSymbol::Tab+TextStart+relationShip->getName()+TextEnd);
     this->componentInfoVector.push_back(StringSymbol::Tab+StringSymbol::Tab+PositionXStart+StringUtil::doubleToString(relationShip->getRect().getPosition().getX())+PositionXEnd);
     this->componentInfoVector.push_back(StringSymbol::Tab+StringSymbol::Tab+PositionYStart+StringUtil::doubleToString(relationShip->getRect().getPosition().getY())+PositionYEnd);
@@ -67,9 +67,9 @@ void SaveXmlComponentVisitor::visit(RelationShip* relationShip){
 
 void SaveXmlComponentVisitor::visit(Connector* connector){
     this->componentInfoVector.push_back(StringSymbol::Tab+ConnectorStart);
-    this->componentInfoVector.push_back(StringSymbol::Tab+StringSymbol::Tab+IdStart+connector->getID()+IdEnd);
+    this->componentInfoVector.push_back(StringSymbol::Tab+StringSymbol::Tab+IdStart+this->getTransformedID(connector)+IdEnd);
     this->componentInfoVector.push_back(StringSymbol::Tab+StringSymbol::Tab+TextStart+connector->getName()+TextEnd);
-    this->componentInfoVector.push_back(StringSymbol::Tab+StringSymbol::Tab+SourceStart+connector->getFirstConnectedNode()->getID()+SourceEnd);
-    this->componentInfoVector.push_back(StringSymbol::Tab+StringSymbol::Tab+TargetStart+connector->getSecondConnectedNode()->getID()+TargetEnd);
+    this->componentInfoVector.push_back(StringSymbol::Tab+StringSymbol::Tab+SourceStart+this->getTransformedID(connector->getFirstConnectedNode())+SourceEnd);
+    this->componentInfoVector.push_back(StringSymbol::Tab+StringSymbol::Tab+TargetStart+this->getTransformedID(connector->getSecondConnectedNode())+TargetEnd);
     this->componentInfoVector.push_back(StringSymbol::Tab+ConnectorEnd);
 }

@@ -9,6 +9,9 @@ using namespace std;
 class SaveXmlComponentVisitor : public ComponentVisitor{
     friend class SaveXmlComponentVisitorTest;
     FRIEND_TEST(SaveXmlComponentVisitorTest,testVisitAttribute);
+    FRIEND_TEST(SaveXmlComponentVisitorTest,testVisitEntity);
+    FRIEND_TEST(SaveXmlComponentVisitorTest,testVisitRelationShip);
+    FRIEND_TEST(SaveXmlComponentVisitorTest,testVisitConnector);
 public:
     SaveXmlComponentVisitor(HashMap<string,string> reorderedIDMap);
     ~SaveXmlComponentVisitor();

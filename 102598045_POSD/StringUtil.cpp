@@ -1,6 +1,7 @@
 #include "StringUtil.h"
 #include <sstream>
 #include "StringSymbol.h"
+#include "Exception.h"
 
 //convert int to string
 string StringUtil::intToString(int number){
@@ -13,7 +14,9 @@ int StringUtil::stringToInt(string str){
     int covertedInt;
     stringstream stringStream;
     stringStream.str(str);
-    stringStream >> covertedInt;
+    stringStream>>covertedInt;
+    if(stringStream.fail())
+        throw Exception("can not convert to int");
     return covertedInt;
 }
 

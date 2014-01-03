@@ -8,6 +8,9 @@ class Component;
 class ClipBoard{
     friend class CutComponentsCommandTest;
     FRIEND_TEST(CutComponentsCommandTest,testExecuteCutConnectorWithOneNode);
+    friend class ClipBoardTest;
+    FRIEND_TEST(ClipBoardTest,testSetData);
+    FRIEND_TEST(ClipBoardTest,testGetData);
 public:
     ClipBoard();
     ~ClipBoard();

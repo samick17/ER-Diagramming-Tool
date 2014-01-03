@@ -1,5 +1,6 @@
 #include "StringUtilTest.h"
 #include "StringUtil.h"
+#include "Exception.h"
 
 void StringUtilTest::SetUp(){}
 
@@ -10,6 +11,19 @@ TEST_F(StringUtilTest,testIntToString){
     ASSERT_EQ("24985",StringUtil::intToString(24985));
     ASSERT_EQ("0",StringUtil::intToString(0));
     ASSERT_EQ("-1",StringUtil::intToString(-1));
+}
+
+TEST_F(StringUtilTest,testStringToInt){
+    ASSERT_THROW(StringUtil::stringToInt("a"),Exception);
+    ASSERT_EQ(1,StringUtil::stringToInt("1"));
+    ASSERT_EQ(15,StringUtil::stringToInt("15"));
+    ASSERT_THROW(StringUtil::stringToInt(""),Exception);
+}
+
+TEST_F(StringUtilTest,testDoubleToString){
+    ASSERT_EQ("10.122",StringUtil::doubleToString(10.122));
+    ASSERT_EQ("0",StringUtil::doubleToString(0.000));
+    ASSERT_EQ("-0",StringUtil::doubleToString(-0.000));
 }
 
 TEST_F(StringUtilTest,testplit){
