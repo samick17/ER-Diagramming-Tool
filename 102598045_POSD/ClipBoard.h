@@ -1,10 +1,13 @@
 #pragma once
 
 #include "HashMap.h"
+#include <gtest/gtest_prod.h>
 
 class Component;
 
 class ClipBoard{
+    friend class CutComponentsCommandTest;
+    FRIEND_TEST(CutComponentsCommandTest,testExecuteCutConnectorWithOneNode);
 public:
     ClipBoard();
     ~ClipBoard();

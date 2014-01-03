@@ -17,10 +17,10 @@ void DeleteMultiComponentCommandTest::SetUp(){
     connector->connectTo(attribute);
     connector->connectTo(entity);
 
-    componentMap.put(attribute->getID(),attribute);
-    componentMap.put(entity->getID(),entity);
-    componentMap.put(relationShip->getID(),relationShip);
-    componentMap.put(connector->getID(),connector);
+    this->componentMap.put(attribute->getID(),attribute);
+    this->componentMap.put(entity->getID(),entity);
+    this->componentMap.put(relationShip->getID(),relationShip);
+    this->componentMap.put(connector->getID(),connector);
 }
 
 void DeleteMultiComponentCommandTest::TearDown(){

@@ -18,10 +18,10 @@ void CutComponentsCommandTest::SetUp(){
     connector->connectTo(attribute);
     connector->connectTo(entity);
 
-    componentMap.put(attribute->getID(),attribute);
-    componentMap.put(entity->getID(),entity);
-    componentMap.put(relationShip->getID(),relationShip);
-    componentMap.put(connector->getID(),connector);
+    this->componentMap.put(attribute->getID(),attribute);
+    this->componentMap.put(entity->getID(),entity);
+    this->componentMap.put(relationShip->getID(),relationShip);
+    this->componentMap.put(connector->getID(),connector);
 }
 
 void CutComponentsCommandTest::TearDown(){
@@ -50,7 +50,11 @@ TEST_F(CutComponentsCommandTest,testExecuteCutConnectorWithOneNode){
     componentToCut.put(attribute->getID(),attribute);
     CutComponentsCommand cutComponentsCommand(this->componentMap,&clipBoard,componentToCut);
     cutComponentsCommand.execute();
-    
+
+    ASSERT_EQ(2,this->componentMap.size());
+    ASSERT_EQ(true,this->componentMap.containsKey("1"));
+    ASSERT_EQ(true,this->componentMap.containsKey("2"));
+    ASSERT_EQ(1,clipBoard.componentMap.size());
 }
 
 TEST_F(CutComponentsCommandTest,testUnexecute){
