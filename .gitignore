@@ -1,5 +1,4 @@
 *.obj 
-*.exe 
 *.pdb 
 *.user 
 *.aps 
@@ -32,6 +31,5 @@ _ReSharper*/
 */[Dd]ebug*/
 */*/[Dd]ebug*/
 */*.suo
-*/*.exe
 */*.ilk
 */.exe.orig
